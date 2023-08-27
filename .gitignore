@@ -1,0 +1,43 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# IntelliJ IDEA project files
+.idea/
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Maven build directory
+target/
+
+# Gradle build directory
+build/
+
+# NetBeans project files
+nbproject/
+build/
+
+# Ignore JAR and WAR files if you don't want them in your repo
+*.war
+
+# Eclipse workspace metadata
+.metadata/
+
+**/bin/
+**/target/
+**/out/
+**/build/
+**/dist/
+
+
+# Ignorar .classpath y .project en todas las subcarpetas
+**/.classpath
+**/.project
+
+# Ignorar el directorio .settings en todas las subcarpetas
+**/.settings/
