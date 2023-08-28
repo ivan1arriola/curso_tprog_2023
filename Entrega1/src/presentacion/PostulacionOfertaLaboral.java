@@ -156,8 +156,17 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                     );}
         	}
         });
-        btnNewButton.setBounds(300, 211, 150, 23);
+        btnNewButton.setBounds(32, 213, 221, 23);
         getContentPane().add(btnNewButton);
+        
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		setVisible(false);
+        	}
+        });
+        btnCerrar.setBounds(265, 212, 213, 24);
+        getContentPane().add(btnCerrar);
 
 
 	}
@@ -182,9 +191,5 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         }
 
         revalidate(); // Actualizar la interfaz gráfica
-    };
-	
-	
-	
-
+    }
 } //

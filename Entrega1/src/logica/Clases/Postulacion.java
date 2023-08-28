@@ -35,7 +35,7 @@ public class Postulacion {
 
 
     // SETTERS
-    public void setNombre(LocalDate fecha) 			 	{ this.fecha = fecha; }
+    public void setFecha(LocalDate fecha) 			 	{ this.fecha = fecha; }
     public void setCV(String CV) 		   			 	{ this.CV = CV; }	
     public void setMotivacion(String motivacion)    	{ this.motivacion = motivacion; }
     public void setURLDocExtras(String URLDocExtras) 	{ this.URLDocExtras = URLDocExtras; }

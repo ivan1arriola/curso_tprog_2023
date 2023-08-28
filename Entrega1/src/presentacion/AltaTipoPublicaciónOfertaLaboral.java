@@ -7,6 +7,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -33,6 +34,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
     Fabrica fabrica = Fabrica.getInstance();
@@ -46,6 +48,8 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
     private JSpinner duracionSpinner;
     private JFormattedTextField costoField;
     private JTextField fechaAltaField;
+    private JButton btnNewButton_1;
+    private JButton btnCerrar;
     
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -62,39 +66,37 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         setResizable(true);
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setClosable(true);
-        setBounds(100, 100, 588, 590);
+        setBounds(100, 100, 396, 193);
         getContentPane().setLayout(new BorderLayout(0, 0));
         setTitle("Alta de Tipo de publicación de Oferta Laboral");
-
-        JButton btnNewButton = new JButton("Enviar");
-        getContentPane().add(btnNewButton, BorderLayout.SOUTH);
 
         JPanel panel = new JPanel();
         getContentPane().add(panel, BorderLayout.CENTER);
 
         panel.setLayout(new FormLayout(new ColumnSpec[] {
-                ColumnSpec.decode("max(99dlu;pref):grow"),
-                ColumnSpec.decode("default:grow"),},
-                new RowSpec[] {
-                        RowSpec.decode("fill:pref:grow"),
-                        RowSpec.decode("fill:pref:grow"),
-                        RowSpec.decode("fill:pref:grow"),
-                        RowSpec.decode("fill:pref:grow"),
-                        RowSpec.decode("fill:pref:grow"),
-                        RowSpec.decode("fill:pref:grow"),}));
+        		ColumnSpec.decode("max(99dlu;pref):grow"),
+        		ColumnSpec.decode("default:grow"),},
+        	new RowSpec[] {
+        		RowSpec.decode("fill:pref:grow"),
+        		RowSpec.decode("fill:pref:grow"),
+        		RowSpec.decode("fill:pref:grow"),
+        		FormSpecs.DEFAULT_ROWSPEC,
+        		RowSpec.decode("fill:pref:grow"),
+        		RowSpec.decode("fill:pref:grow"),
+        		RowSpec.decode("fill:pref:grow"),}));
 
         nombreField = new JTextField();
         descripcionField = new JTextField();
         exposicionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
-        duracionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
-        costoField = new JFormattedTextField(new DecimalFormat("#.##"));
+        
+	    JComponent editor = exposicionSpinner.getEditor();
+        if (editor instanceof JSpinner.DefaultEditor) {
+            ((JSpinner.DefaultEditor) editor).getTextField().setEditable(false);
+        }
 
-        fechaAltaField = new JTextField();
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = currentDate.format(dateFormatter);
-        fechaAltaField.setText(formattedDate);
-        fechaAltaField.setEditable(false);
 
         panel.add(new JLabel("Nombre:"), "1, 1, center, default");
         panel.add(nombreField, "2, 1, fill, fill");
@@ -104,19 +106,46 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
 
         panel.add(new JLabel("Exposición:"), "1, 3, center, default");
         panel.add(exposicionSpinner, "2, 3, fill, fill");
-
-        panel.add(new JLabel("Duración en días:"), "1, 4, center, default");
-        panel.add(duracionSpinner, "2, 4, fill, fill");
-
-        costoField.setValue(0.0);
-        costoField.setColumns(10);
-        panel.add(new JLabel("Costo:"), "1, 5, center, default");
-        panel.add(costoField, "2, 5, fill, fill");
-
-        panel.add(new JLabel("Fecha de alta:"), "1, 6, center, default");
-        panel.add(fechaAltaField, "2, 6, fill, fill");
+        
+        JLabel label = new JLabel("Duración en días:");
+        panel.add(label, "1, 4, center, default");
+        duracionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+        
+        JComponent editor1 = duracionSpinner.getEditor();
+        if (editor1 instanceof JSpinner.DefaultEditor) {
+            ((JSpinner.DefaultEditor) editor1).getTextField().setEditable(false);
+        }
+        
+	    panel.add(duracionSpinner, "2, 4, fill, fill");
+        JLabel label_1 = new JLabel("Costo:");
+        panel.add(label_1, "1, 5, center, default");
+                costoField = new JFormattedTextField(new DecimalFormat("#.##"));
+                
+                        costoField.setValue(0.0);
+                        costoField.setColumns(10);
+                        panel.add(costoField, "2, 5, fill, fill");
+        
+                JLabel label_2 = new JLabel("Fecha de alta:");
+                panel.add(label_2, "1, 6, center, default");
+        
+                fechaAltaField = new JTextField();
+                fechaAltaField.setText(formattedDate);
+                fechaAltaField.setEditable(false);
+                panel.add(fechaAltaField, "2, 6, fill, fill");
+        
+        btnNewButton_1 = new JButton("Enviar");
+        panel.add(btnNewButton_1, "1, 7");
 
         getContentPane().add(panel);
+        
+        btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		limpiarFormulario();
+        		setVisible(false);
+        	}
+        });
+        panel.add(btnCerrar, "2, 7");
 
         pack();
         
@@ -153,62 +182,6 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
             @Override
             public void changedUpdate(DocumentEvent e) {
                 descripcionField.setBackground(UIManager.getColor("TextField.background"));
-            }
-        });
-
-      
-
-        
-        
-
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String nombre = nombreField.getText();
-                String descripcion = descripcionField.getText();
-                LocalDate fechaAlta = currentDate;
-
-                boolean valid = true;
-
-                if (nombre.isEmpty()) {
-                    nombreField.setBackground(Color.RED);
-                    valid = false;
-                    JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    nombreField.setBackground(UIManager.getColor("TextField.background"));
-                }
-
-                if (descripcion.isEmpty()) {
-                    descripcionField.setBackground(Color.RED);
-                    valid = false;
-                    JOptionPane.showMessageDialog(null, "La descripción no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    descripcionField.setBackground(UIManager.getColor("TextField.background"));
-                }
-
-                int exposicion = (int) exposicionSpinner.getValue();
-                int duracion = (int) duracionSpinner.getValue();
-
-                float costo = 0.0f;
-                try {
-                    costo = Float.parseFloat(costoField.getText());
-                } catch (NumberFormatException ex) {
-                    valid = false;
-                    JOptionPane.showMessageDialog(null, "El costo debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                if (valid) {
-                    try {
-                        boolean res = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
-                        System.out.print(res);
-                        if (res) {
-                            JOptionPane.showMessageDialog(null, "Tipo de publicación de oferta laboral creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                            dispose();
-                        }
-                        limpiarFormulario();
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
             }
         });
     }

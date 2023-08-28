@@ -98,6 +98,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         	public void actionPerformed(ActionEvent e) {
         		
         		String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
+        		
         		if(selectedUsuario1 != null) {
         			selectedUsuario = selectedUsuario1;
         		}

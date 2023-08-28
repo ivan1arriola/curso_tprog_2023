@@ -90,7 +90,7 @@ public class Principal {
         
         // ModificarDatosDeUsuario
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario(ICU);
-        ModificarDatosDeUsuarioInternalFrame.setSize(500, 520);
+        ModificarDatosDeUsuarioInternalFrame.setSize(550, 550);
         ModificarDatosDeUsuarioInternalFrame.setLocation(89, 77);
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
@@ -135,7 +135,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame);
 
         CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame = new CrearPaqueteDeTiposPublicacionOfertasLaborales();
-        CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setSize(550, 290);
+        CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setSize(570, 270);
         CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setLocation(89, 77);
         CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);

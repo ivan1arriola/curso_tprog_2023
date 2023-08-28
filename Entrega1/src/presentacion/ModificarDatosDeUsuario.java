@@ -78,7 +78,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Modificar Datos de Usuario");
-        setBounds(30, 30, 477, 505);
+        setBounds(30, 30, 539, 553);
         
 
         // Absolute layout
@@ -86,18 +86,18 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
 
         // JLabael nick
         nickLabel = new JLabel("Ingrese nickname:");
-        nickLabel.setBounds(38, 65, 125, 14);
+        nickLabel.setBounds(37, 60, 162, 14);
         getContentPane().add(nickLabel);
 
         // JTextField nick 
         nick = new JTextField();
-        nick.setBounds(164, 57, 189, 30);
+        nick.setBounds(217, 53, 189, 30);
         getContentPane().add(nick);
         
         nombre_2 = new JTextField();
         nombre_2.setEnabled(false);
         nombre_2.setEditable(false);
-        nombre_2.setBounds(164, 107, 285, 30);
+        nombre_2.setBounds(217, 118, 285, 30);
         getContentPane().add(nombre_2);
         
         JLabel apellidoActualLabel = new JLabel("Apellido:");
@@ -107,7 +107,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         apellido_2 = new JTextField();
         apellido_2.setEnabled(false);
         apellido_2.setEditable(false);
-        apellido_2.setBounds(165, 147, 286, 30);
+        apellido_2.setBounds(216, 160, 286, 30);
         getContentPane().add(apellido_2);
 
         // Un botón (JButton) con un evento asociado que permite buscar un usuario.
@@ -154,7 +154,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
                     }
             	}
             	else { // ver lo de nick
-            		JOptionPane.showMessageDialog(nick, "...", "ERROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+            		JOptionPane.showMessageDialog(nick, "No ha indicado un usuario válido.", "ERROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
             	}
             	
             }
@@ -162,23 +162,23 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
 
         
         
-        btnBuscar.setBounds(366, 57, 85, 30);
+        btnBuscar.setBounds(417, 52, 85, 30);
         getContentPane().add(btnBuscar);
 
         // JLabel correo 
         correoLabel = new JLabel("Correo electrónico:");
-        correoLabel.setBounds(38, 314, 118, 23);
+        correoLabel.setBounds(38, 314, 162, 23);
         getContentPane().add(correoLabel);
 
         // JTextField apellidoActual
         apellidoActual = new JTextField();
         apellidoActual.setEditable(false);
-        apellidoActual.setBounds(164, 267, 287, 30);
+        apellidoActual.setBounds(215, 268, 287, 30);
         getContentPane().add(apellidoActual);
 
         // JLabel nombre
         nombreLabel = new JLabel("Nombre:");
-        nombreLabel.setBounds(38, 115, 65, 14);
+        nombreLabel.setBounds(38, 125, 65, 14);
         getContentPane().add(nombreLabel);
         
         
@@ -186,7 +186,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         // JTextField apellido 
         correoActual = new JTextField();
         correoActual.setEditable(false);
-        correoActual.setBounds(164, 310, 287, 30);
+        correoActual.setBounds(215, 311, 287, 30);
         getContentPane().add(correoActual);
 
         // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
@@ -198,24 +198,24 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
                 setVisible(false);
             }
         });
-        btnCerrar.setBounds(347, 441, 89, 23);
+        btnCerrar.setBounds(362, 470, 89, 23);
         getContentPane().add(btnCerrar);
         
         JLabel apellidoLabel = new JLabel("Apellido:");
-        apellidoLabel.setBounds(38, 155, 65, 14);
+        apellidoLabel.setBounds(38, 167, 65, 14);
         getContentPane().add(apellidoLabel);
         
         nombreActual = new JTextField();
         nombreActual.setEditable(false);
-        nombreActual.setBounds(164, 226, 287, 30);
+        nombreActual.setBounds(215, 226, 287, 30);
         getContentPane().add(nombreActual);
         
         listaDeUsuarios = new JLabel("Lista de usuarios:");
-        listaDeUsuarios.setBounds(38, 23, 118, 15);
+        listaDeUsuarios.setBounds(38, 23, 162, 15);
         getContentPane().add(listaDeUsuarios);
         
         JLabel infoActual = new JLabel("Información actual ");
-        infoActual.setBounds(219, 209, 180, 14);
+        infoActual.setBounds(217, 202, 180, 14);
         getContentPane().add(infoActual);
         
         JLabel nombreActualLabel = new JLabel("Nombre:");
@@ -229,28 +229,53 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         		String nuevoNombre = nombre_2.getText();
         		String nuevoApellido = apellido_2.getText();
         		String nickBuscar = nick.getText();
-        		icu.ingresarDatosEditados(nickBuscar, nuevoNombre, nuevoApellido);
-        		JOptionPane.showMessageDialog(ModificarDatosDeUsuario.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
-        		setVisible(false);
-        		limpiarFormulario();
+        		if(nuevoNombre.isEmpty() || nuevoApellido.isEmpty()) {
+        			JOptionPane.showMessageDialog(ModificarDatosDeUsuario.this, "No puede haber campos vacíos.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+        		}
+        		else if(!nuevoNombre.matches("[a-zA-Z]+$")) {
+        			JOptionPane.showMessageDialog(ModificarDatosDeUsuario.this, "El nombre solo puede contener letras.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+        		}
+        		else if(!nuevoApellido.matches("[a-zA-Z]+$")){
+        			JOptionPane.showMessageDialog(ModificarDatosDeUsuario.this, "El apellido solo puede contener letras.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+        		}
+        		else {
+            		HashSet<String> nicks = icu.listarNicknamesUsuarios();
+            		
+            		if (nicks.contains(nickBuscar))  {
+                		icu.ingresarDatosEditados(nickBuscar, nuevoNombre, nuevoApellido);
+                		JOptionPane.showMessageDialog(ModificarDatosDeUsuario.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
+                		setVisible(false);
+                		limpiarFormulario();
+            		}
+            		else {
+            			JOptionPane.showMessageDialog(nick, "No ha indicado un usuario válido.", "ERROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+            		}
+        		}
+
+        		
+
         	}
         });
-        btnAceptar.setBounds(67, 441, 89, 23);
+        btnAceptar.setBounds(66, 470, 89, 23);
         getContentPane().add(btnAceptar);
         
         comboBoxUsuarios = new JComboBox();
-        comboBoxUsuarios.setBounds(161, 19, 285, 22);
+        comboBoxUsuarios.setBounds(218, 19, 285, 22);
         getContentPane().add(comboBoxUsuarios);
         
         JLabel lblNewLabel = new JLabel("Información adicional");
-        lblNewLabel.setBounds(38, 358, 111, 14);
+        lblNewLabel.setBounds(38, 358, 162, 14);
         getContentPane().add(lblNewLabel);
         
         adicional = new JTextArea();
         adicional.setEditable(false);
         adicional.setEnabled(false);
-        adicional.setBounds(164, 351, 285, 79);
+        adicional.setBounds(217, 352, 285, 79);
         getContentPane().add(adicional);
+        
+        JLabel lblModificarDatos = new JLabel("Modificar datos");
+        lblModificarDatos.setBounds(217, 95, 141, 15);
+        getContentPane().add(lblModificarDatos);
 
 
         //((scrollPane = new JScrollPane(adicional);
@@ -268,6 +293,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         comboBoxUsuarios.addItem(" ");
         for (String nickname : nicks) {
             comboBoxUsuarios.addItem(nickname);
+            
         }
         
         revalidate(); // Actualizar la interfaz gráfica

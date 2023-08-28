@@ -22,4 +22,5 @@ public interface ICtrlOferta {
 		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
 		public abstract HashSet<String> listarPostulantes();
 		public abstract HashSet<String> listarKeywords();
+		public abstract Set<String> listarEmpresas();
 }

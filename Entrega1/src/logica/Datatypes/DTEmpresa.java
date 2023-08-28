@@ -22,16 +22,6 @@ public class DTEmpresa extends DTUsuario {
         return descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "DTEmpresa{" +
-                // Datos DTUsuario
-                "nombreEmpresa='" + nombreEmpresa + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
-
     public String getUrl() {
         return url;
     }

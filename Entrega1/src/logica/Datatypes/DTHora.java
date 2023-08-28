@@ -9,11 +9,11 @@ public class DTHora {
 		minutos = m;
 	}
 	
-	private int getHora() {
+	public int getHora() {
 		return hora;
 	}
 	
-	private int getMinutos() {
+	public int getMinutos() {
 		return minutos;
 	}
 	

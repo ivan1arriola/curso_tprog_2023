@@ -181,6 +181,8 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        if (resCheck == 1) {
 	        	try {
 	        		boolean exito = ICU.altaEmpresa(nicknameU, nombreU, apellidoU, correoelectronicoU, nombreempresaU, descripcionU);
+	                limpiarFormulario();
+	                setVisible(false);
 	        		JOptionPane.showMessageDialog(this, "El usuario se ha creado con éxito.", "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
 	        	} catch(Exception e) {
 	        		JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR - Alta de Empresa", JOptionPane.ERROR_MESSAGE);
@@ -188,6 +190,8 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        }
 	        else if (resCheck == 2) {
 	        	try {
+	                limpiarFormulario();
+	                setVisible(false);
 	        		boolean exito = ICU.altaEmpresaURL(nicknameU, nombreU, apellidoU, correoelectronicoU, nombreempresaU, descripcionU, urlU);  
 	        		JOptionPane.showMessageDialog(this, "El usuario se ha creado con éxito.", "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
 	        	} catch(Exception e) {
@@ -195,8 +199,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	            }        	
 	        }
             // Limpio el internal frame antes de cerrar la ventana
-            limpiarFormulario();
-            setVisible(false);
+
 	    }
 	
 	    // Permite validar la información introducida en los campos e indicar
@@ -219,13 +222,25 @@ public class AltaDeEmpresa extends JInternalFrame {
 	            return 0;
 	        }
 
-//	        try {
-//	            Integer.parseInt(ciU);
-//	        } catch (NumberFormatException e) {
-//	            JOptionPane.showMessageDialog(this, "La CI debe ser un numero", "Registrar Usuario",
-//	                    JOptionPane.ERROR_MESSAGE);
-//	            return false;
-//	        }
+	        if(!nombreU.matches("[a-zA-Z]+$")) {
+	        	JOptionPane.showMessageDialog(this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+	        	return 0;
+	        }
+	        
+	        if(!nombreempresaU.matches("[a-zA-Z]+$")) {
+	        	JOptionPane.showMessageDialog(this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+	        	return 0;
+	        }
+	        
+	        if(!apellidoU.matches("[a-zA-Z]+$")) {
+	        	JOptionPane.showMessageDialog(this, "El apellido indicado se compone de carácteres que no son letras.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+	        	return 0;
+	        }
+	        
+	        if(!correoelectronicoU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+	        	JOptionPane.showMessageDialog(this, "El correo electrónico indicado no es válido.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+	        	return 0;
+	        }
 	        
 	        if (urlU.isEmpty()) {
 	        	return 1;

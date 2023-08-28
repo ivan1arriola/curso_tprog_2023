@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.FlowLayout;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -50,7 +52,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
 	    setResizable(true);
 	    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setClosable(true);
-	    setBounds(100, 100, 575, 470);
+	    setBounds(100, 100, 588, 272);
 	    getContentPane().setLayout(new BorderLayout(0, 0));
 
 	    JPanel panel = new JPanel();
@@ -67,15 +69,15 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
 	    		ColumnSpec.decode("2dlu"),},
 	    	new RowSpec[] {
 	    		FormSpecs.LINE_GAP_ROWSPEC,
-	    		RowSpec.decode("max(33dlu;min)"),
+	    		RowSpec.decode("max(23dlu;min)"),
 	    		FormSpecs.LINE_GAP_ROWSPEC,
-	    		RowSpec.decode("max(38dlu;default)"),
+	    		RowSpec.decode("max(22dlu;default)"),
 	    		FormSpecs.LINE_GAP_ROWSPEC,
-	    		RowSpec.decode("max(36dlu;default)"),
+	    		RowSpec.decode("max(23dlu;default)"),
 	    		FormSpecs.LINE_GAP_ROWSPEC,
-	    		RowSpec.decode("max(40dlu;default)"),
+	    		RowSpec.decode("max(22dlu;default)"),
 	    		FormSpecs.LINE_GAP_ROWSPEC,
-	    		RowSpec.decode("max(54dlu;default)"),
+	    		RowSpec.decode("max(21dlu;default)"),
 	    		FormSpecs.LINE_GAP_ROWSPEC,}));
 
 	    JLabel lblNombre = new JLabel("Nombre:");
@@ -95,12 +97,20 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
 
 	    JSpinner spinnerPeriodoValidez = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
 	    panel_1.add(spinnerPeriodoValidez, "4, 6, default, fill");
+	    JComponent editor = spinnerPeriodoValidez.getEditor();
+        if (editor instanceof JSpinner.DefaultEditor) {
+            ((JSpinner.DefaultEditor) editor).getTextField().setEditable(false);
+        }
 
 	    JLabel lblDescuento = new JLabel("Descuento (%):");
 	    panel_1.add(lblDescuento, "2, 8, right, default");
 
 	    JSpinner spinnerDescuento = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
 	    panel_1.add(spinnerDescuento, "4, 8, default, fill");
+	    JComponent editor1 = spinnerDescuento.getEditor();
+        if (editor1 instanceof JSpinner.DefaultEditor) {
+            ((JSpinner.DefaultEditor) editor1).getTextField().setEditable(false);
+        }
 
 	    JLabel lblFechaAlta = new JLabel("Fecha de alta:");
 	    panel_1.add(lblFechaAlta, "2, 10, right, default");
@@ -112,43 +122,6 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
 	    String formattedDate = currentDate.format(dateFormatter);
 	    textFieldFechaAlta.setText(formattedDate);
 	    panel_1.add(textFieldFechaAlta, "4, 10, fill, fill");
-	    
-	    
-	    textFieldNombre.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-            	textFieldNombre.setBackground(UIManager.getColor("TextField.background"));
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-            	textFieldNombre.setBackground(UIManager.getColor("TextField.background"));
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-            	textFieldNombre.setBackground(UIManager.getColor("TextField.background"));
-            }
-        });
-
-	    textFieldDescripcion.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-            	textFieldDescripcion.setBackground(UIManager.getColor("TextField.background"));
-            }
-
-            
-			@Override
-            public void removeUpdate(DocumentEvent e) {
-				textFieldDescripcion.setBackground(UIManager.getColor("TextField.background"));
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-            	textFieldDescripcion.setBackground(UIManager.getColor("TextField.background"));
-            }
-        });
-	    
 
 	    JButton btnNewButton_1 = new JButton("Aceptar");
 	    btnNewButton_1.addActionListener(new ActionListener() {
@@ -160,72 +133,58 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
 
 	            // Verifica el campo Nombre
 	            if (nombre.isEmpty()) {
-	                textFieldNombre.setBackground(Color.RED);
-	                JOptionPane.showMessageDialog(null, "El campo Nombre no puede estar vacío.", "Campo Vacío", JOptionPane.WARNING_MESSAGE);
+	                JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacío.", "Campo Vacío", JOptionPane.WARNING_MESSAGE);
 	                valid = false;
-	            } else {
-	                textFieldNombre.setBackground(UIManager.getColor("TextField.background"));
-	            }
-
-	            // Verifica el campo Descripción
-	            if (descripcion.isEmpty()) {
-	                textFieldDescripcion.setBackground(Color.RED);
-	                JOptionPane.showMessageDialog(null, "El campo Descripción no puede estar vacío.", "Campo Vacío", JOptionPane.WARNING_MESSAGE);
+	            } else  if (descripcion.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "El campo descripción no puede estar vacío.", "Campo Vacío", JOptionPane.WARNING_MESSAGE);
 	                valid = false;
-	            } else {
-	                textFieldDescripcion.setBackground(UIManager.getColor("TextField.background"));
-	            }
+	            }else if(!nombre.matches("[a-zA-Z]+$")) {
+                	JOptionPane.showMessageDialog(CrearPaqueteDeTiposPublicacionOfertasLaborales.this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                } else {
+    	            // Verifica el campo Período de validez (días)
+    	            int periodoValidez = (int) spinnerPeriodoValidez.getValue();
+    	            if (periodoValidez <= 0) {
+    	                JOptionPane.showMessageDialog(null, "El período de validez debe ser mayor que 0.", "Valor Inválido", JOptionPane.WARNING_MESSAGE);
+    	                valid = false;
+    	            } else {
+    	                spinnerPeriodoValidez.setBackground(UIManager.getColor("Spinner.background"));
+    	            }
 
-	            // Verifica el campo Período de validez (días)
-	            int periodoValidez = (int) spinnerPeriodoValidez.getValue();
-	            if (periodoValidez <= 0) {
-	                spinnerPeriodoValidez.setBackground(Color.RED);
-	                JOptionPane.showMessageDialog(null, "El período de validez debe ser mayor que 0.", "Valor Inválido", JOptionPane.WARNING_MESSAGE);
-	                valid = false;
-	            } else {
-	                spinnerPeriodoValidez.setBackground(UIManager.getColor("Spinner.background"));
-	            }
-
-	            // Verifica el campo Descuento (%)
-	            int descuento = (int) spinnerDescuento.getValue();
-	            if (descuento < 0 || descuento > 100) {
-	                spinnerDescuento.setBackground(Color.RED);
-	                JOptionPane.showMessageDialog(null, "El descuento debe estar entre 0 y 100.", "Valor Inválido", JOptionPane.WARNING_MESSAGE);
-	                valid = false;
-	            } else {
-	                spinnerDescuento.setBackground(UIManager.getColor("Spinner.background"));
-	            }
+    	            // Verifica el campo Descuento (%)
+    	            int descuento = (int) spinnerDescuento.getValue();
+    	            if (descuento < 0 || descuento > 100) {
+    	                JOptionPane.showMessageDialog(null, "El descuento debe estar entre 0 y 100.", "Valor Inválido", JOptionPane.WARNING_MESSAGE);
+    	                valid = false;
+    	            }
 
 
-	            if (valid) {
-	                try {
-	                    boolean res = ctrlOferta.altaPaqueteOL(nombre, descripcion, periodoValidez, LocalDate.now(), descuento);
-	                    if (res) {
-	                        JOptionPane.showMessageDialog(null, "Operación completada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-	                        textFieldNombre.setText("");
-	                        textFieldDescripcion.setText("");
-	                        spinnerPeriodoValidez.setValue(1);
-	                        spinnerDescuento.setValue(0);
-	                        dispose();
-	                    } else {
-	                        JOptionPane.showMessageDialog(null, "Algo salió mal.", "Error", JOptionPane.ERROR_MESSAGE);
-	                    }
-	                } catch (IllegalArgumentException e1) {
-	                    // Mostrar el mensaje de error en una ventana emergente
-	                    JOptionPane.showMessageDialog(null, "Error: " + e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-	                }
-	            }
-
+    	            if (valid) {
+    	                try {
+    	                    boolean res = ctrlOferta.altaPaqueteOL(nombre, descripcion, periodoValidez, LocalDate.now(), descuento);
+    	                    if (res) {
+    	                        JOptionPane.showMessageDialog(null, "Operación completada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    	                        textFieldNombre.setText("");
+    	                        textFieldDescripcion.setText("");
+    	                        spinnerPeriodoValidez.setValue(1);
+    	                        spinnerDescuento.setValue(0);
+    	                        dispose();
+    	                    } else {
+    	                        JOptionPane.showMessageDialog(null, "Algo salió mal.", "Error", JOptionPane.ERROR_MESSAGE);
+    	                    }
+    	                } catch (IllegalArgumentException e1) {
+    	                    // Mostrar el mensaje de error en una ventana emergente
+    	                    JOptionPane.showMessageDialog(null, "Error: " + e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    	                }
+    	            }
+                }
 	        }
 	    });
 
-	    btnNewButton_1.setBackground(Color.GREEN);
 	    panel.add(btnNewButton_1);
 
-	    JButton btnNewButton = new JButton("Cancelar");
+	    JButton btnNewButton = new JButton("Cerrar");
 	    btnNewButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		JOptionPane.showMessageDialog(null, "Operación cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
 	    		textFieldNombre.setText("");
 	            textFieldDescripcion.setText("");
 	            spinnerPeriodoValidez.setValue(1);
@@ -234,9 +193,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
 	    		
 	    	}
 	    });
-	    btnNewButton.setBackground(Color.RED);
 	    panel.add(btnNewButton);
 	}
-
 
 }

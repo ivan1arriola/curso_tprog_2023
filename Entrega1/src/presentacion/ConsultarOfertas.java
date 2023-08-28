@@ -87,7 +87,14 @@ public class ConsultarOfertas extends JDialog {
                             
                 DTOfertaExtendido dtOfer = ico.obtenerOfertaLaboral(selectedOferta);
 		        rightTextArea.setText("");  
-                rightTextArea.append(dtOfer.toString());
+                rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" +
+        				"Descripción: " + dtOfer.getDescripcion() + "\n" +
+        				"Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" +
+        				"Costo: " + dtOfer.getCosto() + "\n" +
+        				"Remuneración: " + dtOfer.getRemuneracion() + "\n" +
+        				"Horario de Entrada: " + dtOfer.getHorario().getDesde() + "\n" +
+        				"Horario de Salida: " + dtOfer.getHorario().getHasta() + "\n" +
+        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad());
                 rightTextArea.append("\n");
 
             }

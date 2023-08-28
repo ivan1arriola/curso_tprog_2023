@@ -21,7 +21,6 @@ import logica.Fabrica;
 import logica.Datatypes.DTPaquete;
 import logica.Datatypes.DTTipoOferta;
 import logica.Datatypes.DTCantTO;
-import logica.Excepciones.ExcepcionTipoOferta;
 import logica.Interfaces.ICtrlOferta;
 import logica.Interfaces.ICtrlUsuario;
 import logica.Manejadores.PaqueteHandler;
@@ -292,6 +291,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
 		PaqueteDescuento.setText("");
 		ValidezPaquete.setText("");
 		Descripcion.setText("");
+		tableModel.setRowCount(0);
     }
     
 }

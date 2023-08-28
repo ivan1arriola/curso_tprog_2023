@@ -129,11 +129,11 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_3);
         
         JLabel lblNewLabel_4 = new JLabel("Desde ");
-        lblNewLabel_4.setBounds(22, 215, 98, 14);
+        lblNewLabel_4.setBounds(103, 202, 98, 14);
         getContentPane().add(lblNewLabel_4);
         
         JLabel lblNewLabel_5 = new JLabel("Hasta");
-        lblNewLabel_5.setBounds(299, 215, 46, 14);
+        lblNewLabel_5.setBounds(395, 202, 46, 14);
         getContentPane().add(lblNewLabel_5);
         
         JLabel lblNewLabel_6 = new JLabel("Remuneracion");
@@ -159,19 +159,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		// leer listadoEmpresa
-        		// leer listadoOferta
-        		// private JTextField nombre;
-        		// private JTextField ciudad;
-        		// private JTextField remuneracion;
-        		// private JTextField desde;
-        		// private JTextField hasta;
-        		// private JTextField fechaAlta_1;
-        		//String empresaSelec = (String) listadoEmpresa.getSelectedItem();
-        		//String ofertaSelec = (String) listadoOferta.getSelectedItem();
-        		//String nom = nombre.getText(); // leo nombre
-        		//String ciu = ciudad.getText(); // leo ciudad
-        		//String desc = descripcion.getText(); // esta mal
         		DTHora desde = new DTHora((int) desdehora.getValue(),(int) desdemin.getValue());
         		DTHora hasta = new DTHora((int) hastahora.getValue(),(int) hastamin.getValue());
         		DTHorario horario = new DTHorario(desde,hasta);
@@ -237,21 +224,46 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     	departamento = DepUY.Maldonado;
                         break;
                     default:
-                        // System.out.println("Unknown department: " + input);
                         break;
                 }
         		
-        		try {
-        			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nombre.getText(), descripcion.getText(), horario, Float.parseFloat(remuneracion.getText()), ciudad.getText(), departamento, LocalDate.now(),ks);
-        			if(!b) {
-        				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-        			}else {
-        				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La oferta laboral se dio de alta exitosamente", "Alta Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
-        				limpiarFormulario();
-        			}
-        		} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
-        			JOptionPane.showMessageDialog(AltaOfertaLaboral.this, e1.getMessage(), "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-        		}
+                String nomb = nombre.getText();
+                String ciu = ciudad.getText();
+                String desc = descripcion.getText();
+                
+                if(nomb.isEmpty() || ciu.isEmpty() || desc.isEmpty() || remuneracion.getText().isEmpty()) {
+                	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "No pueden existir campos vacíos.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(!nomb.matches("[a-zA-Z]+$")) {
+                	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(!ciu.matches("[a-zA-Z]+$")){
+                	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La ciudad indicada se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    
+                    try {
+                    	Float remu = Float.parseFloat(remuneracion.getText());
+                		try {
+                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks);
+                			if(!b) {
+                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                			}else {
+                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La oferta laboral se dio de alta exitosamente", "Alta Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+                				limpiarFormulario();
+                			}
+                		} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
+                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this, e1.getMessage(), "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                		}   
+                    } catch (NumberFormatException e1) {
+                        JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                    
+             	
+                }
+                
+
         		
         		
         	}
@@ -334,20 +346,53 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		fechaAlta_1.setEditable(false);
 		
 		desdehora = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
-		desdehora.setBounds(114, 213, 46, 20);
+		desdehora.setBounds(60, 223, 46, 20);
 		getContentPane().add(desdehora);
+	    JComponent editor = desdehora.getEditor();
+	        if (editor instanceof JSpinner.DefaultEditor) {
+	            ((JSpinner.DefaultEditor) editor).getTextField().setEditable(false);
+	        }
+		
 		
 		desdemin = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
-		desdemin.setBounds(166, 213, 46, 20);
+		desdemin.setBounds(177, 223, 46, 20);
 		getContentPane().add(desdemin);
+	     JComponent editor1 = desdemin.getEditor();
+	        if (editor1 instanceof JSpinner.DefaultEditor) {
+	            ((JSpinner.DefaultEditor) editor1).getTextField().setEditable(false);
+	        }
 		
 		hastahora = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
-		hastahora.setBounds(383, 213, 46, 20);
+		hastahora.setBounds(345, 223, 46, 20);
 		getContentPane().add(hastahora);
+	     JComponent editor2 = hastahora.getEditor();
+	        if (editor2 instanceof JSpinner.DefaultEditor) {
+	            ((JSpinner.DefaultEditor) editor2).getTextField().setEditable(false);
+	        }
 		
 		hastamin = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
-		hastamin.setBounds(434, 213, 46, 20);
+		hastamin.setBounds(475, 223, 46, 20);
 		getContentPane().add(hastamin);
+	     JComponent editor3 = hastamin.getEditor();
+	        if (editor3 instanceof JSpinner.DefaultEditor) {
+	            ((JSpinner.DefaultEditor) editor3).getTextField().setEditable(false);
+	        }
+		
+		JLabel lblHora = new JLabel("Hora");
+		lblHora.setBounds(21, 225, 70, 15);
+		getContentPane().add(lblHora);
+		
+		JLabel lblHora_1 = new JLabel("Hora");
+		lblHora_1.setBounds(303, 226, 70, 15);
+		getContentPane().add(lblHora_1);
+		
+		JLabel lblMin = new JLabel("Min");
+		lblMin.setBounds(136, 225, 35, 15);
+		getContentPane().add(lblMin);
+		
+		JLabel lblMin_1 = new JLabel("Min");
+		lblMin_1.setBounds(442, 226, 35, 15);
+		getContentPane().add(lblMin_1);
     }
     
     public void actualizar() {

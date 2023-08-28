@@ -296,51 +296,23 @@ public class ElegirPostulante extends JDialog {
         		
                 String esOferta = (String) cbOferta.getSelectedItem();
                 String esPostulante = (String) cbPostula.getSelectedItem(); 	
-         	   
-         	   try {
 
                 if(icu.existePostulacion(esPostulante, esOferta))
-                { cbEmpresa.setEnabled(true);
-                   cbOferta.setEnabled(true);
-             	   throw new PostulaExistenteException("Ya existe una postulación para estos datos");
+                { 
+                	JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
+                }  else if(motiva.getText().isBlank()) {
+                	JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito la motivación.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
+                } else if(cvred.getText().isBlank()) {
+                	JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito el CV reducido.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
                 }
-                
-                if(motiva.getText().isBlank()) {
-                	throw new FaltaMotivaException("Escriba la motivación");
+                else {
+                    String esEmpresa = (String) cbEmpresa.getSelectedItem();
+                    String cv = cvred.getText();
+                    ico.altaPostulacion(esOferta, esPostulante, cv, motiva.getText(), textField_1.getText(), currentDate);
+                    JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    setVisible(false);
                 }
-                if(cvred.getText().isBlank()) {
-                	throw new FaltaCvException("Falta el CV reducido");
-                }
-                
-                  
-                String esEmpresa = (String) cbEmpresa.getSelectedItem();
-                /*String esOferta = (String) cbOferta.getSelectedItem();
-                String esPostulante = (String) cbPostula.getSelectedItem(); */
-              
-                String cv;
-                if (cvred.getText().isBlank()) {cv="";} else {cv=cvred.getText();};
-                
-                
-                
-                
-                ico.altaPostulacion(esOferta, esPostulante, cv, motiva.getText(), textField_1.getText(), currentDate);
-                
-                
-                
-                JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-         	   
-              	} catch (PostulaExistenteException ex) {
-              		
-         	    JOptionPane.showMessageDialog(btnCrear, "Ya existe una postulación del usuario "+esPostulante+" para la oferta" + esOferta, "Error", JOptionPane.ERROR_MESSAGE);
-         	    cbEmpresa.setEditable(true);
-                cbOferta.setEditable(true);
-              	} catch (FaltaCvException cvex) {
-              		JOptionPane.showMessageDialog(btnCrear, "Falta el CV reducido", "Error", JOptionPane.ERROR_MESSAGE);
-              	} catch (FaltaMotivaException cvmot) {
-              		JOptionPane.showMessageDialog(btnCrear, "Falta la motivación", "Error", JOptionPane.ERROR_MESSAGE);
-              	}
-                
-            };
+        	};
         });
         
         

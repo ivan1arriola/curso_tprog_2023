@@ -64,14 +64,24 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                 String op2 =  (String) listadoTipoPub.getSelectedItem();
                 if (op1 != "" && op2 != "") {
                 	try {
-                        int valor = text.isEmpty() ? 0 : Integer.parseInt(text);
-                        ICO.agregarTipoOfertaPaq(op1, op2,valor);
-                        JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Se ha vinculado el tipo de publicacion a la Oferta Laboral", "Alta de Postulante", JOptionPane.INFORMATION_MESSAGE);
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Ingrese por favor un numero", "Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+                		if(text.isEmpty()) {
+                			JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "El campo cantidad no puede ser vacío.", "ERROR - Agregar Tipo de Publicación de Oferta Labora", JOptionPane.ERROR_MESSAGE);
+                		}
+                		else {
+                			int valor = Integer.parseInt(text);
+                			if(valor <= 0) {
+                				JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "El campo cantiad debe ser un número positivo.", "ERROR - Agregar Tipo de Publicación de Oferta Labora", JOptionPane.ERROR_MESSAGE);
+                			} else {
+                                ICO.agregarTipoOfertaPaq(op1, op2,valor);
+                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Se ha vinculado el tipo de publicacion a la Oferta Laboral", "Agregar Tipo de Publicación de Oferta Labora", JOptionPane.INFORMATION_MESSAGE);
+                                setVisible(false);		
+                			}
+                		}
+                	} catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Ingrese por favor un número", "ERROR - Agregar Tipo de Publicación de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     }
     	        }
-                setVisible(false);
+                
         	}
         });
         btnNewButton_1.setBounds(122, 202, 117, 25);

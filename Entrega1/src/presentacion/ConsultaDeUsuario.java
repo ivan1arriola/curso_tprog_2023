@@ -67,39 +67,39 @@ public class ConsultaDeUsuario extends JInternalFrame {
         //Título Info de Usuario
         lblInfoUsuario = new JLabel("Información de Usuario");
         lblInfoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblInfoUsuario.setBounds(160, 75, 180, 14);
+        lblInfoUsuario.setBounds(207, 72, 180, 14);
         getContentPane().add(lblInfoUsuario);
         
 
         // Una etiqueta (JLabel) indicando que en el siguiente campo debe ingresarse 
         // la cédula del usuario.
         lblIngresoNick = new JLabel("Nickname:");
-        lblIngresoNick.setBounds(14, 110, 141, 14);
+        lblIngresoNick.setBounds(14, 105, 141, 14);
         getContentPane().add(lblIngresoNick);
 
 
         textFieldNick = new JTextField();
-        textFieldNick.setBounds(160, 104, 250, 30);
+        textFieldNick.setBounds(193, 98, 250, 30);
         getContentPane().add(textFieldNick);
         textFieldNick.setEditable(false);
 
        
         lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(14, 149, 147, 23);
+        lblNombre.setBounds(14, 143, 147, 23);
         getContentPane().add(lblNombre);
 
         textFieldNombre = new JTextField();
         textFieldNombre.setEditable(false);
-        textFieldNombre.setBounds(160, 145, 250, 30);
+        textFieldNombre.setBounds(193, 140, 250, 30);
         getContentPane().add(textFieldNombre);
 
         lblApellido = new JLabel("Apellido:");
-        lblApellido.setBounds(14, 193, 65, 14);
+        lblApellido.setBounds(14, 189, 65, 14);
         getContentPane().add(lblApellido);
         
         textFieldApellido = new JTextField();
         textFieldApellido.setEditable(false);
-        textFieldApellido.setBounds(160, 185, 250, 30);
+        textFieldApellido.setBounds(193, 182, 250, 30);
         getContentPane().add(textFieldApellido);
 
        
@@ -113,23 +113,23 @@ public class ConsultaDeUsuario extends JInternalFrame {
         btnCerrar.setBounds(385, 436, 89, 23);
         getContentPane().add(btnCerrar);
         
-        JLabel lblCorreo = new JLabel("Correo ElectróncontrolOfer:");
-        lblCorreo.setBounds(14, 236, 113, 14);
+        JLabel lblCorreo = new JLabel("Correo Electrónico:");
+        lblCorreo.setBounds(14, 224, 170, 14);
         getContentPane().add(lblCorreo);
         
         textFieldCorreo = new JTextField();
         textFieldCorreo.setEditable(false);
-        textFieldCorreo.setBounds(160, 228, 250, 30);
+        textFieldCorreo.setBounds(193, 217, 250, 30);
         getContentPane().add(textFieldCorreo);
         
         
         JLabel lblTipo = new JLabel("Tipo de Usuario:");
-        lblTipo.setBounds(14, 275, 98, 14);
+        lblTipo.setBounds(14, 262, 141, 14);
         getContentPane().add(lblTipo);
         
         textTipo = new JTextField();
         textTipo.setEditable(false);
-        textTipo.setBounds(160, 268, 250, 30);
+        textTipo.setBounds(193, 259, 250, 30);
         getContentPane().add(textTipo);
         
 
@@ -139,7 +139,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         getContentPane().add(lblIngresoNick_1);
         
         lblInfoExtra = new JLabel("Información Adicional:");
-        lblInfoExtra.setBounds(14, 321, 170, 15);
+        lblInfoExtra.setBounds(193, 301, 170, 15);
         getContentPane().add(lblInfoExtra);
         
         
@@ -218,7 +218,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         
         getContentPane().add(comboBoxUsuarios);
         
-        comboBoxUsuarios.setBounds(160, 30, 283, 30);    
+        comboBoxUsuarios.setBounds(160, 30, 300, 30);    
         
         JButton btnVerOfertas = new JButton("Ver Ofertas");
         btnVerOfertas.setVisible(true);
@@ -254,7 +254,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         });
         
         
-        btnVerOfertas.setBounds(87, 400, 300, 25);
+        btnVerOfertas.setBounds(87, 399, 300, 25);
         getContentPane().add(btnVerOfertas);
         btnVerOfertas.setVisible(true);;
         
