@@ -186,7 +186,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         });
     }
     
-    btnNewButton.addActionListener(new ActionListener() {
+    btnNewButton_1.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             String nombre = nombreField.getText();
             String descripcion = descripcionField.getText();
