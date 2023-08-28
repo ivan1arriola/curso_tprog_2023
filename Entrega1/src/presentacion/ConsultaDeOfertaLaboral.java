@@ -28,7 +28,6 @@ import logica.Interfaces.ICtrlUsuario;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private ICtrlUsuario ICU; 
-	private JTextField nombreE;
 	private JTextField tfNombre;
 	private JTextField tfDescripcion;
 	private JTextField tfFechaDeAlta;
@@ -38,12 +37,23 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private JTextField tfDepartamento;
 	private JTextField tfCiudad;
 	private JComboBox<String> listaEmpresas;
-
+	private JComboBox<String> listaOfertasLaborales;
+	private String nombre_e;
+	private String selectedUsuario;
+	private VerPostulaciones VerPostulacionesJInternalFrame;
+	
 	/**
 	 * Create the application.
 	 */
-	public ConsultaDeOfertaLaboral(ICtrlUsuario icu) { 
+	public ConsultaDeOfertaLaboral(JFrame gu, ICtrlUsuario icu) { 
 		ICU = icu;
+		
+		VerPostulacionesJInternalFrame = new VerPostulaciones();
+        VerPostulacionesJInternalFrame.setSize(700, 300);
+        VerPostulacionesJInternalFrame.setLocation(38, 63);
+        VerPostulacionesJInternalFrame.setVisible(false);
+        gu.getContentPane().add(VerPostulacionesJInternalFrame);
+		
 		initialize();
 	}
 
@@ -64,6 +74,11 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         getContentPane().setLayout(null);
         
         JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		setVisible(false);
+        	}
+        });
         btnCerrar.setBounds(521, 538, 117, 25);
         getContentPane().add(btnCerrar);
         
@@ -72,23 +87,20 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(listaEmpresas);
 
         
+
+        
         JLabel lblIngresoCI_1 = new JLabel("Lista de empresas:");
         lblIngresoCI_1.setBounds(12, 27, 170, 15);
         getContentPane().add(lblIngresoCI_1);
         
-        JLabel lblIngresoCI_1_1 = new JLabel("Nombre de la empresa:");
-        lblIngresoCI_1_1.setBounds(12, 73, 170, 15);
-        getContentPane().add(lblIngresoCI_1_1);
-        
-        nombreE = new JTextField();
-        nombreE.setBounds(186, 67, 203, 28);
-        getContentPane().add(nombreE);
-        nombreE.setColumns(10);
-        
-        JComboBox<Usuario> listaOfertasLaborales = new JComboBox<Usuario>();
+        listaOfertasLaborales = new JComboBox<String>();
         listaOfertasLaborales.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String selectedUsuario = (String) listaOfertasLaborales.getSelectedItem();
+        		
+        		String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
+        		if(selectedUsuario1 != null) {
+        			selectedUsuario = selectedUsuario1;
+        		}
         		DTOfertaExtendido infoConsOf = ICU.consultaOfertaLaboral(selectedUsuario);
         		tfNombre.setText(infoConsOf.getNombre());
         		tfDescripcion.setText(infoConsOf.getDescripcion());
@@ -102,7 +114,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         		tfRemuneracion.setText(String.valueOf(infoConsOf.getCosto()));
         		
-        		tfHorario.setText((infoConsOf.getHorario()).getDesde() + ":" + (infoConsOf.getHorario()).getHasta());
+        		tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
         		
         		tfDepartamento.setText((infoConsOf.getDepartamento()).name());
         		
@@ -116,23 +128,25 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         JButton btnAceptar_1 = new JButton("Desplegar Ofertas Laborales");
         btnAceptar_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String nombre_e = nombreE.getText(); 
-        		Component source = (Component) e.getSource();
+        		listaOfertasLaborales.removeAllItems();
+        		nombre_e = (String) listaEmpresas.getSelectedItem();
         		try{
-        			ICU.listarOfertasLaborales(nombre_e);
-            		listaOfertasLaborales.removeAllItems();
-                    Set<String> empresas = ICU.listarOfertasLaborales(nombre_e);
-                    Iterator<String> iterator = empresas.iterator();
-                    while(iterator.hasNext()) {
-                    	String elem = iterator.next();
-                    	listaEmpresas.addItem(elem);
-                    }	
+                    Set<String> ofertas_laborales = ICU.listarOfertasLaborales(nombre_e);
+                    Iterator<String> iterator = ofertas_laborales.iterator();
+                    if(!ofertas_laborales.isEmpty()) {
+                    	for (String it : ofertas_laborales) {
+                    		listaOfertasLaborales.addItem(it);
+                    	}
+                    } else {
+                    	JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this, "La empresa seleccionada no tiene ofertas laborales.", "ERROR - Consulta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                    }
+
         		} catch(Exception e1) {
-        			JOptionPane.showMessageDialog(source, e1.getMessage(), "ERROR - Alta de Empresa", JOptionPane.ERROR_MESSAGE);
+        			JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this, e1.getMessage(), "ERROR - Consulta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
         		}
         	}
         });
-        btnAceptar_1.setBounds(401, 67, 240, 25);
+        btnAceptar_1.setBounds(12, 67, 629, 25);
         getContentPane().add(btnAceptar_1);
         
         JLabel lblIngresoCI_1_2 = new JLabel("Ofertas Laborales:");
@@ -214,6 +228,13 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1);
         
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
+        btnVerPostulaciones.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		VerPostulacionesJInternalFrame.actualizar(selectedUsuario);
+        		VerPostulacionesJInternalFrame.setVisible(true);
+        		
+        	}
+        });
         btnVerPostulaciones.setBounds(12, 501, 626, 25);
         getContentPane().add(btnVerPostulaciones);
 

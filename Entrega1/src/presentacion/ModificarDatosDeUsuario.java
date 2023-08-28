@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
 
 /**
  * JInternalFrame que permite consultar la información de un usuario del sistema.
@@ -48,6 +49,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
     private JTextField nombre_2;
     private JTextField apellido_2;
     private JTextField nombreActual;
+    private JComboBox comboBoxUsuarios;
     
     private JLabel nickLabel;
   
@@ -60,6 +62,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
     
     private JButton btnCerrar;
     private JTextArea adicional;
+    private JScrollPane scrollPane;
 
     /**
      * Create the frame.
@@ -76,6 +79,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         setClosable(true);
         setTitle("Modificar Datos de Usuario");
         setBounds(30, 30, 477, 505);
+        
 
         // Absolute layout
         getContentPane().setLayout(null);
@@ -92,6 +96,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         
         nombre_2 = new JTextField();
         nombre_2.setEnabled(false);
+        nombre_2.setEditable(false);
         nombre_2.setBounds(164, 107, 285, 30);
         getContentPane().add(nombre_2);
         
@@ -101,6 +106,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         
         apellido_2 = new JTextField();
         apellido_2.setEnabled(false);
+        apellido_2.setEditable(false);
         apellido_2.setBounds(165, 147, 286, 30);
         getContentPane().add(apellido_2);
 
@@ -122,8 +128,10 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
             		apellidoActual.setText(dtus.getApellido());
             		correoActual.setText(dtus.getCorreo_electronico());
             		
-            		//apellido_2.setEnabled(true);
-            		//nombre_2.setEnabled(true);
+            		apellido_2.setEnabled(true);
+            		nombre_2.setEnabled(true);
+            		nombre_2.setEditable(true);
+            		apellido_2.setEditable(true);
             		
             		String tipo;
             		if(dtus instanceof DTEmpresa) {
@@ -139,8 +147,8 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
                     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     	String formattedFecha = postula.getFecha_nac().format(formatter);
                     	
-                    	adicional.append("Fecha de Nacimiento" + formattedFecha+ "\n");
-    	                adicional.append("Nacionalidad" + postula.getNacionalidad()+ "\n");
+                    	adicional.append("Fecha de Nacimiento: " +  formattedFecha+ "\n");
+    	                adicional.append("Nacionalidad: " + postula.getNacionalidad()+ "\n");
     	                adicional.append("\n");
                     
                     }
@@ -205,12 +213,6 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         listaDeUsuarios = new JLabel("Lista de usuarios:");
         listaDeUsuarios.setBounds(38, 23, 118, 15);
         getContentPane().add(listaDeUsuarios);
-        HashSet<String> usernicks = icu.listarNicknamesUsuarios();
-        for (String nickname : usernicks) {
-           // comboBoxUsuarios.addItem(nickname);
-        }
-        
-        
         
         JLabel infoActual = new JLabel("Información actual ");
         infoActual.setBounds(219, 209, 180, 14);
@@ -224,41 +226,65 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String nuevoNombre = nombre.getText();
-        		String nuevoApellido = apellido.getText();
+        		String nuevoNombre = nombre_2.getText();
+        		String nuevoApellido = apellido_2.getText();
         		String nickBuscar = nick.getText();
         		icu.ingresarDatosEditados(nickBuscar, nuevoNombre, nuevoApellido);
+        		JOptionPane.showMessageDialog(ModificarDatosDeUsuario.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
+        		setVisible(false);
         		limpiarFormulario();
         	}
         });
         btnAceptar.setBounds(67, 441, 89, 23);
         getContentPane().add(btnAceptar);
         
-        JComboBox comboboxListar = new JComboBox();
-        comboboxListar.setBounds(161, 19, 285, 22);
-        getContentPane().add(comboboxListar);
+        comboBoxUsuarios = new JComboBox();
+        comboBoxUsuarios.setBounds(161, 19, 285, 22);
+        getContentPane().add(comboBoxUsuarios);
         
         JLabel lblNewLabel = new JLabel("Información adicional");
         lblNewLabel.setBounds(38, 358, 111, 14);
         getContentPane().add(lblNewLabel);
         
         adicional = new JTextArea();
+        adicional.setEditable(false);
+        adicional.setEnabled(false);
         adicional.setBounds(164, 351, 285, 79);
         getContentPane().add(adicional);
+
+
+        //((scrollPane = new JScrollPane(adicional);
+        //scrollPane.setBounds(164, 427, 285, -13);
+        // getContentPane().add(scrollPane);
         
     }
 
+    public void actualizar() {
+        comboBoxUsuarios.removeAllItems(); // Limpiar los elementos actuales
+        
+        
+        HashSet<String> nicks = controlUsr.listarNicknamesUsuarios();
+        
+        comboBoxUsuarios.addItem(" ");
+        for (String nickname : nicks) {
+            comboBoxUsuarios.addItem(nickname);
+        }
+        
+        revalidate(); // Actualizar la interfaz gráfica
+    }
+    
     // Permite borrar el contenido de un formulario antes de cerrarlo.
     // Recordar que las ventanas no se destruyen, sino que simplemente 
     // se ocultan, por lo que conviene borrar la información para que 
     // no aparezca al mostrarlas nuevamente.
     private void limpiarFormulario() {
     	nick.setText("");
-    	nombre.setText("");
-    	apellido.setText("");
+    	nombre_2.setText("");
+    	apellido_2.setText("");
     	
     	nombreActual.setText("");
         apellidoActual.setText("");
         correoActual.setText("");
+        adicional.setText("");
     }
 }

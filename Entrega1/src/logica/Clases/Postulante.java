@@ -36,7 +36,7 @@ public class Postulante extends Usuario{
     /* + crearPostulacion (cv : String, motivacion: String, fecha : DTFecha) : Postulacion */
 
     public Postulacion crearPostulacion (String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
-        Postulacion p = new Postulacion(cv, motivacion, fecha, URLDocExtras, OferLab);
+        Postulacion p = new Postulacion(this, cv, motivacion, fecha, URLDocExtras, OferLab);
         postulaciones.add(p);
         return p;
     }

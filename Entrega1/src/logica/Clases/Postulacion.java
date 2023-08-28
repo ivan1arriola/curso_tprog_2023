@@ -12,11 +12,13 @@ public class Postulacion {
 	private String motivacion;
 	private String URLDocExtras;
 	private OfertaLaboral OferLab;
+	private Postulante p;
 
 
 	
-	public Postulacion(String CV, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
-        this.fecha = fecha;
+	public Postulacion(Postulante p, String CV, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+        this.p = p;
+		this.fecha = fecha;
         this.CV = CV;
         this.motivacion = motivacion;
         this.URLDocExtras = URLDocExtras;
@@ -41,7 +43,7 @@ public class Postulacion {
 	
     
     public DTPostulacion getDTPostulacion() {
-    	DTPostulacion dtpostu = new DTPostulacion(fecha, URLDocExtras, CV, motivacion);
+    	DTPostulacion dtpostu = new DTPostulacion(p.getNickname(), fecha, URLDocExtras, CV, motivacion);
     	return dtpostu;
     }
     

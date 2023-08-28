@@ -40,7 +40,13 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
 
     private JTextField textField;
     private JTextField textField_1;
-
+    private JTextField nombreField;
+    private JTextField descripcionField;
+    private JSpinner exposicionSpinner;
+    private JSpinner duracionSpinner;
+    private JFormattedTextField costoField;
+    private JTextField fechaAltaField;
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
@@ -77,13 +83,13 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
                         RowSpec.decode("fill:pref:grow"),
                         RowSpec.decode("fill:pref:grow"),}));
 
-        JTextField nombreField = new JTextField();
-        JTextField descripcionField = new JTextField();
-        JSpinner exposicionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
-        JSpinner duracionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
-        JFormattedTextField costoField = new JFormattedTextField(new DecimalFormat("#.##"));
+        nombreField = new JTextField();
+        descripcionField = new JTextField();
+        exposicionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
+        duracionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+        costoField = new JFormattedTextField(new DecimalFormat("#.##"));
 
-        JTextField fechaAltaField = new JTextField();
+        fechaAltaField = new JTextField();
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = currentDate.format(dateFormatter);
@@ -198,11 +204,18 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
                             JOptionPane.showMessageDialog(null, "Tipo de publicación de oferta laboral creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                             dispose();
                         }
+                        limpiarFormulario();
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
         });
+    }
+    
+    private void limpiarFormulario() {
+    	nombreField.setText("");
+    	descripcionField.setText("");
+    	costoField.setText("");
     }
 }

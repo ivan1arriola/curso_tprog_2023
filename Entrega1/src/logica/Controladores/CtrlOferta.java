@@ -20,6 +20,7 @@ import logica.Manejadores.KeywordHandler;
 import logica.Manejadores.OfertaLaboralHandler;
 import logica.Manejadores.PaqueteHandler;
 import logica.Manejadores.TipoOfertaHandler;
+import excepciones.ExcepcionTipoOfertaNoExistente;
 
 public class CtrlOferta implements ICtrlOferta{
 
@@ -32,9 +33,9 @@ public class CtrlOferta implements ICtrlOferta{
 	
 	public HashSet<String> listarTipoDePublicaciones(){
 		HashSet<String> res = new HashSet<>(); // PQ NO ME DEJA?
-		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		HashMap<String, OfertaLaboral> ofertas_lab = OLH.obtener();
-		for (Entry<String, OfertaLaboral> entry : ofertas_lab.entrySet()) {
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		HashMap<String,TipoOferta> tipoOf = TOH.obtener();
+		for (Entry<String, TipoOferta> entry : tipoOf.entrySet()) {
 			res.add((entry.getValue().getNombre()));
         }
 
@@ -130,10 +131,18 @@ public class CtrlOferta implements ICtrlOferta{
 		return !b;
 	}
 	
-	public DTTipoOferta obtenerDatosTO(String nombre) {
+	public DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente {
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-		TipoOferta tipoOfer = TOH.buscar(nombre);
-		return tipoOfer.obtenerDT();
+		boolean b = TOH.existe(nombre);
+		if(b) {
+			TipoOferta tipoOfer = TOH.buscar(nombre);
+			DTTipoOferta res = tipoOfer.obtenerDT();
+			return res;
+		}
+		else {
+			throw new ExcepcionTipoOfertaNoExistente("El tipo de publicación de oferta laboral indicado no existe.");
+		}
+		
 	}
 	
 	public DTPaquete obtenerDatosPaquete(String paq) {
@@ -176,7 +185,6 @@ public class CtrlOferta implements ICtrlOferta{
 		CtrlUsuario CU = new CtrlUsuario();
 		boolean b = CU.existePostulacion(nick, nombre);
 		if (!b) {
-			
 			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 			OfertaLaboral ol = OLH.buscar(nombre);
 			Postulacion p = CU.crearPostulacion(nick, cv, motivacion, fecha, URLDocE, ol);
@@ -188,5 +196,15 @@ public class CtrlOferta implements ICtrlOferta{
 	public HashSet<String> listarPostulantes(){
 		CtrlUsuario CU = new CtrlUsuario();
 		return CU.obtenerNicknamesPostulantes();
+	}
+	
+	public HashSet<String> listarKeywords(){
+		HashSet<String> res = new HashSet<>();
+		KeywordHandler KH = KeywordHandler.getInstance();
+		HashMap<String,Keyword> keys = KH.obtener();
+		for (Map.Entry<String, Keyword> entry : keys.entrySet()) {
+			res.add(entry.getKey());
+		}
+		return res;
 	}
 }

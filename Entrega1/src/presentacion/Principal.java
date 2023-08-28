@@ -96,8 +96,8 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
         
         // ConsultaDeOfertaLaboral
-        ConsultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(ICU);
-        ConsultaDeOfertaLaboralInternalFrame.setSize(670, 570);
+        ConsultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios, ICU);
+        ConsultaDeOfertaLaboralInternalFrame.setSize(670, 600);
         ConsultaDeOfertaLaboralInternalFrame.setLocation(89, 77);
         ConsultaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ConsultaDeOfertaLaboralInternalFrame);
@@ -110,13 +110,13 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame);
         
         // ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame
-        ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame = new ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales();
+        ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame = new ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICO, ICU);
         ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setSize(700, 715);
         ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setLocation(89, 77);
         ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);
         
-        AltaDeKeywordsInternalFrame = new AltaDeKeywords();
+        AltaDeKeywordsInternalFrame = new AltaDeKeywords(ICO, ICU);
         AltaDeKeywordsInternalFrame.setSize(500, 180);
         AltaDeKeywordsInternalFrame.setLocation(89, 77);
         AltaDeKeywordsInternalFrame.setVisible(false);
@@ -141,7 +141,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);
         
         AltaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(550, 290);
+        AltaDeOfertaLaboralInternalFrame.setSize(550, 500);
         AltaDeOfertaLaboralInternalFrame.setLocation(89, 77);
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
@@ -220,6 +220,7 @@ public class Principal {
         menuItemModificarDatosDeUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
+            	ModificarDatosDeUsuarioInternalFrame.actualizar();
             	ModificarDatosDeUsuarioInternalFrame.setVisible(true);
             }
         });
@@ -276,6 +277,7 @@ public class Principal {
         JMenuItem ATPOLP = new JMenuItem("Agregar Tipo de publicación de Oferta Laboral a Paquete");
         ATPOLP.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.actualizar();
         		AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setVisible(true);
         	}
         });
@@ -285,12 +287,12 @@ public class Principal {
         JMenuItem ConsultarPTPOL = new JMenuItem("Consulta de Paquete de Tipos de publicación de Ofertas Laborales");
         ConsultarPTPOL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.actualizar();
         		ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(true);
         	}
         });
         mnOfertaL.add(ConsultarPTPOL);
 
-        
         
         JMenu Keywords = new JMenu("Keywords");
         menuBar.add(Keywords);

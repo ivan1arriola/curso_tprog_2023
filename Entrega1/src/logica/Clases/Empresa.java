@@ -68,7 +68,7 @@ public class Empresa extends Usuario {
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
         
-        if(ofertasLaborales!=null) {
+        if(ofertasLaborales.size() != 0) {
 	        for( OfertaLaboral ol : ofertasLaborales){
 	            lista.add(ol.getNombre());
 	        }

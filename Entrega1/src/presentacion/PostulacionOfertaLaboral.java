@@ -10,14 +10,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 //import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class PostulacionOfertaLaboral extends JInternalFrame {
-	private ICtrlOferta controlOferta;
+	//private ICtrlOferta controlOferta;
 	private ICtrlUsuario controlUsuario;
 	private HashSet<String> empresas;
 	private JComboBox<String> comboBoxEmpresa;
@@ -26,10 +26,11 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 	
 	public PostulacionOfertaLaboral(ICtrlOferta ico, ICtrlUsuario icu) {
 		
-		controlOferta = ico;
+  	//controlOferta = ico;
 		controlUsuario = icu;
 		
-		HashSet<String> empresas = icu.listarEmpresas();
+		empresas = icu.listarEmpresas();
+
         
         setResizable(true);
         setIconifiable(true);
@@ -71,13 +72,12 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                     if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0 ) {
                         String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
                         Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
-                        
+
                         comboBoxOfertas.removeAllItems(); // Limpiar el comboBoxOfertas
-                        
-                        
+                     
                         if (ofertasEmpresa.isEmpty()) {
-                        	
-                            //comboBoxOfertas.addItem("No hay ofertas disponibles");
+
+
                             JOptionPane.showMessageDialog(null, "No hay ofertas de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                         } 
                         else {
@@ -139,10 +139,13 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if(comboBoxEmpresa.getSelectedIndex()!=-1 && comboBoxOfertas.getSelectedIndex()!=-1) {
+        		if(comboBoxEmpresa.getSelectedIndex()!=-1 && comboBoxOfertas.getSelectedIndex()!=-1  &&  comboBoxEmpresa.getSelectedIndex()!=0) {
         			String emp = (String) comboBoxEmpresa.getSelectedItem();
         			String offer = (String) comboBoxOfertas.getSelectedItem();
         			ElegirPostulante eligePostu = new ElegirPostulante(emp,offer, icu,ico);
+        			eligePostu.actualizar(emp, offer);
+        			getContentPane().add(eligePostu);
+        			eligePostu.setVisible(true);
         		}
         		
         		else {
@@ -183,4 +186,5 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 	
 	
 	
+
 } //

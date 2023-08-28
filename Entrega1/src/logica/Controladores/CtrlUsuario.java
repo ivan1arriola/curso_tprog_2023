@@ -180,7 +180,6 @@ public class CtrlUsuario implements ICtrlUsuario {
     	    	keywords.add(entry.getValue());
     	}
     	
-    	
     	if(UH.existeNick(nickname_e)) {
         	Empresa e = (Empresa) UH.buscarNick(nickname_e);
         	
