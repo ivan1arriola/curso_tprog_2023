@@ -195,7 +195,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
             boolean valid = true;
 
             if (nombre.isEmpty()) {
-                nombreField.setBackground(Color.RED);
+                nombreField.setBackground(Color.RED); 
                 valid = false;
                 JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
