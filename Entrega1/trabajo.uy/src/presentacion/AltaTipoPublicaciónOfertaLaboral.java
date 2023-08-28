@@ -186,7 +186,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         });
     }
     
-    btnNewButton.addActionListener(new ActionListener() {
+    btnNewButton_1.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             String nombre = nombreField.getText();
             String descripcion = descripcionField.getText();
@@ -201,7 +201,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
             } else {
                 nombreField.setBackground(UIManager.getColor("TextField.background"));
             }
-
+ 
             if (descripcion.isEmpty()) {
                 descripcionField.setBackground(Color.RED);
                 valid = false;
