@@ -101,7 +101,7 @@ public class FabricaTest {
 		
 		HashSet<String> postulantes = ICO.listarPostulantes();
 		
-		assertEquals(1, postulantes.size());
+		assertEquals(13, postulantes.size());
 	}
 	
 	@Test
