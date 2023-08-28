@@ -202,7 +202,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
                 nombreField.setBackground(UIManager.getColor("TextField.background"));
             }
  
-            if (descripcion.isEmpty()) {
+            if (descripcion.isEmpty()) { 
                 descripcionField.setBackground(Color.RED);
                 valid = false;
                 JOptionPane.showMessageDialog(null, "La descripción no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
