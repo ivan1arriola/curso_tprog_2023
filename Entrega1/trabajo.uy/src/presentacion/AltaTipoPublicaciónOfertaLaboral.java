@@ -134,6 +134,56 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
                 panel.add(fechaAltaField, "2, 6, fill, fill");
         
         btnNewButton_1 = new JButton("Enviar");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                String nombre = nombreField.getText();
+                String descripcion = descripcionField.getText();
+                LocalDate fechaAlta = currentDate;
+
+                boolean valid = true;
+
+                if (nombre.isEmpty()) {
+                    nombreField.setBackground(Color.RED);
+                    valid = false;
+                    JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    nombreField.setBackground(UIManager.getColor("TextField.background"));
+                }
+
+                if (descripcion.isEmpty()) {
+                    descripcionField.setBackground(Color.RED);
+                    valid = false;
+                    JOptionPane.showMessageDialog(null, "La descripción no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    descripcionField.setBackground(UIManager.getColor("TextField.background"));
+                }
+
+                int exposicion = (int) exposicionSpinner.getValue();
+                int duracion = (int) duracionSpinner.getValue();
+
+                float costo = 0.0f;
+                try {
+                    costo = Float.parseFloat(costoField.getText());
+                } catch (NumberFormatException ex) {
+                    valid = false;
+                    JOptionPane.showMessageDialog(null, "El costo debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                if (valid) {
+                    try {
+                        boolean res = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
+                        System.out.print(res);
+                        if (res) {
+                            JOptionPane.showMessageDialog(null, "Tipo de publicación de oferta laboral creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            dispose();
+                        }
+                        limpiarFormulario();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
         panel.add(btnNewButton_1, "1, 7");
 
         getContentPane().add(panel);
@@ -185,58 +235,6 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
             }
         });
     }
-    
-    btnNewButton_1.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            String nombre = nombreField.getText();
-            String descripcion = descripcionField.getText();
-            LocalDate fechaAlta = currentDate;
-
-            boolean valid = true;
-
-            if (nombre.isEmpty()) {
-                nombreField.setBackground(Color.RED); 
-                valid = false;
-                JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                nombreField.setBackground(UIManager.getColor("TextField.background"));
-            }
- 
-            if (descripcion.isEmpty()) { 
-                descripcionField.setBackground(Color.RED);
-                valid = false;
-                JOptionPane.showMessageDialog(null, "La descripción no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                descripcionField.setBackground(UIManager.getColor("TextField.background"));
-            }
-
-            int exposicion = (int) exposicionSpinner.getValue();
-            int duracion = (int) duracionSpinner.getValue();
-
-            float costo = 0.0f;
-            try {
-                costo = Float.parseFloat(costoField.getText());
-            } catch (NumberFormatException ex) {
-                valid = false;
-                JOptionPane.showMessageDialog(null, "El costo debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-            if (valid) {
-                try {
-                    boolean res = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
-                    System.out.print(res);
-                    if (res) {
-                        JOptionPane.showMessageDialog(null, "Tipo de publicación de oferta laboral creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                        dispose();
-                    }
-                    limpiarFormulario();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-    });
-}
     
     private void limpiarFormulario() {
     	nombreField.setText("");
