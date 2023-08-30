@@ -1,3 +1,13 @@
+# Bugs encontrados
+## Alta de empresa
+- No acepta nombres de empresas que sean compuestos o tengan numeros u otros simbolos
+## Alta Oferta Laboral
+- No acepta nombres de oferta laboral con espacios
+- No almacena el Departamento
+## Alta keywords
+- Acepta claves vacias
+
+
 # integrantes
 - Iván Andrés Arriola Turné
 - Luciano Dario Capretti Pino
