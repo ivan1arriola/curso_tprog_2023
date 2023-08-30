@@ -3,7 +3,6 @@
 - No acepta nombres de empresas que sean compuestos o tengan numeros u otros simbolos
 ## Alta Oferta Laboral
 - No acepta nombres de oferta laboral con espacios o ñ
-- No almacena el Departamento
 ## Alta keywords
 - Se muestra mensaje de alta correcto cuando se intenta dar de alta una clave vacia . En el sistema no se dan de alta.
 
