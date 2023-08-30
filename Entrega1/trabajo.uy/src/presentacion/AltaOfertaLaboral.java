@@ -175,7 +175,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     case "Paysandú":
                     	departamento = DepUY.Paysandú;
                         break;
-                    case "Rionegro":
+                    case "RioNegro":
                     	departamento = DepUY.RioNegro;
                         break;
                     case "Soriano":
@@ -199,7 +199,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     case "Florida":
                     	departamento = DepUY.Florida;
                         break;
-                    case "Sanjosé":
+                    case "SanJosé":
                     	departamento = DepUY.SanJosé;
                         break;
                     case "Canelones":
@@ -208,10 +208,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     case "Montevideo":
                     	departamento = DepUY.Montevideo;
                         break;
-                    case "Cerrolargo":
+                    case "CerroLargo":
                     	departamento = DepUY.CerroLargo;
                         break;
-                    case "Treintaytres":
+                    case "TreintaYTres":
                     	departamento = DepUY.TreintaYTres;
                         break;
                     case "Lavalleja":
@@ -224,6 +224,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     	departamento = DepUY.Maldonado;
                         break;
                     default:
+                    	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Departamento = Null", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
                         break;
                 }
         		
