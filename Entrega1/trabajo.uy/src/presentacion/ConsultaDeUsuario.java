@@ -147,10 +147,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         lblIngresoNick_1 = new JLabel("Lista de usuarios:");
         lblIngresoNick_1.setBounds(14, 38, 170, 15);
         getContentPane().add(lblIngresoNick_1);
-        
-                       
-
-        
+    
         EmpresaDesc = new JTextArea();
         EmpresaDesc.setEditable(false);
         EmpresaDesc.setBounds(193, 334, 250, 54);
