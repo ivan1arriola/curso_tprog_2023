@@ -135,13 +135,18 @@ public class CtrlUsuario implements ICtrlUsuario {
     public boolean existePostulacion(String nickname, String nombre) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante p = (Postulante) UH.buscarNick(nickname);
-    	return p.existePostulacion(nombre);
+    	if(p != null) 
+    		return p.existePostulacion(nombre);
+    	else
+    		// throw new IllegalArgumentException("Usuario " + nick + " no existe");
+    		return false;
     }
     
     public Postulacion crearPostulacion(String nick, String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	
     	Postulante p = (Postulante) UH.buscarNick(nick);
+    	if (p == null) throw new IllegalArgumentException("Usuario " + nick + " no existe");
     	return p.crearPostulacion(cv, motivacion, fecha, URLDocExtras, OferLab);
     }
     

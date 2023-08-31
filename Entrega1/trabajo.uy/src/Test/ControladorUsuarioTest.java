@@ -44,10 +44,25 @@ public class ControladorUsuarioTest {
 
 	@Test
 	void OfertasLaborales() {
+		
 		Fabrica f = Fabrica.getInstance();
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 		ICtrlOferta ICO = f.getICtrlOferta();
 		
+		// crea postulante nick1 - Se espera que de de alta correctamente
+		try {
+			ICU.altaPostulante("nick1", "nick1", "nick1", "nick1@nick.com", LocalDate.now(), "nick1@nick.com");
+		} catch (ExceptionUsuarioNickYCorreoRepetidos e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionUsuarioNickRepetido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionUsuarioCorreoRepetido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		try {
 			boolean b = ICU.altaEmpresa("Apple Com.", "Steve", "Jobs", "stevejobs1@hotmail.com", "Apple Co.", "Vendemos celulares caros pero buenos.");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
@@ -185,15 +200,23 @@ public class ControladorUsuarioTest {
 		
         boolean b3 = ICO.altaKeyword("Trabajo nocturno");
         
+        // No se si deberia devolver true o false
         assertFalse(b3);
 	}
 	
 	@Test
 	void datosGenerales () {
+		
+		
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		OfertaLaboral ol = OLH.buscar("Feliz");
-		Postulante gauss = (Postulante) UH.buscarNick("gaussito");
+		
+		// Busca valores que no deberian estar cargados
+		OfertaLaboral ol = OLH.buscar("Feliz"); // se espera un null
+		Postulante gaussError = (Postulante) UH.buscarNick("gaussito"); // se espera un null
+		
+		//Se crea Postulante gaussito
+		Postulante gauss = new Postulante("gaussito", "Gauss", "Apellido", "gau@gauss.edu.uy", LocalDate.now(), "al");
 		
 		Postulacion p = new Postulacion(gauss, "Soy buen matematico", "Tengo mucho interes en forma parte.", LocalDate.of(2000, 4, 27), "gauss.com", ol);
 		assertEquals(p.getCV(), "Soy buen matematico");
