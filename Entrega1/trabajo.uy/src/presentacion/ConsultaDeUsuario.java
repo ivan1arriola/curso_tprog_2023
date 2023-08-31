@@ -27,8 +27,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
     private JTextField textFieldApellido;
     private JTextField textFieldCorreo;
     private JTextField textTipo;
-    
-    private JTextArea textExtra;
 
     private JLabel lblIngresoNick;
     private JLabel lblNombre;
@@ -41,6 +39,18 @@ public class ConsultaDeUsuario extends JInternalFrame {
     private JLabel lblIngresoNick_1;
     private JButton btnCerrar;
     private JComboBox<String> comboBoxUsuarios;
+    
+    private JTextArea EmpresaDesc;
+    private JTextField EmpresaUrl;
+    private JTextField PostuFecha;
+    private JTextField Nacionalidad;
+    private JLabel lblUrl;
+    private JLabel lblDesc;
+    
+    private JLabel lblFecha;
+    private JLabel lblNacion;
+    private JTextField Fecha;
+    private JTextField postNacion;
   
     public ConsultaDeUsuario(JFrame base, ICtrlUsuario icu, ICtrlOferta ico) {
 
@@ -84,7 +94,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textFieldNick.setEditable(false);
 
        
-        lblNombre = new JLabel("Nombre:");
+        lblNombre = new JLabel("Nombre");
         lblNombre.setBounds(14, 143, 147, 23);
         getContentPane().add(lblNombre);
 
@@ -93,7 +103,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textFieldNombre.setBounds(193, 140, 250, 30);
         getContentPane().add(textFieldNombre);
 
-        lblApellido = new JLabel("Apellido:");
+        lblApellido = new JLabel("Apellido");
         lblApellido.setBounds(14, 189, 65, 14);
         getContentPane().add(lblApellido);
         
@@ -113,7 +123,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         btnCerrar.setBounds(385, 436, 89, 23);
         getContentPane().add(btnCerrar);
         
-        JLabel lblCorreo = new JLabel("Correo Electrónico:");
+        JLabel lblCorreo = new JLabel("Correo Electrónico");
         lblCorreo.setBounds(14, 224, 170, 14);
         getContentPane().add(lblCorreo);
         
@@ -123,8 +133,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
         getContentPane().add(textFieldCorreo);
         
         
-        JLabel lblTipo = new JLabel("Tipo de Usuario:");
-        lblTipo.setBounds(14, 262, 141, 14);
+        JLabel lblTipo = new JLabel("Tipo de Usuario");
+        lblTipo.setBounds(14, 265, 141, 14);
         getContentPane().add(lblTipo);
         
         textTipo = new JTextField();
@@ -138,21 +148,20 @@ public class ConsultaDeUsuario extends JInternalFrame {
         lblIngresoNick_1.setBounds(14, 38, 170, 15);
         getContentPane().add(lblIngresoNick_1);
         
-        lblInfoExtra = new JLabel("Información Adicional:");
-        lblInfoExtra.setBounds(193, 301, 170, 15);
-        getContentPane().add(lblInfoExtra);
+                       
+
         
+        EmpresaDesc = new JTextArea();
+        EmpresaDesc.setEditable(false);
+        EmpresaDesc.setBounds(193, 334, 250, 54);
+        EmpresaDesc.setVisible(false);
+        getContentPane().add(EmpresaDesc); 
         
-        textExtra = new JTextArea();
-        textExtra.setEditable(false);
-        textExtra.setBounds(160, 321, 250, 51);
-        getContentPane().add(textExtra);
-        
-        JScrollPane scrollPane = new JScrollPane(textExtra);
-        scrollPane.setBounds(160, 321, 250, 55);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        getContentPane().add(scrollPane);     
+        EmpresaUrl = new JTextField();
+        EmpresaUrl.setEditable(false);
+        EmpresaUrl.setBounds(193, 300, 250, 23);
+        EmpresaUrl.setVisible(false);
+        getContentPane().add(EmpresaUrl); 
         
        
         comboBoxUsuarios = new JComboBox<>();
@@ -166,6 +175,41 @@ public class ConsultaDeUsuario extends JInternalFrame {
         	//System.out.println(nickname);
             comboBoxUsuarios.addItem(nickname);
         }*/
+        
+        JScrollPane scrollPane = new JScrollPane(EmpresaDesc);
+        scrollPane.setBounds(193, 334, 250, 54);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        getContentPane().add(scrollPane);
+        
+        lblUrl= new JLabel("URL");
+        lblUrl.setBounds(14, 305, 46, 14);
+        getContentPane().add(lblUrl);
+        
+        lblFecha= new JLabel("Fecha de Nacimiento");
+        lblFecha.setBounds(14, 305, 120, 14);
+        getContentPane().add(lblFecha);
+              
+        lblDesc = new JLabel("Descripción");
+        lblDesc.setBounds(14, 345, 100, 14);
+        getContentPane().add(lblDesc);
+        
+        lblNacion = new JLabel("Nacionalidad");
+        lblNacion.setBounds(14, 345, 100, 14);
+        getContentPane().add(lblNacion);
+        
+        
+        PostuFecha = new JTextField();
+        PostuFecha.setEditable(false);
+        PostuFecha.setBounds(193, 300, 250, 23);
+        PostuFecha.setVisible(false);
+        getContentPane().add(PostuFecha);
+        
+        Nacionalidad = new JTextField();
+        Nacionalidad.setEditable(false);
+        Nacionalidad.setBounds(193, 340, 250, 23);
+        Nacionalidad.setVisible(false);
+        getContentPane().add(Nacionalidad);
         
         
         comboBoxUsuarios.addActionListener(new ActionListener() {
@@ -187,30 +231,59 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                	DTEmpresa empresa = (DTEmpresa) dtusr;
 	                	
 	                	if(empresa.getUrl()==null) {dire = "No tiene";} else {dire=empresa.getUrl();}
-	                	textExtra.setText("");
-		                textExtra.append("Empresa: " + empresa.getNombreEmpresa()+ "\n"); 
-		                textExtra.append("Descripcion: " + empresa.getDescripcion()+ "\n");
-		                textExtra.append("URL:" + dire+ "\n");
-		                textExtra.append("\n");
+	                	
+	                		EmpresaDesc.append(empresa.getDescripcion());
+	                		EmpresaDesc.setVisible(true);
+	                		lblDesc.setVisible(true);
+	                		
+	                		EmpresaUrl.setText(dire);
+	                		EmpresaUrl.setVisible(true);
+	                		scrollPane.setVisible(true);
+	                		lblUrl.setVisible(true);
+	                	                	
+	                	
 	                } else {
 	                	tipo="Postulante";
+	                	
+	                	
+	                	EmpresaDesc.setVisible(false);
+                		EmpresaUrl.setVisible(false);
+                		scrollPane.setVisible(false);
+                		lblUrl.setVisible(false);
+                		lblDesc.setVisible(false);
+	                	
 	                	DTPostulante postula = (DTPostulante) dtusr;
 	                	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	                	String formattedFecha = postula.getFecha_nac().format(formatter);
 	                	
-	                	textExtra.setText("");
-		                textExtra.append("Fecha de Nacimiento: " + formattedFecha+ "\n");
-		                textExtra.append("Nacionalidad: " + postula.getNacionalidad()+ "\n");
-		                textExtra.append("\n");
+	                	Nacionalidad.setVisible(true);
+	                	PostuFecha.setVisible(true);
+	                	lblNacion.setVisible(true);
+	                	lblFecha.setVisible(true);
+	                	
+	                	Nacionalidad.setText(postula.getNacionalidad());
+	                	PostuFecha.setText(formattedFecha);
+	                	
 	                
 	                };
-	                textExtra.setCaretPosition(0);
+	                EmpresaDesc.setCaretPosition(0);
 	                textFieldNick.setText(dtusr.getNickname());
 	                textFieldNombre.setText(dtusr.getNombre());
 	                textFieldApellido.setText(dtusr.getApellido());
 	                textFieldCorreo.setText(dtusr.getCorreo_electronico());
 	                textTipo.setText(tipo);
             
+                } else if (comboBoxUsuarios.getSelectedIndex()==0) {
+                	lblUrl.setVisible(false);
+                	lblDesc.setVisible(false);
+                	scrollPane.setVisible(false);
+                	EmpresaUrl.setVisible(false);
+                	EmpresaDesc.setVisible(false);
+                	Nacionalidad.setVisible(false);
+                	PostuFecha.setVisible(false);
+                	lblNacion.setVisible(false);
+                	lblFecha.setVisible(false);
+                	
                 }
             }
         });
@@ -254,9 +327,10 @@ public class ConsultaDeUsuario extends JInternalFrame {
         });
         
         
-        btnVerOfertas.setBounds(87, 399, 300, 25);
+        btnVerOfertas.setBounds(87, 405, 300, 25);
         getContentPane().add(btnVerOfertas);
-        btnVerOfertas.setVisible(true);;
+        
+        btnVerOfertas.setVisible(true);
         
           
     }
@@ -267,7 +341,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textFieldNick.setText("");
         textFieldCorreo.setText("");
         textTipo.setText("");
-        textExtra.setText("");
+        EmpresaUrl.setText("");
+        EmpresaDesc.setText("");
+        Nacionalidad.setText("");
+    	PostuFecha.setText("");
+
     };
     
     public void actualizar() {
@@ -282,11 +360,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         }
         
         revalidate(); // Actualizar la interfaz gráfica
-    };
-    
-    
-    
-
+    }
 }
 
 
