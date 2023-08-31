@@ -349,9 +349,13 @@ public class ConsultaDeUsuario extends JInternalFrame {
         comboBoxUsuarios.removeAllItems(); // Limpiar los elementos actuales
         
         
-        HashSet<String> nicks = controlUsr.listarNicknamesUsuarios();
+        HashSet<String> nicksUnsort = controlUsr.listarNicknamesUsuarios();
         
         comboBoxUsuarios.addItem(" ");
+        
+        List<String> nicks = new ArrayList<>(nicksUnsort);
+        Collections.sort(nicks, String.CASE_INSENSITIVE_ORDER);
+        
         for (String nickname : nicks) {
             comboBoxUsuarios.addItem(nickname);
         }
