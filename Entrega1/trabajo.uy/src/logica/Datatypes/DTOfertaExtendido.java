@@ -15,6 +15,7 @@ public class DTOfertaExtendido {
 	private String ciudad;
 	private Set<DTPostulacion> postulaciones;
 	
+	
 	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, Set<DTPostulacion> post) {
 		nombre = nomb;
 		descripcion = desc;
@@ -69,8 +70,8 @@ public class DTOfertaExtendido {
 		String texto = "Nombre: " + nombre + "\n" +
 				"Descripción: " + descripcion + "\n" +
 				"Fecha de alta: " + fecha_de_alta + "\n" +
-				"Costo: " + costo + "\n" +
-				"Remuneración: " + remuneracion + "\n" +
+				"Costo: " + (int)costo + "\n" +
+				"Remuneración: " + (int)remuneracion + "\n" +
 				"Horario de Entrada: " + horario.getDesde() + "\n" +
 				"Horario de Salida: " + horario.getHasta() + "\n" +
 				departamento+ "," + ciudad;
