@@ -23,4 +23,5 @@ public interface ICtrlOferta {
 		public abstract HashSet<String> listarPostulantes();
 		public abstract HashSet<String> listarKeywords();
 		public abstract Set<String> listarEmpresas();
+		public abstract DTTipoOferta tipoOferta(String oferta);
 }
