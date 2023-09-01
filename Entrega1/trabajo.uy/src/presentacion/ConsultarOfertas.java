@@ -18,14 +18,17 @@ public class ConsultarOfertas extends JDialog {
 	
 	private Set<DTPostulacion> postulaciones;
 	private ICtrlOferta ico;
+	private ICtrlUsuario icu;
 	private String motiva;
 	private String cv;
 	private LocalDate fecha;
+	private String fechaFormat;
 	
-    public ConsultarOfertas(Set<String> offerDetailsUnsort,ICtrlOferta icoInstance, String usuario) {
+    public ConsultarOfertas(Set<String> offerDetailsUnsort,ICtrlOferta icoInstance, ICtrlUsuario icuInstance,String usuario) {
     	
     	ico=icoInstance;
-    
+    	icu = icuInstance;
+    	
     	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort);
         Collections.sort(offerDetails, String.CASE_INSENSITIVE_ORDER);
     	
@@ -97,35 +100,41 @@ public class ConsultarOfertas extends JDialog {
                 String selectedOferta = (String) comboBox.getSelectedItem();
                 
                 DTOfertaExtendido dtOfer = ico.obtenerOfertaLaboral(selectedOferta);
-
-        		postulaciones = dtOfer.getPostulaciones();
-        		
-        		for (DTPostulacion post : postulaciones) {
-        		    if (post.getPostulante().equals(usuario)) {
-        		        
-        		    	cv = post.getCV();
-        		    	motiva =post.getMotivacion();
-        		    	fecha = post.getFecha();
-          		        break; 
-        		    }
-        		}
-        		
-        		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                String fechaFormat = fecha.format(formatter);
+               
+                DTUsuario usr = icu.obtenerDatosUsuario(usuario);
                 
+                if(usr instanceof DTPostulante) {
+        		postulaciones = dtOfer.getPostulaciones();
+        	               		
+	        		for (DTPostulacion post : postulaciones) {
+	        		    if (post.getPostulante().equals(usuario)) {
+	        		        
+	        		    	cv = post.getCV();
+	        		    	motiva =post.getMotivacion();
+	        		    	fecha = post.getFecha();
+	          		        break; 
+	        		    }
+	        		}
+	        		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	               fechaFormat = fecha.format(formatter);
+                }
+                
+
                 
 		        rightTextArea.setText("");  
                 rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" +
         				"Descripción: " + dtOfer.getDescripcion() + "\n" +
         				"Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" +
-        				"Costo: " + dtOfer.getCosto() + "\n" +
-        				"Remuneración: " + dtOfer.getRemuneracion() + "\n" +
+        				"Costo: " + (int)dtOfer.getCosto() + "\n" +
+        				"Remuneración: " + (int)dtOfer.getRemuneracion() + "\n" +
         				"Horario de Entrada: " + dtOfer.getHorario().getDesde() + "\n" +
         				"Horario de Salida: " + dtOfer.getHorario().getHasta() + "\n" +
-        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n" +
-        				"CV Reducido: " + cv + "\n" +
+        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n");
+                if(usr instanceof DTPostulante) {
+                	rightTextArea.append("CV Reducido: " + cv + "\n" +
         				"Motivación: " + motiva + "\n" + 
         				"Fecha de Postulación: " + fechaFormat);
+                };
         				
                 rightTextArea.append("\n");
 

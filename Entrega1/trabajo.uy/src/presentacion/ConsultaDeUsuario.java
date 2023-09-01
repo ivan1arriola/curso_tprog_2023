@@ -315,7 +315,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		                    );
 		                } else {
 		                	
-		                    ConsultarOfertas detallesOferta = new ConsultarOfertas(offerDetails,controlOfer,selectedUsuario);
+		                    ConsultarOfertas detallesOferta = new ConsultarOfertas(offerDetails,controlOfer,controlUsr,selectedUsuario);
 		                    detallesOferta.setVisible(true);
 		                    getContentPane().add(detallesOferta);
 		                    detallesOferta.toFront();
