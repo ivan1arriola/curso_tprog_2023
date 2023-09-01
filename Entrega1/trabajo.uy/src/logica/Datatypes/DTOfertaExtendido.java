@@ -74,7 +74,7 @@ public class DTOfertaExtendido {
 				"Remuneración: " + (int)remuneracion + "\n" +
 				"Horario de Entrada: " + horario.getDesde() + "\n" +
 				"Horario de Salida: " + horario.getHasta() + "\n" +
-				departamento+ "," + ciudad;
+				ciudad + ", "+departamento;
 
 		return texto;
     }
