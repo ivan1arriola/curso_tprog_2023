@@ -11,16 +11,25 @@ import java.awt.Font;
 import java.util.*;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
+import java.time.LocalDate;
 @SuppressWarnings("serial")
 
 public class ConsultarOfertas extends JDialog {
 	
+	private Set<DTPostulacion> postulaciones;
 	private ICtrlOferta ico;
-    public ConsultarOfertas(Set<String> offerDetails,ICtrlOferta icoInstance) {
+	private String motiva;
+	private String cv;
+	private LocalDate fecha;
+	
+    public ConsultarOfertas(Set<String> offerDetailsUnsort,ICtrlOferta icoInstance, String usuario) {
     	
     	ico=icoInstance;
     
+    	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort);
+        Collections.sort(offerDetails, String.CASE_INSENSITIVE_ORDER);
+    	
+    	
     	setResizable(true);
         // setIconifiable(true);
         // setMaximizable(true);
@@ -66,6 +75,7 @@ public class ConsultarOfertas extends JDialog {
         rightPanel.add(rightLabel, BorderLayout.NORTH);*/   
   
         JComboBox<String> comboBox = new JComboBox<String>();
+        comboBox.addItem("");
         for (String oferta : offerDetails) {
             comboBox.addItem(oferta);
         }
@@ -77,15 +87,33 @@ public class ConsultarOfertas extends JDialog {
         rightScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         rightScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         rightPanel.add(rightScrollPane, BorderLayout.CENTER);
-        
+        rightTextArea.setLineWrap(true);
+        rightTextArea.setWrapStyleWord(true);
         
        // Seleccion de oferta para mostrar detalle 
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 String selectedOferta = (String) comboBox.getSelectedItem();
-                            
+                
                 DTOfertaExtendido dtOfer = ico.obtenerOfertaLaboral(selectedOferta);
+
+        		postulaciones = dtOfer.getPostulaciones();
+        		
+        		for (DTPostulacion post : postulaciones) {
+        		    if (post.getPostulante().equals(usuario)) {
+        		        
+        		    	cv = post.getCV();
+        		    	motiva =post.getMotivacion();
+        		    	fecha = post.getFecha();
+          		        break; 
+        		    }
+        		}
+        		
+        		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                String fechaFormat = fecha.format(formatter);
+                
+                
 		        rightTextArea.setText("");  
                 rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" +
         				"Descripción: " + dtOfer.getDescripcion() + "\n" +
@@ -94,7 +122,11 @@ public class ConsultarOfertas extends JDialog {
         				"Remuneración: " + dtOfer.getRemuneracion() + "\n" +
         				"Horario de Entrada: " + dtOfer.getHorario().getDesde() + "\n" +
         				"Horario de Salida: " + dtOfer.getHorario().getHasta() + "\n" +
-        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad());
+        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n" +
+        				"CV Reducido: " + cv + "\n" +
+        				"Motivación: " + motiva + "\n" + 
+        				"Fecha de Postulación: " + fechaFormat);
+        				
                 rightTextArea.append("\n");
 
             }
@@ -118,7 +150,7 @@ public class ConsultarOfertas extends JDialog {
         	 DTOfertaExtendido datosOferta = ico.obtenerOfertaLaboral(detail);
         	 
         	 detailsTextArea.append("Título: " + datosOferta.getNombre() + "\n");
-        	 //detailsTextArea.append("Fecha de Alta: " + datosOferta.getFechaDeAlta() + "\n");
+        	 detailsTextArea.append("Fecha de Alta: " + datosOferta.getFechaDeAlta() + "\n");
         	 detailsTextArea.append("Costo: " + datosOferta.getCosto() + "\n");
         	 detailsTextArea.append("Remuneración: " + datosOferta.getRemuneracion() + "\n");
         	 //detailsTextArea.append("Horario Entrada: " + datosOferta.getHorario().getDesde().toString() + "\n");

@@ -70,7 +70,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Usuario");
-        setBounds(30, 30, 500, 500);
+        setBounds(30, 30, 500, 550);
    
         getContentPane().setLayout(null);
         
@@ -120,7 +120,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 setVisible(false);
             }
         });
-        btnCerrar.setBounds(385, 436, 89, 23);
+        btnCerrar.setBounds(385, 445, 89, 23);
         getContentPane().add(btnCerrar);
         
         JLabel lblCorreo = new JLabel("Correo Electrónico");
@@ -150,9 +150,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
     
         EmpresaDesc = new JTextArea();
         EmpresaDesc.setEditable(false);
-        EmpresaDesc.setBounds(193, 334, 250, 54);
+        EmpresaDesc.setBounds(193, 334, 250, 65);
         EmpresaDesc.setVisible(false);
         getContentPane().add(EmpresaDesc); 
+        EmpresaDesc.setLineWrap(true);
+        EmpresaDesc.setWrapStyleWord(true);
         
         EmpresaUrl = new JTextField();
         EmpresaUrl.setEditable(false);
@@ -174,7 +176,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         }*/
         
         JScrollPane scrollPane = new JScrollPane(EmpresaDesc);
-        scrollPane.setBounds(193, 334, 250, 54);
+        scrollPane.setBounds(193, 334, 250, 65);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         getContentPane().add(scrollPane);
@@ -228,7 +230,10 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                	DTEmpresa empresa = (DTEmpresa) dtusr;
 	                	
 	                	if(empresa.getUrl()==null) {dire = "No tiene";} else {dire=empresa.getUrl();}
-	                	
+		                	Nacionalidad.setVisible(false);
+		                	PostuFecha.setVisible(false);
+		                	lblNacion.setVisible(false);
+		                	lblFecha.setVisible(false);
 	                		EmpresaDesc.append(empresa.getDescripcion());
 	                		EmpresaDesc.setVisible(true);
 	                		lblDesc.setVisible(true);
@@ -248,6 +253,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 		scrollPane.setVisible(false);
                 		lblUrl.setVisible(false);
                 		lblDesc.setVisible(false);
+                		
 	                	
 	                	DTPostulante postula = (DTPostulante) dtusr;
 	                	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -308,7 +314,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		                        JOptionPane.INFORMATION_MESSAGE
 		                    );
 		                } else {
-		                    ConsultarOfertas detallesOferta = new ConsultarOfertas(offerDetails,controlOfer);
+		                	
+		                    ConsultarOfertas detallesOferta = new ConsultarOfertas(offerDetails,controlOfer,selectedUsuario);
 		                    detallesOferta.setVisible(true);
 		                    getContentPane().add(detallesOferta);
 		                    detallesOferta.toFront();
@@ -324,7 +331,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         });
         
         
-        btnVerOfertas.setBounds(87, 405, 300, 25);
+        btnVerOfertas.setBounds(87, 415, 300, 25);
         getContentPane().add(btnVerOfertas);
         
         btnVerOfertas.setVisible(true);
