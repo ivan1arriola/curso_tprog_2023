@@ -306,8 +306,8 @@ public class ElegirPostulante extends JDialog {
                 if(icu.existePostulacion(esPostulante, esOferta))
                 { 
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
-                	cbEmpresa.setEditable(true);
-                	cbOferta.setEditable(true);
+                	cbEmpresa.setEnabled(true);
+                	cbOferta.setEnabled(true);
                 }  else if(motiva.getText().isBlank()) {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito la motivación.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
                 } else if(cvred.getText().isBlank()) {
