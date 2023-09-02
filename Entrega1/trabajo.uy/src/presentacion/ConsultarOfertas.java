@@ -59,9 +59,6 @@ public class ConsultarOfertas extends JDialog {
     
         
         JPanel leftPanel = new JPanel(new BorderLayout());
-        /*JLabel leftLabel = new JLabel("Ofertas");
-        leftLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        leftPanel.add(leftLabel, BorderLayout.NORTH);*/
         
         // Panel con texto
         JTextArea detailsTextArea = new JTextArea();
@@ -74,8 +71,6 @@ public class ConsultarOfertas extends JDialog {
         
         
         JPanel rightPanel = new JPanel(new BorderLayout());
-        /*JLabel rightLabel = new JLabel("Opciones");
-        rightPanel.add(rightLabel, BorderLayout.NORTH);*/   
   
         JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addItem("");
@@ -160,8 +155,8 @@ public class ConsultarOfertas extends JDialog {
         	 
         	 detailsTextArea.append("Título: " + datosOferta.getNombre() + "\n");
         	 detailsTextArea.append("Fecha de Alta: " + datosOferta.getFechaDeAlta() + "\n");
-        	 detailsTextArea.append("Costo: " + datosOferta.getCosto() + "\n");
-        	 detailsTextArea.append("Remuneración: " + datosOferta.getRemuneracion() + "\n");
+        	 detailsTextArea.append("Costo: " + (int)datosOferta.getCosto() + "\n");
+        	 detailsTextArea.append("Remuneración: " + (int)datosOferta.getRemuneracion() + "\n");
         	 //detailsTextArea.append("Horario Entrada: " + datosOferta.getHorario().getDesde().toString() + "\n");
         	 //detailsTextArea.append("Horario Salida: " + datosOferta.getHorario().getHasta().toString() + "\n");
         	 detailsTextArea.append("Ciudad: " + datosOferta.getCiudad() + "\n");
