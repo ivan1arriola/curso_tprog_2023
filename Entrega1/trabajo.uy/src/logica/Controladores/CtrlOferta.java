@@ -207,4 +207,13 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 		return res;
 	}
+	
+	public DTTipoOferta tipoOferta(String oferta) {
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(oferta);
+		TipoOferta tipoOferta = ol.getTipoOferta();
+		DTTipoOferta res = tipoOferta.obtenerDT();
+		return res;
+
+	}
 }

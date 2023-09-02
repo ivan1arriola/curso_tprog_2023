@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.*;
@@ -287,8 +290,6 @@ public class ElegirPostulante extends JDialog {
         gbc_btnCrear.gridy = 7;
         getContentPane().add(btnCrear, gbc_btnCrear);
         
-        //String esOferta = (String) cbOferta.getSelectedItem();
-        //String esPostulante = (String) cbPostula.getSelectedItem(); 
         
         btnCrear.addActionListener(new ActionListener() {
         
@@ -296,16 +297,27 @@ public class ElegirPostulante extends JDialog {
         		
                 String esOferta = (String) cbOferta.getSelectedItem();
                 String esPostulante = (String) cbPostula.getSelectedItem(); 	
-
+                DTOfertaExtendido dtofer = ico.obtenerOfertaLaboral(offer);
+                LocalDate fechaAlta = dtofer.getFechaDeAlta();
+                int duracion = ico.tipoOferta(esOferta).getDuracion(); //duracion segun tipo de pub
+                //ver de qué tipo es la oferta para ver su validez: oferta.fechaAlta + tipo.validez
+                LocalDate fechaResultado = fechaAlta.plusDays(duracion);
+                
                 if(icu.existePostulacion(esPostulante, esOferta))
                 { 
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
+                	cbEmpresa.setEnabled(true);
+                	cbOferta.setEnabled(true);
                 }  else if(motiva.getText().isBlank()) {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito la motivación.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
                 } else if(cvred.getText().isBlank()) {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito el CV reducido.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
-                }
-                else {
+                } else if (currentDate.isAfter(fechaResultado)) {
+                	
+                	//verificar las condiciones de fechas: tipo.validez+ oferta.fechaalta
+                	JOptionPane.showMessageDialog(ElegirPostulante.this, "Oferta no vigente", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);}
+                
+                else{
                     String esEmpresa = (String) cbEmpresa.getSelectedItem();
                     String cv = cvred.getText();
                     ico.altaPostulacion(esOferta, esPostulante, cv, motiva.getText(), textField_1.getText(), currentDate);
@@ -348,17 +360,27 @@ public class ElegirPostulante extends JDialog {
         
         //infoOferta.setText("");
         cbEmpresa.addItem(" ");
-        for (String nickname : empresas) {
+        
+        List<String> empresasSorted = new ArrayList<>(empresas);
+        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        for (String nickname : empresasSorted) {
         	
             cbEmpresa.addItem(nickname);
 
         }
         cbPostula.addItem(" ");	
-    	for (String nick : postulantes) {
+        
+        List<String> postulantesSorted = new ArrayList<>(postulantes);
+        Collections.sort(postulantesSorted, String.CASE_INSENSITIVE_ORDER);
+        
+    	for (String nick : postulantesSorted) {
             cbPostula.addItem(nick);
         }
     	
-    	for (String nick : ofertas) {
+    	List<String> ofertasSorted = new ArrayList<>(ofertas);
+        Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
+    	
+    	for (String nick : ofertasSorted) {
             cbOferta.addItem(nick);
         }
         

@@ -11,16 +11,28 @@ import java.awt.Font;
 import java.util.*;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
+import java.time.LocalDate;
 @SuppressWarnings("serial")
 
 public class ConsultarOfertas extends JDialog {
 	
+	private Set<DTPostulacion> postulaciones;
 	private ICtrlOferta ico;
-    public ConsultarOfertas(Set<String> offerDetails,ICtrlOferta icoInstance) {
+	private ICtrlUsuario icu;
+	private String motiva;
+	private String cv;
+	private LocalDate fecha;
+	private String fechaFormat;
+	
+    public ConsultarOfertas(Set<String> offerDetailsUnsort,ICtrlOferta icoInstance, ICtrlUsuario icuInstance,String usuario) {
     	
     	ico=icoInstance;
-    
+    	icu = icuInstance;
+    	
+    	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort);
+        Collections.sort(offerDetails, String.CASE_INSENSITIVE_ORDER);
+    	
+    	
     	setResizable(true);
         // setIconifiable(true);
         // setMaximizable(true);
@@ -47,9 +59,6 @@ public class ConsultarOfertas extends JDialog {
     
         
         JPanel leftPanel = new JPanel(new BorderLayout());
-        /*JLabel leftLabel = new JLabel("Ofertas");
-        leftLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        leftPanel.add(leftLabel, BorderLayout.NORTH);*/
         
         // Panel con texto
         JTextArea detailsTextArea = new JTextArea();
@@ -62,10 +71,9 @@ public class ConsultarOfertas extends JDialog {
         
         
         JPanel rightPanel = new JPanel(new BorderLayout());
-        /*JLabel rightLabel = new JLabel("Opciones");
-        rightPanel.add(rightLabel, BorderLayout.NORTH);*/   
   
         JComboBox<String> comboBox = new JComboBox<String>();
+        comboBox.addItem("");
         for (String oferta : offerDetails) {
             comboBox.addItem(oferta);
         }
@@ -77,24 +85,52 @@ public class ConsultarOfertas extends JDialog {
         rightScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         rightScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         rightPanel.add(rightScrollPane, BorderLayout.CENTER);
-        
+        rightTextArea.setLineWrap(true);
+        rightTextArea.setWrapStyleWord(true);
         
        // Seleccion de oferta para mostrar detalle 
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 String selectedOferta = (String) comboBox.getSelectedItem();
-                            
+                
                 DTOfertaExtendido dtOfer = ico.obtenerOfertaLaboral(selectedOferta);
+               
+                DTUsuario usr = icu.obtenerDatosUsuario(usuario);
+                
+                if(usr instanceof DTPostulante) {
+        		postulaciones = dtOfer.getPostulaciones();
+        	               		
+	        		for (DTPostulacion post : postulaciones) {
+	        		    if (post.getPostulante().equals(usuario)) {
+	        		        
+	        		    	cv = post.getCV();
+	        		    	motiva =post.getMotivacion();
+	        		    	fecha = post.getFecha();
+	          		        break; 
+	        		    }
+	        		}
+	        		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	               fechaFormat = fecha.format(formatter);
+                }
+                
+
+                
 		        rightTextArea.setText("");  
                 rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" +
         				"Descripción: " + dtOfer.getDescripcion() + "\n" +
         				"Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" +
-        				"Costo: " + dtOfer.getCosto() + "\n" +
-        				"Remuneración: " + dtOfer.getRemuneracion() + "\n" +
+        				"Costo: " + (int)dtOfer.getCosto() + "\n" +
+        				"Remuneración: " + (int)dtOfer.getRemuneracion() + "\n" +
         				"Horario de Entrada: " + dtOfer.getHorario().getDesde() + "\n" +
         				"Horario de Salida: " + dtOfer.getHorario().getHasta() + "\n" +
-        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad());
+        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n");
+                if(usr instanceof DTPostulante) {
+                	rightTextArea.append("CV Reducido: " + cv + "\n" +
+        				"Motivación: " + motiva + "\n" + 
+        				"Fecha de Postulación: " + fechaFormat);
+                };
+        				
                 rightTextArea.append("\n");
 
             }
@@ -118,9 +154,9 @@ public class ConsultarOfertas extends JDialog {
         	 DTOfertaExtendido datosOferta = ico.obtenerOfertaLaboral(detail);
         	 
         	 detailsTextArea.append("Título: " + datosOferta.getNombre() + "\n");
-        	 //detailsTextArea.append("Fecha de Alta: " + datosOferta.getFechaDeAlta() + "\n");
-        	 detailsTextArea.append("Costo: " + datosOferta.getCosto() + "\n");
-        	 detailsTextArea.append("Remuneración: " + datosOferta.getRemuneracion() + "\n");
+        	 detailsTextArea.append("Fecha de Alta: " + datosOferta.getFechaDeAlta() + "\n");
+        	 detailsTextArea.append("Costo: " + (int)datosOferta.getCosto() + "\n");
+        	 detailsTextArea.append("Remuneración: " + (int)datosOferta.getRemuneracion() + "\n");
         	 //detailsTextArea.append("Horario Entrada: " + datosOferta.getHorario().getDesde().toString() + "\n");
         	 //detailsTextArea.append("Horario Salida: " + datosOferta.getHorario().getHasta().toString() + "\n");
         	 detailsTextArea.append("Ciudad: " + datosOferta.getCiudad() + "\n");

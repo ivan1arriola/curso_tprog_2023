@@ -10,8 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 //import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 //import javax.swing.border.EmptyBorder;
 
@@ -53,14 +56,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         comboBoxEmpresa.setEditable(false);
         comboBoxEmpresa.setVisible(true);
         
-        /*for (String emp : empresas) {
-            comboBoxEmpresa.addItem(emp);
-        }
-        comboBoxEmpresa.setVisible(true);*/
         
         
        comboBoxOfertas = new JComboBox<>(); 
-        comboBoxOfertas.setBounds(240,40, 210, 30);
+       comboBoxOfertas.setBounds(240,40, 210, 30);
         
         
         comboBoxEmpresa.addActionListener(new ActionListener() {
@@ -81,7 +80,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                             JOptionPane.showMessageDialog(null, "No hay ofertas de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                         } 
                         else {
-                            for (String oferta : ofertasEmpresa) {
+                        	List<String> ofertasSorted = new ArrayList<>(ofertasEmpresa);
+                            Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
+                        	
+                            for (String oferta : ofertasSorted) {
                                 comboBoxOfertas.addItem(oferta);
                             }
                         }
@@ -107,8 +109,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         infoScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-    
-        
         comboBoxOfertas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
@@ -182,9 +182,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         
         //comboBoxOfertas.removeAllItems(); 
         HashSet<String> empresas = controlUsuario.listarEmpresas();
-        //infoOferta.setText("");
+        List<String> empresasSorted = new ArrayList<>(empresas);
+        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
         comboBoxEmpresa.addItem(" ");
-        for (String nickname : empresas) {
+        for (String nickname : empresasSorted) {
         	
             comboBoxEmpresa.addItem(nickname);
 
