@@ -1,15 +1,17 @@
-package presentacion.componentes;
+package presentacion.formularios;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import presentacion.componentes.Formulario;
 
 import java.awt.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.text.DecimalFormat;
 
-public class AltaTipoPublicacionOfertaLaboralForm extends JPanel implements Formulario {
+public class FormularioAltaTipoPublicacion extends JPanel implements Formulario {
 
     private static final long serialVersionUID = 1L; //Ni idea que es pero me lo sugirio Eclipse
 	private JTextField nombreField;
@@ -20,7 +22,7 @@ public class AltaTipoPublicacionOfertaLaboralForm extends JPanel implements Form
     private JTextField fechaAltaField;
     private LocalDate fechaActual;
 
-    public AltaTipoPublicacionOfertaLaboralForm() {
+    public FormularioAltaTipoPublicacion() {
         setLayout(new GridLayout(7, 2, 15, 5));
 
         // Nombre

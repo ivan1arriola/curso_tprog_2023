@@ -27,22 +27,20 @@ import java.awt.Color;
 import logica.Fabrica;
 import logica.Interfaces.ICtrlOferta;
 import presentacion.componentes.AceptarListener;
-import presentacion.componentes.AltaTipoPublicacionOfertaLaboralForm;
 import presentacion.componentes.CancelarListener;
 import presentacion.componentes.PanelBotones;
+import presentacion.formularios.AltaTipoPublicacionOfertaLaboralForm;
+import presentacion.formularios.FormularioAltaTipoPublicacion;
 
 import javax.swing.SwingConstants;
 
 public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements AceptarListener, CancelarListener {
 	
 	private static final long serialVersionUID = 1L;
-	Fabrica fabrica = Fabrica.getInstance();
-    ICtrlOferta ctrlOferta = fabrica.getICtrlOferta();
+    ICtrlOferta ctrlOferta = Fabrica.getInstance().getICtrlOferta();
 
-    private JTextField nombreField;
-    private JTextArea descripcionTextArea;
-    private JFormattedTextField costoField;
-    private AltaTipoPublicacionOfertaLaboralForm formulario;
+    private FormularioAltaTipoPublicacion formulario;
+    private PanelBotones botonesPanel;
     
     public AltaTipoPublicaciónOfertaLaboral() {
         setIconifiable(true);
@@ -58,11 +56,11 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding
 
         // Crea el formulario y agrégalo al panel principal
-        formulario = new AltaTipoPublicacionOfertaLaboralForm();
+        formulario = new FormularioAltaTipoPublicacion();
         mainPanel.add(formulario, BorderLayout.CENTER);
 
         // Crea el PanelBotones
-        PanelBotones botonesPanel = new PanelBotones();
+        botonesPanel = new PanelBotones();
         mainPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configura los Listener de aceptar y cancelar
@@ -88,8 +86,6 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements
 	        int duracion = formulario.getDuracion();
 	        float costo = formulario.getCosto();
 	        
-	        //TODO: Hay algo que falla aqui que le da el alta al tipo de publicacion a pesar de tener nombre repetido
-
 	        try {
 	            boolean res = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
 	            System.out.print(res);
