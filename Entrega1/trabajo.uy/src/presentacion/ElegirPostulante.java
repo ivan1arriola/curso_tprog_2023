@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.*;
@@ -303,6 +306,8 @@ public class ElegirPostulante extends JDialog {
                 if(icu.existePostulacion(esPostulante, esOferta))
                 { 
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
+                	cbEmpresa.setEditable(true);
+                	cbOferta.setEditable(true);
                 }  else if(motiva.getText().isBlank()) {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito la motivación.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
                 } else if(cvred.getText().isBlank()) {
@@ -355,17 +360,27 @@ public class ElegirPostulante extends JDialog {
         
         //infoOferta.setText("");
         cbEmpresa.addItem(" ");
-        for (String nickname : empresas) {
+        
+        List<String> empresasSorted = new ArrayList<>(empresas);
+        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        for (String nickname : empresasSorted) {
         	
             cbEmpresa.addItem(nickname);
 
         }
         cbPostula.addItem(" ");	
-    	for (String nick : postulantes) {
+        
+        List<String> postulantesSorted = new ArrayList<>(postulantes);
+        Collections.sort(postulantesSorted, String.CASE_INSENSITIVE_ORDER);
+        
+    	for (String nick : postulantesSorted) {
             cbPostula.addItem(nick);
         }
     	
-    	for (String nick : ofertas) {
+    	List<String> ofertasSorted = new ArrayList<>(ofertas);
+        Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
+    	
+    	for (String nick : ofertasSorted) {
             cbOferta.addItem(nick);
         }
         
