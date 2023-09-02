@@ -69,24 +69,18 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements
         botonesPanel.setAceptarListener(this);
         botonesPanel.setCancelarListener(this);
     }
-    
-    private void limpiarFormulario() {
-    	nombreField.setText("");
-    	descripcionTextArea.setText("");
-    	costoField.setText("");
-    }
 
 	@Override
 	public void onCancelar() {
 		// Logica para boton Cancelar
-		limpiarFormulario();
+		formulario.limpiar();
 		setVisible(false);
 		
 	}
 
 	@Override
 	public void onAceptar() {
-	    if (formulario.validarFormulario()) {
+	    if (formulario.validar()) {
 	        String nombre = formulario.getNombre();
 	        String descripcion = formulario.getDescripcion();
 	        LocalDate fechaAlta = formulario.getFechaAlta();

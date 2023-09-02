@@ -9,7 +9,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.text.DecimalFormat;
 
-public class AltaTipoPublicacionOfertaLaboralForm extends JPanel {
+public class AltaTipoPublicacionOfertaLaboralForm extends JPanel implements Formulario {
 
     private static final long serialVersionUID = 1L; //Ni idea que es pero me lo sugirio Eclipse
 	private JTextField nombreField;
@@ -150,7 +150,8 @@ public class AltaTipoPublicacionOfertaLaboralForm extends JPanel {
         costoField.setValue(0.0);
     }
     
-    public boolean validarFormulario() {
+    @Override
+	public boolean validar() {
         String nombre = getNombre();
         String descripcion = getDescripcion();
 
@@ -174,6 +175,15 @@ public class AltaTipoPublicacionOfertaLaboralForm extends JPanel {
 
         return valid;
     }
+
+	@Override
+	public void limpiar() {
+	   	nombreField.setText("");
+	    descripcionTextArea.setText("");
+	    costoField.setText(""); 
+	}
+
+	
 
 }
 
