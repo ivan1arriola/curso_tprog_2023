@@ -1,6 +1,6 @@
 package presentacion.componentes;
 
-public interface Formulario {
+public interface IFormulario {
 	
 	boolean validar();
 	void limpiar();

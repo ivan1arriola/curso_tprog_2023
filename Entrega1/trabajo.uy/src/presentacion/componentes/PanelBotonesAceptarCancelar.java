@@ -4,21 +4,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelBotones extends JPanel {
+public class PanelBotonesAceptarCancelar extends JPanel {
     private JButton btnAceptar;
     private JButton btnCancelar;
-    private AceptarListener aceptarListener;
-    private CancelarListener cancelarListener;
+    private IAceptarCancelar clasePadre;
 
-    public PanelBotones() {
+    public PanelBotonesAceptarCancelar() {
         btnAceptar = new JButton("Aceptar");
         btnCancelar = new JButton("Cancelar");
 
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (aceptarListener != null) {
-                    aceptarListener.onAceptar();
+                if (clasePadre != null) {
+                	clasePadre.onAceptar();
                 }
             }
         });
@@ -26,8 +25,8 @@ public class PanelBotones extends JPanel {
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cancelarListener != null) {
-                    cancelarListener.onCancelar();
+                if (clasePadre != null) {
+                	clasePadre.onCancelar();
                 }
             }
         });
@@ -36,11 +35,11 @@ public class PanelBotones extends JPanel {
         add(btnCancelar);
     }
 
-    public void setAceptarListener(AceptarListener listener) {
-        this.aceptarListener = listener;
+    public void setAceptarListener(IAceptarCancelar listener) {
+        this.clasePadre = listener;
     }
 
-    public void setCancelarListener(CancelarListener listener) {
-        this.cancelarListener = listener;
+    public void setCancelarListener(IAceptarCancelar listener) {
+        this.clasePadre = listener;
     }
 }

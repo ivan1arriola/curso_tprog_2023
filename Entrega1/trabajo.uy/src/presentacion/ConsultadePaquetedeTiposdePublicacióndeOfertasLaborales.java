@@ -1,37 +1,28 @@
 package presentacion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
 import excepciones.ExcepcionTipoOfertaNoExistente;
-import logica.Fabrica;
 import logica.Datatypes.DTPaquete;
 import logica.Datatypes.DTTipoOferta;
 import logica.Datatypes.DTCantTO;
 import logica.Interfaces.ICtrlOferta;
 import logica.Interfaces.ICtrlUsuario;
-import logica.Manejadores.PaqueteHandler;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTable;
-import javax.swing.JEditorPane;
 
 @SuppressWarnings("serial")
 public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JInternalFrame {

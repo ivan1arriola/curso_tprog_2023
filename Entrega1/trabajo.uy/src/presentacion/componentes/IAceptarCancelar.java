@@ -1,5 +1,6 @@
 package presentacion.componentes;
 
-public interface AceptarListener {
+public interface IAceptarCancelar{
 	void onAceptar();
+	void onCancelar();
 }

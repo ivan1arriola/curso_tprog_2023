@@ -12,9 +12,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
-import presentacion.componentes.Formulario;
+import presentacion.componentes.IFormulario;
 
-public class FormularioCrearPaquete extends JPanel implements Formulario {
+public class FormularioCrearPaquete extends JPanel implements IFormulario {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField nombreFieldText;

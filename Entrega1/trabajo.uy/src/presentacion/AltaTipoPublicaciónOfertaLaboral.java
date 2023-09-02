@@ -1,46 +1,24 @@
 package presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-
 import javax.swing.BorderFactory;
-import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.UIManager;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import java.awt.Color;
-
 import logica.Fabrica;
 import logica.Interfaces.ICtrlOferta;
-import presentacion.componentes.AceptarListener;
-import presentacion.componentes.CancelarListener;
-import presentacion.componentes.PanelBotones;
-import presentacion.formularios.AltaTipoPublicacionOfertaLaboralForm;
+import presentacion.componentes.IAceptarCancelar;
+import presentacion.componentes.PanelBotonesAceptarCancelar;
 import presentacion.formularios.FormularioAltaTipoPublicacion;
 
-import javax.swing.SwingConstants;
-
-public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements AceptarListener, CancelarListener {
+public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements IAceptarCancelar {
 	
 	private static final long serialVersionUID = 1L;
     ICtrlOferta ctrlOferta = Fabrica.getInstance().getICtrlOferta();
 
     private FormularioAltaTipoPublicacion formulario;
-    private PanelBotones botonesPanel;
+    private PanelBotonesAceptarCancelar botonesPanel;
     
     public AltaTipoPublicaciónOfertaLaboral() {
         setIconifiable(true);
@@ -60,7 +38,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements
         mainPanel.add(formulario, BorderLayout.CENTER);
 
         // Crea el PanelBotones
-        botonesPanel = new PanelBotones();
+        botonesPanel = new PanelBotonesAceptarCancelar();
         mainPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configura los Listener de aceptar y cancelar

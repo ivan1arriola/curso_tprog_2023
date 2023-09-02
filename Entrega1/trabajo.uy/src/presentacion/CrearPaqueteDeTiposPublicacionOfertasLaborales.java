@@ -9,17 +9,16 @@ import javax.swing.JPanel;
 
 import logica.Fabrica;
 import logica.Interfaces.ICtrlOferta;
-import presentacion.componentes.AceptarListener;
-import presentacion.componentes.CancelarListener;
-import presentacion.componentes.PanelBotones;
+import presentacion.componentes.IAceptarCancelar;
+import presentacion.componentes.PanelBotonesAceptarCancelar;
 import presentacion.formularios.FormularioCrearPaquete;
 
-public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFrame implements AceptarListener, CancelarListener {
+public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFrame implements IAceptarCancelar {
 	
     private static final long serialVersionUID = 1L;
 	private ICtrlOferta ctrlOferta;
     private FormularioCrearPaquete formulario;
-    private PanelBotones botonesPanel;
+    private PanelBotonesAceptarCancelar botonesPanel;
 
     public CrearPaqueteDeTiposPublicacionOfertasLaborales() {
         ctrlOferta = Fabrica.getInstance().getICtrlOferta();
@@ -40,7 +39,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         mainPanel.add(formulario, BorderLayout.CENTER);
 
         // Crea el PanelBotones
-        botonesPanel = new PanelBotones();
+        botonesPanel = new PanelBotonesAceptarCancelar();
         mainPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configura los Listener de aceptar y cancelar
