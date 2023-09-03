@@ -1,41 +1,81 @@
-nav {
-    background-color: #333;
-    color: #fff;
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #ffffff; /* Color de fondo de la barra de navegación */
+    color: rgb(0, 0, 0); /* Color del texto */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+    flex-direction: column;
+    padding: 1rem;
+
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+}
+
+.navbar-auth {
+    margin-right: 20px;
+}
+
+
+
+.navbar-bottom {
+    display: flex;
+    justify-content: space-between; /* Divide el espacio horizontalmente */
+    align-items: center; /* Centra verticalmente los elementos */
+   
+}
+
+.navbar-title {
+    margin-left: 20px;
 }
 
 .navbar-title a {
     text-decoration: none;
-    color: #fff;
-    font-size: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
-.navbar-search input {
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
-    margin-right: 10px;
+.navbar-search {
+    flex-grow: 1; /* Toma el espacio restante */
+    text-align: center;
 }
 
 .navbar-search button {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
-    cursor: pointer;
+    padding: 5px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin: 10px;
 }
 
-.navbar-auth a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
+.navbar-search input {
+    width: 100%;
+    max-width: 500px;
+    padding: 5px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
 }
 
-.navbar-auth span {
-    margin: 0 10px;
+/* Media query para hacer la barra de navegación responsive */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar-top {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .navbar-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-search {
+        text-align: left;
+        margin-top: 10px;
+    }
 }
+
