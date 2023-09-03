@@ -1,12 +1,10 @@
 package presentacion.formularios;
 
 import java.awt.GridLayout;
-import java.time.LocalDate;
-
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,7 +16,7 @@ public class FormularioCrearPaquete extends JPanel implements IFormulario {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField nombreFieldText;
-    private JTextField descripcionTextField;
+    private JTextArea descripcionTextField;
     private JSpinner periodoValidezSpinner;
     private JSpinner descuentoSpinner;
 
@@ -29,18 +27,28 @@ public class FormularioCrearPaquete extends JPanel implements IFormulario {
         // Crear componentes
         JLabel lblNombre = new JLabel("Nombre:");
         nombreFieldText = new JTextField(20);
+        
         JLabel lblDescripcion = new JLabel("Descripción:");
-        descripcionTextField = new JTextField(20);
+        descripcionTextField = new JTextArea(5, 20);
+        descripcionTextField.setLineWrap(true);
+        descripcionTextField.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(descripcionTextField);
+        
+        
         JLabel lblPeriodoValidez = new JLabel("Período de validez (días):");
         periodoValidezSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+        
+        
         JLabel lblDescuento = new JLabel("Descuento (%):");
         descuentoSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
 
         // Agregar componentes al panel
         add(lblNombre);
         add(nombreFieldText);
+        
         add(lblDescripcion);
-        add(descripcionTextField);
+        add(scrollPane);
+        
         add(lblPeriodoValidez);
         add(periodoValidezSpinner);
         add(lblDescuento);
