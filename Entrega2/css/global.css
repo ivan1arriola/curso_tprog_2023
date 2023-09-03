@@ -1,0 +1,32 @@
+@import "navbar.css";
+@import "leftPanel.css";
+
+main {
+    margin: 20px;
+    display: flex;
+}
+
+.left_panel {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+}
+
+.main_panel {
+    width: 70%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+    background-color: aqua;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    .left_panel,
+    .main_panel {
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+}
