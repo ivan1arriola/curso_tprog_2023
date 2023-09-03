@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import logica.Datatypes.DTEmpresa;
@@ -18,8 +20,6 @@ public class EditarUsuario extends JPanel implements IFormulario {
     private static final long serialVersionUID = -4855817509680138235L;
     
     private boolean esEmpresa;
-    private boolean modoEdicion;
-
     private JTextField nicknameField;
     private JTextField nombreField;
     private JTextField apellidoField;
@@ -27,7 +27,8 @@ public class EditarUsuario extends JPanel implements IFormulario {
 
     // Campos específicos para el tipo Empresa
     private JTextField nombreEmpresaField;
-    private JTextField descripcionField;
+    private JTextArea descripcionField;
+    private JScrollPane descripcionScrollPane;
     private JTextField urlField;
 
     // Campos específicos para el tipo Postulante
@@ -51,7 +52,6 @@ public class EditarUsuario extends JPanel implements IFormulario {
 
     public EditarUsuario() {
         setLayout(new GridLayout(9, 2));
-        modoEdicion = false;
         
         // Campos Usuario
 
@@ -72,8 +72,14 @@ public class EditarUsuario extends JPanel implements IFormulario {
 
         lblNombreEmpresa = new JLabel("Nombre de la Empresa:");
         nombreEmpresaField = new JTextField();
+        
+        
         lblDescripcion = new JLabel("Descripción:");
-        descripcionField = new JTextField();
+        descripcionField = new JTextArea();
+        descripcionField.setLineWrap(true);
+        descripcionField.setWrapStyleWord(true);
+        descripcionScrollPane = new JScrollPane(descripcionField);
+        
         lblUrl = new JLabel("URL de la Empresa:");
         urlField = new JTextField();
         
@@ -97,7 +103,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
         add(lblNombreEmpresa);
         add(nombreEmpresaField);
         add(lblDescripcion);
-        add(descripcionField);
+        add(descripcionScrollPane);
         add(lblUrl);
         add(urlField);
 
@@ -125,7 +131,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
     private void setVisibleCamposEmpresa(boolean visible) {
         nombreEmpresaField.setVisible(visible);
         lblNombreEmpresa.setVisible(visible);
-        descripcionField.setVisible(visible);
+        descripcionScrollPane.setVisible(visible);
         lblDescripcion.setVisible(visible);
         urlField.setVisible(visible);
         lblUrl.setVisible(visible);
@@ -217,10 +223,15 @@ public class EditarUsuario extends JPanel implements IFormulario {
     }
     
     public DTUsuario getDTUsuario() {
-        String nickname = nicknameField.getText();
-        String nombre = nombreField.getText();
-        String apellido = apellidoField.getText();
-        String correo = correoField.getText();
+    	String nickname = nicknameField.getText();
+    	
+    	if (nickname.isEmpty()) {
+            throw new IllegalArgumentException("No ha seleccionado ningun usuario");
+        }
+    	
+        String nombre = nombreField.getText().trim();
+        String apellido = apellidoField.getText().trim();
+        String correo = correoField.getText().trim();
 
         if (esEmpresa) {
             String nombreEmpresa = nombreEmpresaField.getText();
@@ -244,25 +255,58 @@ public class EditarUsuario extends JPanel implements IFormulario {
     
     @Override
     public boolean validar() {
+        // Aplicar trim() a todos los campos
+        String nombreEmpresa = nombreEmpresaField.getText().trim();
+        String descripcion = descripcionField.getText().trim();
+        String fechaNacimiento = fechaNacimientoField.getText().trim();
+        String nacionalidad = nacionalidadField.getText().trim();
+        String nickname = nicknameField.getText().trim();
+        String nombre = nombreField.getText().trim();
+        String apellido = apellidoField.getText().trim();
+        String correo = correoField.getText().trim();
+
         if (esEmpresa) {
             // Validar campos específicos para Empresa
-            if (nombreEmpresaField.getText().isEmpty() || descripcionField.getText().isEmpty() ) {
-                return false; 
+            if (nombreEmpresa.isEmpty()) {
+                throw new IllegalArgumentException("El campo de Nombre de Empresa no puede estar vacío.");
+            }
+            if (descripcion.isEmpty()) {
+                throw new IllegalArgumentException("El campo de Descripción no puede estar vacío.");
             }
         } else {
             // Validar campos específicos para Postulante
-            if (fechaNacimientoField.getText().isEmpty() || nacionalidadField.getText().isEmpty()) {
-                return false;
+            if (fechaNacimiento.isEmpty()) {
+                throw new IllegalArgumentException("El campo de Fecha de Nacimiento no puede estar vacío.");
+            }
+            if (nacionalidad.isEmpty()) {
+                throw new IllegalArgumentException("El campo de Nacionalidad no puede estar vacío.");
             }
         }
-        
-      
-        if (nicknameField.getText().isEmpty() || nombreField.getText().isEmpty() || apellidoField.getText().isEmpty() || correoField.getText().isEmpty()) {
-            return false; 
+
+        if (nickname.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Nickname no puede estar vacío.");
+        }
+        if (nombre.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Nombre no puede estar vacío.");
+        }
+        if (apellido.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Apellido no puede estar vacío.");
+        }
+        if (correo.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Correo no puede estar vacío.");
+        }
+        if (!nombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+( [a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+)*")) {
+            throw new IllegalArgumentException("El campo de Nombre solo puede contener letras y espacios.");
+        }
+        if (!apellido.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+( [a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+)*")) {
+            throw new IllegalArgumentException("El campo de Apellido solo puede contener letras y espacios.");
         }
 
-        return true; 
+		return true;
     }
+
+
+
 
 	@Override
 	public void limpiar() {

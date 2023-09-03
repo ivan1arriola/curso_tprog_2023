@@ -53,4 +53,8 @@ public class ListarUsuarios extends JPanel {
     public void setObserver(ListarUsuariosObserver observer) {
         this.observer = observer;
     }
+    
+    public void setComboBoxEnabled(boolean enabled) {
+        nicknamesComboBox.setEnabled(enabled);
+    }
 }

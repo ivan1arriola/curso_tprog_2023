@@ -34,20 +34,22 @@ import javax.swing.JPanel;
                             clasePadre.onEditar();
                         }
                     }
-                    modoEdicion = !modoEdicion;
-                    actualizarBotones();
                 }
             });
 
             btnCerrar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // En ambos modos, cerrar
-                    if (clasePadre != null) {
-                        clasePadre.onCerrar();
-                        modoEdicion = false;
-                        actualizarBotones();
-
+                    if (modoEdicion) {
+                        // Si estamos en modo edición, descarta los cambios
+                        if (clasePadre != null) {
+                        	clasePadre.onDescartar();
+                        }
+                    } else {
+                        // Si no estamos en modo edición, cierra
+                        if (clasePadre != null) {
+                        	clasePadre.onCerrar();
+                        }
                     }
                 }
             });
@@ -63,14 +65,19 @@ import javax.swing.JPanel;
         public void setEditable(IEditable clasePadre) {
             this.clasePadre = clasePadre;
         }
+        
+        public void setModoEdicion(boolean modo) {
+        	this.modoEdicion = modo;
+        	actualizarBotones();
+        }
 
         private void actualizarBotones() {
             if (modoEdicion) {
                 btnEditar.setText("Guardar");
-                btnCerrar.setText("Cerrar");
+                btnCerrar.setText("Descartar");
             } else {
                 btnEditar.setText("Editar");
-                btnCerrar.setText("Descartar");
+                btnCerrar.setText("Cerrar");
             }
         }
     }

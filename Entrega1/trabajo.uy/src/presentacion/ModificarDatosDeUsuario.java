@@ -104,33 +104,73 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
     public void limpiarInfo() {
         datosUsuario.limpiar();
         datosUsuario.setEditable(false); // Deshabilitar la edición de datos
+        menu.setComboBoxEnabled(true);
     }
 
     @Override
     public void onEditar() {
-        datosUsuario.setEditable(true); // Habilitar la edición de datos
+    	try {
+    		datosUsuario.getDTUsuario();
+    		datosUsuario.setEditable(true); // Habilitar la edición de datos
+            botones.setModoEdicion(true);
+            menu.setComboBoxEnabled(false);
+
+    	} catch (IllegalArgumentException e) {
+            String mensaje = e.getMessage();
+            // Manejar el mensaje de error aquí, por ejemplo, mostrarlo en un cuadro de diálogo
+            JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    	
     }
 
     @Override
     public void onGuardar() {
-    	
-        DTUsuario usuarioEditado = datosUsuario.getDTUsuario();
+        try {
+            datosUsuario.validar();
+            
+            DTUsuario usuarioEditado = datosUsuario.getDTUsuario();
 
-        // Llamar al controlador para guardar los cambios
-        ctrlUsuario.ingresarDatosEditados(usuarioEditado.getNickname(), usuarioEditado.getNombre(), usuarioEditado.getApellido());
+            // Llamar al controlador para guardar los cambios
+            ctrlUsuario.ingresarDatosEditados(usuarioEditado.getNickname(), usuarioEditado.getNombre(), usuarioEditado.getApellido());
 
-        // Limpiar la edición y deshabilitarla
-        datosUsuario.limpiar();
-        datosUsuario.setEditable(false);
+            // Limpiar la edición y deshabilitarla
+            datosUsuario.limpiar();
+            datosUsuario.setEditable(false);
+            botones.setModoEdicion(false);
+            menu.setComboBoxEnabled(true);
+
+            desplegarInfo(usuarioEditado.getNickname());
+        } catch (IllegalArgumentException e) {
+            String mensaje = e.getMessage();
+            // Manejar el mensaje de error aquí, por ejemplo, mostrarlo en un cuadro de diálogo
+            JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
 
     @Override
     public void onCerrar() {
-        this.dispose(); // Cerrar la ventana
+        this.dispose();
     }
 
 	public void actualizar() {
 		menu.setUsuarios(ctrlUsuario.listarNicknamesUsuarios());
+		menu.setComboBoxEnabled(true);
 		
+	}
+
+	@Override
+	public void onDescartar() {
+	    try {
+	        DTUsuario usuarioEditado = datosUsuario.getDTUsuario();
+	        datosUsuario.setEditable(false);
+	        botones.setModoEdicion(false);
+	        desplegarInfo(usuarioEditado.getNickname());
+	        menu.setComboBoxEnabled(true);
+	    } catch (IllegalArgumentException e) {
+	        String mensaje = e.getMessage();
+	        // Manejar el mensaje de error aquí, por ejemplo, mostrarlo en un cuadro de diálogo
+	        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+	    }
 	}
 }
