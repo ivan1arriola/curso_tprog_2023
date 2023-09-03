@@ -1,81 +1,32 @@
-/* Estilos para la barra de navegación */
-.navbar {
-    background-color: #ffffff; /* Color de fondo de la barra de navegación */
-    color: rgb(0, 0, 0); /* Color del texto */
+@import "navbar.css";
+@import "leftPanel.css";
+
+main {
+    margin: 20px;
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
-
 }
 
-.navbar-top {
-    display: flex;
-    justify-content: flex-end; /* Alinea los elementos a la derecha */
+.left_panel {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding: 20px;
 }
 
-.navbar-auth {
-    margin-right: 20px;
+.main_panel {
+    width: 70%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+    background-color: aqua;
 }
 
-
-
-.navbar-bottom {
-    display: flex;
-    justify-content: space-between; /* Divide el espacio horizontalmente */
-    align-items: center; /* Centra verticalmente los elementos */
-   
-}
-
-.navbar-title {
-    margin-left: 20px;
-}
-
-.navbar-title a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.navbar-search {
-    flex-grow: 1; /* Toma el espacio restante */
-    text-align: center;
-}
-
-.navbar-search button {
-    padding: 5px;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    margin: 10px;
-}
-
-.navbar-search input {
-    width: 100%;
-    max-width: 500px;
-    padding: 5px;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
-}
-
-/* Media query para hacer la barra de navegación responsive */
 @media screen and (max-width: 768px) {
-    .navbar {
+    main {
         flex-direction: column;
     }
-
-    .navbar-top {
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .navbar-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-search {
-        text-align: left;
-        margin-top: 10px;
+    .left_panel,
+    .main_panel {
+        width: 100%; /* Ocupa todo el ancho disponible */
     }
 }
-
