@@ -20,8 +20,11 @@ grupo 34
 
 ### General
 
-- Registro de horas
+- Registro de horas Tarea 1
 https://docs.google.com/spreadsheets/d/1rDxB1kNRrT0vtlKjz8OwbEijFjuTVybEsvGcVFtReuo/edit?usp=sharing
+
+- Registro de horas Tarea 2
+https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8wxTI/edit?usp=sharing
 
 - Dudas
 https://docs.google.com/document/d/1CUWgRvWgy2vM4MVtVTP460iD_KzZLUj4uXYOiDX55cs/edit?usp=sharing
