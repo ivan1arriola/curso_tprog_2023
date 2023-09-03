@@ -1,9 +1,6 @@
 package presentacion.formularios;
 
 import java.awt.GridLayout;
-import java.time.LocalDate;
-
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -50,7 +47,6 @@ public class FormularioCrearPaquete extends JPanel implements IFormulario {
         add(nombreFieldText);
         
         add(lblDescripcion);
-        add(descripcionTextField);
         add(scrollPane);
         
         add(lblPeriodoValidez);
