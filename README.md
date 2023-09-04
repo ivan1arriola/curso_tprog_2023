@@ -21,6 +21,12 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 ### Informe Desarollo Sofware
 https://es.overleaf.com/4957925397fcwvpypxsghp
 
+### Diagramas de Comunicación
+- https://drive.google.com/file/d/1klhcRX1nEwdtC1dl2qR8EZJU8koLYnRa/view?usp=sharing (Gata)
+- https://drive.google.com/file/d/1rPFfDj0a9Hk5xwZQm5kAWZOFBf3s6FVu/view?usp=sharing (Elefante)
+- https://drive.google.com/file/d/1StI0OoxKpFnLQHxy5x-Dpk2jFyq0MKHa/view?usp=sharing (León)
+- https://drive.google.com/file/d/1rzz3oAXeLMktb5ATjrOJL15rTq5cgpJa/view?usp=sharing (Orca)
+- https://drive.google.com/file/d/1W1XgSXFfb7YP5BVJf2WXL2765Em5KOL9/view?usp=sharing (Águila)
 
 
 ## Tarea 1
