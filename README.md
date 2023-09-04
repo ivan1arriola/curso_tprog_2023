@@ -18,6 +18,8 @@ https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8w
 
 https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
 
+### Informe Desarollo Sofware
+https://es.overleaf.com/4957925397fcwvpypxsghp
 
 
 
