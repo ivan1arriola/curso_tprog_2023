@@ -14,12 +14,16 @@ grupo 34
 - Registro de horas
 https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8wxTI/edit?usp=sharing
 
+### Informe Desarollo Sofware
+https://es.overleaf.com/4957925397fcwvpypxsghp
+
 ### Modelo de Dominio
 
 https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
 
-### Informe Desarollo Sofware
-https://es.overleaf.com/4957925397fcwvpypxsghp
+### Diagrama de Secuencia del Sistema
+- https://drive.google.com/file/d/14RBA3-N98svtVq8miQOvqpq9A4LoFNO-/view?usp=sharing (Estación de Trabajo)
+- jsdasdojd (Web)
 
 ### Diagramas de Comunicación
 - https://drive.google.com/file/d/1klhcRX1nEwdtC1dl2qR8EZJU8koLYnRa/view?usp=sharing (Gata)
@@ -27,6 +31,7 @@ https://es.overleaf.com/4957925397fcwvpypxsghp
 - https://drive.google.com/file/d/1StI0OoxKpFnLQHxy5x-Dpk2jFyq0MKHa/view?usp=sharing (León)
 - https://drive.google.com/file/d/1rzz3oAXeLMktb5ATjrOJL15rTq5cgpJa/view?usp=sharing (Orca)
 - https://drive.google.com/file/d/1W1XgSXFfb7YP5BVJf2WXL2765Em5KOL9/view?usp=sharing (Águila)
+- https://drive.google.com/file/d/1qQoRiFqJAKJx2m0U-HGjNrk9wrvsFORY/view?usp=sharing (El añadido)
 
 
 ## Tarea 1
@@ -38,10 +43,6 @@ https://docs.google.com/spreadsheets/d/1rDxB1kNRrT0vtlKjz8OwbEijFjuTVybEsvGcVFtR
 
 - Dudas
 https://docs.google.com/document/d/1CUWgRvWgy2vM4MVtVTP460iD_KzZLUj4uXYOiDX55cs/edit?usp=sharing
-
-
-
-
 
 ### Modelo de Dominio
 - drawio
