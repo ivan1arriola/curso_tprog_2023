@@ -1,12 +1,3 @@
-# Bugs encontrados
-## Alta de empresa
-- No acepta nombres de empresas que sean compuestos o tengan numeros u otros simbolos
-## Alta Oferta Laboral
-- No acepta nombres de oferta laboral con espacios o ñ
-## Alta keywords
-- Se muestra mensaje de alta correcto cuando se intenta dar de alta una clave vacia . En el sistema no se dan de alta.
-
-
 # integrantes
 - Iván Andrés Arriola Turné
 - Luciano Dario Capretti Pino
@@ -16,15 +7,26 @@
 
 grupo 34
 
+## Tarea 2
+
+### General
+
+- Registro de horas
+https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8wxTI/edit?usp=sharing
+
+### Modelo de Dominio
+
+https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
+
+
+
+
 ## Tarea 1
 
 ### General
 
-- Registro de horas Tarea 1
+- Registro de horas
 https://docs.google.com/spreadsheets/d/1rDxB1kNRrT0vtlKjz8OwbEijFjuTVybEsvGcVFtReuo/edit?usp=sharing
-
-- Registro de horas Tarea 2
-https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8wxTI/edit?usp=sharing
 
 - Dudas
 https://docs.google.com/document/d/1CUWgRvWgy2vM4MVtVTP460iD_KzZLUj4uXYOiDX55cs/edit?usp=sharing
@@ -57,3 +59,5 @@ https://drive.google.com/file/d/1HpCM15WHV7mBty_kF1fkj70ktk3WKKlF/view?usp=shari
 
 ### Reparto de Tareas para implementación
 https://docs.google.com/spreadsheets/d/1SlmFMgoiv_Om7I2jOS2n_41dSOtOoqQDYFXIBckN944/edit?usp=sharing
+
+
