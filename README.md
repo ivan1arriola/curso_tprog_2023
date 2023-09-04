@@ -22,7 +22,7 @@ https://es.overleaf.com/4957925397fcwvpypxsghp
 https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
 
 ### Diagrama de Secuencia del Sistema
-- https://drive.google.com/file/d/14RBA3-N98svtVq8miQOvqpq9A4LoFNO-/view?usp=sharing (Estación de Trabajo)
+- https://drive.google.com/file/d/1tvqx7rHATbmVFuTr3ng91u9LHc291rb9/view?usp=sharing (Estación de Trabajo)
 - jsdasdojd (Web)
 
 ### Diagramas de Comunicación
@@ -33,6 +33,9 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 - https://drive.google.com/file/d/1W1XgSXFfb7YP5BVJf2WXL2765Em5KOL9/view?usp=sharing (Águila)
 - https://drive.google.com/file/d/1qQoRiFqJAKJx2m0U-HGjNrk9wrvsFORY/view?usp=sharing (El añadido)
 
+
+### Diagrama de Clases de Diseño
+-https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
 
 ## Tarea 1
 
