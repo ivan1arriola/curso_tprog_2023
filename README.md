@@ -23,9 +23,9 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 
 ### Diagrama de Secuencia del Sistema
 - https://drive.google.com/file/d/1tvqx7rHATbmVFuTr3ng91u9LHc291rb9/view?usp=sharing (Estación de Trabajo)
-- jsdasdojd (Web)
+- https://drive.google.com/file/d/1HOvk7itOaMUdTc71sAWDVLSMy2KJ-xaR/view?usp=sharing (Web)
 
-### Diagramas de Comunicación
+### Diagramas de Comunicación - Estación de Trabajo
 - https://drive.google.com/file/d/1klhcRX1nEwdtC1dl2qR8EZJU8koLYnRa/view?usp=sharing (Gata)
 - https://drive.google.com/file/d/1rPFfDj0a9Hk5xwZQm5kAWZOFBf3s6FVu/view?usp=sharing (Elefante)
 - https://drive.google.com/file/d/1StI0OoxKpFnLQHxy5x-Dpk2jFyq0MKHa/view?usp=sharing (León)
@@ -33,6 +33,7 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 - https://drive.google.com/file/d/1W1XgSXFfb7YP5BVJf2WXL2765Em5KOL9/view?usp=sharing (Águila)
 - https://drive.google.com/file/d/1qQoRiFqJAKJx2m0U-HGjNrk9wrvsFORY/view?usp=sharing (El añadido)
 
+### Diagramas de Comunicación - Servidor Web
 
 ### Diagrama de Clases de Diseño
 -https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
