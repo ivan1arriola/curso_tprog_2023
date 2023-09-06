@@ -56,8 +56,8 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         listadoTipoPub.setBounds(280, 86, 298, 24);
         getContentPane().add(listadoTipoPub);
         
-        JButton btnNewButton_1 = new JButton("Aceptar");
-        btnNewButton_1.addActionListener(new ActionListener() {
+        JButton ACEPTAR = new JButton("Aceptar");
+        ACEPTAR.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		String text = CantidadMostrar.getText();
                 String op1 =  (String) PaquetesVisualizar.getSelectedItem();
@@ -77,6 +77,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                                 setVisible(false);		
                 			}
                 		}
+                		limpiarFormulario();
                 	} catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Ingrese por favor un número", "ERROR - Agregar Tipo de Publicación de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     }
@@ -84,8 +85,8 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                 
         	}
         });
-        btnNewButton_1.setBounds(122, 202, 117, 25);
-        getContentPane().add(btnNewButton_1);
+        ACEPTAR.setBounds(122, 202, 117, 25);
+        getContentPane().add(ACEPTAR);
        
     }
 
@@ -148,5 +149,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     
     private void limpiarFormulario() {
     	CantidadMostrar.setText(""); 
+    	PaquetesVisualizar.setSelectedIndex(0);
+    	listadoTipoPub.setSelectedIndex(0); 
     }
 }
