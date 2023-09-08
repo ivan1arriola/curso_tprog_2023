@@ -23,7 +23,7 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 
 ### Diagrama de Secuencia del Sistema
 - https://drive.google.com/file/d/1tvqx7rHATbmVFuTr3ng91u9LHc291rb9/view?usp=sharing (Estación de Trabajo)
-- https://drive.google.com/file/d/1HOvk7itOaMUdTc71sAWDVLSMy2KJ-xaR/view?usp=sharing (Web)
+- https://drive.google.com/file/d/1HOvk7itOaMUdTc71sAWDVLSMy2KJ-xaR/view?usp=sharing (Web - Orca)
 - https://drive.google.com/file/d/1UGgRKyiEiZRwo_FnmXAHSMuXtOqn5cuF/view?usp=sharing (Web - León)
 - https://drive.google.com/file/d/1BlFTP5opYsH_YWzBHGvjAAql7hFfFl8L/view?usp=sharing (Web - Elefante) 
 - https://drive.google.com/file/d/1VCot3gpGET4va15ZNRmkRWHgBVCfNLU_/view?usp=sharing (Web - Águila)
