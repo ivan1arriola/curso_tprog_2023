@@ -24,6 +24,7 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 ### Diagrama de Secuencia del Sistema
 - https://drive.google.com/file/d/1tvqx7rHATbmVFuTr3ng91u9LHc291rb9/view?usp=sharing (Estación de Trabajo)
 - https://drive.google.com/file/d/1HOvk7itOaMUdTc71sAWDVLSMy2KJ-xaR/view?usp=sharing (Web)
+- https://drive.google.com/file/d/1UGgRKyiEiZRwo_FnmXAHSMuXtOqn5cuF/view?usp=sharing (Web - León)
 
 ### Diagramas de Comunicación - Estación de Trabajo
 - https://drive.google.com/file/d/1klhcRX1nEwdtC1dl2qR8EZJU8koLYnRa/view?usp=sharing (Gata)
@@ -34,9 +35,31 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 - https://drive.google.com/file/d/1qQoRiFqJAKJx2m0U-HGjNrk9wrvsFORY/view?usp=sharing (El añadido)
 
 ### Diagramas de Comunicación - Servidor Web
+-
+-
+-
+-
+-
+-
 
 ### Diagrama de Clases de Diseño
 -https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Tarea 1
 
