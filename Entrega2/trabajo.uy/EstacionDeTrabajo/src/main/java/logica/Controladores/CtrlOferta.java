@@ -20,7 +20,7 @@ import main.java.logica.Manejadores.KeywordHandler;
 import main.java.logica.Manejadores.OfertaLaboralHandler;
 import main.java.logica.Manejadores.PaqueteHandler;
 import main.java.logica.Manejadores.TipoOfertaHandler;
-import excepciones.ExcepcionTipoOfertaNoExistente;
+import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 
 public class CtrlOferta implements ICtrlOferta{
 
