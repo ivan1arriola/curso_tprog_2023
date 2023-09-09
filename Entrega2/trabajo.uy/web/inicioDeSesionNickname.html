@@ -18,7 +18,7 @@
         <div class="titulo">
           <a class="navbar-brand mx-4" href="/">
             <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
-            <span class="text-secondary m-0 fs-3 ">. uy</span>
+            <span class="text-secondary m-0 fs-3">.uy</span>
           </a>
         </div>
       </nav>
@@ -27,13 +27,13 @@
     <main class="container">
       <div class="row justify-content-center">
         <div class="col-md-4">
-          <form class="form-signin">
+          <form class="form-signin" onsubmit="return validarCredencialesNickname()">
             <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
             <div class="form-floating">
               <input
                 type="text"
                 class="form-control"
-                id="floatingInput"
+                id="nickname-input"
                 placeholder="nickname"
                 required
               />
@@ -43,7 +43,7 @@
               <input
                 type="password"
                 class="form-control"
-                id="floatingPassword"
+                id="password-input"
                 placeholder="Contraseña"
                 required
               />
@@ -69,5 +69,6 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script src="js/inicioFicticio.js"></script>
   </body>
 </html>

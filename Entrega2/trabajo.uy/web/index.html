@@ -11,6 +11,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/global.css" />
+    <!-- icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <body>
     <header class="mb-4">
@@ -18,10 +23,10 @@
         <div class="titulo">
           <a class="navbar-brand mx-4" href="/">
             <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
-            <span class="text-secondary m-0 fs-3 ">. uy</span>
+            <span class="text-secondary m-0 fs-3">.uy</span>
           </a>
         </div>
-    
+
         <div class="container-fluid d-flex form justify-content-center">
           <form class="d-flex col-6" role="search">
             <input
@@ -30,11 +35,13 @@
               placeholder="Ofertas Laborales, Empresas"
               aria-label="Buscar"
             />
-            <button class="btn btn-success" type="submit">Buscar</button>
+            <button class="btn btn-success d-flex" type="submit">
+              <span class="material-symbols-outlined"> search </span> Buscar
+            </button>
           </form>
         </div>
-    
-        <div class="usuario d-block col-2">
+
+        <div id="sesion" class="usuario d-block col-2">
           <div class="d-inline-block">
             <a href="/inicioDeSesionNickname.html" class="">Iniciar Sesión</a>
             <span class=""> | </span>
@@ -43,10 +50,31 @@
         </div>
       </nav>
     </header>
-    
 
     <main class="container-fluid d-flex">
       <div class="left-container col-3">
+        <div class="card mb-4 mi-perfil">
+          <div class="card-header">
+            <h4 class="card-title">Mi Perfil</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-group empresa">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action border-0 py-1"
+                >Alta Oferta Laboral</a
+              >
+            </ul>
+
+            <ul class="list-group postulante">
+              <a
+                href="/"
+                class="list-group-item list-group-item-action border-0 py-1"
+                >Postular a Ofertas</a
+              >
+            </ul>
+          </div>
+        </div>
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">Keywords</h4>
@@ -184,5 +212,6 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script src="js/inicioFicticio.js"></script>
   </body>
 </html>
