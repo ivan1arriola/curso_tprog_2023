@@ -49,7 +49,7 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 -
 
 ### Diagrama de Clases de Diseño
--https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
+- https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
 
 
 
