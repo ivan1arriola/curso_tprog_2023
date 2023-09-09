@@ -30,7 +30,7 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 - https://drive.google.com/file/d/1UGgRKyiEiZRwo_FnmXAHSMuXtOqn5cuF/view?usp=sharing (Web - León)
 - https://drive.google.com/file/d/1BlFTP5opYsH_YWzBHGvjAAql7hFfFl8L/view?usp=sharing (Web - Elefante) 
 - https://drive.google.com/file/d/1VCot3gpGET4va15ZNRmkRWHgBVCfNLU_/view?usp=sharing (Web - Águila)
-- (Web - El añadido)
+- https://drive.google.com/file/d/10VlbueP4vIh_0cWKJ4QyfAypnR55sYBZ/view?usp=sharing (Web - El añadido)
 
 ### Diagramas de Comunicación - Estación de Trabajo
 - https://drive.google.com/file/d/1klhcRX1nEwdtC1dl2qR8EZJU8koLYnRa/view?usp=sharing (Gata)
@@ -45,8 +45,7 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 - https://drive.google.com/file/d/1VValG9YTuu5dgiL6nSdtH7HiDqchUnqu/view?usp=sharing (Orca)
 - https://drive.google.com/file/d/1ms1e_35-s2VMUDb3NDAF-yPy95WhLRlG/view?usp=sharing (León)
 - https://drive.google.com/file/d/1GQ5UO_QfVKwQVcMN9vc-YtH8SH1xpcw2/view?usp=sharing (Águila)
--
--
+- https://drive.google.com/file/d/1t6YJ1b3BnURtmlacUulep7PXUxJiPxDZ/view?usp=sharing
 
 ### Diagrama de Clases de Diseño
 - https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
