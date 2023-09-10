@@ -20,61 +20,61 @@
   </head>
   <body>
     <header class="mb-4">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="titulo">
-                <a class="navbar-brand mx-4" href="/empresa/">
-                    <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
-                    <span class="text-secondary m-0 fs-3">.uy</span>
-                </a>
-            </div>
-    
-            <div class="container-fluid d-flex form justify-content-center">
-                <form class="d-flex col-6" role="search">
-                    <input
-                        class="form-control me-2"
-                        type="search"
-                        placeholder="Ofertas Laborales, Empresas"
-                        aria-label="Buscar"
-                    />
-                    <button class="btn btn-success d-flex" type="submit">
-                        <span class="material-symbols-outlined"> search </span> Buscar
-                    </button>
-                </form>
-            </div>
-    
-            <div class="usuario d-block col-2">
-                <div class="d-inline-block">
-                    <img
-                        src="https://picsum.photos/100/100"
-                        alt="Empresa"
-                        class="rounded-circle"
-                        style="width: 60px; height: 60px"
-                    />
-                    <a href="/empresa/consultarUsuario/EcoTech.html" class="ml-3 mb-0">EcoTech</a>
-                </div>
-            </div>
-        </nav>
-    </header>    
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="titulo">
+          <a class="navbar-brand mx-4" href="/empresa/">
+            <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
+            <span class="text-secondary m-0 fs-3">.uy</span>
+          </a>
+        </div>
+
+        <div class="container-fluid d-flex form justify-content-center">
+          <form class="d-flex col-6" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Ofertas Laborales, Empresas"
+              aria-label="Buscar"
+            />
+            <button class="btn btn-success d-flex" type="submit">
+              <span class="material-symbols-outlined"> search </span> Buscar
+            </button>
+          </form>
+        </div>
+
+        <div class="usuario d-block col-2">
+          <div class="d-inline-block">
+            <img
+              src="https://picsum.photos/100/100"
+              alt="Empresa"
+              class="rounded-circle"
+              style="width: 60px; height: 60px"
+            />
+            <a href="/empresa/consultarUsuario/EcoTech.html" class="ml-3 mb-0"
+              >EcoTech</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <main class="container-fluid d-flex">
       <div class="container col-3">
-
         <div class="card mb-4 mi-perfil">
-            <div class="card-header">
-              <h4 class="card-title">Mi Perfil</h4>
-            </div>
-            <div class="card-body">
-              <ul class="list-group empresa">
-                <a
-                  href="/empresa/altaDeOfertaLaboral.html"
-                  class="list-group-item list-group-item-action border-0 py-1"
-                  >Alta Oferta Laboral</a
-                >
-              </ul>
-            </div>
+          <div class="card-header">
+            <h4 class="card-title">Mi Perfil</h4>
           </div>
-  
-        
+          <div class="card-body">
+            <ul class="list-group empresa">
+              <a
+                href="/empresa/altaDeOfertaLaboral.html"
+                class="list-group-item list-group-item-action border-0 py-1"
+                >Alta Oferta Laboral</a
+              >
+            </ul>
+          </div>
+        </div>
+
         <div class="card mb-4 keywords">
           <div class="card-header">
             <h4 class="card-title">Keywords</h4>
@@ -131,13 +131,18 @@
                 class="list-group-item list-group-item-action border-0 py-1"
                 >Contabilidad</a
               >
-              
             </ul>
           </div>
         </div>
         <div class="cerrar-sesion container-fluid">
-          <a href="javascript:void(0);" class="btn btn-danger" onclick="cerrarSesion()">
-            <span class="material-symbols-outlined align-middle mr-2">logout</span> 
+          <a
+            href="javascript:void(0);"
+            class="btn btn-danger"
+            onclick="cerrarSesion()"
+          >
+            <span class="material-symbols-outlined align-middle mr-2"
+              >logout</span
+            >
             <span class="align-middle">Cerrar Sesión</span>
           </a>
         </div>
@@ -154,8 +159,8 @@
               role="tab"
               aria-controls="ofertas-laborales-panel"
               aria-selected="true"
-              >Ofertas Laborales</a
-            >
+              >Ofertas Laborales
+            </a>
           </li>
           <li class="nav-item" role="presentation">
             <a
@@ -194,6 +199,7 @@
             >
           </li>
         </ul>
+
         <div class="tab-content" id="myTabContent">
           <div
             class="tab-pane fade show active"
@@ -218,7 +224,11 @@
                         Unete a nuestro equipo de desarrollo fronted y crea
                         experiencias de usuario excepcionales.
                       </p>
-                      <a href="" class="card-link">Leer más</a>
+                      <a
+                        href="/empresa/consultarOfertaLaboral/DesarrolladorFrontend.html"
+                        class="card-link"
+                        >Leer más</a
+                      >
                     </div>
                   </div>
                 </div>
@@ -275,7 +285,6 @@
             role="tabpanel"
             aria-labelledby="usuarios-tab"
           >
-
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
@@ -296,7 +305,7 @@
                     />
                   </td>
                   <td>
-                    <a href="/empresa/consultarUsuario.html">lgarcia</a>
+                    <a href="/empresa/consultarUsuario/EcoTech.html">lgarcia</a>
                   </td>
                   <td>Postulante</td>
                 </tr>
@@ -309,7 +318,9 @@
                       alt="matilo"
                     />
                   </td>
-                  <td><a href="/empresa/consultarUsuario.html">matilo</a></td>
+                  <td>
+                    <a href="/empresa/consultarUsuario/EcoTech.html">matilo</a>
+                  </td>
                   <td>Postulante</td>
                 </tr>
                 <!-- Usuario 3 -->
@@ -321,7 +332,9 @@
                       alt="maro"
                     />
                   </td>
-                  <td><a href="/empresa/consultarUsuario.html">maro</a></td>
+                  <td>
+                    <a href="/empresa/consultarUsuario/EcoTech.html">maro</a>
+                  </td>
                   <td>Postulante</td>
                 </tr>
                 <!-- Agrega más filas para otros usuarios con imágenes y enlaces al azar -->
@@ -335,7 +348,7 @@
                     />
                   </td>
                   <td>
-                    <a href="/empresa/consultarUsuario.html">EcoTech</a>
+                    <a href="/empresa/consultarUsuario/EcoTech.html">EcoTech</a>
                   </td>
                   <td>Empresa</td>
                 </tr>
@@ -349,7 +362,9 @@
                     />
                   </td>
                   <td>
-                    <a href="/empresa/consultarUsuario.html">FusionTech</a>
+                    <a href="/empresa/consultarUsuario/EcoTech.html"
+                      >FusionTech</a
+                    >
                   </td>
                   <td>Empresa</td>
                 </tr>
@@ -363,7 +378,9 @@
                     />
                   </td>
                   <td>
-                    <a href="/empresa/consultarUsuario.html">GlobalHealth</a>
+                    <a href="/empresa/consultarUsuario/EcoTech.html"
+                      >GlobalHealth</a
+                    >
                   </td>
                   <td>Empresa</td>
                 </tr>
@@ -376,7 +393,9 @@
                       alt="ANTEL"
                     />
                   </td>
-                  <td><a href="/empresa/consultarUsuario.html">ANTEL</a></td>
+                  <td>
+                    <a href="/empresa/consultarUsuario/EcoTech.html">ANTEL</a>
+                  </td>
                   <td>Empresa</td>
                 </tr>
                 <!-- Usuario 8 - Empresa -->
@@ -388,7 +407,9 @@
                       alt="MIEM"
                     />
                   </td>
-                  <td><a href="/empresa/consultarUsuario.html">MIEM</a></td>
+                  <td>
+                    <a href="/empresa/consultarUsuario/EcoTech.html">MIEM</a>
+                  </td>
                   <td>Empresa</td>
                 </tr>
                 <!-- Usuario 9 - Empresa -->
@@ -401,12 +422,53 @@
                     />
                   </td>
                   <td>
-                    <a href="/empresa/consultarUsuario.html">TechSolutions</a>
+                    <a href="/empresa/consultarUsuario/EcoTech.html"
+                      >TechSolutions</a
+                    >
                   </td>
                   <td>Empresa</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="tipoPublicacion-panel"
+            role="tabpanel"
+            aria-labelledby="usuarios-tab"
+          ></div>
+
+          <div
+            class="tab-pane fade"
+            id="paquetes-panel"
+            role="tabpanel"
+            aria-labelledby="usuarios-tab"
+          >
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    src="https://picsum.photos/400"
+                    class="img-fluid rounded-start"
+                    alt="Paquete Basico"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Basica</h5>
+                    <p class="card-text">
+                      Publica ofertas laborales en nuestra plataforma por un
+                      período de 30 días
+                    </p>
+                    <a
+                      href="/empresa/consultaPaquete/Basica.html"
+                      class="card-link"
+                      >Leer más</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

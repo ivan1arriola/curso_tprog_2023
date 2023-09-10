@@ -146,102 +146,63 @@
       <div class="container container col-9">
 
         <div class="container">
-          <div class="row">
-              <div class="col-9 d-flex">
-                  <div class="mt-4" id="detalleOferta">
-                      <div class="container">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <img src="img_oferta_laboral.jpg" alt="Descripción de la imagen" class="img-fluid">
-                              </div>
-                              <div class="col-md-6">
-                                  <h1 style="margin-top: 140px;">Desarrollador Frontend</h1>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <style>
-                          .mb-05 {
-                            margin-bottom: 0.125rem !important; /* Margen muy pequeño */
-                          }
-                      </style>
-  
-                      <h3 class="text-center mt-3">Información Básica de la Oferta Laboral</h3>
-                      <p><span class="font-weight-bold" id="nombre">Desarrollador Frontend</span> <span id="descripcion">Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.</span></p>
-  
-                      <p class="mb-05"><span class="font-weight-bold">Remuneración:</span> <span id="remuneracionOferta">9000 pesos uruguayos</span></p>
-                      <p class="mb-05"><span class="font-weight-bold">Horario:</span> <span id="horarioOferta">09:00-18:00</span></p>
-                      <p class="mb-05"><span class="font-weight-bold">Departamento:</span> <span id="departamentoOferta">Montevideo</span></p>
-                      <p class="mb-3"><span class="font-weight-bold">Ciudad:</span> <span id="ciudadOferta">Montevideo</span></p>
-                      
-                      <p class="mb-05"><span class="font-weight-bold">Fecha de Alta:</span> <span id="fechaAltaOferta">14/8/23</span></p>
-                      <p class="mb-3"><span class="font-weight-bold">Costo:</span> <span id="costoOferta">3200</span></p>
-                      <p><span class="font-weight-bold">Keywords:</span> <span id="keywordsList">Tiempo completo Mediotiempo Remoto Freelance Temporal Permanente</span></p>                    
-                  </div>
-              </div>
-          
-              <div class="col-3 text-center">
-                  <div class="mt-4" id="postulaciones">
-                      <h1 class="text-center">Postulaciones</h1>
-                  </div>
-              
-                  <div class="container">
-                      <!-- Imagen 1 -->
-                      <div class="d-flex align-items-center">
-                          <img src="https://picsum.photos/100/100" alt="Imagen 1" class="img-fluid"> <!-- Aumentamos el margen inferior aquí -->
-                          <a href="tu_url_aqui" target="_blank" class="ms-4"> <!-- Aumentamos el margen derecho y el margen superior aquí -->
-                              lgarcia
-                          </a>
-                      </div>
-                      
-                      <!-- Imagen 2 -->
-                      <div class="d-flex align-items-center mt-2"> <!-- Aumentamos el margen superior aquí -->
-                          <img src="https://picsum.photos/100/100" alt="Imagen 2" class="img-fluid"> <!-- Aumentamos el margen inferior aquí -->
-                          <a href="tu_url_aqui" target="_blank" class="ms-4"> <!-- Aumentamos el margen derecho y el margen superior aquí -->
-                              maro
-                          </a>
-                      </div>
-                  </div>
-              
-                  <div class="mt-4" id="paquete">
-                      <h1 class="text-center">Paquete</h1> <!-- Aumentamos el margen superior aquí -->
-                  </div>
-  
-                  <div class="container">
-                      <div class="d-flex align-items-center mt-6"> <!-- Aumentamos el margen superior aquí -->
-                          <img src="https://picsum.photos/100/100" alt="Imagen 2" class="img-fluid"> <!-- Aumentamos el margen inferior aquí -->
-                          <a href="tu_url_aqui" target="_blank" class="ms-4"> <!-- Aumentamos el margen derecho y el margen superior aquí -->
-                              Básico
-                          </a>
-                      </div>
-                  </div>
-              </div>
-                   
-              
-          </div>
-          
-      </div>
-  
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-      <script>
-          function loadOfertas() {
-              // Lógica para cargar ofertas laborales en el select #ofertaSelect
-              var selectedEmpresa = document.getElementById("empresaSelect").value;
-              // Aquí debes implementar la lógica para cargar las ofertas laborales
-              // asociadas a la empresa seleccionada y llenar el select #ofertaSelect
-              // con las opciones correspondientes.
-          }
-  
-          function mostrarDetalles() {
-              // Lógica para mostrar detalles de la oferta seleccionada en el div #detalleOferta
-          }
-  
-          function verPostulaciones() {
-              // Lógica para ver las postulaciones de la oferta seleccionada
-          }
-      </script>
+            <div class="row">
+            <h2>Información de Tipo de Oferta Laboral</h2>
+            </div>
+        
+            <div class="row">
+            <div class="col-3">
+                <span class="fw-bold">Nombre:</span>
+            </div>
+            <div class="col">
+                <span id="nombre">Premium</span>
+            </div>
+            </div>
+        
+            <div class="row">
+            <div class="col-3">
+                <span class="fw-bold">Descripción:</span>
+            </div>
+            <div class="col">
+                <span id="descripcion">Obtén máxima visibilidad</span>
+            </div>
+            </div>
+        
+            <div class="row">
+            <div class="col-3">
+                <span class="fw-bold">Costo:</span>
+            </div>
+            <div class="col">
+                <span id="costo">$4000</span>
+            </div>
+            </div>
+        
+            <div class="row">
+            <div class="col-3">
+                <span class="fw-bold">Duración: (en dias)</span>
+            </div>
+            <div class="col">
+                <span id="duracion">30</span>
+            </div>
+            </div>
+        
+            <div class="row">
+            <div class="col-3">
+                <span class="fw-bold">Exposición:</span>
+            </div>
+            <div class="col">
+                <span id="exposicion">1</span>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-3">
+                <span class="fw-bold">Fecha de alta:</span>
+            </div>
+            <div class="col">
+                <span id="fechaAlta">10/08/2023</span>
+            </div>
+            </div>
+        </div>
 
       </div>
     </main>
