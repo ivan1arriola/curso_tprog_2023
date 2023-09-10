@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap');
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24 ;
+  margin: 0px 3px;
+}
+
 .ofertas-laborales .card {
     border-radius: 0;
     border: none;
@@ -10,5 +22,17 @@
 }
 
 html, body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+.navbar {
+    height: 80px;
+}
+
+.navbar-brand {
+    height: 100%;
+}
+
+main {
+    margin-bottom: 50px;
 }

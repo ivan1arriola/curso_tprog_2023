@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesion</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/global.css" />
+  </head>
+  <body>
+    <header class="mb-4">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="titulo">
+          <a class="navbar-brand mx-4" href="/">
+            <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
+            <span class="text-secondary m-0 fs-3">.uy</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="form-signup" onsubmit="return validarRegistro()">
+                    <h1 class="h3 mb-3 fw-normal">Alta de Usuario</h1>
+                    <div class="form-floating">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nickname-input"
+                            placeholder="Nickname"
+                            required
+                        />
+                        <label for="nickname-input">Nickname</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nombre-input"
+                            placeholder="Nombre"
+                            required
+                        />
+                        <label for="nombre-input">Nombre</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="apellido-input"
+                            placeholder="Apellido"
+                            required
+                        />
+                        <label for="apellido-input">Apellido</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password-input"
+                            placeholder="Contraseña"
+                            required
+                        />
+                        <label for="password-input">Contraseña</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="confirm-password-input"
+                            placeholder="Confirmar Contraseña"
+                            required
+                        />
+                        <label for="confirm-password-input">Confirmar Contraseña</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email-input"
+                            placeholder="Correo Electrónico"
+                            required
+                        />
+                        <label for="email-input">Correo Electrónico</label>
+                    </div>
+                   
+
+                    <div class="form-group mt-3">
+                        <label>Tipo de Usuario:</label>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="tipo-usuario"
+                                id="empresa-radio"
+                                value="empresa"
+                                onchange="mostrarCamposEspeciales()"
+                            />
+                            <label class="form-check-label" for="empresa-radio">Empresa</label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="tipo-usuario"
+                                id="postulante-radio"
+                                value="postulante"
+                                onchange="mostrarCamposEspeciales()"
+                            />
+                            <label class="form-check-label" for="postulante-radio">Postulante</label>
+                        </div>
+                    </div>
+                    <!-- Campos adicionales para Empresa -->
+                    <div id="campos-empresa" style="display: none;">
+                        <div class="form-floating mt-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="descripcion-empresa-input"
+                                placeholder="Descripción de la Empresa"
+                                required
+                            />
+                            <label for="descripcion-empresa-input">Descripción de la Empresa</label>
+                        </div>
+                        <div class="form-floating mt-3">
+                            <input
+                                type="url"
+                                class="form-control"
+                                id="sitio-web-input"
+                                placeholder="Sitio Web de la Empresa"
+                            />
+                            <label for="sitio-web-input">Sitio Web de la Empresa</label>
+                        </div>
+                    </div>
+                    <!-- Campos adicionales para Postulante -->
+                    <div id="campos-postulante" style="display: none;">
+                        <div class="form-floating mt-3">
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="fecha-nacimiento-input"
+                                placeholder="Fecha de Nacimiento"
+                                required
+                            />
+                            <label for="fecha-nacimiento-input">Fecha de Nacimiento</label>
+                        </div>
+                        <div class="form-floating mt-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nacionalidad-input"
+                                placeholder="Nacionalidad"
+                                required
+                            />
+                            <label for="nacionalidad-input">Nacionalidad</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group mt-3">
+                        <label for="image-input">Imagen de Perfil</label>
+                        <input type="file" class="form-control" id="image-input" accept="image/*">                     
+                    </div>
+
+
+                    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">
+                        Registrarse
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+<script>
+    function mostrarCamposEspeciales() {
+        var empresaRadio = document.getElementById("empresa-radio");
+        var postulanteRadio = document.getElementById("postulante-radio");
+        var camposEmpresa = document.getElementById("campos-empresa");
+        var camposPostulante = document.getElementById("campos-postulante");
+
+        if (empresaRadio.checked) {
+            camposEmpresa.style.display = "block";
+            camposPostulante.style.display = "none";
+            document.getElementById("fecha-nacimiento-input").required = false;
+            document.getElementById("nacionalidad-input").required = false;
+            document.getElementById("descripcion-empresa-input").required = true;
+        } else if (postulanteRadio.checked) {
+            camposEmpresa.style.display = "none";
+            camposPostulante.style.display = "block";
+            document.getElementById("fecha-nacimiento-input").required = true;
+            document.getElementById("nacionalidad-input").required = true;
+            document.getElementById("descripcion-empresa-input").required = false;
+        } else {
+            camposEmpresa.style.display = "none";
+            camposPostulante.style.display = "none";
+            document.getElementById("fecha-nacimiento-input").required = true;
+            document.getElementById("nacionalidad-input").required = true;
+            document.getElementById("descripcion-empresa-input").required = true;
+        }
+    }
+</script>
+
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/inicioFicticio.js"></script>
+  </body>
+</html>
