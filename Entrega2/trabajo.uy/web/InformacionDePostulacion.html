@@ -19,13 +19,15 @@
         .contenedor-hijo {
           flex: 1; /* Cada hijo toma el mismo espacio */
           display: inline;
-          padding: 10px;
-          margin: 10px; /* Agregamos margen para separar los contenedores */
+          padding: 5px;
+          margin: 5px; /* Agregamos margen para separar los contenedores */
+        }
+        .contenedor-hijo-derecha {
+          text-align: center;
         }
         .label {
-          font-weight: bold;
           display: block;
-          margin-bottom: 20px;
+          margin-bottom: 5px;
         }
       </style>
     <link
@@ -162,39 +164,21 @@
         <!-- Agregar contenido nuevo aquí -->
         <div class="d-flex">
             <div class="contenedor-hijo">
-              <h3>Mi Página con Imagen</h3>
-              <div class="d-flex">
-                <div class="col-md-6">
-                                <img src="img_oferta_laboral.jpg" alt="Descripción de la imagen" class="img-fluid">
-                            </div>
-                            <div class="col-md-6">
-                                <h3 style="margin-top: 80px;">Nombre postulante</h3>
-                            </div>
-              </div>
+              <h3>Postulación a Oferta Laboral</h3>
+              
+                  <p><b>Postulante:</b> <a href="tu_url_aqui">María Rodríguez</a></p>
+              
               <div class="label">
-                <p><b>CV reducido:</b></p>
-                <input type="text" id="CV" value="Contenido del CV" readonly />
-              </div>
-      
-              <div class="label">
-                <p><b>Motivación:</b></p>
-                <input type="text" id="CV" value="Texto de motivación" readonly />
-              </div>
-      
-              <div class="d-flex">
-                <p><b>Fecha Postulación:</b></p>
-                <p>Fecha</p>
+                <p><b>CV reducido:</b> Ingeniera en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.</p>
+                <p><b>Motivación:</b>  Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.</p>
+                <p><b>Fecha Postulación:</b> 14/8/23</p>
               </div>
             </div>
             <!-- Columna 2 -->
-            <div class="contenedor-hijo">
-              <img
-                src="/img/bloodymary.jpg"
-                alt="Trabajo-postulante"
-                width="200"
-                height="150"
-              />
-              <p style="text-decoration: underline; color: black">Trabajo nombre</p>
+            <div class="contenedor-hijo-derecha">
+              <img src="https://picsum.photos/100/100" alt="Imagen 1" class="img-fluid mb-2">
+              <p style="text-decoration: underline"><a href="tu_url_aqui">Desarrollador FrontEnd</a></p>
+              
             </div>
           </div>
 

@@ -19,41 +19,37 @@
   </head>
   <body>
     <header class="mb-4">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="titulo">
-                <a class="navbar-brand mx-4" href="/postulante/">
-                    <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
-                    <span class="text-secondary m-0 fs-3">.uy</span>
-                </a>
-            </div>
-    
-            <div class="container-fluid d-flex form justify-content-center">
-                <form class="d-flex col-6" role="search">
-                    <input
-                        class="form-control me-2"
-                        type="search"
-                        placeholder="Ofertas Laborales, Empresas"
-                        aria-label="Buscar"
-                    />
-                    <button class="btn btn-success d-flex" type="submit">
-                        <span class="material-symbols-outlined"> search </span> Buscar
-                    </button>
-                </form>
-            </div>
-    
-            <div class="usuario d-block col-2">
-                <div class="d-inline-block">
-                    <img
-                        src="/img/bloodymary.jpg"
-                        alt="maro"
-                        class="rounded-circle"
-                        style="width: 60px; height: 60px"
-                    />
-                    <a href="/postulante/" class="ml-3 mb-0">maro</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="titulo">
+              <a class="navbar-brand mx-4" href="/">
+                  <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
+                  <span class="text-secondary m-0 fs-3">.uy</span>
+              </a>
+          </div>
+  
+          <div class="container-fluid d-flex form justify-content-center">
+              <form class="d-flex col-6" role="search">
+                  <input
+                      class="form-control me-2"
+                      type="search"
+                      placeholder="Ofertas Laborales, Empresas"
+                      aria-label="Buscar"
+                  />
+                  <button class="btn btn-success d-flex" type="submit">
+                      <span class="material-symbols-outlined"> search </span> Buscar
+                  </button>
+              </form>
+          </div>
+  
+          <div id="sesion" class="usuario d-block col-2">
+              <div class="d-inline-block">
+                  <a href="/visitante/inicioDeSesionNickname.html" class="">Iniciar Sesión</a>
+                  <span class=""> | </span>
+                  <a href="/visitante/altaDeUsuario.html" class="">Alta Usuario</a>
+              </div>
+          </div>
+      </nav>
+  </header>
     
 
     <main class="container-fluid d-flex">
@@ -132,21 +128,70 @@
             </ul>
           </div>
         </div>
-        <div class="cerrar-sesion container-fluid">
-          <a href="javascript:void(0);" class="btn btn-danger" onclick="cerrarSesion()">
-            <span class="material-symbols-outlined align-middle mr-2">logout</span> 
-            <span class="align-middle">Cerrar Sesión</span>
-          </a>
-        </div>
-        
+               
       </div>
 
       <div class="container container col-9">
 
-        <!-- Agregar contenido nuevo aquí -->
+        <div class="container">
+            <div class="row">
+              <h2>Información de Tipo de Oferta Laboral</h2>
+            </div>
+          
+            <div class="row">
+              <div class="col-3">
+                <span class="fw-bold">Nombre:</span>
+              </div>
+              <div class="col">
+                <span id="nombre">Nombre de la oferta</span>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-3">
+                <span class="fw-bold">Descripción:</span>
+              </div>
+              <div class="col">
+                <span id="descripcion">Es una oferta muy muy buena</span>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-3">
+                <span class="fw-bold">Costo:</span>
+              </div>
+              <div class="col">
+                <span id="costo">$1000</span>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-3">
+                <span class="fw-bold">Duración:</span>
+              </div>
+              <div class="col">
+                <span id="duracion">3 meses</span>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-3">
+                <span class="fw-bold">Exposición:</span>
+              </div>
+              <div class="col">
+                <span id="exposicion">80</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <span class="fw-bold">Fecha de alta:</span>
+              </div>
+              <div class="col">
+                <span id="fechaAlta">01/09/2023</span>
+              </div>
+            </div>
+        </div>
 
-
-        <!-- Hasta aqui-->
       </div>
     </main>
 
