@@ -33,7 +33,6 @@ html, body {
     height: 100%;
 }
 
-/* Inicio de perfil ficticio */
-.mi-perfil, .postulante, .empresa {
-    display: none;
+main {
+    margin-bottom: 50px;
 }
