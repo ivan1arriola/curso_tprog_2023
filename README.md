@@ -5,24 +5,22 @@
 - Mathías Rodríguez Castro
 - Nicole Ronit Rosenstock Cukrowicz
 
-grupo 34
+**grupo 34**
 
 ## Tarea 2
 
-### General
-
-- Registro de horas
-https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8wxTI/edit?usp=sharing
+### Registro de horas:
+- https://docs.google.com/spreadsheets/d/1dEbt70OwftKQ3KHZ7Amuyn-5kq7uN4WX4W7bvQ8wxTI/edit?usp=sharing
 
 ### Informe Desarollo Sofware
-https://es.overleaf.com/4957925397fcwvpypxsghp
+- https://es.overleaf.com/4957925397fcwvpypxsghp
 
 ### Diagrama Diseño del Sitio Web Estático
-https://drive.google.com/file/d/1l3PYSaRAART0uNpgkzCcz97ZwAcMnlh2/view?usp=sharing
+- https://drive.google.com/file/d/1l3PYSaRAART0uNpgkzCcz97ZwAcMnlh2/view?usp=sharing
 
 ### Modelo de Dominio
 
-https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
+- https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
 
 ### Diagrama de Secuencia del Sistema
 - https://drive.google.com/file/d/1tvqx7rHATbmVFuTr3ng91u9LHc291rb9/view?usp=sharing (Estación de Trabajo)
@@ -49,22 +47,6 @@ https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=shari
 
 ### Diagrama de Clases de Diseño
 - https://drive.google.com/file/d/1UTM3nbxOgrl35PUtNHYQe5PdxRZi0zrN/view?usp=sharing
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Tarea 1
 
@@ -96,9 +78,9 @@ https://docs.google.com/document/d/1RF7xmRB7oFwleeKkUtYMrhuQrN_db474iIE0wKfCoF4/
 
 
 ### DCD
-https://drive.google.com/file/d/1HpCM15WHV7mBty_kF1fkj70ktk3WKKlF/view?usp=sharing
+- https://drive.google.com/file/d/1HpCM15WHV7mBty_kF1fkj70ktk3WKKlF/view?usp=sharing
 
 ### Reparto de Tareas para implementación
-https://docs.google.com/spreadsheets/d/1SlmFMgoiv_Om7I2jOS2n_41dSOtOoqQDYFXIBckN944/edit?usp=sharing
+- https://docs.google.com/spreadsheets/d/1SlmFMgoiv_Om7I2jOS2n_41dSOtOoqQDYFXIBckN944/edit?usp=sharing
 
 
