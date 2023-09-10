@@ -46,8 +46,8 @@
         <div class="usuario d-block col-2">
           <div class="d-inline-block">
             <img
-              src="/img/bloodymary.jpg"
-              alt="Bloody Mary"
+              src="https://picsum.photos/100/100"
+              alt="Empresa"
               class="rounded-circle"
               style="width: 60px; height: 60px"
             />
@@ -58,17 +58,17 @@
     </header>
 
     <main class="container-fluid d-flex">
-      <div class="left-container col-3">
+      <div class="container col-3">
         <div class="card mb-4 mi-perfil">
           <div class="card-header">
             <h4 class="card-title">Mi Perfil</h4>
           </div>
           <div class="card-body">
-            <ul class="list-group postulante">
+            <ul class="list-group empresa">
               <a
-                href="/"
+                href="/empresa/altaDeOfertaLaboral.html"
                 class="list-group-item list-group-item-action border-0 py-1"
-                >Postular a Ofertas</a
+                >Alta Oferta Laboral</a
               >
             </ul>
           </div>
@@ -146,23 +146,12 @@
         </div>
       </div>
 
-      <div class="right-container container col-9">
+      <div class="container container col-9">
         <div class="mx-5">
-          <h2 class="mb-4">Alta Oferta Laboral</h2>
+          <h2 class="mb-4">Publicar Oferta Laboral</h2>
 
           <form id="alta-oferta-laboral" class="row g-3">
-            <div class="col-12 row mb-2">
-              <div class="col-4">
-                <label for="listadoEmpresas" class="form-label"
-                  >Listado Empresas</label
-                >
-              </div>
-              <div class="col-8">
-                <select class="form-control" id="listadoEmpresas">
-                  <option value="0">Seleccionar Empresa</option>
-                </select>
-              </div>
-            </div>
+            
 
             <div class="col-12 row mb-2">
               <div class="col-4">
@@ -173,6 +162,16 @@
               <div class="col-8">
                 <select class="form-control" id="listadoOfertas">
                   <option value="0">Seleccionar Tipo de Oferta</option>
+                  <option value="TP1">
+                    Premium - Obtén máxima visibilidad
+                  </option>
+                  <option value="TP2">Destacada - Destaca tu anuncio</option>
+                  <option value="TP3">
+                    Estándar - Mejora la posición de tu anuncio
+                  </option>
+                  <option value="TP4">
+                    Básica - Publica de forma sencilla en la lista de ofertas
+                  </option>
                 </select>
               </div>
             </div>
