@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+        crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/global.css" />
+    <!-- iconos -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+</head>
+<body>
+    <div class="container mt-5">
+
+        <div class="container mt-5">
+            <h1 class="mb-4" style="font-size: 34px;">Consulta de Postulación a Oferta Laboral</h1>
+        </div>
+        <form>
+            <label for="color">selecciona una oferta laboral</label>
+            <select id="color" name="color">
+                <option value="rojo">Rojo</option>
+                <option value="verde">Verde</option>
+                <option value="azul">Azul</option>
+            </select>
+            <input type="submit" value="Seleccionar">
+        </form>
+        
+        <h2 class="mt-4">listado de postulantes</h2>
+        <table class="table" id="tiposDePublicacion">
+            <thead>
+                <tr>
+                    <th>Tipo de Publicación</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Destacada</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Normal</td>
+                    <td>5</td>
+                </tr>
+                <!-- Agrega más filas de datos aquí -->
+            </tbody>
+        </table>
+
+        <h1>Selecciona un Postulante:</h1>
+        <form>
+            <label for="postulante">Postulantes disponibles:</label>
+            <select id="postulante" name="postulante">
+                <option value="postulante1">Postulante 1</option>
+                <option value="postulante2">Postulante 2</option>
+                <option value="postulante3">Postulante 3</option>
+                <!-- Agrega más opciones de postulantes si es necesario -->
+            </select>
+            <input type="submit" value="Seleccionar">
+        </form>
+
+    <!-- Agregar los scripts de Bootstrap JS y jQuery aquí -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function verInformacion() {
+            // Implemente su lógica JavaScript para obtener y mostrar los datos aquí
+        }
+    </script>
+</body>
+</html>
