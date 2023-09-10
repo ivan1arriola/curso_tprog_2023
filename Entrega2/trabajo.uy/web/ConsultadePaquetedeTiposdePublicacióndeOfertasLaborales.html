@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <link
@@ -19,26 +18,30 @@
 
         <div class="container mt-5">
             <h1 class="mb-4" style="font-size: 34px;">Consulta de Paquete de Tipos de Publicación de Ofertas Laborales</h1>
-
-    
-            <div class="container mt-5"> 
-                <div class="form-group" style="display: flex; align-items: center;">
-                    <label for="paqueteDescuento" style="font-size: 38px; margin-right: 10px;">Selecciona un Paquete:</label>
-                    <select class="form-control" id="paqueteDescuento" name="paqueteDescuento" style="width: 250px;">
-                        <option value="paquete1">Paquete de Descuento 1</option>
-                        <option value="paquete2">Paquete de Descuento 2</option>
-                        <option value="paquete3">Paquete de Descuento 3</option>
-                        <!-- Agrega más opciones de paquetes de descuento según tus necesidades -->
-                    </select>
-                </div>
                 
-                <div id="paqueteInfo" class="mt-4" style="text-align: left;">
-                    <h2>Información del Paquete</h2>
-                    <p>Costo del Paquete: <span id="costoPaquete"></span></p>
-                    <p>Descuento del Paquete: <span id="paqueteDescuento"></span></p>
-                    <p>Validez del Paquete: <span id="validezPaquete"></span></p>
-                    <p>Descripción del Paquete: <span id="descripcionPaquete"></span></p>
+
+
+                
+                
+                
+            <div class="container mt-5"> 
+                <div id="results" class="mt-4">
+                    <!-- Add the image here -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="/img/bloodymary.jpg" alt="Imagen de Tipo de Publicación" class="img-fluid">
+                        </div>
+                        <div class="col-md-8">
+                            <h2>Información del Paquete</h2>
+                            <p>Costo del Paquete: <span id="costoPaquete"></span></p>
+                            <p>Descuento del Paquete: <span id="paqueteDescuento"></span></p>
+                            <p>Validez del Paquete: <span id="validezPaquete"></span></p>
+                            <p>Descripción del Paquete: <span id="descripcionPaquete"></span></p>
+                        </div>
+                    </div>
                 </div>
+
+               
             
                 <h2 class="mt-4">Información de los tipos de publicación y sus cantidades</h2>
                 <table class="table" id="tiposDePublicacion">
@@ -86,7 +89,7 @@
                 <!-- Agregar la imagen aquí -->
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="bloodymary.jpg" alt="Imagen de Tipo de Publicación" class="img-fluid">
+                        <img src="/img/bloodymary.jpg" alt="Imagen de Tipo de Publicación" class="img-fluid">
                     </div>
                     <div class="col-md-8">
                         <h2>Información del Tipo de Publicación</h2>
