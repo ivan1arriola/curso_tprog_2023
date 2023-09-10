@@ -36,3 +36,7 @@ html, body {
 main {
     margin-bottom: 50px;
 }
+
+form > div {
+    margin-bottom: 0.5rem;
+}

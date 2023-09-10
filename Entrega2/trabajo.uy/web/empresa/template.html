@@ -45,19 +45,19 @@
             <div class="usuario d-block col-2">
                 <div class="d-inline-block">
                     <img
-                        src="/img/bloodymary.jpg"
-                        alt="Bloody Mary"
+                        src="https://picsum.photos/100/100"
+                        alt="Empresa"
                         class="rounded-circle"
                         style="width: 60px; height: 60px"
                     />
-                    <a href="/postulante/" class="ml-3 mb-0">Empresa</a>
+                    <a href="/empresa/" class="ml-3 mb-0">Empresa</a>
                 </div>
             </div>
         </nav>
     </header>    
 
     <main class="container-fluid d-flex">
-      <div class="left-container col-3">
+      <div class="container col-3">
 
         <div class="card mb-4 mi-perfil">
             <div class="card-header">
@@ -66,7 +66,7 @@
             <div class="card-body">
               <ul class="list-group empresa">
                 <a
-                  href="#"
+                  href="/empresa/altaDeOfertaLaboral.html"
                   class="list-group-item list-group-item-action border-0 py-1"
                   >Alta Oferta Laboral</a
                 >
@@ -135,11 +135,18 @@
             </ul>
           </div>
         </div>
-        
+        <div class="cerrar-sesion container-fluid">
+          <a href="javascript:void(0);" class="btn btn-danger" onclick="cerrarSesion()">
+            <span class="material-symbols-outlined align-middle mr-2">logout</span> 
+            <span class="align-middle">Cerrar Sesión</span>
+          </a>
+        </div>
       </div>
 
-      <div class="right-container container col-9">
-        
+      <div class="container container col-9">
+
+        <!-- Agregar contenido nuevo aquí -->
+
       </div>
     </main>
 
@@ -158,5 +165,6 @@
       integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/cerrarSesion.js"></script>
   </body>
 </html>
