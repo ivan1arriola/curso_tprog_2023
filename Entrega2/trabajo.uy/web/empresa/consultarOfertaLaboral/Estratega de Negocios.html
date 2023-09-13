@@ -65,6 +65,11 @@
             </div>
             <div class="card-body">
               <ul class="list-group empresa">
+                <a
+                  href="/empresa/altaDeOfertaLaboral.html"
+                  class="list-group-item list-group-item-action border-0 py-1"
+                  >Alta Oferta Laboral</a
+                >
               </ul>
             </div>
           </div>
@@ -140,89 +145,73 @@
 
       <div class="container container col-9">
 
-        <div class="container mt-5">
-            <div class="container mt-5">
-              <h1 class="mb-4" style="font-size: 34px">
-                Informacion de Paquete de Tipos de Publicación de Ofertas Laborales
-              </h1>
-              <div class="container mt-5">
-                <div id="results" class="mt-4">
-                  <!-- Add the image here -->
-                  <div class="row">
-                    <div class="col-md-3">
-                      <img
-                        src="https://picsum.photos/400"
-                        alt="Imagen 1"
-                        class="img-fluid mb-2"
-                      />
+        <div class="container">
+          <div class="row">
+              <div class="col-9 d-flex">
+                  <div class="mt-4" id="detalleOferta">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="d-flex align-items-center mt-2" > <!-- Aumentamos el margen superior aquí -->
+                                  <img src="https://www.coherdi.mx/wp-content/uploads/2017/05/esrategias-inversion.jpg" alt="Descripción de la imagen" class="img-fluid">
+                                  <div  style="margin-left: 20px;"> <!-- Agregamos un margen a la izquierda de 20px -->
+                                      <h2>Estratega de Negocios</h2>
+                                  </div>
+                              </div>
+                            </div>  
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                      <h2>Información del Paquete</h2>
-                      <p><b>Nombre:</b> Básico<span id="costoPaquete"></span></p>
-                      <p>
-                        <b>Costo del Paquete: </b> 700<span id="costoPaquete"></span>
-                      </p>
-                      <p>
-                        <b>Descuento del Paquete:</b> 20
-                        <span id="paqueteDescuento"></span>
-                      </p>
-                      <p>
-                        <b>Validez del Paquete: </b>30 dı́as
-                        <span id="validezPaquete"></span>
-                      </p>
-                      <p>
-                        <b>Descripción del Paquete:</b> Publica ofertas laborales en
-                        nuestra plataforma por un perı́odo de 30 dı́as<span
-                          id="descripcionPaquete"
-                        ></span>
-                      </p>
-                      <p><b>Fecha:</b> 16/08/23<span id="costoPaquete"></span></p>
-                    </div>
+                  
+
+                  <style>
+                      .mb-05 {
+                        margin-bottom: 0.125rem !important; /* Margen muy pequeño */
+                      }
+                  </style>
+    
+                  <h3 class="text-center mt-3">Información Básica de la Oferta Laboral</h3>
+                  <p><span class="fw-bold" id="nombre">Estratega de Negocios</span> <span id="descripcion">Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.</span></p>
+    
+                  <p class="mb-05"><span class="fw-bold">Remuneración:</span> <span id="remuneracionOferta">80000 pesos uruguayos</span></p>
+                  <p class="mb-05"><span class="fw-bold">Horario:</span> <span id="horarioOferta">08:00-17:00</span></p>
+                  <p class="mb-05"><span class="fw-bold">Departamento:</span> <span id="departamentoOferta">Maldonado</span></p>
+                  <p class="mb-3"><span class="fw-bold">Ciudad:</span> <span id="ciudadOferta">Punta del Este</span></p>
+                  
+                  <p class="mb-05"><span class="fw-bold">Fecha de Alta:</span> <span id="fechaAltaOferta">14/8/23</span></p>
+                  <p class="mb-3"><span class="fw-bold">Costo:</span> <span id="costoOferta">150</span></p>
+                  <p><span class="fw-bold">Keywords:</span> <span id="keywordsList">Temporal</span></p>                         
                   </div>
-                </div>
-                <h2 class="mt-4">Tipos de publicación y sus cantidades</h2>
-                <table class="table" id="tiposDePublicacion">
-                  <thead>
-                    <tr>
-                      <th>Tipo de Publicación</th>
-                      <th>Cantidad</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Premium</td>
-                      <td>1</td>
-                      <td>
-                        <a href="/empresa/ConsultarTipoOfertaLaboral/Premium.html"
-                          >Ver más</a
-                        >
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Destacada</td>
-                      <td>1</td>
-                      <td>
-                        <a href="/empresa/ConsultarTipoOfertaLaboral/Destacada.html"
-                          >Ver más</a
-                        >
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Estándar</td>
-                      <td>1</td>
-                      <td>
-                        <a href="/empresa/ConsultarTipoOfertaLaboral/Estandar.html"
-                          >Ver más</a
-                        >
-                      </td>
-                    </tr>
-                    <!-- Agrega más filas de datos aquí -->
-                  </tbody>
-                </table>
               </div>
-            </div>
+          
+              <div class="col-3 text-center">
+              </div>
+                   
+              
           </div>
+          
+      </div>
+  
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script>
+          function loadOfertas() {
+              // Lógica para cargar ofertas laborales en el select #ofertaSelect
+              var selectedEmpresa = document.getElementById("empresaSelect").value;
+              // Aquí debes implementar la lógica para cargar las ofertas laborales
+              // asociadas a la empresa seleccionada y llenar el select #ofertaSelect
+              // con las opciones correspondientes.
+          }
+  
+          function mostrarDetalles() {
+              // Lógica para mostrar detalles de la oferta seleccionada en el div #detalleOferta
+          }
+  
+          function verPostulaciones() {
+              // Lógica para ver las postulaciones de la oferta seleccionada
+          }
+      </script>
+
       </div>
     </main>
 

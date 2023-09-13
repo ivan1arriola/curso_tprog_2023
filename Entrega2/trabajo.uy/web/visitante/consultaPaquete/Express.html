@@ -54,21 +54,6 @@
 
     <main class="container-fluid d-flex">
       <div class="container col-3">
-        <div class="card mb-4 mi-perfil">
-          <div class="card-header">
-            <h4 class="card-title">Mi Perfil</h4>
-          </div>
-          <div class="card-body">
-
-            <ul class="list-group postulante">
-              <a
-                href="/"
-                class="list-group-item list-group-item-action border-0 py-1"
-                >Postular a Ofertas</a
-              >
-            </ul>
-          </div>
-        </div>
         <div class="card mb-4 keywords">
           <div class="card-header">
             <h4 class="card-title">Keywords</h4>
@@ -128,19 +113,77 @@
             </ul>
           </div>
         </div>
-        <div class="cerrar-sesion container-fluid">
-          <a href="javascript:void(0);" class="btn btn-danger" onclick="cerrarSesion()">
-            <span class="material-symbols-outlined align-middle mr-2">logout</span> 
-            <span class="align-middle">Cerrar Sesión</span>
-          </a>
-        </div>
+ 
         
       </div>
 
       <div class="container container col-9">
 
-        <!-- Agregar contenido nuevo aquí -->
-
+        <div class="container mt-5">
+          <div class="container mt-5">
+            <h1 class="mb-4" style="font-size: 34px">
+              Informacion de Paquete de Tipos de Publicación de Ofertas Laborales
+            </h1>
+            <div class="container mt-5">
+              <div id="results" class="mt-4">
+                <!-- Add the image here -->
+                <div class="row">
+                  <div class="col-md-3">
+                    <img
+                      src="https://picsum.photos/400"
+                      alt="Imagen 1"
+                      class="img-fluid mb-2"
+                    />
+                  </div>
+                  <div class="col-md-8">
+                    <h2>Información del Paquete</h2>
+                    <p><b>Nombre:</b> Express<span id="costoPaquete"></span></p>
+                    <p>
+                      <b>Costo del Paquete: </b> 950<span id="costoPaquete"></span>
+                    </p>
+                    <p>
+                      <b>Descuento del Paquete:</b> 5
+                      <span id="paqueteDescuento"></span>
+                    </p>
+                    <p>
+                      <b>Validez del Paquete: </b>15 dı́as
+                      <span id="validezPaquete"></span>
+                    </p>
+                    <p>
+                      <b>Descripción del Paquete:</b> Publica ofertas laborales urgentes resaltada en color y se mostrará en la
+                      sección de urgente por 15 días.<span
+                        id="descripcionPaquete"
+                      ></span>
+                    </p>
+                    <p><b>Fecha:</b>13/08/23<span id="costoPaquete"></span></p>
+                  </div>
+                </div>
+              </div>
+              <h2 class="mt-4">Tipos de publicación y sus cantidades</h2>
+              <table class="table" id="tiposDePublicacion">
+                <thead>
+                  <tr>
+                    <th>Tipo de Publicación</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Destacada</td>
+                    <td>2</td>
+                    <td>
+                      <a href="/visitante/ConsultarTipoOfertaLaboral/Destacada.html"
+                        >Ver más</a
+                      >
+                    </td>
+                  </tr>
+                  <!-- Agrega más filas de datos aquí -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
       </div>
     </main>
 
@@ -159,6 +202,7 @@
       integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/cerrarSesion.js"></script>
   </body>
 </html>

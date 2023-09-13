@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>trabajo.uy</title>
+    <title>Informacion de Postulación</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,6 +13,23 @@
     />
     <link rel="stylesheet" href="/css/global.css" />
     <!-- icons -->
+    <style>
+        
+  
+        .contenedor-hijo {
+          flex: 1; /* Cada hijo toma el mismo espacio */
+          display: inline;
+          padding: 5px;
+          margin: 5px; /* Agregamos margen para separar los contenedores */
+        }
+        .contenedor-hijo-derecha {
+          text-align: center;
+        }
+        .label {
+          display: block;
+          margin-bottom: 5px;
+        }
+      </style>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -21,7 +39,7 @@
     <header class="mb-4">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="titulo">
-              <a class="navbar-brand mx-4" href="/">
+              <a class="navbar-brand mx-4" href="/postulante/">
                   <span class="text-primary m-0 fs-3 fw-bold">trabajo</span>
                   <span class="text-secondary m-0 fs-3">.uy</span>
               </a>
@@ -41,11 +59,15 @@
               </form>
           </div>
   
-          <div id="sesion" class="usuario d-block col-2">
+          <div class="usuario d-block col-2">
               <div class="d-inline-block">
-                  <a href="/visitante/inicioDeSesionNickname.html" class="">Iniciar Sesión</a>
-                  <span class=""> | </span>
-                  <a href="/visitante/altaDeUsuario.html" class="">Alta Usuario</a>
+                  <img
+                      src="https://tinyurl.com/yckek63e"
+                      alt="lgarcia"
+                      class="rounded-circle"
+                      style="width: 60px; height: 60px"
+                  />
+                  <a href="/postulante/consultarUsuario/lgarcia.html" class="ml-3 mb-0">lgarcia</a>
               </div>
           </div>
       </nav>
@@ -54,6 +76,16 @@
 
     <main class="container-fluid d-flex">
       <div class="container col-3">
+        <div class="card mb-4 mi-perfil">
+          <div class="card-header">
+            <h4 class="card-title">Mi Perfil</h4>
+          </div>
+          <div class="card-body">
+
+            <ul class="list-group postulante">
+            </ul>
+          </div>
+        </div>
         <div class="card mb-4 keywords">
           <div class="card-header">
             <h4 class="card-title">Keywords</h4>
@@ -113,70 +145,39 @@
             </ul>
           </div>
         </div>
-               
+        <div class="cerrar-sesion container-fluid">
+          <a href="javascript:void(0);" class="btn btn-danger" onclick="cerrarSesion()">
+            <span class="material-symbols-outlined align-middle mr-2">logout</span> 
+            <span class="align-middle">Cerrar Sesión</span>
+          </a>
+        </div>
+        
       </div>
 
       <div class="container container col-9">
 
-        <div class="container">
-          <div class="row">
-            <h2>Información de Tipo de Oferta Laboral</h2>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Nombre:</span>
+        <!-- Agregar contenido nuevo aquí -->
+        <div class="d-flex">
+            <div class="contenedor-hijo col-10">
+              <h3>Postulación a Oferta Laboral</h3>
+              
+                  <p><b>Postulante:</b> <a href="/postulante/consultarUsuario/lgarcia.html">Lucía García</a></p>
+              
+              <div class="label">
+                <p><b>CV reducido:</b> Ingeniera en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.</p>
+                <p><b>Motivación:</b>  Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.</p>
+                <p><b>Fecha Postulación:</b> 14/8/23</p>
+              </div>
             </div>
-            <div class="col">
-              <span id="nombre">Estándar</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Descripción:</span>
-            </div>
-            <div class="col">
-              <span id="descripcion">Mejora la posición de tu anuncio</span>
+            <!-- Columna 2 -->
+            <div class="contenedor-hijo-derecha col-2">
+              <img src="https://tinyurl.com/4n2vpurk" alt="Imagen 1" class="img-fluid mb-2" style="width: 160px; height: 120px">
+              <p style="text-decoration: underline"><a href="/postulante/consultarOfertaLaboral/A. de Marketing Digital.html">A. de Marketing Digital</a></p>
+              
             </div>
           </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Costo:</span>
-            </div>
-            <div class="col">
-              <span id="costo">$150</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Duración: (en dias)</span>
-            </div>
-            <div class="col">
-              <span id="duracion">20</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Exposición:</span>
-            </div>
-            <div class="col">
-              <span id="exposicion">3</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Fecha de alta:</span>
-            </div>
-            <div class="col">
-              <span id="fechaAlta">15/08/2023</span>
-            </div>
-          </div>
-      </div>
 
+        <!-- Hasta aqui-->
       </div>
     </main>
 

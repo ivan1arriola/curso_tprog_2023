@@ -17,6 +17,8 @@ $(document).ready(() => {
     const agregarKeywordButton = $("#agregarKeyword");
     const keywordsSeleccionadas = $("#keywordsSeleccionadas");
 
+    const resetButton = $("#resetButton"); // Agrega el botón de reinicio
+
     agregarKeywordButton.on("click", function () {
       const selectedKeyword = keywordSelect.val();
       if (selectedKeyword) {
@@ -48,4 +50,20 @@ $(document).ready(() => {
       }
     });
   });
+
+  // Agrega el manejador de eventos para restablecer todo
+  resetButton.on("click", function () {
+    // Restablecer la fecha
+    $("#fechaAlta").val(formattedDate);
+
+    // Restablecer las palabras clave seleccionadas y el select
+    keywordsSeleccionadas.empty();
+    keywordSelect.empty();
+    keywordSelect.append(
+      $("<option value='Palabra1'>Palabra1</option>"),
+      $("<option value='Palabra2'>Palabra2</option>"),
+      $("<option value='Palabra3'>Palabra3</option>")
+    );
+  });
+  
 });

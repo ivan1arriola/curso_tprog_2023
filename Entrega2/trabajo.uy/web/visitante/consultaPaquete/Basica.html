@@ -113,70 +113,95 @@
             </ul>
           </div>
         </div>
-               
+ 
+        
       </div>
 
       <div class="container container col-9">
 
-        <div class="container">
-          <div class="row">
-            <h2>Información de Tipo de Oferta Laboral</h2>
+        <div class="container mt-5">
+            <div class="container mt-5">
+              <h1 class="mb-4" style="font-size: 34px">
+                Informacion de Paquete de Tipos de Publicación de Ofertas Laborales
+              </h1>
+              <div class="container mt-5">
+                <div id="results" class="mt-4">
+                  <!-- Add the image here -->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <img
+                        src="https://picsum.photos/400"
+                        alt="Imagen 1"
+                        class="img-fluid mb-2"
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <h2>Información del Paquete</h2>
+                      <p><b>Nombre:</b> Básico<span id="costoPaquete"></span></p>
+                      <p>
+                        <b>Costo del Paquete: </b> 700<span id="costoPaquete"></span>
+                      </p>
+                      <p>
+                        <b>Descuento del Paquete:</b> 20
+                        <span id="paqueteDescuento"></span>
+                      </p>
+                      <p>
+                        <b>Validez del Paquete: </b>30 dı́as
+                        <span id="validezPaquete"></span>
+                      </p>
+                      <p>
+                        <b>Descripción del Paquete:</b> Publica ofertas laborales en
+                        nuestra plataforma por un perı́odo de 30 dı́as<span
+                          id="descripcionPaquete"
+                        ></span>
+                      </p>
+                      <p><b>Fecha:</b> 16/08/23<span id="costoPaquete"></span></p>
+                    </div>
+                  </div>
+                </div>
+                <h2 class="mt-4">Tipos de publicación y sus cantidades</h2>
+                <table class="table" id="tiposDePublicacion">
+                  <thead>
+                    <tr>
+                      <th>Tipo de Publicación</th>
+                      <th>Cantidad</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Básica</td>
+                      <td>1</td>
+                      <td>
+                        <a href="/visitante/ConsultarTipoOfertaLaboral/Basica.html"
+                          >Ver más</a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Estándar</td>
+                      <td>1</td>
+                      <td>
+                        <a href="/visitante/ConsultarTipoOfertaLaboral/Estandar.html"
+                          >Ver más</a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Destacada</td>
+                      <td>1</td>
+                      <td>
+                        <a href="/visitante/ConsultarTipoOfertaLaboral/Destacada.html"
+                          >Ver más</a
+                        >
+                      </td>
+                    </tr>
+                    <!-- Agrega más filas de datos aquí -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Nombre:</span>
-            </div>
-            <div class="col">
-              <span id="nombre">Estándar</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Descripción:</span>
-            </div>
-            <div class="col">
-              <span id="descripcion">Mejora la posición de tu anuncio</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Costo:</span>
-            </div>
-            <div class="col">
-              <span id="costo">$150</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Duración: (en dias)</span>
-            </div>
-            <div class="col">
-              <span id="duracion">20</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Exposición:</span>
-            </div>
-            <div class="col">
-              <span id="exposicion">3</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Fecha de alta:</span>
-            </div>
-            <div class="col">
-              <span id="fechaAlta">15/08/2023</span>
-            </div>
-          </div>
-      </div>
-
       </div>
     </main>
 

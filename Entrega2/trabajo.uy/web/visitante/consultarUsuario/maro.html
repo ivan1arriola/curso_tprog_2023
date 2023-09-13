@@ -113,70 +113,121 @@
             </ul>
           </div>
         </div>
-               
+ 
+        
       </div>
 
       <div class="container container col-9">
 
+        <!-- Agregar contenido nuevo aquí -->
         <div class="container">
           <div class="row">
-            <h2>Información de Tipo de Oferta Laboral</h2>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Nombre:</span>
+            <div class="col-4">
+              <img
+                src="https://picsum.photos/100/100"
+                alt="Imagen de Usuario"
+                class="img-fluid mb-3 rounded-circle img-thumbnail perfil"
+              />
             </div>
-            <div class="col">
-              <span id="nombre">Estándar</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Descripción:</span>
-            </div>
-            <div class="col">
-              <span id="descripcion">Mejora la posición de tu anuncio</span>
+            <div class="col-8">
+              <h1>María Rodríguez</h1>
+              <h2>marrod@gmail.com</h2>
+              
             </div>
           </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Costo:</span>
-            </div>
-            <div class="col">
-              <span id="costo">$150</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Duración: (en dias)</span>
-            </div>
-            <div class="col">
-              <span id="duracion">20</span>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Exposición:</span>
-            </div>
-            <div class="col">
-              <span id="exposicion">3</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-3">
-              <span class="fw-bold">Fecha de alta:</span>
-            </div>
-            <div class="col">
-              <span id="fechaAlta">15/08/2023</span>
-            </div>
-          </div>
-      </div>
+        </div>
 
+        <!-- Agrega las pestañas (tabs) -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              data-bs-toggle="tab"
+              data-bs-target="#perfil-panel"
+              type="button"
+              role="tab"
+              aria-controls="perfil-panel"
+              aria-selected="true"
+              >Perfil</a
+            >
+          </li>
+        </ul>
+
+        <!-- Contenido de las pestañas -->
+        <div class="tab-content" id="myTabsContent">
+          <!-- Tab de perfil -->
+          <div
+            class="tab-pane fade show active"
+            id="perfil-panel"
+            style="margin-top: 20px"
+          >
+            <form>
+              <div class="row">
+                <div class="col-8">
+                  <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      disabled
+                      value="María"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellido"
+                      disabled
+                      value="Rodríguez"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="correo">Correo electrónico:</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="correo"
+                      disabled
+                      value="marrod@gmail.com"
+                      readonly
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="fecha_nac">Fecha de nacimiento:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="link"
+                      disabled
+                      value="10/11/1988"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="link">Nacionalidad:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="link"
+                      disabled
+                      value="Uruguaya"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Hasta aqui-->
+
+      </div>
+    </div>
       </div>
     </main>
 

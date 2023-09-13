@@ -3,19 +3,21 @@ function validarCredencialesNickname() {
     const password = document.getElementById("password-input").value;
 
     // Verificar las credenciales
-    if (nickname === "bloodymary" && password === "bm1234") {
-        alert("Inicio de sesión exitoso.");
+    // Postulante
+    if (nickname === "lgarcia" && password === "awdrg543") {
         localStorage.setItem("usuarioLogeado", true);
         localStorage.setItem("empresaLogeada", false);
         localStorage.setItem("postulanteLogeado", true);
         return true;
-    } else if (nickname === "asd" && password === "asd") {
 
-        alert("Inicio de sesión exitoso.");
+    // Empresa
+    } else if (nickname === "EcoTech" && password === "qsxcdw43") {
+
         localStorage.setItem("usuarioLogeado", true);
         localStorage.setItem("empresaLogeada", true);
         localStorage.setItem("postulanteLogeado", false);
         return true;
+    // Else
     } else {
         alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
         localStorage.setItem("usuarioLogeado", false);
@@ -30,17 +32,22 @@ const validarCredencialesCorreo = () => {
     const password = document.getElementById("password-input").value;
 
     // Verificar las credenciales
-    if (correo === "bloodymary@fing.edu.uy" && password === "bm1234") {
+    // Postulante
+    if (correo === "lgarcia85@gmail.com" && password === "awdrg543") {
         localStorage.setItem("usuarioLogeado", true);
         localStorage.setItem("empresaLogeada", false);
         localStorage.setItem("postulanteLogeado", true);
         return true;
-    } else if (correo === "asd@asd.com" && password === "asd") {
+
+    // Empresa
+    } else if (correo === "info@EcoTech.com" && password === "qsxcdw43") {
 
         localStorage.setItem("usuarioLogeado", true);
         localStorage.setItem("empresaLogeada", true);
         localStorage.setItem("postulanteLogeado", false);
         return true;
+
+    // Else
     } else {
         alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
         localStorage.setItem("usuarioLogeado", false);

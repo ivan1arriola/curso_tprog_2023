@@ -10,7 +10,7 @@
   margin: 0px 3px;
 }
 
-.ofertas-laborales .card {
+.sin-bordes .card {
     border-radius: 0;
     border: none;
 }
@@ -18,7 +18,7 @@
 .card img {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: fit;
 }
 
 html, body {
@@ -40,3 +40,15 @@ main {
 form > div {
     margin-bottom: 0.5rem;
 }
+
+img.perfil {
+    object-fit: cover;
+    height: 200px;
+    aspect-ratio: 1;
+}
+
+
+.comprar-btn.clicked {
+    background-color: gray !important;
+    pointer-events: none;
+  }
