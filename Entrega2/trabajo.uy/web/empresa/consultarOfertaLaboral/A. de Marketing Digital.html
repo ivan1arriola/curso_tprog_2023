@@ -173,7 +173,14 @@
                     
                     <p class="mb-05"><span class="fw-bold">Fecha de Alta:</span> <span id="fechaAltaOferta">15/08/23</span></p>
                     <p class="mb-3"><span class="fw-bold">Costo:</span> <span id="costoOferta">4000</span></p>
-                    <p><span class="fw-bold">Keywords:</span> <span id="keywordsList"></span></p>                           
+                    <div>
+                      <p class="fw-bold">
+                        Keywords:
+                      </p>
+                      <ul class="list-group list-group-horizontal">
+                        <!-- Agregamos la clase list-group-horizontal para que los elementos se muestren en horizontal -->
+                      </ul>
+                    </div>                       
                   </div>
               </div>
           
@@ -210,24 +217,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-      <script>
-          function loadOfertas() {
-              // Lógica para cargar ofertas laborales en el select #ofertaSelect
-              var selectedEmpresa = document.getElementById("empresaSelect").value;
-              // Aquí debes implementar la lógica para cargar las ofertas laborales
-              // asociadas a la empresa seleccionada y llenar el select #ofertaSelect
-              // con las opciones correspondientes.
-          }
-  
-          function mostrarDetalles() {
-              // Lógica para mostrar detalles de la oferta seleccionada en el div #detalleOferta
-          }
-  
-          function verPostulaciones() {
-              // Lógica para ver las postulaciones de la oferta seleccionada
-          }
-      </script>
-
+      
       </div>
     </main>
 

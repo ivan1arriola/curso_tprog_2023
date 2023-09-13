@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap');
 
+.mb-05 {
+    margin-bottom: 0.125rem !important;
+    /* Margen muy pequeño */
+  }
+
 
 .material-symbols-outlined {
   font-variation-settings:
