@@ -1,14 +1,11 @@
 function validarCredenciales() {
-  const input =
-    document.getElementById("nickname-input") ||
-    document.getElementById("correo-input");
-  const identificador = input.value;
+  const identificador = document.getElementById("identificador-input").value;
   const password = document.getElementById("password-input").value;
 
   // Verificar las credenciales
   if (identificador === "lgarcia" || identificador === "lgarcia85@gmail.com") {
     if (password === "awdrg543") {
-      window.location.href = "/postulante";
+      window.location.href = "../postulante/index.html";
       return false; // false para evitar la recarga de la página
     }
   } else if (
@@ -16,7 +13,7 @@ function validarCredenciales() {
     identificador === "info@EcoTech.com"
   ) {
     if (password === "qsxcdw43") {
-      window.location.href = "/empresa";
+      window.location.href = "../empresa/index.html";
       return false; // false para evitar la recarga de la página
     }
   }

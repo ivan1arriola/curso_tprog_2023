@@ -5,6 +5,12 @@
   /* Margen muy pequeño */
 }
 
+.filtros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
   margin: 0px 3px;
@@ -51,4 +57,11 @@ img.perfil {
 .comprar-btn.clicked {
   background-color: gray !important;
   pointer-events: none;
+}
+
+.closeBtn {
+  color: #000000;
+  cursor: pointer;
+  align-self: center;
+  text-decoration: none;
 }
