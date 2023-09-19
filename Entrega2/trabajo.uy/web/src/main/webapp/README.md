@@ -14,13 +14,20 @@ El filtrado por Keyword funciona para las siguientes keywords:
     1. Tiempo Completo
     2. Computación
 
-Este filtrado lo dejamos funcionando únicamente para el index
-de visitante. En el resto de archivos html habría que añadir
-el href correspondiente, y hacer los html con 
+Este filtrado lo dejamos funcionando únicamente en los index.
+En el resto de archivos html habría que añadir el href
+correspondiente, y hacer los html correspondientes a cada
+vista.
 
 
 ########################## EMPRESA ##########################
-El filtrado por empresa funciona para EcoTech.
+El filtrado por empresa funciona para EcoTech y GlobalHealth.
+En el resto de entradas no existen ofertas laborales asociad-
+as.
+
+No es case-sensitive.Sólo funciona en el index del visitante.
+Sin embargo, sólo basta con colocar los id buscar-input en l-
+-os lugares correspondientes para que funcione.
 
 ############# COMENTARIO SOBRE COSTO DEL PAQUETE ############# 
 El paquete básico figura con un costo de 240 en los datos pro-
