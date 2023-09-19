@@ -18,6 +18,9 @@
 ### Diagrama Diseño del Sitio Web Estático
 - https://drive.google.com/file/d/1l3PYSaRAART0uNpgkzCcz97ZwAcMnlh2/view?usp=sharing
 
+### Diagrama Diseño del Sitio Web Dinamico
+- https://drive.google.com/file/d/10s8C-s7X1TTVPwEa1RFUKoJvzkkavoXi/view?usp=sharing
+
 ### Modelo de Dominio
 
 - https://drive.google.com/file/d/1ggbjmu8dFq1V5ZP4JuESuaGTEzItcNtZ/view?usp=sharing
