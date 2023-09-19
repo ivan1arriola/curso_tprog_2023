@@ -65,3 +65,21 @@ img.perfil {
   align-self: center;
   text-decoration: none;
 }
+
+.contenedor-hijo {
+  flex: 1;
+  /* Cada hijo toma el mismo espacio */
+  display: inline;
+  padding: 5px;
+  margin: 5px;
+  /* Agregamos margen para separar los contenedores */
+}
+
+.contenedor-hijo-derecha {
+  text-align: center;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
