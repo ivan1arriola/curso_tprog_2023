@@ -46,4 +46,3 @@ donde:
         la cantidad que contiene de este tipo el paquete, que
         es 1.
        .*0,8: refiere a la aplicación del descuento.
-
