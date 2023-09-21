@@ -10,6 +10,8 @@ import java.io.IOException;
 /**
  * Servlet implementation class Home
  */
+
+@WebServlet("/home")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -24,17 +26,12 @@ public class Home extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Realizar una redirección interna (forward) a la página JSP "home.jsp"
+        request.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(request, response);
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
+
 
 }

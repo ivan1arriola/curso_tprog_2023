@@ -19,35 +19,6 @@
     <servlet-name>Home</servlet-name>
     <url-pattern>/Home</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Main</display-name>
-    <servlet-name>Main</servlet-name>
-    <servlet-class>controllers.Main</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Main</servlet-name>
-    <url-pattern>/Main</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>IniciarSesion</display-name>
-    <servlet-name>IniciarSesion</servlet-name>
-    <servlet-class>controllers.IniciarSesion</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>IniciarSesion</servlet-name>
-    <url-pattern>/IniciarSesion</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Hom</display-name>
-    <servlet-name>Hom</servlet-name>
-    <servlet-class>controller.Home</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Hom</servlet-name>
-    <url-pattern>/Hom</url-pattern>
-    <url-pattern>/home</url-pattern>
-  </servlet-mapping>
+  
+
 </web-app>
