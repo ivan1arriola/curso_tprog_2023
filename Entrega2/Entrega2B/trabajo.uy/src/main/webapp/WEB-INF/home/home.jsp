@@ -4,7 +4,7 @@
 
     <head>
         <jsp:include page="/WEB-INF/templates/head.jsp" />
-        <title>Home</title>
+        <title>trabajo.uy</title>
     </head>
 
     <body>
@@ -92,7 +92,6 @@
             integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
             crossorigin="anonymous"></script>
 
-        <script src="js/buscarFicticio.js" type="text/javascript"></script>
     </body>
 
     </html>

@@ -13,7 +13,7 @@
                       Publica ofertas laborales en nuestra plataforma por un
                       período de 30 días
                     </p>
-                    <a href="visitante/consultaPaquete/Basica.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultarpaquete?p=Basica" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                       la parte superior de los resultados de búsqueda por 45
                       días
                     </p>
-                    <a href="visitante/consultaPaquete/Destacado.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultarpaquete?p=Destacado" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
@@ -51,7 +51,7 @@
                       en nuestras redes sociales y listado en la sección
                       destacada por 60 días.
                     </p>
-                    <a href="visitante/consultaPaquete/Premium.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultarpaquete?p=Premium" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
@@ -69,7 +69,7 @@
                       Publica ofertas laborales urgentes resaltadas en color y
                       se mostrarán en la sección de urgente por 15 días.
                     </p>
-                    <a href="visitante/consultaPaquete/Express.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultarpaquete?p=Express" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>

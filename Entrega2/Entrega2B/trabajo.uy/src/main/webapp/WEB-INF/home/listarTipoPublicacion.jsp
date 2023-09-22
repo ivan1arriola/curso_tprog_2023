@@ -7,7 +7,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Premium</h5>
                     <p class="card-text">Obtén máxima visibilidad</p>
-                    <a href="visitante/ConsultarTipoOfertaLaboral/Premium.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultartipopublicacion?tp=Premium" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
@@ -16,7 +16,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Destacada</h5>
                     <p class="card-text">Destaca tu anuncio</p>
-                    <a href="visitante/ConsultarTipoOfertaLaboral/Destacada.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultartipopublicacion?tp=Destacada" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
@@ -27,7 +27,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Estándar</h5>
                     <p class="card-text">Mejora la posición de tu anuncio</p>
-                    <a href="visitante/ConsultarTipoOfertaLaboral/Estandar.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultartipopublicacion?tp=Estandar" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
@@ -38,7 +38,7 @@
                     <p class="card-text">
                       Publica de forma sencilla en la lista de ofertas
                     </p>
-                    <a href="visitante/ConsultarTipoOfertaLaboral/Basica.html" class="card-link">Leer más</a>
+                    <a href="<%= request.getContextPath() %>/consultartipopublicacion?tp=Basica" class="card-link">Leer más</a>
                   </div>
                 </div>
               </div>
