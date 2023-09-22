@@ -13,6 +13,7 @@ public class DTOfertaLaboral {
 	private DTHorario horario;
 	private DepUY departamento;
 	private String ciudad;
+	private String imagen;
 	
 	public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu) {
 		nombre = nomb;
@@ -23,6 +24,19 @@ public class DTOfertaLaboral {
 		horario = h;
 		departamento = dep;
 		ciudad = ciu;
+		imagen = "";
+	}
+	
+	public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, String imagenLink) {
+		nombre = nomb;
+		descripcion = desc;
+		fecha_de_alta = fechaA;
+		costo = c;
+		remuneracion = r;
+		horario = h;
+		departamento = dep;
+		ciudad = ciu;
+		imagen = imagenLink;
 	}
 	
 	public String getNombre() {
@@ -56,6 +70,12 @@ public class DTOfertaLaboral {
 	public String getCiudad() {
 		return ciudad;
 	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+	
+	
 	
     @Override
     public String toString() {
