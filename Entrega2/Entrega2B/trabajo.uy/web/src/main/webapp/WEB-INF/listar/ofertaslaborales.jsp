@@ -33,22 +33,24 @@
                     for (DTOfertaLaboral oferta : ofertasLaborales) {
                 %>
                 <div class="card mb-3">
-	              <div class="row g-0">
-	                <div class="col-md-4">
-	                  <img src=<%= oferta.getImagen() %> class="img-fluid rounded-start" alt="..." />
-	                </div>
-	                <div class="col-md-8">
-	                  <div class="card-body">
-	                    <h5 class="card-title"><%= oferta.getNombre() %></h5>
-	                    <p class="card-text">
-	                      <%= oferta.getDescripcion() %>
-	                    </p>
-	                    <a href="<%= request.getContextPath() %>/consultarofertalaboral?ol=<%= oferta.getNombre() %>" class="card-link">Leer
-	                      más</a>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
+				    <div class="row g-0">
+				        <div class="col-md-4">
+				            <img src="<%= oferta.getImagen() %>" class="img-fluid rounded-start" alt="Imagen de oferta" />
+				        </div>
+				        <div class="col">
+				            <div class="card-body">
+				                <h5 class="card-title"><%= oferta.getNombre() %></h5>
+				                <p class="card-text"><%= oferta.getDescripcion() %></p>
+				            </div>
+				        </div>
+				        <div class="col-2">
+				            <a href="<%= request.getContextPath() %>/consultarofertalaboral?ol=<%= oferta.getNombre() %>"
+				               class="btn btn-primary d-flex btn-block align-items-center justify-content-around">
+				                <span>Leer más</span>
+				            </a>
+				        </div>
+				    </div>
+				</div>
                 <%
                     }
                 %>

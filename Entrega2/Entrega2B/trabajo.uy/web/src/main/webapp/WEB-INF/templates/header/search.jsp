@@ -6,7 +6,7 @@
       <input id="buscar-input" class="form-control me-2" type="search" placeholder="Ofertas Laborales, Empresas"
         aria-label="Buscar" />
       <button class="btn btn-success d-flex" type="submit">
-        <span class="material-symbols-outlined"> search </span> Buscar
+        <i class="bi bi-search me-2"></i> Buscar
       </button>
     </form>
   </div>

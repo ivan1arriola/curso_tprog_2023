@@ -15,3 +15,5 @@
         <a class="nav-link <%= request.getRequestURI().endsWith("/paquetes.jsp") ? "active" : "" %>" href="<%= request.getContextPath() %>/paquetes">Paquetes</a>
     </li>
 </ul>
+
+<hr/>
