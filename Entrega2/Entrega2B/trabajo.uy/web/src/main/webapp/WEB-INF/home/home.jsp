@@ -19,22 +19,23 @@
 
         <div class="container col-9">
             <!-- Links de navegacion en vertical -->
-            <div class="h-100">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<%= request.getContextPath() %>/ofertaslaborales">Ofertas Laborales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<%= request.getContextPath() %>/usuarios">Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<%= request.getContextPath() %>/tipospublicacion">Tipo de Publicacion de Oferta Laboral</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<%= request.getContextPath() %>/paquetes">Paquetes</a>
-                    </li>
-                </ul>
-            </div>
+            <div class="container w-100 h-100 d-flex justify-content-center align-items-center">
+			    <ul class="nav flex-column">
+			        <li class="nav-item mb-3">
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/ofertaslaborales">Ofertas Laborales</a>
+			        </li>
+			        <li class="nav-item mb-3">
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/usuarios">Usuarios</a>
+			        </li>
+			        <li class="nav-item mb-3">
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/tipospublicacion">Tipo de Publicacion de Oferta Laboral</a>
+			        </li>
+			        <li class="nav-item mb-3">
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/paquetes">Paquetes</a>
+			        </li>
+			    </ul>
+			</div>
+
         </div>
     </main>
 
