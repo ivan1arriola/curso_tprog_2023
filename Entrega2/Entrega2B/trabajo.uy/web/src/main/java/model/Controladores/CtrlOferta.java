@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import excepciones.ExcepcionTipoOfertaNoExistente;
+
 import java.util.HashSet;
 import java.util.Map;
 
@@ -12,9 +15,7 @@ import model.Clases.Postulacion;
 import model.Clases.Paquete;
 import model.Clases.TipoOferta;
 import model.Clases.Keyword;
-import model.Datatypes.DTOfertaExtendido;
-import model.Datatypes.DTPaquete;
-import model.Datatypes.DTTipoOferta;
+import model.Datatypes.*;
 import model.Interfaces.ICtrlOferta;
 import model.Manejadores.KeywordHandler;
 import model.Manejadores.OfertaLaboralHandler;

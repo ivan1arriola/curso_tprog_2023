@@ -79,4 +79,44 @@
     <servlet-name>ConsultarTipoPublicacion</servlet-name>
     <url-pattern>/ConsultarTipoPublicacion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>Lista todas las ofertas laborales del sistema</description>
+    <display-name>ListarOfertasLaborales</display-name>
+    <servlet-name>ListarOfertasLaborales</servlet-name>
+    <servlet-class>controller.ListarOfertasLaborales</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarOfertasLaborales</servlet-name>
+    <url-pattern>/ListarOfertasLaborales</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Lista los Usuarios del sistema</description>
+    <display-name>ListarUsuarios</display-name>
+    <servlet-name>ListarUsuarios</servlet-name>
+    <servlet-class>controller.ListarUsuarios</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarUsuarios</servlet-name>
+    <url-pattern>/ListarUsuarios</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Lista todos los paquetes del sistema</description>
+    <display-name>ListarPaquetes</display-name>
+    <servlet-name>ListarPaquetes</servlet-name>
+    <servlet-class>controller.ListarPaquetes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarPaquetes</servlet-name>
+    <url-pattern>/ListarPaquetes</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Lista todos los tipos de publicacion de oferta laboral del sistema</description>
+    <display-name>ListarTiposPublicacion</display-name>
+    <servlet-name>ListarTiposPublicacion</servlet-name>
+    <servlet-class>controller.ListarTiposPublicacion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarTiposPublicacion</servlet-name>
+    <url-pattern>/ListarTiposPublicacion</url-pattern>
+  </servlet-mapping>
 </web-app>
