@@ -22,16 +22,16 @@
             <div class="container w-100 h-100 d-flex justify-content-center align-items-center">
 			    <ul class="nav flex-column">
 			        <li class="nav-item mb-3">
-			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/ofertaslaborales">Ofertas Laborales</a>
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/ofertaslaborales">Ofertas Laborales <span class="material-symbols-outlined ms-2">work</span></a>
 			        </li>
 			        <li class="nav-item mb-3">
-			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/usuarios">Usuarios</a>
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/usuarios">Usuarios <span class="material-symbols-outlined ms-2">group</span></a>
 			        </li>
 			        <li class="nav-item mb-3">
-			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/tipospublicacion">Tipo de Publicacion de Oferta Laboral</a>
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/tipospublicacion">Tipo de Publicacion de Oferta Laboral <span class="material-symbols-outlined ms-2">list</span></a>
 			        </li>
 			        <li class="nav-item mb-3">
-			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/paquetes">Paquetes</a>
+			            <a class="btn btn-block btn-primary w-100 p-3" href="<%= request.getContextPath() %>/paquetes">Paquetes <span class="material-symbols-outlined ms-2">package</span></a>
 			        </li>
 			    </ul>
 			</div>

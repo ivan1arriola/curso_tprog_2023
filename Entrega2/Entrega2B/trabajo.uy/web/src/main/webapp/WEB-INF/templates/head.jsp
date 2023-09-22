@@ -7,9 +7,7 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/global.css">
 
-<!-- iconos -->
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
+<!-- iconos de Google -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Icono SVG -->
 <link rel="icon" href="<%= request.getContextPath() %>/icon.svg" type="image/svg+xml" />

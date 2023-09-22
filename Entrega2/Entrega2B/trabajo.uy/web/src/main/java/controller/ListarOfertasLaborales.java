@@ -5,7 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Datatypes.DTHora;
+import model.Datatypes.DTHorario;
+import model.Datatypes.DTOfertaLaboral;
+import model.Enumerados.DepUY;
+
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Servlet implementation class ListarOfertasLaborales
@@ -21,11 +29,66 @@ public class ListarOfertasLaborales extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    // Funcion para simular la logica
+    private List<DTOfertaLaboral> getOfertasLaborales() {
+        List<DTOfertaLaboral> ofertas = new ArrayList<>();
+
+        // Crear la primera oferta laboral
+        ofertas.add(new DTOfertaLaboral(
+                "Desarrollador Frontend",
+                "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
+                LocalDate.of(2023, 8, 14),
+                90000.0f,
+                90000.0f,
+                new DTHorario(new DTHora(9, 0), new DTHora(18, 0)),
+                DepUY.Montevideo,
+                "Montevideo",
+                "https://tinyurl.com/45nsf34m"
+        ));
+
+        // Crear la segunda oferta laboral
+        ofertas.add(new DTOfertaLaboral(
+                "Estratega de Negocios",
+                "Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.",
+                LocalDate.of(2023, 8, 14),
+                80000.0f,
+                80000.0f,
+                new DTHorario(new DTHora(8, 0), new DTHora(17, 0)),
+                DepUY.Maldonado,
+                "Punta del Este",
+                "https://www.coherdi.mx/wp-content/uploads/2017/05/esrategias-inversion.jpg"
+        ));
+
+        // Crear la tercera oferta laboral
+        ofertas.add(new DTOfertaLaboral(
+                "A. de Marketing Digital",
+                "Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.",
+                LocalDate.of(2023, 8, 15),
+                80000.0f,
+                80000.0f,
+                new DTHorario(new DTHora(10, 0), new DTHora(19, 0)),
+                DepUY.Flores,
+                "Flores",
+                "https://tinyurl.com/4n2vpurk"
+        ));
+
+        return ofertas;
+    }
+
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Obtiene las ofertas laborales
+        List<DTOfertaLaboral> ofertas = getOfertasLaborales();
+
+        // Almacena las ofertas como un atributo en el objeto request
+        request.setAttribute("ofertasLaborales", ofertas);
+
+        // Reenvía la solicitud al JSP
         request.getRequestDispatcher("/WEB-INF/listar/ofertaslaborales.jsp").forward(request, response);
     }
 
