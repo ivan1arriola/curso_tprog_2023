@@ -44,8 +44,8 @@
 				            </div>
 				        </div>
 				        <div class="col-2">
-				            <a href="<%= request.getContextPath() %>/consultarofertalaboral?ol=<%= oferta.getNombre() %>"
-				               class="btn btn-primary d-flex btn-block align-items-center justify-content-around">
+				            <a href="<%= request.getContextPath() %>/consultarofertalaboral?o=<%= oferta.getNombre() %>"
+				               class="btn btn-info d-flex btn-block align-items-center justify-content-around">
 				                <span>Leer más</span>
 				            </a>
 				        </div>

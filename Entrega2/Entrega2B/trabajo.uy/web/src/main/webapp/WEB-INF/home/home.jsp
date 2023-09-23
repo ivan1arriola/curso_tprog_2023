@@ -18,6 +18,8 @@
         </div>
 
         <div class="container col-9">
+        
+        <hr class="mb-5"/>
             <!-- Links de navegacion en vertical -->
             <div class="container w-100 h-100 d-flex justify-content-center align-items-center">
 			    <ul class="nav flex-column">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Links de navegacion -->
-<ul class="nav nav-pills nav-fill mb-3">
+<ul class="nav nav-pills nav-fill my-1">
     <li class="nav-item">
         <a class="nav-link <%= request.getRequestURI().endsWith("/ofertaslaborales.jsp") ? "active" : "" %>" href="<%= request.getContextPath() %>/ofertaslaborales">Ofertas Laborales</a>
     </li>
@@ -16,4 +16,4 @@
     </li>
 </ul>
 
-<hr/>
+<hr class="mt-1 mb-2"/>
