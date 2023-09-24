@@ -15,11 +15,11 @@
           if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
-          } else {
-            event.preventDefault();
-            event.stopPropagation();
-            //validarCredenciales();
-          }
+          } 
+          //else {
+          //  event.preventDefault();
+          //  event.stopPropagation();
+          //}
 
           // Agrega la clase CSS de Bootstrap para mostrar los estilos de validación
           form.classList.add("was-validated");

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="titulo">
@@ -17,7 +18,21 @@
   %>
   
   <jsp:include page="/WEB-INF/templates/header/search.jsp"></jsp:include>
+  
+  <% 
+    // Verificar si existe una sesión y si el atributo "usuario" está presente
+    if (session != null && session.getAttribute("usuario") != null) {
+  %>
+  
+  <jsp:include page="/WEB-INF/templates/header/usuario.jsp"></jsp:include>
+  
+  <% 
+    } else {
+  %>
+  
   <jsp:include page="/WEB-INF/templates/header/links.jsp"></jsp:include>
+  
+  <% } %>
   
   <% } %>
 </nav>
