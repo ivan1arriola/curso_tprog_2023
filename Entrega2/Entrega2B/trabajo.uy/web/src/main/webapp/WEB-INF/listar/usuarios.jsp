@@ -30,10 +30,11 @@
                     <%
                         List<DTUsuario> usuarios = (List<DTUsuario>) request.getAttribute("usuarios");
                         for (DTUsuario usuario : usuarios) {
+                        	String imagen = (usuario.getImagen() == null) ? request.getContextPath() + "/nopicture.png" : usuario.getImagen();
                             %>
                             <div class="col-md-4">
                                 <div class="card mb-3">
-                                    <img src="<%= usuario.getImagen() %>" class="card-img-top" alt="Perfil de <%= usuario.getNickname() %>" />
+                                    <img src="<%= imagen %>" class="card-img-top" alt="Perfil de <%= usuario.getNickname() %>" />
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= usuario.getNickname() %>"><%= usuario.getNickname() %></a>

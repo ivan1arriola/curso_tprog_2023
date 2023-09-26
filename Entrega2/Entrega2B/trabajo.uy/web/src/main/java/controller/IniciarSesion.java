@@ -35,7 +35,7 @@ public class IniciarSesion extends HttpServlet {
     
     // Simula obtenerUsuario de la logica
     private DTUsuario obtenerUsuario(String nickname) {
-    	return new DTUsuario(nickname, "prueba@prueba.com", "apellido", "nombre", "https://picsum.photos/200/300");
+    	return new DTUsuario(nickname, "prueba@prueba.com", "apellido", "nombre");
     }
 
 	/**
@@ -69,7 +69,8 @@ public class IniciarSesion extends HttpServlet {
             HttpSession session = request.getSession();
             DTUsuario usuario = obtenerUsuario(identificador);
             session.setAttribute("usuario", usuario.getNickname()); 
-            session.setAttribute("imagen", usuario.getImagen());
+            String imagen = (usuario.getImagen() == null) ? request.getContextPath() + "/nopicture.png" : usuario.getImagen();
+            session.setAttribute("imagen", imagen);
 
             // Redireccionar a una página de bienvenida
             response.sendRedirect(request.getContextPath() + "/home");
