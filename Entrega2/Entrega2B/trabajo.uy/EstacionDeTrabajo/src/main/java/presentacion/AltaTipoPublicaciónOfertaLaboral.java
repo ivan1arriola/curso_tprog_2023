@@ -42,8 +42,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame implements
         mainPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configura los Listener de aceptar y cancelar
-        botonesPanel.setAceptarListener(this);
-        botonesPanel.setCancelarListener(this);
+        botonesPanel.setListener(this);
     }
 
 	@Override

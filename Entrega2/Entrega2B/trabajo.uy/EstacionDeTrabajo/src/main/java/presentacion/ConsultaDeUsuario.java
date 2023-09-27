@@ -16,15 +16,15 @@ import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.presentacion.componentes.InfoUsuario;
-import main.java.presentacion.componentes.ListarUsuarios;
 import main.java.presentacion.componentes.ListarUsuariosObserver;
+import main.java.presentacion.componentes.SelectorUsuario;
 
 public class ConsultaDeUsuario extends JInternalFrame implements ListarUsuariosObserver {
 
 	private static final long serialVersionUID = -2688641613552122875L;
 	private ICtrlUsuario controlUsr;
     private ICtrlOferta controlOfer;
-    private ListarUsuarios selector;
+    private SelectorUsuario selector;
     private InfoUsuario usuarioInfo;
     private JButton btnCerrar;
 
@@ -44,7 +44,7 @@ public class ConsultaDeUsuario extends JInternalFrame implements ListarUsuariosO
         getContentPane().setLayout(new BorderLayout());
 
         // Panel en el norte
-        selector = new ListarUsuarios();
+        selector = new SelectorUsuario();
         selector.setObserver(this);
         getContentPane().add(selector, BorderLayout.NORTH);
 

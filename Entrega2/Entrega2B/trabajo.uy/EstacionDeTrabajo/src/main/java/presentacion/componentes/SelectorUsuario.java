@@ -6,14 +6,14 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 
-public class ListarUsuarios extends JPanel {
+public class SelectorUsuario extends JPanel {
     
     private static final long serialVersionUID = 1L;
     
     private JComboBox<String> nicknamesComboBox;
     private ListarUsuariosObserver observer;
 
-    public ListarUsuarios() {
+    public SelectorUsuario() {
         setLayout(new GridLayout(0, 2, 0, 0));
 
         JLabel lblSeleccionarUsuario = new JLabel("Seleccionar Usuario");

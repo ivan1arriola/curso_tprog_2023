@@ -6,10 +6,10 @@ import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.presentacion.componentes.InfoUsuario;
 import main.java.presentacion.componentes.IEditable;
-import main.java.presentacion.componentes.ListarUsuarios;
 import main.java.presentacion.componentes.ListarUsuariosObserver;
 import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
 import main.java.presentacion.componentes.PanelBotonesEditarCerrar;
+import main.java.presentacion.componentes.SelectorUsuario;
 import main.java.presentacion.formularios.FormularioCrearPaquete;
 import main.java.logica.Fabrica;
 import main.java.logica.Datatypes.DTEmpresa;
@@ -41,7 +41,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
 
     private static final long serialVersionUID = 5426782142597606996L;
 	private ICtrlUsuario ctrlUsuario;
-    private ListarUsuarios menu;
+    private SelectorUsuario menu;
     private InfoUsuario datosUsuario;
     private PanelBotonesEditarCerrar botones;
     
@@ -64,7 +64,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding
         
         // Crear menu de usuarios
-        menu = new ListarUsuarios();
+        menu = new SelectorUsuario();
         menu.setObserver(this);
         mainPanel.add(menu, BorderLayout.NORTH);
 

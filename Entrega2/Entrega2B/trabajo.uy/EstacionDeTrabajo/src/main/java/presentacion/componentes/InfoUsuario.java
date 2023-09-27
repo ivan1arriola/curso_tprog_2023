@@ -12,8 +12,10 @@ import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 // Sirve tanto para Modificar Usuario como Consultar Usuario
 public class InfoUsuario extends JPanel implements IFormulario {
@@ -56,7 +58,7 @@ public class InfoUsuario extends JPanel implements IFormulario {
 	private JTextField tipoUsuarioField;
 
     public InfoUsuario() {
-        setLayout(new GridLayout(15, 2));
+        setLayout(new GridLayout(10, 2));
         
         // Campos Usuario
         
@@ -197,6 +199,7 @@ public class InfoUsuario extends JPanel implements IFormulario {
         // Habilitar o deshabilitar todos los campos, dependiendo del valor de "habilitar"
         nicknameField.setEditable(false);
         correoField.setEditable(false);
+        tipoUsuarioField.setEditable(false);
         
         
         nombreField.setEditable(habilitar);
@@ -207,29 +210,62 @@ public class InfoUsuario extends JPanel implements IFormulario {
         fechaNacimientoField.setEditable(habilitar);
         nacionalidadField.setEditable(habilitar);
     }
+    
+    
+    
+    private void modoEmpresa(){
+    	ocultarCampos();
+        setVisibleCamposUsuario(true);
+        setVisibleCamposEmpresa(true);
+    	esEmpresa = true;
+    	tipoUsuarioField.setText("Empresa");
+        setLayout(new GridLayout(8, 2)); 
+
+    }
+    
+    private void modoPostulante(){
+    	ocultarCampos();
+        setVisibleCamposUsuario(true);
+        setVisibleCamposPostulante(true);
+    	esEmpresa = false;
+    	tipoUsuarioField.setText("Postulante");
+        setLayout(new GridLayout(7, 2)); 
+    }
+    
+    private void modoCrearUsuario() {
+    	limpiar();
+    	setEditable(true);
+    	// habilita estos campos que normalmente no serian editables
+    	nicknameField.setEditable(true);
+        correoField.setEditable(true);
+    	
+    }
+    
+    public void modoCrearPostulante() {
+    	modoCrearUsuario();
+    	modoPostulante();
+    }
+    
+    public void modoCrearEmpresa() {
+    	modoCrearUsuario();
+    	modoEmpresa();
+    }
 
     public void setDTUsuario(DTUsuario usuario) {
         limpiar();
 
-        ocultarCampos();
 
         nicknameField.setText(usuario.getNickname());
         nombreField.setText(usuario.getNombre());
         apellidoField.setText(usuario.getApellido());
         correoField.setText(usuario.getCorreo_electronico());
         
-        setVisibleCamposUsuario(true);
-
         if (usuario instanceof DTPostulante) {
         	
-        	tipoUsuarioField.setText("Postulante");
-        	
-        	esEmpresa = false;
         	
             DTPostulante postulante = (DTPostulante) usuario;
             LocalDate fechaNacimiento = postulante.getFecha_nac();
             String nacionalidad = postulante.getNacionalidad();
-
            
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String fechaFormateada = fechaNacimiento.format(formatter);
@@ -237,41 +273,54 @@ public class InfoUsuario extends JPanel implements IFormulario {
             fechaNacimientoField.setText(fechaFormateada);
             nacionalidadField.setText(nacionalidad);
 
-            setVisibleCamposPostulante(true);
-
-            setLayout(new GridLayout(7, 2)); 
+            modoPostulante();
             
         } else if (usuario instanceof DTEmpresa) {
-        	
-        	tipoUsuarioField.setText("Empresa");
-        	
-        	esEmpresa = true;
         	
             DTEmpresa empresa = (DTEmpresa) usuario;
             String nombreEmpresa = empresa.getNombreEmpresa();
             String descripcion = empresa.getDescripcion();
             String url = empresa.getUrl();
 
-            
             nombreEmpresaField.setText(nombreEmpresa);
             descripcionField.setText(descripcion);
             urlField.setText(url);
 
-            setVisibleCamposEmpresa(true);
-
-            setLayout(new GridLayout(8, 2));
+            modoEmpresa();
         }
         
         setEditable(false);
     }
     
-    public DTUsuario getDTUsuario() {
-    	String nickname = nicknameField.getText();
-    	
-    	if (nickname.isEmpty()) {
-            throw new IllegalArgumentException("No ha seleccionado ningun usuario");
+    private LocalDate validarYObtenerFechaNacimiento(String fechaNacimientoStr) {
+        try {
+            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+            // Obtener la fecha actual
+            LocalDate fechaActual = LocalDate.now();
+
+            // Verificar que la fecha de nacimiento sea anterior o igual a la fecha actual
+            if (fechaNacimiento.isAfter(fechaActual)) {
+                throw new IllegalArgumentException("La fecha de nacimiento debe ser anterior o igual a la fecha actual.");
+            }
+
+            return fechaNacimiento;
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("El campo de Fecha de Nacimiento no tiene un formato de fecha válido (dd-MM-yyyy).");
+        } catch (DateTimeException e) {
+            throw new IllegalArgumentException("La fecha de nacimiento contiene valores no válidos.");
         }
-    	
+    }
+
+    public DTUsuario getDTUsuario() {
+        String nickname = nicknameField.getText();
+
+        if (nickname.isEmpty()) {
+            throw new IllegalArgumentException("No se ha ingresado un nickname");
+        }
+
+        validar();
+
         String nombre = nombreField.getText().trim();
         String apellido = apellidoField.getText().trim();
         String correo = correoField.getText().trim();
@@ -284,12 +333,13 @@ public class InfoUsuario extends JPanel implements IFormulario {
             return new DTEmpresa(nickname, correo, apellido, nombre, nombreEmpresa, descripcion, url);
         } else {
             String fechaNacimientoStr = fechaNacimientoField.getText();
-            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate fechaNacimiento = validarYObtenerFechaNacimiento(fechaNacimientoStr);
             String nacionalidad = nacionalidadField.getText();
 
-            return new DTPostulante(nickname, correo, apellido, nombre,"",fechaNacimiento, nacionalidad);
+            return new DTPostulante(nickname, correo, apellido, nombre, "", fechaNacimiento, nacionalidad);
         }
     }
+
 
 
 
@@ -308,6 +358,29 @@ public class InfoUsuario extends JPanel implements IFormulario {
         String apellido = apellidoField.getText().trim();
         String correo = correoField.getText().trim();
 
+        if (nickname.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Nickname no puede estar vacío.");
+        }
+        if (nombre.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Nombre no puede estar vacío.");
+        }
+        if (apellido.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Apellido no puede estar vacío.");
+        }
+        if (correo.isEmpty()) {
+            throw new IllegalArgumentException("El campo de Correo no puede estar vacío.");
+        }
+        // Validar el formato del correo electrónico genérico
+        if (!correo.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+            throw new IllegalArgumentException("El campo de Correo no tiene un formato de correo electrónico válido.");
+        }
+        if (!nombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+( [a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+)*")) {
+            throw new IllegalArgumentException("El campo de Nombre solo puede contener letras y espacios.");
+        }
+        if (!apellido.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+( [a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+)*")) {
+            throw new IllegalArgumentException("El campo de Apellido solo puede contener letras y espacios.");
+        }
+        
         if (esEmpresa) {
             // Validar campos específicos para Empresa
             if (nombreEmpresa.isEmpty()) {
@@ -321,28 +394,13 @@ public class InfoUsuario extends JPanel implements IFormulario {
             if (fechaNacimiento.isEmpty()) {
                 throw new IllegalArgumentException("El campo de Fecha de Nacimiento no puede estar vacío.");
             }
+            // Validar el formato de fecha "dd/mm/aaaa"
+            if (!fechaNacimiento.matches("\\d{2}-\\d{2}-\\d{4}")) {
+                throw new IllegalArgumentException("El campo de Fecha de Nacimiento debe estar en el formato dd/mm/aaaa.");
+            }
             if (nacionalidad.isEmpty()) {
                 throw new IllegalArgumentException("El campo de Nacionalidad no puede estar vacío.");
             }
-        }
-
-        if (nickname.isEmpty()) {
-            throw new IllegalArgumentException("El campo de Nickname no puede estar vacío.");
-        }
-        if (nombre.isEmpty()) {
-            throw new IllegalArgumentException("El campo de Nombre no puede estar vacío.");
-        }
-        if (apellido.isEmpty()) {
-            throw new IllegalArgumentException("El campo de Apellido no puede estar vacío.");
-        }
-        if (correo.isEmpty()) {
-            throw new IllegalArgumentException("El campo de Correo no puede estar vacío.");
-        }
-        if (!nombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+( [a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+)*")) {
-            throw new IllegalArgumentException("El campo de Nombre solo puede contener letras y espacios.");
-        }
-        if (!apellido.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+( [a-zA-ZñÑáéíóúÁÉÍÓÚüÜçÇäÄëËïÏöÖ]+)*")) {
-            throw new IllegalArgumentException("El campo de Apellido solo puede contener letras y espacios.");
         }
 
 		return true;
