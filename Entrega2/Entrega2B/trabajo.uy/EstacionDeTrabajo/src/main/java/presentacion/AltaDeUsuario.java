@@ -100,6 +100,7 @@ public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
         try {
             if (esEmpresa) {
                 DTEmpresa empresa = (DTEmpresa) formularioUsuario.getDTUsuario();
+                String contrasenia = formularioUsuario.getContrasenia();
                 if (empresa.getUrl() == null || empresa.getUrl().isEmpty()) {
                     ctrlUsuario.altaEmpresa(
                         empresa.getNickname(),
@@ -122,6 +123,7 @@ public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
                 }
             } else {
                 DTPostulante postulante = (DTPostulante) formularioUsuario.getDTUsuario();
+                String contrasenia = formularioUsuario.getContrasenia();
                 ctrlUsuario.altaPostulante(
                     postulante.getNickname(),
                     postulante.getNombre(),

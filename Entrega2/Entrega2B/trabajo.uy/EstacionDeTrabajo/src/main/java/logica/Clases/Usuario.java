@@ -10,6 +10,8 @@ public abstract class Usuario {
     private String nombre;
     private String apellido;
     private String correo_electronico;
+    
+    private String contrasenia;
 
 
     //Getters
@@ -69,5 +71,13 @@ public abstract class Usuario {
     }
     
     public abstract Set<String> listarOfertasLaborales();
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
     
 }

@@ -287,18 +287,20 @@ public class InfoUsuario extends JPanel implements IFormularioUsuario {
 	@Override
 	public void modoAltaEmpresa() {
 	    limpiar();
+	    modoEmpresa();
 	    setEditable(true, true);
 	    setVisibleCampoContrasenia(true);
-	    modoEmpresa();
+	    
 	    conContrasenia = true;
 	}
 
 	@Override
 	public void modoAltaPostulante() {
 	    limpiar();
+	    modoPostulante();
 	    setEditable(true, true);
 	    setVisibleCampoContrasenia(true);
-	    modoPostulante();
+	    
 	    conContrasenia = true;
 	}
 
