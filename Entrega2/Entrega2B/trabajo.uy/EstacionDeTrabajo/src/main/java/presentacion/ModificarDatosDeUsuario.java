@@ -44,6 +44,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
     private SelectorUsuario menu;
     private InfoUsuario datosUsuario;
     private PanelBotonesEditarCerrar botones;
+    private String nicknameUsuarioDesplegado;
     
     public ModificarDatosDeUsuario() {
     	ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
@@ -86,7 +87,12 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
         if (!selectedUser.equals("Selecciona un usuario")) {
             try {
                 DTUsuario usuario = ctrlUsuario.obtenerDatosUsuario(selectedUser);
-                datosUsuario.setDTUsuario(usuario);
+                if (usuario instanceof DTEmpresa) {
+                	datosUsuario.mostrarEmpresa((DTEmpresa) usuario);
+                } else if (usuario instanceof DTPostulante) {
+                	datosUsuario.mostrarPostulante((DTPostulante) usuario);
+                }
+                nicknameUsuarioDesplegado = usuario.getNickname();
             } catch (Exception e) {
                 // Captura la excepción y muestra un mensaje de error al usuario
                 JOptionPane.showMessageDialog(
@@ -102,18 +108,36 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
 
     @Override
     public void limpiarInfo() {
-        datosUsuario.limpiar();
-        datosUsuario.setEditable(false); // Deshabilitar la edición de datos
+        datosUsuario.reiniciarFormulario();
+        nicknameUsuarioDesplegado = "";
         menu.setComboBoxEnabled(true);
     }
 
     @Override
     public void onEditar() {
     	try {
-    		datosUsuario.getDTUsuario();
-    		datosUsuario.setEditable(true); // Habilitar la edición de datos
+    		menu.setComboBoxEnabled(false);
             botones.setModoEdicion(true);
-            menu.setComboBoxEnabled(false);
+            
+            try {
+                DTUsuario usuario = ctrlUsuario.obtenerDatosUsuario(nicknameUsuarioDesplegado);
+                if (usuario instanceof DTEmpresa) {
+                	datosUsuario.modificarEmpresa((DTEmpresa) usuario);
+                } else if (usuario instanceof DTPostulante) {
+                	datosUsuario.modificarPostulante((DTPostulante) usuario);
+                }
+            } catch (Exception e) {
+                // Captura la excepción y muestra un mensaje de error al usuario
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Error al obtener los datos del usuario. El usuario no existe.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+            
+            
+            
 
     	} catch (IllegalArgumentException e) {
             String mensaje = e.getMessage();
@@ -134,8 +158,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
             ctrlUsuario.ingresarDatosEditados(usuarioEditado.getNickname(), usuarioEditado.getNombre(), usuarioEditado.getApellido());
 
             // Limpiar la edición y deshabilitarla
-            datosUsuario.limpiar();
-            datosUsuario.setEditable(false);
+            datosUsuario.reiniciarFormulario();
             botones.setModoEdicion(false);
             menu.setComboBoxEnabled(true);
 
@@ -151,6 +174,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame implements IEditable
     @Override
     public void onCerrar() {
         this.dispose();
+        limpiarInfo();
     }
 
 	public void actualizar() {

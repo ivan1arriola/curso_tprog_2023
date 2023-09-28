@@ -149,7 +149,7 @@ public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
     }
     
     public void reiniciar() {
-    	formularioUsuario.limpiar();
+    	formularioUsuario.reiniciarFormulario();
     	
     	panelAceptarCancelar.setAceptarVisible(false);
     	
@@ -168,7 +168,7 @@ public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
     	panelAceptarCancelar.setAceptarVisible(true);
     	principal.remove(opciones);
         principal.add(formularioUsuario, BorderLayout.CENTER);
-        formularioUsuario.modoCrearEmpresa();
+        formularioUsuario.modoAltaEmpresa();
         esEmpresa = true;
         
         principal.remove(lblSeleccionar);
@@ -180,7 +180,7 @@ public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
     	panelAceptarCancelar.setAceptarVisible(true);
     	principal.remove(opciones);
         principal.add(formularioUsuario, BorderLayout.CENTER);
-        formularioUsuario.modoCrearPostulante();
+        formularioUsuario.modoAltaPostulante();
         esEmpresa = false;
         
         principal.remove(lblSeleccionar);

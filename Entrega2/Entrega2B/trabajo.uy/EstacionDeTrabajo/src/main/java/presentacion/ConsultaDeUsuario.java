@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+import main.java.logica.Datatypes.DTEmpresa;
+import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
@@ -107,7 +109,11 @@ public class ConsultaDeUsuario extends JInternalFrame implements ListarUsuariosO
         if (!selectedUser.equals("Selecciona un usuario")) {
             try {
                 DTUsuario usuario = controlUsr.obtenerDatosUsuario(selectedUser);
-                usuarioInfo.setDTUsuario(usuario);
+                if (usuario instanceof DTEmpresa) {
+                    usuarioInfo.mostrarEmpresa((DTEmpresa) usuario);
+                } else if (usuario instanceof DTPostulante) {
+                    usuarioInfo.mostrarPostulante((DTPostulante) usuario);
+                }
             } catch (Exception e) {
                 // Captura la excepción y muestra un mensaje de error al usuario
                 JOptionPane.showMessageDialog(
@@ -120,10 +126,14 @@ public class ConsultaDeUsuario extends JInternalFrame implements ListarUsuariosO
         }
     }
 
+    
+   
+    
+   
+
 
     @Override
     public void limpiarInfo() {
-    	usuarioInfo.limpiar();
-    	usuarioInfo.setEditable(false);
+    	usuarioInfo.reiniciarFormulario();
     }
 }
