@@ -1,6 +1,8 @@
 package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsTit;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
@@ -85,9 +87,9 @@ public class OfertaLaboral {
 	public void setPostulaciones(List<Postulacion> posts) 	{ postulaciones = posts; 	}
 	public void setTipoOferta(TipoOferta to) 				{ tOferta = to; 			}
 	public void setKeywords(List<Keyword> ks)				{ keywords = ks; 			}
-	public EstadoOL setEstado(EstadoOL estad)               { estado = estad;           }
-	public byte[] setImagen(byte[] imagenNueva)             { imagen = imagenNueva;   	}
-	public Paquete setPaquete(Paquete paqueteA)             {paqueteAsoc = paqueteA;    }
+	public void setEstado(EstadoOL estad)                   {  estado = estad;          }
+	public void setImagen(byte[] imagenNueva)               { imagen = imagenNueva;   	}
+	public void setPaquete(Paquete paqueteA)                {paqueteAsoc = paqueteA;    }
 	
 	// -------------- funciones ---------------------
 	public DTOfertaExtendido obtenerDatosOferta(){
@@ -96,7 +98,10 @@ public class OfertaLaboral {
 			Postulacion elem = postulaciones.get(i);
 			posts.add(elem.getDTPostulacion());
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), posts);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts);
+		
+
+		
 		return dtoe;
     }
 	
@@ -106,8 +111,7 @@ public class OfertaLaboral {
 	
 	public boolean	tieneKeyword(String keyword) {
 		for (Keyword item : keywords) {
-			if ( item.getNombre() == keyword) {
-			    System.out.println("x is less than y");
+			if (item.getNombre().equals(keyword)) {
 			    return true;
 			}   
 		}
@@ -115,23 +119,53 @@ public class OfertaLaboral {
 	}
 	
     public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante() {
-    	DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(),  getKeywords())
+    	List<Keyword> keys = getKeywords();
+    	HashSet<String> nuevo = new HashSet<>();
+    	for (Keyword item : keys) {
+    		nuevo.add(item.getNombre());
+    	}
+    	DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo);
     	return dtoe;
     }
 	
-//    public boolean existePostulacion(String nombre_postulante) {
+    
+    public boolean existePostulacion(String nombre_postulante) {
+    	for (Postulacion item : postulaciones) {
+    		if (nombre_postulante.equals(item.obtenerNicknamePostulante())) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+//    public Set<DTOfertaExtendidoConKeywordsTit> infoOfertaLaboralPropietario(){
+//    	Set<DTOfertaExtendidoConKeywordsTit> mySet = new HashSet<DTOfertaExtendidoConKeywordsTit>();
 //    	
-//    	for (Postulacion item : postulaciones) {
-//    		item.getDTPostulacion()
+//    	List<Postulacion> lista =	getPostulaciones();
+//    	HashSet<String> postulaciones = new HashSet<String>();
+//    	for (Postulacion item : lista) {
+//    		postulaciones.add((item.getDTPostulacion()).getPostulante());
 //    	}
 //    	
+//    	List<Keyword> keys = getKeywords();
+//    	HashSet<String> nuevo = new HashSet<>();
+//    	for (Keyword item : keys) {
+//    		nuevo.add(item.getNombre());
+//    	}
 //    	
-//    	return 
+//    	DTOfertaExtendidoSinPConK unDt = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo,getPaquete(),postulaciones);
+//    		
+//    	
+//    	
+//    	return mySet;
 //    }
-//    
-//    infoOfertaLaboralPropietario() : Set( DTOfertaExtendidoConKeywordsTit)
-//    
-//    obtenerDatosPostulacion(nombre_empresa : String)
     
+    public DTPostulacion obtenerDatosPostulacion(String nombre_empresa) {
+    	List<Postulacion> lista =	getPostulaciones();
+    	for (Postulacion item : lista) {
+    		item.obtenerNicknamePostulante();
+    	}
+    	return datatype;
+    }
     
 }

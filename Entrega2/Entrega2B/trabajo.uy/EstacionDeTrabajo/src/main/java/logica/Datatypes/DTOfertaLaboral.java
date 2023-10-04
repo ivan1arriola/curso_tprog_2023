@@ -3,6 +3,7 @@ package main.java.logica.Datatypes;
 import java.time.LocalDate;
 
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 
 
 public class DTOfertaLaboral {

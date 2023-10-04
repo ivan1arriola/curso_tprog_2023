@@ -15,8 +15,8 @@ public class Postulante extends Usuario{
     private HashSet<Postulacion> postulaciones;
 
 
-    public Postulante(String nickname, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
-        super(nickname, nombre, apellido, correo_electronico);
+    public Postulante(String nickname, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad,byte[] imagen) {
+        super(nickname, nombre, apellido, correo_electronico, nacionalidad, imagen);
         this.fecha_nac = fecha_nac;
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
@@ -41,6 +41,19 @@ public class Postulante extends Usuario{
         return p;
     }
 
+    public HashSet<String> obtenerPostulantesDeOferta(String oferta){
+        HashSet<String> lista = new HashSet<String>();
+        if(postulaciones != null) {
+            for (Postulacion p : postulaciones){
+                if (p.obtenerNombreOfertaLaboral().equals(oferta)) {
+                    lista.add(getNombre()); 
+                    return lista;
+                }
+            }
+        }
+        return lista;
+    }
+
     /* + existePostulacion(nombre : String) : Bool */
     public boolean existePostulacion(String nombre) {
         for (Postulacion postulacion : postulaciones) {
@@ -51,7 +64,11 @@ public class Postulante extends Usuario{
         }
         return false;
     }
-
+//    
+//    public boolean editarPostulacion(nombre : String, cvAbreviado: String, motivacion: String) {
+//    	
+//    }
+    
     public LocalDate getFecha_nac() {
         return fecha_nac;
     }

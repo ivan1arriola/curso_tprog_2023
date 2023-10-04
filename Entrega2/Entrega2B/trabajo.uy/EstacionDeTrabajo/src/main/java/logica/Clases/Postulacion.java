@@ -49,4 +49,9 @@ public class Postulacion {
     
     
 	public String obtenerNombreOfertaLaboral() { return OferLab.getNombre(); }
+
+
+	public Object obtenerNicknamePostulante() {
+		return p.getNickname();
+	}
 }
