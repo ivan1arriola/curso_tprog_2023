@@ -11,7 +11,7 @@ public class DTEmpresaConCompras extends DTEmpresa {
 	}
 	
 	// Getters y setters
-	public String getCompraPaquetes() {
+	public HashSet<DTCompraPaquetes> getCompraPaquetes() {
 		return compra_paquetes;
 	}
 
