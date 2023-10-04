@@ -22,48 +22,23 @@ public class DTTipoOferta {
 	public String getNombre() {
 		return nombre;
 	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
 	public LocalDate getFechaAlta() {
 		return fechaAlta;
-	}
-	
-	public void setFechaAlta(LocalDate fechaAlta) {
-		this.fechaAlta = fechaAlta;
 	}
 	
 	public float getCosto() {
 		return costo;
 	}
 	
-	public void setCosto(float costo) {
-		this.costo = costo;
-	}
-	
 	public int getDuracion() {
 		return duracion;
-	}
-	
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
 	}
 	
 	public int getExposicion() {
 		return exposicion;
 	}
 	
-	public void setExposicion(int exposicion) {
-		this.exposicion = exposicion;
-	}
-	
 	public String getDescripcion() {
 		return descripcion;
-	}
-	
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 }
