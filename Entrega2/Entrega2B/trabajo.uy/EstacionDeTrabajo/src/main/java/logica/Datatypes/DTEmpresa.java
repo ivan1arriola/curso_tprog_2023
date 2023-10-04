@@ -1,23 +1,26 @@
 package main.java.logica.Datatypes;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 public class DTEmpresa extends DTUsuario {
 	
-    private String nombreEmpresa;
     private String descripcion;
     private String url;
+    private Set<DTOfertaLaboral> ofertasLaborales; 
 
 
-    public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String nombreEmpresa, String descripcion, String url, byte[] imagen) {
+    public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String descripcion, String url, byte[] imagen) {
         super(nickname, correo_electronico, apellido, nombre, imagen);
-        this.nombreEmpresa = nombreEmpresa;
         this.descripcion = descripcion;
-        this.url = url;  
+        this.url = url;
+        this.ofertasLaborales = new HashSet<>(); // Inicializa el conjunto de ofertas laborales
+    }
+    
+    public Set<DTOfertaLaboral> getOfertasLaborales() {
+        return ofertasLaborales;
     }
 
-
-	public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
 
     public String getDescripcion() {
         return descripcion;
