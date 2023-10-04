@@ -42,9 +42,60 @@ public interface ICtrlUsuario {
     
     public abstract HashSet<String> obtenerNicknamesPostulantes();
     
-    public abstract void ingresarDatosEditados(String nickname, String nombre, String apellido);
+    // public abstract void ingresarDatosEditados(String nickname, String nombre, String apellido); // NO EXISTE
     
+    
+    // altaOfertaLaboral tendria q estar en ICtrlOfertaLaboral
     public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA,List<String> keys) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida;
     
     public abstract Set<String> listarOfertasLaborales(String nickname_e) throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado;
+    
+    
+    
+    // NUEVAS OPERACIONES
+    
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick);
+    
+    public abstract DTUsuario obtenerDatosUsuarioVisitantes(String nick);
+    
+    public abstract void cerrarSesion(String nickname);
+    
+    public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta);
+    
+    public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer);
+    
+    public abstract DTPaquete obtenerDatosPaquete(String paq);
+    
+    public abstract boolean  iniciarSesionCorreo(String email, String contrasenia);
+    
+    public abstract boolean iniciarSesionNickname(String nickname, String contrasenia);
+    
+    public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad);
+    
+    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad);
+    
+    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
+    
+    public abstract void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
+    
+    public abstract void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
+    
+    public abstract void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
+
+    public abstract boolean tieneURL(String nickname); 
+    
+    public abstract boolean hayPostulacionW(String postulante_nick, String ofer);
+    
+    public abstract void altaEmpresaURLyImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen);
+     
+    public abstract void altaPostulanteImagen(String nick, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen);
+    
+    public abstract void altaEmpresaImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen);
+    
+    public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta);
+    
+    public abstract HashSet<String> listarOfertasLaboralesConfirmadas();
+    
+    public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
+    
 }
