@@ -33,11 +33,11 @@ public class AceptarOferta extends JInternalFrame {
     	controlOferta = ICO;
     	setResizable(true);
         //setIconifiable(true);
-        //setMaximizable(true);
-        //setClosable(true);
+        setMaximizable(true);
+        setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Aceptar o Rechazar Oferta");
-        setBounds(30, 30, 400, 280);
+        setBounds(30, 30, 500, 300);
         
         
         GridBagLayout gbl=new GridBagLayout();
@@ -58,13 +58,11 @@ public class AceptarOferta extends JInternalFrame {
 	                if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0 ) {
 	                    String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
 	                    Set<String> ofertasEmpresa = controlUsuario.listarOfertasLaborales(selectedEmpresa);
-	                    
+	                    comboBoxOfertas.removeAllItems();
 	                    
 	                    //FILTRAR LAS INGRESADAS, QUEDARSE CON ESAS
 	                    
-	                    
-	                    comboBoxOfertas.removeAllItems(); // Limpiar el comboBoxOfertas
-	                    
+                    
 	                    
 	                    if (ofertasEmpresa.isEmpty()) {
 	
@@ -72,7 +70,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    } 
 	                    else {
 	                    	
-	                    	List<String> ofertasSorted = new ArrayList<>(empresas);
+	                    	List<String> ofertasSorted = new ArrayList<>(ofertasEmpresa);
 		                    Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
 		                    comboBoxOfertas.addItem(" ");
 		                    for (String offer : ofertasSorted) {

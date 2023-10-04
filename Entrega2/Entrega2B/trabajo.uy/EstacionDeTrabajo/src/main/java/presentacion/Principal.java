@@ -145,7 +145,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
         
         AceptarOfertaInternalFrame = new AceptarOferta(ICO,ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(400, 300);
+        AltaDeOfertaLaboralInternalFrame.setSize(500, 350);
         AltaDeOfertaLaboralInternalFrame.setLocation(89, 77);
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AceptarOfertaInternalFrame);
