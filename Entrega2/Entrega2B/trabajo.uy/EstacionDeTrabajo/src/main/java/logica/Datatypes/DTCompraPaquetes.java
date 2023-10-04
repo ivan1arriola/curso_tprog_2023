@@ -24,7 +24,7 @@ public class DTCompraPaquetes {
 		return fecha_compra;
 	}
 	
-	LocalDate getFechaVencimiento() {
+	LocalDate getFechaVencimiento() { 
 		return fecha_vencimiento;
 	}
 }
