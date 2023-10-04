@@ -152,6 +152,19 @@ public class Empresa extends Usuario {
         return res;
     }
     
+    public HashSet<String> listarOfertasLaboralesIngresadas(){
+    	HashSet<String> res = new HashSet<String>();
+        Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
+
+        // Recorremos el HashSet usando el Iterator
+        while (iterator.hasNext()) {
+            OfertaLaboral ol = iterator.next();
+            if(ol.getEstado() == EstadoOL.Ingresada)
+            	res.add(ol.getNombre());
+        }
+        return res;
+    }
+    
     public boolean existeOfertaLaboral(String nombre_oferta) {
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 

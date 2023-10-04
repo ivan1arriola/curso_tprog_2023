@@ -25,6 +25,7 @@ import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTTipoOferta;
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Manejadores.KeywordHandler;
 import main.java.logica.Manejadores.OfertaLaboralHandler;
@@ -146,7 +147,7 @@ public class CtrlOferta implements ICtrlOferta{
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Empresa e = (Empresa) UH.buscarNick(nickname_e);
 		
-		PaqueteHandler PH = PH.getInstance();
+		PaqueteHandler PH = PaqueteHandler.getInstance();
 		Paquete paquete = PH.buscar(paq);
 		
 		return e.compraPaquetes(paquete);
@@ -200,11 +201,13 @@ public class CtrlOferta implements ICtrlOferta{
 		return !ofer;
 	}
 
-	public abstract DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
-		
+	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
+		// FALTA REALIZAR
+		return null;
 	}
-	public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
-		
+	public DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
+		// FALTA REALIZAR
+		return null;
 	}
 	
 	public boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha) {
@@ -233,7 +236,8 @@ public class CtrlOferta implements ICtrlOferta{
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
 			Usuario u = entry.getValue();
 			if(u.esEmpresa()) {
-				HashSet<String> S = u.listarOfertasLaboralesConfirmadasKeyword(ks);
+				Empresa e = (Empresa) u;
+				HashSet<String> S = e.listarOfertasLaboralesConfirmadasKeyword(ks);
 				res.addAll(S);
 			}
 		}
@@ -242,13 +246,13 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 	
 	public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) {
-		CtrlUsuario CU;
-		CU.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
+		CtrlUsuario CU = new CtrlUsuario();
+		return CU.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
 	}
 	
 	public DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) {
-		CtrlUsuario CU;
-		CU.obtenerDatosPostulacionW(nick,ofer);
+		CtrlUsuario CU = new CtrlUsuario();
+		return CU.obtenerDatosPostulacionW(nick,ofer);
 	}
 	
 	public HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e){
@@ -266,13 +270,13 @@ public class CtrlOferta implements ICtrlOferta{
 	public void rechazoOL(String nombre_oferta) {
 		OfertaLaboralHandler OLH = OLH.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
-		ol.setEstado("Rechazada");		
+		ol.setEstado(EstadoOL.Rechazada);		
 	}
 	
 	public void aceptoOL(String nombre_oferta) {
 		OfertaLaboralHandler OLH = OLH.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
-		ol.setEstado("Aceptada");
+		ol.setEstado(EstadoOL.Confirmada);
 	}
 	
 	public HashSet<String> listarPostulantes(){

@@ -64,7 +64,4 @@ public abstract class Usuario {
         return nickname + " - " + nombre + " " + apellido;
     }
     
-    
-
-    
 }
