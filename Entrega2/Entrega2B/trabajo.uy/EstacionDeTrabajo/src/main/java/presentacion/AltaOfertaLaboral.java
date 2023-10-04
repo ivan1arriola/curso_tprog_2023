@@ -1,18 +1,12 @@
 package main.java.presentacion;
-
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Datatypes.DTHora;
+import main.java.logica.Datatypes.*;
 import main.java.logica.Enumerados.DepUY;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -24,13 +18,6 @@ import java.util.Collections;
 import java.awt.event.ActionEvent;
 
 
-
-
-/**
- * JInternalFrame que permite consultar la información de un usuario del sistema.
- * @author TProg2017
- *
- */
 @SuppressWarnings("serial")
 public class AltaOfertaLaboral extends JInternalFrame {
 	private JTable table;
