@@ -13,6 +13,7 @@ import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Postulacion;
 import main.java.logica.Clases.Paquete;
 import main.java.logica.Clases.TipoOferta;
+import main.java.logica.Clases.Usuario;
 import main.java.logica.Clases.Empresa;
 import main.java.logica.Clases.Keyword;
 import main.java.logica.Datatypes.DTHorario;
@@ -214,17 +215,61 @@ public class CtrlOferta implements ICtrlOferta{
 		return !b;
 	}
 	
-	public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta){
-		
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta){
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		return ol.infoOfertaLaboralVisitante();
 	}
 	
-	public abstract HashSet<String> listarOfertasLaboralesKeywords(String ks);
-	public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
-	public abstract DTPostulacion obtenerDatosPostulacion(String nombre_empresa, String nombre_postulante);
-	public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e);
-	public abstract HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e);
-	public abstract void rechazoOL(String nombre_oferta);
-	public abstract void aceptoOL(String nombre_oferta);
+	public HashSet<String> listarOfertasLaboralesKeywords(String ks){
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		HashMap<String,Usuario> usuarios = UH.obtenerNick();
+		HashSet<String> res = new HashSet<String>();
+		
+		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+			Usuario u = entry.getValue();
+			if(u.esEmpresa()) {
+				HashSet<String> S = u.listarOfertasLaboralesConfirmadasKeyword(ks);
+				res.addAll(S);
+			}
+		}
+		
+		return res;
+	}
+	
+	public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) {
+		CtrlUsuario CU;
+		CU.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
+	}
+	
+	public DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) {
+		CtrlUsuario CU;
+		CU.obtenerDatosPostulacionW(nick,ofer);
+	}
+	
+	public HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e){
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		return e.listarOfertasLaboralesConfirmadas();
+	}
+	
+	public HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e){
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		return e.listarOfertasLaboralesIngresadas();
+	}
+	
+	public void rechazoOL(String nombre_oferta) {
+		OfertaLaboralHandler OLH = OLH.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		ol.setEstado("Rechazada");		
+	}
+	
+	public void aceptoOL(String nombre_oferta) {
+		OfertaLaboralHandler OLH = OLH.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		ol.setEstado("Aceptada");
+	}
 	
 	public HashSet<String> listarPostulantes(){
 		CtrlUsuario CU = new CtrlUsuario();

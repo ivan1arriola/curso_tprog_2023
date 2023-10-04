@@ -26,10 +26,10 @@ public interface ICtrlOferta {
 		public abstract DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
 		public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
-		public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta);
+		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
 		public abstract HashSet<String> listarOfertasLaboralesKeywords(String ks);
 		public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
-		public abstract DTPostulacion obtenerDatosPostulacion(String nombre_empresa, String nombre_postulante);
+		public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer);
 		public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e);
 		public abstract HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e);
 		public abstract void rechazoOL(String nombre_oferta);

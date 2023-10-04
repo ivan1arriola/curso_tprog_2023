@@ -23,7 +23,6 @@ public class DTEmpresa extends DTUsuario {
         return ofertasLaborales;
     }
 
-
     public String getDescripcion() {
         return descripcion;
     }
