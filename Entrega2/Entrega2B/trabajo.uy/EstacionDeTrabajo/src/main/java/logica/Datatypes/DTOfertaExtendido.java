@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 
 
 public class DTOfertaExtendido {
