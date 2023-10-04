@@ -1,7 +1,5 @@
 package main.java.logica.Datatypes;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 public class DTEmpresa extends DTUsuario {
