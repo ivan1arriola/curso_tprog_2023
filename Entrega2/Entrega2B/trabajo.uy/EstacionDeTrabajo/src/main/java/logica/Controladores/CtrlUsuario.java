@@ -25,7 +25,7 @@ import main.java.logica.Controladores.*;
 
 public class CtrlUsuario implements ICtrlUsuario {
 	
-    public boolean altaEmpresaURL(String nick, String nombre, String apellido, String mail, String nombreE, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+    public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String nombreE, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean b1 = UH.existeNick(nick);
     	boolean b2 = UH.existeCorreo(mail);
@@ -43,14 +43,14 @@ public class CtrlUsuario implements ICtrlUsuario {
     	}
     	
     	if (!b1 && !b2) {
-    		Empresa e = new Empresa(nick, nombre, apellido, mail, nombreE, desc, URL);
+    		Empresa e = new Empresa(nick, contraseña, nombre, apellido, mail, nombreE, desc, URL);
     		UH.agregar(e);
     	}
     	
     	return !b1 && !b2;
     }
 
-    public boolean altaEmpresa(String nick, String nombre, String apellido, String mail, String nombreE, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+    public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String nombreE, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean b1 = UH.existeNick(nick);
     	boolean b2 = UH.existeCorreo(mail);
@@ -375,11 +375,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     // deberia ser un bool en ves de void?
-    public boolean altaEmpresaURLyImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen) {
+    public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
     	if (!existe) {
-    		Empresa e = new Empresa(nick, nombre, ap, mail, nombre, desc, URL, imagen); // falta agregarle el parametro img
+    		Empresa e = new Empresa(nick, contraseña, nombre, ap, mail, nombre, desc, URL, imagen); // falta agregarle el parametro img
     		UH.agregar(e);
     		return true;
     	}
@@ -389,11 +389,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     
     // deberia ser un bool en ves de void?
-    public boolean altaPostulanteImagen(String nick, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen) { 
+    public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen) { 
 	    UsuarioHandler UH = UsuarioHandler.getInstance();
 		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
 		if (!existe) {
-			Postulante p = new Postulante(nick, nombre, apellido, mail, fecha_nac, nacionalidad, imagen); // falta agregarle el parametro img
+			Postulante p = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad, imagen); // falta agregarle el parametro img
 			UH.agregar(p);
 			return true;
 		}
@@ -401,11 +401,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
     
     // necesito otro constructor?
-    public boolean altaEmpresaImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen) {
+    public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
 		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
 		if (!existe) {
-			Empresa e = new Empresa(nick, nombre, ap, mail, nombre, desc, imagen); //  agregarle el parametro img
+			Empresa e = new Empresa(nick, contraseña, nombre, ap, mail, nombre, desc, imagen); //  agregarle el parametro img
 			UH.agregar(e);
 			return true;
 		}
