@@ -11,7 +11,7 @@ public class DTPostulanteExtendido extends DTPostulante {
 
     public HashSet<DTPostulacion> getPostulaciones() {
         return postulaciones;
-    }
+    } 
 
     public DTPostulanteExtendido(String nickname, String correo_electronico, String apellido, String nombre, byte[] imagen, LocalDate fecha_nac, String nacionalidad, HashSet<DTPostulacion> posts) {
         super(nickname, correo_electronico, apellido, nombre, imagen, fecha_nac, nacionalidad);
