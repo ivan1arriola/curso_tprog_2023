@@ -6,7 +6,6 @@ import main.java.presentacion.componentes.IFormulario;
 import java.awt.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.text.DecimalFormat;
 
 public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario {
 
@@ -15,7 +14,7 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
     private JTextArea descripcionTextArea;
     private JSpinner exposicionSpinner;
     private JSpinner duracionSpinner;
-    private JSpinner costoField;
+    private JSpinner costoSpinner;
     private JTextField fechaAltaField;
     private LocalDate fechaActual;
 
@@ -40,7 +39,7 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         addField("Duración en días:", duracionSpinner = createSpinner(1, 1, Integer.MAX_VALUE, 1), constraints);
         
         constraints.gridy++;
-        addField("Costo:", costoField = createCostoField(), constraints);
+        addField("Costo:", costoSpinner = createcostoSpinner(), constraints);
         
         constraints.gridy++;
         addField("Fecha de alta:", fechaAltaField = createFechaAltaField(), constraints);
@@ -55,11 +54,11 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         JLabel label = new JLabel(labelText);
         add(label, constraints);
         constraints.gridx++;
-        constraints.weightx = 1.0; // Alinear componentes en el eje X
+        constraints.weightx = 1.0; 
         add(component, constraints);
-        constraints.gridx = 0; // Restablecer la posición X
-        constraints.gridy++; // Moverse a la siguiente fila
-        constraints.weightx = 0.0; // Restablecer el peso X
+        constraints.gridx = 0; 
+        constraints.gridy++; 
+        constraints.weightx = 0.0; 
     }
     
     private JScrollPane createScroll(JTextArea textArea) {
@@ -78,11 +77,10 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         return new JSpinner(new SpinnerNumberModel(value, min, max, step));
     }
 
-    private JSpinner createCostoField() {
+    private JSpinner createcostoSpinner() {
         SpinnerNumberModel model = new SpinnerNumberModel(0.0, 0.0, Double.MAX_VALUE, 0.01);
         JSpinner spinner = new JSpinner(model);
         
-        // Alinea el valor del Spinner a la derecha
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
         editor.getTextField().setHorizontalAlignment(SwingConstants.RIGHT);
         
@@ -115,7 +113,7 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
 
     public float getCosto() {
         try {
-            return (Float) costoField.getValue();
+            return (Float) costoSpinner.getValue();
         } catch (NumberFormatException ex) {
             return 0.0f; 
         }
@@ -125,14 +123,6 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         return fechaActual;
     }
 
-    public void limpiarFormulario() {
-        nombreField.setText("");
-        descripcionTextArea.setText("");
-        exposicionSpinner.setValue(1);
-        duracionSpinner.setValue(1);
-        costoField.setValue(0.0);
-    }
-    
     @Override
     public boolean validar() {
         String nombre = getNombre();
@@ -167,8 +157,11 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
 
 	@Override
 	public void limpiar() {
-	   	nombreField.setText("");
-	    descripcionTextArea.setText("");
+		nombreField.setText("");
+        descripcionTextArea.setText("");
+        exposicionSpinner.setValue(null);
+        duracionSpinner.setValue(null);
+        costoSpinner.setValue(null);
 	}
 
 	
