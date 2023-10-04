@@ -1,41 +1,56 @@
 package main.java.presentacion;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.presentacion.componentes.IAceptarCancelar;
-import main.java.presentacion.componentes.InfoUsuario;
-import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+
+import java.awt.GridBagLayout;
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JFrame;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
 
-    private static final long serialVersionUID = 4993106703293072618L;
-    private ICtrlUsuario ctrlUsuario;
-    private JLabel lblSeleccionar;
-    private JLabel lblCrearEmpresa;
-    private JLabel lblCrearPostulante;
-    private JPanel principal;
+@SuppressWarnings("serial")
+public class AltaDeUsuario extends JInternalFrame {
 
-    private PanelBotonesAceptarCancelar panelAceptarCancelar;
-	private JButton btnEmpresa;
-	private JButton btnPostulante;
-	
-	private InfoUsuario formularioUsuario;
-	private JPanel opciones;
-	private boolean esEmpresa;
-
+    // Controlador de usuarios que se utilizará para las acciones del JFrame
+	private JInternalFrame ADU;
+    private ICtrlUsuario icu;
+    private JButton btnCancelar;
+    private JButton btnEmpresa;
+    private JButton btnPostulante;
+    private JLabel lblIngreseNombre;
+    private AltaDePostulante AltaDePostulanteInternalFrame;
+    private AltaDeEmpresa AltaDeEmpresaInternalFrame;
+    
+    /**
+     * Create the frame.
+     */
     public AltaDeUsuario(JFrame gu, ICtrlUsuario icu) {
-        ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
+        // Se inicializa con el controlador de usuarios
+        Fabrica fabrica = Fabrica.getInstance();
+        icu = fabrica.getICtrlUsuario();
+
+        AltaDePostulanteInternalFrame = new AltaDePostulante(icu);
+        // AltaDePostulanteInternalFrame.setSize(386, 312);
+        AltaDePostulanteInternalFrame.setLocation(5, 0);
+        AltaDePostulanteInternalFrame.setVisible(false);
+        // getContentPane().setLayout(null);
+        gu.getContentPane().add(AltaDePostulanteInternalFrame);
+        
+        AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icu);
+        // AltaDeEmpresaInternalFrame.setSize(360, 168);
+        AltaDeEmpresaInternalFrame.setLocation(38, 63);
+        AltaDeEmpresaInternalFrame.setVisible(false);
+        gu.getContentPane().add(AltaDeEmpresaInternalFrame);
+        
+        // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
+        // etc.
 
         setResizable(true);
         setIconifiable(true);
@@ -44,148 +59,42 @@ public class AltaDeUsuario extends JInternalFrame implements IAceptarCancelar {
         setClosable(true);
         setTitle("Alta de Usuario");
         setBounds(10, 40, 408, 186);
-        getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
-
-        //Contanedor principal
-        principal = new JPanel();
-        getContentPane().add(principal);
-        principal.setLayout(new BorderLayout(0, 0));
-
-        
-        lblSeleccionar = new JLabel("Seleccione si es un postulante o una empresa:");
-        lblSeleccionar.setBorder(new EmptyBorder(10, 10, 10, 10));
-        lblSeleccionar.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        lblCrearEmpresa = new JLabel("Crear Empresa");
-        lblCrearPostulante = new JLabel("Crear Postulante");
-        
-        principal.add(lblSeleccionar, BorderLayout.NORTH);
-
-        // Botones de Aceptar - Cancelar
-        panelAceptarCancelar = new PanelBotonesAceptarCancelar();
-        panelAceptarCancelar.setListener(this);
-        panelAceptarCancelar.setAceptarVisible(false);
-        principal.add(panelAceptarCancelar, BorderLayout.SOUTH);
-
-        // Opciones Empresa - Postulante
-        opciones = new JPanel();
-        opciones.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        principal.add(opciones, BorderLayout.CENTER);
-
+                                                                
         btnEmpresa = new JButton("Empresa");
-        opciones.add(btnEmpresa);
+        btnEmpresa.setBounds(26, 67, 125, 25);
         btnEmpresa.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                crearEmpresa();
-            }
+        	public void actionPerformed(ActionEvent e) {
+        		setVisible(false);
+        		AltaDeEmpresaInternalFrame.setVisible(true);
+        	}
         });
-
+        getContentPane().setLayout(null);
+        
+        lblIngreseNombre = new JLabel("Seleccione si es un postulante o una empresa:");
+        lblIngreseNombre.setBounds(26, 12, 337, 56);
+        lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+        getContentPane().add(lblIngreseNombre);
+        getContentPane().add(btnEmpresa);
+        
         btnPostulante = new JButton("Postulante");
-        opciones.add(btnPostulante);
+        btnPostulante.setBounds(274, 67, 112, 25);
         btnPostulante.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	crearPostulante();
-            }
+        	public void actionPerformed(ActionEvent e) {
+        		setVisible(false);
+        		AltaDePostulanteInternalFrame.setVisible(true);
+        	}
         });
-        
-        // Formulario de Usuario
-        formularioUsuario = new InfoUsuario();
-        
-        
-    }
-
-
-    @Override
-    public void onAceptar() {
-        try {
-            if (esEmpresa) {
-                DTEmpresa empresa = (DTEmpresa) formularioUsuario.getDTUsuario();
-                String contrasenia = formularioUsuario.getContrasenia();
-                if (empresa.getUrl() == null || empresa.getUrl().isEmpty()) {
-                    ctrlUsuario.altaEmpresa(
-                        empresa.getNickname(),
-                        empresa.getNombre(),
-                        empresa.getApellido(),
-                        empresa.getCorreo_electronico(),
-                        empresa.getNombreEmpresa(),
-                        empresa.getDescripcion()
-                    );
-                } else {
-                    ctrlUsuario.altaEmpresaURL(
-                        empresa.getNickname(),
-                        empresa.getNombre(),
-                        empresa.getApellido(),
-                        empresa.getCorreo_electronico(),
-                        empresa.getNombreEmpresa(),
-                        empresa.getDescripcion(),
-                        empresa.getUrl()
-                    );
-                }
-            } else {
-                DTPostulante postulante = (DTPostulante) formularioUsuario.getDTUsuario();
-                String contrasenia = formularioUsuario.getContrasenia();
-                ctrlUsuario.altaPostulante(
-                    postulante.getNickname(),
-                    postulante.getNombre(),
-                    postulante.getApellido(),
-                    postulante.getCorreo_electronico(),
-                    postulante.getFecha_nac(),
-                    postulante.getNacionalidad()
-                );
-            }
-            JOptionPane.showMessageDialog(this, "El usuario se ha creado con éxito.", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
-            onCancelar();
-        } catch (Exception e) {
-            // Manejar la excepción adecuadamente, por ejemplo, mostrar un mensaje de error.
-            JOptionPane.showMessageDialog(this, "Error al crear el usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-    }
-
-
-
-    @Override
-    public void onCancelar() {
-        setVisible(false);
-        reiniciar();
-    }
-    
-    public void reiniciar() {
-    	formularioUsuario.reiniciarFormulario();
-    	
-    	panelAceptarCancelar.setAceptarVisible(false);
-    	
-    	principal.remove(formularioUsuario);
-    	principal.remove(lblCrearPostulante);
-    	principal.remove(lblCrearEmpresa);
-    	
-    	principal.add(opciones, BorderLayout.CENTER);    	
-    	principal.add(lblSeleccionar, BorderLayout.NORTH);
-    	
-    	
-    }
-    
-    private void crearEmpresa() {
-    	
-    	panelAceptarCancelar.setAceptarVisible(true);
-    	principal.remove(opciones);
-        principal.add(formularioUsuario, BorderLayout.CENTER);
-        formularioUsuario.modoAltaEmpresa();
-        esEmpresa = true;
-        
-        principal.remove(lblSeleccionar);
-        principal.add(lblCrearEmpresa, BorderLayout.NORTH);
-    	
-    }
-    
-    private void crearPostulante() {
-    	panelAceptarCancelar.setAceptarVisible(true);
-    	principal.remove(opciones);
-        principal.add(formularioUsuario, BorderLayout.CENTER);
-        formularioUsuario.modoAltaPostulante();
-        esEmpresa = false;
-        
-        principal.remove(lblSeleccionar);
-        principal.add(lblCrearPostulante, BorderLayout.NORTH);
-    }
+        getContentPane().add(btnPostulante);
+                
+                        // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
+                        // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
+	btnCancelar = new JButton("Cerrar");
+	btnCancelar.setBounds(90, 116, 207, 25);
+	btnCancelar.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent e) {
+	        setVisible(false);
+	    }
+	});
+	getContentPane().add(btnCancelar);
+}
 }

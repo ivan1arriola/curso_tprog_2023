@@ -1,18 +1,11 @@
 package main.java.presentacion.componentes;
 
 import javax.swing.*;
-
-import main.java.presentacion.AltaDeUsuario;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelBotonesAceptarCancelar extends JPanel {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6406460132162879057L;
-	private JButton btnAceptar;
+    private JButton btnAceptar;
     private JButton btnCancelar;
     private IAceptarCancelar clasePadre;
 
@@ -42,13 +35,11 @@ public class PanelBotonesAceptarCancelar extends JPanel {
         add(btnCancelar);
     }
 
-    
-    public void setAceptarVisible(boolean visible) {
-        btnAceptar.setVisible(visible);
+    public void setAceptarListener(IAceptarCancelar listener) {
+        this.clasePadre = listener;
     }
 
-	public void setListener(IAceptarCancelar listener) {
-		this.clasePadre = listener;
-		
-	}
+    public void setCancelarListener(IAceptarCancelar listener) {
+        this.clasePadre = listener;
+    }
 }
