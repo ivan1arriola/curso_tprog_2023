@@ -33,6 +33,7 @@ public class Principal {
     private AgregarTipodePublicacióndeOfertaLaboral AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame;
     private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame;
     private AltaDeKeywords AltaDeKeywordsInternalFrame;
+    private AceptarOferta AceptarOfertaInternalFrame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -142,6 +143,12 @@ public class Principal {
         AltaDeOfertaLaboralInternalFrame.setLocation(89, 77);
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
+        
+        AceptarOfertaInternalFrame = new AceptarOferta(ICO,ICU);
+        AltaDeOfertaLaboralInternalFrame.setSize(500, 350);
+        AltaDeOfertaLaboralInternalFrame.setLocation(89, 77);
+        AltaDeOfertaLaboralInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(AceptarOfertaInternalFrame);
         
     }
 
@@ -290,6 +297,18 @@ public class Principal {
         });
         mnOfertaL.add(ConsultarPTPOL);
 
+        
+        JMenuItem AceptarOffer = new JMenuItem("Aceptar/Rechazar Oferta");
+        AceptarOffer.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		AceptarOfertaInternalFrame.actualizar();
+        		AceptarOfertaInternalFrame.setVisible(true);
+        	}
+        });
+        mnOfertaL.add(AceptarOffer);
+        
+        
+        
         
         JMenu Keywords = new JMenu("Keywords");
         menuBar.add(Keywords);

@@ -28,14 +28,4 @@ public class KeywordHandler {
 
     
     public HashMap<String, Keyword> obtener() { return keys; }
-    
-	// public boolean existe(String nombre) { return keys.containsKey(nombre); }
-    
-	
-    // public Keyword buscar(String nombre) {
-    //	if (!key.containsKey(nombre)) {
-    //       throw new IllegalArgumentException("Keyword no encontrado");
-    //   }
-    //   return key.get(nombre);
-    //   }
 }

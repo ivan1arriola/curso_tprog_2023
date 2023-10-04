@@ -5,21 +5,27 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Postulacion;
 import main.java.logica.Clases.Paquete;
 import main.java.logica.Clases.TipoOferta;
+import main.java.logica.Clases.Empresa;
 import main.java.logica.Clases.Keyword;
+import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
 import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTTipoOferta;
+import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Manejadores.KeywordHandler;
 import main.java.logica.Manejadores.OfertaLaboralHandler;
 import main.java.logica.Manejadores.PaqueteHandler;
 import main.java.logica.Manejadores.TipoOfertaHandler;
+import main.java.logica.Manejadores.UsuarioHandler;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 
 public class CtrlOferta implements ICtrlOferta{
@@ -130,6 +136,64 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 		return !b;
 	}
+	
+	public boolean compraPaquetes(String nickname_e, String paq) {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		PaqueteHandler PH = PH.getInstance();
+		Paquete paquete = PH.buscar(paq);
+		return e.compraPaquete(paq);
+	}
+	
+	public boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, String paquete) {
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Paquete paq = PH.buscar(paquete);
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		boolean ofer = OLH.existe(nombre);
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		TipoOferta to = TOH.buscar(tipo);
+		if(!ofer) {
+			List<Keyword> ks = new ArrayList<Keyword>();
+			KeywordHandler KH = KeywordHandler.getInstance();
+			HashMap<String, Keyword> keyss = KH.obtener();
+	        for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
+	        	if(keys.contains(entry.getKey())) {
+	        		ks.add(entry.getValue());
+	        	}
+	        }
+			
+			OfertaLaboral ol = e.altaOfertaLaboralConPaquete(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks, paq);
+			OLH.agregar(ol);
+		}
+		return !ofer;
+	}
+	
+	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys) {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		boolean ofer = OLH.existe(nombre);
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		TipoOferta to = TOH.buscar(tipo);
+		if(!ofer) {
+			List<Keyword> ks = new ArrayList<Keyword>();
+			KeywordHandler KH = KeywordHandler.getInstance();
+			HashMap<String, Keyword> keyss = KH.obtener();
+	        for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
+	        	if(keys.contains(entry.getKey())) {
+	        		ks.add(entry.getValue());
+	        	}
+	        }
+			
+			OfertaLaboral ol = e.altaOfertaLaboral(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks);
+			OLH.agregar(ol);
+		}
+		return !ofer;
+	}
+	
+	
 	
 	public DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente {
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
