@@ -64,7 +64,7 @@ public class Paquete {
     public byte[] getImagen()						{ return imagen; }
     public Set<OfertaPaquete> getOfertaPaquete() 	{ return oferPaq; }
     public Set<InfoCompra> getInfoCompra()          { return infCompraAsociada; }
-
+    public LocalDate getfechaAlta()                 { return fechaAlta;    }
 
     // SETTERS
     public void setNombre(String nombre) 						{ this.nombre = nombre; }
