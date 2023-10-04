@@ -73,10 +73,10 @@ public class Principal {
         // Consulta de Usuario
         ConsultaDeUsuarioInternalFrame = new ConsultaDeUsuario(frmGestionDeUsuarios, ICU, ICO);
         ConsultaDeUsuarioInternalFrame.setSize(500, 500);
-        AltaDeUsuarioInternalFrame.setLocation(0, 0);
-        frmGestionDeUsuarios.getContentPane().add(ConsultaDeUsuarioInternalFrame);
+        ConsultaDeUsuarioInternalFrame.setLocation(89, 77);
         ConsultaDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ConsultaDeUsuarioInternalFrame);
+        //frmGestionDeUsuarios.getContentPane().add(ConsultaDeUsuarioInternalFrame);
         
         
         // CargarDatos
@@ -138,16 +138,17 @@ public class Principal {
         CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);
         
+        
         AltaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(600, 650);
+        AltaDeOfertaLaboralInternalFrame.setSize(550, 500);
         AltaDeOfertaLaboralInternalFrame.setLocation(50, 50);
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
         
         AceptarOfertaInternalFrame = new AceptarOferta(ICO,ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(500, 350);
-        AltaDeOfertaLaboralInternalFrame.setLocation(89, 77);
-        AltaDeOfertaLaboralInternalFrame.setVisible(false);
+        AceptarOfertaInternalFrame.setSize(550, 350);
+        AceptarOfertaInternalFrame.setLocation(89, 77);
+        AceptarOfertaInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AceptarOfertaInternalFrame);
         
     }
