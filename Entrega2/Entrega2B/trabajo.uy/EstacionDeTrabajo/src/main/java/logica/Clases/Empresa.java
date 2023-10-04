@@ -20,21 +20,19 @@ public class Empresa extends Usuario {
     private String url;
     private HashSet<OfertaLaboral> ofertasLaborales;
     
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String nombreE, String desc, String urlE) {
-        super(nickname, nombre, apellido, correo_electronico);
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena, img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = urlE;
     }
     
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String nombreE, String desc) {
-        super(nickname, nombre, apellido, correo_electronico);
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena, img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = null;
-    }    
-    
-
+    }
 
     public String getDescripcion() {
         return descripcion;
