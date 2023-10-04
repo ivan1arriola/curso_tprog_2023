@@ -1,44 +1,17 @@
 package main.java.logica.Clases;
 
-import java.util.Set;
-
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class InfoCompraOferta {
+	private int cant_restante;
+	private HashSet<TipoOferta> tipoOfertas;
 	
-	private Integer cant_restante;
-	private Set<TipoOferta> ofertas;
-
-
-
-	public InfoCompraOferta(Integer can_res, Set<TipoOferta> ofertas) { 
+	public InfoCompraOferta(TipoOferta t, int can_res) { 
 		this.cant_restante = can_res;
-		this.ofertas = ofertas;
-	}
-
-	public Integer getCant_res() { 
-		return cant_restante; 
-	}
-	
-	public void setCant_res(Integer cant_rest) {
-		cant_restante = cant_rest;
-	}
-
-	public Set<TipoOferta> getOfertas() {
-		return ofertas;
-	}
-
-	public void setOfertas(Set<TipoOferta> ofertas) {
-		this.ofertas = ofertas;
-	}
-
-	public Integer getCant_restante() {
-		return cant_restante;
-	}
-
-	public void setCant_restante(Integer cant_restante) {
-		this.cant_restante = cant_restante;
-	}
-	
-	
+		tipoOfertas.add(t);
+	} //Constructor
+	public int getCant_res() { return cant_restante; }
+	public void setCant_res(int cant_rest) { cant_restante = cant_rest; }
 	
 }

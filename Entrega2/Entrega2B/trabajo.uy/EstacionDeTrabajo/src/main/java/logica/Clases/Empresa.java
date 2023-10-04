@@ -11,6 +11,7 @@ import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
 import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTUsuario;
+import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
 
@@ -19,6 +20,7 @@ public class Empresa extends Usuario {
     private String descripcion;
     private String url;
     private HashSet<OfertaLaboral> ofertasLaborales;
+    private HashSet<InfoCompra> infoCompras;
     
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
         super(nickname, nombre, apellido, correo_electronico, contrasena, img);
@@ -29,6 +31,20 @@ public class Empresa extends Usuario {
     
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc) {
         super(nickname, nombre, apellido, correo_electronico, contrasena, img);
+        descripcion = desc;
+        ofertasLaborales = new HashSet<>();
+        url = null;
+    }
+    
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc, String urlE) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena);
+        descripcion = desc;
+        ofertasLaborales = new HashSet<>();
+        url = urlE;
+    }
+    
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = null;
@@ -75,7 +91,7 @@ public class Empresa extends Usuario {
         return ol;
     }
     
-    public OfertaLaboral altaOfertaLaboralConPaquete(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, String paquete){
+    public OfertaLaboral altaOfertaLaboralConPaquete(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, Paquete paquete){
     	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, paquete);
         ofertasLaborales.add(ol);
         return ol;
@@ -88,15 +104,30 @@ public class Empresa extends Usuario {
         String correoElectronico = getCorreo_electronico();
         byte[] imagen = getImagen();
         			       
-        HashSet<DTOfertaLaboral> dtOfertas = new HashSet<DTOfertaLaboral>();
+        HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
         
         for (OfertaLaboral oferta : ofertasLaborales) {
-        	DTOfertaLaboral dtOferta = oferta.obtenerDatosOferta();
+        	DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
             dtOfertas.add(dtOferta);   
         }
         
         return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);
         
+    }
+    
+    public boolean compraPaquetes(Paquete paq) {
+        for (InfoCompra ic : infoCompras) {
+        	if((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
+        		return false;
+        	}
+        }
+    	float costo = paq.getCosto();
+    	LocalDate fa = paq.getfechaAlta();
+    	int val = paq.getValidez();
+    	HashSet<DTCantTO> S = paq.obtenerDTSCantTO();
+    	InfoCompra io = new InfoCompra(fa,costo,fa.plusDays(val),S);
+    	infoCompras.add(io);
+    	return true;
     }
 
 
