@@ -11,7 +11,7 @@ public class DTEmpresa extends DTUsuario {
         super(nickname, correo_electronico, apellido, nombre, imagen);
         this.nombreEmpresa = nombreEmpresa;
         this.descripcion = descripcion;
-        this.url = url;
+        this.url = url; 
     }
 
 
