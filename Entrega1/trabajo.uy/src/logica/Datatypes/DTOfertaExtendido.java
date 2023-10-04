@@ -70,7 +70,7 @@ public class DTOfertaExtendido {
 		return postulaciones;
 	}
 	
-	@Override
+	@Override 
     public String toString() {
         
 		String texto = "Nombre: " + nombre + "\n" +
