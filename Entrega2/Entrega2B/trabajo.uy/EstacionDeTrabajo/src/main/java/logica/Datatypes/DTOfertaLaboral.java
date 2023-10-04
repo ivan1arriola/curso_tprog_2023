@@ -14,31 +14,23 @@ public class DTOfertaLaboral {
 	private DTHorario horario;
 	private DepUY departamento;
 	private String ciudad;
-	private String imagen;
+	private byte[] imagen;
+	private EstadoOL estado;
 	
-	public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu) {
-		nombre = nomb;
-		descripcion = desc;
-		fecha_de_alta = fechaA;
-		costo = c;
-		remuneracion = r;
-		horario = h;
-		departamento = dep;
-		ciudad = ciu;
-		imagen = "";
-	}
 	
-	public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, String imagenLink) {
-		nombre = nomb;
-		descripcion = desc;
-		fecha_de_alta = fechaA;
-		costo = c;
-		remuneracion = r;
-		horario = h;
-		departamento = dep;
-		ciudad = ciu;
-		imagen = imagenLink;
+	public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes) {
+	    nombre = nomb;
+	    descripcion = desc;
+	    fecha_de_alta = fechaA;
+	    costo = c;
+	    remuneracion = r;
+	    horario = h;
+	    departamento = dep;
+	    ciudad = ciu;
+	    estado = estadoOL;
+	    imagen = imagenBytes;
 	}
+
 	
 	public String getNombre() {
 		return nombre;
@@ -72,7 +64,7 @@ public class DTOfertaLaboral {
 		return ciudad;
 	}
 	
-	public String getImagen() {
+	public byte[] getImagen() {
 		return imagen;
 	}
 	
