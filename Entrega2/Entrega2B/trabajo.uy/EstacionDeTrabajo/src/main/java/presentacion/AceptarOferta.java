@@ -37,7 +37,7 @@ public class AceptarOferta extends JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Aceptar o Rechazar Oferta");
-        setBounds(30, 30, 500, 300);
+        setBounds(30, 30, 500, 285);
         
         
         GridBagLayout gbl=new GridBagLayout();
@@ -57,20 +57,18 @@ public class AceptarOferta extends JInternalFrame {
     				try {
 	                if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0 ) {
 	                    String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
-	                    Set<String> ofertasEmpresa = controlUsuario.listarOfertasLaborales(selectedEmpresa);
+	                    //Set<String> ofertasEmpresa = controlUsuario.listarOfertasLaborales(selectedEmpresa);
 	                    comboBoxOfertas.removeAllItems();
 	                    
-	                    //FILTRAR LAS INGRESADAS, QUEDARSE CON ESAS
+	                    HashSet<String> ofertasIngresadas = controlOferta.listarOfertasLaboralesIngresadas(selectedEmpresa);
 	                    
-                    
-	                    
-	                    if (ofertasEmpresa.isEmpty()) {
+	                    if (ofertasIngresadas.isEmpty()) {
 	
 	                        JOptionPane.showMessageDialog(AceptarOferta.this, "No hay ofertas de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 	                    } 
 	                    else {
 	                    	
-	                    	List<String> ofertasSorted = new ArrayList<>(ofertasEmpresa);
+	                    	List<String> ofertasSorted = new ArrayList<>(ofertasIngresadas);
 		                    Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
 		                    comboBoxOfertas.addItem(" ");
 		                    for (String offer : ofertasSorted) {
@@ -207,7 +205,8 @@ public class AceptarOferta extends JInternalFrame {
         		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
                     String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
                     //pedirle a ctrlOferta que busque oferta y setee el estado de la oferta
-                    
+                    controlOferta.rechazoOL(selectedOferta);
+                    JOptionPane.showMessageDialog(null, "Oferta rechazada", "", JOptionPane.INFORMATION_MESSAGE);
                     
         		}
         		
@@ -220,16 +219,15 @@ public class AceptarOferta extends JInternalFrame {
         		
         		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
                     String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
-                    //pedirle a ctrlOferta que busque oferta y setee el estado de la oferta
-                    
+                    controlOferta.aceptoOL(selectedOferta);
+                    JOptionPane.showMessageDialog(null, "Oferta confirmada", "", JOptionPane.INFORMATION_MESSAGE);
                     
         		}
         		
         		
         	}
         });
-        
-        
+                
         
     
 

@@ -38,6 +38,15 @@ public abstract class Usuario {
         this.contrasenia = contrasenia;
         this.imagen = imagen;
     }
+    
+    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia) {
+        this.nickname = nickname;
+        this.nombre = nombre;
+        this.apellido = apellido; 
+        this.correo_electronico = correo_electronico;
+        this.contrasenia = contrasenia;
+        imagen = null;
+    }
 
     // OPERACIONES
 

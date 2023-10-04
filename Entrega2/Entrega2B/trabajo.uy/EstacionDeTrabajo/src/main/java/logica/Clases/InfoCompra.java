@@ -1,5 +1,9 @@
 package main.java.logica.Clases;
 import java.time.LocalDate;
+import java.util.HashSet;
+
+import main.java.logica.Datatypes.DTCantTO;
+import main.java.logica.Manejadores.TipoOfertaHandler;
 
 import main.java.logica.Datatypes.DTCompraPaquetes;
 
@@ -9,8 +13,8 @@ public class InfoCompra {
  private LocalDate fechaVencimiento; // fechaCompra + paq.Validez
  private float costo;
  private Paquete paquete;
- private Empresa empres;
- private InfoCompraOferta ICO;
+private Empresa empres;
+ private HashSet<InfoCompraOferta> infocompraofertas;
  
  public InfoCompra (LocalDate fechaCompra, Paquete pack,float costo,Empresa empres,InfoCompraOferta ICO) {
 	 this.paquete = pack;
@@ -20,9 +24,17 @@ public class InfoCompra {
 	 this.costo = costo;
 	 this.ICO = ICO;
  }
- 
- public LocalDate getFechaCompra() {
-     return fechaCompra;
+
+ public InfoCompra(LocalDate fa, float costo, LocalDate plusDays, HashSet<DTCantTO> S) {
+	TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+    for (DTCantTO s : S) {
+    	TipoOferta to = TOH.buscar(s.getNombre());
+    	InfoCompraOferta ico = new InfoCompraOferta(to,s.getCantidad());
+    }
+ }
+
+public LocalDate getfCompra() {
+	 return fechaCompra;
  }
 
  public void setFechaCompra(LocalDate fechaCompra) {
@@ -69,6 +81,10 @@ public class InfoCompra {
  public DTCompraPaquetes obtenerDatosPaquete() {
 	 DTCompraPaquetes nuevacompra = new DTCompraPaquetes(paquete.getNombre(), fechaCompra, fechaVencimiento);
 	 return nuevacompra;
+ }
+ 
+ public Paquete getPaquete() {
+	 return paquete;
  }
  
 }
