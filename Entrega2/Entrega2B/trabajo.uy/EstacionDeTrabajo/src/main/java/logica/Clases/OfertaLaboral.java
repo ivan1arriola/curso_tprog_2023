@@ -30,20 +30,6 @@ public class OfertaLaboral {
 	
 
 	// constructor
-	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion,String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta) {
-		this.nombre = atrnombre;
-		this.descripcion = atrdescripcion;
-		this.ciudad = atrciudad;
-		this.departamento = atrdepartamento;
-		this.horario = atrhorario;
-		this.remuneracion = atrremuneracion; 
-		this.tOferta = atrtOferta;
-	    this.costo = tOferta.getCosto();
-		this.fecha_de_alta = atrfecha_de_alta;
-		this.keywords = atrkeywords; // la lista de keywords
-		this.postulaciones = new ArrayList<>(); // originalmente vacio
-	}
-	
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion,String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta, Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
@@ -58,6 +44,22 @@ public class OfertaLaboral {
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 		this.paq = paq;
 	}
+	
+	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion,String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta) {
+		this.nombre = atrnombre;
+		this.descripcion = atrdescripcion;
+		this.ciudad = atrciudad;
+		this.departamento = atrdepartamento;
+		this.horario = atrhorario;
+		this.remuneracion = atrremuneracion; 
+		this.tOferta = atrtOferta;
+	    this.costo = tOferta.getCosto();
+		this.fecha_de_alta = atrfecha_de_alta;
+		this.keywords = atrkeywords; // la lista de keywords
+		this.postulaciones = new ArrayList<>(); // originalmente vacio
+	}
+	
+
 	 
 	public String getNombre() 					{ return nombre; 		}
 	public String getDescripcion() 				{ return descripcion;   }

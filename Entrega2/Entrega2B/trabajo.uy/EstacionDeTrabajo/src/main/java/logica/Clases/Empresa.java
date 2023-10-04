@@ -75,7 +75,7 @@ public class Empresa extends Usuario {
         return ol;
     }
     
-    public OfertaLaboral altaOfertaLaboralConPaquete(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, String paquete){
+    public OfertaLaboral altaOfertaLaboralConPaquete(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, Paquete paquete){
     	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, paquete);
         ofertasLaborales.add(ol);
         return ol;
@@ -88,15 +88,19 @@ public class Empresa extends Usuario {
         String correoElectronico = getCorreo_electronico();
         byte[] imagen = getImagen();
         			       
-        HashSet<DTOfertaLaboral> dtOfertas = new HashSet<DTOfertaLaboral>();
+        HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
         
         for (OfertaLaboral oferta : ofertasLaborales) {
-        	DTOfertaLaboral dtOferta = oferta.obtenerDatosOferta();
+        	DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
             dtOfertas.add(dtOferta);   
         }
         
         return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);
         
+    }
+    
+    public boolean compraPaquetes(Paquete paq) {
+    	float costo = paq.getCosto();
     }
 
 
