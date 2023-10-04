@@ -17,7 +17,11 @@ import main.java.logica.Clases.Empresa;
 import main.java.logica.Clases.Keyword;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTPaquete;
+import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTTipoOferta;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Interfaces.ICtrlOferta;
@@ -140,8 +144,10 @@ public class CtrlOferta implements ICtrlOferta{
 	public boolean compraPaquetes(String nickname_e, String paq) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		
 		PaqueteHandler PH = PH.getInstance();
 		Paquete paquete = PH.buscar(paq);
+		
 		return e.compraPaquete(paq);
 	}
 	
@@ -192,8 +198,71 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 		return !ofer;
 	}
+
+	public abstract DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
+	public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 	
+	public boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha) {
+		CtrlUsuario CU = new CtrlUsuario();
+		boolean b = CU.existePostulacion(nick, nombre);
+		if (!b) {
+			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+			OfertaLaboral ol = OLH.buscar(nombre);
+			Postulacion p = CU.crearPostulacion(nick, cv, motivacion, fecha, URLDocE, ol);
+			ol.registrarPostulacion(p);
+		}
+		return !b;
+	}
 	
+	public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta){
+		
+	}
+	
+	public abstract HashSet<String> listarOfertasLaboralesKeywords(String ks);
+	public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
+	public abstract DTPostulacion obtenerDatosPostulacion(String nombre_empresa, String nombre_postulante);
+	public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e);
+	public abstract HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e);
+	public abstract void rechazoOL(String nombre_oferta);
+	public abstract void aceptoOL(String nombre_oferta);
+	
+	public HashSet<String> listarPostulantes(){
+		CtrlUsuario CU = new CtrlUsuario();
+		return CU.obtenerNicknamesPostulantes();
+	}
+	
+	public DTOfertaExtendido obtenerOfertaLaboral(String nombre) {
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre);
+		return ol.obtenerDatosOferta();
+	}
+	
+	public void agregarTipoOfertaPaq(String paq, String TO, int cantidad) {
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Paquete p = PH.buscar(paq);
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		TipoOferta tipoO = TOH.buscar(TO);
+		p.crearOfertaPaquete(tipoO, cantidad);
+	}
+	
+	public HashSet<String> listarPaquetes(){
+		HashSet<String> res = new HashSet<>();
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Map<String, Paquete> paquetes = PH.obtener();
+		
+		for (Map.Entry<String, Paquete> entry : paquetes.entrySet()) {
+		    Paquete p = entry.getValue();
+		    res.add(p.getNombre());
+		}
+		
+		return res;
+	}
+	
+	public DTPaquete obtenerDatosPaquete(String paq) {
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Paquete p = PH.buscar(paq);
+		return p.getDTPaquete();
+	}
 	
 	public DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente {
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
@@ -209,58 +278,12 @@ public class CtrlOferta implements ICtrlOferta{
 		
 	}
 	
-	public DTPaquete obtenerDatosPaquete(String paq) {
-		PaqueteHandler PH = PaqueteHandler.getInstance();
-		Paquete p = PH.buscar(paq);
-		return p.getDTPaquete();
-	}
-	
-	public HashSet<String> listarPaquetes(){
-		HashSet<String> res = new HashSet<>();
-		PaqueteHandler PH = PaqueteHandler.getInstance();
-		Map<String, Paquete> paquetes = PH.obtener();
-		
-		for (Map.Entry<String, Paquete> entry : paquetes.entrySet()) {
-		    Paquete p = entry.getValue();
-		    res.add(p.getNombre());
-		}
-		
-		return res;
-	}
 
 	
-	public void agregarTipoOfertaPaq(String paq, String TO, int cantidad) {
-		PaqueteHandler PH = PaqueteHandler.getInstance();
-		Paquete p = PH.buscar(paq);
-		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-		TipoOferta tipoO = TOH.buscar(TO);
-		p.crearOfertaPaquete(tipoO, cantidad);
-	}
-	
-	public DTOfertaExtendido obtenerOfertaLaboral(String nombre) {
-		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		OfertaLaboral ol = OLH.buscar(nombre);
-		return ol.obtenerDatosOferta();
-	}
+
 	
 	// REVISAR EXCEPCIONES, NICK Y NOMBRE !!!!!
 	// nombre es el nombre de la OfertaLaboral y nick el nickname del Usuario.
-	public boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha) {
-		CtrlUsuario CU = new CtrlUsuario();
-		boolean b = CU.existePostulacion(nick, nombre);
-		if (!b) {
-			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-			OfertaLaboral ol = OLH.buscar(nombre);
-			Postulacion p = CU.crearPostulacion(nick, cv, motivacion, fecha, URLDocE, ol);
-			ol.registrarPostulacion(p);
-		}
-		return !b;
-	}
-	
-	public HashSet<String> listarPostulantes(){
-		CtrlUsuario CU = new CtrlUsuario();
-		return CU.obtenerNicknamesPostulantes();
-	}
 	
 	public HashSet<String> listarKeywords(){
 		HashSet<String> res = new HashSet<>();
@@ -278,6 +301,5 @@ public class CtrlOferta implements ICtrlOferta{
 		TipoOferta tipoOferta = ol.getTipoOferta();
 		DTTipoOferta res = tipoOferta.obtenerDT();
 		return res;
-
 	}
 }
