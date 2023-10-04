@@ -3,8 +3,8 @@ package main.java.logica.Clases;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import main.java.logica.Clases.OfertaLaboral;
 
 import main.java.logica.Clases.*;
 import main.java.logica.Datatypes.DTHorario;
@@ -14,6 +14,7 @@ import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 
 public class Empresa extends Usuario {
 
@@ -66,12 +67,6 @@ public class Empresa extends Usuario {
         this.url = urlE;
     }
 
-    @Override
-    public boolean esEmpresa() {
-        return true;
-    }
-
-
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
         
@@ -83,7 +78,11 @@ public class Empresa extends Usuario {
 
         return lista;
     }
-
+    
+    @Override
+    public boolean esEmpresa() {
+        return true;
+    }
 
     public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords){
     	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA);
@@ -113,6 +112,49 @@ public class Empresa extends Usuario {
         
         return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);
         
+    }
+    
+    public DTUsuario obtenerDatosUsuarioEspecial() {
+    	// hacer código
+    }
+    
+    public HashSet<String> listarOfertasLaboralesConfirmadas(){
+    	HashSet<String> res = new HashSet<String>();
+        Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
+
+        // Recorremos el HashSet usando el Iterator
+        while (iterator.hasNext()) {
+            OfertaLaboral ol = iterator.next();
+            if(ol.getEstado() == EstadoOL.Confirmada)
+            	res.add(ol.getNombre());
+        }
+        return res;
+    }
+    
+    public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks){
+    	
+    }
+    
+    public boolean existeOfertaLaboral(String nombre_oferta) {
+        Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
+
+        // Recorremos el HashSet usando el Iterator
+        while (iterator.hasNext()) {
+            OfertaLaboral ol = iterator.next();
+            if(ol.getNombre().equals(nombre_oferta))
+            	return true;
+        }
+        
+    	return false;
+    }
+    
+    public boolean tieneURL() {
+    	return URL != null;
+    }
+    
+    public altaOfertaLaboral(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, String dep, LocalDate fechaA, List<Keyword> keyw, byte[] img) {
+    	OfertaLaboral ol = new OfertaLaboral(key, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, "Ingresada",img);
+    	ofertasLaborales.add(ol);
     }
     
     public boolean compraPaquetes(Paquete paq) {
