@@ -11,7 +11,9 @@ import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Postulacion;
 import main.java.logica.Clases.Paquete;
 import main.java.logica.Clases.TipoOferta;
+import main.java.logica.Clases.Empresa;
 import main.java.logica.Clases.Keyword;
+import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
 import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTTipoOferta;
@@ -20,6 +22,7 @@ import main.java.logica.Manejadores.KeywordHandler;
 import main.java.logica.Manejadores.OfertaLaboralHandler;
 import main.java.logica.Manejadores.PaqueteHandler;
 import main.java.logica.Manejadores.TipoOfertaHandler;
+import main.java.logica.Manejadores.UsuarioHandler;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 
 public class CtrlOferta implements ICtrlOferta{
@@ -129,6 +132,29 @@ public class CtrlOferta implements ICtrlOferta{
 			KH.agregar(KEY);
 		}
 		return !b;
+	}
+	
+	public boolean compraPaquetes(String nickname_e, String paq) {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		PaqueteHandler PH = PH.getInstance();
+		Paquete paquete = PH.buscar(paq);
+		return e.compraPaquete(paq);
+	}
+	
+	boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, String dep, LocalDate fechaA, HashSet<String> keys, String paquete) {
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Paquete paq = PH.buscar(paquete);
+		UsuarioHandler UH = UH.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		boolean ofer = OLH.existe(nombre);
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		TOH.buscar(tipo);
+		if(!ofer) {
+			OfertaLaboral ol = e.altaOfertaLaboral(tipo, nombre, descripcion, horario, remun, ciu, dep, fechaA, keys, paq);
+			OLH.agregar(ol);
+		}
 	}
 	
 	public DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente {
