@@ -8,20 +8,20 @@ import main.java.logica.Clases.OfertaLaboral;
 
 import main.java.logica.Clases.*;
 import main.java.logica.Datatypes.DTHorario;
+import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
 
 public class Empresa extends Usuario {
 
-    private String nombreEmpresa;
     private String descripcion;
     private String url;
     private HashSet<OfertaLaboral> ofertasLaborales;
     
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String nombreE, String desc, String urlE) {
         super(nickname, nombre, apellido, correo_electronico);
-        nombreEmpresa = nombreE;
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = urlE;
@@ -29,19 +29,12 @@ public class Empresa extends Usuario {
     
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String nombreE, String desc) {
         super(nickname, nombre, apellido, correo_electronico);
-        nombreEmpresa = nombreE;
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = null;
     }    
+    
 
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
-
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -84,11 +77,23 @@ public class Empresa extends Usuario {
         return ol;
     }
 
-    public DTUsuario obtenerDatosUsuario() {
-    	String dire;
-    	if (url!=null) {dire="No tiene";} else {dire=url;}
-    	DTEmpresa empre = new DTEmpresa(this.getNickname(),this.getCorreo_electronico() , this.getApellido(), this.getNombre() ,nombreEmpresa, descripcion, url);
-        return empre;
+    public DTUsuario obtenerDatosUsuario() { // obtenerDatosUsuario(): DTUsuario
+    	String nickname =  getNickname();
+    	String nombre = getNombre();
+        String apellido = getApellido();
+        String correoElectronico = getCorreo_electronico();
+        byte[] imagen = getImagen();
+        			       
+        HashSet<DTOfertaLaboral> dtOfertas = new HashSet<DTOfertaLaboral>();
+        
+        for (OfertaLaboral oferta : ofertasLaborales) {
+        	DTOfertaLaboral dtOferta = oferta.obtenerDatosOferta();
+            dtOfertas.add(dtOferta);   
+        }
+        
+        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);
+        
     }
+
 
 }
