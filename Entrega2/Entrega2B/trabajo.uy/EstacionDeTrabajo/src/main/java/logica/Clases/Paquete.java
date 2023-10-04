@@ -22,6 +22,37 @@ public class Paquete {
 	private Set<OfertaPaquete> oferPaq;
 	private Set<InfoCompra> infCompraAsociada;
 
+	public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaAlta = fecha;
+        this.descuento = descuento;
+        this.validez = validez;
+        oferPaq = new HashSet<OfertaPaquete>(); // tengo cuantos paquetes tienen
+        
+        // Inicialización
+        TipoOfertaHandler tOfertaHandler = TipoOfertaHandler.getInstance();
+        
+
+        float Costo = 0; 
+        
+        for (OfertaPaquete OfertaAnalizar : oferPaq) {
+        	DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO();
+        	String nombreOferta = DTcantaux.getNombre();
+        	int cantidadTotal = DTcantaux.getCantidad();
+        	TipoOferta  TO = tOfertaHandler.buscar(nombreOferta);
+        	float CostoTO = TO.getCosto();
+        	Costo = Costo + CostoTO*cantidadTotal;
+        }
+        
+        Costo = (float) (Costo-(Costo*descuento*0.01));
+        
+        this.costo = Costo;
+        
+        this.infCompraAsociada = null; //empieza null, despues se cambia 
+        
+    }
+	
 	public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento,byte[] imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;

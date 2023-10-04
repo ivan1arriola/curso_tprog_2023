@@ -13,8 +13,8 @@ public class InfoCompra {
  private LocalDate fechaVencimiento; // fechaCompra + paq.Validez
  private float costo;
  private Paquete paquete;
-private Empresa empres;
- private HashSet<InfoCompraOferta> infocompraofertas;
+ private Empresa empres;
+ private InfoCompraOferta infoCompraOfertas;
  
  public InfoCompra (LocalDate fechaCompra, Paquete pack,float costo,Empresa empres,InfoCompraOferta ICO) {
 	 this.paquete = pack;
@@ -22,7 +22,7 @@ private Empresa empres;
 	 this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez());
 	 this.empres = empres;
 	 this.costo = costo;
-	 this.ICO = ICO;
+	 this.infoCompraOfertas = ICO;
  }
 
  public InfoCompra(LocalDate fa, float costo, LocalDate plusDays, HashSet<DTCantTO> S) {
@@ -70,11 +70,11 @@ public LocalDate getfCompra() {
  }
 
  public InfoCompraOferta getICO() {
-     return ICO;
+     return infoCompraOfertas;
  }
 
  public void setICO(InfoCompraOferta ICO) {
-     this.ICO = ICO;
+     this.infoCompraOfertas = ICO;
  }
  ///-----------------------------------------------------------
  
@@ -82,9 +82,4 @@ public LocalDate getfCompra() {
 	 DTCompraPaquetes nuevacompra = new DTCompraPaquetes(paquete.getNombre(), fechaCompra, fechaVencimiento);
 	 return nuevacompra;
  }
- 
- public Paquete getPaquete() {
-	 return paquete;
- }
- 
 }
