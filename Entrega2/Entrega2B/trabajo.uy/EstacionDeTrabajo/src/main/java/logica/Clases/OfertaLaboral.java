@@ -2,7 +2,6 @@ package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
 import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsTit;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
@@ -45,6 +44,77 @@ public class OfertaLaboral {
 		this.estado = estadoNuevo;
 		this.imagen = imagennueva;
 		this.paqueteAsoc = paq;
+		
+		float costodadoPaq = tOferta.getCosto();
+		if ( this.paqueteAsoc != null ) {
+			float descuento = paqueteAsoc.getDescuento();
+			this.costo = costodadoPaq - costodadoPaq*descuento;
+		} else {
+			this.costo = costodadoPaq;
+		}
+	    		
+		this.fecha_de_alta = atrfecha_de_alta;
+		this.keywords = atrkeywords; // la lista de keywords
+		this.postulaciones = new ArrayList<>(); // originalmente vacio
+	}
+	
+	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo,byte[] imagennueva) {
+		this.nombre = atrnombre;
+		this.descripcion = atrdescripcion;
+		this.ciudad = atrciudad;
+		this.departamento = atrdepartamento;
+		this.horario = atrhorario;
+		this.remuneracion = atrremuneracion; 
+		this.tOferta = atrtOferta;
+		this.estado = estadoNuevo;
+		this.imagen = imagennueva;
+		
+		float costodadoPaq = tOferta.getCosto();
+		if ( this.paqueteAsoc != null ) {
+			float descuento = paqueteAsoc.getDescuento();
+			this.costo = costodadoPaq - costodadoPaq*descuento;
+		} else {
+			this.costo = costodadoPaq;
+		}
+	    		
+		this.fecha_de_alta = atrfecha_de_alta;
+		this.keywords = atrkeywords; // la lista de keywords
+		this.postulaciones = new ArrayList<>(); // originalmente vacio
+	}
+	
+	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo, Paquete paq) {
+		this.nombre = atrnombre;
+		this.descripcion = atrdescripcion;
+		this.ciudad = atrciudad;
+		this.departamento = atrdepartamento;
+		this.horario = atrhorario;
+		this.remuneracion = atrremuneracion; 
+		this.tOferta = atrtOferta;
+		this.estado = estadoNuevo;
+		this.paqueteAsoc = paq;
+		
+		float costodadoPaq = tOferta.getCosto();
+		if ( this.paqueteAsoc != null ) {
+			float descuento = paqueteAsoc.getDescuento();
+			this.costo = costodadoPaq - costodadoPaq*descuento;
+		} else {
+			this.costo = costodadoPaq;
+		}
+	    		
+		this.fecha_de_alta = atrfecha_de_alta;
+		this.keywords = atrkeywords; // la lista de keywords
+		this.postulaciones = new ArrayList<>(); // originalmente vacio
+	}
+	
+	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo) {
+		this.nombre = atrnombre;
+		this.descripcion = atrdescripcion;
+		this.ciudad = atrciudad;
+		this.departamento = atrdepartamento;
+		this.horario = atrhorario;
+		this.remuneracion = atrremuneracion; 
+		this.tOferta = atrtOferta;
+		this.estado = estadoNuevo;
 		
 		float costodadoPaq = tOferta.getCosto();
 		if ( this.paqueteAsoc != null ) {
@@ -161,11 +231,11 @@ public class OfertaLaboral {
 //    }
     
     public DTPostulacion obtenerDatosPostulacion(String nombre_empresa) {
-    	List<Postulacion> lista =	getPostulaciones();
+    	List<Postulacion> lista = getPostulaciones();
     	for (Postulacion item : lista) {
     		item.obtenerNicknamePostulante();
     	}
-    	return datatype;
+    	return null; // FALTA ENCONTRAR EL DCOM
     }
     
 }

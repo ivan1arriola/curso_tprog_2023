@@ -15,8 +15,15 @@ public class Postulante extends Usuario{
     private HashSet<Postulacion> postulaciones;
 
 
-    public Postulante(String nickname, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad,byte[] imagen) {
-        super(nickname, nombre, apellido, correo_electronico, nacionalidad, imagen);
+    public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad,byte[] img) {
+    	super(nickname, nombre, apellido, correo_electronico, contrasena, img);
+        this.fecha_nac = fecha_nac;
+        this.nacionalidad = nacionalidad;
+        this.postulaciones = new HashSet<Postulacion>();
+    }
+    
+    public Postulante(String nickname, String contraseña, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
+        super(nickname, nombre, apellido, correo_electronico, contraseña);
         this.fecha_nac = fecha_nac;
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
@@ -29,7 +36,7 @@ public class Postulante extends Usuario{
     /* + obtenerDatosUsuario(nick : String): DTUsuario */
 
     public DTUsuario obtenerDatosUsuario() {
-    	DTPostulante postul = new DTPostulante(this.getNickname(), this.getCorreo_electronico(), this.getApellido(), this.getNombre(),"", fecha_nac, nacionalidad);
+    	DTPostulante postul = new DTPostulante(this.getNickname(), this.getCorreo_electronico(), this.getApellido(), this.getNombre(),this.getImagen(), fecha_nac, nacionalidad);
         return postul;
     }
 
@@ -96,4 +103,10 @@ public class Postulante extends Usuario{
 
         return lista;
     }
+
+	@Override
+	public DTUsuario obtenerDatosUsuarioEspecial() {
+		// FALTA SE ARREGLE GIT Y ESTÁ EN LOS DE MATI
+		return null;
+	}
 }

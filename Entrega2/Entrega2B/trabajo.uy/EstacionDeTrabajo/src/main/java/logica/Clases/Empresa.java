@@ -85,17 +85,29 @@ public class Empresa extends Usuario {
     }
 
     public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords){
-    	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA);
+    	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, EstadoOL.Ingresada);
         ofertasLaborales.add(ol);
         return ol;
     }
     
     public OfertaLaboral altaOfertaLaboralConPaquete(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, Paquete paquete){
-    	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, paquete);
+    	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, EstadoOL.Ingresada, paquete);
         ofertasLaborales.add(ol);
         return ol;
     }
-
+    
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, byte[] img) {
+    	OfertaLaboral ol = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, EstadoOL.Ingresada,img);
+    	ofertasLaborales.add(ol);
+    	return ol;
+    }
+    
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, byte[] img, Paquete paquete) {
+    	OfertaLaboral ol = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, EstadoOL.Ingresada, img, paquete);
+    	ofertasLaborales.add(ol);
+    	return ol;	
+    }
+    
     public DTUsuario obtenerDatosUsuario() { // obtenerDatosUsuario(): DTUsuario
     	String nickname =  getNickname();
     	String nombre = getNombre();
@@ -114,10 +126,6 @@ public class Empresa extends Usuario {
         
     }
     
-    public DTUsuario obtenerDatosUsuarioEspecial() {
-    	// hacer código
-    }
-    
     public HashSet<String> listarOfertasLaboralesConfirmadas(){
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
@@ -132,7 +140,16 @@ public class Empresa extends Usuario {
     }
     
     public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks){
-    	
+    	HashSet<String> res = new HashSet<String>();
+        Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
+
+        // Recorremos el HashSet usando el Iterator
+        while (iterator.hasNext()) {
+            OfertaLaboral ol = iterator.next();
+            if(ol.getEstado() == EstadoOL.Confirmada && ol.tieneKeyword(ks))
+            	res.add(ol.getNombre());
+        }
+        return res;
     }
     
     public boolean existeOfertaLaboral(String nombre_oferta) {
@@ -149,12 +166,7 @@ public class Empresa extends Usuario {
     }
     
     public boolean tieneURL() {
-    	return URL != null;
-    }
-    
-    public altaOfertaLaboral(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, String dep, LocalDate fechaA, List<Keyword> keyw, byte[] img) {
-    	OfertaLaboral ol = new OfertaLaboral(key, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, "Ingresada",img);
-    	ofertasLaborales.add(ol);
+    	return url != null;
     }
     
     public boolean compraPaquetes(Paquete paq) {
@@ -171,6 +183,12 @@ public class Empresa extends Usuario {
     	infoCompras.add(io);
     	return true;
     }
+
+	@Override
+	public DTUsuario obtenerDatosUsuarioEspecial() {
+		// PENDIENTE PERO GIT CAIDO, ESTÁ EN EL DE MATI
+		return null;
+	}
 
 
 }

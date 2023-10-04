@@ -74,7 +74,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	return !b1 && !b2;
     }
     
-    public boolean altaPostulante(String nick, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+    public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean b1 = UH.existeNick(nick);
     	boolean b2 = UH.existeCorreo(mail);
@@ -92,7 +92,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	}
     	
     	if (!b1 && !b2) {
-    		Postulante p = new Postulante(nick, nombre, apellido, mail, fecha_nac, nacionalidad);
+    		Postulante p = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
     		UH.agregar(p);
     	}
     	

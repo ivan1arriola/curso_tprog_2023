@@ -149,7 +149,7 @@ public class CtrlOferta implements ICtrlOferta{
 		PaqueteHandler PH = PH.getInstance();
 		Paquete paquete = PH.buscar(paq);
 		
-		return e.compraPaquete(paq);
+		return e.compraPaquetes(paquete);
 	}
 	
 	public boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, String paquete) {
@@ -200,8 +200,12 @@ public class CtrlOferta implements ICtrlOferta{
 		return !ofer;
 	}
 
-	public abstract DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
-	public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
+	public abstract DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
+		
+	}
+	public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
+		
+	}
 	
 	public boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha) {
 		CtrlUsuario CU = new CtrlUsuario();
