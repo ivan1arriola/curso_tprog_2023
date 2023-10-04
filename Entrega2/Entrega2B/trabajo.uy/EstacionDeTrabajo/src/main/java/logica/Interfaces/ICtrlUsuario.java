@@ -52,7 +52,9 @@ public interface ICtrlUsuario {
     
     
     
-    // NUEVAS OPERACIONES
+    // -------------------------------------------------------------------------------------
+    // ################################  NUEVAS OPERACIONES ################################ 
+    // -------------------------------------------------------------------------------------
     
     public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick); // PRONTA
     

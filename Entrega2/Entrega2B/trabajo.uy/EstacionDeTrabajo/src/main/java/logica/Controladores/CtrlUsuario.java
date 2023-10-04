@@ -3,6 +3,7 @@ package main.java.logica.Controladores;
 import java.time.LocalDate;
 import java.util.*;
 
+
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
@@ -20,6 +21,7 @@ import main.java.logica.Datatypes.*;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Interfaces.*;
 import main.java.logica.Manejadores.*;
+import main.java.logica.Controladores.*;
 
 public class CtrlUsuario implements ICtrlUsuario {
 	
@@ -247,9 +249,8 @@ public class CtrlUsuario implements ICtrlUsuario {
     
     
     public  HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta) {
-    	OfertaLaboralHandler OLH  = OfertaLaboralHandler.getInstance();	
-    	OfertaLaboral ol = OLH.buscar(nombre_oferta);
-    	HashSet<DTOfertaExtendidoSinPConK> infoOLVisitante = ol.infoOfertaLaboralVisitante();
+    	CtrlOferta COL;
+    	HashSet<DTOfertaExtendidoSinPConK> infoOLVisitante = COL.infoOfertaLaboralVisitante();
     	return infoOLVisitante;
     }
     
