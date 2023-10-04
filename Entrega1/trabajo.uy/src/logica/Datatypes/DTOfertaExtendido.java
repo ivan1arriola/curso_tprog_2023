@@ -59,9 +59,7 @@ public class DTOfertaExtendido {
 		return departamento;
 	}
 	
-	public String getCiudad() {
-		return ciudad;
-	}
+	public String getCiudad() { return ciudad;	}
 	
 	public EstadoOL getEstado() { return estado; }
 	
