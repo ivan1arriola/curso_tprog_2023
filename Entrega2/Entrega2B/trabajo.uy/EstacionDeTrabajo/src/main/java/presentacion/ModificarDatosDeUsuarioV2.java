@@ -17,7 +17,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
@@ -39,7 +43,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	    private ICtrlUsuario icu;
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
-	    private JComboBox listarUsuarios;
+	    private JComboBox<String> listarUsuarios;
 	    
 	    private AltaDePostulante AltaDePostulanteInternalFrame;
 	    private AltaDeEmpresa AltaDeEmpresaInternalFrame;
@@ -75,7 +79,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
-        setTitle("Alta de Usuario");
+        setTitle("Modificar Datos de Usuario");
         setBounds(10, 40, 408, 186);
         getContentPane().setLayout(null);
         
@@ -96,11 +100,59 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 		getContentPane().add(btnCancelar);
 	
 		JButton modificarBtn = new JButton("Modificar");
+		modificarBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		modificarBtn.setBounds(63, 121, 111, 23);
 		getContentPane().add(modificarBtn);
 	
-		JComboBox listarUsuarios = new JComboBox();
+		listarUsuarios = new JComboBox<>();
+		listarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+            		
+	                    HashSet<String> nicks = icu.listarNicknamesUsuarios();
+	
+	                    String selectedUsuario = (String) listarUsuarios.getSelectedItem();
+	                    
+	                    if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0 ) { 
+	                    	
+	    	                DTUsuario dtusr = icu.obtenerDatosUsuario(selectedUsuario);
+	    	                String tipo;
+	    	                if(dtusr instanceof DTEmpresa) {
+	    	                	tipo = "Empresa";
+	    	                }
+	    	                else {
+	    	                	tipo = "Postulante";
+	    	                }
+	                    } 
+                    } catch (Exception ex) {
+                    System.err.println("Error al obtener los usuarios");
+                }
+				
+			}
+		});
 		listarUsuarios.setBounds(63, 56, 264, 22);
 		getContentPane().add(listarUsuarios);
+		
 }
+    public void actualizar() {
+    	listarUsuarios.removeAllItems(); 
+        
+        //comboBoxOfertas.removeAllItems(); 
+        HashSet<String> usuario = icu.listarEmpresas();
+        List<String> empresasSorted = new ArrayList<>(empresas);
+        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        listarUsuarios.addItem(" ");
+        for (String nickname : empresasSorted) {
+        	
+        	listarUsuarios.addItem(nickname);
+
+        }
+
+        revalidate(); // Actualizar la interfaz gráfica
+    }
+		
 }
