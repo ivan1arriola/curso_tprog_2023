@@ -142,7 +142,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return e.compraPaquete(paq);
 	}
 	
-	boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, String dep, LocalDate fechaA, HashSet<String> keys, String paquete) {
+	public boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, String dep, LocalDate fechaA, HashSet<String> keys, String paquete) {
 		PaqueteHandler PH = PaqueteHandler.getInstance();
 		Paquete paq = PH.buscar(paquete);
 		UsuarioHandler UH = UH.getInstance();
@@ -152,7 +152,7 @@ public class CtrlOferta implements ICtrlOferta{
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		TOH.buscar(tipo);
 		if(!ofer) {
-			OfertaLaboral ol = e.altaOfertaLaboral(tipo, nombre, descripcion, horario, remun, ciu, dep, fechaA, keys, paq);
+			OfertaLaboral ol = e.altaOfertaLaboralConPaquete(tipo, nombre, descripcion, horario, remun, ciu, dep, fechaA, keys, paq);
 			OLH.agregar(ol);
 		}
 	}
