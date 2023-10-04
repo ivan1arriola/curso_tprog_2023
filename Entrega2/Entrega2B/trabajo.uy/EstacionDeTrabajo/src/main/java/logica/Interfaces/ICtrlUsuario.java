@@ -54,47 +54,49 @@ public interface ICtrlUsuario {
     
     // NUEVAS OPERACIONES
     
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick);
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick); // PRONTA
     
-    public abstract DTUsuario obtenerDatosUsuarioVisitantes(String nick);
+    public abstract DTUsuario obtenerDatosUsuarioVisitantes(String nick); // PRONTA
     
-    public abstract void cerrarSesion(String nickname);
+    public abstract void cerrarSesion(String nickname); // PRONTA
     
-    public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta);
+    public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta); // PRONTA
     
-    public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer);
+    public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer); // PRONTA
     
-    public abstract DTPaquete obtenerDatosPaquete(String paq);
+    public abstract DTPaquete obtenerDatosPaquete(String paq); // PRONTA
     
-    public abstract boolean  iniciarSesionCorreo(String email, String contrasenia);
+    public abstract boolean  iniciarSesionCorreo(String email, String contrasenia); // NO HACERLA
+    public abstract boolean iniciarSesionNickname(String nickname, String contrasenia); // NO HACERLA
     
-    public abstract boolean iniciarSesionNickname(String nickname, String contrasenia);
+    public abstract boolean validarCredenciales(String id, String contraseña); // NUEVA OPERACION
     
-    public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad);
-    
-    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad);
-    
-    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
-    
-    public abstract void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
-    
-    public abstract void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
-    
-    public abstract void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion);
-
-    public abstract boolean tieneURL(String nickname); 
-    
-    public abstract boolean hayPostulacionW(String postulante_nick, String ofer);
-    
-    public abstract void altaEmpresaURLyImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen);
      
-    public abstract void altaPostulanteImagen(String nick, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen);
+    public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
-    public abstract void altaEmpresaImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen);
+    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
+    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion); // PRONTA
+    
+    public abstract void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion); // PRONTA
+    
+    public abstract void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion); // PRONTA
+    
+    public abstract void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion); // PRONTA
+
+    public abstract boolean tieneURL(String nickname);  // PRONTA
+    
+    public abstract boolean hayPostulacionW(String postulante_nick, String ofer); // PRONTA
+    
+    public abstract boolean altaEmpresaURLyImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen); // PRONTA
+     
+    public abstract boolean altaPostulanteImagen(String nick, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen); // PRONTA
+     
+    public abstract boolean altaEmpresaImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen); // PRONTA
+     
     public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta);
     
-    public abstract HashSet<String> listarOfertasLaboralesConfirmadas();
+    public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e); 
     
     public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
     
