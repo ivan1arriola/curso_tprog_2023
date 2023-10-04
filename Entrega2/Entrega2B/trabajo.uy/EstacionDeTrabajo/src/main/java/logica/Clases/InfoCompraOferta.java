@@ -1,12 +1,17 @@
 package main.java.logica.Clases;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class InfoCompraOferta {
-	private Integer cant_restante;
-
-	public InfoCompraOferta(Integer can_res) { this.cant_restante = can_res; } //Constructor
-	public Integer getCant_res() { return cant_restante; }
-	public void setCant_res(Integer cant_rest) { cant_restante = cant_rest; }
+	private int cant_restante;
+	private HashSet<TipoOferta> tipoOfertas;
+	
+	public InfoCompraOferta(TipoOferta t, int can_res) { 
+		this.cant_restante = can_res;
+		tipoOfertas.add(t);
+	} //Constructor
+	public int getCant_res() { return cant_restante; }
+	public void setCant_res(int cant_rest) { cant_restante = cant_rest; }
 	
 }
