@@ -180,6 +180,26 @@ public class AceptarOferta extends JInternalFrame {
         getContentPane().add(Rechazar, gbc_Rechazar);
         
         
+        comboBoxOfertas.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+
+    			ofertaDetalle.setText("");
+    			
+
+	                if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
+	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
+
+	                    DTOfertaExtendido dto = ICO.obtenerOfertaLaboral(selectedOferta);
+	                	ofertaDetalle.append(dto.toString());
+	                	ofertaDetalle.setCaretPosition(0);     
+	 
+	                }
+
+	                
+	                
+    		} });   
+        
+        
         
         Rechazar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -210,24 +230,7 @@ public class AceptarOferta extends JInternalFrame {
         });
         
         
-        comboBoxOfertas.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-
-    			ofertaDetalle.setText("");
-    			
-
-	                if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
-	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
-
-	                    DTOfertaExtendido dto = ICO.obtenerOfertaLaboral(selectedOferta);
-	                	ofertaDetalle.append(dto.toString());
-	                	ofertaDetalle.setCaretPosition(0);     
-	 
-	                }
-
-	                
-	                
-    		} });   
+        
     
 
 }
