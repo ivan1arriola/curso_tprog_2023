@@ -1,4 +1,5 @@
 package main.java.logica.Datatypes;
+import java.time.LocalDate;
 import java.util.Set;
 	
 public class DTPaquete {
@@ -8,14 +9,16 @@ public class DTPaquete {
 	private int validez;
 	private String descripcion;
 	private Set<DTCantTO> tiposDePub;
+	private LocalDate fechaA;
 	
-	public DTPaquete(String nomb, float c, float d, int v, String desc, Set<DTCantTO> tdp) {
+	public DTPaquete(String nomb, float c, float d, int v, String desc, Set<DTCantTO> tdp, LocalDate fA) {
 		nombre = nomb;
 		costo = c;
 		descuento = d;
 		validez = v;
 		descripcion = desc;
 		tiposDePub = tdp;
+		fechaA = fA;
 	}
 	
 	public String getNombre() {
@@ -41,4 +44,9 @@ public class DTPaquete {
 	public Set<DTCantTO> getTiposDePub() {
 	    return tiposDePub;
 	}
+
+	public LocalDate getFechaAlta() {
+		return fechaA;
+	}
+	
 }
