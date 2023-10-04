@@ -1,18 +1,12 @@
 package main.java.presentacion;
-
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Datatypes.DTHora;
+import main.java.logica.Datatypes.*;
 import main.java.logica.Enumerados.DepUY;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -20,16 +14,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.awt.event.ActionEvent;
 
 
-
-
-/**
- * JInternalFrame que permite consultar la información de un usuario del sistema.
- * @author TProg2017
- *
- */
 @SuppressWarnings("serial")
 public class AltaOfertaLaboral extends JInternalFrame {
 	private JTable table;
@@ -60,20 +48,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
         ICtrlOferta ico = fabrica.getICtrlOferta();
         ICU = icu;
         ICO = ico;
-    	// Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
+
         setResizable(true);
-        setIconifiable(true);
+        setIconifiable(false);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta Oferta Laboral");
-        setBounds(30, 30, 564, 505);
-        
-        
-        
-        
-        // Absolute layout
+        setBounds(30, 30, 550, 500);
         getContentPane().setLayout(null);
+   
         
         JLabel lblNewLabel = new JLabel("Listado Empresas");
         lblNewLabel.setBounds(21, 31, 191, 14);
@@ -84,6 +68,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(table);
         
         listadoKeywords = new JComboBox<String>();
+        
         listadoKeywords.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String k = (String) listadoKeywords.getSelectedItem();
@@ -233,7 +218,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 String desc = descripcion.getText();
                 
                 if(nomb.isEmpty() || ciu.isEmpty() || desc.isEmpty() || remuneracion.getText().isEmpty()) {
-                	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "No pueden existir campos vacíos.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+                	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "No pueden existir campos vacíos.", "ERROR - Alta de Oferta", JOptionPane.ERROR_MESSAGE);
                 }
                 else if(!nomb.matches("[a-zA-Z]+$")) {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
@@ -245,17 +230,22 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     
                     try {
                     	Float remu = Float.parseFloat(remuneracion.getText());
-                		try {
-                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks);
-                			if(!b) {
-                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                			}else {
-                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La oferta laboral se dio de alta exitosamente", "Alta Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
-                				limpiarFormulario();
-                			}
-                		} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
-                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this, e1.getMessage(), "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                		}   
+                    	
+                    	if(remu<=0) {JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                    	} else {
+	                		try {
+	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks);
+	                			if(!b) {
+	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+	                			}else {
+	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La oferta laboral se dio de alta exitosamente", "Alta Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+	                				limpiarFormulario();
+	                			}
+	                		} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
+	                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this, e1.getMessage(), "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+	                		}   
+	                		
+                    }
                     } catch (NumberFormatException e1) {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     }
@@ -301,25 +291,26 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(listadoDepartamentos);
         
         listadoDepartamentos.addItem("Artigas");
-        listadoDepartamentos.addItem("Salto");
-        listadoDepartamentos.addItem("Paysandú");
-        listadoDepartamentos.addItem("RioNegro");
-        listadoDepartamentos.addItem("Soriano");
+        listadoDepartamentos.addItem("Canelones");
+        listadoDepartamentos.addItem("Cerro Largo");
         listadoDepartamentos.addItem("Colonia");
-        listadoDepartamentos.addItem("Rivera");
-        listadoDepartamentos.addItem("Tacuarembo");
         listadoDepartamentos.addItem("Durazno");
         listadoDepartamentos.addItem("Flores");
         listadoDepartamentos.addItem("Florida");
-        listadoDepartamentos.addItem("SanJosé");
-        listadoDepartamentos.addItem("Canelones");
-        listadoDepartamentos.addItem("Montevideo");
-        listadoDepartamentos.addItem("CerroLargo");
-        listadoDepartamentos.addItem("TreintaYTres");
         listadoDepartamentos.addItem("Lavalleja");
-        listadoDepartamentos.addItem("Rocha");
         listadoDepartamentos.addItem("Maldonado");
-        
+        listadoDepartamentos.addItem("Montevideo");
+        listadoDepartamentos.addItem("Paysandú");
+        listadoDepartamentos.addItem("RioNegro");
+        listadoDepartamentos.addItem("Rivera");
+        listadoDepartamentos.addItem("Rocha");
+        listadoDepartamentos.addItem("Salto");
+        listadoDepartamentos.addItem("SanJosé");
+        listadoDepartamentos.addItem("Soriano");
+        listadoDepartamentos.addItem("Tacuarembo");
+        listadoDepartamentos.addItem("TreintaYTres");
+
+       
         ciudad = new JTextField();
         ciudad.setBounds(414, 298, 109, 20);
         getContentPane().add(ciudad);
@@ -404,19 +395,29 @@ public class AltaOfertaLaboral extends JInternalFrame {
         HashSet<String> empresas = ICU.listarEmpresas();
         HashSet<String> keys = ICO.listarKeywords();
         
+        List<String> keysSorted = new ArrayList<>(keys);
+        Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         // listadoKeywords.addItem("");
-        for(String elemento1 : keys) {
+        
+        for(String elemento1 : keysSorted) {
         	listadoKeywords.addItem(elemento1);
         }
         
         listadoEmpresas.addItem("");
-        for(String elemento : empresas) {
+        List<String> empresaSorted = new ArrayList<>(empresas);
+        Collections.sort(empresaSorted, String.CASE_INSENSITIVE_ORDER);
+                
+        for(String elemento : empresaSorted) {
         	listadoEmpresas.addItem(elemento);
         }
         
         HashSet<String> tiposDePub = ICO.listarTipoDePublicaciones();
+        List<String> tipoSorted = new ArrayList<>(tiposDePub);
+        Collections.sort(tipoSorted, String.CASE_INSENSITIVE_ORDER);
+     
+        
 		listadoOfertas.removeAllItems();
-		for (String elemento : tiposDePub) {
+		for (String elemento : tipoSorted) {
 			listadoOfertas.addItem(elemento);
 		}
 	}
