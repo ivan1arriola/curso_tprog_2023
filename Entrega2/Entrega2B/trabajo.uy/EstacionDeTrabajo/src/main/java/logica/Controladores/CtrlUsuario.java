@@ -412,10 +412,25 @@ public class CtrlUsuario implements ICtrlUsuario {
 		
     }
 
-    /*
+    
     public HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta) {
-    	
-    }*/
+    	HashSet<String> res = new HashSet<>();
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Empresa empresa = (Empresa) UH.buscarNick(nickname_e);
+    	HashMap<String, Usuario> usuarios = UH.obtenerNick();
+    	for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+    	    Usuario u = entry.getValue();
+    	    if ( !(u.esEmpresa()) ) {
+    	    	Postulante p = (Postulante) u;
+    	    	boolean esta = p.obtenerPostulantesDeOferta(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
+    	    	if (esta) {
+    	    		res.add(p.getNickname());
+    	    	}
+    	    }
+    	}
+    	return res;
+  		
+    }
 
    public HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e) {
 	    UsuarioHandler UH = UsuarioHandler.getInstance();

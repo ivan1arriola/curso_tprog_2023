@@ -66,12 +66,10 @@ public interface ICtrlUsuario {
     
     public abstract DTPaquete obtenerDatosPaquete(String paq); // PRONTA
     
-    public abstract boolean  iniciarSesionCorreo(String email, String contrasenia); // NO HACERLA
-    public abstract boolean iniciarSesionNickname(String nickname, String contrasenia); // NO HACERLA
+    // public abstract boolean  iniciarSesionCorreo(String email, String contrasenia); // NO HACERLA
+    // public abstract boolean iniciarSesionNickname(String nickname, String contrasenia); // NO HACERLA
+    public abstract boolean validarCredenciales(String id, String contraseña); // NUEVA OPERACION que reemplaza las 2 anteriores
     
-    public abstract boolean validarCredenciales(String id, String contraseña); // NUEVA OPERACION
-    
-     
     public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
     public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
@@ -94,10 +92,10 @@ public interface ICtrlUsuario {
      
     public abstract boolean altaEmpresaImagen(String nick, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen); // PRONTA
      
-    public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta);
+    public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta); // PRONTA
     
-    public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e); 
+    public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e);  // PRONTA
     
-    public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
+    public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion); // PRONTA
     
 }
