@@ -18,20 +18,19 @@ public class TipoOfertaHandler {
 		return tOfertaHandler;
 	}
 	
-	public void agregar(TipoOferta tipoOferta) {
-        tipoOfertas.put(tipoOferta.getNombre(),tipoOferta);
-    }
-    
-    public HashMap<String, TipoOferta> obtener() {
-        return tipoOfertas;
-    }
-	
     public boolean existe(String nombre) {
         return tipoOfertas.containsKey(nombre);
+    }
+	
+	public void agregar(TipoOferta tipoOferta) {
+        tipoOfertas.put(tipoOferta.getNombre(),tipoOferta);
     }
     
     public TipoOferta buscar(String nombre) {
     	return tipoOfertas.get(nombre);
     } 
     
+    public HashMap<String, TipoOferta> obtener() {
+        return tipoOfertas;
+    }
 }

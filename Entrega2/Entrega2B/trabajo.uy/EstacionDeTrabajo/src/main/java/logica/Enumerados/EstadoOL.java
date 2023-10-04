@@ -1,3 +1,3 @@
 package main.java.logica.Enumerados;
 
-public enum DepUY {Ingresada, Confirmada, Rechazada }
+public enum EstadoOL { Ingresada, Confirmada, Rechazada }
