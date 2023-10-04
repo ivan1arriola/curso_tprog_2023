@@ -5,21 +5,14 @@ public class DTUsuario {
     private String correo_electronico;
     private String apellido;
     private String nombre;
-    private String imagen;
+    private byte[] imagen;
 
-    public DTUsuario(String nickname, String correo_electronico, String apellido, String nombre) {
+    public DTUsuario(String nickname, String correo_electronico, String apellido, String nombre, byte[] img) {
         this.nickname = nickname;
         this.correo_electronico = correo_electronico;
         this.apellido = apellido;
         this.nombre = nombre;
-    }
-    
-    public DTUsuario(String nickname, String correo_electronico, String apellido, String nombre, String imagen) {
-        this.nickname = nickname;
-        this.correo_electronico = correo_electronico;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.imagen = imagen;
+        this.imagen = img;
     }
 
     @Override
@@ -43,7 +36,7 @@ public class DTUsuario {
         return nombre;
     }
     
-    public String getImagen() {
+    public byte[] getImagen() {
     	return imagen;
     }
 }
