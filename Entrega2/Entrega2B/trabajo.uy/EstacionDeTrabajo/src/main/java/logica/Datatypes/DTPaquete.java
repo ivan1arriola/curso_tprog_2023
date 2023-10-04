@@ -20,7 +20,7 @@ public class DTPaquete {
 		tiposDePub = tdp;
 		fechaA = fA;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
