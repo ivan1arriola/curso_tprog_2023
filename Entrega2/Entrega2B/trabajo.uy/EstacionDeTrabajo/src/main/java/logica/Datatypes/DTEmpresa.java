@@ -16,12 +16,9 @@ public class DTEmpresa extends DTUsuario {
         this.ofertasLaborales = dtOfertas;
     }
     
-
-
 	public Set<DTOfertaLaboral> getOfertasLaborales() {
         return ofertasLaborales;
     }
-
 
     public String getDescripcion() {
         return descripcion;
