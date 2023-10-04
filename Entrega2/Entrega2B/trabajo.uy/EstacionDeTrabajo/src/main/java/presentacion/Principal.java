@@ -139,8 +139,8 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);
         
         AltaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(550, 500);
-        AltaDeOfertaLaboralInternalFrame.setLocation(89, 77);
+        AltaDeOfertaLaboralInternalFrame.setSize(600, 650);
+        AltaDeOfertaLaboralInternalFrame.setLocation(50, 50);
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
         
