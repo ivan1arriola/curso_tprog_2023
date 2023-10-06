@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import main.java.logica.Interfaces.ICtrlUsuario;
+import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class AltaDePostulante extends JInternalFrame {
@@ -45,6 +46,8 @@ public class AltaDePostulante extends JInternalFrame {
     private JTextField tfAnio;
     private JLabel mail;
     private JTextField tfMail;
+    private JPasswordField pF;
+    private JPasswordField pFR;
 
     /**
      * Create the frame.
@@ -61,16 +64,16 @@ public class AltaDePostulante extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta de Postulante");
-        setBounds(10, 40, 357, 318);
+        setBounds(10, 40, 461, 393);
         getContentPane().setLayout(null);
         
         Nickname = new JLabel("Nickname:");
-        Nickname.setBounds(63, 12, 73, 15);
+        Nickname.setBounds(162, 12, 73, 15);
         Nickname.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(Nickname);
         
         tfNickname = new JTextField();
-        tfNickname.setBounds(141, 10, 201, 19);
+        tfNickname.setBounds(242, 10, 201, 19);
         tfNickname.setColumns(10);
         getContentPane().add(tfNickname);
                                                                         
@@ -78,14 +81,14 @@ public class AltaDePostulante extends JInternalFrame {
         // el nombre del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
         Nombre = new JLabel("Nombre:");
-        Nombre.setBounds(0, 39, 136, 25);
+        Nombre.setBounds(99, 41, 136, 25);
         Nombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(Nombre);
 
         // Una campo de texto (JTextField) para ingresar el nombre del usuario. 
         // Por defecto es posible ingresar cualquier string.
         tfNombre = new JTextField();
-        tfNombre.setBounds(141, 41, 201, 25);
+        tfNombre.setBounds(242, 41, 201, 25);
         getContentPane().add(tfNombre);
         tfNombre.setColumns(10);
                                                                 
@@ -93,24 +96,24 @@ public class AltaDePostulante extends JInternalFrame {
         // el apellido del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
         Apellido = new JLabel("Apellido:");
-        Apellido.setBounds(0, 76, 136, 19);
+        Apellido.setBounds(99, 76, 136, 19);
         Apellido.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(Apellido);
                                                         
         // Una campo de texto (JTextField) para ingresar el apellido del usuario. 
         // Por defecto es posible ingresar cualquier string.
         tfApellido = new JTextField();
-        tfApellido.setBounds(141, 78, 201, 19);
+        tfApellido.setBounds(242, 76, 201, 19);
         getContentPane().add(tfApellido);
         tfApellido.setColumns(10);
                                                                                                                                                                                 
         mail = new JLabel("Correo electrónico:");
-        mail.setBounds(0, 107, 136, 15);
+        mail.setBounds(99, 107, 136, 15);
         mail.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(mail);
         
         tfMail = new JTextField();
-        tfMail.setBounds(141, 109, 201, 19);
+        tfMail.setBounds(242, 107, 201, 19);
         tfMail.setToolTipText("");
         tfMail.setColumns(10);
         getContentPane().add(tfMail);
@@ -119,7 +122,7 @@ public class AltaDePostulante extends JInternalFrame {
         // la cédula del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
         Nacionalidad = new JLabel("Nacionalidad:");
-        Nacionalidad.setBounds(0, 138, 136, 19);
+        Nacionalidad.setBounds(99, 179, 136, 19);
         Nacionalidad.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(Nacionalidad);
 
@@ -127,43 +130,43 @@ public class AltaDePostulante extends JInternalFrame {
         // Por defecto es posible ingresar cualquier string.
         // Al campo se le incluye un Tooltip que, al pasar el mouse por encima, despliega un mensaje.
         tfNacionalidad = new JTextField();
-        tfNacionalidad.setBounds(141, 138, 201, 19);
+        tfNacionalidad.setBounds(242, 179, 201, 19);
         tfNacionalidad.setToolTipText("");
         tfNacionalidad.setColumns(10);
         getContentPane().add(tfNacionalidad);
 
 		lblIngreseCi_1 = new JLabel("Fecha de nacimiento");
-		lblIngreseCi_1.setBounds(100, 162, 146, 15);
+		lblIngreseCi_1.setBounds(158, 210, 146, 15);
 		lblIngreseCi_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		getContentPane().add(lblIngreseCi_1);
 		
 		año = new JLabel("Año:");
-		año.setBounds(104, 184, 32, 15);
+		año.setBounds(203, 235, 32, 15);
 		año.setHorizontalAlignment(SwingConstants.RIGHT);
 		getContentPane().add(año);
 		
 		tfAnio = new JTextField();
-		tfAnio.setBounds(141, 182, 201, 19);
+		tfAnio.setBounds(242, 233, 201, 19);
 		tfAnio.setColumns(10);
 		getContentPane().add(tfAnio);
 		
 		mes = new JLabel("Mes:");
-		mes.setBounds(102, 208, 34, 15);
+		mes.setBounds(203, 266, 34, 15);
 		mes.setHorizontalAlignment(SwingConstants.RIGHT);
 		getContentPane().add(mes);
 		
 		tfMes = new JTextField();
-		tfMes.setBounds(141, 206, 201, 19);
+		tfMes.setBounds(242, 264, 201, 19);
 		tfMes.setColumns(10);
 		getContentPane().add(tfMes);
 		
 		dia = new JLabel("Dia:");
-		dia.setBounds(108, 232, 28, 15);
+		dia.setBounds(203, 297, 28, 15);
 		dia.setHorizontalAlignment(SwingConstants.RIGHT);
 		getContentPane().add(dia);
 		
 		tfDia = new JTextField();
-		tfDia.setBounds(141, 230, 201, 19);
+		tfDia.setBounds(242, 295, 201, 19);
 		tfDia.setColumns(10);
 		getContentPane().add(tfDia);this.
         
@@ -171,7 +174,7 @@ public class AltaDePostulante extends JInternalFrame {
         // Dado que el código de registro tiene cierta complejidad, conviene delegarlo
         // a otro método en lugar de incluirlo directamente de el método actionPerformed 
         btnAceptar = new JButton("Aceptar");
-        btnAceptar.setBounds(0, 254, 192, 25);
+        btnAceptar.setBounds(12, 324, 223, 25);
         btnAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 cmdRegistroUsuarioActionPerformed(arg0);
@@ -182,14 +185,33 @@ public class AltaDePostulante extends JInternalFrame {
         // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
         // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
         btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(197, 254, 145, 25);
+        btnCancelar.setBounds(244, 324, 195, 25);
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 limpiarFormulario();
                 setVisible(false);
             }
         });
-                                                                                                                                                                                        getContentPane().add(btnCancelar);
+        
+	    getContentPane().add(btnCancelar);
+	    
+	    JLabel Contraseña = new JLabel("Contraseña:");
+	    Contraseña.setHorizontalAlignment(SwingConstants.RIGHT);
+	    Contraseña.setBounds(99, 134, 136, 19);
+	    getContentPane().add(Contraseña);
+	    
+	    JLabel ReContraseña = new JLabel("Confirmación de contraseña:");
+	    ReContraseña.setHorizontalAlignment(SwingConstants.RIGHT);
+	    ReContraseña.setBounds(10, 158, 225, 19);
+	    getContentPane().add(ReContraseña);
+	    
+	    pF = new JPasswordField();
+	    pF.setBounds(242, 134, 201, 19);
+	    getContentPane().add(pF);
+	    
+	    pFR = new JPasswordField();
+	    pFR.setBounds(242, 158, 201, 19);
+	    getContentPane().add(pFR);
     }
 
     // Este método es invocado al querer registrar un usuario, funcionalidad
@@ -210,12 +232,14 @@ public class AltaDePostulante extends JInternalFrame {
         String mesU = tfMes.getText();
         String diaU = tfDia.getText();
         String nacionalidadU = this.tfNacionalidad.getText();
+        String contraseña = this.pF.getText();
+        String recontraseña = this.pF.getText();
 
         if (checkFormulario()) {
             	LocalDate fechaU = LocalDate.of(Integer.parseInt(anioU), Integer.parseInt(mesU), Integer.parseInt(diaU));
 	        	
             	try {
-	        		boolean exito = ICU.altaPostulante(nicknameU, nombreU, apellidoU, correoU, fechaU, nacionalidadU);
+	        		boolean exito = ICU.altaPostulante(nicknameU, contraseña, nombreU, apellidoU, correoU, fechaU, nacionalidadU);
 	        		JOptionPane.showMessageDialog(this, "El usuario se ha creado con éxito.", "Alta de Postulante", JOptionPane.INFORMATION_MESSAGE);
 	        	} catch(Exception e) {
 	        		JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR - Alta de Empresa", JOptionPane.ERROR_MESSAGE);
@@ -241,13 +265,15 @@ public class AltaDePostulante extends JInternalFrame {
         String mesU = this.tfMes.getText();
         String diaU = this.tfDia.getText();
         String nacionalidadU = this.tfNacionalidad.getText();
+        String contraseña = this.pF.getText();
+        String recontraseña = this.pFR.getText();
 
         if (nicknameU.isEmpty() || nombreU.isEmpty() || apellidoU.isEmpty() || correoU.isEmpty() || anioU.isEmpty() || mesU.isEmpty() || diaU.isEmpty() || nacionalidadU.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos.", "ERRROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
-        if(!nombreU.matches("[a-zA-Z]+$")) {
+        if(!nombreU.matches("[\\p{L}]+$")) {
         	JOptionPane.showMessageDialog(this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
         	return false;
         }
@@ -259,6 +285,11 @@ public class AltaDePostulante extends JInternalFrame {
         
         if(!correoU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
         	JOptionPane.showMessageDialog(this, "El correo electrónico indicado no es válido.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
+        	return false;
+        }
+        
+        if(!contraseña.equals(recontraseña)) {
+        	JOptionPane.showMessageDialog(this, "La contraseña no coincide con su confirmación.", "ERROR - Alta de Postulante", JOptionPane.ERROR_MESSAGE);
         	return false;
         }
         
@@ -312,6 +343,8 @@ public class AltaDePostulante extends JInternalFrame {
         tfNombre.setText("");
         tfApellido.setText("");
         tfMail.setText("");
+        pF.setText("");
+        pFR.setText("");
         tfAnio.setText("");
         tfMes.setText("");
         tfDia.setText("");
