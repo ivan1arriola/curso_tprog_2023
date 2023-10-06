@@ -231,7 +231,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     		return user;
     	}
     	else {
-    		DTUsuario userEsp = u.obtenerDatosUsuarioEspecial();
+    		DTUsuario userEsp = u.obtenerDatosUsuarioEspecial(UsuarioNickname, nick);
     		return userEsp;
     	}	
     }
@@ -258,7 +258,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante u = (Postulante) UH.buscarNick(postulante_nick);
-    	DTPostulacion datosPostu = u.obtenerDatosPostulacionW(ofer);
+    	DTPostulacion datosPostu = u.obtenerDatosPostulacion(postulante_nick, ofer);
     	return datosPostu;
     }
     

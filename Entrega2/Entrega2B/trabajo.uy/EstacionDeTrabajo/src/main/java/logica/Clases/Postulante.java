@@ -24,6 +24,14 @@ public class Postulante extends Usuario{
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
     }
+    
+    public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena);// super es para llamar al constructor de la clase padre
+        this.fecha_nac = fecha_nac;
+        this.nacionalidad = nacionalidad;
+        this.postulaciones = new HashSet<Postulacion>();
+    }
+
 
 
     // Getters
