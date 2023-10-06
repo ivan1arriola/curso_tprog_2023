@@ -90,7 +90,7 @@ public class Postulante extends Usuario{
     }
 
     // corregido, se pasan mas parametros para la ejecucion
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
         if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();
             String nombre = getNombre();

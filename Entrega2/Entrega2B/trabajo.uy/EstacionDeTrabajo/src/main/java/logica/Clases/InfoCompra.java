@@ -17,7 +17,7 @@ public class InfoCompra {
     private HashSet<InfoCompraOferta> infoCompraOfertas;
 
     // constructor
-    public InfoCompra (LocalDate fechaCompra, Paquete pack,float costo,Empresa empres,HashSet<InfoCompraOferta> ICO) {
+    public InfoCompra (LocalDate fechaCompra, float costo, Paquete pack, Empresa empres,HashSet<DTCantTO> S) {
         // atributos
         this.fechaCompra = fechaCompra;
         this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
@@ -25,7 +25,13 @@ public class InfoCompra {
         // relaciones
         this.empres = empres;
         this.paquete = pack;
-        this.infoCompraOfertas = ICO;
+        
+        TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+        for (DTCantTO elemento : S) {
+            TipoOferta to = TOH.buscar(elemento.getNombre());
+            InfoCompraOferta ico = new InfoCompraOferta(to,elemento.getCantidad());
+            infoCompraOfertas.add(ico);
+        }
     }
 
     // Getters
@@ -34,7 +40,7 @@ public class InfoCompra {
     public LocalDate getFechaVencimiento() {return fechaVencimiento;}
     public Empresa getEmpresa() {return empres;}
     public float getCosto() {return costo;}
-    public InfoCompraOferta getICO() {return infoCompraOfertas;}
+    public HashSet<InfoCompraOferta> getICO() {return infoCompraOfertas;}
 
 
     // Setters

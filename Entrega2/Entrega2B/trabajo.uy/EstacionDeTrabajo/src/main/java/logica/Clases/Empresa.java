@@ -15,6 +15,7 @@ import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
+import main.java.logica.Manejadores.PaqueteHandler;
 
 
 public class Empresa extends Usuario {
@@ -193,7 +194,8 @@ public class Empresa extends Usuario {
     	LocalDate fa = paq.getfechaAlta();
     	int val = paq.getValidez();
     	HashSet<DTCantTO> S = paq.obtenerDTSCantTO();
-    	InfoCompra io = new InfoCompra(fa,costo,fa.plusDays(val),S);
+    	
+    	InfoCompra io = new InfoCompra(fa,costo,paq,this,S);
     	infoCompras.add(io);
     	return true;
     }
