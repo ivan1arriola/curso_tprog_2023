@@ -7,7 +7,7 @@ public class DTEmpresa extends DTUsuario {
 	
     private String descripcion;
     private String url;
-    private Set<DTOfertaExtendido> ofertasLaborales; 
+    private Set<DTOfertaExtendido> ofertasLaborales;
 
 
     public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String descripcion, String url, HashSet<DTOfertaExtendido> dtOfertas, byte[] imagen) {

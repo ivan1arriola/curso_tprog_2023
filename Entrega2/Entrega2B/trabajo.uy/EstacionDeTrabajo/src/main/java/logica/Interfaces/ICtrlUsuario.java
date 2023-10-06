@@ -56,6 +56,8 @@ public interface ICtrlUsuario {
     // ################################  NUEVAS OPERACIONES ################################ 
     // -------------------------------------------------------------------------------------
     
+    public abstract HashSet<String> listarKeywords(String nombre_oferta);
+    
     public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick); // PRONTA
     
     public abstract DTUsuario obtenerDatosUsuarioVisitantes(String nick); // PRONTA
