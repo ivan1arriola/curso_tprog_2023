@@ -11,7 +11,7 @@ public class DTUsuario {
     public DTUsuario(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] img) {
         this.nickname = nickname;
         this.correo_electronico = correo_electronico;
-        this.apellido = apellido;
+        this.apellido = apellido; 
         this.nombre = nombre;
         this.contraseña = contraseña;
         this.imagen = img;

@@ -202,7 +202,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		getContentPane().add(fechaActual);
 		
 		
-		// SETEO LOS DATOS DEL USUARUO QUE YA ESTAN EN EL SISTEMA
+		// SETEO LOS DATOS DEL USUARUO QUE YA ESTAN EN EL SISTEMA 
 		DTUsuario dtuser = (DTUsuario) icu.obtenerDatosUsuario(postulante.getNickname()); // obtengo los datos
 		nombreActual.setText(dtuser.getNombre());
 		apellidoActual.setText(dtuser.getApellido());

@@ -196,7 +196,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		descripcionNuevo.setBounds(125, 251, 128, 69);
 		getContentPane().add(descripcionNuevo);
 		
-		JTextArea descripcionActual = new JTextArea();
+		JTextArea descripcionActual = new JTextArea(); 
 		descripcionActual.setBounds(265, 251, 128, 69);
 		descripcionActual.setEditable(false);
 		getContentPane().add(descripcionActual);

@@ -39,7 +39,7 @@ import javax.swing.JScrollPane;
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-	    private ICtrlUsuario icu;
+	    private ICtrlUsuario icu; 
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    private JComboBox<String> listarUsuarios;
