@@ -222,6 +222,16 @@ public class CtrlUsuario implements ICtrlUsuario {
     // ################################  NUEVAS OPERACIONES ################################ 
     // -------------------------------------------------------------------------------------
     
+    public HashSet<String> listarKeywords(String nombre_oferta){
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral ol = OLH.buscar(nombre_oferta);
+    	List<Keyword> keywords = ol.getKeywords();
+    	HashSet<String> res = new HashSet<String>();
+    	for (int i = 0; i < keywords.size(); i++) {
+    		res.add(keywords.get(i).getNombre());
+    	}
+    	return res;
+    }
     
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();

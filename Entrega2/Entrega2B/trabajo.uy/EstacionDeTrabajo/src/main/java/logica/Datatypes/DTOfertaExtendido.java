@@ -1,6 +1,6 @@
 package main.java.logica.Datatypes;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.HashSet;
 
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
@@ -16,11 +16,11 @@ public class DTOfertaExtendido {
 	private DepUY departamento;
 	private String ciudad;
 	private EstadoOL estado;
-	private Set<DTPostulacion> postulaciones;
+	private HashSet<DTPostulacion> postulaciones;
 	private byte[] imagen; 
 	
 	
-	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img) {
+	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, HashSet<DTPostulacion> post, byte[] img) {
 		nombre = nomb;
 		descripcion = desc;
 		fecha_de_alta = fechaA;
@@ -68,15 +68,15 @@ public class DTOfertaExtendido {
 	
 	public EstadoOL getEstado() { return estado; }
 	
-	public Set<DTPostulacion> getPostulaciones() {
+	public HashSet<DTPostulacion> getPostulaciones() {
 		return postulaciones;
 	}
 	
 	public byte[] getImagen() { return imagen; }
 	
 	@Override
-    public String toString() {
-        
+	public String toString() {
+		
 		String texto = "Nombre: " + nombre + "\n" +
 				"Descripción: " + descripcion + "\n" +
 				"Fecha de alta: " + fecha_de_alta + "\n" +
@@ -88,7 +88,7 @@ public class DTOfertaExtendido {
 				"Estado: " + estado;
 
 		return texto;
-    }
+	}
 	
 }
 //
