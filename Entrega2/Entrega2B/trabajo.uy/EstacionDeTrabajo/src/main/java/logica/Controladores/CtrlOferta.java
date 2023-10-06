@@ -202,8 +202,15 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
-		// FALTA REALIZAR
-		return null;
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		boolean b = ol.existePostulacion(nombre_postulante);
+		if(b) {
+			return ol.obtenerDatosPostulacion(nombre_postulante);
+		}
+		else {
+			return ol.infoOfertaLaboralVisitante();
+		}
 	}
 	public DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
 		// FALTA REALIZAR
