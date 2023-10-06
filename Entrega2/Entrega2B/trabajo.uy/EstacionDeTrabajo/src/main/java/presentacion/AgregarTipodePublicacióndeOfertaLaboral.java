@@ -54,7 +54,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         PaquetesVisualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if(PaquetesVisualizar.getSelectedIndex()!=-1) {
+        		if(PaquetesVisualizar.getSelectedIndex()!=-1 && PaquetesVisualizar.getSelectedIndex()!=0) {
         			
         			String paqElegido =  (String) PaquetesVisualizar.getSelectedItem();
         	        HashSet<String> publicaciones = ICO.listarTipoDePublicaciones();
