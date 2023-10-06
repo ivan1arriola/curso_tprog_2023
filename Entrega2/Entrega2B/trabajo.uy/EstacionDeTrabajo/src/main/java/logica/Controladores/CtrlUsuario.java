@@ -25,7 +25,7 @@ import main.java.logica.Controladores.*;
 
 public class CtrlUsuario implements ICtrlUsuario {
 	
-    public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String nombreE, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+    public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean b1 = UH.existeNick(nick);
     	boolean b2 = UH.existeCorreo(mail);
@@ -43,7 +43,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	}
     	
     	if (!b1 && !b2) {
-    		Empresa e = new Empresa(nick, contraseña, nombre, apellido, mail, nombreE, desc, URL);
+    		Empresa e = new Empresa(nick, nombre, apellido, mail, contraseña, desc, URL);
     		UH.agregar(e);
     	}
     	
@@ -68,7 +68,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	}
     	
     	if (!b1 && !b2) {
-    		Empresa e = new Empresa(nick, nombre, apellido, mail, nombreE, desc);
+    		Empresa e = new Empresa(nick, nombre, apellido, mail, nombreE, contraseña, desc);
     		UH.agregar(e);
     	}
     	return !b1 && !b2;
@@ -248,16 +248,16 @@ public class CtrlUsuario implements ICtrlUsuario {
     // public void cerrarSesion(String nickname) {    } NO EXISTE
     
     
-    public  HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta) {
-    	CtrlOferta COL;
-    	HashSet<DTOfertaExtendidoSinPConK> infoOLVisitante = COL.infoOfertaLaboralVisitante();
+    public  DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta) {
+    	CtrlOferta COL = new CtrlOferta();
+    	DTOfertaExtendidoSinPConK infoOLVisitante = COL.infoOfertaLaboralVisitante(nombre_oferta);
     	return infoOLVisitante;
     }
     
     
     public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Usuario u = UH.buscarNick(postulante_nick);
+    	Postulante u = (Postulante) UH.buscarNick(postulante_nick);
     	DTPostulacion datosPostu = u.obtenerDatosPostulacionW(ofer);
     	return datosPostu;
     }
@@ -375,11 +375,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     // deberia ser un bool en ves de void?
-    public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen) {
+    public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, String URL, byte[] imagen) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
     	if (!existe) {
-    		Empresa e = new Empresa(nick, contraseña, nombre, ap, mail, nombre, desc, URL, imagen); // falta agregarle el parametro img
+    		Empresa e = new Empresa(nick, nombre, ap, mail, contraseña, imagen, desc, URL); // falta agregarle el parametro img
     		UH.agregar(e);
     		return true;
     	}
@@ -389,7 +389,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     
     // deberia ser un bool en ves de void?
-    public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen) { 
+    public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String nacionalidad, byte[] imagen) { 
 	    UsuarioHandler UH = UsuarioHandler.getInstance();
 		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
 		if (!existe) {
@@ -401,11 +401,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
     
     // necesito otro constructor?
-    public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen) {
+    public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, byte[] imagen) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
 		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
 		if (!existe) {
-			Empresa e = new Empresa(nick, contraseña, nombre, ap, mail, nombre, desc, imagen); //  agregarle el parametro img
+			Empresa e = new Empresa(nick, nombre, ap, mail, contraseña, imagen, desc); //  agregarle el parametro img
 			UH.agregar(e);
 			return true;
 		}
@@ -417,13 +417,12 @@ public class CtrlUsuario implements ICtrlUsuario {
     public HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta) {
     	HashSet<String> res = new HashSet<>();
     	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Empresa empresa = (Empresa) UH.buscarNick(nickname_e);
     	HashMap<String, Usuario> usuarios = UH.obtenerNick();
     	for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
     	    Usuario u = entry.getValue();
     	    if ( !(u.esEmpresa()) ) {
     	    	Postulante p = (Postulante) u;
-    	    	boolean esta = p.obtenerPostulantesDeOferta(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
+    	    	boolean esta = p.existePostulacion(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
     	    	if (esta) {
     	    		res.add(p.getNickname());
     	    	}

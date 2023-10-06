@@ -268,13 +268,13 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 	
 	public void rechazoOL(String nombre_oferta) {
-		OfertaLaboralHandler OLH = OLH.getInstance();
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
 		ol.setEstado(EstadoOL.Rechazada);		
 	}
 	
 	public void aceptoOL(String nombre_oferta) {
-		OfertaLaboralHandler OLH = OLH.getInstance();
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
 		ol.setEstado(EstadoOL.Confirmada);
 	}
@@ -330,10 +330,6 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 		
 	}
-	
-
-	
-
 	
 	// REVISAR EXCEPCIONES, NICK Y NOMBRE !!!!!
 	// nombre es el nombre de la OfertaLaboral y nick el nickname del Usuario.

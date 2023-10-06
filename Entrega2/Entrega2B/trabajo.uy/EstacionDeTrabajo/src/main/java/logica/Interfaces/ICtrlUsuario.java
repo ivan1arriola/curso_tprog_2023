@@ -22,9 +22,9 @@ import main.java.logica.Enumerados.DepUY;
  */
 public interface ICtrlUsuario {
     
-    public abstract boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String nombreE, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
+    public abstract boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
 
-    public abstract boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String nombreE, String desc) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
+    public abstract boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
     
     public abstract boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
     
@@ -62,7 +62,7 @@ public interface ICtrlUsuario {
     
     public abstract void cerrarSesion(String nickname); // PRONTA
     
-    public abstract HashSet<DTOfertaExtendidoSinPConK> infoOfertaLaboralVisitante(String nombre_oferta); // PRONTA
+    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta); // PRONTA
     
     public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer); // PRONTA
     
@@ -88,11 +88,11 @@ public interface ICtrlUsuario {
     
     public abstract boolean hayPostulacionW(String postulante_nick, String ofer); // PRONTA
     
-    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña, String desc, String URL, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña1, String desc, String URL, byte[] imagen); // PRONTA
      
-    public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña, String nacionalidad, byte[] imagen); // PRONTA
+    public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña1, String nacionalidad, byte[] imagen); // PRONTA
      
-    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña, String desc, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña1, String desc, byte[] imagen); // PRONTA
      
     public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta); // PRONTA
     
