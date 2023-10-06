@@ -220,7 +220,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),nuevo);
+		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),nuevo, getPaquete(), nuevo);
 		return dtoe;
 	} 
 
