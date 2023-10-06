@@ -269,8 +269,9 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
        		}
        		
        		else {
-           		
-               	icu.ingresarDatosEditados(nombre, apellido, correo, pass, fecha, nac);
+       		    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, STRING CORREO String contraseña, LocalDate fecha_nac, String nacionalidad); // PRONTA
+
+               	icu.ingresarDatosEditadosPostulante(posulante.getNickname(), nombre, apellido, correo, pass, fecha, nac);
                	JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
                	setVisible(false);
                	limpiarFormulario();
