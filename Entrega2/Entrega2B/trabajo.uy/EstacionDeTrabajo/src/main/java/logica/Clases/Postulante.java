@@ -1,5 +1,6 @@
 package main.java.logica.Clases;
 
+import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
 
@@ -9,38 +10,41 @@ import main.java.logica.Clases.OfertaLaboral;
 
 
 public class Postulante extends Usuario{
-
+    // atributos
     private LocalDate fecha_nac;
     private String nacionalidad;
+    // relaciones
     private HashSet<Postulacion> postulaciones;
 
-
+    // constructor
     public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad,byte[] img) {
-    	super(nickname, nombre, apellido, correo_electronico, contrasena, img);
-        this.fecha_nac = fecha_nac;
-        this.nacionalidad = nacionalidad;
-        this.postulaciones = new HashSet<Postulacion>();
-    }
-    
-    public Postulante(String nickname, String contraseña, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
-        super(nickname, nombre, apellido, correo_electronico, contraseña);
+        super(nickname, nombre, apellido, correo_electronico, contrasena, img);// super es para llamar al constructor de la clase padre
         this.fecha_nac = fecha_nac;
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
     }
 
+
+    // Getters
+    public LocalDate getFecha_nac() { return fecha_nac; }
+    public HashSet<Postulacion> getPostulaciones() { return postulaciones; }
+    public String getNacionalidad() { return nacionalidad; }
+
+    // Setters
+    public void setFecha_nac(LocalDate fecha_nac) { this.fecha_nac = fecha_nac; }
+    public void setNacionalidad(String nacionalidad) { this.nacionalidad = nacionalidad; }
+    public void setPostulaciones(HashSet<Postulacion> postulaciones) { this.postulaciones = postulaciones; }
+
+    // Metodos
     public boolean esEmpresa() {
-        return false;
+        return false; // es postulante, no es empresa
     }
-
-    /* + obtenerDatosUsuario(nick : String): DTUsuario */
 
     public DTUsuario obtenerDatosUsuario() {
-    	DTPostulante postul = new DTPostulante(this.getNickname(), this.getCorreo_electronico(), this.getApellido(), this.getNombre(),this.getImagen(), fecha_nac, nacionalidad);
+        // hacer un DTPostulante
+        DTPostulante postul = new DTPostulante(this.getNickname(), this.getCorreo_electronico(), this.getApellido(), this.getNombre(),this.getImagen(), fecha_nac, nacionalidad);
         return postul;
     }
-
-    /* + crearPostulacion (cv : String, motivacion: String, fecha : DTFecha) : Postulacion */
 
     public Postulacion crearPostulacion (String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
         Postulacion p = new Postulacion(this, cv, motivacion, fecha, URLDocExtras, OferLab);
@@ -48,65 +52,77 @@ public class Postulante extends Usuario{
         return p;
     }
 
-    public HashSet<String> obtenerPostulantesDeOferta(String oferta){
-        HashSet<String> lista = new HashSet<String>();
-        if(postulaciones != null) {
-            for (Postulacion p : postulaciones){
-                if (p.obtenerNombreOfertaLaboral().equals(oferta)) {
-                    lista.add(getNombre()); 
-                    return lista;
-                }
-            }
-        }
-        return lista;
-    }
-
-    /* + existePostulacion(nombre : String) : Bool */
     public boolean existePostulacion(String nombre) {
         for (Postulacion postulacion : postulaciones) {
             String nombreOferta = postulacion.obtenerNombreOfertaLaboral();
             if (nombreOferta.equals(nombre)) {
-                return true;
+                return true; // si existe retorna true y sale de existepostulacion
             }
         }
         return false;
     }
-//    
-//    public boolean editarPostulacion(nombre : String, cvAbreviado: String, motivacion: String) {
-//    	
-//    }
+
+    public boolean editarPostulacion(String nombre,String  cvAbreviado,String motivacion) {
+        for (Postulacion postulacion : postulaciones) {
+            String nombreOferta = postulacion.obtenerNombreOfertaLaboral();
+            if (nombreOferta.equals(nombre)) {
+                postulacion.setCV(cvAbreviado);
+                postulacion.setMotivacion(motivacion);
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick,String ofer) {
+        // obtener para este postulante la postulacion si trabaja en la oferta
+        // si no existe retorno NULL
+        DTPostulacion respuesta = null;
+        for (Postulacion postulacion : postulaciones) {
+            String nombreOferta = postulacion.obtenerNombreOfertaLaboral();
+            if (nombreOferta.equals(ofer)) {
+                respuesta = postulacion.getDTPostulacion();
+                return respuesta;
+            }
+        }
+        return respuesta;
+    }
+
+    // corregido, se pasan mas parametros para la ejecucion
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
+        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+            System.out.println("The strings are equal.");
+        } else {
+            return obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); 
+        }
+    }
+
+    // esto es para el caso visitantes 
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
+        String nickname =  getNickname();
+        String nombre = getNombre();
+        String apellido = getApellido();
+        String correoElectronico = getCorreo_electronico();
+        byte[] imagen = getImagen();
+        LocalDate fecha_nac = getFecha_nac();
+        String nacionalidad = getNacionalidad();
+        DTPostulante postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
+        return postul;
+    }                                                                  
     
-    public LocalDate getFecha_nac() {
-        return fecha_nac;
-    }
+    // -----------------
 
-    public void setFecha_nac(LocalDate fecha_nac) {
-        this.fecha_nac = fecha_nac;
-    }
 
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-    
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
         
         if(postulaciones!=null) {
-	        for( Postulacion p : postulaciones){
-	            lista.add(p.obtenerNombreOfertaLaboral());
-	        }
+            for( Postulacion p : postulaciones){
+                lista.add(p.obtenerNombreOfertaLaboral());
+            }
         }
 
         return lista;
     }
-
-	@Override
-	public DTUsuario obtenerDatosUsuarioEspecial() {
-		// FALTA SE ARREGLE GIT Y ESTÁ EN LOS DE MATI
-		return null;
-	}
+ 
 }
