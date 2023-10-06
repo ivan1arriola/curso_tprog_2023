@@ -17,9 +17,10 @@ public class DTOfertaExtendido {
 	private String ciudad;
 	private EstadoOL estado;
 	private Set<DTPostulacion> postulaciones;
+	private byte[] imagen;
 	
 	
-	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post) {
+	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img) {
 		nombre = nomb;
 		descripcion = desc;
 		fecha_de_alta = fechaA;
@@ -30,6 +31,7 @@ public class DTOfertaExtendido {
 		ciudad = ciu;
 		estado = est;
 		postulaciones = post;
+		imagen = img;
 	}
 	
 	public String getNombre() {
@@ -69,6 +71,8 @@ public class DTOfertaExtendido {
 	public Set<DTPostulacion> getPostulaciones() {
 		return postulaciones;
 	}
+	
+	public byte[] getImagen() { return imagen; }
 	
 	@Override
     public String toString() {
