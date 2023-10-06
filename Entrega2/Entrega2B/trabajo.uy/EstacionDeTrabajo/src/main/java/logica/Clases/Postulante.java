@@ -88,12 +88,28 @@ public class Postulante extends Usuario{
         return respuesta;
     }
 
-    @Override 
-    public DTUsuario obtenerDatosUsuarioEspecial() {
-        // FALTA SE ARREGLE GIT Y ESTÁ EN LOS DE MATI
-        return null;
-    } 
+    // corregido, se pasan mas parametros para la ejecucion
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
+        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+            System.out.println("The strings are equal.");
+        } else {
+            return obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); 
+        }
+    }
 
+    // esto es para el caso visitantes 
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
+        String nickname =  getNickname();
+        String nombre = getNombre();
+        String apellido = getApellido();
+        String correoElectronico = getCorreo_electronico();
+        byte[] imagen = getImagen();
+        LocalDate fecha_nac = getFecha_nac();
+        String nacionalidad = getNacionalidad();
+        DTPostulante postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
+        return postul;
+    }                                                                  
+    
     // -----------------
 
 

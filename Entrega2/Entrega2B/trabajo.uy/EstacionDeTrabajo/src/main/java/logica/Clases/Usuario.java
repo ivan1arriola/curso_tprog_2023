@@ -55,8 +55,12 @@ public abstract class Usuario {
     public abstract DTUsuario obtenerDatosUsuario();
     
     @Override
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(); // operacion implementada en las subclases
-    
+    // corregido, se pasan mas parametros para la ejecucion
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
+
+    // esto es para el caso visitantes 
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
+
     // NO ESTA EN EL DCD
     public abstract Set<String> listarOfertasLaborales();
     
