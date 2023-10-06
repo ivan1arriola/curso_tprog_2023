@@ -54,7 +54,8 @@ public abstract class Usuario {
 
     public abstract DTUsuario obtenerDatosUsuario();
     
-    public abstract DTUsuario obtenerDatosUsuarioEspecial();
+    @Override
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(); // operacion implementada en las subclases
     
     // NO ESTA EN EL DCD
     public abstract Set<String> listarOfertasLaborales();

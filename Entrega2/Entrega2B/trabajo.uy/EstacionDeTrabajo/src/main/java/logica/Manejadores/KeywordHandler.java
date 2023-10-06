@@ -8,7 +8,7 @@ public class KeywordHandler {
 	private HashMap<String, Keyword> keys;
 	
 	
-	private KeywordHandler() { keys = new HashMap<String, Keyword>(); } 
+	private KeywordHandler() { keys = new HashMap<String, Keyword>(); } // obtener instancia con getInstance() 
 	
 	public static KeywordHandler getInstance() {
 		if (instancia == null) { instancia = new KeywordHandler(); } 
@@ -16,16 +16,15 @@ public class KeywordHandler {
 	}
 	
 	public void agregar(Keyword key){
-        if (key == null) {
-            throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
-        }
-        keys.put(key.getNombre(), key);
-    }
+		if (key == null) {
+			throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
+		}
+		keys.put(key.getNombre(), key);
+	}
 	
 	public boolean existe(String key) {
 		return keys.containsKey(key);
 	}
 
-    
-    public HashMap<String, Keyword> obtener() { return keys; }
+	public HashMap<String, Keyword> obtener() { return keys; }
 }
