@@ -308,7 +308,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	postulante.setNacionalidad(nacionalidad);
     }
 
-    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, LocalDate fecha_nac, String nacionalidad) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postulante = (Postulante) UH.buscarNick(nickname);
     	postulante.setNombre(nombre);
