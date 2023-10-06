@@ -203,29 +203,36 @@ public class Empresa extends Usuario {
     // corregido, se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
         if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
-            System.out.println("The strings are equal.");
-        } else {
-            return obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); 
-        }
-    
-    // esto es para el caso visitantes 
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
-        String nickname =  getNickname();
-        String nombre = getNombre();
-        String apellido = getApellido();
-        String correoElectronico = getCorreo_electronico();
-        byte[] imagen = getImagen(); 
-        HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
-        
-        for (OfertaLaboral oferta : ofertasLaborales) {
-            if (oferta.getEstado() == EstadoOL.Confirmada) {
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen(); 
+            HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+            
+            for (OfertaLaboral oferta : ofertasLaborales) {
                 DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
-                dtOfertas.add(dtOferta);   
-            }// si oferta laboral confirmada se muestra
+                dtOfertas.add(dtOferta);
+                // muestro toda oferta laboral 
+            }
+            
+            return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
+        } else {
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen(); 
+            HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+            
+            for (OfertaLaboral oferta : ofertasLaborales) {
+                if (oferta.getEstado() == EstadoOL.Confirmada) {
+                    DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
+                    dtOfertas.add(dtOferta);   
+                }// si oferta laboral confirmada se muestra
+            }
+            
+            return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
         }
-        
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);                                                                       
-    }
-
 
 }

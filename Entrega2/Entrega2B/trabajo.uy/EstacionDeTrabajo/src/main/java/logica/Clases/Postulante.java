@@ -91,12 +91,31 @@ public class Postulante extends Usuario{
     // corregido, se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
         if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
-            System.out.println("The strings are equal.");
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen();
+            LocalDate fecha_nac = getFecha_nac();
+            String nacionalidad = getNacionalidad();
+            HashSet<DTPostulacion> posts = getPostulaciones();
+
+            DTPostulanteExtendido postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad,posts);
         } else {
-            return obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); 
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen();
+            LocalDate fecha_nac = getFecha_nac();
+            String nacionalidad = getNacionalidad();
+            DTPostulante postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
+            return postul;
+
         }
     }
 
+<<<<<<< HEAD
     // esto es para el caso visitantes 
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
         String nickname =  getNickname();
@@ -111,6 +130,8 @@ public class Postulante extends Usuario{
     }                                                                  
     
     // -----------------
+=======
+>>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 
 
     public HashSet<String> listarOfertasLaborales(){
