@@ -17,7 +17,7 @@ public class DTOfertaExtendido {
 	private String ciudad;
 	private EstadoOL estado;
 	private Set<DTPostulacion> postulaciones;
-	private byte[] imagen;
+	private byte[] imagen; 
 	
 	
 	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img) {
