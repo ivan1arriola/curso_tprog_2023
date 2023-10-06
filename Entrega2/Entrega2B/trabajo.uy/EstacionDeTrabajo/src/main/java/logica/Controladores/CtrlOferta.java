@@ -206,7 +206,7 @@ public class CtrlOferta implements ICtrlOferta{
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
 		boolean b = ol.existePostulacion(nombre_postulante);
 		if(b) {
-			return ol.infoOfertaLaboralPropietario();
+			return ol.infoOfertaLaboralPost(nombre_postulante);
 		}
 		else {
 			return ol.infoOfertaLaboralVisitante();
