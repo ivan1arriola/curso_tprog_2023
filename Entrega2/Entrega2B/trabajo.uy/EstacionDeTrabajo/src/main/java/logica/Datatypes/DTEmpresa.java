@@ -11,7 +11,7 @@ public class DTEmpresa extends DTUsuario {
 
 
     public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String descripcion, String url, HashSet<DTOfertaExtendido> dtOfertas, byte[] imagen) {
-        super(nickname, correo_electronico, apellido, nombre, imagen);
+        super(nickname, correo_electronico, apellido, nombre, url, imagen);
         this.descripcion = descripcion;
         this.url = url;
         this.ofertasLaborales = dtOfertas;
