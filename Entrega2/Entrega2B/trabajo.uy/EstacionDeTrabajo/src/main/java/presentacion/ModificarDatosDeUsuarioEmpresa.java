@@ -96,8 +96,8 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
         setBounds(10, 40, 443, 423);
         getContentPane().setLayout(null);
         
-        lblIngreseNombre = new JLabel("Modifique los datos de: " + empresa.getNickname() );
-        lblIngreseNombre.setBounds(86, 11, 211, 34);
+        lblIngreseNombre = new JLabel("Modifique los datos de la empresa: " + empresa.getNickname() );
+        lblIngreseNombre.setBounds(22, 11, 310, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 

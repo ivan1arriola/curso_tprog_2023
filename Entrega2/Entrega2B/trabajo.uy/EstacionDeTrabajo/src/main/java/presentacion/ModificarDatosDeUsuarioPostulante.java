@@ -91,8 +91,8 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
         setBounds(10, 40, 443, 423);
         getContentPane().setLayout(null);
         
-        lblIngreseNombre = new JLabel("Modifique los datos de: " + postulante.getNickname() );
-        lblIngreseNombre.setBounds(86, 11, 211, 34);
+        lblIngreseNombre = new JLabel("Modifique los datos del postulante: " + postulante.getNickname() );
+        lblIngreseNombre.setBounds(30, 11, 290, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 
