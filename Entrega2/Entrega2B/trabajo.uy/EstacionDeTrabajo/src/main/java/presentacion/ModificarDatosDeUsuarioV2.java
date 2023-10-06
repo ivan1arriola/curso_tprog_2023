@@ -39,40 +39,18 @@ import javax.swing.JScrollPane;
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-		private JInternalFrame ADU;
-	    private ICtrlUsuario icu;
+	    private ICtrlUsuario icu; 
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    private JComboBox<String> listarUsuarios;
 	    
-	    private AltaDePostulante AltaDePostulanteInternalFrame;
-	    private AltaDeEmpresa AltaDeEmpresaInternalFrame;
 	    
-	    
-	    
-	    /**
-	     * Create the frame.
-	     */
+
     public ModificarDatosDeUsuarioV2(ICtrlUsuario icu) {
     	// Se inicializa con el controlador de usuarios
-        Fabrica fabrica = Fabrica.getInstance();
-        icu = fabrica.getICtrlUsuario();
+        // Fabrica fabrica = Fabrica.getInstance();
+        // icu = fabrica.getICtrlUsuario();
 
-        AltaDePostulanteInternalFrame = new AltaDePostulante(icu);
-        // AltaDePostulanteInternalFrame.setSize(386, 312);
-        AltaDePostulanteInternalFrame.setLocation(5, 0);
-        AltaDePostulanteInternalFrame.setVisible(false);
-        // getContentPane().setLayout(null);
-        gu.getContentPane().add(AltaDePostulanteInternalFrame);
-        
-        AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icu);
-        // AltaDeEmpresaInternalFrame.setSize(360, 168);
-        AltaDeEmpresaInternalFrame.setLocation(38, 63);
-        AltaDeEmpresaInternalFrame.setVisible(false);
-        gu.getContentPane().add(AltaDeEmpresaInternalFrame);
-        
-        // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
-        // etc.
 
         setResizable(true);
         setIconifiable(true);
@@ -80,7 +58,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Modificar Datos de Usuario");
-        setBounds(10, 40, 408, 186);
+        setBounds(10, 40, 408, 236);
         getContentPane().setLayout(null);
         
         lblIngreseNombre = new JLabel("Seleccione un usuario al cual desee modificarle los datos");
@@ -88,48 +66,17 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 
-         // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
-         // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
-		btnCancelar = new JButton("Cerrar");
-		btnCancelar.setBounds(220, 120, 111, 25);
-		btnCancelar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        setVisible(false);
-		    }
-		});
-		getContentPane().add(btnCancelar);
-	
-		JButton modificarBtn = new JButton("Modificar");
-		modificarBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		modificarBtn.setBounds(63, 121, 111, 23);
-		getContentPane().add(modificarBtn);
+        
 	
 		listarUsuarios = new JComboBox<>();
 		listarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
-            		
-	                    HashSet<String> nicks = icu.listarNicknamesUsuarios();
-	
-	                    String selectedUsuario = (String) listarUsuarios.getSelectedItem();
+				try {            		
+	                    HashSet<String> nicks =  icu.listarNicknamesUsuarios();
 	                    
-	                    if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0 ) { 
-	                    	
-	    	                DTUsuario dtusr = icu.obtenerDatosUsuario(selectedUsuario);
-	    	                String tipo;
-	    	                if(dtusr instanceof DTEmpresa) {
-	    	                	tipo = "Empresa";
-	    	                }
-	    	                else {
-	    	                	tipo = "Postulante";
-	    	                }
-	                    } 
-                    } catch (Exception ex) {
-                    System.err.println("Error al obtener los usuarios");
+                } catch (Exception ex) {
+                    	System.err.println("Error al obtener los usuarios");
                 }
 				
 			}
@@ -137,19 +84,62 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 		listarUsuarios.setBounds(63, 56, 264, 22);
 		getContentPane().add(listarUsuarios);
 		
+		 // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
+        // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
+		btnCancelar = new JButton("Cerrar");
+		btnCancelar.setBounds(218, 158, 111, 25);
+		btnCancelar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        setVisible(false);
+		    }
+		});
+		getContentPane().add(btnCancelar);
+	
+		JButton modificarBtn = new JButton("Ir a modificar");
+		modificarBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+                String selectedUsuario = (String) listarUsuarios.getSelectedItem(); // agarro el usuario
+				DTUsuario dtus = icu.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
+				
+				// El combobox no esta vacio y el usuario es un POSTULANTE
+				if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && !(dtus instanceof DTEmpresa)) { 
+					DTPostulante dtpostu = (DTPostulante) dtus;
+					ModificarDatosDeUsuarioPostulante modificarUser = new ModificarDatosDeUsuarioPostulante(icu, dtpostu);
+					setVisible(false);
+					modificarUser.setVisible(true);
+	                getContentPane().add(modificarUser);
+	                // modificarUser.toFront();
+				} 
+				
+				// El combobox no esta vacio y el usuario es una EMPRESA	
+				else if(listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
+					DTEmpresa dtempre = (DTEmpresa) dtus;
+					ModificarDatosDeUsuarioEmpresa modificarUser = new ModificarDatosDeUsuarioEmpresa(icu, dtempre);
+					setVisible(false);
+					modificarUser.setVisible(true);
+	                getContentPane().add(modificarUser);
+	                //modificarUser.toFront();
+				}
+			}
+		});
+		modificarBtn.setBounds(63, 159, 111, 23);
+		getContentPane().add(modificarBtn);
+	
+		
 }
+    
+    
     public void actualizar() {
     	listarUsuarios.removeAllItems(); 
         
         //comboBoxOfertas.removeAllItems(); 
-        HashSet<String> usuario = icu.listarEmpresas();
-        List<String> empresasSorted = new ArrayList<>(empresas);
-        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        HashSet<String> usuario = icu.listarNicknamesUsuarios();
+        List<String> usuariosOrdenados = new ArrayList<>(usuario);
+        Collections.sort(usuariosOrdenados, String.CASE_INSENSITIVE_ORDER);
         listarUsuarios.addItem(" ");
-        for (String nickname : empresasSorted) {
-        	
+        for (String nickname : usuariosOrdenados) {
         	listarUsuarios.addItem(nickname);
-
         }
 
         revalidate(); // Actualizar la interfaz gráfica
