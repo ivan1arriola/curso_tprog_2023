@@ -253,5 +253,5 @@ public class OfertaLaboral {
     	
     	
     	return new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
-    }
+    } 
 }
