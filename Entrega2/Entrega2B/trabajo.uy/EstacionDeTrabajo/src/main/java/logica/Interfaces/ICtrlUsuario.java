@@ -78,7 +78,7 @@ public interface ICtrlUsuario {
     
     public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
-    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion); // PRONTA
+    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion); // PRONTA
     
     public abstract void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion); // PRONTA
     

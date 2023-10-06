@@ -240,14 +240,13 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
        		String confirmPass = confirmPassNuevo.getText();
        		String fecha = fechaNuevo.getText();
        		String nac = nacionalidadNuevo.getText();
+       		
 
        		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
        		
        		try {
                 LocalDate parsearFecha = LocalDate.parse(fecha, dateFormatter); // valida la fecha
-            } catch (DateTimeParseException ex) {
-                JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "La fecha ingresada no es válida.", "ERROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
-            }
+           
        		
        		if(nombre.isEmpty() || apellido.isEmpty() ||  correo.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() ||  fecha.isEmpty() || nac.isEmpty() ) {
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "No puede haber campos vacíos.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
@@ -269,14 +268,15 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
        		}
        		
        		else {
-       		    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, STRING CORREO String contraseña, LocalDate fecha_nac, String nacionalidad); // PRONTA
-
-               	icu.ingresarDatosEditadosPostulante(posulante.getNickname(), nombre, apellido, correo, pass, fecha, nac);
+       		    icu.ingresarDatosEditadosPostulante(postulante.getNickname(), nombre, apellido, correo, pass, parsearFecha, nac);
                	JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
                	setVisible(false);
                	limpiarFormulario();
 
        		}
+       	 } catch (DateTimeParseException ex) {
+             JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "La fecha ingresada no es válida.", "ERROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+         }
 		}
 		});
 		modificarBtn.setBounds(74, 359, 111, 23);

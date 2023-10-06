@@ -331,7 +331,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     
-    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
@@ -340,7 +340,6 @@ public class CtrlUsuario implements ICtrlUsuario {
     	empresa.setCorreo_electronico(correo);
     	empresa.seturl(URL); 
     	empresa.setDescripcion(descripcion);
-    	empresa.setImagen(imagen);
     	
     }
     
