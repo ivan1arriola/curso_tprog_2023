@@ -127,10 +127,10 @@ public class CtrlUsuario implements ICtrlUsuario {
     public HashSet<String> listarNicknamesUsuarios(){
     	HashSet<String> res = new HashSet<>();
     	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	HashMap<String, Usuario> usuarios = UH.obtenerNick();
+    	HashMap<String, Usuario> usuarios = UH.obtenerNick(); 
     	for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
     	    Usuario u = entry.getValue();
-    	    res.add(entry.getKey());
+    	    res.add(entry.getKey()); 
     	}
     	return res;
     }
@@ -307,66 +307,70 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     
     
-    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postulante = (Postulante) UH.buscarNick(nickname);
     	postulante.setNombre(nombre);
     	postulante.setApellido(apellido);
+    	postulante.setCorreo_electronico(correo);
     	postulante.setContraseña(contraseña); 
     	postulante.setImagen(imagen);
     	postulante.setFecha_nac(fecha_nac);
     	postulante.setNacionalidad(nacionalidad);
     }
 
-    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, LocalDate fecha_nac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fecha_nac, String nacionalidad) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postulante = (Postulante) UH.buscarNick(nickname);
     	postulante.setNombre(nombre);
     	postulante.setApellido(apellido);
+    	postulante.setCorreo_electronico(correo);
     	postulante.setContraseña(contraseña); 
       	postulante.setFecha_nac(fecha_nac);
     	postulante.setNacionalidad(nacionalidad);
     }
 
     
-    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
     	empresa.setApellido(apellido);
     	empresa.setContraseña(contraseña); 
+    	empresa.setCorreo_electronico(correo);
     	empresa.seturl(URL); 
     	empresa.setDescripcion(descripcion);
-    	empresa.setImagen(imagen);
     	
     }
     
-    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
     	empresa.setApellido(apellido);
+    	empresa.setCorreo_electronico(correo);
     	empresa.setContraseña(contraseña); 
     	empresa.setDescripcion(descripcion);
-    	empresa.setImagen(imagen);
     }
 
-    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
     	empresa.setApellido(apellido);
-    	empresa.setContraseña(contraseña); 
+    	empresa.setContraseña(contraseña);
+    	empresa.setCorreo_electronico(correo);
     	empresa.seturl(URL); 
     	empresa.setImagen(imagen);
     	empresa.setDescripcion(descripcion);
     }
 
-    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
     	empresa.setApellido(apellido);
+    	empresa.setCorreo_electronico(correo);
     	empresa.setContraseña(contraseña); 
     	empresa.setImagen(imagen);
     	empresa.setDescripcion(descripcion);

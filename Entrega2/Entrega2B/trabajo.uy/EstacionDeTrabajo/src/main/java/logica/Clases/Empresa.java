@@ -111,6 +111,7 @@ public class Empresa extends Usuario {
     	String nombre = getNombre();
         String apellido = getApellido();
         String correoElectronico = getCorreo_electronico();
+        String contraseña = getContraseña();
         byte[] imagen = getImagen();
         			       
         HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
@@ -120,7 +121,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);   
         }
         
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);
+        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);
         
     }
     
@@ -205,6 +206,7 @@ public class Empresa extends Usuario {
             String nombre = getNombre();
             String apellido = getApellido();
             String correoElectronico = getCorreo_electronico();
+            String contraseña = getContraseña();
             byte[] imagen = getImagen(); 
             HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
@@ -213,12 +215,13 @@ public class Empresa extends Usuario {
                 dtOfertas.add(dtOferta);
                 // muestro toda oferta laboral 
             }
-            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
+            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);   
         } else {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
             String correoElectronico = getCorreo_electronico();
+            String contraseña = getContraseña();
             byte[] imagen = getImagen(); 
             HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
@@ -228,7 +231,7 @@ public class Empresa extends Usuario {
                     dtOfertas.add(dtOferta);   
                 }// si oferta laboral confirmada se muestra
             }
-            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
+            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen); 
         }
         return empre;
     }

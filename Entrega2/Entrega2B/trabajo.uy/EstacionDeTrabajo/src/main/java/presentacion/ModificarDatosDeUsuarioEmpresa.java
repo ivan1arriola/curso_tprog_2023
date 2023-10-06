@@ -69,7 +69,10 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	    private JTextField ulrNuevo;
 	    private JTextField urlActual;
 	    private JLabel lblNewLabel_8;
-	    
+	    private JTextArea descripcionNuevo;
+	    private JTextArea descripcionActual;
+
+
 	    
 	    
 	    /**
@@ -93,8 +96,8 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
         setBounds(10, 40, 443, 423);
         getContentPane().setLayout(null);
         
-        lblIngreseNombre = new JLabel("Modifique los datos de: " + empresa.getNickname() );
-        lblIngreseNombre.setBounds(86, 11, 211, 34);
+        lblIngreseNombre = new JLabel("Modifique los datos de la empresa: " + empresa.getNickname() );
+        lblIngreseNombre.setBounds(22, 11, 310, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 
@@ -192,11 +195,11 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		urlActual.setBounds(273, 331, 120, 20);
 		getContentPane().add(urlActual);
 		
-		JTextArea descripcionNuevo = new JTextArea();
+		descripcionNuevo = new JTextArea();
 		descripcionNuevo.setBounds(125, 251, 128, 69);
 		getContentPane().add(descripcionNuevo);
 		
-		JTextArea descripcionActual = new JTextArea(); 
+		descripcionActual = new JTextArea(); 
 		descripcionActual.setBounds(265, 251, 128, 69);
 		descripcionActual.setEditable(false);
 		getContentPane().add(descripcionActual);
@@ -258,12 +261,16 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
        		}
        		
        		else {
+           		if (!url.isEmpty() ) {
+	               	icu.ingresarDatosEditadosEmpresaURL(empresa.getNickname(), nombre, apellido, correo, pass, url, descripcion);
+           		}
+           		else { 
+	               	icu.ingresarDatosEditadosEmpresa(empresa.getNickname(), nombre, apellido, correo, pass, descripcion);
+           		}
            		
-               	icu.ingresarDatosEditados(nombre, apellido, correo, pass, descripcion, ulr);
-               	JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
+           		JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);
                	setVisible(false);
                	limpiarFormulario();
-
        		}
 		}
 		});

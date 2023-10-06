@@ -51,7 +51,7 @@ public class Postulante extends Usuario{
 
     public DTUsuario obtenerDatosUsuario() {
         // hacer un DTPostulante
-        DTPostulante postul = new DTPostulante(this.getNickname(), this.getCorreo_electronico(), this.getApellido(), this.getNombre(),this.getImagen(), fecha_nac, nacionalidad);
+        DTPostulante postul = new DTPostulante(this.getNickname(), this.getCorreo_electronico(), this.getApellido(), this.getNombre(), this.getContraseña(), this.getImagen(), fecha_nac, nacionalidad);
         return postul;
     }
 
@@ -105,6 +105,7 @@ public class Postulante extends Usuario{
             String nombre = getNombre();
             String apellido = getApellido();
             String correoElectronico = getCorreo_electronico();
+            String contraseña = getContraseña();
             byte[] imagen = getImagen();
             LocalDate fecha_nac = getFecha_nac();
             String nacionalidad = getNacionalidad();
@@ -117,16 +118,17 @@ public class Postulante extends Usuario{
                 postsDT.add(paux);
             }
         
-            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad,postsDT);
+            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre, contraseña, imagen, fecha_nac, nacionalidad,postsDT);
             } else {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
             String correoElectronico = getCorreo_electronico();
+            String contraseña = getContraseña();
             byte[] imagen = getImagen();
             LocalDate fecha_nac = getFecha_nac();
             String nacionalidad = getNacionalidad();
-            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
+            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre, contraseña, imagen, fecha_nac, nacionalidad);
         }
         return postul;
     }

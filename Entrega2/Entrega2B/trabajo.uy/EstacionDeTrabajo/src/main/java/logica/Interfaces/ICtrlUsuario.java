@@ -74,19 +74,19 @@ public interface ICtrlUsuario {
     // public abstract boolean iniciarSesionNickname(String nickname, String contrasenia); // NO HACERLA
     public abstract boolean validarCredenciales(String id, String contraseña); // NUEVA OPERACION que reemplaza las 2 anteriores
     
-    public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
+    public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
-    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String contraseña, LocalDate fecha_nac, String nacionalidad); // PRONTA
+    public abstract void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
-    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion); // PRONTA
+    public abstract void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion); // PRONTA
     
-    public abstract void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion); // PRONTA
+    public abstract void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion); // PRONTA
     
-    public abstract void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion); // PRONTA
+    public abstract void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion); // PRONTA
     
-    public abstract void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion); // PRONTA
-
-    public abstract boolean tieneURL(String nickname);  // PRONTA
+    public abstract void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion); // PRONTA
+ 
+    public abstract boolean tieneURL(String nickname);  // PRONTA 
     
     public abstract boolean hayPostulacionW(String postulante_nick, String ofer); // PRONTA
     
