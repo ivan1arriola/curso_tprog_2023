@@ -21,8 +21,8 @@ public class Paquete {
     private LocalDate fechaAlta;
     private byte[] imagen;
     // Relaciones
-    private HashSetSet<OfertaPaquete> oferPaq;
-    private HashSetSet<InfoCompra> infCompraAsociada;
+    private HashSet<OfertaPaquete> oferPaq;
+    private HashSet<InfoCompra> infCompraAsociada;
 
     // Constructor
     public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento,byte[] imagen) {

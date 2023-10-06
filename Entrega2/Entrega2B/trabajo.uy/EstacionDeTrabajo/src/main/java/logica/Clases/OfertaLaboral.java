@@ -1,6 +1,7 @@
 package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsTit;
 import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.Datatypes.DTPostulacion;
@@ -213,6 +214,15 @@ public class OfertaLaboral {
 	return false;
 	}
 
+	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario(){
+		List<Keyword> keys = getKeywords();
+		HashSet<String> nuevo = new HashSet<>();
+		for (Keyword item : keys) {
+			nuevo.add(item.getNombre());
+		}
+		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),nuevo);
+		return dtoe;
+	} 
 
 	public DTPostulacion obtenerDatosPostulacion(String nombre_empresa) {
 		List<Postulacion> lista = getPostulaciones();
@@ -236,8 +246,9 @@ public class OfertaLaboral {
 		for (int i = 0; i < keywords.size() && !salir; i++) {
 			keys.add(keywords.get(i).getNombre());
 		}
+		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
+
 		
-		
-		return new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
-	} 
+		return 	entregar;	
+		} 
 }
