@@ -1,14 +1,32 @@
 package main.java.presentacion;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.excepciones.UsuarioNoExisteException;
+//import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.*;
+//import main.java.logica.Datatypes.*;
+import main.java.logica.Datatypes.DTHora;
+import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Enumerados.DepUY;
-import javax.swing.*;
+//import javax.swing.*;
+import javax.swing.JInternalFrame;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JList;
+import javax.swing.DefaultListModel;
+import javax.swing.JSpinner;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import javax.swing.JScrollPane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -85,7 +103,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
         });
         listadoKeywords.setBounds(140, 350, 382, 22);
         getContentPane().add(listadoKeywords);*/
-        
+         
+        ////////////
         /*availableListModel = new DefaultListModel<>();
         selectedListModel = new DefaultListModel<>();
         HashSet<String> keys = ICO.listarKeywords();
@@ -95,6 +114,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         for (String item : keysSorted) {
             availableListModel.addElement(item);
         }*/
+        ///////////////
         
         availableList = new JList<>(availableListModel);
         availableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -388,9 +408,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(remuneracion);
         remuneracion.setColumns(10);
         
-        JList list = new JList();
+        /*JList list = new JList();
         list.setBounds(172, 366, 51, -25);
-        getContentPane().add(list);
+        getContentPane().add(list);*/
        
         
         fechaAlta_1 = new JTextField();
@@ -477,6 +497,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
             availableListModel.addElement(item);
         }
         
+        
+        /////
         
         listadoEmpresas.addItem("");
         List<String> empresaSorted = new ArrayList<>(empresas);
