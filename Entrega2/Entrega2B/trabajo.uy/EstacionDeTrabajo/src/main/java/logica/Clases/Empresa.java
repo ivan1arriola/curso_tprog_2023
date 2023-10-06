@@ -16,6 +16,7 @@ import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 
+
 public class Empresa extends Usuario {
 
     private String descripcion;
@@ -213,8 +214,7 @@ public class Empresa extends Usuario {
                 dtOfertas.add(dtOferta);
                 // muestro toda oferta laboral 
             }
-            
-            return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
+            DTEmpresa empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
         } else {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -229,8 +229,8 @@ public class Empresa extends Usuario {
                     dtOfertas.add(dtOferta);   
                 }// si oferta laboral confirmada se muestra
             }
-            
-            return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
+            DTEmpresa empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
         }
-
+        return empre;
+    }
 }

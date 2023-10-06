@@ -3,6 +3,7 @@ package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
+import main.java.logica.Datatypes.DTPostulanteExtendido;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -74,7 +75,7 @@ public class Postulante extends Usuario{
         return false; 
     }
 
-    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick,String ofer) {
+    public DTPostulacion obtenerDatosPostulacion(String postulante_nick,String ofer) {
         // obtener para este postulante la postulacion si trabaja en la oferta
         // si no existe retorno NULL
         DTPostulacion respuesta = null;
@@ -101,7 +102,7 @@ public class Postulante extends Usuario{
             HashSet<DTPostulacion> posts = getPostulaciones();
 
             DTPostulanteExtendido postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad,posts);
-        } else {
+            } else {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
@@ -110,12 +111,9 @@ public class Postulante extends Usuario{
             LocalDate fecha_nac = getFecha_nac();
             String nacionalidad = getNacionalidad();
             DTPostulante postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
-            return postul;
-
         }
+        return postul;
     }
-
-
 
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
