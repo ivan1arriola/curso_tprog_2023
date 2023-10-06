@@ -57,7 +57,9 @@ public class Postulacion {
         this.motivacion = motivacion;
     }
 
-    esPostulacion(nombre : String) : Bool
+    public Boolean esPostulacion(String nombre){
+        return OferLab.getNombre().equals(nombre); // retorna true si el nombre de la oferta es igual al nombre que se le pasa por parametro
+    }
 
     public Object obtenerNicknamePostulante() {return p.getNickname();}
 }

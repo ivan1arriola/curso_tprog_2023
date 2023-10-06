@@ -1,21 +1,17 @@
 package main.java.logica.Clases;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import main.java.logica.Clases.*;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Manejadores.PaqueteHandler;
 
 
 public class Empresa extends Usuario {
@@ -203,7 +199,8 @@ public class Empresa extends Usuario {
 	@Override
     // corregido, se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
-        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+		DTEmpresa empre;
+		if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
@@ -216,7 +213,7 @@ public class Empresa extends Usuario {
                 dtOfertas.add(dtOferta);
                 // muestro toda oferta laboral 
             }
-            DTEmpresa empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
+            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
         } else {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -231,7 +228,7 @@ public class Empresa extends Usuario {
                     dtOfertas.add(dtOferta);   
                 }// si oferta laboral confirmada se muestra
             }
-            DTEmpresa empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
+            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
         }
         return empre;
     }

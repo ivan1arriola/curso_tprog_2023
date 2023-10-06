@@ -7,7 +7,7 @@ import main.java.logica.Datatypes.DTPostulanteExtendido;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import main.java.logica.Clases.OfertaLaboral;
+
 
 
 public class Postulante extends Usuario{
@@ -82,7 +82,7 @@ public class Postulante extends Usuario{
         for (Postulacion postulacion : postulaciones) {
             String nombreOferta = postulacion.obtenerNombreOfertaLaboral();
             if (nombreOferta.equals(ofer)) {
-                respuesta = postulacion.getDTPostulacion();
+                respuesta = postulacion.obtenerDT();
                 return respuesta;
             }
         }
@@ -91,7 +91,8 @@ public class Postulante extends Usuario{
 
     // corregido, se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
-        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+    	DTPostulante postul;
+    	if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
@@ -99,9 +100,16 @@ public class Postulante extends Usuario{
             byte[] imagen = getImagen();
             LocalDate fecha_nac = getFecha_nac();
             String nacionalidad = getNacionalidad();
-            HashSet<DTPostulacion> posts = getPostulaciones();
+            HashSet<Postulacion> posts = getPostulaciones();
+            
+            HashSet<DTPostulacion> postsDT = new HashSet<DTPostulacion>();
 
-            DTPostulanteExtendido postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad,posts);
+            for (Postulacion post : posts) {
+                DTPostulacion paux = post.obtenerDT();
+                postsDT.add(paux);
+            }
+        
+            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad,postsDT);
             } else {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -110,7 +118,7 @@ public class Postulante extends Usuario{
             byte[] imagen = getImagen();
             LocalDate fecha_nac = getFecha_nac();
             String nacionalidad = getNacionalidad();
-            DTPostulante postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
+            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
         }
         return postul;
     }

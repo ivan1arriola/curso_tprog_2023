@@ -54,7 +54,7 @@ public abstract class Usuario {
 
     public abstract DTUsuario obtenerDatosUsuario();
     
-    @Override
+    
     // corregido, se pasan mas parametros para la ejecucion
     // para visitantes colocar en usuario registrado actual 'nada'
     public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
