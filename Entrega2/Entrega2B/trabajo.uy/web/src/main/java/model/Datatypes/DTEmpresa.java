@@ -1,31 +1,24 @@
 package model.Datatypes;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class DTEmpresa extends DTUsuario {
-    private String nombreEmpresa;
+	
     private String descripcion;
     private String url;
+    private Set<DTOfertaExtendido> ofertasLaborales; 
 
 
-
-    public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String nombreEmpresa, String descripcion, String url) {
-        super(nickname, correo_electronico, apellido, nombre);
-        this.nombreEmpresa = nombreEmpresa;
-        this.descripcion = descripcion;
-        this.url = url;
-    }
-    
-    public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre,String imagen, String nombreEmpresa, String descripcion, String url) {
+    public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String descripcion, String url, HashSet<DTOfertaExtendido> dtOfertas, byte[] imagen) {
         super(nickname, correo_electronico, apellido, nombre, imagen);
-        this.nombreEmpresa = nombreEmpresa;
         this.descripcion = descripcion;
         this.url = url;
+        this.ofertasLaborales = dtOfertas;
     }
 
-
-    
-
-	public String getNombreEmpresa() {
-        return nombreEmpresa;
+	public Set<DTOfertaExtendido> getOfertasLaborales() {
+        return ofertasLaborales;
     }
 
     public String getDescripcion() {

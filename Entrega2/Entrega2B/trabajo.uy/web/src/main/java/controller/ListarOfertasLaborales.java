@@ -9,6 +9,7 @@ import model.Datatypes.DTHora;
 import model.Datatypes.DTHorario;
 import model.Datatypes.DTOfertaLaboral;
 import model.Enumerados.DepUY;
+import model.Enumerados.EstadoOL;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -34,44 +35,45 @@ public class ListarOfertasLaborales extends HttpServlet {
     private List<DTOfertaLaboral> getOfertasLaborales() {
         List<DTOfertaLaboral> ofertas = new ArrayList<>();
 
-        // Crear la primera oferta laboral
         ofertas.add(new DTOfertaLaboral(
-                "Desarrollador Frontend",
-                "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
-                LocalDate.of(2023, 8, 14),
-                90000.0f,
-                90000.0f,
-                new DTHorario(new DTHora(9, 0), new DTHora(18, 0)),
-                DepUY.Montevideo,
-                "Montevideo",
-                "https://tinyurl.com/45nsf34m"
-        ));
+        	    "Desarrollador Frontend",
+        	    "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
+        	    LocalDate.of(2023, 8, 14),
+        	    90000.0f,
+        	    90000.0f,
+        	    new DTHorario(new DTHora(9, 0), new DTHora(18, 0)),
+        	    DepUY.Montevideo,
+        	    "Montevideo",
+        	    EstadoOL.Confirmada, // Cambiar a EstadoOL.CONFIRMADA
+        	    null // Establecer la imagen como null
+        	));
 
-        // Crear la segunda oferta laboral
-        ofertas.add(new DTOfertaLaboral(
-                "Estratega de Negocios",
-                "Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.",
-                LocalDate.of(2023, 8, 14),
-                80000.0f,
-                80000.0f,
-                new DTHorario(new DTHora(8, 0), new DTHora(17, 0)),
-                DepUY.Maldonado,
-                "Punta del Este",
-                "https://www.coherdi.mx/wp-content/uploads/2017/05/esrategias-inversion.jpg"
-        ));
+        	ofertas.add(new DTOfertaLaboral(
+        	    "Estratega de Negocios",
+        	    "Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.",
+        	    LocalDate.of(2023, 8, 14),
+        	    80000.0f,
+        	    80000.0f,
+        	    new DTHorario(new DTHora(8, 0), new DTHora(17, 0)),
+        	    DepUY.Maldonado,
+        	    "Punta del Este",
+        	    EstadoOL.Confirmada, // Cambiar a EstadoOL.CONFIRMADA
+        	    null // Establecer la imagen como null
+        	));
 
-        // Crear la tercera oferta laboral
-        ofertas.add(new DTOfertaLaboral(
-                "A. de Marketing Digital",
-                "Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.",
-                LocalDate.of(2023, 8, 15),
-                80000.0f,
-                80000.0f,
-                new DTHorario(new DTHora(10, 0), new DTHora(19, 0)),
-                DepUY.Flores,
-                "Flores",
-                "https://tinyurl.com/4n2vpurk"
-        ));
+        	ofertas.add(new DTOfertaLaboral(
+        	    "A. de Marketing Digital",
+        	    "Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.",
+        	    LocalDate.of(2023, 8, 15),
+        	    80000.0f,
+        	    80000.0f,
+        	    new DTHorario(new DTHora(10, 0), new DTHora(19, 0)),
+        	    DepUY.Flores,
+        	    "Flores",
+        	    EstadoOL.Confirmada, // Cambiar a EstadoOL.CONFIRMADA
+        	    null // Establecer la imagen como null
+        	));
+
 
         return ofertas;
     }

@@ -7,7 +7,11 @@ public class DTPostulante extends DTUsuario {
     private LocalDate fecha_nac;
     private String nacionalidad;
 
-    
+    public DTPostulante(String nickname, String correo_electronico, String apellido, String nombre, byte[] imagen, LocalDate fechaNac, String nacionalidad) {
+        super(nickname, correo_electronico, apellido, nombre, imagen);
+        this.fecha_nac = fechaNac;
+        this.nacionalidad = nacionalidad;
+    }    
 
     public LocalDate getFecha_nac() {
         return fecha_nac;
@@ -17,9 +21,5 @@ public class DTPostulante extends DTUsuario {
         return nacionalidad;
     }
 
-    public DTPostulante(String nickname, String correo_electronico, String apellido, String nombre, String imagen, LocalDate fecha_nac2, String nacionalidad) {
-        super(nickname, correo_electronico, apellido, nombre, imagen);
-        this.fecha_nac = fecha_nac2;
-        this.nacionalidad = nacionalidad;
-    }
+
 }

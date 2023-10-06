@@ -10,6 +10,7 @@ import model.Datatypes.DTUsuario;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.Enumeration;
 
 /**
@@ -35,7 +36,7 @@ public class IniciarSesion extends HttpServlet {
     
     // Simula obtenerUsuario de la logica
     private DTUsuario obtenerUsuario(String nickname) {
-    	return new DTUsuario(nickname, "prueba@prueba.com", "apellido", "nombre");
+    	return new DTUsuario(nickname, "prueba@prueba.com", "apellido", "nombre", null);
     }
 
 	/**
@@ -69,8 +70,11 @@ public class IniciarSesion extends HttpServlet {
             HttpSession session = request.getSession();
             DTUsuario usuario = obtenerUsuario(identificador);
             session.setAttribute("usuario", usuario.getNickname()); 
-            String imagen = (usuario.getImagen() == null) ? request.getContextPath() + "/nopicture.png" : usuario.getImagen();
-            session.setAttribute("imagen", imagen);
+            byte[] imagenBytes = usuario.getImagen();
+            if (imagenBytes != null) {
+                String imagenBase64 = Base64.getEncoder().encodeToString(imagenBytes);
+                session.setAttribute("imagen", imagenBase64);
+            }
 
             // Redireccionar a una página de bienvenida
             response.sendRedirect(request.getContextPath() + "/home");

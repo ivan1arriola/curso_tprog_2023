@@ -3,6 +3,8 @@
 <%@ page import="model.Datatypes.DTEmpresa" %>
 <%@ page import="model.Datatypes.DTPostulante" %>
 <%@ page import="model.Datatypes.DTUsuario" %>
+<%@ page import="java.util.Base64" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +32,17 @@
                     <%
                         List<DTUsuario> usuarios = (List<DTUsuario>) request.getAttribute("usuarios");
                         for (DTUsuario usuario : usuarios) {
-                        	String imagen = (usuario.getImagen() == null) ? request.getContextPath() + "/nopicture.png" : usuario.getImagen();
+                        	byte[] imagenBytes = usuario.getImagen();
+                        	String imagen;
+
+                        	if (imagenBytes == null) {
+                        	    imagen = request.getContextPath() + "/nopicture.png";
+                        	} else {
+                        	    // Convierte los bytes de la imagen en una cadena base64
+                        	    String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+                        	    // Crea una URL de datos base64
+                        	    imagen = "data:image/png;base64," + base64Image;
+                        	}
                             %>
                             <div class="col-md-4">
                                 <div class="card mb-3">

@@ -1,5 +1,4 @@
 package model.Datatypes;
-import model.Datatypes.*;
 
 public class DTHorario {
 	private DTHora desde;

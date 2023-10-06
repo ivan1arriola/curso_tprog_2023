@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Datatypes.DTEmpresa;
+import model.Datatypes.DTOfertaExtendido;
 import model.Datatypes.DTOfertaLaboral;
 import model.Datatypes.DTPostulante;
 import model.Datatypes.DTUsuario;
@@ -13,6 +14,7 @@ import model.Datatypes.DTUsuario;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -36,7 +38,7 @@ public class ListarUsuarios extends HttpServlet {
     	List<DTUsuario> usuarios = new ArrayList<>();
     	
     	// Agregar Postulantes
-    	usuarios.add(new DTPostulante("lgarcia", "lgarcia85@gmail.com", "García", "Lucía", "https://tinyurl.com/yckek63e", LocalDate.of(1985, 3, 15), "Uruguaya"));
+    	usuarios.add(new DTPostulante("lgarcia", "lgarcia85@gmail.com", "García", "Lucía", null, LocalDate.of(1985, 3, 15), "Uruguaya"));
     	usuarios.add(new DTPostulante("matilo", "matias.lopez90@hotmail.com", "López", "Matías", null, LocalDate.of(1990, 8, 21), "Argentina"));
     	usuarios.add(new DTPostulante("maro", "marrod@gmail.com", "Rodríguez", "María", null, LocalDate.of(1988, 11, 10), "Uruguaya"));
     	usuarios.add(new DTPostulante("javierf", "javierf93@yahoo.com", "Fernández", "Javier", null, LocalDate.of(1993, 6, 5), "Mexicana"));
@@ -48,13 +50,12 @@ public class ListarUsuarios extends HttpServlet {
     	usuarios.add(new DTPostulante("marram02", "marram@hotmail.com", "Ramírez", "Martín", null, LocalDate.of(1986, 12, 2), "Argentina"));
 
     	// Agregar Empresas
-    	usuarios.add(new DTEmpresa("EcoTech", "info@EcoTech.com", "Johnson", "Sophia",  "https://tinyurl.com/mr2hcufa","EcoTech", "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología y la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.", "http://www.EcoTechInnovations.com"));
-    	usuarios.add(new DTEmpresa("FusionTech", "contacto@FusionTech.net", "Smith", "William", null,"FusionTech", "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros, científicos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimización de procesos industriales hasta la creación de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnología mejore y amplíe nuestras capacidades innatas.", "http://www.FusionTechDynamics.net"));
-    	usuarios.add(new DTEmpresa("GlobalHealth", "jobs@GlobalHealth.uy", "Brown", "Isabella", null, "GlobalHealth","GlobalHealth Dynamics es una empresa comprometida con el avance de la atención médica a nivel mundial. Como líderes en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnósticos más precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra visión es crear un ecosistema de salud conectado en el que los datos médicos se utilicen de manera ética y segura para mejorar la calidad de vida de las personas. A través de la innovación constante y la colaboración con expertos médicos, estamos dando forma al futuro de la atención médica, donde la tecnología y la compasión se unen para salvar vidas y mejorar el bienestar en todo el mundo.", "http://www.GlobalHealthDynamics.uy/info"));
-    	usuarios.add(new DTEmpresa("ANTEL", "jarrington@ANTEL.com.uy", "Rocha", "Washington","https://itc.com.uy/wp-content/uploads/2018/09/ANTEL.png","ANTEL",  "En Antel te brindamos servicios de vanguardia en tecnología de comunicación en Telefonía Móvil, Fija, Banda Ancha y Datos", "ANTEL.com.uy"));
-    	usuarios.add(new DTEmpresa("MIEM", "eldiez@MIEM.org.uy", "Bengoechea", "Pablo", "https://eficienciaenergetica.miem.gub.uy/Eficiencia2020-theme/images/eficiencia/logo-miem-blanco.png","MIEM",  "Balance Energético Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.", "MIEM.com.uy"));
-    	usuarios.add(new DTEmpresa("TechSolutions", "Mercedes@TechSolutions.com.uy", "Venn", "Mercedes", null, "TechSolutions", "TechSolutions Inc. es una empresa líder en el sector de tecnología de la información y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamaños y sectores. Su enfoque se centra en la creación de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.", "TechSolutions.com"));
-
+    	// public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String descripcion, String url, HashSet<DTOfertaExtendido> dtOfertas, byte[] imagen)
+    	String ecotechDescripcion = "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología y la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible";
+    	
+    	usuarios.add(new DTEmpresa("EcoTech", "info@EcoTech.com", "Johnson", "Sophia", ecotechDescripcion, "http://www.EcoTechInnovations.com", new HashSet<DTOfertaExtendido>(), null));
+    	usuarios.add(new DTEmpresa("FusionTech", "contacto@FusionTech.net", "Smith", "William", "", "FusionTech", new HashSet<DTOfertaExtendido>(), null));
+    	usuarios.add(new DTEmpresa("GlobalHealth", "jobs@GlobalHealth.uy", "Brown", "Isabella", "", "GlobalHealth", new HashSet<DTOfertaExtendido>(), null));
 		return usuarios;
     	
     }
