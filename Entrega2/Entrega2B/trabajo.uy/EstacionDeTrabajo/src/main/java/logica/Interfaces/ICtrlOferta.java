@@ -12,6 +12,7 @@ import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTTipoOferta;
+import main.java.logica.Enumerados.DepUY;
 
 public interface ICtrlOferta {
 	    public abstract Set<String> listarEmpresas();
@@ -21,8 +22,8 @@ public interface ICtrlOferta {
 		public abstract boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento);
 		public abstract boolean altaKeyword(String key);
 		public abstract boolean compraPaquetes(String nickname_e, String paq);
-		public abstract boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, String dep, LocalDate fechaA, HashSet<String> keys, String paquete);
-		public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, String dep, LocalDate fechaA, HashSet<String> keys);
+		public abstract boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, String paquete);
+		public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys);
 		public abstract DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
 		public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
@@ -36,7 +37,7 @@ public interface ICtrlOferta {
 		public abstract void aceptoOL(String nombre_oferta);
 		public abstract HashSet<String> listarPostulantes();
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
-		public abstract void agregarTipoOfertaPaq(String paq, String TO, String cantidad);
+		public abstract void agregarTipoOfertaPaq(String paq, String TO, int cantidad);
 		public abstract HashSet<String> listarPaquetes();
 		public abstract DTPaquete obtenerDatosPaquete(String paq);
 		public abstract DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente;

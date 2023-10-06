@@ -1,5 +1,6 @@
 package main.java.logica.Clases;
 
+import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
 
@@ -25,7 +26,7 @@ public class Postulante extends Usuario{
 
 
     // Getters
-    public LocalDate getFecha_nac() { return fecha_nac; 
+    public LocalDate getFecha_nac() { return fecha_nac; }
     public HashSet<Postulacion> getPostulaciones() { return postulaciones; }
     public String getNacionalidad() { return nacionalidad; }
 
@@ -49,19 +50,6 @@ public class Postulante extends Usuario{
         Postulacion p = new Postulacion(this, cv, motivacion, fecha, URLDocExtras, OferLab);
         postulaciones.add(p);
         return p;
-    }
-
-    public HashSet<String> obtenerPostulantesDeOferta(String oferta){
-        HashSet<String> lista = new HashSet<String>();
-        if(postulaciones != null) {
-            for (Postulacion p : postulaciones){
-                if (p.obtenerNombreOfertaLaboral().equals(oferta)) {
-                    lista.add(getNombre());
-                }
-            }
-        }
-        // por cada postulacion reviso el nombre oferta, si esta la agrego al set
-        return lista;
     }
 
     public boolean existePostulacion(String nombre) {
