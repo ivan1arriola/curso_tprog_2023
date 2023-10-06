@@ -1,6 +1,7 @@
 package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Enumerados.DepUY;
@@ -235,4 +236,22 @@ public class OfertaLaboral {
     	return null; // FALTA ENCONTRAR EL DCOM
     }
     
+    public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante) {
+    	int j = 0;
+    	boolean salir = false;
+    	for (int i = 0; i < postulaciones.size() && !salir; i++) {
+    		if(postulaciones.get(i).obtenerNicknamePostulante().equals(nombre_postulante)) {
+    			j = i;
+    			salir = true;
+    		}
+    	}
+    	DTPostulacion dt = postulaciones.get(j).obtenerDT();
+    	HashSet<String> keys = new HashSet<String>();
+    	for (int i = 0; i < keywords.size() && !salir; i++) {
+    		keys.add(keywords.get(i).getNombre());
+    	}
+    	
+    	
+    	return new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
+    }
 }
