@@ -130,7 +130,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	HashMap<String, Usuario> usuarios = UH.obtenerNick();
     	for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
     	    Usuario u = entry.getValue();
-    	    res.add(entry.getKey());
+    	    res.add(entry.getKey()); 
     	}
     	return res;
     }

@@ -86,7 +86,7 @@ public interface ICtrlUsuario {
     
     public abstract void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion); // PRONTA
 
-    public abstract boolean tieneURL(String nickname);  // PRONTA
+    public abstract boolean tieneURL(String nickname);  // PRONTA 
     
     public abstract boolean hayPostulacionW(String postulante_nick, String ofer); // PRONTA
     
