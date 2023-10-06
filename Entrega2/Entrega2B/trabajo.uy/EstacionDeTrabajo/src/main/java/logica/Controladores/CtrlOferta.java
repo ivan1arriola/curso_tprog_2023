@@ -365,4 +365,19 @@ public class CtrlOferta implements ICtrlOferta{
 		DTTipoOferta res = tipoOferta.obtenerDT();
 		return res;
 	}
+	
+	
+	public boolean paqueteComprado(String pack) {
+		
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Paquete paquet = PH.buscar(pack);
+
+		if(paquet.getInfoCompra()==null) {return false; //nadie lo compro 
+		} else {return true;
+		//ya fue comprado
+			}
+	}
+				
+	
+	
 }
