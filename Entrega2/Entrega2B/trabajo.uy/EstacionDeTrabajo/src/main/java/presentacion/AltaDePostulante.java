@@ -42,7 +42,7 @@ public class AltaDePostulante extends JInternalFrame {
     private JLabel lblIngreseCi_1;
     private JLabel año;
     private JLabel mes;
-    private JLabel dia;
+    private JLabel dia; 
     private JTextField tfAnio;
     private JLabel mail;
     private JTextField tfMail;

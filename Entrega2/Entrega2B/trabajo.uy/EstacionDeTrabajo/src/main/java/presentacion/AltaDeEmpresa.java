@@ -36,7 +36,7 @@ public class AltaDeEmpresa extends JInternalFrame {
     private JTextField textFieldDescripcion;
     private JTextField textFieldURL;
     private JLabel Contraseña;
-    private JLabel Descripcion;
+    private JLabel Descripcion; 
     private JLabel URL;
     private JLabel CorreoElectronico;
     private JTextField textFieldCorreoElectronico;
