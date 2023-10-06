@@ -50,7 +50,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	return !b1 && !b2;
     }
 
-    public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String nombreE, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+    public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	boolean b1 = UH.existeNick(nick);
     	boolean b2 = UH.existeCorreo(mail);
@@ -68,7 +68,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     	}
     	
     	if (!b1 && !b2) {
-    		Empresa e = new Empresa(nick, nombre, apellido, mail, nombreE, contraseña, desc);
+    		Empresa e = new Empresa(nick, nombre, apellido, mail, contraseña, desc);
     		UH.agregar(e);
     	}
     	return !b1 && !b2;
@@ -231,7 +231,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     		return user;
     	}
     	else {
-    		DTUsuario userEsp = u.obtenerDatosUsuarioEspecial();
+    		DTUsuario userEsp = u.obtenerDatosUsuarioEspecial(UsuarioNickname, nick);
     		return userEsp;
     	}	
     }
@@ -258,7 +258,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante u = (Postulante) UH.buscarNick(postulante_nick);
-    	DTPostulacion datosPostu = u.obtenerDatosPostulacionW(ofer);
+    	DTPostulacion datosPostu = u.obtenerDatosPostulacion(postulante_nick, ofer);
     	return datosPostu;
     }
     
@@ -319,7 +319,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     
-    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, String URL, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
@@ -327,16 +327,18 @@ public class CtrlUsuario implements ICtrlUsuario {
     	empresa.setContraseña(contraseña); 
     	empresa.seturl(URL); 
     	empresa.setDescripcion(descripcion);
+    	empresa.setImagen(imagen);
     	
     }
     
-    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, String descripcion) {
+    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String contraseña, byte[] imagen, String descripcion) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = (Empresa) UH.buscarNick(nickname);
     	empresa.setNombre(nombre);
     	empresa.setApellido(apellido);
     	empresa.setContraseña(contraseña); 
     	empresa.setDescripcion(descripcion);
+    	empresa.setImagen(imagen);
     }
 
     public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String contraseña, String URL, byte[] imagen, String descripcion) {

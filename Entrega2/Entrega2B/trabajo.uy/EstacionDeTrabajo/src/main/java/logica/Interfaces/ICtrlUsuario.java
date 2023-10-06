@@ -60,7 +60,7 @@ public interface ICtrlUsuario {
     
     public abstract DTUsuario obtenerDatosUsuarioVisitantes(String nick); // PRONTA
     
-    public abstract void cerrarSesion(String nickname); // PRONTA
+    // public abstract void cerrarSesion(String nickname); // PRONTA
     
     public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta); // PRONTA
     
@@ -88,11 +88,11 @@ public interface ICtrlUsuario {
     
     public abstract boolean hayPostulacionW(String postulante_nick, String ofer); // PRONTA
     
-    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña1, String desc, String URL, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, String URL, byte[] imagen); // PRONTA
      
-    public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String contraseña1, String nacionalidad, byte[] imagen); // PRONTA
+    public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String nacionalidad, byte[] imagen); // PRONTA
      
-    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String contraseña1, String desc, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, byte[] imagen); // PRONTA
      
     public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta); // PRONTA
     

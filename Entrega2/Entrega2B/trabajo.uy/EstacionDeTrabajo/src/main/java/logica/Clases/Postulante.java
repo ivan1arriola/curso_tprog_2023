@@ -3,10 +3,11 @@ package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
+import main.java.logica.Datatypes.DTPostulanteExtendido;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import main.java.logica.Clases.OfertaLaboral;
+
 
 
 public class Postulante extends Usuario{
@@ -23,6 +24,14 @@ public class Postulante extends Usuario{
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
     }
+    
+    public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena);// super es para llamar al constructor de la clase padre
+        this.fecha_nac = fecha_nac;
+        this.nacionalidad = nacionalidad;
+        this.postulaciones = new HashSet<Postulacion>();
+    }
+
 
 
     // Getters
@@ -74,14 +83,14 @@ public class Postulante extends Usuario{
         return false; 
     }
 
-    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick,String ofer) {
+    public DTPostulacion obtenerDatosPostulacion(String postulante_nick,String ofer) {
         // obtener para este postulante la postulacion si trabaja en la oferta
         // si no existe retorno NULL
         DTPostulacion respuesta = null;
         for (Postulacion postulacion : postulaciones) {
             String nombreOferta = postulacion.obtenerNombreOfertaLaboral();
             if (nombreOferta.equals(ofer)) {
-                respuesta = postulacion.getDTPostulacion();
+                respuesta = postulacion.obtenerDT();
                 return respuesta;
             }
         }
@@ -89,29 +98,38 @@ public class Postulante extends Usuario{
     }
 
     // corregido, se pasan mas parametros para la ejecucion
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
-        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
-            System.out.println("The strings are equal.");
-        } else {
-            return obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); 
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
+    	DTPostulante postul;
+    	if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen();
+            LocalDate fecha_nac = getFecha_nac();
+            String nacionalidad = getNacionalidad();
+            HashSet<Postulacion> posts = getPostulaciones();
+            
+            HashSet<DTPostulacion> postsDT = new HashSet<DTPostulacion>();
+
+            for (Postulacion post : posts) {
+                DTPostulacion paux = post.obtenerDT();
+                postsDT.add(paux);
+            }
+        
+            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad,postsDT);
+            } else {
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen();
+            LocalDate fecha_nac = getFecha_nac();
+            String nacionalidad = getNacionalidad();
+            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
         }
-    }
-
-    // esto es para el caso visitantes 
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
-        String nickname =  getNickname();
-        String nombre = getNombre();
-        String apellido = getApellido();
-        String correoElectronico = getCorreo_electronico();
-        byte[] imagen = getImagen();
-        LocalDate fecha_nac = getFecha_nac();
-        String nacionalidad = getNacionalidad();
-        DTPostulante postul = new DTPostulante(nickname, correoElectronico, apellido, nombre,imagen, fecha_nac, nacionalidad);
         return postul;
-    }                                                                  
-    
-    // -----------------
-
+    }
 
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();

@@ -168,10 +168,7 @@ public class OfertaLaboral {
 			Postulacion elem = postulaciones.get(i);
 			posts.add(elem.getDTPostulacion());
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts);
-		
-
-		
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts, getImagen());
 		return dtoe;
     }
 	

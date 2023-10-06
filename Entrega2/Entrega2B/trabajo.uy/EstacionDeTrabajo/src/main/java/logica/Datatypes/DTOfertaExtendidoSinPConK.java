@@ -6,7 +6,7 @@ import java.util.HashSet;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 
-public class DTOfertaExtendidoSinPConK {
+public class DTOfertaExtendidoSinPConK extends {
 	private String nombre;
 	private String descripcion;
 	private LocalDate fechaAlta;

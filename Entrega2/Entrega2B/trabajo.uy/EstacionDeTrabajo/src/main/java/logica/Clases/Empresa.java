@@ -1,20 +1,18 @@
 package main.java.logica.Clases;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import main.java.logica.Clases.*;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
+
 
 public class Empresa extends Usuario {
 
@@ -192,7 +190,8 @@ public class Empresa extends Usuario {
     	LocalDate fa = paq.getfechaAlta();
     	int val = paq.getValidez();
     	HashSet<DTCantTO> S = paq.obtenerDTSCantTO();
-    	InfoCompra io = new InfoCompra(fa,costo,fa.plusDays(val),S);
+    	
+    	InfoCompra io = new InfoCompra(fa,costo,paq,this,S);
     	infoCompras.add(io);
     	return true;
     }
@@ -200,30 +199,37 @@ public class Empresa extends Usuario {
 	@Override
     // corregido, se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
-        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
-            System.out.println("The strings are equal.");
-        } else {
-            return obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta); 
-        }
-    
-    // esto es para el caso visitantes 
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
-        String nickname =  getNickname();
-        String nombre = getNombre();
-        String apellido = getApellido();
-        String correoElectronico = getCorreo_electronico();
-        byte[] imagen = getImagen(); 
-        HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
-        
-        for (OfertaLaboral oferta : ofertasLaborales) {
-            if (oferta.getEstado() == EstadoOL.Confirmada) {
+		DTEmpresa empre;
+		if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen(); 
+            HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+            
+            for (OfertaLaboral oferta : ofertasLaborales) {
                 DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
-                dtOfertas.add(dtOferta);   
-            }// si oferta laboral confirmada se muestra
+                dtOfertas.add(dtOferta);
+                // muestro toda oferta laboral 
+            }
+            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);   
+        } else {
+            String nickname =  getNickname();
+            String nombre = getNombre();
+            String apellido = getApellido();
+            String correoElectronico = getCorreo_electronico();
+            byte[] imagen = getImagen(); 
+            HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+            
+            for (OfertaLaboral oferta : ofertasLaborales) {
+                if (oferta.getEstado() == EstadoOL.Confirmada) {
+                    DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
+                    dtOfertas.add(dtOferta);   
+                }// si oferta laboral confirmada se muestra
+            }
+            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen); 
         }
-        
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, descripcion, url, dtOfertas, imagen);                                                                       
+        return empre;
     }
-
-
 }

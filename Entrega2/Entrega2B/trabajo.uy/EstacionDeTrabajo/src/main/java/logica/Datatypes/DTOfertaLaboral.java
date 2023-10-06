@@ -69,6 +69,7 @@ public class DTOfertaLaboral {
 		return imagen;
 	}
 	
+	public EstadoOL getestado() { return estado;}
 	
 	
     @Override
