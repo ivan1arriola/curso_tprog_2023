@@ -18,6 +18,7 @@
         </div>
 
         <div class="container col-9">
+        	<jsp:include page="/WEB-INF/templates/navbar.jsp" />
             <div class="alert alert-danger text-center" role="alert">
                 <h4 class="alert-heading ">Error en la aplicación</h4>
                 <p><%= request.getAttribute("mensajeError") %></p>

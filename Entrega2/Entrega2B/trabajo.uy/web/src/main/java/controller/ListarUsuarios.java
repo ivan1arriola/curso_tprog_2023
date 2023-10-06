@@ -29,7 +29,6 @@ public class ListarUsuarios extends HttpServlet {
      */
     public ListarUsuarios() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     // Simula una funcion de la logica
@@ -64,13 +63,10 @@ public class ListarUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	 // Obtiene las ofertas laborales
         List<DTUsuario> ofertas = getUsuarios();
 
-        // Almacena las ofertas como un atributo en el objeto request
         request.setAttribute("usuarios", ofertas);
 
-        // Reenvía la solicitud al JSP
         request.getRequestDispatcher("/WEB-INF/listar/usuarios.jsp").forward(request, response);
     
     }
