@@ -25,7 +25,7 @@ public interface ICtrlOferta {
 		public abstract boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, String paquete);
 		public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys);
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
-		public abstract DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
+		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
 		public abstract HashSet<String> listarOfertasLaboralesKeywords(String ks);
