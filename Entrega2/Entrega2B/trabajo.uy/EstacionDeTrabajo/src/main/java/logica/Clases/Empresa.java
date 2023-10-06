@@ -199,7 +199,7 @@ public class Empresa extends Usuario {
 
 	@Override
     // corregido, se pasan mas parametros para la ejecucion
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
         if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             System.out.println("The strings are equal.");
         } else {
@@ -207,7 +207,7 @@ public class Empresa extends Usuario {
         }
     
     // esto es para el caso visitantes 
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioQueSeHaceConsulta) {
         String nickname =  getNickname();
         String nombre = getNombre();
         String apellido = getApellido();
