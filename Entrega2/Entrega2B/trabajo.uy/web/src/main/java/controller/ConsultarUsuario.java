@@ -6,12 +6,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Datatypes.DTEmpresa;
+import model.Datatypes.DTOfertaExtendido;
 import model.Datatypes.DTPostulante;
 import model.Datatypes.DTUsuario;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashSet;
 
+import auxiliar.ImageLoader;
 import excepciones.UsuarioNoExisteException;
 
 /**
@@ -31,10 +35,35 @@ public class ConsultarUsuario extends HttpServlet {
     
     public DTUsuario obtenerDatosUsuario(String nick) throws UsuarioNoExisteException {
         if ("lgarcia".equals(nick)) {
-            // Realizar la acción correspondiente para lgarcia
-            DTUsuario datosUsuario = new DTPostulante("lgarcia", "lgarcia85@gmail.com", "García", "Lucía", null, LocalDate.of(1985, 3, 15), "Uruguaya");
-            return datosUsuario;
-        } else {
+            try {
+                // Cargar la imagen desde la URL
+                String imageUrl = "http://tprogdatostarea2.infinityfreeapp.com/DatosTarea2/Usuarios/U1.jpg";
+                byte[] imagen = ImageLoader.loadImageFromURL(imageUrl);
+
+                // Crear el objeto DTPostulante con la imagen cargada
+                DTUsuario datosUsuario = new DTPostulante("lgarcia", "lgarcia85@gmail.com", "García", "Lucía", imagen, LocalDate.of(1985, 3, 15), "Uruguaya");
+                return datosUsuario;
+            } catch (IOException e) {
+                // Manejar errores de carga de imagen
+                e.printStackTrace();
+                throw new UsuarioNoExisteException(nick);
+            }
+        } if("EcoTech".equals(nick)) {
+        	try {
+                // Cargar la imagen desde la URL
+                String imageUrl = "http://tprogdatostarea2.infinityfreeapp.com/DatosTarea2/Usuarios/U1.jpg";
+                byte[] imagen = ImageLoader.loadImageFromURL(imageUrl);
+
+                // Crear el objeto DTPostulante con la imagen cargada
+            	String ecotechDescripcion = "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología y la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible";
+                DTUsuario datosUsuario = new DTEmpresa("EcoTech", "info@EcoTech.com", "Johnson", "Sophia", ecotechDescripcion, "http://www.EcoTechInnovations.com", new HashSet<DTOfertaExtendido>(), null);
+                return datosUsuario;
+            } catch (IOException e) {
+                // Manejar errores de carga de imagen
+                e.printStackTrace();
+                throw new UsuarioNoExisteException(nick);
+            }
+        }else {
             throw new UsuarioNoExisteException(nick);
         }
     }

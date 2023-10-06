@@ -16,4 +16,4 @@
     </li>
 </ul>
 
-<hr class="mt-1 mb-2"/>
+<hr class="mt-1 mb-4"/>
