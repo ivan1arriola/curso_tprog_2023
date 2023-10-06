@@ -45,4 +45,7 @@ public interface ICtrlOferta {
 		// ESTÁN PERO NO EN EL DCD
 		public abstract HashSet<String> listarKeywords();
 		public abstract DTTipoOferta tipoOferta(String oferta);
+		
+		
+		public abstract boolean paqueteComprado(String pack);
 }
