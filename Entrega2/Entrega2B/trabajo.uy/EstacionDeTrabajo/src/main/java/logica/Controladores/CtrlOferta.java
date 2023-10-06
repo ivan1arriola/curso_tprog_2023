@@ -201,20 +201,27 @@ public class CtrlOferta implements ICtrlOferta{
 		return !ofer;
 	}
 
-	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
 		boolean b = ol.existePostulacion(nombre_postulante);
 		if(b) {
-			return ol.obtenerDatosPostulacion(nombre_postulante);
+			return ol.infoOfertaLaboralPost(nombre_postulante);
 		}
 		else {
 			return ol.infoOfertaLaboralVisitante();
 		}
 	}
-	public DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
-		// FALTA REALIZAR
-		return null;
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nombre_empresa);
+		boolean b = e.existeOfertaLaboral(nombre_oferta);
+		if(b) {
+			ol.infoOfertaLaboralPropietario();
+		}
+		else return ol.infoOfertaLaboralVisitante();
 	}
 	
 	public boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha) {

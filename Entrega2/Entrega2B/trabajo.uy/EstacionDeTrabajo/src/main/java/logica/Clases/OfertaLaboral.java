@@ -203,36 +203,6 @@ public class OfertaLaboral {
 		return dtoe;
 	}
 	
-	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario(){
-		List<Keyword> keys = getKeywords();
-		HashSet<String> nuevo = new HashSet<>();
-		for (Keyword item : keys) {
-			nuevo.add(item.getNombre());
-		}
-		
-		HashSet<String> posts = new HashSet<>();
-		// muestro todas las postulaciones
-		for(int i = 0; i < postulaciones.size(); i++) {
-			Postulacion elem = postulaciones.get(i);
-			// obtengo los nickname de los postulantes
-			posts.add(elem.getPostulante().getNickname());
-		}
-		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo,getPaquete(),posts);
-		return dtoe;
-	}
-
-	
-	public DTPostulacion obtenerDatosPostulacion(String nombre_postulante) {
-		List<Postulacion> lista = getPostulaciones();
-		for (Postulacion item : lista) {
-			String nombre = item.obtenerNicknamePostulante();
-			if ( nombre.equals(nombre_postulante) ) {
-				return item.obtenerDT();
-			}
-		}
-		return null;
-	}
-	
 
 	public boolean existePostulacion(String nombre_postulante) {
 		for (Postulacion item : postulaciones) {
@@ -240,10 +210,34 @@ public class OfertaLaboral {
 				return true;
 			}
 		}
-		return false;
+	return false;
 	}
 
-    
-    
-    
+
+	public DTPostulacion obtenerDatosPostulacion(String nombre_empresa) {
+		List<Postulacion> lista = getPostulaciones();
+		for (Postulacion item : lista) {
+			item.obtenerNicknamePostulante();
+		}
+		return null; // FALTA ENCONTRAR EL DCOM
+	}
+
+	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante) {
+		int j = 0;
+		boolean salir = false;
+		for (int i = 0; i < postulaciones.size() && !salir; i++) {
+			if(postulaciones.get(i).obtenerNicknamePostulante().equals(nombre_postulante)) {
+				j = i;
+				salir = true;
+			}
+		}
+		DTPostulacion dt = postulaciones.get(j).obtenerDT();
+		HashSet<String> keys = new HashSet<String>();
+		for (int i = 0; i < keywords.size() && !salir; i++) {
+			keys.add(keywords.get(i).getNombre());
+		}
+		
+		
+		return new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
+	} 
 }
