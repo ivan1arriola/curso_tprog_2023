@@ -32,9 +32,9 @@ public class Paquete {
         this.descuento = descuento;
         this.validez = validez;
         this.imagen = imagen;
-        this.oferPaq = null;
+        this.oferPaq = new HashSet<OfertaPaquete>();
         costo = 0;  
-        this.infCompraAsociada = null; //empieza null, despues se cambia 
+        this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null, despues se cambia 
         
     }
 
@@ -79,10 +79,11 @@ public class Paquete {
     // OPERACIONES
     public void crearOfertaPaquete(TipoOferta tipoO, int cantidad) {
         OfertaPaquete ofpaq = new OfertaPaquete(tipoO, cantidad);
-        oferPaq.add(ofpaq);
+        Set<OfertaPaquete> OFERTASPAQUETES = this.getOfertaPaquete();
+        OFERTASPAQUETES.add(ofpaq);
 		float Costo = 0;
         // cambie oferta paquete, cambie el precio del mismo
-        for (OfertaPaquete OfertaAnalizar : oferPaq) {
+        for (OfertaPaquete OfertaAnalizar : OFERTASPAQUETES) {
             DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO(); // obtengo cantidad y nombre de cada paquete
             String nombreOferta = DTcantaux.getNombre(); // nombre lo uso para buscar
             int cantidadTotal = DTcantaux.getCantidad();

@@ -88,11 +88,11 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Modificar Datos de Usuario");
-        setBounds(10, 40, 443, 423);
+        setBounds(10, 40, 533, 394);
         getContentPane().setLayout(null);
         
         lblIngreseNombre = new JLabel("Modifique los datos del postulante: " + postulante.getNickname() );
-        lblIngreseNombre.setBounds(30, 11, 290, 34);
+        lblIngreseNombre.setBounds(30, 11, 418, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 
@@ -103,16 +103,16 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Datos Actuales");
-		lblNewLabel_1.setBounds(288, 54, 88, 25);
+		lblNewLabel_1.setBounds(378, 54, 123, 25);
 		getContentPane().add(lblNewLabel_1);
 		
 		nombreNuevo = new JTextField();
-		nombreNuevo.setBounds(125, 90, 123, 20);
+		nombreNuevo.setBounds(222, 91, 123, 20);
 		getContentPane().add(nombreNuevo);
 		nombreNuevo.setColumns(10);
 		
 		nombreActual = new JTextField();
-		nombreActual.setBounds(273, 90, 120, 20);
+		nombreActual.setBounds(381, 91, 120, 20);
 		nombreActual.setEditable(false);
 		getContentPane().add(nombreActual);
 		nombreActual.setColumns(10);
@@ -123,18 +123,18 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		
 		apellidoNuevo = new JTextField();
 		apellidoNuevo.setColumns(10);
-		apellidoNuevo.setBounds(125, 121, 123, 20);
+		apellidoNuevo.setBounds(222, 122, 123, 20);
 		getContentPane().add(apellidoNuevo);
 		
 		apellidoActual = new JTextField();
 		apellidoActual.setColumns(10);
-		apellidoActual.setBounds(273, 121, 120, 20);
+		apellidoActual.setBounds(381, 122, 120, 20);
 		apellidoActual.setEditable(false);
 		getContentPane().add(apellidoActual);
 		
 		correoNuevo = new JTextField();
 		correoNuevo.setColumns(10);
-		correoNuevo.setBounds(125, 154, 123, 20);
+		correoNuevo.setBounds(222, 155, 123, 20);
 		getContentPane().add(correoNuevo);
 		
 		lblNewLabel_3 = new JLabel("E-mail: ");
@@ -144,35 +144,35 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		correoActual = new JTextField();
 		correoActual.setColumns(10);
 		correoActual.setEditable(false);
-		correoActual.setBounds(273, 152, 120, 20);
+		correoActual.setBounds(381, 153, 120, 20);
 		getContentPane().add(correoActual);
 		
 		lblNewLabel_4 = new JLabel("Contraseña:");
-		lblNewLabel_4.setBounds(10, 186, 70, 14);
+		lblNewLabel_4.setBounds(10, 186, 161, 14);
 		getContentPane().add(lblNewLabel_4);
 		
 		passNuevo = new JTextField();
 		passNuevo.setColumns(10);
-		passNuevo.setBounds(125, 183, 123, 20);
+		passNuevo.setBounds(222, 186, 123, 20);
 		getContentPane().add(passNuevo);
 		
 		passActual = new JTextField();
 		passActual.setColumns(10);
 		passActual.setEditable(false);
-		passActual.setBounds(273, 183, 120, 20);
+		passActual.setBounds(381, 184, 120, 20);
 		getContentPane().add(passActual);
 		
 		confirmPassNuevo = new JTextField();
 		confirmPassNuevo.setColumns(10);
-		confirmPassNuevo.setBounds(125, 216, 123, 20);
+		confirmPassNuevo.setBounds(222, 215, 123, 20);
 		getContentPane().add(confirmPassNuevo);
 		
 		lblNewLabel_5 = new JLabel("Confirmar contraseña: ");
-		lblNewLabel_5.setBounds(10, 219, 111, 14);
+		lblNewLabel_5.setBounds(10, 219, 175, 14);
 		getContentPane().add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Fecha de nacimiento: ");
-		lblNewLabel_6.setBounds(10, 256, 111, 14);
+		lblNewLabel_6.setBounds(10, 256, 175, 14);
 		getContentPane().add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("Nacionalidad:");
@@ -181,24 +181,24 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		
 		nacionalidadNuevo = new JTextField();
 		nacionalidadNuevo.setColumns(10);
-		nacionalidadNuevo.setBounds(125, 282, 123, 20);
+		nacionalidadNuevo.setBounds(222, 283, 123, 20);
 		getContentPane().add(nacionalidadNuevo);
 		
 		nacionalidadActual = new JTextField();
 		nacionalidadActual.setColumns(10);
 		nacionalidadActual.setEditable(false);
-		nacionalidadActual.setBounds(273, 282, 120, 20);
+		nacionalidadActual.setBounds(381, 283, 120, 20);
 		getContentPane().add(nacionalidadActual);
 		
 		fechaNuevo = new JTextField();
 		fechaNuevo.setColumns(10);
-		fechaNuevo.setBounds(125, 247, 123, 20);
+		fechaNuevo.setBounds(222, 250, 123, 20);
 		getContentPane().add(fechaNuevo);
 		
 		fechaActual = new JTextField();
 		fechaActual.setColumns(10);
 		fechaActual.setEditable(false);
-		fechaActual.setBounds(273, 247, 120, 20);
+		fechaActual.setBounds(381, 254, 120, 20);
 		getContentPane().add(fechaActual);
 		
 		
@@ -222,7 +222,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		 // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
         // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
 		btnCancelar = new JButton("Cerrar");
-		btnCancelar.setBounds(234, 358, 111, 25);
+		btnCancelar.setBounds(390, 315, 111, 25);
 		btnCancelar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        setVisible(false);
@@ -279,11 +279,11 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
          }
 		}
 		});
-		modificarBtn.setBounds(74, 359, 111, 23);
+		modificarBtn.setBounds(74, 324, 111, 23);
 		getContentPane().add(modificarBtn);
 		
 		lblNewLabel_8 = new JLabel("Modifcar");
-		lblNewLabel_8.setBounds(160, 54, 88, 25);
+		lblNewLabel_8.setBounds(247, 57, 88, 25);
 		getContentPane().add(lblNewLabel_8);
 		
 }
