@@ -218,6 +218,10 @@ public class CargarDatos extends JInternalFrame {
 
         	            // Obtener el arreglo de bytes de la imagen
         	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        	            
+        	            // Cerrar los flujos
+        	            inputStream.close();
+        	            byteArrayOutputStream.close();
                 		
                 		// Obtener hora
                 		String horario = campos5[5];
@@ -397,7 +401,7 @@ public class CargarDatos extends JInternalFrame {
                         }
                         
                 		try {
-                			ICU.altaOfertaLaboral(nickname_e, tipodeP, campos5[1], campos5[2], hor, Float.valueOf(campos5[6]), campos5[4], dep, fecha, keys, estado, paq, imageBytes);
+                			ICU.altaOfertaLaboral(nickname_e, tipodeP, campos5[1], campos5[2], hor, Float.valueOf(campos5[6]), campos5[4], dep, fecha, keys, estado, imageBytes, paq);
                 		} catch (ExceptionUsuarioNoEncontrado eune) {
                 			JOptionPane.showMessageDialog(CargarDatos.this, eune.getMessage(), "ERROR - Carga de Datos", JOptionPane.ERROR_MESSAGE);
                 		} catch(ExceptionEmpresaInvalida eei) {
@@ -468,6 +472,33 @@ public class CargarDatos extends JInternalFrame {
                 	reader13.readLine();
                 	while ((linea13 = reader13.readLine()) != null) {
                 		String[] campos13 = linea13.split(";");
+                		
+                		
+        	            // URL de la imagen que deseas descargar
+        	            String imageUrl = campos13[5];
+
+        	            // Crear una instancia de URL
+        	            URL url = new URL(imageUrl);
+        	            
+        	            // Abrir una conexión a la URL
+        	            InputStream inputStream = url.openStream();
+
+        	            // Crear un flujo de bytes para almacenar la imagen
+        	            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        	            
+        	            // Leer los datos de la imagen y escribirlos en el flujo de bytes
+        	            byte[] buffer = new byte[1024];
+        	            int bytesRead;
+        	            while ((bytesRead = inputStream.read(buffer)) != -1) {
+        	                byteArrayOutputStream.write(buffer, 0, bytesRead);
+        	            }
+
+        	            // Obtener el arreglo de bytes de la imagen
+        	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        	            
+        	            // Cerrar los flujos
+        	            inputStream.close();
+        	            byteArrayOutputStream.close();
                 		
                 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
                 		LocalDate fecha = LocalDate.parse(campos13[5], formatter);
