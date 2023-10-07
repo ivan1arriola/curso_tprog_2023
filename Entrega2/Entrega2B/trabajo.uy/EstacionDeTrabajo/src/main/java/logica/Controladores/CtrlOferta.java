@@ -384,7 +384,7 @@ public class CtrlOferta implements ICtrlOferta{
 
 	@Override
 	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 		
