@@ -4,7 +4,7 @@
   <local-check-config name="tarea2Checkstyle" location="C:\Users\Usuario\git\tprogTarea2B\Entrega2\Entrega2B\trabajo.uy\EstacionDeTrabajo\src\main\checkstyle\checkstyle.xml" type="external" description="reglas para el checkstyle pedidas en la tarea2">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="tarea2Checkstyle" local="true">
+  <fileset name="all" enabled="true" check-config-name="Google Checks" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>
