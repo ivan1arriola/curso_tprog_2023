@@ -22,8 +22,6 @@
             <div class="alert alert-danger text-center" role="alert">
                 <h4 class="alert-heading ">Error en la aplicación</h4>
                 <p><%= request.getAttribute("mensajeError") %></p>
-                <hr>
-                <p>Por favor, póngase en contacto con el soporte técnico para obtener ayuda.</p>
             </div>
         </div>
     </main>

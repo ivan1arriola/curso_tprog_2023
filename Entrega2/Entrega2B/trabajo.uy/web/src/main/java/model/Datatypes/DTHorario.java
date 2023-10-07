@@ -16,5 +16,12 @@ public class DTHorario {
 	public DTHora getHasta() {
 		return hasta;
 	}
+	
+	@Override
+    public String toString() {
+        return desde.toString() + " - " + hasta.toString();
+    }
+	
+	
 } 
 
