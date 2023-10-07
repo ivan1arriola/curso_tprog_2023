@@ -10,9 +10,7 @@ import main.java.logica.Fabrica;
 import main.java.logica.Datatypes.DTUsuario;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Base64;
-import java.util.Enumeration;
 
 /**
  * Servlet implementation class IniciarSesion
