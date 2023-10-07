@@ -13,17 +13,17 @@ import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTTipoOferta;
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 
 public interface ICtrlOferta {
 	    public abstract Set<String> listarEmpresas();
 		public abstract HashSet<String> listarTipoDePublicaciones();
 		public abstract boolean existeOferta(String nombre_oferta);
 		public abstract boolean altaTipoPublicacionOL(String nomb, String descripcion, int expo, int dur, float costo, LocalDate fechA);
-		public abstract boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento);
+		public abstract boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] img);
 		public abstract boolean altaKeyword(String key);
 		public abstract boolean compraPaquetes(String nickname_e, String paq);
-		public abstract boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, String paquete);
-		public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys);
+		public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, EstadoOL estado, byte[] img, String paquete);
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
@@ -41,6 +41,7 @@ public interface ICtrlOferta {
 		public abstract HashSet<String> listarPaquetes();
 		public abstract DTPaquete obtenerDatosPaquete(String paq);
 		public abstract DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente;
+		public abstract HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
 		
 		// ESTÁN PERO NO EN EL DCD
 		public abstract HashSet<String> listarKeywords();

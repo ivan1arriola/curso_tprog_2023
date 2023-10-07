@@ -153,7 +153,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return e.compraPaquetes(paquete);
 	}
 	
-	public boolean altaOfertaLaboralConPagoPaq(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, String paquete) {
+	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, EstadoOL estado, byte[] img, String paquete) {
 		PaqueteHandler PH = PaqueteHandler.getInstance();
 		Paquete paq = PH.buscar(paquete);
 		UsuarioHandler UH = UsuarioHandler.getInstance();
@@ -172,30 +172,7 @@ public class CtrlOferta implements ICtrlOferta{
 				}
 			}
 			
-			OfertaLaboral ol = e.altaOfertaLaboralConPaquete(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks, paq);
-			OLH.agregar(ol);
-		}
-		return !ofer;
-	}
-	
-	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa e = (Empresa) UH.buscarNick(nickname_e);
-		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		boolean ofer = OLH.existe(nombre);
-		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-		TipoOferta to = TOH.buscar(tipo);
-		if(!ofer) {
-			List<Keyword> ks = new ArrayList<Keyword>();
-			KeywordHandler KH = KeywordHandler.getInstance();
-			HashMap<String, Keyword> keyss = KH.obtener();
-			for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
-				if(keys.contains(entry.getKey())) {
-					ks.add(entry.getValue());
-				}
-			}
-			
-			OfertaLaboral ol = e.altaOfertaLaboral(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks);
+			OfertaLaboral ol = e.altaOfertaLaboral(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks, estado, img, paq);
 			OLH.agregar(ol);
 		}
 		return !ofer;
@@ -382,10 +359,49 @@ public class CtrlOferta implements ICtrlOferta{
 			}
 	}
 
-	@Override
-	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] imagen) {
+		// Verificar si el argumento 'nombre' es vacío
+		if (nombre.isEmpty()) {
+			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
+		}
+
+		// Verificar si el argumento 'descripcion' es vacío
+		if (descripcion.isEmpty()) {
+			throw new IllegalArgumentException("El argumento 'descripcion' no puede ser vacío.");
+		}
+
+		// Verificar si 'validez' es mayor a 0
+		if (validez <= 0) {
+			throw new IllegalArgumentException("El argumento 'validez' debe ser mayor a 0.");
+		}
+
+		// Verificar si 'descuento' es un porcentaje válido (mayor a 0, menor o igual a 100)
+		if (descuento < 0 || descuento > 100) {
+			throw new IllegalArgumentException("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.");
+		}
+
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		boolean existe = PH.existe(nombre);
+		if(!existe) {
+			Paquete p = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
+			PH.agregar(p);
+		}
+		else {
+			throw new IllegalArgumentException("El argumento 'nombre' ya existe en el sistema.");
+		}
+		
+		return !existe;
+	}
+	
+	public HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {
+		HashSet<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		HashMap<String,OfertaLaboral> ofertasLaborales = OLH.obtener();
+		for (Map.Entry<String,OfertaLaboral>entry : ofertasLaborales.entrySet()) {
+            res.add(entry.getValue().obtenerDatosOferta());
+        }
+		return res;
 	}
 		
 }
