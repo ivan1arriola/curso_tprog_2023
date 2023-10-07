@@ -15,7 +15,7 @@ public class Principal {
     private JFrame frmGestionDeUsuarios;
     private AltaDeUsuario AltaDeUsuarioInternalFrame;
     private ConsultaDeUsuario ConsultaDeUsuarioInternalFrame;
-    private ModificarDatosDeUsuario ModificarDatosDeUsuarioInternalFrame;
+    private ModificarDatosDeUsuarioV2 ModificarDatosDeUsuarioInternalFrame;
     private CargarDatos CargarDatosInternalFrame;
     private ConsultaDeOfertaLaboral ConsultaDeOfertaLaboralInternalFrame;
     private AltaOfertaLaboral AltaDeOfertaLaboralInternalFrame; // Falta implementar de acá en más
@@ -79,8 +79,8 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(CargarDatosInternalFrame);
         
         // ModificarDatosDeUsuario
-        ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario(ICU);
-        ModificarDatosDeUsuarioInternalFrame.setSize(550, 550);
+        ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(ICU);
+        ModificarDatosDeUsuarioInternalFrame.setSize(450, 190);
         ModificarDatosDeUsuarioInternalFrame.setLocation(89, 77);
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ModificarDatosDeUsuarioInternalFrame);

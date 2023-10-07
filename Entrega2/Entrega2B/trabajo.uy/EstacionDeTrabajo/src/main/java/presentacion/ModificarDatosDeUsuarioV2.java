@@ -43,8 +43,10 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    private JComboBox<String> listarUsuarios;
+	    private ModificarDatosDeUsuarioEmpresa MDUE;
+	    private ModificarDatosDeUsuarioPostulante MDUP;
 	    
-	    
+	
 
     public ModificarDatosDeUsuarioV2(ICtrlUsuario icu) {
     	// Se inicializa con el controlador de usuarios
@@ -58,11 +60,11 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Modificar Datos de Usuario");
-        setBounds(10, 40, 408, 236);
+        setBounds(10, 40, 457, 187);
         getContentPane().setLayout(null);
         
         lblIngreseNombre = new JLabel("Seleccione un usuario al cual desee modificarle los datos");
-        lblIngreseNombre.setBounds(53, 11, 274, 34);
+        lblIngreseNombre.setBounds(12, 11, 417, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 
@@ -81,13 +83,13 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				
 			}
 		});
-		listarUsuarios.setBounds(63, 56, 264, 22);
+		listarUsuarios.setBounds(63, 56, 325, 22);
 		getContentPane().add(listarUsuarios);
 		
 		 // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
         // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
 		btnCancelar = new JButton("Cerrar");
-		btnCancelar.setBounds(218, 158, 111, 25);
+		btnCancelar.setBounds(277, 109, 111, 25);
 		btnCancelar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        setVisible(false);
@@ -123,7 +125,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				}
 			}
 		});
-		modificarBtn.setBounds(63, 159, 111, 23);
+		modificarBtn.setBounds(63, 110, 146, 23);
 		getContentPane().add(modificarBtn);
 	
 		
@@ -131,6 +133,9 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
     
     
     public void actualizar() {
+    	Fabrica F = Fabrica.getInstance();
+    	icu = F.getICtrlUsuario();
+    	
     	listarUsuarios.removeAllItems(); 
         
         //comboBoxOfertas.removeAllItems(); 
