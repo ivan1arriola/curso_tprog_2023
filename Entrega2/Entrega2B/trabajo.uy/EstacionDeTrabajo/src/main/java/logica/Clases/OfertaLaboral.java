@@ -1,6 +1,8 @@
 package main.java.logica.Clases;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsTit;
 import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Enumerados.DepUY;
@@ -9,11 +11,11 @@ import main.java.logica.Enumerados.EstadoOL;
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.HashSet;
 
 
 public class OfertaLaboral {
+	// atributos
 	private String nombre;
 	private String descripcion;
 	private LocalDate fecha_de_alta;
@@ -22,17 +24,17 @@ public class OfertaLaboral {
 	private DTHorario horario;
 	private DepUY departamento;
 	private String ciudad;
-	private EstadoOL estado; //
-	private byte[] imagen; //
+	private EstadoOL estado; 
+	private byte[] imagen; 
 	
-	// asociado a
+	// relaciones
 	private TipoOferta tOferta; 
 	private List<Keyword> keywords;
-	private Paquete paqueteAsoc; //
+	private Paquete paqueteAsoc; 
 	private List<Postulacion> postulaciones;
 	
 
-	// constructor
+	// constructor con paquete y imagen
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo,byte[] imagennueva,Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
@@ -51,13 +53,13 @@ public class OfertaLaboral {
 			this.costo = costodadoPaq - costodadoPaq*descuento;
 		} else {
 			this.costo = costodadoPaq;
-		}
-	    		
+		}		
 		this.fecha_de_alta = atrfecha_de_alta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
-	
+
+	// constructor sin paquete y con imagen
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo,byte[] imagennueva) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
@@ -68,7 +70,7 @@ public class OfertaLaboral {
 		this.tOferta = atrtOferta;
 		this.estado = estadoNuevo;
 		this.imagen = imagennueva;
-		
+		this.paqueteAsoc = null;	
 		float costodadoPaq = tOferta.getCosto();
 		if ( this.paqueteAsoc != null ) {
 			float descuento = paqueteAsoc.getDescuento();
@@ -76,12 +78,12 @@ public class OfertaLaboral {
 		} else {
 			this.costo = costodadoPaq;
 		}
-	    		
 		this.fecha_de_alta = atrfecha_de_alta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
-	
+
+	// constructor sin imagen pero con paquete	
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo, Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
@@ -92,6 +94,7 @@ public class OfertaLaboral {
 		this.tOferta = atrtOferta;
 		this.estado = estadoNuevo;
 		this.paqueteAsoc = paq;
+		this.imagen = null;
 		
 		float costodadoPaq = tOferta.getCosto();
 		if ( this.paqueteAsoc != null ) {
@@ -100,12 +103,13 @@ public class OfertaLaboral {
 		} else {
 			this.costo = costodadoPaq;
 		}
-	    		
+			
 		this.fecha_de_alta = atrfecha_de_alta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
-	
+
+	// constructor sin imagen ni paquete	
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
@@ -115,7 +119,9 @@ public class OfertaLaboral {
 		this.remuneracion = atrremuneracion; 
 		this.tOferta = atrtOferta;
 		this.estado = estadoNuevo;
-		
+		this.paqueteAsoc = null;
+		this.imagen = null;
+	
 		float costodadoPaq = tOferta.getCosto();
 		if ( this.paqueteAsoc != null ) {
 			float descuento = paqueteAsoc.getDescuento();
@@ -123,12 +129,12 @@ public class OfertaLaboral {
 		} else {
 			this.costo = costodadoPaq;
 		}
-	    		
+
 		this.fecha_de_alta = atrfecha_de_alta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
-	 
+	
 	// Getters
 	public String getNombre() 					{ return nombre; 		}
 	public String getDescripcion() 				{ return descripcion;   }
@@ -162,77 +168,87 @@ public class OfertaLaboral {
 	public void setPaquete(Paquete paqueteA)                {paqueteAsoc = paqueteA;    }
 	
 	// -------------- funciones ---------------------
+
+	public void registrarPostulacion(Postulacion p) {
+		postulaciones.add(p);
+	} // registra una postulacion a la lista de postulaciones	
+
 	public DTOfertaExtendido obtenerDatosOferta(){
-		Set<DTPostulacion> posts = new HashSet<>();
+		HashSet<DTPostulacion> posts = new HashSet<>();
+		// muestro todas las postulaciones
 		for(int i = 0; i < postulaciones.size(); i++) {
 			Postulacion elem = postulaciones.get(i);
-			posts.add(elem.getDTPostulacion());
+			// obtengo DTPostulacion para cada una
+			posts.add(elem.obtenerDT());
 		}
 		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts, getImagen());
 		return dtoe;
-    }
-	
-	public void registrarPostulacion(Postulacion p) {
-		postulaciones.add(p);
 	}
 	
 	public boolean	tieneKeyword(String keyword) {
 		for (Keyword item : keywords) {
 			if (item.getNombre().equals(keyword)) {
-			    return true;
+				return true;
 			}   
 		}
 		return false;
 	}
 	
-    public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante() {
-    	List<Keyword> keys = getKeywords();
-    	HashSet<String> nuevo = new HashSet<>();
-    	for (Keyword item : keys) {
-    		nuevo.add(item.getNombre());
-    	}
-    	DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo);
-    	return dtoe;
-    }
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante() {
+		List<Keyword> keys = getKeywords();
+		HashSet<String> nuevo = new HashSet<>();
+		for (Keyword item : keys) {
+			nuevo.add(item.getNombre());
+		}
+		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo);
+		return dtoe;
+	}
 	
-    
-    public boolean existePostulacion(String nombre_postulante) {
-    	for (Postulacion item : postulaciones) {
-    		if (nombre_postulante.equals(item.obtenerNicknamePostulante())) {
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-    
-//    public Set<DTOfertaExtendidoConKeywordsTit> infoOfertaLaboralPropietario(){
-//    	Set<DTOfertaExtendidoConKeywordsTit> mySet = new HashSet<DTOfertaExtendidoConKeywordsTit>();
-//    	
-//    	List<Postulacion> lista =	getPostulaciones();
-//    	HashSet<String> postulaciones = new HashSet<String>();
-//    	for (Postulacion item : lista) {
-//    		postulaciones.add((item.getDTPostulacion()).getPostulante());
-//    	}
-//    	
-//    	List<Keyword> keys = getKeywords();
-//    	HashSet<String> nuevo = new HashSet<>();
-//    	for (Keyword item : keys) {
-//    		nuevo.add(item.getNombre());
-//    	}
-//    	
-//    	DTOfertaExtendidoSinPConK unDt = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo,getPaquete(),postulaciones);
-//    		
-//    	
-//    	
-//    	return mySet;
-//    }
-    
-    public DTPostulacion obtenerDatosPostulacion(String nombre_empresa) {
-    	List<Postulacion> lista = getPostulaciones();
-    	for (Postulacion item : lista) {
-    		item.obtenerNicknamePostulante();
-    	}
-    	return null; // FALTA ENCONTRAR EL DCOM
-    }
-    
+
+	public boolean existePostulacion(String nombre_postulante) {
+		for (Postulacion item : postulaciones) {
+			if (nombre_postulante.equals(item.obtenerNicknamePostulante())) {
+				return true;
+			}
+		}
+	return false;
+	}
+
+	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario(){
+		List<Keyword> keys = getKeywords();
+		HashSet<String> nuevo = new HashSet<>();
+		for (Keyword item : keys) {
+			nuevo.add(item.getNombre());
+		}
+		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),nuevo, getPaquete(), nuevo);
+		return dtoe;
+	} 
+
+	public DTPostulacion obtenerDatosPostulacion(String nombre_empresa) {
+		List<Postulacion> lista = getPostulaciones();
+		for (Postulacion item : lista) {
+			item.obtenerNicknamePostulante();
+		}
+		return null; // FALTA ENCONTRAR EL DCOM
+	}
+
+	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante) {
+		int j = 0;
+		boolean salir = false;
+		for (int i = 0; i < postulaciones.size() && !salir; i++) {
+			if(postulaciones.get(i).obtenerNicknamePostulante().equals(nombre_postulante)) {
+				j = i;
+				salir = true;
+			}
+		}
+		DTPostulacion dt = postulaciones.get(j).obtenerDT();
+		HashSet<String> keys = new HashSet<String>();
+		for (int i = 0; i < keywords.size() && !salir; i++) {
+			keys.add(keywords.get(i).getNombre());
+		}
+		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
+
+		
+		return 	entregar;	
+		} 
 }

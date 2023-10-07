@@ -16,7 +16,7 @@ public class Postulacion {
     private OfertaLaboral OferLab;
     private Postulante p;
 
-
+    // constructor
     public Postulacion(Postulante p, String CV, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
         this.p = p;
         this.fecha = fecha;
@@ -57,9 +57,10 @@ public class Postulacion {
         this.motivacion = motivacion;
     }
 
+    // dentro caso uso postulacion a oferta laboral
     public Boolean esPostulacion(String nombre){
         return OferLab.getNombre().equals(nombre); // retorna true si el nombre de la oferta es igual al nombre que se le pasa por parametro
     }
 
-    public Object obtenerNicknamePostulante() {return p.getNickname();}
+    public String obtenerNicknamePostulante() {return p.getNickname();}
 }

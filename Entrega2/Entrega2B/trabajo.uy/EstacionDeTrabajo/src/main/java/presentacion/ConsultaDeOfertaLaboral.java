@@ -41,6 +41,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private String nombre_e;
 	private String selectedUsuario;
 	private VerPostulaciones VerPostulacionesJInternalFrame;
+	private JTextArea tAKey;
 	
 	/**
 	 * Create the application.
@@ -70,16 +71,17 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Oferta Laboral");
-        setBounds(30, 30, 660, 603);
+        setBounds(30, 30, 660, 678);
         getContentPane().setLayout(null);
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		limpiarFormulario();
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(521, 538, 117, 25);
+        btnCerrar.setBounds(524, 609, 117, 25);
         getContentPane().add(btnCerrar);
         
         listaEmpresas = new JComboBox<String>();
@@ -120,6 +122,15 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		tfDepartamento.setText((infoConsOf.getDepartamento()).name());
         		
         		tfCiudad.setText((infoConsOf.getCiudad()));
+        		
+        		HashSet<String> keywords = ICU.listarKeywords(selectedUsuario1);
+        		
+                Iterator<String> iterator = keywords.iterator();
+                while (iterator.hasNext()) {
+                	tAKey.append(iterator.next());
+                }
+        		
+        		
 
         	}
         });
@@ -217,7 +228,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         
         tfCiudad = new JTextField();
         tfCiudad.setEditable(false);
-        tfCiudad.setBounds(183, 455, 455, 30);
+        tfCiudad.setBounds(186, 455, 455, 30);
         getContentPane().add(tfCiudad);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1 = new JLabel("Departamento:");
@@ -236,10 +247,30 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         	}
         });
-        btnVerPostulaciones.setBounds(12, 501, 626, 25);
+        btnVerPostulaciones.setBounds(15, 572, 626, 25);
         getContentPane().add(btnVerPostulaciones);
+        
+        JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1 = new JLabel("Keywords:");
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12, 506, 170, 15);
+        getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1);
+        
+        tAKey = new JTextArea();
+        tAKey.setBounds(186, 497, 455, 61);
+        getContentPane().add(tAKey);
 
         
+	}
+	
+	private void limpiarFormulario() {
+		tfNombre.setText("");
+		tfDescripcion.setText("");
+		tfFechaDeAlta.setText("");
+		tfCosto.setText("");
+		tfRemuneracion.setText("");
+		tfHorario.setText("");
+		tfDepartamento.setText("");
+		tfCiudad.setText("");
+		tAKey.setText("");
 	}
 	
 	public void actualizar() {

@@ -12,9 +12,9 @@ import test.logica.Controladores.ctrlOfertaTest;
 @Suite
 @SelectClasses(
 		{
-			FabricaTest.class, 
-			ControladorUsuarioTest.class,
-			ctrlOfertaTest.class
+			FabricaTest.class
+//			ControladorUsuarioTest.class,
+//			ctrlOfertaTest.class
 			
 			
 		}

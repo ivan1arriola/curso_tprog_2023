@@ -18,9 +18,7 @@ import main.java.logica.Clases.Empresa;
 import main.java.logica.Clases.Keyword;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.Datatypes.DTOfertaLaboral;
 import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTTipoOferta;
@@ -98,7 +96,7 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 	}
 
-	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
+	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento,byte[] imagen) {
 	    // Verificar si el argumento 'nombre' es vacío
 	    if (nombre.isEmpty()) {
 	        throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -123,7 +121,7 @@ public class CtrlOferta implements ICtrlOferta{
 	    
 	    boolean existe = PH.existe(nombre);
 		if(!existe) {
-			Paquete p = new Paquete(nombre, descripcion, validez, fechaA, descuento);
+			Paquete p = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
 			PH.agregar(p);
 		}
 		else {
@@ -201,20 +199,31 @@ public class CtrlOferta implements ICtrlOferta{
 		return !ofer;
 	}
 
-	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
 		boolean b = ol.existePostulacion(nombre_postulante);
 		if(b) {
-			return ol.obtenerDatosPostulacion(nombre_postulante);
+			return ol.infoOfertaLaboralPost(nombre_postulante);
 		}
 		else {
 			return ol.infoOfertaLaboralVisitante();
 		}
 	}
-	public DTOfertaLaboral infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
-		// FALTA REALIZAR
-		return null;
+	
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nombre_empresa);
+		boolean b = e.existeOfertaLaboral(nombre_oferta);
+		DTOfertaExtendidoSinPConK auxiliar;
+		if(b) {
+			auxiliar = ol.infoOfertaLaboralPropietario();
+		}
+		else 
+			auxiliar = ol.infoOfertaLaboralVisitante();
+		return auxiliar;
 	}
 	
 	public boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha) {
@@ -358,4 +367,23 @@ public class CtrlOferta implements ICtrlOferta{
 		DTTipoOferta res = tipoOferta.obtenerDT();
 		return res;
 	}
+	
+	
+	public boolean paqueteComprado(String pack) {
+		
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		Paquete paquet = PH.buscar(pack);
+
+		if(paquet.getInfoCompra()==null) {return false; //nadie lo compro 
+		} else {return true;
+		//ya fue comprado
+			}
+	}
+
+	@Override
+	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+		
 }

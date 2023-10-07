@@ -1,14 +1,32 @@
 package main.java.presentacion;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.excepciones.UsuarioNoExisteException;
+//import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.*;
+//import main.java.logica.Datatypes.*;
+import main.java.logica.Datatypes.DTHora;
+import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Enumerados.DepUY;
-import javax.swing.*;
+//import javax.swing.*;
+import javax.swing.JInternalFrame;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JList;
+import javax.swing.DefaultListModel;
+import javax.swing.JSpinner;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import javax.swing.JScrollPane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -40,6 +58,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JSpinner hastamin;
 	private List<String> ks;
 	private String dep;
+	
+	private JList<String> availableList;
+    private JList<String> selectedList;
+	private DefaultListModel<String> availableListModel;
+    private DefaultListModel<String> selectedListModel;
+	
     /**
      * Create the frame.
      */
@@ -67,8 +91,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
         table.setBounds(67, 45, 1, 1);
         getContentPane().add(table);
         
-        listadoKeywords = new JComboBox<String>();
+        //KEYWORDS
         
+        /*listadoKeywords = new JComboBox<String>();
         listadoKeywords.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String k = (String) listadoKeywords.getSelectedItem();
@@ -76,9 +101,71 @@ public class AltaOfertaLaboral extends JInternalFrame {
         		// listadoKeywords.removeItem(k);
         	}
         });
-        listadoKeywords.setBounds(134, 374, 389, 22);
-        getContentPane().add(listadoKeywords);
+        listadoKeywords.setBounds(140, 350, 382, 22);
+        getContentPane().add(listadoKeywords);*/
+         
+        ////////////
+        /*availableListModel = new DefaultListModel<>();
+        selectedListModel = new DefaultListModel<>();
+        HashSet<String> keys = ICO.listarKeywords();
+        List<String> keysSorted = new ArrayList<>(keys);
+        Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         
+        for (String item : keysSorted) {
+            availableListModel.addElement(item);
+        }*/
+        ///////////////
+        
+        availableList = new JList<>(availableListModel);
+        availableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        selectedList = new JList<>(selectedListModel);
+        selectedList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        JScrollPane AvailableL = new JScrollPane(availableList);
+        AvailableL.setSize(180, 60);
+        AvailableL.setLocation(140, 338);
+        getContentPane().add(AvailableL);
+        
+        JScrollPane SelectedL = new JScrollPane(selectedList);
+        SelectedL.setLocation(342, 338);
+        SelectedL.setSize(180, 60);
+        getContentPane().add(SelectedL);
+             
+        JButton addButton = new JButton("Agregar>");
+        addButton.setSize(79, 20);
+        addButton.setLocation(241, 409);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                transferirElemento(availableList, selectedListModel);
+                if (availableList.getSelectedIndex() != -1) {
+	                String k = (String) availableList.getSelectedValue();
+	        		ks.add(k);
+                }
+            }
+        });
+        
+        JButton removeButton = new JButton("<Quitar");
+        removeButton.setSize(79, 20);
+        removeButton.setLocation(342, 409);
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                transferirElemento(selectedList, availableListModel);
+                if (selectedList.getSelectedIndex() != -1) {
+	                String k = (String) selectedList.getSelectedValue();
+	        		ks.remove(k);
+                }
+            }
+        });
+        
+
+        getContentPane().add(addButton);
+        getContentPane().add(removeButton);
+        
+        
+        
+        ///////////////////
         listadoEmpresas = new JComboBox<String>();
         listadoEmpresas.setBounds(270, 27, 253, 22);
         getContentPane().add(listadoEmpresas);
@@ -106,19 +193,19 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         
         JLabel lblNewLabel_2 = new JLabel("Nombre");
-        lblNewLabel_2.setBounds(22, 115, 138, 14);
+        lblNewLabel_2.setBounds(21, 93, 138, 14);
         getContentPane().add(lblNewLabel_2);
         
         JLabel lblNewLabel_3 = new JLabel("Descripcion");
-        lblNewLabel_3.setBounds(21, 155, 139, 14);
+        lblNewLabel_3.setBounds(21, 124, 139, 14);
         getContentPane().add(lblNewLabel_3);
         
         JLabel lblNewLabel_4 = new JLabel("Desde ");
-        lblNewLabel_4.setBounds(103, 202, 98, 14);
+        lblNewLabel_4.setBounds(174, 187, 98, 14);
         getContentPane().add(lblNewLabel_4);
         
         JLabel lblNewLabel_5 = new JLabel("Hasta");
-        lblNewLabel_5.setBounds(395, 202, 46, 14);
+        lblNewLabel_5.setBounds(396, 187, 46, 14);
         getContentPane().add(lblNewLabel_5);
         
         JLabel lblNewLabel_6 = new JLabel("Remuneracion");
@@ -126,19 +213,19 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_6);
         
         JLabel lblNewLabel_7 = new JLabel("Departamento");
-        lblNewLabel_7.setBounds(21, 300, 139, 14);
+        lblNewLabel_7.setBounds(21, 284, 139, 14);
         getContentPane().add(lblNewLabel_7);
         
         JLabel lblNewLabel_8 = new JLabel("Ciudad");
-        lblNewLabel_8.setBounds(345, 300, 65, 14);
+        lblNewLabel_8.setBounds(359, 284, 65, 14);
         getContentPane().add(lblNewLabel_8);
         
         JLabel lblNewLabel_9 = new JLabel("Fecha de Alta");
-        lblNewLabel_9.setBounds(21, 341, 177, 14);
+        lblNewLabel_9.setBounds(21, 313, 177, 14);
         getContentPane().add(lblNewLabel_9);
         
         JLabel lblNewLabel_10 = new JLabel("Keywords");
-        lblNewLabel_10.setBounds(21, 378, 139, 14);
+        lblNewLabel_10.setBounds(21, 354, 139, 14);
         getContentPane().add(lblNewLabel_10);
         
         JButton btnAceptar = new JButton("Aceptar");
@@ -260,7 +347,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         	}
         });
         
-        btnAceptar.setBounds(218, 424, 89, 23);
+        btnAceptar.setBounds(335, 436, 89, 23);
         getContentPane().add(btnAceptar);
         
         JButton btnCerrar = new JButton("Cerrar");
@@ -269,16 +356,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(434, 424, 89, 23);
+        btnCerrar.setBounds(434, 436, 89, 23);
         getContentPane().add(btnCerrar);
         
         nombre = new JTextField();
-        nombre.setBounds(205, 113, 318, 20);
+        nombre.setBounds(205, 93, 318, 20);
         getContentPane().add(nombre);
         nombre.setColumns(10);
         
         descripcion = new JTextArea();
-        descripcion.setBounds(206, 145, 317, 54);
+        descripcion.setBounds(205, 124, 317, 54);
         getContentPane().add(descripcion);
         
         listadoDepartamentos = new JComboBox<String>();
@@ -287,7 +374,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         		dep = (String) listadoDepartamentos.getSelectedItem();
         	}
         });
-        listadoDepartamentos.setBounds(141, 296, 191, 22);
+        listadoDepartamentos.setBounds(140, 280, 191, 22);
         getContentPane().add(listadoDepartamentos);
         
         listadoDepartamentos.addItem("Artigas");
@@ -312,22 +399,22 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
        
         ciudad = new JTextField();
-        ciudad.setBounds(414, 298, 109, 20);
+        ciudad.setBounds(414, 281, 109, 20);
         getContentPane().add(ciudad);
         ciudad.setColumns(10);
         
         remuneracion = new JTextField();
-        remuneracion.setBounds(141, 253, 382, 20);
+        remuneracion.setBounds(140, 253, 382, 20);
         getContentPane().add(remuneracion);
         remuneracion.setColumns(10);
         
-        JList list = new JList();
+        /*JList list = new JList();
         list.setBounds(172, 366, 51, -25);
-        getContentPane().add(list);
+        getContentPane().add(list);*/
        
         
         fechaAlta_1 = new JTextField();
-        fechaAlta_1.setBounds(134, 339, 389, 20);
+        fechaAlta_1.setBounds(140, 309, 100, 20);
         getContentPane().add(fechaAlta_1);
         fechaAlta_1.setColumns(10);
         
@@ -338,7 +425,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		fechaAlta_1.setEditable(false);
 		
 		desdehora = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
-		desdehora.setBounds(60, 223, 46, 20);
+		desdehora.setBounds(111, 212, 46, 20);
 		getContentPane().add(desdehora);
 	    JComponent editor = desdehora.getEditor();
 	        if (editor instanceof JSpinner.DefaultEditor) {
@@ -347,7 +434,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		
 		
 		desdemin = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
-		desdemin.setBounds(177, 223, 46, 20);
+		desdemin.setBounds(194, 212, 46, 20);
 		getContentPane().add(desdemin);
 	     JComponent editor1 = desdemin.getEditor();
 	        if (editor1 instanceof JSpinner.DefaultEditor) {
@@ -355,7 +442,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	        }
 		
 		hastahora = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
-		hastahora.setBounds(345, 223, 46, 20);
+		hastahora.setBounds(333, 212, 46, 20);
 		getContentPane().add(hastahora);
 	     JComponent editor2 = hastahora.getEditor();
 	        if (editor2 instanceof JSpinner.DefaultEditor) {
@@ -363,7 +450,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	        }
 		
 		hastamin = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
-		hastamin.setBounds(475, 223, 46, 20);
+		hastamin.setBounds(420, 212, 46, 20);
 		getContentPane().add(hastamin);
 	     JComponent editor3 = hastamin.getEditor();
 	        if (editor3 instanceof JSpinner.DefaultEditor) {
@@ -371,19 +458,19 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	        }
 		
 		JLabel lblHora = new JLabel("Hora");
-		lblHora.setBounds(21, 225, 70, 15);
+		lblHora.setBounds(72, 214, 70, 15);
 		getContentPane().add(lblHora);
 		
 		JLabel lblHora_1 = new JLabel("Hora");
-		lblHora_1.setBounds(303, 226, 70, 15);
+		lblHora_1.setBounds(301, 215, 70, 15);
 		getContentPane().add(lblHora_1);
 		
 		JLabel lblMin = new JLabel("Min");
-		lblMin.setBounds(136, 225, 35, 15);
+		lblMin.setBounds(163, 214, 35, 15);
 		getContentPane().add(lblMin);
 		
 		JLabel lblMin_1 = new JLabel("Min");
-		lblMin_1.setBounds(442, 226, 35, 15);
+		lblMin_1.setBounds(389, 215, 35, 15);
 		getContentPane().add(lblMin_1);
     }
     
@@ -399,9 +486,19 @@ public class AltaOfertaLaboral extends JInternalFrame {
         Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         // listadoKeywords.addItem("");
         
-        for(String elemento1 : keysSorted) {
+        /*for(String elemento1 : keysSorted) {
         	listadoKeywords.addItem(elemento1);
+        }*/
+        availableListModel.clear();
+        availableListModel = new DefaultListModel<>();
+        selectedListModel = new DefaultListModel<>();
+        
+        for (String item : keysSorted) {
+            availableListModel.addElement(item);
         }
+        
+        
+        /////
         
         listadoEmpresas.addItem("");
         List<String> empresaSorted = new ArrayList<>(empresas);
@@ -428,5 +525,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
         remuneracion.setText("");
         ciudad.setText("");
         fechaAlta_1.setText("");
+    }
+    
+    private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel) {
+        int selectedIndex = sourceList.getSelectedIndex();
+        if (selectedIndex != -1) {
+            String selectedValue = sourceList.getSelectedValue();
+            destinationModel.addElement(selectedValue);
+            sourceList.clearSelection();
+            sourceList.revalidate();
+            destinationModel.removeElementAt(selectedIndex);
+        }
     }
 }
