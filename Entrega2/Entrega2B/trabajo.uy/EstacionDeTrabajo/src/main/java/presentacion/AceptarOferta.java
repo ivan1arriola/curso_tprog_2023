@@ -202,13 +202,18 @@ public class AceptarOferta extends JInternalFrame {
         Rechazar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
-                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
-                    //pedirle a ctrlOferta que busque oferta y setee el estado de la oferta
-                    controlOferta.rechazoOL(selectedOferta);
-                    JOptionPane.showMessageDialog(null, "Oferta rechazada", "", JOptionPane.INFORMATION_MESSAGE);
-                    
+        		try {
+        		
+	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
+	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
+	                    controlOferta.rechazoOL(selectedOferta);
+	               	}
+        		
+        		} catch (Exception ex) {
+        			JOptionPane.showMessageDialog(null, "Error al rechazar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         		}
+        		limpiarFormulario();
+        		dispose();
         		
         		
         	}
@@ -217,11 +222,16 @@ public class AceptarOferta extends JInternalFrame {
         Confirmar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
-                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
-                    controlOferta.aceptoOL(selectedOferta);
-                    JOptionPane.showMessageDialog(null, "Oferta confirmada", "", JOptionPane.INFORMATION_MESSAGE);
-                    
+        		
+        		try {
+	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
+	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
+	                    controlOferta.aceptoOL(selectedOferta);
+	                    JOptionPane.showMessageDialog(null, "Oferta confirmada", "", JOptionPane.INFORMATION_MESSAGE);
+	                    
+	        		}
+        		} catch (Exception ex) {
+        			JOptionPane.showMessageDialog(null, "Error al rechazar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         		}
         		
         		
