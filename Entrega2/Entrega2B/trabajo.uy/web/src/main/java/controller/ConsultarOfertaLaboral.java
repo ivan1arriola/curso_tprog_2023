@@ -6,14 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Datatypes.DTHora;
-import model.Datatypes.DTHorario;
-import model.Datatypes.DTOfertaLaboral;
-import model.Enumerados.DepUY;
-import model.Enumerados.EstadoOL;
-
+import main.java.logica.Fabrica;
+import main.java.logica.Datatypes.DTOfertaExtendido;
 import java.io.IOException;
-import java.time.LocalDate;
 
 /**
  * Servlet implementation class ConsultarOfertaLaboral
@@ -30,20 +25,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    //Simula la logica
-    private DTOfertaLaboral getOfertaLaboral(String nombre) {
-    	return new DTOfertaLaboral(
-        	    "Desarrollador Frontend",
-        	    "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
-        	    LocalDate.of(2023, 8, 14),
-        	    90000.0f,
-        	    90000.0f,
-        	    new DTHorario(new DTHora(9, 0), new DTHora(18, 0)),
-        	    DepUY.Montevideo,
-        	    "Montevideo",
-        	    EstadoOL.Confirmada, // Cambiar a EstadoOL.CONFIRMADA
-        	    null // Establecer la imagen como null
-        	);
+    private  DTOfertaExtendido getOfertaLaboral(String nombre) {
+    	return Fabrica.getInstance().getICtrlOferta().obtenerOfertaLaboral(nombre);
     }
 
 	/**
@@ -55,22 +38,18 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
             try {
-            	DTOfertaLaboral ofertaLaboral = getOfertaLaboral(nombreOferta);
-
+            	DTOfertaExtendido ofertaLaboral = getOfertaLaboral(nombreOferta);
                 request.setAttribute("ofertaLaboral", ofertaLaboral);
-
                 request.getRequestDispatcher("/WEB-INF/consultarOferta/infoOfertaLabora.jsp").forward(request, response);
+                
             } catch (Exception e) {
-            	// Redirigir a la página errorPage.jsp y pasar el mensaje de error como atributo de solicitud
                 String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: " + e.getMessage();
                 request.setAttribute("mensajeError", mensajeError);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
                 dispatcher.forward(request, response);
             }
         } else {
-        	
-        	// El parámetro 'o' no se proporcionó en la URL.
-        	String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: No se proporciono el nombre";
+          	String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: No se proporciono el nombre";
             request.setAttribute("mensajeError", mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
             dispatcher.forward(request, response);  

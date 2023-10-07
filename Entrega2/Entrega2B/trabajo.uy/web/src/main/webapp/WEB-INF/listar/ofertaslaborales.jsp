@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Datatypes.DTOfertaLaboral" %>
+<%@ page import="main.java.logica.Datatypes.DTOfertaExtendido" %>
 <%@ page import="java.util.Base64" %>
 
 
 <%
 // Obtener el objeto de usuario desde los atributos de la solicitud
-DTOfertaLaboral ofertaLaboral = (DTOfertaLaboral) request.getAttribute("ofertaLaboral");
+DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofertaLaboral");
 %>
 
 <!DOCTYPE html>
@@ -32,8 +32,8 @@ DTOfertaLaboral ofertaLaboral = (DTOfertaLaboral) request.getAttribute("ofertaLa
 
             <div class="sin-bordes">
                 <%
-                    List<DTOfertaLaboral> ofertasLaborales = (List<DTOfertaLaboral>) request.getAttribute("ofertasLaborales");
-                    for (DTOfertaLaboral oferta : ofertasLaborales) {
+                    List<DTOfertaExtendido> ofertasLaborales = (List<DTOfertaExtendido>) request.getAttribute("ofertasLaborales");
+                    for (DTOfertaExtendido oferta : ofertasLaborales) {
                         String imagenUrl = "";
                         if (oferta.getImagen() != null) {
                             String base64Image = new String(Base64.getEncoder().encode(oferta.getImagen()), "UTF-8");

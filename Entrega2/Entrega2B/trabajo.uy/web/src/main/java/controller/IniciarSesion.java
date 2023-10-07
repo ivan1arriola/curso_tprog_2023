@@ -6,7 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Datatypes.DTUsuario;
+import main.java.logica.Fabrica;
+import main.java.logica.Datatypes.DTUsuario;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,15 +29,12 @@ public class IniciarSesion extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    // Simulación de inicio de sesión
     private boolean evaluarCredenciales(String identificador, String contraseña) {
-        // Simulamos un inicio de sesión exitoso si el identificador es "usuario" y la contraseña es "contraseña"
-        return identificador.equals("usuario") && contraseña.equals("contraseña");
+        return Fabrica.getInstance().getICtrlUsuario().validarCredenciales(identificador, contraseña);
     }
     
-    // Simula obtenerUsuario de la logica
     private DTUsuario obtenerUsuario(String nickname) {
-    	return new DTUsuario(nickname, "prueba@prueba.com", "apellido", "nombre", null);
+    	return Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuario(nickname);
     }
 
 	/**

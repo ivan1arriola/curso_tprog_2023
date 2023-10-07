@@ -7,15 +7,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import main.java.logica.Fabrica;
+import main.java.logica.Datatypes.DTCantTO;
+import main.java.logica.Datatypes.DTPaquete;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import model.Datatypes.*;
 
 /**
  * Servlet implementation class ConsultarPaquete
@@ -72,18 +73,7 @@ public class ConsultarPaquete extends HttpServlet {
 
 
     private DTPaquete obtenerPaquetePorNombre(String nombrePaquete) {
-    	// Configurar los tipos de publicación y sus cantidades (hardcodeados)
-    	Set<DTCantTO> tiposDePublicacion = new HashSet<DTCantTO>();
-    	tiposDePublicacion.add(new DTCantTO("Premium", 1));
-    	tiposDePublicacion.add(new DTCantTO("Estándar", 1));
-    	tiposDePublicacion.add(new DTCantTO("Destacada", 1));
-    	tiposDePublicacion.add(new DTCantTO("Básica", 4));
-
-    	// Crear el objeto DTPaquete
-    	DTPaquete paquete = new DTPaquete("Básico", 240, 20, 30, 
-    	    "Publica ofertas laborales en nuestra plataforma por un período de 30 días", 
-    	    tiposDePublicacion, LocalDate.of(2023, 8, 16));
-    	return paquete;
+    	return Fabrica.getInstance().getICtrlOferta().obtenerDatosPaquete(nombrePaquete);
 
 	}
 
