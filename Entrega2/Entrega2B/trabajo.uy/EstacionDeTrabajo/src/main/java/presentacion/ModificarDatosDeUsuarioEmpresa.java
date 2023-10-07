@@ -72,20 +72,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	    private JTextArea descripcionNuevo;
 	    private JTextArea descripcionActual;
 
-
-	    
-	    
-	    /**
-	     * Create the frame.
-	     */
     public ModificarDatosDeUsuarioEmpresa(ICtrlUsuario icu, DTEmpresa empresa) {
-    	// Se inicializa con el controlador de usuarios
-        // Fabrica fabrica = Fabrica.getInstance();
-        // icu = fabrica.getICtrlUsuario();
-
-        
-        // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
-        // etc.
 
         setResizable(true);
         setIconifiable(true);

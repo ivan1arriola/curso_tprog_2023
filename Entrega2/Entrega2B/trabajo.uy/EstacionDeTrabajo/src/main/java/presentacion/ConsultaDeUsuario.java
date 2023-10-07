@@ -53,12 +53,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
     private JTextField postNacion;
   
     public ConsultaDeUsuario(JFrame base, ICtrlUsuario icu, ICtrlOferta ico) {
-
-    	//desktopPane = new JDesktopPane();
-        //getContentPane().add(desktopPane);
-    	/*Fabrica fabrica = Fabrica.getInstance();
-        icu = fabrica.getICtrlUsuario();
-        ico = fabrica.getICtrlOferta();*/
         
         controlUsr = icu;
         controlOfer = ico;
@@ -302,7 +296,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         btnVerOfertas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if( comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) {
-	        		String selectedUsuario = (String)comboBoxUsuarios.getSelectedItem();
+	        		String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
 	        		Set<String> offerDetails;
 					try {
 						offerDetails = controlUsr.listarOfertasLaborales(selectedUsuario);

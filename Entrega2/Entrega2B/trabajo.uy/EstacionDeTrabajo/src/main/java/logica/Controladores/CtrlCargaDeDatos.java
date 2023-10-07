@@ -101,8 +101,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             		}catch (IOException e6) {
             			e6.printStackTrace();
 	                }
-            	}
-            	else {
+            	} else {
             		try (BufferedReader reader2 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Empresas.csv"))) {
                 		reader2.readLine();
 	                	while((linea2 = reader2.readLine()) != null) {
@@ -117,8 +116,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                				} catch (Exception e2) {
 	                					
 	                				}
-	                			}
-	                			else {
+	                			} else {
 	                				
 	                				try {
 	                					ICU.altaEmpresaURLyImagen(campos[2],campos[3],campos[4],campos[5],campos[2], campos2[1],campos2[2], imageBytes);
@@ -400,10 +398,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
                 
                 String paq = campos5[11];
-                if(campos5[11].equals("Sin paquete")) {
-                	paq = null;
-                }
-                else {
+                if(campos5[11].equals("Sin paquete")) { paq = null; } else {
                 	try (BufferedReader reader15 = new BufferedReader(new FileReader("src/main/datos/Paquetes.csv"))) {
                     	String linea15;
                     	reader15.readLine();
