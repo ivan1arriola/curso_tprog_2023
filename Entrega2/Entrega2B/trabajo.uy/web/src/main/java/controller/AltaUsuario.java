@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import main.java.logica.Fabrica;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -33,24 +34,21 @@ public class AltaUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Verificar si ya existe una sesión
         HttpSession session = request.getSession(false); // No crear una nueva sesión si no existe
         if (session != null && session.getAttribute("usuario") != null) {
-            // Si existe una sesión y el atributo "usuario" está presente, redirigir a la página de inicio
             response.sendRedirect(request.getContextPath() + "/home");
         } else {
-            // Si no existe una sesión o el usuario no ha iniciado sesión, mostrar la página de alta de usuario
             request.getRequestDispatcher("/WEB-INF/altaUsuario/altaUsuario.jsp").forward(request, response);
         }
     }
     
     private boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
-    	throw new ExceptionUsuarioNickRepetido("El nickname ya está en uso.");
+    	return Fabrica.getInstance().getICtrlUsuario().altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, null);
 	} 
     
     
     public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-		return true;
+		return Fabrica.getInstance().getICtrlUsuario().altaPostulanteImagen(nick, contraseña, nombre, apellido, fecha_nac, mail, nacionalidad, null);
 	}
 
 

@@ -48,4 +48,6 @@ public interface ICtrlOferta {
 		
 		
 		public abstract boolean paqueteComprado(String pack);
+
+		//Necesaria para el caso de uso ""
 }

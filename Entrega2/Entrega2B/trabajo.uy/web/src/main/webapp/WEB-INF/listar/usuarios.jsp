@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Datatypes.DTEmpresa" %>
-<%@ page import="model.Datatypes.DTPostulante" %>
-<%@ page import="model.Datatypes.DTUsuario" %>
+<%@ page import="main.java.logica.Datatypes.DTEmpresa" %>
+<%@ page import="main.java.logica.Datatypes.DTPostulante" %>
+<%@ page import="main.java.logica.Datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
 
 
