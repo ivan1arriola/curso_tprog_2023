@@ -231,7 +231,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    
 	        		}
         		} catch (Exception ex) {
-        			JOptionPane.showMessageDialog(null, "Error al rechazar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Error al confirmar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         		}
         		
         		
