@@ -29,7 +29,6 @@ import java.util.Set;
 import java.util.ArrayList;
 
 public class FabricaTest {
-
 	// --------------- testear agregar varias keywords ---------------
 	@Test
 	void altaKeywordTest() {
@@ -62,8 +61,8 @@ public class FabricaTest {
 		Fabrica f = Fabrica.getInstance();
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 
-		byte[] img = imagen.getBytes();
-				
+		String str = "hello";
+		byte[] img = str.getBytes();		
 		try {
 			// construir con imagen y url
 			boolean b = ICU.altaEmpresa("Microsoft", "Bill", "Gates", "bilie@gmail.com","contraseNaSeguraCreeme", img, "Vendemos software.", "www.microsoft.com");
@@ -105,8 +104,8 @@ public class FabricaTest {
 		Fabrica f = Fabrica.getInstance();
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 
-		byte[] img = imagen.getBytes();
-			
+		String str = "hello";
+		byte[] img = str.getBytes();	
 
 		try {
 			boolean b = ICU.altaPostulante("AnHopkins", "Anthony", "Hopkins", "ANHop@Hannibal.com", LocalDate.now(), "Inglaterra", img);
@@ -152,8 +151,10 @@ public class FabricaTest {
 		Fabrica f = Fabrica.getInstance();
 		ICtrlOferta ICO = f.getICtrlOferta();
 		// imagen
-		byte[] img = paquet.getBytes();
-	
+		String str = "hello";
+		byte[] img = str.getBytes();
+
+
 		Paquete paquete = new Paquete("paqueteBasico", "Comun", 1, LocalDate.now(), 10, img);
 		Paquete paquete2 = new Paquete("paqueteQuesoPremium", "muzarella", 1, LocalDate.now(), 30, img);	
 		// setear se deve para que se calcule, esto es asi por logica de paquete java
@@ -177,8 +178,8 @@ public class FabricaTest {
 		atrkeywords.add("full time");
 		atrkeywords.add("part time");
 		// imagen
-		byte[] img = OfertaLabora.getBytes();
-			
+		String str = "hello";
+		byte[] img = str.getBytes();	
 		// fecha
 		LocalDate fecha = LocalDate.of(2023, 8, 9);
 
@@ -206,8 +207,8 @@ public class FabricaTest {
 	// 	ICtrlUsuario ICU = f.getICtrlUsuario();
 	// 	ICtrlOferta ICO = f.getICtrlOferta();
 
-	// 	byte[] img = imagen.getBytes();
-			
+	// 	String str = "hello";
+		// byte[] img = str.getBytes();	
 	// 	Postulacion(Postulante p, String CV, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
 
 	// 	LocalDate fecha = LocalDate.of(2001, 8, 9);

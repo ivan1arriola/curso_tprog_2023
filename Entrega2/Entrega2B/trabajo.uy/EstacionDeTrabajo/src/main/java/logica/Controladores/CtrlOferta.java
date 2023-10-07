@@ -47,7 +47,7 @@ public class CtrlOferta implements ICtrlOferta{
 		HashMap<String,TipoOferta> tipoOf = TOH.obtener();
 		for (Entry<String, TipoOferta> entry : tipoOf.entrySet()) {
 			res.add((entry.getValue().getNombre()));
-        }
+		}
 
 		return res;
 	}
