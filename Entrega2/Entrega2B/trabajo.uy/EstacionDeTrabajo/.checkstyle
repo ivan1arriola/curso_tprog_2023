@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
-  <local-check-config name="tarea2Checkstyle" location="C:\Users\Usuario\git\tprogTarea2B\Entrega2\Entrega2B\trabajo.uy\EstacionDeTrabajo\src\main\checkstyle\checkstyle.xml" type="external" description="reglas para el checkstyle pedidas en la tarea2">
-    <additional-data name="protect-config-file" value="false"/>
-  </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="tarea2Checkstyle" local="true">
+  <local-check-config name="tarea2Checkstyle" location="internal_config_1696717408468.xml" type="internal" description="prueba"/>
+  <local-check-config name="checkstyle" location="internal_config_1696719110202.xml" type="internal" description="prueba 19:51"/>
+  <fileset name="all" enabled="true" check-config-name="Google Checks" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

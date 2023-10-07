@@ -200,8 +200,9 @@ public class CtrlOferta implements ICtrlOferta{
 		if(b) {
 			auxiliar = ol.infoOfertaLaboralPropietario();
 		}
-		else 
+		else {
 			auxiliar = ol.infoOfertaLaboralVisitante();
+		}
 		return auxiliar;
 	}
 	

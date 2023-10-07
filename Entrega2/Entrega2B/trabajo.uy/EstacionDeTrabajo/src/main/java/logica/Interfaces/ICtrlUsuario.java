@@ -12,7 +12,12 @@ import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Postulacion;
-import main.java.logica.Datatypes.*;
+import main.java.logica.Datatypes.DTHorario;
+import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.Datatypes.DTPaquete;
+import main.java.logica.Datatypes.DTPostulacion;
+import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 

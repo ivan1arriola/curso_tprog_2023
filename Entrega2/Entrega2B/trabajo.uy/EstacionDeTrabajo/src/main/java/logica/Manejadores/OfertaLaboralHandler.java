@@ -1,5 +1,7 @@
 package main.java.logica.Manejadores;
-import java.util.*;
+
+
+import java.util.HashMap;
 
 import main.java.logica.Clases.OfertaLaboral;
 
