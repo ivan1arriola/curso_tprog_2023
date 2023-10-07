@@ -503,7 +503,7 @@ public class CargarDatos extends JInternalFrame {
                 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
                 		LocalDate fecha = LocalDate.parse(campos13[5], formatter);
                 		
-                		ICO.altaPaqueteOL(campos13[1], campos13[2], Integer.parseInt(campos13[3].split(" ")[0]), fecha, Float.valueOf(campos13[4]));
+                		ICO.altaPaqueteOL(campos13[1], campos13[2], Integer.parseInt(campos13[3].split(" ")[0]), fecha, Float.valueOf(campos13[4]),imageBytes);
                 	}
                 } catch (IOException e40) {
                 	e40.printStackTrace();

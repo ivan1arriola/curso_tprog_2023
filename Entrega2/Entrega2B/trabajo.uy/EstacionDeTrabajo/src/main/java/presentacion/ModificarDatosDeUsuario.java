@@ -137,7 +137,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
             		if(dtus instanceof DTEmpresa) {
                     	tipo = "Empresa";
                     	DTEmpresa empresa = (DTEmpresa) dtus;
-    	                adicional.append("Empresa: " + empresa.getNombreEmpresa()+ "\n"); 
+    	                adicional.append("Empresa: " + empresa.getNombre()+ "\n"); 
     	                adicional.append("Descripcion: " + empresa.getDescripcion()+ "\n");
     	                adicional.append("URL:" + empresa.getUrl()+ "\n");
     	                adicional.append("\n");

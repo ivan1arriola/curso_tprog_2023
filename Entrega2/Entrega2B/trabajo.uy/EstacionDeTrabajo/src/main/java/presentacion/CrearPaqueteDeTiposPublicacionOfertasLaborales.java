@@ -166,7 +166,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         	        
         	        LocalDate fechaAlta = LocalDate.now();
         			        		        			
-    	            boolean res = ctrlOferta.altaPaqueteOL(nombrePaq, descripcionField, validez, fechaAlta ,descuentoPaq);
+    	            boolean res = ctrlOferta.altaPaqueteOL(nombrePaq, descripcionField, validez, fechaAlta ,descuentoPaq, null);
     	            
     	            //System.out.print(res);
     	            if (res) {
