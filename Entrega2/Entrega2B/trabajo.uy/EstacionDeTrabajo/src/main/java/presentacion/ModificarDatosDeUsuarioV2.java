@@ -48,12 +48,11 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	    
 	
 
-    public ModificarDatosDeUsuarioV2(ICtrlUsuario icu) {
+    public ModificarDatosDeUsuarioV2(JFrame gu, ICtrlUsuario icu) {
     	// Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
         // icu = fabrica.getICtrlUsuario();
-
-
+    	
         setResizable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -107,20 +106,20 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				// El combobox no esta vacio y el usuario es un POSTULANTE
 				if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && !(dtus instanceof DTEmpresa)) { 
 					DTPostulante dtpostu = (DTPostulante) dtus;
-					ModificarDatosDeUsuarioPostulante modificarUser = new ModificarDatosDeUsuarioPostulante(icu, dtpostu);
+					MDUP = new ModificarDatosDeUsuarioPostulante(icu, dtpostu);
+					gu.getContentPane().add(MDUP);
 					setVisible(false);
-					modificarUser.setVisible(true);
-	                getContentPane().add(modificarUser);
+					MDUP.setVisible(true);
 	                // modificarUser.toFront();
 				} 
 				
 				// El combobox no esta vacio y el usuario es una EMPRESA	
 				else if(listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
 					DTEmpresa dtempre = (DTEmpresa) dtus;
-					ModificarDatosDeUsuarioEmpresa modificarUser = new ModificarDatosDeUsuarioEmpresa(icu, dtempre);
+					MDUE = new ModificarDatosDeUsuarioEmpresa(icu, dtempre);
+					gu.getContentPane().add(MDUE);
 					setVisible(false);
-					modificarUser.setVisible(true);
-	                getContentPane().add(modificarUser);
+					MDUE.setVisible(true);
 	                //modificarUser.toFront();
 				}
 			}

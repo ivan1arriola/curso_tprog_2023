@@ -79,7 +79,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(CargarDatosInternalFrame);
         
         // ModificarDatosDeUsuario
-        ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(ICU);
+        ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(frmGestionDeUsuarios, ICU);
         ModificarDatosDeUsuarioInternalFrame.setSize(450, 190);
         ModificarDatosDeUsuarioInternalFrame.setLocation(89, 77);
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
