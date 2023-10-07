@@ -292,35 +292,5 @@ public class ControladorUsuarioTest {
 
 		// ------------------- testear keywords -------------------
 
-		@Test
-		void keywordTest() {
-			Fabrica f = Fabrica.getInstance();
-			ICtrlUsuario ICU = f.getICtrlUsuario();
-			ICtrlOferta ICO = f.getICtrlOferta();
-
-			// --------------- keywords ---------------
-
-			// Adding keywords to the system
-			boolean b1 = ICO.altaKeyword("Trabajo nocturno");
-			boolean b2 = ICO.altaKeyword("horario vespertino");
-			boolean b3 = ICO.altaKeyword("full time");
-			boolean b4 = ICO.altaKeyword("part time");
-
-			// Creating a set for testing
-			HashSet<String> pruebaKeyword = new HashSet<>(Arrays.asList(
-				"Trabajo nocturno",
-				"horario vespertino",
-				"full time",
-				"part time"
-			));
-
-			// Listing keywords from the system
-			HashSet<String> probandoEnSistema = ICO.listarKeywords();
-
-			for (String s : pruebaKeyword) {
-				if (!probandoEnSistema.contains(s)) {
-					assertEquals("El test keywords fallo", true, false);
-				}
-			}
-		}
+	
   }

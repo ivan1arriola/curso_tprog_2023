@@ -5,7 +5,7 @@ import org.junit.platform.suite.api.Suite;
 
 
 @Suite
-@SelectClasses(ControladorUsuarioTest.class)
+@SelectClasses({ControladorUsuarioTest.class,ControladorUsuarioTest2.class})
 
 public class AllTests {
 
