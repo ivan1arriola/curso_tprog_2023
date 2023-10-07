@@ -167,7 +167,7 @@ public class ctrlOfertaTest {
 				| ExceptionUsuarioNickRepetido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
         String tipoO = "NombreTipoPublicacion";
         String nombreOferta = "Ofertita";
         String desc = "que te importa";
