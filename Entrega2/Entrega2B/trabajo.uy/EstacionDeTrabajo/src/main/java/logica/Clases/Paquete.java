@@ -32,9 +32,9 @@ public class Paquete {
         this.descuento = descuento;
         this.validez = validez;
         this.imagen = imagen;
-        this.oferPaq = new HashSet<OfertaPaquete>();
-        float Costo = 0;  
-        this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null, despues se cambia 
+        this.oferPaq = null;
+        costo = 0;  
+        this.infCompraAsociada = null; //empieza null, despues se cambia 
         
     }
 

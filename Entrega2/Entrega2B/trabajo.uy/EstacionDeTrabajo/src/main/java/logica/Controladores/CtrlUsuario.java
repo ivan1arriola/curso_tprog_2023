@@ -14,7 +14,7 @@ import main.java.logica.Clases.Keyword;
 import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Paquete;
 import main.java.logica.Clases.Postulante;
-import main.java.logica.Clases.TipoOferta;
+// import main.java.logica.Clases.TipoOferta; NO SE USA (CHECKSTYLE)
 import main.java.logica.Clases.Usuario;
 import main.java.logica.Clases.Postulacion;
 import main.java.logica.Datatypes.*;
@@ -22,7 +22,7 @@ import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 import main.java.logica.Interfaces.*;
 import main.java.logica.Manejadores.*;
-import main.java.logica.Controladores.*;
+// import main.java.logica.Controladores.*; NO SE USA (CHECKSTYLE)
 
 public class CtrlUsuario implements ICtrlUsuario {
 	// empresa con URL y sin imagen	
@@ -131,7 +131,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		HashMap<String, Usuario> usuarios = UH.obtenerNick(); 
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-			Usuario u = entry.getValue();
+			// Usuario u = entry.getValue(); NO SE USA (CHECKSTYLE)
 			res.add(entry.getKey()); 
 		}
 		return res;

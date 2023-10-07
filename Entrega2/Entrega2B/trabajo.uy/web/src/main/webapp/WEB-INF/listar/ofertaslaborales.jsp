@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashSet" %>
 <%@ page import="main.java.logica.Datatypes.DTOfertaExtendido" %>
 <%@ page import="java.util.Base64" %>
 
@@ -32,7 +32,7 @@ DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofer
 
             <div class="sin-bordes">
                 <%
-                    List<DTOfertaExtendido> ofertasLaborales = (List<DTOfertaExtendido>) request.getAttribute("ofertasLaborales");
+                	HashSet<DTOfertaExtendido> ofertasLaborales = (HashSet<DTOfertaExtendido>) request.getAttribute("ofertasLaborales");
                     for (DTOfertaExtendido oferta : ofertasLaborales) {
                         String imagenUrl = "";
                         if (oferta.getImagen() != null) {

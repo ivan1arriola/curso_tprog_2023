@@ -6,14 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
+import main.java.excepciones.ExceptionUsuarioNickRepetido;
+import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.Fabrica;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
-import excepciones.ExceptionUsuarioCorreoRepetido;
-import excepciones.ExceptionUsuarioNickRepetido;
-import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 
 /**
  * Servlet implementation class AltaUsuario

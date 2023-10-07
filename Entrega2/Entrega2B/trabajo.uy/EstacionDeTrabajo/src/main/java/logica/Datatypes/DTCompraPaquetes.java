@@ -1,8 +1,8 @@
 package main.java.logica.Datatypes;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Set;
+// import java.util.ArrayList; NO SE USA (CHECKSTYLE)
+// import java.util.Set; NO SE USA (CHECKSTYLE)
 
 public class DTCompraPaquetes {
 	
