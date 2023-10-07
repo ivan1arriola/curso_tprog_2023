@@ -1,4 +1,4 @@
-package test.logica.Controladores;
+package Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,32 +10,35 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
-import main.java.excepciones.ExceptionUsuarioNickRepetido;
-import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.Fabrica;
-import main.java.logica.Clases.Postulacion;
-import main.java.logica.Clases.Postulante;
-import main.java.logica.Clases.Keyword;
-import main.java.logica.Clases.OfertaLaboral;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTTipoOferta;
-import main.java.logica.Datatypes.DTOfertaLaboral;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Manejadores.OfertaLaboralHandler;
-import main.java.logica.Manejadores.UsuarioHandler;
-import main.java.logica.Datatypes.DTHora;
+import excepciones.ExcepcionTipoOfertaNoExistente;
+import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionUsuarioCorreoRepetido;
+import excepciones.ExceptionUsuarioNickRepetido;
+import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import logica.Fabrica;
+import logica.Clases.Postulacion;
+import logica.Clases.Postulante;
+import logica.Clases.TipoOferta;
+import logica.Clases.Keyword;
+import logica.Clases.OfertaLaboral;
+import logica.Controladores.CtrlOferta;
+import logica.Datatypes.DTHorario;
+import logica.Datatypes.DTOfertaExtendido;
+import logica.Datatypes.DTPaquete;
+import logica.Datatypes.DTTipoOferta;
+import logica.Datatypes.DTOfertaLaboral;
+import logica.Datatypes.DTPostulacion;
+import logica.Datatypes.DTPostulante;
+import logica.Datatypes.DTUsuario;
+import logica.Datatypes.DTCantTO;
+import logica.Enumerados.DepUY;
+import logica.Interfaces.ICtrlOferta;
+import logica.Interfaces.ICtrlUsuario;
+import logica.Manejadores.OfertaLaboralHandler;
+import logica.Manejadores.UsuarioHandler;
+import logica.Datatypes.DTHora;
+import logica.Datatypes.DTHorario;
 
 public class ControladorUsuarioTest {
 

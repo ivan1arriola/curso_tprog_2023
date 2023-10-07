@@ -1,4 +1,4 @@
-package test.logica;
+package Test;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,22 +8,22 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
-import main.java.excepciones.ExceptionUsuarioNickRepetido;
-import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.Controladores.CtrlOferta;
-import main.java.logica.Controladores.CtrlUsuario;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTHora;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Fabrica;
+import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionUsuarioCorreoRepetido;
+import excepciones.ExceptionUsuarioNickRepetido;
+import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import logica.Controladores.CtrlOferta;
+import logica.Controladores.CtrlUsuario;
+import logica.Datatypes.DTUsuario;
+import logica.Enumerados.DepUY;
+import logica.Datatypes.DTEmpresa;
+import logica.Datatypes.DTHora;
+import logica.Datatypes.DTHorario;
+import logica.Datatypes.DTPostulante;
+import logica.Interfaces.ICtrlOferta;
+import logica.Interfaces.ICtrlUsuario;
+import logica.Fabrica;
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
