@@ -18,9 +18,10 @@ public class DTOfertaExtendido {
 	private EstadoOL estado;
 	private HashSet<DTPostulacion> postulaciones;
 	private byte[] imagen; 
+	private String paq;
 	
 	
-	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, HashSet<DTPostulacion> post, byte[] img) {
+	public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, HashSet<DTPostulacion> post, byte[] img, String paquete) {
 		nombre = nomb;
 		descripcion = desc;
 		fecha_de_alta = fechaA;
@@ -32,6 +33,7 @@ public class DTOfertaExtendido {
 		estado = est;
 		postulaciones = post;
 		imagen = img;
+		paq = paquete;
 	}
 	
 	public String getNombre() {
@@ -73,6 +75,8 @@ public class DTOfertaExtendido {
 	}
 	
 	public byte[] getImagen() { return imagen; }
+	
+	public String getPaquete() { return paq; }
 	
 	@Override
 	public String toString() {
