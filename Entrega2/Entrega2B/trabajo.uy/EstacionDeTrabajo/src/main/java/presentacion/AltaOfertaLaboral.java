@@ -116,10 +116,21 @@ public class AltaOfertaLaboral extends JInternalFrame {
         }*/
         ///////////////
         
+        
+        
+        availableListModel = new DefaultListModel<>();
+        selectedListModel = new DefaultListModel<>();
+        
+        
+        
         availableList = new JList<>(availableListModel);
         availableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         selectedList = new JList<>(selectedListModel);
         selectedList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
+        
+        
         
         JScrollPane AvailableL = new JScrollPane(availableList);
         AvailableL.setSize(180, 60);
@@ -478,7 +489,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	ks = new ArrayList<>();
     	
 		listadoEmpresas.removeAllItems();
-		listadoKeywords.removeAllItems();
+		//listadoKeywords.removeAllItems();
         HashSet<String> empresas = ICU.listarEmpresas();
         HashSet<String> keys = ICO.listarKeywords();
         
@@ -525,6 +536,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         remuneracion.setText("");
         ciudad.setText("");
         fechaAlta_1.setText("");
+        listadoKeywords.removeAllItems();
     }
     
     private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel) {

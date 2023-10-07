@@ -1,10 +1,10 @@
-package test.logica.Controladores;
+package Test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.logica.Fabrica;
-import main.java.logica.Interfaces.ICtrlOferta;
+import logica.Fabrica;
+import logica.Interfaces.ICtrlOferta;
 
 import static org.junit.jupiter.api.Assertions.*;
 
