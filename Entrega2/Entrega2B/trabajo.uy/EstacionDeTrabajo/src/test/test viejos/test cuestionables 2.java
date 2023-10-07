@@ -50,20 +50,6 @@ public class FabricaTest {
 		boolean b = altaEmpresaURLyImagen("Amazon", "Password", "Jeff", "Bezos", "Bezo@porBezo.com","Vendemos libros.", "www.amazon.com", img);
 	}
 
-	// ------------------- testear alta postulante -------------------
-	@Test
-	void altaPostulanteTest() {
-		Fabrica f = Fabrica.getInstance();
-		ICtrlUsuario ICU = f.getICtrlUsuario();
-
-		// imagen
-		String str = "hello";
-		byte[] img = str.getBytes();
-
-		// postulante sin imagen
-		boolean b = altaPostulante("ASwatzenegger", "contraseNaSeguraCreeme", "Arnold", "Schwarzenegger", "Arnold@Skynet.com", LocalDate.of(1947, 7, 30), "Austriaco");	
-		// postulante con imagen
-		boolean b = altaPostulanteImagen("LeonardoVinchi", "contraseNaSeguraCreeme", "Leonardo", "Da Vinci", "Leo@vinchi.com", LocalDate.of(1452, 4, 15), "Italiano", img);
 	}
 
 	// ------------------- testear alta oferta -------------------
