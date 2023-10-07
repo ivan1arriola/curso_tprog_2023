@@ -1,14 +1,18 @@
-package Test;
-
+package main.java.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import logica.Fabrica;
-import logica.Interfaces.ICtrlOferta;
-
+import main.java.logica.Fabrica;
+import main.java.logica.Datatypes.DTHorario;
+import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.Datatypes.DTHorario;
+import main.java.logica.Datatypes.DTHora;
 import static org.junit.jupiter.api.Assertions.*;
+import main.java.excepciones.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 public class ctrlOfertaTest {
 
@@ -148,17 +152,44 @@ public class ctrlOfertaTest {
     
     @Test
     void existeOfertaExistente() {
-        String nombreOferta = "OfertaExistente";
+        /*String nombreOferta = "OfertaExistente";
         String descripcion = "Descripción de la oferta";
         int exposicion = 3;
         int duracion = 7;
         float costo = 100.0f;
+        LocalDate fechaAlta = LocalDate.of(2023, 9, 2);*/
+
+        String empresaN = "Apple Com.";
+    	ICtrlUsuario ICU = Fabrica.getInstance().getICtrlUsuario();
+    	try {
+			boolean b = ICU.altaEmpresa("Apple Com.", "Steve", "Jobs", "stevejobs1@hotmail.com", "Apple Co.", "Vendemos celulares caros pero buenos.");
+		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
+				| ExceptionUsuarioNickRepetido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+        String tipoO = "NombreTipoPublicacion";
+        String nombreOferta = "Ofertita";
+        String desc = "que te importa";
         LocalDate fechaAlta = LocalDate.of(2023, 9, 2);
-
+       
+        DTHora horaDesde = new DTHora(9, 0);  
+        DTHora horaHasta = new DTHora(17, 30); 
+        DTHorario horario = new DTHorario(horaDesde, horaHasta);
+        float remun = 500;
+        String ciu = "mdeo";
+        DepUY depto = DepUY.Salto;
+        HashSet<String> keys =  new HashSet<>();
+        
+        
         // Agregar una oferta utilizando la función altaTipoPublicacionOL
-        boolean resultadoAlta = ctrlOferta.altaTipoPublicacionOL(nombreOferta, descripcion, exposicion, duracion, costo, fechaAlta);
-
-        // Verificar que el alta haya sido exitosa
+        //boolean resultadoAlta = ctrlOferta.altaTipoPublicacionOL(nombreOferta, descripcion, exposicion, duracion, costo, fechaAlta);
+        
+        boolean resultadoAlta = ctrlOferta.altaOfertaLaboral (empresaN, tipoO,nombreOferta,desc,horario,remun,ciu,depto,fechaAlta,keys);
+        
+                
+        
+       // Verificar que el alta haya sido exitosa
         assertTrue(resultadoAlta, "El alta de la oferta debería ser exitosa");
 
         // Verificar que la oferta exista utilizando existeOferta

@@ -361,6 +361,10 @@ public class CtrlOferta implements ICtrlOferta{
 
 	
 	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
+<<<<<<< HEAD
+
+		return false;
+=======
 		// Verificar si el argumento 'nombre' es vacío
 		if (nombre.isEmpty()) {
 			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -393,6 +397,7 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 		
 		return !existe;
+>>>>>>> 8304f6095d2d6002949341b5c1650adfe78aae0b
 	}
 	
 	public HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {
