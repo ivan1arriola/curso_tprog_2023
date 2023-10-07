@@ -12,6 +12,7 @@ public class TipoOferta {
     private int exposicion;
     private String descripcion;
 
+    // Constructor
     public TipoOferta(String nombre, LocalDate fechaAlta, float costo, int duracion, int exposicion, String descripcion) {
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;

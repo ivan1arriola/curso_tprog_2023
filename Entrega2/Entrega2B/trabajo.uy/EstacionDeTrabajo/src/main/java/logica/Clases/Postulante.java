@@ -17,7 +17,7 @@ public class Postulante extends Usuario{
     // relaciones
     private HashSet<Postulacion> postulaciones;
 
-    // constructor
+    // constructor sin imagen
     public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad,byte[] img) {
         super(nickname, nombre, apellido, correo_electronico, contrasena, img);// super es para llamar al constructor de la clase padre
         this.fecha_nac = fecha_nac;
@@ -25,6 +25,7 @@ public class Postulante extends Usuario{
         this.postulaciones = new HashSet<Postulacion>();
     }
     
+    // constructor con imagen
     public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
         super(nickname, nombre, apellido, correo_electronico, contrasena);// super es para llamar al constructor de la clase padre
         this.fecha_nac = fecha_nac;

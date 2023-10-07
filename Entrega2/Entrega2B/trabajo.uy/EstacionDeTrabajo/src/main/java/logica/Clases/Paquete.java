@@ -25,27 +25,23 @@ public class Paquete {
     private HashSet<InfoCompra> infCompraAsociada;
 
     // Constructor
-    public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento,byte[] imagen) {
+    public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento,byte[] imagen,HashSet<OfertaPaquete> oferPaq) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaAlta = fecha;
         this.descuento = descuento;
         this.validez = validez;
         this.imagen = imagen;
-        oferPaq = new HashSet<OfertaPaquete>(); // tengo cuantos paquetes tienen
-        
-        // Inicialización
-        TipoOfertaHandler tOfertaHandler = TipoOfertaHandler.getInstance();
-        
-
+        this.oferPaq = oferPaq;
+        // calculo el costo del paquete
         float Costo = 0; 
         
         for (OfertaPaquete OfertaAnalizar : oferPaq) {
-            DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO();
-            String nombreOferta = DTcantaux.getNombre();
+            DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO(); // obtengo cantidad y nombre de cada paquete
+            String nombreOferta = DTcantaux.getNombre(); // nombre lo uso para buscar
             int cantidadTotal = DTcantaux.getCantidad();
-            TipoOferta  TO = tOfertaHandler.buscar(nombreOferta);
-            float CostoTO = TO.getCosto();
+            TipoOferta  TO = tOfertaHandler.buscar(nombreOferta); // busco el tipo de oferta
+            float CostoTO = TO.getCosto(); // obtuve precio de la oferta
             Costo = Costo + CostoTO*cantidadTotal;
         }
         
