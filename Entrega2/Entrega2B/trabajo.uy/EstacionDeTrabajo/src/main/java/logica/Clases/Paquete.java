@@ -33,7 +33,7 @@ public class Paquete {
         this.validez = validez;
         this.imagen = imagen;
         this.oferPaq = null;
-        float Costo = 0;  
+        costo = 0;  
         this.infCompraAsociada = null; //empieza null, despues se cambia 
         
     }

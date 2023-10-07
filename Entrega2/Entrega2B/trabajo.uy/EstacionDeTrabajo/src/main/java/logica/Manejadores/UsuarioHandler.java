@@ -4,7 +4,7 @@ import main.java.logica.Clases.Usuario;
 
 import java.util.HashMap;
 
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+//import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
 public class UsuarioHandler {
 
