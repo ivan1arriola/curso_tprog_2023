@@ -23,7 +23,7 @@
  
     <module name="UnusedImports"/>
     
-    <module name="VisibilityModifier"/>
+    <module name="VisibilityModifier"/> 
     
     <module name="WhitespaceAfter"/>
 </module>
