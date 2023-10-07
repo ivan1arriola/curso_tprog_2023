@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashSet" %>
 <%@ page import="main.java.logica.Datatypes.DTEmpresa" %>
 <%@ page import="main.java.logica.Datatypes.DTPostulante" %>
 <%@ page import="main.java.logica.Datatypes.DTUsuario" %>
@@ -30,7 +30,7 @@
             <div class="sin-bordes">
                 <div class="row">
                     <%
-                        List<DTUsuario> usuarios = (List<DTUsuario>) request.getAttribute("usuarios");
+                    HashSet<DTUsuario> usuarios = (HashSet<DTUsuario>) request.getAttribute("usuarios");
                         for (DTUsuario usuario : usuarios) {
                         	byte[] imagenBytes = usuario.getImagen();
                         	String imagen;

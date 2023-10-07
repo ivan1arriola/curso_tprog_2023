@@ -93,11 +93,11 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Modificar Datos de Usuario");
-        setBounds(10, 40, 443, 423);
+        setBounds(10, 40, 507, 423);
         getContentPane().setLayout(null);
         
         lblIngreseNombre = new JLabel("Modifique los datos de la empresa: " + empresa.getNickname() );
-        lblIngreseNombre.setBounds(22, 11, 310, 34);
+        lblIngreseNombre.setBounds(12, 12, 375, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
                 
@@ -108,38 +108,38 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Datos Actuales");
-		lblNewLabel_1.setBounds(288, 54, 88, 25);
+		lblNewLabel_1.setBounds(354, 58, 109, 25);
 		getContentPane().add(lblNewLabel_1);
 		
 		nombreNuevo = new JTextField();
-		nombreNuevo.setBounds(125, 90, 123, 20);
+		nombreNuevo.setBounds(179, 91, 123, 20);
 		getContentPane().add(nombreNuevo);
 		nombreNuevo.setColumns(10);
 		
 		nombreActual = new JTextField();
-		nombreActual.setBounds(273, 90, 120, 20);
+		nombreActual.setBounds(343, 91, 120, 20);
 		nombreActual.setEditable(false);
 		getContentPane().add(nombreActual);
 		nombreActual.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Apellido: ");
-		lblNewLabel_2.setBounds(10, 124, 46, 14);
+		lblNewLabel_2.setBounds(10, 124, 81, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		apellidoNuevo = new JTextField();
 		apellidoNuevo.setColumns(10);
-		apellidoNuevo.setBounds(125, 121, 123, 20);
+		apellidoNuevo.setBounds(179, 122, 123, 20);
 		getContentPane().add(apellidoNuevo);
 		
 		apellidoActual = new JTextField();
 		apellidoActual.setColumns(10);
-		apellidoActual.setBounds(273, 121, 120, 20);
+		apellidoActual.setBounds(343, 122, 120, 20);
 		apellidoActual.setEditable(false);
 		getContentPane().add(apellidoActual);
 		
 		correoNuevo = new JTextField();
 		correoNuevo.setColumns(10);
-		correoNuevo.setBounds(125, 154, 123, 20);
+		correoNuevo.setBounds(179, 155, 123, 20);
 		getContentPane().add(correoNuevo);
 		
 		lblNewLabel_3 = new JLabel("E-mail: ");
@@ -149,31 +149,31 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		correoActual = new JTextField();
 		correoActual.setColumns(10);
 		correoActual.setEditable(false);
-		correoActual.setBounds(273, 152, 120, 20);
+		correoActual.setBounds(343, 154, 120, 20);
 		getContentPane().add(correoActual);
 		
 		lblNewLabel_4 = new JLabel("Contraseña:");
-		lblNewLabel_4.setBounds(10, 186, 70, 14);
+		lblNewLabel_4.setBounds(10, 186, 97, 17);
 		getContentPane().add(lblNewLabel_4);
 		
 		passNuevo = new JTextField();
 		passNuevo.setColumns(10);
-		passNuevo.setBounds(125, 183, 123, 20);
+		passNuevo.setBounds(179, 186, 123, 20);
 		getContentPane().add(passNuevo);
 		
 		passActual = new JTextField();
 		passActual.setColumns(10);
 		passActual.setEditable(false);
-		passActual.setBounds(273, 183, 120, 20);
+		passActual.setBounds(343, 185, 120, 20);
 		getContentPane().add(passActual);
 		
 		confirmPassNuevo = new JTextField();
 		confirmPassNuevo.setColumns(10);
-		confirmPassNuevo.setBounds(125, 216, 123, 20);
+		confirmPassNuevo.setBounds(179, 215, 123, 20);
 		getContentPane().add(confirmPassNuevo);
 		
 		lblNewLabel_5 = new JLabel("Confirmar contraseña: ");
-		lblNewLabel_5.setBounds(10, 219, 111, 14);
+		lblNewLabel_5.setBounds(10, 219, 163, 14);
 		getContentPane().add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Descripción:");
@@ -186,21 +186,21 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		
 		ulrNuevo = new JTextField();
 		ulrNuevo.setColumns(10);
-		ulrNuevo.setBounds(125, 331, 123, 20);
+		ulrNuevo.setBounds(179, 332, 123, 20);
 		getContentPane().add(ulrNuevo);
 		
 		urlActual = new JTextField();
 		urlActual.setColumns(10);
 		urlActual.setEditable(false);
-		urlActual.setBounds(273, 331, 120, 20);
+		urlActual.setBounds(343, 332, 120, 20);
 		getContentPane().add(urlActual);
 		
 		descripcionNuevo = new JTextArea();
-		descripcionNuevo.setBounds(125, 251, 128, 69);
+		descripcionNuevo.setBounds(179, 247, 123, 69);
 		getContentPane().add(descripcionNuevo);
 		
 		descripcionActual = new JTextArea(); 
-		descripcionActual.setBounds(265, 251, 128, 69);
+		descripcionActual.setBounds(343, 247, 128, 69);
 		descripcionActual.setEditable(false);
 		getContentPane().add(descripcionActual);
 		
@@ -221,7 +221,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		 // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
         // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
 		btnCancelar = new JButton("Cerrar");
-		btnCancelar.setBounds(234, 358, 111, 25);
+		btnCancelar.setBounds(330, 358, 111, 25);
 		btnCancelar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        setVisible(false);
@@ -278,7 +278,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		getContentPane().add(modificarBtn);
 		
 		lblNewLabel_8 = new JLabel("Modifcar");
-		lblNewLabel_8.setBounds(160, 54, 88, 25);
+		lblNewLabel_8.setBounds(214, 58, 88, 25);
 		getContentPane().add(lblNewLabel_8);
 		
 		

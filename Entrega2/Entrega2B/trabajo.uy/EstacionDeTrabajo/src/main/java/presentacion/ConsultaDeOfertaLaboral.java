@@ -42,7 +42,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private String selectedUsuario;
 	private VerPostulaciones VerPostulacionesJInternalFrame;
 	private JTextArea tAKey;
-	private JTextField textField;
+	private JTextField tfPaquete;
 	
 	/**
 	 * Create the application.
@@ -123,8 +123,14 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		tfDepartamento.setText((infoConsOf.getDepartamento()).name());
         		
         		tfCiudad.setText((infoConsOf.getCiudad()));
+        		String paq = infoConsOf.getPaquete();
         		
-        		if(infoConsOf.getPaquete())
+        		if(paq == null) {
+        			tfPaquete.setText("No fue comprado con un paquete.");
+        		}
+        		else {
+        			tfPaquete.setText(paq);
+        		}
         		
         		HashSet<String> keywords = ICU.listarKeywords(selectedUsuario1);
         		
@@ -261,10 +267,10 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         tAKey.setBounds(186, 537, 455, 61);
         getContentPane().add(tAKey);
         
-        textField = new JTextField();
-        textField.setEditable(false);
-        textField.setBounds(186, 497, 455, 30);
-        getContentPane().add(textField);
+        tfPaquete = new JTextField();
+        tfPaquete.setEditable(false);
+        tfPaquete.setBounds(186, 497, 455, 30);
+        getContentPane().add(tfPaquete);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2 = new JLabel("Paquete:");
         lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12, 504, 170, 15);
