@@ -50,23 +50,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         setClosable(true);
         setBounds(100, 100, 300, 300);
 
-        /*JPanel mainPanel = new JPanel();
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
-        mainPanel.setLayout(new BorderLayout(0, 0));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));*/
-        /* Crea el formulario y agrégalo al panel principal
-        formulario = new FormularioCrearPaquete();
-        mainPanel.add(formulario, BorderLayout.CENTER);
-
-        // Crea el PanelBotones
-        botonesPanel = new PanelBotonesAceptarCancelar();
-        mainPanel.add(botonesPanel, BorderLayout.SOUTH);
-
-        // Configura los Listener de aceptar y cancelar
-        botonesPanel.setAceptarListener(this);
-        botonesPanel.setCancelarListener(this);
-        */
-        
+               
         GridBagLayout gbl=new GridBagLayout();
         getContentPane().setLayout(gbl);
       	
@@ -137,7 +121,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
       	gbc_lblDescuento.gridy = 3;
       	getContentPane().add(lblDescuento, gbc_lblDescuento);
         
-        descuento = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
+        descuento = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100.0, 1.0));
         GridBagConstraints gbc_Descuento = new GridBagConstraints();
         gbc_Descuento.anchor = GridBagConstraints.EAST;
         gbc_Descuento.insets = new Insets(5, 5, 5, 0);
@@ -175,23 +159,28 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         			String nombrePaq = nombre.getText();
         	        String descripcionField = descripcion.getText();
         	        int validez = (int)periodo.getValue();
-        	        float descuentoPaq = (float)descuento.getValue();
+        	        
+        	        
+        	        Double descuValue = (Double) descuento.getValue();
+        	        float descuentoPaq = descuValue.floatValue();
         	        
         	        LocalDate fechaAlta = LocalDate.now();
         			        		        			
     	            boolean res = ctrlOferta.altaPaqueteOL(nombrePaq, descripcionField, validez, fechaAlta ,descuentoPaq);
-    	            System.out.print(res);
+    	            
+    	            //System.out.print(res);
     	            if (res) {
     	                JOptionPane.showMessageDialog(null, "Paquete creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    	                dispose();
+    	               
     	            }
     	            nombre.setText("");
     	    		descripcion.setText("");
     	    		periodo.setValue(1);
-    	    		descuento.setValue(1);
+    	    		descuento.setValue(1.0);
+    	    		
 
     	        } catch (Exception ex) {
-    	            JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    	            JOptionPane.showMessageDialog(null, "Ocurrió error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     	        }
         		
         	}
