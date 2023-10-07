@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="model.Datatypes.DTCantTO" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashSet" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,12 +23,8 @@
         <div class="container col-9">
             <!-- Contenido aquí -->
             <div class="container mt-5">
-                <h1 class="mb-4" style="font-size: 34px">
-                    Información de Paquete de Tipos de Publicación de Ofertas Laborales
-                </h1>
                 <div class="container mt-5">
                     <div id="results" class="mt-4">
-                        <!-- Add the image here -->
                         <div class="row">
                             <div class="col-md-3">
                                 <img src="<%= request.getAttribute("imagenPaquete") %>" alt="Imagen 1" class="img-fluid mb-2" />
@@ -45,7 +41,7 @@
                         </div>
                     </div>
                     <h2 class="mt-4">Tipos de publicación y sus cantidades</h2>
-                    <% List<DTCantTO> tiposDePublicacion = (List<DTCantTO>) request.getAttribute("tiposDePublicacion"); %>
+                    <% HashSet<DTCantTO> tiposDePublicacion = (HashSet<DTCantTO>) request.getAttribute("tiposDePublicacion"); %>
 					<table class="table" id="tiposDePublicacion">
 					    <thead>
 					        <tr>

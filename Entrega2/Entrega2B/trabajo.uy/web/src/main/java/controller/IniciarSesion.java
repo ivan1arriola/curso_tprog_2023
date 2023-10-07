@@ -43,13 +43,10 @@ public class IniciarSesion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Verificar si ya existe una sesión
 	    HttpSession session = request.getSession(false); // No crear una nueva sesión si no existe
 	    if (session != null && session.getAttribute("usuario") != null) {
-	        // Si existe una sesión y el atributo "usuario" está presente, redirigir a la página de inicio
 	        response.sendRedirect(request.getContextPath() + "/home");
 	    } else {
-	        // Si no existe una sesión o el usuario no ha iniciado sesión, mostrar la página de inicio de sesión
 	        request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
 	    }
 	}

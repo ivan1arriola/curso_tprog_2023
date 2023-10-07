@@ -42,26 +42,16 @@ DTOfertaLaboral ofertaLaboral = (DTOfertaLaboral) request.getAttribute("ofertaLa
                             // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
                             imagenUrl = request.getContextPath() +  "/imagenNoFound.png";
                         }
+                        String nombre = oferta.getNombre();
+                        String descripcion = oferta.getDescripcion();
+                        String enlace = request.getContextPath() + "/consultarofertalaboral?o=" + oferta.getNombre();
                 %>
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="<%= imagenUrl %>" class="img-fluid rounded-start" alt="Imagen de oferta" />
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= oferta.getNombre() %></h5>
-                                <p class="card-text"><%= oferta.getDescripcion() %></p>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <a href="<%= request.getContextPath() %>/consultarofertalaboral?o=<%= oferta.getNombre() %>"
-                                class="btn btn-info d-flex btn-block align-items-center justify-content-around">
-                                <span>Leer más</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <jsp:include page="/WEB-INF/templates/lista1.jsp">
+                    <jsp:param name="imagenUrl" value="<%= imagenUrl %>" />
+                    <jsp:param name="nombre" value="<%= nombre %>" />
+                    <jsp:param name="descripcion" value="<%= descripcion %>" />
+                    <jsp:param name="enlace" value="<%= enlace %>" />
+                </jsp:include>
                 <%
                     }
                 %>
