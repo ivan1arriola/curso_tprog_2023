@@ -1,6 +1,10 @@
 package main.java.presentacion;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 import main.java.logica.Datatypes.DTHora;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
 
@@ -66,6 +71,33 @@ public class CargarDatos extends JInternalFrame {
 	                while ((linea = reader.readLine()) != null) {
 	                	String[] campos = linea.split(";");
 	                	String tipo = campos[1];
+	                	
+        	            // URL de la imagen que deseas descargar
+        	            String imageUrl = campos[7];
+
+        	            // Crear una instancia de URL
+        	            URL url = new URL(imageUrl);
+        	            
+        	            // Abrir una conexión a la URL
+        	            InputStream inputStream = url.openStream();
+
+        	            // Crear un flujo de bytes para almacenar la imagen
+        	            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        	            
+        	            // Leer los datos de la imagen y escribirlos en el flujo de bytes
+        	            byte[] buffer = new byte[1024];
+        	            int bytesRead;
+        	            while ((bytesRead = inputStream.read(buffer)) != -1) {
+        	                byteArrayOutputStream.write(buffer, 0, bytesRead);
+        	            }
+
+        	            // Obtener el arreglo de bytes de la imagen
+        	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+
+        	            // Cerrar los flujos
+        	            inputStream.close();
+        	            byteArrayOutputStream.close();
+	                	
 	                	if(tipo.equals("P")) {
 	                		try (BufferedReader reader1 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Postulantes.csv"))) {
 		                		reader1.readLine();
@@ -80,7 +112,9 @@ public class CargarDatos extends JInternalFrame {
 			                	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			                	        LocalDate localDate = LocalDate.parse(dateString, formatter);
 			                	        try {
-			                	        	ICU.altaPostulante(campos[2],campos[3],campos[4],campos[5],localDate,campos1[2]);
+
+			                	            
+			                	        	ICU.altaPostulanteImagen(campos[2],campos[6], campos[3],campos[4],localDate,campos[5],campos1[2], imageBytes);
 			                	        } catch (Exception e1){
 			                	        	
 			                	        }
@@ -98,9 +132,10 @@ public class CargarDatos extends JInternalFrame {
 				                    String user = campos[0];
 			                		String user2 = campos2[0];
 			                		if(user.equals(user2)) {
+			                			
 			                			if(campos2.length == 2) {
 			                				try {
-			                					ICU.altaEmpresa(campos[2],campos[3],campos[4],campos[5], campos[2], campos2[1]);
+			                					ICU.altaEmpresaImagen(campos[2],campos[3],campos[4],campos[5], campos[2], campos2[1], imageBytes);
 			                				} catch (Exception e2) {
 			                					
 			                				}
@@ -108,7 +143,7 @@ public class CargarDatos extends JInternalFrame {
 			                			else {
 			                				
 			                				try {
-			                					ICU.altaEmpresaURL(campos[2],campos[3],campos[4],campos[5],campos[2], campos2[1],campos2[2]);
+			                					ICU.altaEmpresaURLyImagen(campos[2],campos[3],campos[4],campos[5],campos[2], campos2[1],campos2[2], imageBytes);
 			                				} catch (Exception e3) {
 			                					
 			                				}
@@ -159,6 +194,30 @@ public class CargarDatos extends JInternalFrame {
                 	
                 	while ((linea5 = reader5.readLine()) != null) {
                 		String[] campos5 = linea5.split(";");
+                		
+                		// Obtener imagen
+                		
+        	            // URL de la imagen que deseas descargar
+        	            String imageUrl = campos5[12];
+
+        	            // Crear una instancia de URL
+        	            URL url = new URL(imageUrl);
+        	            
+        	            // Abrir una conexión a la URL
+        	            InputStream inputStream = url.openStream();
+
+        	            // Crear un flujo de bytes para almacenar la imagen
+        	            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        	            
+        	            // Leer los datos de la imagen y escribirlos en el flujo de bytes
+        	            byte[] buffer = new byte[1024];
+        	            int bytesRead;
+        	            while ((bytesRead = inputStream.read(buffer)) != -1) {
+        	                byteArrayOutputStream.write(buffer, 0, bytesRead);
+        	            }
+
+        	            // Obtener el arreglo de bytes de la imagen
+        	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
                 		
                 		// Obtener hora
                 		String horario = campos5[5];
@@ -301,8 +360,44 @@ public class CargarDatos extends JInternalFrame {
                                 break;
                         }
                         
+                        EstadoOL estado = null;
+                        switch (campos5[10]) {
+                        case "Confirmada":
+                            estado = EstadoOL.Confirmada;
+                            break;
+                        case "Ingresada":
+                            estado = EstadoOL.Ingresada;
+                            break;
+                        case "Rechazada":
+                            estado = EstadoOL.Rechazada;
+                            break;
+                        default:
+                            // System.out.println("Unknown department: " + input);
+                            break;
+                        }
+                        
+                        String paq = campos5[11];
+                        if(campos5[11].equals("Sin paquete")) {
+                        	paq = null;
+                        }
+                        else {
+                        	try (BufferedReader reader15 = new BufferedReader(new FileReader("src/main/datos/Paquetes.csv"))) {
+                            	String linea15;
+                            	reader15.readLine();
+                            	boolean fin = false;
+                            	while((linea15 = reader15.readLine()) != null && !fin) {
+                            		String[] campos15 = linea15.split(";");
+                            		if(paq.equals(campos15[0])) {
+                            			paq = campos15[1];
+                            			fin = true;
+                            		}
+                            	}
+                            	
+                        	}
+                        }
+                        
                 		try {
-                			ICU.altaOfertaLaboral(nickname_e, tipodeP, campos5[1], campos5[2], hor, Float.valueOf(campos5[6]), campos5[4], dep, fecha, keys);
+                			ICU.altaOfertaLaboral(nickname_e, tipodeP, campos5[1], campos5[2], hor, Float.valueOf(campos5[6]), campos5[4], dep, fecha, keys, estado, paq, imageBytes);
                 		} catch (ExceptionUsuarioNoEncontrado eune) {
                 			JOptionPane.showMessageDialog(CargarDatos.this, eune.getMessage(), "ERROR - Carga de Datos", JOptionPane.ERROR_MESSAGE);
                 		} catch(ExceptionEmpresaInvalida eei) {
