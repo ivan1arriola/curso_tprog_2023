@@ -16,7 +16,7 @@ public class Postulacion {
     private OfertaLaboral OferLab;
     private Postulante p;
 
-
+    // constructor
     public Postulacion(Postulante p, String CV, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
         this.p = p;
         this.fecha = fecha;

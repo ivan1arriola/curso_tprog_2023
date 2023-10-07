@@ -21,27 +21,31 @@ public class Empresa extends Usuario {
     private HashSet<OfertaLaboral> ofertasLaborales;
     private HashSet<InfoCompra> infoCompras;
     
+    // constructor empresa con imagen y url 
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
         super(nickname, nombre, apellido, correo_electronico, contrasena, img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = urlE;
     }
-    
+
+    // constructor empresa con imagen sin url 
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc) {
         super(nickname, nombre, apellido, correo_electronico, contrasena, img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = null;
     }
-    
+
+    // constructor empresa con url sin imagen 
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc, String urlE) {
         super(nickname, nombre, apellido, correo_electronico, contrasena);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = urlE;
     }
-    
+
+    // constructor empresa sin imagen ni url 
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc) {
         super(nickname, nombre, apellido, correo_electronico, contrasena);
         descripcion = desc;

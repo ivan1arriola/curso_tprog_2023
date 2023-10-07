@@ -4,6 +4,7 @@
 <%@ page import="java.util.HashSet" %>
 <%@ page import="model.Datatypes.DTEmpresa" %>
 <%@ page import="model.Datatypes.DTOfertaExtendido" %>
+<%@ page import="java.util.Base64" %>
 
 <%
 	// Obtener el objeto de empresa y sus ofertas laborales desde los atributos de la solicitud
@@ -15,11 +16,14 @@
 <div class="tab-pane fade" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
     <%
     for (DTOfertaExtendido oferta : ofertasLaborales) {
-        String imagenUrl = "";
-        // Comentado el código relacionado con la obtención de la imagen, ya que no está en uso
-        
-        // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
-        imagenUrl = request.getContextPath() + "/imagenNoFound.png";
+    	String imagenUrl = "";
+        if (oferta.getImagen() != null) {
+            String base64Image = new String(Base64.getEncoder().encode(oferta.getImagen()), "UTF-8");
+            imagenUrl = "data:image/jpeg;base64," + base64Image; // Asume que la imagen es en formato JPEG, ajusta según sea necesario
+        } else {
+            // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
+            imagenUrl = request.getContextPath() +  "/imagenNoFound.png";
+        }
     %>
     <div class="card mb-3">
         <div class="row g-0">
