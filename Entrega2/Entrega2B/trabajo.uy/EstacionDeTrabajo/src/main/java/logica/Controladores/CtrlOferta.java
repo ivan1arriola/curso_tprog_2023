@@ -382,10 +382,40 @@ public class CtrlOferta implements ICtrlOferta{
 			}
 	}
 
-	@Override
+	
 	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
-		// TODO Auto-generated method stub
-		return false;
+		// Verificar si el argumento 'nombre' es vacío
+		if (nombre.isEmpty()) {
+			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
+		}
+
+		// Verificar si el argumento 'descripcion' es vacío
+		if (descripcion.isEmpty()) {
+			throw new IllegalArgumentException("El argumento 'descripcion' no puede ser vacío.");
+		}
+
+		// Verificar si 'validez' es mayor a 0
+		if (validez <= 0) {
+			throw new IllegalArgumentException("El argumento 'validez' debe ser mayor a 0.");
+		}
+
+		// Verificar si 'descuento' es un porcentaje válido (mayor a 0, menor o igual a 100)
+		if (descuento < 0 || descuento > 100) {
+			throw new IllegalArgumentException("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.");
+		}
+
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+		byte[] imagen =null; 
+		boolean existe = PH.existe(nombre);
+		if(!existe) {
+			Paquete p = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
+			PH.agregar(p);
+		}
+		else {
+			throw new IllegalArgumentException("El argumento 'nombre' ya existe en el sistema.");
+		}
+		
+		return !existe;
 	}
 		
 }

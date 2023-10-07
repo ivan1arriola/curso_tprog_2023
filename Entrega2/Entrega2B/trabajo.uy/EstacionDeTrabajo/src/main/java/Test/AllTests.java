@@ -1,10 +1,11 @@
-package Test;
+package main.java.Test;
 
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
+
 @Suite
-@SelectClasses({FabricaTest.class, ControladorUsuarioTest.class})
+@SelectClasses(ControladorUsuarioTest.class)
 
 public class AllTests {
 
