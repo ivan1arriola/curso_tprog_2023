@@ -139,6 +139,10 @@ public class FabricaTest {
 		oferPaq.add(new OfertaPaquete(nuevaOferta, 20));
 		oferPaq.add(new OfertaPaquete(nuevaOferta2, 12));
 		oferPaq.add(new OfertaPaquete(nuevaOferta3, 1));
+
+		HashSet<OfertaPaquete> oferPaq2 = new HashSet<OfertaPaquete>();	
+		oferPaq2.add(new OfertaPaquete(nuevaOferta, 10));
+		oferPaq2.add(new OfertaPaquete(nuevaOferta2, 5));
 	}
 	// ------------------------------------------------------------------------------
 
@@ -150,10 +154,12 @@ public class FabricaTest {
 		// imagen
 		byte[] img = paquet.getBytes();
 	
-		Paquete paquete = new Paquete("paqueteBasico", "Comun", 1, LocalDate.now(), 0, img);
-		Paquete paquete2 = new Paquete("paquetePremium", "raro", 1, LocalDate.now(), 10, img);
-		Paquete paquete3 = new Paquete("paqueteQuesoPremium", "muzarella", 1, LocalDate.now(), 30, img);	
+		Paquete paquete = new Paquete("paqueteBasico", "Comun", 1, LocalDate.now(), 10, img);
+		Paquete paquete2 = new Paquete("paqueteQuesoPremium", "muzarella", 1, LocalDate.now(), 30, img);	
+		paquete.setOfertaPaquete(oferPaq2);
+		paquete2.setOfertaPaquete(oferPaq);
 	}
+	// ----------------------------------------------------------------
 
 
 	// ------------------------- Oferta Laboral -----------------------
@@ -179,12 +185,18 @@ public class FabricaTest {
 		DTHora hora = new DTHora(8, 0);
 
 		// testeo con imagen y paquete
-		OfertaLaboral(atrkeywords,paquete3,"investigador IA", "Investigador de IA", "Montevideo", DepUY.MONTEVIDEO,hora, 100000.0f, fecha,  LocalDate.now(), img, 
-		);
+		OfertaLaboral OF1 = new OfertaLaboral(atrkeywords,nuevaOferta2,"investigador IA", "Investigador de IA", "Montevideo", DepUY.MONTEVIDEO,hora, 1000000.0f, fecha,  LocalDate.now(), img, paquete);
 
-			
+		// testeo con imagen sin paquete
+		OfertaLaboral OF2 = new OfertaLaboral(atrkeywords,nuevaOferta2,"disenador Web", "diseno web pagina", "maldonado", DepUY.MALDONADO,hora, 100000.0f, fecha,  LocalDate.now(), img);
 
-	// ---------------------
+		// testeo sin imagen con paquete
+		OfertaLaboral OF3 = new OfertaLaboral(atrkeywords,nuevaOferta2,"Tester", "tester para IA", "Montevideo", DepUY.MONTEVIDEO,hora, 100000.0f, fecha,  LocalDate.now(), paquete);
+
+		//	testeo sin imagen ni paquete
+		OfertaLaboral OF4 = new OfertaLaboral(atrkeywords,nuevaOferta2,"Manejador de bases", "para base de datos", "Montevideo", DepUY.MONTEVIDEO,hora, 100000.0f, fecha,  LocalDate.now());
+	}
+	// ----------------------------------------------------------------
 
 	// ---------------- testear agregar postulaciones -----------------
 	@Test
