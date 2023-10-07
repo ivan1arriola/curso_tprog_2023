@@ -360,11 +360,7 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	
-	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento) {
-<<<<<<< HEAD
-
-		return false;
-=======
+	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] imagen) {
 		// Verificar si el argumento 'nombre' es vacío
 		if (nombre.isEmpty()) {
 			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -386,7 +382,6 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 
 		PaqueteHandler PH = PaqueteHandler.getInstance();
-		byte[] imagen =null; 
 		boolean existe = PH.existe(nombre);
 		if(!existe) {
 			Paquete p = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
@@ -397,7 +392,6 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 		
 		return !existe;
->>>>>>> 8304f6095d2d6002949341b5c1650adfe78aae0b
 	}
 	
 	public HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {

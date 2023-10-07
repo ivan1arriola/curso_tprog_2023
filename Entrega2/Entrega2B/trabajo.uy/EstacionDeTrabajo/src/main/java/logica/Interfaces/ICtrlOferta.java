@@ -20,7 +20,7 @@ public interface ICtrlOferta {
 		public abstract HashSet<String> listarTipoDePublicaciones();
 		public abstract boolean existeOferta(String nombre_oferta);
 		public abstract boolean altaTipoPublicacionOL(String nomb, String descripcion, int expo, int dur, float costo, LocalDate fechA);
-		public abstract boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento);
+		public abstract boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] img);
 		public abstract boolean altaKeyword(String key);
 		public abstract boolean compraPaquetes(String nickname_e, String paq);
 		public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, EstadoOL estado, byte[] img, String paquete);
