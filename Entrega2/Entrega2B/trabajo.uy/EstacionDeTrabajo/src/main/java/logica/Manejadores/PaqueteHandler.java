@@ -1,6 +1,7 @@
 package main.java.logica.Manejadores;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import main.java.logica.Clases.Paquete;
 

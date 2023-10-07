@@ -119,8 +119,8 @@ public class ConsultarOfertas extends JDialog {
                 rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" +
         				"Descripción: " + dtOfer.getDescripcion() + "\n" +
         				"Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" +
-        				"Costo: " + (int)dtOfer.getCosto() + "\n" +
-        				"Remuneración: " + (int)dtOfer.getRemuneracion() + "\n" +
+        				"Costo: " + (int) dtOfer.getCosto() + "\n" +
+        				"Remuneración: " + (int) dtOfer.getRemuneracion() + "\n" +
         				"Horario de Entrada: " + dtOfer.getHorario().getDesde() + "\n" +
         				"Horario de Salida: " + dtOfer.getHorario().getHasta() + "\n" +
         				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n");
@@ -154,8 +154,8 @@ public class ConsultarOfertas extends JDialog {
         	 
         	 detailsTextArea.append("Título: " + datosOferta.getNombre() + "\n");
         	 detailsTextArea.append("Fecha de Alta: " + datosOferta.getFechaDeAlta() + "\n");
-        	 detailsTextArea.append("Costo: " + (int)datosOferta.getCosto() + "\n");
-        	 detailsTextArea.append("Remuneración: " + (int)datosOferta.getRemuneracion() + "\n");
+        	 detailsTextArea.append("Costo: " + (int) datosOferta.getCosto() + "\n");
+        	 detailsTextArea.append("Remuneración: " + (int) datosOferta.getRemuneracion() + "\n");
         	 //detailsTextArea.append("Horario Entrada: " + datosOferta.getHorario().getDesde().toString() + "\n");
         	 //detailsTextArea.append("Horario Salida: " + datosOferta.getHorario().getHasta().toString() + "\n");
         	 detailsTextArea.append("Ciudad: " + datosOferta.getCiudad() + "\n");

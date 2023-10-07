@@ -32,9 +32,6 @@ public class VerPostulaciones extends JInternalFrame {
 	private String nombre_o;
 	private Set<DTPostulacion> postulaciones;
 	private JComboBox<String> listadoPostulaciones;
-	/**
-	 * Launch the application.
-	 */
 
 	/**
 	 * Create the application.
