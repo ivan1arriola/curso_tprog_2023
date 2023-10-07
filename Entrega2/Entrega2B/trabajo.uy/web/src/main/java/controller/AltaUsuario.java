@@ -8,6 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
+import excepciones.ExceptionUsuarioCorreoRepetido;
+import excepciones.ExceptionUsuarioNickRepetido;
+import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 
 /**
  * Servlet implementation class AltaUsuario
@@ -38,14 +43,65 @@ public class AltaUsuario extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/altaUsuario/altaUsuario.jsp").forward(request, response);
         }
     }
+    
+    private boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+    	throw new ExceptionUsuarioNickRepetido("El nickname ya está en uso.");
+	} 
+    
+    
+    public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+		return true;
+	}
 
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Genera un nuevo usuario en el sistema
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nickname = request.getParameter("nickname");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String tipoUsuario = request.getParameter("tipo-usuario");
+
+        String descripcionEmpresa = null;
+        String sitioWebEmpresa = null;
+        String fechaNacimiento = null;
+        String nacionalidad = null;
+
+        try {
+            boolean registroExitoso;
+
+            if ("empresa".equals(tipoUsuario)) {
+                descripcionEmpresa = request.getParameter("descripcion");
+                sitioWebEmpresa = request.getParameter("sitio-web");
+                registroExitoso = altaEmpresaURL(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa);
+            } else {
+                fechaNacimiento = request.getParameter("fecha-nacimiento");
+                nacionalidad = request.getParameter("nacionalidad");
+                registroExitoso = altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad);
+            }
+
+            if (registroExitoso) {
+                response.sendRedirect(request.getContextPath() + "/home");
+            }
+        } catch (ExceptionUsuarioCorreoRepetido e) {
+            manejarExcepcion(request, response, "El correo electrónico ya está registrado. Elija otro");
+        } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
+            manejarExcepcion(request, response, "El nick y el correo electrónico ya están registrados. Elija otros");
+        } catch (ExceptionUsuarioNickRepetido e) {
+            manejarExcepcion(request, response, "El nickname ya está registrado. Elija otro");
+        }
+    
+
+    }
+    
+    private void manejarExcepcion(HttpServletRequest request, HttpServletResponse response, String mensajeAlerta) throws ServletException, IOException {
+        request.setAttribute("alert", mensajeAlerta);
+        request.getRequestDispatcher("/WEB-INF/altaUsuario/altaUsuario.jsp").forward(request, response);
+    }
+
+
 
 }

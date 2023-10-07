@@ -8,8 +8,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import model.Datatypes.*;
 
@@ -31,38 +35,59 @@ public class ConsultarPaquete extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	// Obtener el valor del parámetro "p" paquete de la URL
-        String paquete = request.getParameter("p");
-    	
-        // Configurar los atributos con datos hardcodeados
-        request.setAttribute("nombrePaquete", "Básico");
-        request.setAttribute("imagenPaquete", "https://shorturl.at/ceCD2");
-        request.setAttribute("costoPaquete", 240);
-        request.setAttribute("descuentoPaquete", 20);
-        request.setAttribute("validezPaquete", "30 días");
-        request.setAttribute("descripcionPaquete", "Publica ofertas laborales en nuestra plataforma por un período de 30 días");
-        request.setAttribute("fechaPaquete", "16/08/23");
-        
-        // Configurar los tipos de publicación y sus cantidades (hardcodeados)
-        List<DTCantTO> tiposDePublicacion = new ArrayList<>();
-        tiposDePublicacion.add(new DTCantTO("Premium", 1));
-        tiposDePublicacion.add(new DTCantTO("Estándar", 1));
-        tiposDePublicacion.add(new DTCantTO("Destacada", 1));
-        tiposDePublicacion.add(new DTCantTO("Básica", 4));
-        // Puedes agregar más tipos de publicación según sea necesario
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombrePaquete = request.getParameter("p");
 
-        request.setAttribute("tiposDePublicacion", tiposDePublicacion);
+        try {
+            DTPaquete paquete = obtenerPaquetePorNombre(nombrePaquete);
 
-        // Obtener el RequestDispatcher para el JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPaquete/paquete.jsp");
+      
+                request.setAttribute("nombrePaquete", paquete.getNombre());
+                request.setAttribute("imagenPaquete", "https://shorturl.at/ceCD2");// TODO: Reemplaza con el atributo imagen de DTPaquete
+                request.setAttribute("costoPaquete", paquete.getCosto());
+                request.setAttribute("descuentoPaquete", paquete.getDescuento());
+                request.setAttribute("validezPaquete", paquete.getValidez() + " días");
+                request.setAttribute("descripcionPaquete", paquete.getDescripcion());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String fechaFormateada = paquete.getFechaAlta().format(formatter);
 
-        // Redirigir al JSP
-        dispatcher.forward(request, response);
+                request.setAttribute("fechaPaquete", fechaFormateada);
+
+                request.setAttribute("tiposDePublicacion", paquete.getTiposDePub());
+            
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPaquete/paquete.jsp");
+            dispatcher.forward(request, response);
+            
+        } catch (Exception e) {
+            // Manejar la excepción
+            request.setAttribute("mensajeError", "Error al obtener el paquete: " + e.getMessage());
+
+            // Redirigir a una página de error o mostrar un mensaje de error en el JSP
+            RequestDispatcher errorDispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+            errorDispatcher.forward(request, response);
+        }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    private DTPaquete obtenerPaquetePorNombre(String nombrePaquete) {
+    	// Configurar los tipos de publicación y sus cantidades (hardcodeados)
+    	Set<DTCantTO> tiposDePublicacion = new HashSet<DTCantTO>();
+    	tiposDePublicacion.add(new DTCantTO("Premium", 1));
+    	tiposDePublicacion.add(new DTCantTO("Estándar", 1));
+    	tiposDePublicacion.add(new DTCantTO("Destacada", 1));
+    	tiposDePublicacion.add(new DTCantTO("Básica", 4));
+
+    	// Crear el objeto DTPaquete
+    	DTPaquete paquete = new DTPaquete("Básico", 240, 20, 30, 
+    	    "Publica ofertas laborales en nuestra plataforma por un período de 30 días", 
+    	    tiposDePublicacion, LocalDate.of(2023, 8, 16));
+    	return paquete;
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }
