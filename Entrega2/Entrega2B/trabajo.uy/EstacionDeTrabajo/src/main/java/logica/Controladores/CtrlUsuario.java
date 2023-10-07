@@ -198,7 +198,14 @@ public class CtrlUsuario implements ICtrlUsuario {
 				boolean ofer = CO.existeOferta(nombre);
 				if(!ofer) {
 					PaqueteHandler PH = PaqueteHandler.getInstance();
-					Paquete paq = PH.buscar(paquete);
+					Paquete paq;
+					if(paquete != null) {
+						paq = PH.buscar(paquete);
+					}
+					else
+						paq = null;
+						
+					
 					OfertaLaboral ol = e.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
 					OLH.agregar(ol);
 				}

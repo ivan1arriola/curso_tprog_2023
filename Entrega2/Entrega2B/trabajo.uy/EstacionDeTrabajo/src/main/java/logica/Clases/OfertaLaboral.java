@@ -181,7 +181,12 @@ public class OfertaLaboral {
 			// obtengo DTPostulacion para cada una
 			posts.add(elem.obtenerDT());
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts, getImagen());
+		Paquete paq = getPaquete();
+		String paq_nomb = null;
+		if(paq != null) {
+			paq_nomb = paq.getNombre();
+		}
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts, getImagen(), paq_nomb);
 		return dtoe;
 	}
 	

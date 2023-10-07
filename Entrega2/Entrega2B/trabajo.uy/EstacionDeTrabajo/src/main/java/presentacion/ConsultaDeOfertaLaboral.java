@@ -42,6 +42,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private String selectedUsuario;
 	private VerPostulaciones VerPostulacionesJInternalFrame;
 	private JTextArea tAKey;
+	private JTextField textField;
 	
 	/**
 	 * Create the application.
@@ -71,7 +72,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Oferta Laboral");
-        setBounds(30, 30, 660, 678);
+        setBounds(30, 30, 660, 716);
         getContentPane().setLayout(null);
         
         JButton btnCerrar = new JButton("Cerrar");
@@ -81,7 +82,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(524, 609, 117, 25);
+        btnCerrar.setBounds(521, 647, 117, 25);
         getContentPane().add(btnCerrar);
         
         listaEmpresas = new JComboBox<String>();
@@ -122,6 +123,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		tfDepartamento.setText((infoConsOf.getDepartamento()).name());
         		
         		tfCiudad.setText((infoConsOf.getCiudad()));
+        		
+        		if(infoConsOf.getPaquete())
         		
         		HashSet<String> keywords = ICU.listarKeywords(selectedUsuario1);
         		
@@ -247,16 +250,25 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         	}
         });
-        btnVerPostulaciones.setBounds(15, 572, 626, 25);
+        btnVerPostulaciones.setBounds(12, 610, 626, 25);
         getContentPane().add(btnVerPostulaciones);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1 = new JLabel("Keywords:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12, 506, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12, 560, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1);
         
         tAKey = new JTextArea();
-        tAKey.setBounds(186, 497, 455, 61);
+        tAKey.setBounds(186, 537, 455, 61);
         getContentPane().add(tAKey);
+        
+        textField = new JTextField();
+        textField.setEditable(false);
+        textField.setBounds(186, 497, 455, 30);
+        getContentPane().add(textField);
+        
+        JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2 = new JLabel("Paquete:");
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12, 504, 170, 15);
+        getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2);
 
         
 	}
