@@ -410,7 +410,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                     	boolean fin = false;
                     	while((linea15 = reader15.readLine()) != null && !fin) {
                     		String[] campos15 = linea15.split(";");
-                    		if(paq.equals(campos15[0])) {
+                    		if(paq.equals(campos15[0])) {	
                     			paq = campos15[1];
                     			fin = true;
                     		}
@@ -531,7 +531,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		} catch (IOException e42) {
         			e42.printStackTrace();
         		}
-        		System.out.println(paq);
         		ICO.agregarTipoOfertaPaq(paq, TipoPub, Integer.parseInt(campos14[3].substring(1)));
         	}
         	

@@ -87,7 +87,7 @@ public class Principal {
         
         // ConsultaDeOfertaLaboral
         ConsultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios, ICU);
-        ConsultaDeOfertaLaboralInternalFrame.setSize(670, 600);
+        ConsultaDeOfertaLaboralInternalFrame.setSize(670, 720);
         ConsultaDeOfertaLaboralInternalFrame.setLocation(89, 77);
         ConsultaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ConsultaDeOfertaLaboralInternalFrame);
