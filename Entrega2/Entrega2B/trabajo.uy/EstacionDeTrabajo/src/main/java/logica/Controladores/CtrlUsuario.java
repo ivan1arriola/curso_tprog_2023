@@ -19,6 +19,7 @@ import main.java.logica.Clases.Usuario;
 import main.java.logica.Clases.Postulacion;
 import main.java.logica.Datatypes.*;
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 import main.java.logica.Interfaces.*;
 import main.java.logica.Manejadores.*;
 import main.java.logica.Controladores.*;
@@ -175,7 +176,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		u.setApellido(apellido);
 	}
 
-	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA,List<String> keys) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida{
+	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA,List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida{
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UH = UsuarioHandler.getInstance();
@@ -196,7 +197,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 				CtrlOferta CO = new CtrlOferta();
 				boolean ofer = CO.existeOferta(nombre);
 				if(!ofer) {
-					OfertaLaboral ol = e.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords);
+					PaqueteHandler PH = PaqueteHandler.getInstance();
+					Paquete paq = PH.buscar(paquete);
+					OfertaLaboral ol = e.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
 					OLH.agregar(ol);
 				}
 				return !ofer;
@@ -212,6 +215,8 @@ public class CtrlUsuario implements ICtrlUsuario {
 		
 	}
 
+	
+	
 	public Set<String> listarOfertasLaborales(String nickname){
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Usuario u = UH.buscarNick(nickname);
@@ -222,7 +227,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	// -------------------------------------------------------------------------------------
 	// ################################  NUEVAS OPERACIONES ################################ 
 	// -------------------------------------------------------------------------------------
-
+	
 	public HashSet<String> listarKeywords(String nombre_oferta){
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral ol = OLH.buscar(nombre_oferta);
