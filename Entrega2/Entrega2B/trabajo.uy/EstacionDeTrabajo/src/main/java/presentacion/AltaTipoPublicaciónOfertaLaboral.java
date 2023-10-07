@@ -180,26 +180,29 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
         gbc_Fecha.gridx = 1;
         gbc_Fecha.gridy = 5;
         getContentPane().add(fechaAltaField, gbc_Fecha);
-        /*GridBagConstraints gbc_Aceptar = new GridBagConstraints();
+        
+        
+        JButton Aceptar = new JButton("Aceptar");
+        GridBagConstraints gbc_Aceptar = new GridBagConstraints();
         gbc_Aceptar.ipadx = 4;
-        gbc_Aceptar.insets = new Insets(0, 0, 0, 5);
+        gbc_Aceptar.insets = new Insets(10, 0, 0, 5);
         gbc_Aceptar.gridx = 0;
         gbc_Aceptar.gridy = 6;
-        getContentPane().add(Aceptar, gbc_Aceptar);*/
-        /*GridBagConstraints gbc_Cancelar = new GridBagConstraints();
+        getContentPane().add(Aceptar, gbc_Aceptar);
+        
+        JButton Cancelar = new JButton("Cancelar");
+        GridBagConstraints gbc_Cancelar = new GridBagConstraints();
+        gbc_Cancelar.insets = new Insets(10, 0, 0, 0);
         gbc_Cancelar.ipadx = 4;
         gbc_Cancelar.anchor = GridBagConstraints.EAST;
         gbc_Cancelar.gridx = 1;
         gbc_Cancelar.gridy = 6;
-        getContentPane().add(Cancelar, gbc_Cancelar);*/
+        getContentPane().add(Cancelar, gbc_Cancelar);
         
-        JButton Aceptar = new JButton("Aceptar");
-        
-        JButton Cancelar = new JButton("Cancelar");
-        
+     
         
                 
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER);
+        /*FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER);
         flowLayout.setHgap(10);
         JPanel containerPanel = new JPanel(flowLayout);
         GridBagConstraints gbc_botones = new GridBagConstraints();
@@ -209,7 +212,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
         gbc_botones.gridy = 6;
         containerPanel.add(Aceptar);
         containerPanel.add(Cancelar);
-        getContentPane().add(containerPanel, gbc_botones);
+        getContentPane().add(containerPanel, gbc_botones);*/
         
         Aceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
