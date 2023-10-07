@@ -83,7 +83,7 @@ public class ConsultarUsuario extends HttpServlet {
                 request.setAttribute("usuario", usuario);
 
                 // Redirigir a la página infoUsuario.jsp
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultar/infoUsuario.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/infoUsuario.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {
                 // Redirigir a la página errorPage.jsp y pasar el mensaje de error como atributo de solicitud
@@ -97,7 +97,8 @@ public class ConsultarUsuario extends HttpServlet {
         	String mensajeError = "Ocurrió un error al obtener los datos del usuario: No se proporciono el usuario";
             request.setAttribute("mensajeError", mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            dispatcher.forward(request, response);        }
+            dispatcher.forward(request, response);       
+        }
     }
 
 

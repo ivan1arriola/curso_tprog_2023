@@ -3,6 +3,12 @@
 <%@ page import="model.Datatypes.DTOfertaLaboral" %>
 <%@ page import="java.util.Base64" %>
 
+
+<%
+// Obtener el objeto de usuario desde los atributos de la solicitud
+DTOfertaLaboral ofertaLaboral = (DTOfertaLaboral) request.getAttribute("ofertaLaboral");
+%>
+
 <!DOCTYPE html>
 <html>
 

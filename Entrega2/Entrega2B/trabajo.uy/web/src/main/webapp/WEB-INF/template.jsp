@@ -19,7 +19,6 @@
             </div>
 
             <div class="container col-9">
-            	<jsp:include page="/WEB-INF/templates/navbar.jsp" />
                 <!-- Contenido aqui -->
                 
 
