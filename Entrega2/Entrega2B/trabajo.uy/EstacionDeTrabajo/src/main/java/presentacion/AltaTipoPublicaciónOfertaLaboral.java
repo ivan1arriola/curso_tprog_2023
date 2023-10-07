@@ -271,27 +271,5 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
 		
 	}
 
-	public void onAceptar() {
-	    if (formulario.validar()) {
-	        String nombre = formulario.getNombre();
-	        String descripcion = formulario.getDescripcion();
-	        LocalDate fechaAlta = formulario.getFechaAlta();
-	        int exposicion = formulario.getExposicion();
-	        int duracion = formulario.getDuracion();
-	        float costo = formulario.getCosto();
-	        
-	        try {
-	            boolean res = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
-	            System.out.print(res);
-	            if (res) {
-	                JOptionPane.showMessageDialog(null, "Tipo de publicación de oferta laboral creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-	                dispose();
-	            }
-	            formulario.limpiarFormulario();
-	        } catch (Exception ex) {
-	            JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-	        }
-	    }
-	}
 
 }
