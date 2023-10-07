@@ -100,10 +100,16 @@ public class FabricaTest {
 		// --- paquete ---
 		boolean b = altaPaqueteOL("Paquete 1","un paquete basico", 1, LocalDate.now(), 10.0f, img);	
 		// los paquetes empiezan vacios, se les va agregando tipos de oferta
-		HashSet<OfertaPaquete> oferPaq = new HashSet<OfertaPaquete>();
-		oferPaq.add(new OfertaPaquete(nuevaOferta, 20));
-		oferPaq.add(new OfertaPaquete(nuevaOferta2, 12));
-		oferPaq.add(new OfertaPaquete(nuevaOferta3, 1))
+		// HashSet<OfertaPaquete> oferPaq = new HashSet<OfertaPaquete>();
+		// oferPaq.add(new OfertaPaquete(nuevaOferta, 20));
+		// oferPaq.add(new OfertaPaquete(nuevaOferta2, 12));
+		// oferPaq.add(new OfertaPaquete(nuevaOferta3, 1))
+
+		// como agergar tipos de oferta a un paquete?
+		// con esta operacion
+		agregarTipoOfertaPaq("Paquete 1", "Oferta normal",20);
+		agregarTipoOfertaPaq("Paquete 1", "Oferta destacada",12);
+		agregarTipoOfertaPaq("Paquete 1", "Oferta super destacada",1);
 
 		// esto crea una nueva oferta laboral
 

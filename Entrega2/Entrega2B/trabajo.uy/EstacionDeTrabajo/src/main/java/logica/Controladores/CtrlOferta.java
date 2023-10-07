@@ -56,31 +56,32 @@ public class CtrlOferta implements ICtrlOferta{
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		return OLH.existe(nombre_oferta);
 	}
-	
+
+	// crear un tipoOferta	
 	public boolean altaTipoPublicacionOL(String nomb, String desc, int expo, int dur, float costo, LocalDate fechaA) {
 		if (nomb == null || nomb.isEmpty()) {
-	        throw new IllegalArgumentException("El nombre no puede estar vacío.");
-	    }
+			throw new IllegalArgumentException("El nombre no puede estar vacío.");
+		}
 
-	    if (desc == null || desc.isEmpty()) {
-	        throw new IllegalArgumentException("La descripción no puede estar vacía.");
-	    }
+		if (desc == null || desc.isEmpty()) {
+			throw new IllegalArgumentException("La descripción no puede estar vacía.");
+		}
 
-	    if (expo < 1) {
-	        throw new IllegalArgumentException("La exposición debe ser al menos 1.");
-	    }
+		if (expo < 1) {
+			throw new IllegalArgumentException("La exposición debe ser al menos 1.");
+		}
 
-	    if (dur < 1) {
-	        throw new IllegalArgumentException("La duración debe ser al menos 1 día.");
-	    }
+		if (dur < 1) {
+			throw new IllegalArgumentException("La duración debe ser al menos 1 día.");
+		}
 
-	    if (costo < 0) {
-	        throw new IllegalArgumentException("El costo no puede ser negativo.");
-	    }
+		if (costo < 0) {
+			throw new IllegalArgumentException("El costo no puede ser negativo.");
+		}
 
-	    if (fechaA == null) {
-	        throw new IllegalArgumentException("La fecha de alta no puede ser nula.");
-	    }
+		if (fechaA == null) {
+			throw new IllegalArgumentException("La fecha de alta no puede ser nula.");
+		}
 		
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		
@@ -96,30 +97,31 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 	}
 
-	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento,byte[] imagen) {
-	    // Verificar si el argumento 'nombre' es vacío
-	    if (nombre.isEmpty()) {
-	        throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
-	    }
-	    
-	    // Verificar si el argumento 'descripcion' es vacío
-	    if (descripcion.isEmpty()) {
-	        throw new IllegalArgumentException("El argumento 'descripcion' no puede ser vacío.");
-	    }
-	    
-	    // Verificar si 'validez' es mayor a 0
-	    if (validez <= 0) {
-	        throw new IllegalArgumentException("El argumento 'validez' debe ser mayor a 0.");
-	    }
-	    
-	    // Verificar si 'descuento' es un porcentaje válido (mayor a 0, menor o igual a 100)
-	    if (descuento < 0 || descuento > 100) {
-	        throw new IllegalArgumentException("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.");
-	    }
-	    
-	    PaqueteHandler PH = PaqueteHandler.getInstance();
-	    
-	    boolean existe = PH.existe(nombre);
+	// crear un paquete
+	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] imagen) {
+		// Verificar si el argumento 'nombre' es vacío
+		if (nombre.isEmpty()) {
+			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
+		}
+
+		// Verificar si el argumento 'descripcion' es vacío
+		if (descripcion.isEmpty()) {
+			throw new IllegalArgumentException("El argumento 'descripcion' no puede ser vacío.");
+		}
+
+		// Verificar si 'validez' es mayor a 0
+		if (validez <= 0) {
+			throw new IllegalArgumentException("El argumento 'validez' debe ser mayor a 0.");
+		}
+
+		// Verificar si 'descuento' es un porcentaje válido (mayor a 0, menor o igual a 100)
+		if (descuento < 0 || descuento > 100) {
+			throw new IllegalArgumentException("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.");
+		}
+
+		PaqueteHandler PH = PaqueteHandler.getInstance();
+
+		boolean existe = PH.existe(nombre);
 		if(!existe) {
 			Paquete p = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
 			PH.agregar(p);
@@ -164,11 +166,11 @@ public class CtrlOferta implements ICtrlOferta{
 			List<Keyword> ks = new ArrayList<Keyword>();
 			KeywordHandler KH = KeywordHandler.getInstance();
 			HashMap<String, Keyword> keyss = KH.obtener();
-	        for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
-	        	if(keys.contains(entry.getKey())) {
-	        		ks.add(entry.getValue());
-	        	}
-	        }
+			for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
+				if(keys.contains(entry.getKey())) {
+					ks.add(entry.getValue());
+				}
+			}
 			
 			OfertaLaboral ol = e.altaOfertaLaboralConPaquete(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks, paq);
 			OLH.agregar(ol);
@@ -187,11 +189,11 @@ public class CtrlOferta implements ICtrlOferta{
 			List<Keyword> ks = new ArrayList<Keyword>();
 			KeywordHandler KH = KeywordHandler.getInstance();
 			HashMap<String, Keyword> keyss = KH.obtener();
-	        for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
-	        	if(keys.contains(entry.getKey())) {
-	        		ks.add(entry.getValue());
-	        	}
-	        }
+			for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
+				if(keys.contains(entry.getKey())) {
+					ks.add(entry.getValue());
+				}
+			}
 			
 			OfertaLaboral ol = e.altaOfertaLaboral(to, nombre, descripcion, horario, remun, ciu, dep, fechaA, ks);
 			OLH.agregar(ol);
@@ -320,8 +322,8 @@ public class CtrlOferta implements ICtrlOferta{
 		Map<String, Paquete> paquetes = PH.obtener();
 		
 		for (Map.Entry<String, Paquete> entry : paquetes.entrySet()) {
-		    Paquete p = entry.getValue();
-		    res.add(p.getNombre());
+			Paquete p = entry.getValue();
+			res.add(p.getNombre());
 		}
 		
 		return res;

@@ -391,7 +391,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return existe;
 	}
 
-	// deberia ser un bool en ves de void?
+	
 	public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, String URL, byte[] imagen) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
