@@ -52,10 +52,10 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
         setTitle("Alta de Tipo de publicación de Oferta Laboral");
         setBounds(100, 100, 380, 380);
 
-        JPanel mainPanel = new JPanel();
+        //JPanel mainPanel = new JPanel();
         GridBagLayout gbl=new GridBagLayout();
         //gbl.columnWeights = new double[]{0.0, 1.0};
-        GridBagConstraints gbc=new GridBagConstraints();
+        //GridBagConstraints gbc=new GridBagConstraints();
         getContentPane().setLayout(gbl);
       	
       	JLabel lblNombre = new JLabel("Nombre");
