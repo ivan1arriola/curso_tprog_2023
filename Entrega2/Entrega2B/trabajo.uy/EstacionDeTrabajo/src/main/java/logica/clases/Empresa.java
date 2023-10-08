@@ -110,8 +110,10 @@ public class Empresa extends Usuario {
     	String nickname =  getNickname();
     	String nombre = getNombre();
         String apellido = getApellido();
-        String correoElectronico = getCorreo_electronico();
-        String contraseña = getContraseña();
+        String correoElectronico = getcorreoElectronico();
+        String contraseña = getcontrasenia();
+        String descripcion = getDescripcion();
+        String url = geturl();
         byte[] imagen = getImagen();
         			       
         Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
@@ -209,8 +211,8 @@ public class Empresa extends Usuario {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
-            String correoElectronico = getCorreo_electronico();
-            String contraseña = getContraseña();
+            String correoElectronico = getcorreoElectronico();
+            String contraseña = getcontrasenia();
             byte[] imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
@@ -224,8 +226,8 @@ public class Empresa extends Usuario {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
-            String correoElectronico = getCorreo_electronico();
-            String contraseña = getContraseña();
+            String correoElectronico = getcorreoElectronico();
+            String contraseña = getcontrasenia();
             byte[] imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
