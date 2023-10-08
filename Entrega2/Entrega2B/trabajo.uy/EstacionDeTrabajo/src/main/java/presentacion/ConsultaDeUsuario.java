@@ -263,7 +263,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                	
 	                	DTPostulante postula = (DTPostulante) dtusr;
 	                	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	                	String formattedFecha = postula.getFecha_nac().format(formatter);
+	                	String formattedFecha = postula.getFechaNac().format(formatter);
 	                	
 	                	nacionalidad.setVisible(true);
 	                	postuFecha.setVisible(true);

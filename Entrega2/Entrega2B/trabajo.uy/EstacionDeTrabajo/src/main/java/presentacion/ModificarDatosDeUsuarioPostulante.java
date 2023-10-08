@@ -201,7 +201,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		DTPostulante dtpost = (DTPostulante) dtuser;
 		// Formatear la fecha de nacimiento del usuario y establecerla en fechaActual
 	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	    String fechaNacimientoFormateada = dtpost.getFecha_nac().format(dateFormatter);
+	    String fechaNacimientoFormateada = dtpost.getFechaNac().format(dateFormatter);
 	    fechaActual.setText(fechaNacimientoFormateada);
 		
 		
