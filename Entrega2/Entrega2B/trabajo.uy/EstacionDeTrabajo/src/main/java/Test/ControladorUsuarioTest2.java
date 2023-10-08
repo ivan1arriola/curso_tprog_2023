@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 
 import main.java.logica.clases.Postulante;
-import main.java.logica.clases.TipoOferta;
+
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
