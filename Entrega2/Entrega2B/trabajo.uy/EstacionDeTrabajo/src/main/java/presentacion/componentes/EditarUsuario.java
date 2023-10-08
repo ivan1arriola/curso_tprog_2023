@@ -176,7 +176,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
         nicknameField.setText(usuario.getNickname());
         nombreField.setText(usuario.getNombre());
         apellidoField.setText(usuario.getApellido());
-        correoField.setText(usuario.getCorreo_electronico());
+        correoField.setText(usuario.getcorreoElectronico());
         
         setVisibleCamposUsuario(true);
 
