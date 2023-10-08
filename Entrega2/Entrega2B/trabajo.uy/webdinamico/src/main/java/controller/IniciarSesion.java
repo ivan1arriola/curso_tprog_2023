@@ -14,6 +14,8 @@ import main.java.logica.datatypes.DTUsuario;
 import java.io.IOException;
 import java.util.Base64;
 
+import enumeration.TipoUsuario;
+
 @WebServlet("/iniciarsesion")
 public class IniciarSesion extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -36,21 +38,24 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         String identificador = request.getParameter("identificador-input");
         String contraseña = request.getParameter("password-input");
-        boolean credencialesValidadas;
+        
         try {
-        	credencialesValidadas = validarCredenciales(identificador, contraseña);
-        } catch (Exception e) {
-        	credencialesValidadas = false;
-        }
+            boolean credencialesValidadas = validarCredenciales(identificador, contraseña);
 
-        if (credencialesValidadas) {
-            iniciarSesion(request, response, identificador);
-        } else {
-            request.setAttribute("mensajeError", "Inicio de sesión fallido. Verifique sus credenciales.");
-            request.setAttribute("identificador", identificador);
+            if (credencialesValidadas) {
+                iniciarSesion(request, response, identificador);
+            } else {
+                request.setAttribute("mensajeError", "Inicio de sesión fallido. Verifique sus credenciales.");
+                request.setAttribute("identificador", identificador);
+                request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión.");
             request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
         }
     }
+
+
     
     private boolean validarCredenciales(String identificador, String contraseña) {
         return Fabrica.getInstance().getICtrlUsuario().validarCredenciales(identificador, contraseña);
@@ -61,17 +66,22 @@ public class IniciarSesion extends HttpServlet {
     }
     
 
-    private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws IOException {
+    private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws Exception {
         HttpSession session = request.getSession();
         DTUsuario usuario = obtenerUsuario(identificador);
         session.setAttribute("nickname", usuario.getNickname());
-        if( usuario instanceof DTPostulante) {
-        	session.setAttribute("tipoUsuario", "Postulante");
+
+        TipoUsuario tipo;
+
+        if (usuario instanceof DTPostulante) {
+            tipo = TipoUsuario.Postulante;
+        } else if (usuario instanceof DTEmpresa) {
+            tipo = TipoUsuario.Empresa;
+        } else {
+            throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
         }
-        if( usuario instanceof DTEmpresa) {
-        	session.setAttribute("tipoUsuario", "Empresa");
-        }
-        
+
+        session.setAttribute("tipoUsuario", tipo);
 
         byte[] imagenBytes = usuario.getImagen();
         if (imagenBytes != null) {
@@ -81,5 +91,6 @@ public class IniciarSesion extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/home");
     }
+
 }
 

@@ -40,6 +40,7 @@ public class CargarDatos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             cargarDatos();
+            Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
             response.getWriter().append("Carga de datos exitosa");
             response.sendRedirect(request.getContextPath() + "/home");
         } catch (Exception e) {
