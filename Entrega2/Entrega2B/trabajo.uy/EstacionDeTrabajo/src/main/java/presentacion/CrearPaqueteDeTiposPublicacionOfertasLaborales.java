@@ -150,7 +150,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         
         
         Aceptar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
         		try {
         			       			
@@ -185,7 +185,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         });
         
         Cancelar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		onCancelar();
         	}
         });

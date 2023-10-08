@@ -27,7 +27,6 @@ public class VerPostulaciones extends JInternalFrame {
 	private JTextField tfDescripcion;
 	private JTextField tfCV;
 	private ICtrlUsuario icUsuario;
-	private String nombreO;
 	private Set<DTPostulacion> postulaciones;
 	private JComboBox<String> listadoPostulaciones;
 
@@ -35,8 +34,8 @@ public class VerPostulaciones extends JInternalFrame {
 	 * Create the application.
 	 */
 	public VerPostulaciones() {
-		Fabrica f = Fabrica.getInstance();
-		icUsuario = f.getICtrlUsuario();
+		Fabrica fabrica = Fabrica.getInstance();
+		icUsuario = fabrica.getICtrlUsuario();
 		initialize();
 	}
 
@@ -55,7 +54,7 @@ public class VerPostulaciones extends JInternalFrame {
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         	}
         });
@@ -64,7 +63,7 @@ public class VerPostulaciones extends JInternalFrame {
         
         listadoPostulaciones = new JComboBox<String>();
         listadoPostulaciones.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		String selected_post = (String) listadoPostulaciones.getSelectedItem();
         		for (DTPostulacion element : postulaciones) {
         		    if (element.getPostulante().equals(selected_post)) {

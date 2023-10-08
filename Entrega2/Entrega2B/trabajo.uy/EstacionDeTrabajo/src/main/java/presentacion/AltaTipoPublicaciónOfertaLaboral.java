@@ -205,7 +205,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         getContentPane().add(containerPanel, gbc_botones);*/
         
         Aceptar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
         		try {
         			
@@ -239,7 +239,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         });
         
         Cancelar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		onCancelar();
         	}
         });

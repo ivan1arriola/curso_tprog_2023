@@ -119,7 +119,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
        
         btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 limpiarFormulario();
                 setVisible(false);
             }
@@ -216,9 +216,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
         
         
         comboBoxUsuarios.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
             	
-            	HashSet<String> nicks = controlUsr.listarNicknamesUsuarios();
+            	Set<String> nicks = controlUsr.listarNicknamesUsuarios();
 
                 String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
                 
@@ -308,7 +308,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         btnVerOfertas.setVisible(true);
         
         btnVerOfertas.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evemto) {
         		if (comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) {
 	        		String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
 	        		Set<String> offerDetails;
@@ -364,7 +364,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         comboBoxUsuarios.removeAllItems(); // Limpiar los elementos actuales
         
         
-        HashSet<String> nicksUnsort = controlUsr.listarNicknamesUsuarios();
+        Set<String> nicksUnsort = controlUsr.listarNicknamesUsuarios();
         
         comboBoxUsuarios.addItem(" ");
         

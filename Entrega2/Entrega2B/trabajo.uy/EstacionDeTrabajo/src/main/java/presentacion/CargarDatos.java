@@ -33,8 +33,6 @@ import javax.swing.JOptionPane;
 public class CargarDatos extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
-	private ICtrlUsuario ICU;
-	private ICtrlOferta ICO;
 	private ICtrlCargaDeDatos ICCD;
 	/**
 	 * Create the application.
@@ -43,8 +41,6 @@ public class CargarDatos extends JInternalFrame {
 	public CargarDatos(ICtrlUsuario icu, ICtrlOferta ico) {
         Fabrica fabrica = Fabrica.getInstance();
 		ICCD = fabrica.getICtrlCargaDeDatos();
-		ICU = icu;
-		ICO = ico;
 		initialize();
 	}
 
@@ -63,7 +59,7 @@ public class CargarDatos extends JInternalFrame {
         
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		ICCD.cargarDatos();
                 
                 JOptionPane.showMessageDialog(CargarDatos.this, "Se han cargado los datos exitosamente.", "Carga de Datos", JOptionPane.INFORMATION_MESSAGE);
@@ -76,7 +72,7 @@ public class CargarDatos extends JInternalFrame {
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         	}
         });

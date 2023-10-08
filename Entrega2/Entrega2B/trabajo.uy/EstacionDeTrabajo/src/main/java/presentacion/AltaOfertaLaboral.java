@@ -30,6 +30,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.awt.event.ActionEvent;
@@ -55,7 +56,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JSpinner desdemin;
 	private JSpinner hastahora;
 	private JSpinner hastamin;
-	private List<String> ks;
+	private List<String> keywords;
 	private String dep;
 	
 	private JList<String> availableList;
@@ -148,12 +149,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
         addButton.setLocation(235, 409);
         addButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 
                 if (availableList.getSelectedIndex() != -1) {
                 	transferirElemento(availableList, selectedListModel, availableListModel);
-	                String k = (String) availableList.getSelectedValue();
-	        		ks.add(k);
+	                String key = (String) availableList.getSelectedValue();
+	        		keywords.add(key);
 	        	
                 }
             }
@@ -164,12 +165,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
         removeButton.setLocation(342, 409);
         removeButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 
                 if (selectedList.getSelectedIndex() != -1) {
                 	transferirElemento(selectedList, availableListModel, selectedListModel);
-	                String k = (String) selectedList.getSelectedValue();
-	        		ks.remove(k);
+	                String key = (String) selectedList.getSelectedValue();
+	        		keywords.remove(key);
                 }
             }
         });
@@ -186,7 +187,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(listadoEmpresas);
         
         listadoEmpresas.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		empresa = (String) listadoEmpresas.getSelectedItem();
         	}
         });
@@ -197,7 +198,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         listadoOfertas = new JComboBox<String>();
         listadoOfertas.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
         		ofertaLab = (String) listadoOfertas.getSelectedItem();
         	}
@@ -244,7 +245,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		DTHora desde = new DTHora((int) desdehora.getValue(), 
         				  			      (int) desdemin.getValue());
         		
@@ -336,8 +337,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     		JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     	} else {
 	                		try {
-	                			boolean b = icUsuario.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(), ks, EstadoOL.Ingresada, null, null);
-	                			if (!b) {
+	                			boolean noexiste = icUsuario.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(), keywords, EstadoOL.Ingresada, null, null);
+	                			if (!noexiste) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 	                			} else {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La oferta laboral se dio de alta exitosamente", "Alta Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
@@ -364,7 +365,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         	}
         });
@@ -382,7 +383,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         listadoDepartamentos = new JComboBox<String>();
         listadoDepartamentos.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		dep = (String) listadoDepartamentos.getSelectedItem();
         	}
         });
@@ -487,12 +488,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
     }
     
     public void actualizar() {
-    	ks = new ArrayList<>();
+    	keywords = new ArrayList<>();
     	
 		listadoEmpresas.removeAllItems();
   //listadoKeywords.removeAllItems();
-  HashSet<String> empresas = icUsuario.listarEmpresas();
-  HashSet<String> keys = icOferta.listarKeywords();
+  Set<String> empresas = icUsuario.listarEmpresas();
+  Set<String> keys = icOferta.listarKeywords();
   List<String> keysSorted = new ArrayList<>(keys);
   Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         
@@ -520,7 +521,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         	listadoEmpresas.addItem(elemento);
         }
         
-        HashSet<String> tiposDePub = icOferta.listarTipoDePublicaciones();
+        Set<String> tiposDePub = icOferta.listarTipoDePublicaciones();
         List<String> tipoSorted = new ArrayList<>(tiposDePub);
         Collections.sort(tipoSorted, String.CASE_INSENSITIVE_ORDER);
      

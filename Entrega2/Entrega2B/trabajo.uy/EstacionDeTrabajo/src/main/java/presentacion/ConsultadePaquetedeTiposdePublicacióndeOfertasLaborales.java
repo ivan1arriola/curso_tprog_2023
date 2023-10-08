@@ -65,7 +65,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
         
         JButton VerInformacion = new JButton("Ver Informacion");
         VerInformacion.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		String NombretipoDePub = campoTipoDePublicacion.getText(); // obtengo del campo asociado a "Tipo de publicación:"
         		try {
         			DTTipoOferta DTO = ICO.obtenerDatosTO(NombretipoDePub);
@@ -250,7 +250,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
 	}
 	
 	public void actualizar() {
-		HashSet<String> paquetes = ico.listarPaquetes();
+		Set<String> paquetes = ico.listarPaquetes();
 	
     	for (String element1 : paquetes) {
     		listadoPaquetes.addItem(element1);

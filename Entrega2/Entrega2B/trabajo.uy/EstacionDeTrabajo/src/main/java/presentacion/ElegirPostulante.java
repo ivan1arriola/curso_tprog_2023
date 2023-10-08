@@ -37,7 +37,6 @@ import java.awt.Insets;
 public class ElegirPostulante extends JDialog {
 
 	private ICtrlUsuario controlUsr;
-	private ICtrlOferta controlOfer;
 	private JLabel LblcvRed;
     private JLabel Lblmotiva;
     private JLabel LblFecha;
@@ -50,13 +49,12 @@ public class ElegirPostulante extends JDialog {
     private JTextArea cvred;
     private JTextArea motiva;
     private JTextField textField_1;
-    private HashSet<String> postulantes;
-    private HashSet<String> empresas;
+    private Set<String> postulantes;
+    private Set<String> empresas;
     private Set<String> ofertas;
     
     public ElegirPostulante(String empresa,String offer, ICtrlUsuario icu, ICtrlOferta ico) {
     	controlUsr = icu;
-    	controlOfer = ico;
     	postulantes = icu.obtenerNicknamesPostulantes();
     	
     	
@@ -90,7 +88,7 @@ public class ElegirPostulante extends JDialog {
       	cbEmpresa.setEditable(false);
       	
       	cbEmpresa.addActionListener(new ActionListener() {
-      		public void actionPerformed(ActionEvent e) {
+      		public void actionPerformed(ActionEvent evento) {
 
       			cbOferta.removeAllItems();
       			
@@ -285,7 +283,7 @@ public class ElegirPostulante extends JDialog {
         //BOTON CANCELAR
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		limpiarFormulario();
         		dispose();
         	}
@@ -305,7 +303,7 @@ public class ElegirPostulante extends JDialog {
         
         btnCrear.addActionListener(new ActionListener() {
         
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
                 String esOferta = (String) cbOferta.getSelectedItem();
                 String esPostulante = (String) cbPostula.getSelectedItem(); 	
@@ -331,8 +329,8 @@ public class ElegirPostulante extends JDialog {
                 
                 else{
                     String esEmpresa = (String) cbEmpresa.getSelectedItem();
-                    String cv = cvred.getText();
-                    ico.altaPostulacion(esOferta, esPostulante, cv, motiva.getText(), textField_1.getText(), currentDate);
+                    String curriculumVitae = cvred.getText();
+                    ico.altaPostulacion(esOferta, esPostulante, curriculumVitae, motiva.getText(), textField_1.getText(), currentDate);
                     JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     setVisible(false);
                 }

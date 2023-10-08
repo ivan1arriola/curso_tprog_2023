@@ -33,7 +33,7 @@ public class AltaDeUsuario extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public AltaDeUsuario(JFrame gu, ICtrlUsuario icu) {
+    public AltaDeUsuario(JFrame gui, ICtrlUsuario icu) {
         // Se inicializa con el controlador de usuarios
         Fabrica fabrica = Fabrica.getInstance();
         icu = fabrica.getICtrlUsuario();
@@ -43,13 +43,13 @@ public class AltaDeUsuario extends JInternalFrame {
         AltaDePostulanteInternalFrame.setLocation(5, 0);
         AltaDePostulanteInternalFrame.setVisible(false);
         // getContentPane().setLayout(null);
-        gu.getContentPane().add(AltaDePostulanteInternalFrame);
+        gui.getContentPane().add(AltaDePostulanteInternalFrame);
         
         AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icu);
         // AltaDeEmpresaInternalFrame.setSize(360, 168);
         AltaDeEmpresaInternalFrame.setLocation(38, 63);
         AltaDeEmpresaInternalFrame.setVisible(false);
-        gu.getContentPane().add(AltaDeEmpresaInternalFrame);
+        gui.getContentPane().add(AltaDeEmpresaInternalFrame);
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
         // etc.
@@ -65,7 +65,7 @@ public class AltaDeUsuario extends JInternalFrame {
         btnEmpresa = new JButton("Empresa");
         btnEmpresa.setBounds(26, 67, 125, 25);
         btnEmpresa.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         		AltaDeEmpresaInternalFrame.setVisible(true);
         	}
@@ -81,7 +81,7 @@ public class AltaDeUsuario extends JInternalFrame {
         btnPostulante = new JButton("Postulante");
         btnPostulante.setBounds(274, 67, 112, 25);
         btnPostulante.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         		AltaDePostulanteInternalFrame.setVisible(true);
         	}
@@ -93,7 +93,7 @@ public class AltaDeUsuario extends JInternalFrame {
 	btnCancelar = new JButton("Cerrar");
 	btnCancelar.setBounds(90, 116, 207, 25);
 	btnCancelar.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent e) {
+	    public void actionPerformed(ActionEvent evento) {
 	        setVisible(false);
 	    }
 	});
