@@ -114,10 +114,10 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return !existeNick && !existeCorreo;
 	}
 
-	public HashSet<String> listarEmpresas(){
+	public Set<String> listarEmpresas(){
 		HashSet<String> res = new HashSet<>();
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashMap<String,Usuario> usuarios = UH.obtenerNick();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Map<String,Usuario> usuarios = UsuarioH.obtenerNick();
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
 			Usuario u = entry.getValue();
 			boolean b = u.esEmpresa();
