@@ -59,7 +59,7 @@ public class AltaDeEmpresa extends JInternalFrame {
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
-        setTitle("Alta de Empresa");
+        setTitle("Alta de EmpresABORTa");
         setBounds(10,  40,  434,  305);
         getContentPane().setLayout(null);
                                                                                 
@@ -242,12 +242,12 @@ public class AltaDeEmpresa extends JInternalFrame {
 	            return 0;
 	        }
 
-	        if (!nombreU.matches("[\\p{L}]+$")) {
+	        if (!nombreU.matches("^[\\p{L} ]+$")) {
 	        	JOptionPane.showMessageDialog(this,  "El nombre indicado se compone de carácteres que no son letras.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
 	        	return 0;
 	        }
 	        
-	        if (!apellidoU.matches("[\\p{L}]+$")) {
+	        if (!apellidoU.matches("[\\p{L} ]+$")) {
 	        	JOptionPane.showMessageDialog(this,  "El apellido indicado se compone de carácteres que no son letras.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
 	        	return 0;
 	        }
