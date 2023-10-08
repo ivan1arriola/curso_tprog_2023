@@ -80,8 +80,10 @@ public class AltaUsuario extends HttpServlet {
                 registroExitoso = altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad);
             }
 
-            if (registroExitoso) {
-                response.sendRedirect(request.getContextPath() + "/home");
+            if (!registroExitoso) {
+                manejarExcepcion(request, response, "El nickname y/o correo electronico ya está registrado. Elija otro");
+            } else {
+            	response.sendRedirect(request.getContextPath() + "/home");
             }
         } catch (ExceptionUsuarioCorreoRepetido e) {
             manejarExcepcion(request, response, "El correo electrónico ya está registrado. Elija otro");
@@ -96,7 +98,7 @@ public class AltaUsuario extends HttpServlet {
     
     private void manejarExcepcion(HttpServletRequest request, HttpServletResponse response, String mensajeAlerta) throws ServletException, IOException {
         request.setAttribute("alert", mensajeAlerta);
-        request.getRequestDispatcher("/WEB-INF/altaUsuario/altaUsuario.jsp").forward(request, response);
+        doGet(request, response);
     }
 
 
