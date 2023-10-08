@@ -3,7 +3,13 @@
 <%@ page import="main.java.logica.datatypes.DTPostulante" %>
 <%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
+<<<<<<< HEAD
+=======
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.io.IOException" %>
 
+>>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 <!DOCTYPE html>
 <html>
 
@@ -38,9 +44,27 @@ boolean editable = (boolean) request.getAttribute("editable");
                         // Mostrar la imagen del usuario si está disponible
                         byte[] imagenUsuario = usuario.getImagen();
                         if (imagenUsuario != null) {
-                            String imagenBase64 = new String(Base64.getEncoder().encode(imagenUsuario), "UTF-8");
+                            // Genera un nombre de archivo único para la imagen
+                            String nombreArchivo = "imagen_usuario_" + usuario.getNickname() + ".png";
+                            
+                            // Ruta en el servidor donde se guardará la imagen temporalmente
+                            String rutaTemporal = getServletContext().getRealPath("/temp/");
+                            
+                            // Crea el directorio temporal si no existe
+                            File directorioTemporal = new File(rutaTemporal);
+                            if (!directorioTemporal.exists()) {
+                                directorioTemporal.mkdirs();
+                            }
+                            
+                            // Guarda la imagen en un archivo temporal
+                            File archivoImagen = new File(rutaTemporal, nombreArchivo);
+                            try (FileOutputStream fos = new FileOutputStream(archivoImagen)) {
+                                fos.write(imagenUsuario);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         %>
-                            <img src="data:image/png;base64,<%= imagenBase64 %>"
+                            <img src="<%=request.getContextPath() + "/temp/" + nombreArchivo %>"
                                 alt="Imagen de Usuario" class="img-fluid mb-3 rounded-circle img-thumbnail perfil" />
                         <%
                         } else {
