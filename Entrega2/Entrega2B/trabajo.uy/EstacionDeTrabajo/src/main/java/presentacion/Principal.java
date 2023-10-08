@@ -16,16 +16,16 @@ public class Principal {
     private JFrame frmGestionDeUsuarios;
     private AltaDeUsuario altaDeUsuarioInternalFrame;
     private ConsultaDeUsuario consultaDeUsuarioInternalFrame;
-    private ModificarDatosDeUsuarioV2 ModificarDatosDeUsuarioInternalFrame;
-    private CargarDatos CargarDatosInternalFrame;
-    private ConsultaDeOfertaLaboral ConsultaDeOfertaLaboralInternalFrame;
-    private AltaOfertaLaboral AltaDeOfertaLaboralInternalFrame; // Falta implementar de acá en más
-    private PostulacionOfertaLaboral PostulacionAOfertaLaboralInternalFrame;
-    private AltaTipoPublicaciónOfertaLaboral AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame;
-    private CrearPaqueteDeTiposPublicacionOfertasLaborales CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame;
-    private AgregarTipodePublicacióndeOfertaLaboral AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame;
-    private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame;
-    private AltaDeKeywords AltaDeKeywordsInternalFrame;
+    private ModificarDatosDeUsuarioV2 modificarDatosDeUsuarioInternalFrame;
+    private CargarDatos cargarDatosInternalFrame;
+    private ConsultaDeOfertaLaboral consultaDeOfertaLaboralInternalFrame;
+    private AltaOfertaLaboral altaDeOfertaLaboralInternalFrame; // Falta implementar de acá en más
+    private PostulacionOfertaLaboral postulacionAOfertaLaboralInternalFrame;
+    private AltaTipoPublicaciónOfertaLaboral altaDeTipoDePublicacionDeOfertaLaboralInternalFrame;
+    private CrearPaqueteDeTiposPublicacionOfertasLaborales crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame;
+    private AgregarTipodePublicacióndeOfertaLaboral agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame;;
+    private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame;
+    private AltaDeKeywords altaDeKeywordsInternalFrame;
     private AceptarOferta aceptarOfertaInternalFrame;
 
     public static void main(String[] args) {
@@ -73,70 +73,70 @@ public class Principal {
         
         
         // CargarDatos
-        CargarDatosInternalFrame = new CargarDatos(ICU,  ICO);
-        CargarDatosInternalFrame.setSize(480,  189);
-        CargarDatosInternalFrame.setLocation(89,  77);
-        CargarDatosInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(CargarDatosInternalFrame);
+        cargarDatosInternalFrame = new CargarDatos(ICU,  ICO);
+        cargarDatosInternalFrame.setSize(480,  189);
+        cargarDatosInternalFrame.setLocation(89,  77);
+        cargarDatosInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(cargarDatosInternalFrame);
         
         // ModificarDatosDeUsuario
-        ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(frmGestionDeUsuarios,  ICU);
-        ModificarDatosDeUsuarioInternalFrame.setSize(450,  190);
-        ModificarDatosDeUsuarioInternalFrame.setLocation(89,  77);
-        ModificarDatosDeUsuarioInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
+        modificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(frmGestionDeUsuarios,  ICU);
+        modificarDatosDeUsuarioInternalFrame.setSize(450,  190);
+        modificarDatosDeUsuarioInternalFrame.setLocation(89,  77);
+        modificarDatosDeUsuarioInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(modificarDatosDeUsuarioInternalFrame);
         
         // ConsultaDeOfertaLaboral
-        ConsultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios,  ICU);
-        ConsultaDeOfertaLaboralInternalFrame.setSize(670,  720);
-        ConsultaDeOfertaLaboralInternalFrame.setLocation(89,  77);
-        ConsultaDeOfertaLaboralInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(ConsultaDeOfertaLaboralInternalFrame);
+        consultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios,  ICU);
+        consultaDeOfertaLaboralInternalFrame.setSize(670,  720);
+        consultaDeOfertaLaboralInternalFrame.setLocation(89,  77);
+        consultaDeOfertaLaboralInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(consultaDeOfertaLaboralInternalFrame);
 
-        // AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame
-        AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame = new AgregarTipodePublicacióndeOfertaLaboral(ICO, ICU);
-        AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setSize(600,  250);
-        AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setLocation(89,  77);
-        AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame);
+        // agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame;
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame = new AgregarTipodePublicacióndeOfertaLaboral(ICO, ICU);
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setSize(600,  250);
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setLocation(89,  77);
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame);
         
-        // ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame
-        ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame = new ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICO,  ICU);
-        ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setSize(700,  715);
-        ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setLocation(89,  77);
-        ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);
+        // consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame = new ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICO,  ICU);
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setSize(700,  715);
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setLocation(89,  77);
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame);
         
-        AltaDeKeywordsInternalFrame = new AltaDeKeywords(ICO,  ICU);
-        AltaDeKeywordsInternalFrame.setSize(500,  180);
-        AltaDeKeywordsInternalFrame.setLocation(89,  77);
-        AltaDeKeywordsInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(AltaDeKeywordsInternalFrame);
+        altaDeKeywordsInternalFrame = new AltaDeKeywords(ICO,  ICU);
+        altaDeKeywordsInternalFrame.setSize(500,  180);
+        altaDeKeywordsInternalFrame.setLocation(89,  77);
+        altaDeKeywordsInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(altaDeKeywordsInternalFrame);
         
-        PostulacionAOfertaLaboralInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
-        PostulacionAOfertaLaboralInternalFrame.setSize(480,  290);
-        PostulacionAOfertaLaboralInternalFrame.setLocation(89,  77);
-        PostulacionAOfertaLaboralInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(PostulacionAOfertaLaboralInternalFrame);
+        postulacionAOfertaLaboralInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
+        postulacionAOfertaLaboralInternalFrame.setSize(480,  290);
+        postulacionAOfertaLaboralInternalFrame.setLocation(89,  77);
+        postulacionAOfertaLaboralInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(postulacionAOfertaLaboralInternalFrame);
         
-        AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame = new AltaTipoPublicaciónOfertaLaboral();
-        AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setSize(500,  350);
-        AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setLocation(89,  77);
-        AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame);
+        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame = new AltaTipoPublicaciónOfertaLaboral();
+        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setSize(500,  350);
+        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setLocation(89,  77);
+        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(altaDeTipoDePublicacionDeOfertaLaboralInternalFrame);
 
-        CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame = new CrearPaqueteDeTiposPublicacionOfertasLaborales();
-        CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setSize(570,  270);
-        CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setLocation(89,  77);
-        CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame);
+        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame = new CrearPaqueteDeTiposPublicacionOfertasLaborales();
+        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setSize(570,  270);
+        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setLocation(89,  77);
+        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame);
         
         
-        AltaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(550,  550);
-        AltaDeOfertaLaboralInternalFrame.setLocation(50,  50);
-        AltaDeOfertaLaboralInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
+        altaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
+        altaDeOfertaLaboralInternalFrame.setSize(550,  550);
+        altaDeOfertaLaboralInternalFrame.setLocation(50,  50);
+        altaDeOfertaLaboralInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(altaDeOfertaLaboralInternalFrame);
         
         aceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
         aceptarOfertaInternalFrame.setSize(400,  270);
@@ -169,7 +169,7 @@ public class Principal {
         JMenuItem CargarDatos = new JMenuItem("Cargar datos");
         CargarDatos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		CargarDatosInternalFrame.setVisible(true);
+        		cargarDatosInternalFrame.setVisible(true);
         	}
         });
         menuSistema.add(CargarDatos);
@@ -218,8 +218,8 @@ public class Principal {
         menuItemModificarDatosDeUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
                 // Muestro el InternalFrame para registrar un usuario
-            	ModificarDatosDeUsuarioInternalFrame.actualizar();
-            	ModificarDatosDeUsuarioInternalFrame.setVisible(true);
+            	modificarDatosDeUsuarioInternalFrame.actualizar();
+            	modificarDatosDeUsuarioInternalFrame.setVisible(true);
             }
         });
         
@@ -231,8 +231,8 @@ public class Principal {
         JMenuItem AltaDeOferta = new JMenuItem("Alta de Oferta Laboral");
         AltaDeOferta.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		AltaDeOfertaLaboralInternalFrame.actualizar();
-        		AltaDeOfertaLaboralInternalFrame.setVisible(true);
+        		altaDeOfertaLaboralInternalFrame.actualizar();
+        		altaDeOfertaLaboralInternalFrame.setVisible(true);
         	}
         });
 
@@ -241,8 +241,8 @@ public class Principal {
         JMenuItem COL = new JMenuItem("Consulta de Oferta Laboral");
         COL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		ConsultaDeOfertaLaboralInternalFrame.actualizar();
-        		ConsultaDeOfertaLaboralInternalFrame.setVisible(true); 
+        		consultaDeOfertaLaboralInternalFrame.actualizar();
+        		consultaDeOfertaLaboralInternalFrame.setVisible(true); 
         	}
         });
         mnOfertaL.add(COL);
@@ -250,8 +250,8 @@ public class Principal {
         JMenuItem POL = new JMenuItem("Postulación a Oferta Laboral");
         POL.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
-            	PostulacionAOfertaLaboralInternalFrame.actualizar();
-            	PostulacionAOfertaLaboralInternalFrame.setVisible(true);
+            	postulacionAOfertaLaboralInternalFrame.actualizar();
+            	postulacionAOfertaLaboralInternalFrame.setVisible(true);
             }
         });
         mnOfertaL.add(POL);
@@ -259,7 +259,7 @@ public class Principal {
         JMenuItem ATPOL = new JMenuItem("Alta de Tipo de Publicación de Oferta Laboral");
         ATPOL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setVisible(true);
+        		altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setVisible(true);
         	}
         });
         mnOfertaL.add(ATPOL);
@@ -267,7 +267,7 @@ public class Principal {
         JMenuItem CrearPTPOL = new JMenuItem("Crear Paquete de Tipos de publicación de Ofertas Laborales");
         CrearPTPOL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(true);
+        		crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(true);
         	}
         });
         mnOfertaL.add(CrearPTPOL);
@@ -275,8 +275,8 @@ public class Principal {
         JMenuItem ATPOLP = new JMenuItem("Agregar Tipo de publicación de Oferta Laboral a Paquete");
         ATPOLP.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.actualizar();
-        		AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setVisible(true);
+        		agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.actualizar();
+        		agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setVisible(true);
         	}
         });
         mnOfertaL.add(ATPOLP);
@@ -285,8 +285,8 @@ public class Principal {
         JMenuItem ConsultarPTPOL = new JMenuItem("Consulta de Paquete de Tipos de publicación de Ofertas Laborales");
         ConsultarPTPOL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.actualizar();
-        		ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(true);
+        		consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.actualizar();
+        		consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(true);
         	}
         });
         mnOfertaL.add(ConsultarPTPOL);
@@ -310,7 +310,7 @@ public class Principal {
         JMenuItem AltaDeKeyword = new JMenuItem("Alta de Keywords");
         AltaDeKeyword.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		AltaDeKeywordsInternalFrame.setVisible(true);
+        		altaDeKeywordsInternalFrame.setVisible(true);
         	}
         });
         Keywords.add(AltaDeKeyword);
