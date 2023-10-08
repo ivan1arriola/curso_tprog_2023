@@ -1,4 +1,4 @@
-package main.java.presentacion.formularios;
+/*package main.java.presentacion.formularios;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -110,3 +110,4 @@ public class FormularioCrearPaquete extends JPanel implements IFormulario {
 	}
 
 }
+*/

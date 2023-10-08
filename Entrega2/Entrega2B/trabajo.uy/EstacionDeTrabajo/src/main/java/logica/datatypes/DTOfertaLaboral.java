@@ -75,7 +75,8 @@ public EstadoOL getestado() {
 	
 @Override
 public String toString() {
-  return 	nombre + " - " + descripcion + "\n" + fecha_de_alta + "\n" + costo + " - " + remuneracion 
-        		+ " - " + horario + "\n" + departamento + "," + ciudad;
+  return 	nombre + " - " + descripcion + "\n" + fecha_de_alta + "\n" 
+		  	+ costo + " - " + remuneracion + " - " + horario + "\n" 
+		    + departamento + "," + ciudad;
 }
 }

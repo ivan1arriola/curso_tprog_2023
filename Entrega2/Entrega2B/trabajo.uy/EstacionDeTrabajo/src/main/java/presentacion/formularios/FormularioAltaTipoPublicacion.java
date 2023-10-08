@@ -1,4 +1,4 @@
-package main.java.presentacion.formularios;
+/*package main.java.presentacion.formularios;
 
 
 import main.java.presentacion.componentes.IFormulario;
@@ -41,7 +41,8 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         addField("Nombre:", nombreField = new JTextField(), constraints);
         
         constraints.gridy++;
-        addField("Descripción:", createScroll(descripcionTextArea = createTextArea(5, 20)), constraints);
+        addField("Descripción:", 
+        		createScroll(descripcionTextArea = createTextArea(5, 20)), constraints);
         
         constraints.gridy++;
         addField("Exposición:", exposicionSpinner = createSpinner(1, 1, 100, 1), constraints);
@@ -178,4 +179,4 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
 	
 
 }
-
+*/

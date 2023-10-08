@@ -1,4 +1,5 @@
 package main.java.presentacion;
+
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.interfaces.ICtrlUsuario;
@@ -150,7 +151,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 if (availableList.getSelectedIndex() != -1) {
-                	transferirElemento(availableList, selectedListModel,availableListModel);
+                	transferirElemento(availableList, selectedListModel, availableListModel);
 	                String k = (String) availableList.getSelectedValue();
 	        		ks.add(k);
 	        	
@@ -166,7 +167,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 if (selectedList.getSelectedIndex() != -1) {
-                	transferirElemento(selectedList, availableListModel,selectedListModel);
+                	transferirElemento(selectedList, availableListModel, selectedListModel);
 	                String k = (String) selectedList.getSelectedValue();
 	        		ks.remove(k);
                 }
@@ -244,9 +245,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		DTHora desde = new DTHora((int) desdehora.getValue(),(int) desdemin.getValue());
-        		DTHora hasta = new DTHora((int) hastahora.getValue(),(int) hastamin.getValue());
-        		DTHorario horario = new DTHorario(desde,hasta);
+        		DTHora desde = new DTHora((int) desdehora.getValue(), 
+        				  			      (int) desdemin.getValue());
+        		
+        		DTHora hasta = new DTHora((int) hastahora.getValue(), 
+        								 (int) hastamin.getValue());
+        		DTHorario horario = new DTHorario(desde, hasta);
         		
                 DepUY departamento = null;
             	
@@ -317,27 +321,25 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 String ciu = ciudad.getText();
                 String desc = descripcion.getText();
                 
-                if(nomb.isEmpty() || ciu.isEmpty() || desc.isEmpty() || remuneracion.getText().isEmpty()) {
+                if (nomb.isEmpty() || ciu.isEmpty() || desc.isEmpty() || remuneracion.getText().isEmpty()) {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "No pueden existir campos vacíos.", "ERROR - Alta de Oferta", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(!nomb.matches("[a-zA-Z]+$")) {
+                } else if (!nomb.matches("[a-zA-Z]+$")) {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(!ciu.matches("[a-zA-Z]+$")){
+                } else if (!ciu.matches("[a-zA-Z]+$")) {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La ciudad indicada se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                }
-                else {
+                } else {
                     
                     try {
                     	Float remu = Float.parseFloat(remuneracion.getText());
                     	
-                    	if(remu<=0) {JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                    	if (remu <= 0) {
+                    		JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     	} else {
 	                		try {
-	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks, EstadoOL.Ingresada, null, null);
-	                			if(!b) {
+	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(), ks, EstadoOL.Ingresada, null, null);
+	                			if (!b) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-	                			}else {
+	                			} else {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La oferta laboral se dio de alta exitosamente", "Alta Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 	                				limpiarFormulario();
 	                			}
@@ -488,11 +490,11 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	ks = new ArrayList<>();
     	
 		listadoEmpresas.removeAllItems();
-		//listadoKeywords.removeAllItems();
-        HashSet<String> empresas = ICU.listarEmpresas();
-        HashSet<String> keys = ICO.listarKeywords();
-        List<String> keysSorted = new ArrayList<>(keys);
-        Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
+  //listadoKeywords.removeAllItems();
+  HashSet<String> empresas = ICU.listarEmpresas();
+  HashSet<String> keys = ICO.listarKeywords();
+  List<String> keysSorted = new ArrayList<>(keys);
+  Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         
         // listadoKeywords.addItem("");
         /*for(String elemento1 : keysSorted) {
@@ -514,7 +516,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         List<String> empresaSorted = new ArrayList<>(empresas);
         Collections.sort(empresaSorted, String.CASE_INSENSITIVE_ORDER);
                 
-        for(String elemento : empresaSorted) {
+        for (String elemento : empresaSorted) {
         	listadoEmpresas.addItem(elemento);
         }
         
@@ -539,7 +541,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         //listadoKeywords.removeAllItems();
     }
     
-    private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel,DefaultListModel<String> sourceModel ) {
+    private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel, DefaultListModel<String> sourceModel) {
         int selectedIndex = sourceList.getSelectedIndex();
         
         if (selectedIndex != -1) {

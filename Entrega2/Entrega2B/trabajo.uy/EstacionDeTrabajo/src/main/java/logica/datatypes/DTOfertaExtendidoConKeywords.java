@@ -92,7 +92,8 @@ public String toString() {
   String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n" + "Fecha de alta: " + fecha_de_alta 
 				     + "\n" + "Costo: " + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n" 
 				     + "Horario de Entrada: " + horario.getDesde() + "\n" + "Horario de Salida: " + horario.getHasta() 
-				     + "\n" + ciudad + ", " + departamento + "\n"  + "Estado: " + estado;
+				     + "\n" + ciudad + ", " + departamento + "\n"  
+				     + "Estado: " + estado;
 
   return texto;
 }

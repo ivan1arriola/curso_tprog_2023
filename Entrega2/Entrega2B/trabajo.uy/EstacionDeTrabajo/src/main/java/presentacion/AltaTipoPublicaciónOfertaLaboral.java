@@ -24,7 +24,7 @@ import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.presentacion.componentes.IAceptarCancelar;
 import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
-import main.java.presentacion.formularios.FormularioAltaTipoPublicacion;
+//import main.java.presentacion.formularios.FormularioAltaTipoPublicacion;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;

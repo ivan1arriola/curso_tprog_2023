@@ -5,25 +5,25 @@
 	
 	<module name="AvoidStarImport"/>
         
-    <module name="EmptyCatchBlock"/>
+  <module name="EmptyCatchBlock"/>
+  
+  <module name="GenericWhitespace"/>
     
-    <module name="GenericWhitespace"/>
+  <module name="IllegalCatch"/>
     
-    <module name="IllegalCatch"/>
+  <module name="LeftCurly"/>
     
-    <module name="LeftCurly"/>
+  <module name="MemberName"/>
     
-    <module name="MemberName"/>
+  <module name="MethodName"/>
     
-    <module name="MethodName"/>
+  <module name="MethodParamPad"/>
     
-    <module name="MethodParamPad"/>
-    
-    <module name="UnnecessaryParentheses"/>
+  <module name="UnnecessaryParentheses"/>
  
-    <module name="UnusedImports"/>
+  <module name="UnusedImports"/>
     
-    <module name="VisibilityModifier"/> 
+  <module name="VisibilityModifier"/> 
     
-    <module name="WhitespaceAfter"/>
+  <module name="WhitespaceAfter"/>
 </module>
