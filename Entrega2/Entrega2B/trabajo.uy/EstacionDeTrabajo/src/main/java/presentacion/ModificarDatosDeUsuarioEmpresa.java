@@ -39,13 +39,13 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-		private JInternalFrame aDU;
-	    private ICtrlUsuario icu;
+		//private JInternalFrame aDU;
+	    //private ICtrlUsuario icu;
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    
-	    private AltaDePostulante altaDePostulanteInternalFrame;
-	    private AltaDeEmpresa altaDeEmpresaInternalFrame;
+	    //private AltaDePostulante altaDePostulanteInternalFrame;
+	    //private AltaDeEmpresa altaDeEmpresaInternalFrame;
 	    private JTextField nombreNuevo;
 	    private JTextField nombreActual;
 	    private JTextField apellidoNuevo;
@@ -190,8 +190,8 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		DTUsuario dtuser = (DTUsuario) icu.obtenerDatosUsuario(empresa.getNickname()); // obtengo los datos genericos
 		nombreActual.setText(dtuser.getNombre());
 		apellidoActual.setText(dtuser.getApellido());
-		correoActual.setText(dtuser.getCorreo_electronico());
-		passActual.setText(dtuser.getContraseña());
+		correoActual.setText(dtuser.getcorreoElectronico());
+		passActual.setText(dtuser.getcontrasenia());
 		
 		DTEmpresa dtEmpr = (DTEmpresa)  dtuser; // obtengo los datos especificos
 		urlActual.setText(dtEmpr.getUrl());

@@ -1,24 +1,24 @@
 package main.java.presentacion;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
+//import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import java.awt.Font;
+//import java.awt.Font;
 import javax.swing.JComboBox;
 import main.java.logica.Fabrica;
-import main.java.logica.clases.Usuario;
+//import main.java.logica.clases.Usuario;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTPostulacion;
-import main.java.logica.interfaces.ICtrlOferta;
+//import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 public class VerPostulaciones extends JInternalFrame {
@@ -26,8 +26,8 @@ public class VerPostulaciones extends JInternalFrame {
 	private JTextField tfURLDocExtras;
 	private JTextField tfDescripcion;
 	private JTextField tfCV;
-	private ICtrlUsuario ICU;
-	private String nombre_o;
+	private ICtrlUsuario icUsuario;
+	private String nombreO;
 	private Set<DTPostulacion> postulaciones;
 	private JComboBox<String> listadoPostulaciones;
 
@@ -36,7 +36,7 @@ public class VerPostulaciones extends JInternalFrame {
 	 */
 	public VerPostulaciones() {
 		Fabrica f = Fabrica.getInstance();
-		ICU = f.getICtrlUsuario();
+		icUsuario = f.getICtrlUsuario();
 		initialize();
 	}
 
@@ -67,12 +67,12 @@ public class VerPostulaciones extends JInternalFrame {
         	public void actionPerformed(ActionEvent e) {
         		String selected_post = (String) listadoPostulaciones.getSelectedItem();
         		for (DTPostulacion element : postulaciones) {
-        		    if(element.getPostulante().equals(selected_post)) {
+        		    if (element.getPostulante().equals(selected_post)) {
         		    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	                	String formattedFecha = element.getFecha().format(formatter);
         		    	tfFecha.setText(formattedFecha);
-        		    	tfCV.setText(element.getCV());
-        		    	tfURLDocExtras.setText(element.getURLDocExtras());
+        		    	tfCV.setText(element.getcVitae());
+        		    	tfURLDocExtras.setText(element.getuRLDocExtras());
         		    	tfDescripcion.setText(element.getMotivacion());
         		    }
         		}
@@ -127,10 +127,10 @@ public class VerPostulaciones extends JInternalFrame {
 	
 	public void actualizar(String nombre_oferta) {
 		String nombre_o = nombre_oferta;
-		DTOfertaExtendido DatosOferta = ICU.consultaOfertaLaboral(nombre_o);
+		DTOfertaExtendido DatosOferta = icUsuario.consultaOfertaLaboral(nombre_o);
 		postulaciones = DatosOferta.getPostulaciones();
 		
-		for(DTPostulacion element : postulaciones) {
+		for (DTPostulacion element : postulaciones) {
 			listadoPostulaciones.addItem(element.getPostulante());
 		}
 	}
