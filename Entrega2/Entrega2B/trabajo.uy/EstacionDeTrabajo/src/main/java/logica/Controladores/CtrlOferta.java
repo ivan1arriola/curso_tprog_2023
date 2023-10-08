@@ -154,7 +154,10 @@ public class CtrlOferta implements ICtrlOferta{
 	
 	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, HashSet<String> keys, EstadoOL estado, byte[] img, String paquete) {
 		PaqueteHandler PH = PaqueteHandler.getInstance();
-		Paquete paq = PH.buscar(paquete);
+		Paquete paq = null;
+		if (paquete != null) {
+			paq = PH.buscar(paquete);
+		}
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Empresa e = (Empresa) UH.buscarNick(nickname_e);
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();

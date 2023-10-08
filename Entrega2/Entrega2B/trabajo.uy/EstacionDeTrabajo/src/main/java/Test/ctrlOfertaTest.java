@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Test;
 import main.java.logica.Fabrica;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTHora;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 import main.java.excepciones.*;
 
@@ -189,9 +192,24 @@ public class ctrlOfertaTest {
         // Agregar una oferta utilizando la función altaTipoPublicacionOL
         //boolean resultadoAlta = ctrlOferta.altaTipoPublicacionOL(nombreOferta, descripcion, exposicion, duracion, costo, fechaAlta);
         
-        boolean resultadoAlta = ctrlOferta.altaOfertaLaboral(empresaN, tipoO,nombreOferta,desc,horario,remun,ciu,depto,fechaAlta,keys);
+        String str1 = "MeEncantaLaMOZARELLA11111";
+		byte[] img233 = str1.getBytes();
+		
         
-                
+        boolean resultadoAlta = ctrlOferta.altaOfertaLaboral(empresaN, 
+        													 tipoO,
+        													 nombreOferta,
+        													 desc,
+        													 horario,
+        													 remun,
+        													 ciu,
+        													 depto,
+        													 fechaAlta,
+        													 keys,
+        													 EstadoOL.Confirmada,
+        													 img233,
+        													 null);
+
         
        // Verificar que el alta haya sido exitosa
         assertTrue(resultadoAlta, "El alta de la oferta debería ser exitosa");
@@ -203,7 +221,7 @@ public class ctrlOfertaTest {
     }
     
     @Test
-    void existeOfertaNoExistente() {
+    void testExisteOfertaNoExistente() {
         String nombreOferta = "OfertaNoExistente";
 
         // Verificar que la oferta no exista utilizando existeOferta
@@ -211,4 +229,12 @@ public class ctrlOfertaTest {
 
         assertFalse(resultado, "La oferta no debería existir");
     }
+
 }
+
+
+
+
+
+
+

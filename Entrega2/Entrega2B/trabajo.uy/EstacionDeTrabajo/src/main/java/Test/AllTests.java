@@ -4,8 +4,10 @@ import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
 
+
+
 @Suite
-@SelectClasses({ControladorUsuarioTest.class,ControladorUsuarioTest2.class})
+@SelectClasses({ControladorUsuarioTest.class, ControladorUsuarioTest2.class, ctrlOfertaTest.class, FabricaTest.class})
 
 public class AllTests {
 

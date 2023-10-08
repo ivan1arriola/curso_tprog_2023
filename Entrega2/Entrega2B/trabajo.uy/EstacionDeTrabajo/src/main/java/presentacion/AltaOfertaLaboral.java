@@ -1,5 +1,4 @@
 package main.java.presentacion;
-
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 //import main.java.excepciones.UsuarioNoExisteException;
@@ -47,7 +46,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JTextField fechaAlta_1;
 	private JComboBox<String> listadoEmpresas;
 	private JComboBox<String> listadoOfertas;
-	private JComboBox<String> listadoKeywords;
+	//private JComboBox<String> listadoKeywords;
 	private JComboBox<String> listadoDepartamentos;
 	private ICtrlUsuario ICU;
     private JTextArea descripcion;
@@ -117,23 +116,23 @@ public class AltaOfertaLaboral extends JInternalFrame {
             availableListModel.addElement(item);
         }*/
         ///////////////
-        
-        
-        
+               
         availableListModel = new DefaultListModel<>();
         selectedListModel = new DefaultListModel<>();
         
-        
+        /*HashSet<String> keys = ICO.listarKeywords();
+        List<String> keysSorted = new ArrayList<>(keys);
+        Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
+        for (String item : keysSorted) {
+            availableListModel.addElement(item);
+        }*/
+       
         
         availableList = new JList<>(availableListModel);
         availableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         selectedList = new JList<>(selectedListModel);
         selectedList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
-        
-        
-        
-        
+            
         JScrollPane AvailableL = new JScrollPane(availableList);
         AvailableL.setSize(180, 60);
         AvailableL.setLocation(140, 338);
@@ -143,6 +142,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
         SelectedL.setLocation(342, 338);
         SelectedL.setSize(180, 60);
         getContentPane().add(SelectedL);
+        
+        ///BOTONES
              
         JButton addButton = new JButton("Agregar>");
         addButton.setSize(79, 20);
@@ -203,8 +204,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         listadoOfertas.setBounds(270, 60, 253, 22);
         getContentPane().add(listadoOfertas);
         
-        
-        
+     
         JLabel lblNewLabel_2 = new JLabel("Nombre");
         lblNewLabel_2.setBounds(21, 93, 138, 14);
         getContentPane().add(lblNewLabel_2);
@@ -349,13 +349,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     } catch (NumberFormatException e1) {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     }
-                    
-                    
+         
              	
                 }
-                
-
-        		
+      	
         		
         	}
         });
@@ -494,22 +491,21 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		//listadoKeywords.removeAllItems();
         HashSet<String> empresas = ICU.listarEmpresas();
         HashSet<String> keys = ICO.listarKeywords();
-        
         List<String> keysSorted = new ArrayList<>(keys);
         Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
-        // listadoKeywords.addItem("");
         
+        // listadoKeywords.addItem("");
         /*for(String elemento1 : keysSorted) {
         	listadoKeywords.addItem(elemento1);
         }*/
-        availableListModel.clear();
-        availableListModel = new DefaultListModel<>();
-        selectedListModel = new DefaultListModel<>();
+              
+        //availableListModel.clear();
         
+        availableListModel.clear();
+                          
         for (String item : keysSorted) {
             availableListModel.addElement(item);
         }
-        
         
         /////
         
@@ -527,6 +523,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
      
         
 		listadoOfertas.removeAllItems();
+		listadoOfertas.addItem("");
 		for (String elemento : tipoSorted) {
 			listadoOfertas.addItem(elemento);
 		}
@@ -537,8 +534,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	descripcion.setText("");
         remuneracion.setText("");
         ciudad.setText("");
-        fechaAlta_1.setText("");
-        listadoKeywords.removeAllItems();
+        //fechaAlta_1.setText("");
+        //listadoKeywords.removeAllItems();
     }
     
     private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel) {
