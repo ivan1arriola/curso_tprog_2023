@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="main.java.logica.Datatypes.DTEmpresa" %>
-<%@ page import="main.java.logica.Datatypes.DTPostulante" %>
-<%@ page import="main.java.logica.Datatypes.DTUsuario" %>
+<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
+<%@ page import="main.java.logica.datatypes.DTPostulante" %>
+<%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%
 DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
 %>
@@ -26,7 +26,7 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
                                 <div class="form-group">
                                     <label for="correo">Correo electrónico:</label>
                                     <input type="email" class="form-control" id="correo" disabled
-                                        value="<%= usuario.getCorreo_electronico() %>" readonly required />
+                                        value="<%= usuario.getcorreoElectronico() %>" readonly required />
                                 </div>
                                 
                                 <%if (usuario instanceof DTPostulante) {  // Importar JSP de camposPostulante.jsp %>

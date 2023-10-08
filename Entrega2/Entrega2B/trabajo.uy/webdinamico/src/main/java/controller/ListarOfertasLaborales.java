@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendido;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public class ListarOfertasLaborales extends HttpServlet {
     
     // Funcion para simular la logica
     private HashSet<DTOfertaExtendido> getOfertasLaborales() {
-        HashSet<DTOfertaExtendido> ofertas = Fabrica.getInstance().getICtrlOferta().listarOfertasLaboralesConfirmadas();
+        HashSet<DTOfertaExtendido> ofertas = (HashSet<DTOfertaExtendido>) Fabrica.getInstance().getICtrlOferta().listarOfertasLaboralesConfirmadas();
         return ofertas;
     }
 

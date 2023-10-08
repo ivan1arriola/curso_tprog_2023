@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendido;
 
 import java.io.IOException;
 
@@ -23,7 +23,6 @@ public class ConsultarOfertaLaboral extends HttpServlet {
      */
     public ConsultarOfertaLaboral() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     private  DTOfertaExtendido getOfertaLaboral(String nombre) {

@@ -7,9 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
 
 import java.io.IOException;
 import java.util.Base64;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="main.java.logica.Datatypes.DTEmpresa" %>
-<%@ page import="main.java.logica.Datatypes.DTPostulante" %>
-<%@ page import="main.java.logica.Datatypes.DTUsuario" %>
+<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
+<%@ page import="main.java.logica.datatypes.DTPostulante" %>
+<%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ boolean editable = (boolean) request.getAttribute("editable");
                     </div>
                     <div class="col-8">
                         <h1><%= usuario.getNombre() %>  <%= usuario.getApellido() %></h1>
-                        <h2><%= usuario.getCorreo_electronico() %> </h2>
+                        <h2><%= usuario.getcorreoElectronico() %> </h2>
                     </div>
                 </div>
             </div>

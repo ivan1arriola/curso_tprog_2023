@@ -5,18 +5,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTHora;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.datatypes.DTHora;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
@@ -42,6 +41,7 @@ public class CargarDatos extends HttpServlet {
         try {
             cargarDatos();
             response.getWriter().append("Carga de datos exitosa");
+            response.sendRedirect(request.getContextPath() + "/home");
         } catch (Exception e) {
             response.getWriter().append("Error al cargar datos: " + e.getMessage());
         }

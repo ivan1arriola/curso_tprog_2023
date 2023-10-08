@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTUsuario;
+import main.java.logica.datatypes.DTUsuario;
 
 import java.io.IOException;
 
