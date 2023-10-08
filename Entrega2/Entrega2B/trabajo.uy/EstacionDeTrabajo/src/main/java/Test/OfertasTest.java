@@ -10,16 +10,22 @@ import org.junit.jupiter.api.Test;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
+import main.java.logica.interfaces.ICtrlCargaDeDatos;
 import org.junit.jupiter.api.BeforeAll;
+import java.util.Set;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTTipoOferta;
 
 public class OfertasTest {
 	
 	private static ICtrlUsuario ICU;
 	private static ICtrlOferta ICO;
+	private static ICtrlCargaDeDatos ICC;
 	private static Fabrica f;
 	
 	@BeforeAll
@@ -27,6 +33,7 @@ public class OfertasTest {
 		f = Fabrica.getInstance();
 	    ICU = f.getICtrlUsuario();
 	    ICO = f.getICtrlOferta();
+	    ICC = f.getICtrlCargaDeDatos();
         // Puedes realizar configuraciones adicionales aquí
     }
 
@@ -144,7 +151,7 @@ public class OfertasTest {
 	@Test
 	void altaPostulanteDesc() {
 	   
-		String offer = "Demasiado";
+		String offer = "Demasiadooooo";
 		String desc = "";
 		int valido = 10;
 		LocalDate fecha = LocalDate.of(1995,  6,  24);
@@ -196,6 +203,57 @@ public class OfertasTest {
 		assertTrue(comprado, "Compra ok");
 		 
 		}
+	
+	@Test
+	void cargandoTest() {
+		ICC.cargarDatos();
+		Set<String> empresas = ICO.listarEmpresas();
+		boolean contiene = empresas.contains("ANTEL");
+		assertTrue(contiene);
+
+		Set<String> ingresadas = ICO.listarOfertasLaboralesIngresadas("ANTEL");
+		boolean ingresoNoVacio = !ingresadas.isEmpty();
+		assertTrue(ingresoNoVacio);
+		 
+		ICO.aceptoOL("Content Manager");
+		Set<DTOfertaExtendido> confirmadas = ICO.listarOfertasLaboralesConfirmadas();
+		boolean esta = false;
+		for (DTOfertaExtendido elem : confirmadas) {
+			if (elem.getNombre().equals("Content Manager")) {
+				esta=true;
+			
+			}
+		}
+		assertTrue(esta);
+		 
+		Set<String> postu  = ICO.listarPostulantes();
+		assertTrue(postu.contains("lgarcia"));
+		
+		DTOfertaExtendido dtof = ICO.obtenerOfertaLaboral("Gerente de Proyecto");
+		assertEquals(dtof.getCiudad(), "Montevidoe");
+		
+		
+		ICO.altaPaqueteOL("Demasiado",  "una descripcion", 10,  LocalDate.of(1958, 10,  10),90, null);
+		ICO.compraPaquetes("ANTEL", "Demasiado");
+		
+		assertTrue(ICO.paqueteComprado("Demasiado"));
+		
+		
+		Set<String> keysLista = ICO.listarKeywords();
+		assertTrue(keysLista.contains("Freelance"));
+		
+		DTTipoOferta dtoferta = null;
+		
+		try {
+			dtoferta = ICO.obtenerDatosTO("Destacada");
+		} catch (ExcepcionTipoOfertaNoExistente e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals(dtoferta.getDescripcion(), "Destaca tu anuncio");
+		
+		
+	}
 	
 	
 

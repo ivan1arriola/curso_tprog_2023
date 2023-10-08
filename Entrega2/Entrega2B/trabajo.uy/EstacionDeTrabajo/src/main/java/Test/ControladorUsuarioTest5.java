@@ -24,6 +24,7 @@ import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywords;
+import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.datatypes.DTPostulacion;
@@ -122,6 +123,20 @@ public class ControladorUsuarioTest5 {
 			keyToLookup = "The Clouds";
 			Empresa empres = (Empresa) mapaUsuario.get(keyToLookup);
 			InfoCompra nueva = new InfoCompra(fechaCompra,   costo,   Pack,   empres,  hashSet);
+			// getters y setters
+			nueva.getCosto();
+			nueva.getEmpresa();
+			nueva.getfCompra();
+			nueva.getFechaVencimiento();
+			nueva.getICO();
+			nueva.getPaquete();
+			nueva.obtenerDatosPaquete();
+			nueva.setCosto(10.0f);
+			nueva.setEmpresa(empres);
+			nueva.setfCompra(LocalDate.now());
+			nueva.setFechaVencimiento(LocalDate.now());
+			nueva.setICO(nueva.getICO());
+			nueva.setPaquete(Pack);	
 			// --------------------- compro paquete, ahora si ------------------------
 			String nickname22 = "The Clouds";
 			ICO.compraPaquetes(nickname22,"Paquete 7");		    
@@ -160,6 +175,69 @@ public class ControladorUsuarioTest5 {
 			// -----------------------------------------------------------
 			 DTOfertaExtendidoSinPConK nuevo = ICU.infoOfertaLaboralVisitante("pensador");
 			 nuevo.getCosto();
+			 DTOfertaExtendido nuevo1 = ICU.consultaOfertaLaboral("pensador");
+			 
+			 DTPaquete nuevo51 = ICU.obtenerDatosPaquete(paquete);
+			 
+			 DTUsuario nuevo555 = ICU.obtenerDatosUsuarioVisitantes(nickname22);
+			 
+			// ------------------------------------------------------------------------------------------
+			 OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+			 Map<String, OfertaLaboral> mapaOL =OLH.obtener();
+			 keyToLookup = "pensador";
+			 OfertaLaboral OLpensador = mapaOL.get(keyToLookup);
+			// ------------------------------------------------------------------------------------------
+			 String nick = "ReneDescartes";
+			 String curriculumVitae = "Soy un pensador";
+			 String motivacion = "Me gusta pensar";
+			 LocalDate fecha = LocalDate.of(2020, 12, 12);
+			 String URLDocExtras = "www.google.com";
+			 Postulacion Ultima = ICU.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocExtras, OLpensador);
+			 Ultima.getCV();
+			 Ultima.getFecha();
+			 Ultima.getMotivacion();
+			 Ultima.getOfertaLaboral();
+			 Ultima.getPostulante();
+			 Ultima.getuRLDocExtras();
+			 Ultima.setCV(Ultima.getCV());
+			 Ultima.setFecha(LocalDate.of(2020, 12, 12));
+			 Ultima.setMotivacion("Me gusta pensar");
+			 Ultima.setOfertaLaboral(OLpensador);
+			 Ultima.setPostulante(Ultima.getPostulante());
+			 Ultima.setuRLDocExtras("www.google.com");
+			 Ultima.esPostulacion(nombre22);
+			 Ultima.editarPostulacion(URLDocExtras, motivacion);
+			 // ------------------------------- operaciones oferta laboral  ---------------------------
+			 
+			 OLpensador.getCiudad();
+			 OLpensador.getCosto();
+			 OLpensador.getDepartamento();
+			 OLpensador.getDescripcion();
+			 OLpensador.getEstado();
+			 OLpensador.getFechaAlta();
+			 OLpensador.getHorario();
+			 OLpensador.getImagen();
+			 OLpensador.getKeywords();
+			 OLpensador.getNombre();
+			 OLpensador.getPaquete();
+			 OLpensador.getPostulaciones();
+			 OLpensador.getRemuneracion();
+			 OLpensador.getTipoOferta();
+			 OLpensador.setCiudad("Montevideo");
+			 OLpensador.setCosto(1);
+			 OLpensador.setDepartamento(DepUY.Montevideo);
+			 OLpensador.setDescripcion("Pensador de sistemas");
+			 OLpensador.setEstado(EstadoOL.Ingresada);
+			 OLpensador.setFechaAlta(LocalDate.of(2020, 12, 12));
+			 OLpensador.setHorario(horario2);
+			 OLpensador.setImagen(img);
+			 OLpensador.setKeywords(OLpensador.getKeywords());
+			 OLpensador.setNombre("pensador");
+			 OLpensador.setPaquete(Pack);
+			 OLpensador.setRemuneracion(OLpensador.getRemuneracion());
+			 OLpensador.setTipoOferta(ofertaLaboralSalada);
+			 DTOfertaExtendidoConKeywordsPostulante auxi9= OLpensador.infoOfertaLaboralPost(nombre22);
+			 
 			 
 		}	
 }

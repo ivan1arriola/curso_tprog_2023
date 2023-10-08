@@ -12,7 +12,8 @@ import org.junit.platform.suite.api.Suite;
 				ControladorUsuarioTest3.class,
 				ControladorUsuarioTest4.class,
 				ControladorUsuarioTest5.class,
-				ctrlOfertaTest.class
+				ctrlOfertaTest.class,
+				OfertasTest.class
 				})
 
 public class AllTests {
