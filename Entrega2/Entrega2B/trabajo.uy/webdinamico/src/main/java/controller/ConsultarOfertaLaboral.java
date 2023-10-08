@@ -9,11 +9,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import auxiliar.OfertaLaboralBean;
 import enumeration.TipoUsuario;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @WebServlet("/consultarofertalaboral")
 public class ConsultarOfertaLaboral extends HttpServlet {
@@ -44,7 +50,10 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         ofertaLaboral.setHorario(dtOferta.getHorario());
         ofertaLaboral.setImagen(dtOferta.getImagen());
         ofertaLaboral.setRemuneracion(dtOferta.getRemuneracion());
-        ofertaLaboral.setPostulaciones(dtOferta.getPostulaciones());
+        
+        
+        DTOfertaExtendidoSinPConK nuevoDatos = ctrl.infoOfertaLaboralVisitante(nombreOferta);
+        ofertaLaboral.setKeywords(nuevoDatos.getKeywords());
 
         return ofertaLaboral;
     }
@@ -54,23 +63,27 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
 
             HttpSession session = request.getSession(false);
-
             String nickname = (String) session.getAttribute("nickname");
             TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
 
             try {
                 if (nickname == null) nickname = "";
-                if (tipoUsuario == null) tipoUsuario = TipoUsuario.Visitante;
+                
+                if (tipoUsuario == null) {
+                	tipoUsuario = TipoUsuario.Visitante;
+                	request.setAttribute("tipoUsuario", tipoUsuario);
+                }
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
 
                 if (tipoUsuario == TipoUsuario.Empresa) {
-                    // Agregar lógica para empresas si es necesario
+                	ofertaBean = cargarDatosEmpresa(ofertaBean, nombreOferta, nickname);
                 }
 
                 if (tipoUsuario == TipoUsuario.Postulante) {
-                    // Agregar lógica para postulantes si es necesario
+                	ofertaBean = cargarDatosPostulante(ofertaBean, nombreOferta, nickname);
                 }
+                
 
                 request.setAttribute("ofertaLaboral", ofertaBean);
                 request.getRequestDispatcher("/WEB-INF/consultarOferta/infoOfertaLabora.jsp").forward(request, response);
@@ -89,8 +102,39 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO: Agregar lógica para manejar las solicitudes POST si es necesario
+
+    // Carga los DTUsuario de los postulantes
+	private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
+		
+		DTOfertaExtendido dtOferta = getOfertaLaboral(nombreOferta);
+		Set<DTUsuario> postulantes = new HashSet<DTUsuario>();
+		
+		Set<DTPostulacion> postulantes = dtOferta.getPostulaciones();
+		
+		
+        
+		
+		
+		//ofertaLaboral.setPostulaciones(postulantes);
+		
+ 
+   
+    	
+		return ofertaBean;
+	}
+    
+    private OfertaLaboralBean cargarDatosPostulante(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
+		DTOfertaExtendidoSinPConK nuevoDatos = ctrl.infoOfertaLaboralPostulante(nickname, nombreOferta);
+		    	
+    	if ( nuevoDatos instanceof DTOfertaExtendidoConKeywordsPostulante) {
+    		DTOfertaExtendidoConKeywordsPostulante conPostulantes = (DTOfertaExtendidoConKeywordsPostulante) nuevoDatos;
+    		ofertaBean.setPostulacion(conPostulantes.getDatosPostulacion());
+    	}
+    	
+		return ofertaBean;
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }

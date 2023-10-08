@@ -6,7 +6,7 @@ import java.util.Set;
 
 import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTPaquete;
-import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 
@@ -20,11 +20,12 @@ public class OfertaLaboralBean {
 	private DepUY departamento;
 	private String ciudad;
 	private EstadoOL estado;
-	private Set<DTPostulacion> postulaciones;
+	private Set<DTUsuario> postulantes;
 	private byte[] imagen; 
 	private String paq;
 	private DTPaquete paquete;
 	private Set<String> keywords;
+	private DTUsuario postulante;
 	
 	public OfertaLaboralBean() {
         this.nombre = null;
@@ -36,11 +37,12 @@ public class OfertaLaboralBean {
         this.departamento = null;
         this.ciudad = null;
         this.estado = null;
-        this.postulaciones = null;
         this.imagen = null;
         this.paq = null;
         this.paquete = null;
         this.keywords = new HashSet<String>();
+        this.postulante = null;
+        this.postulantes = new HashSet<DTUsuario>();
     }
 	
 	
@@ -116,13 +118,7 @@ public class OfertaLaboralBean {
         this.estado = estado;
     }
 
-    public Set<DTPostulacion> getPostulaciones() {
-        return postulaciones;
-    }
 
-    public void setPostulaciones(Set<DTPostulacion> postulaciones) {
-        this.postulaciones = postulaciones;
-    }
 
     public byte[] getImagen() {
         return imagen;
@@ -157,6 +153,28 @@ public class OfertaLaboralBean {
 	public void setKeywords(Set<String> keywords) {
 		this.keywords = keywords;
 	}
-	
+
+
+	public DTUsuario getPostulante() {
+		return postulante;
+	}
+
+
+	public void setPostulante(DTUsuario postulante) {
+		this.postulante = postulante;
+	}
+
+
+	public Set<DTUsuario> getPostulantes() {
+		return postulantes;
+	}
+
+
+	public void setPostulantes(Set<DTUsuario> postulantes) {
+		this.postulantes = postulantes;
+	}
+
+
+
 
 }

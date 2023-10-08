@@ -1,4 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.Set" %>
+<%@ page import="auxiliar.OfertaLaboralBean" %>
+<%@ page import="enumeration.TipoUsuario" %>
+<%@ page import="main.java.logica.datatypes.DTPostulacion" %>
+<%@ page import="java.util.Base64" %>
+
+<%
+
+	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario"); // Se supone que no se visualiza para Visitante
+	Set<DTPostulacion> postulaciones;
+	
+	if(tipoUsuario == TipoUsuario.Postulante){
+		
+	}
+%>
+
+
+
 <div>
     <div class="mt-4" id="postulaciones">
         <h1 class="text-center">Postulaciones</h1>
@@ -22,3 +40,5 @@
         </div>
     </div>
 </div>
+
+

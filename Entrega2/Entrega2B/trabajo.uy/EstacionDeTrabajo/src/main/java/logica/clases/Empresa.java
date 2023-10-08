@@ -27,6 +27,7 @@ public class Empresa extends Usuario {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
+        infoCompras = new HashSet<>();
         url = urlE;
     }
 
@@ -35,6 +36,7 @@ public class Empresa extends Usuario {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
+        infoCompras = new HashSet<>();
         url = null;
     }
 
@@ -43,6 +45,7 @@ public class Empresa extends Usuario {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
+        infoCompras = new HashSet<>();
         url = urlE;
     }
 
@@ -51,6 +54,7 @@ public class Empresa extends Usuario {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
+        infoCompras = new HashSet<>();
         url = null;
     }
 

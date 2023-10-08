@@ -1,7 +1,7 @@
 package main.java.logica.clases;
 
 import java.time.LocalDate;
-
+import java.util.HashSet;
 import java.util.Set;
 
 import main.java.logica.datatypes.DTCantTO;
@@ -26,7 +26,7 @@ public class InfoCompra {
         // relaciones
         this.empres = empres;
         this.paquete = pack;
-        
+        Set<InfoCompraOferta> infoCompraOfertas = new HashSet<>();
         TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
         for (DTCantTO elemento : conjuntoS) {
             TipoOferta tipoOfer = TOH.buscar(elemento.getNombre());

@@ -355,6 +355,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return res;
 	}
 	
+	// notar que esta operacion es le paso el nombrre de la oferta laboral y tretorna el tipo de oferta laboral
 	public DTTipoOferta tipoOferta(String oferta) {
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral oferLab = OLH.buscar(oferta);
