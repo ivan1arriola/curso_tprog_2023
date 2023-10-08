@@ -1,7 +1,6 @@
 package main.java.logica.manejadores;
 
 import java.util.HashMap;
-
 import main.java.logica.clases.Keyword;
 
 
@@ -21,7 +20,7 @@ public class KeywordHandler {
 		return instancia;
 	}
 	
-	public void agregar(Keyword key){
+	public void agregar(Keyword key) {
 		if (key == null) {
 			throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
 		}

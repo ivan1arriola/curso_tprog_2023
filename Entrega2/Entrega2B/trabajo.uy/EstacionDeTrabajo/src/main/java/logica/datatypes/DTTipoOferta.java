@@ -19,7 +19,7 @@ public class DTTipoOferta {
 		this.descripcion = descripcion;
 	}
 	
-	 // Getters and setters
+	// Getters and setters
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,7 +1,6 @@
 package main.java.logica.manejadores;
 
 import java.util.HashMap;
-
 import main.java.logica.clases.TipoOferta;
 
 public class TipoOfertaHandler {
@@ -15,7 +14,9 @@ public class TipoOfertaHandler {
 	
 	
 	public static TipoOfertaHandler getInstance() {
-		if (tOfertaHandler==null) {tOfertaHandler = new TipoOfertaHandler();} 
+		if (tOfertaHandler == null) {
+			tOfertaHandler = new TipoOfertaHandler();
+		} 
 		return tOfertaHandler;
 	}
 	
@@ -24,8 +25,8 @@ public class TipoOfertaHandler {
     }
 	
 	public void agregar(TipoOferta tipoOferta) {
-        tipoOfertas.put(tipoOferta.getNombre(),tipoOferta);
-    }
+        tipoOfertas.put(tipoOferta.getNombre(), tipoOferta);
+    } 
     
     public TipoOferta buscar(String nombre) {
     	return tipoOfertas.get(nombre);

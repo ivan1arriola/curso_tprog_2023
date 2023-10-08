@@ -2,7 +2,6 @@ package main.java.logica.manejadores;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import main.java.logica.clases.Paquete;
 
 public class PaqueteHandler {
@@ -33,7 +32,7 @@ public class PaqueteHandler {
     }
 	
 	public void agregar(Paquete p) { 
-		paq.put(p.getNombre(),p); 
+		paq.put(p.getNombre(), p); 
 	}
     
     public Map<String, Paquete> obtener() {
