@@ -7,7 +7,7 @@ import main.java.logica.datatypes.DTPostulante;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
-import main.java.logica.Fabrica;
+//import main.java.logica.Fabrica;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import java.awt.Font;
@@ -47,14 +47,14 @@ public class ConsultaDeUsuario extends JInternalFrame {
     private JLabel lblNombre;
     private JLabel lblApellido;
     private JLabel lblInfoUsuario;
-    private JLabel lblIngresoNick_1;
+    private JLabel lblIngresoNick1;
     private JButton btnCerrar;
     private JComboBox<String> comboBoxUsuarios;
     
     private JTextArea empresaDesc;
     private JTextField empresaUrl;
     private JTextField PostuFecha;
-    private JTextField Nacionalidad;
+    private JTextField nacionalidad;
     private JLabel lblUrl;
     private JLabel lblDesc;
     
@@ -148,9 +148,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
         
 
         
-        lblIngresoNick_1 = new JLabel("Lista de usuarios:");
-        lblIngresoNick_1.setBounds(14,  38,  170,  15);
-        getContentPane().add(lblIngresoNick_1);
+        lblIngresoNick1 = new JLabel("Lista de usuarios:");
+        lblIngresoNick1.setBounds(14,  38,  170,  15);
+        getContentPane().add(lblIngresoNick1);
     
         empresaDesc = new JTextArea();
         empresaDesc.setEditable(false);
@@ -197,7 +197,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         lblDesc.setBounds(14,  345,  100,  14);
         getContentPane().add(lblDesc);
         
-        lblNacion = new JLabel("Nacionalidad");
+        lblNacion = new JLabel("nacionalidad");
         lblNacion.setBounds(14,  345,  100,  14);
         getContentPane().add(lblNacion);
         
@@ -208,11 +208,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
         PostuFecha.setVisible(false);
         getContentPane().add(PostuFecha);
         
-        Nacionalidad = new JTextField();
-        Nacionalidad.setEditable(false);
-        Nacionalidad.setBounds(193,  340,  250,  23);
-        Nacionalidad.setVisible(false);
-        getContentPane().add(Nacionalidad);
+        nacionalidad = new JTextField();
+        nacionalidad.setEditable(false);
+        nacionalidad.setBounds(193,  340,  250,  23);
+        nacionalidad.setVisible(false);
+        getContentPane().add(nacionalidad);
         
         
         comboBoxUsuarios.addActionListener(new ActionListener() {
@@ -237,7 +237,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                		dire = "No tiene"; } 
 	                	else {
 	                		dire=empresa.getUrl(); }
-		                	Nacionalidad.setVisible(false);
+		                	nacionalidad.setVisible(false);
 		                	PostuFecha.setVisible(false);
 		                	lblNacion.setVisible(false);
 		                	lblFecha.setVisible(false);
@@ -266,12 +266,12 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	                	String formattedFecha = postula.getFecha_nac().format(formatter);
 	                	
-	                	Nacionalidad.setVisible(true);
+	                	nacionalidad.setVisible(true);
 	                	PostuFecha.setVisible(true);
 	                	lblNacion.setVisible(true);
 	                	lblFecha.setVisible(true);
 	                	
-	                	Nacionalidad.setText(postula.getNacionalidad());
+	                	nacionalidad.setText(postula.getNacionalidad());
 	                	PostuFecha.setText(formattedFecha);
 	                	
 	                
@@ -290,7 +290,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	scrollPane.setVisible(false);
                 	empresaUrl.setVisible(false);
                 	empresaDesc.setVisible(false);
-                	Nacionalidad.setVisible(false);
+                	nacionalidad.setVisible(false);
                 	PostuFecha.setVisible(false);
                 	lblNacion.setVisible(false);
                 	lblFecha.setVisible(false);
@@ -355,7 +355,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textTipo.setText("");
         empresaUrl.setText("");
         empresaDesc.setText("");
-        Nacionalidad.setText("");
+        nacionalidad.setText("");
     	PostuFecha.setText("");
 
     }
