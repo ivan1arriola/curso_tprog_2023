@@ -40,7 +40,7 @@ public interface ICtrlUsuario {
     
     public abstract boolean existePostulacion(String nickname, String nombre);
     
-    public abstract Postulacion crearPostulacion(String nick, String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab);
+    public abstract Postulacion crearPostulacion(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab);
     
     public abstract HashSet<String> obtenerNicknamesPostulantes();
     
@@ -74,7 +74,7 @@ public interface ICtrlUsuario {
     
     // public abstract boolean  iniciarSesionCorreo(String email, String contrasenia); // NO HACERLA
     // public abstract boolean iniciarSesionNickname(String nickname, String contrasenia); // NO HACERLA
-    public abstract boolean validarCredenciales(String id, String contraseña); // NUEVA OPERACION que reemplaza las 2 anteriores
+    public abstract boolean validarCredenciales(String identificador, String contraseña); // NUEVA OPERACION que reemplaza las 2 anteriores
     
     public abstract void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad); // PRONTA
     
@@ -92,11 +92,11 @@ public interface ICtrlUsuario {
     
     public abstract boolean hayPostulacionW(String postulante_nick, String ofer); // PRONTA
     
-    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, String URL, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen); // PRONTA
      
     public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String nacionalidad, byte[] imagen); // PRONTA
      
-    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apartamento, String mail, String desc, byte[] imagen); // PRONTA
      
     public abstract HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta); // PRONTA
     
