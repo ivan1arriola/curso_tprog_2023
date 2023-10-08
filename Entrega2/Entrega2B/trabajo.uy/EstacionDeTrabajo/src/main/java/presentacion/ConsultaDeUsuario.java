@@ -98,7 +98,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textFieldNick.setEditable(false);
 
        
-        lblNombre = new JLabel("Nombre");
+        lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(14,  143,  147,  23);
         getContentPane().add(lblNombre);
 
@@ -107,7 +107,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textFieldNombre.setBounds(193,  140,  250,  30);
         getContentPane().add(textFieldNombre);
 
-        lblApellido = new JLabel("Apellido");
+        lblApellido = new JLabel("Apellido:");
         lblApellido.setBounds(14,  189,  65,  14);
         getContentPane().add(lblApellido);
         
@@ -127,7 +127,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         btnCerrar.setBounds(385,  445,  89,  23);
         getContentPane().add(btnCerrar);
         
-        JLabel lblCorreo = new JLabel("Correo Electrónico");
+        JLabel lblCorreo = new JLabel("Correo Electrónico:");
         lblCorreo.setBounds(14,  224,  170,  14);
         getContentPane().add(lblCorreo);
         
@@ -137,7 +137,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         getContentPane().add(textFieldCorreo);
         
         
-        JLabel lblTipo = new JLabel("Tipo de Usuario");
+        JLabel lblTipo = new JLabel("Tipo de Usuario:");
         lblTipo.setBounds(14,  265,  141,  14);
         getContentPane().add(lblTipo);
         
@@ -185,19 +185,19 @@ public class ConsultaDeUsuario extends JInternalFrame {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         getContentPane().add(scrollPane);
         
-        lblUrl= new JLabel("URL");
+        lblUrl= new JLabel("URL:");
         lblUrl.setBounds(14,  305,  46,  14);
         getContentPane().add(lblUrl);
         
-        lblFecha= new JLabel("Fecha de Nacimiento");
-        lblFecha.setBounds(14,  305,  120,  14);
+        lblFecha= new JLabel("Fecha de Nacimiento:");
+        lblFecha.setBounds(14,  305,  170,  14);
         getContentPane().add(lblFecha);
               
-        lblDesc = new JLabel("Descripción");
+        lblDesc = new JLabel("Descripción:");
         lblDesc.setBounds(14,  345,  100,  14);
         getContentPane().add(lblDesc);
         
-        lblNacion = new JLabel("nacionalidad");
+        lblNacion = new JLabel("Nacionalidad:");
         lblNacion.setBounds(14,  345,  100,  14);
         getContentPane().add(lblNacion);
         

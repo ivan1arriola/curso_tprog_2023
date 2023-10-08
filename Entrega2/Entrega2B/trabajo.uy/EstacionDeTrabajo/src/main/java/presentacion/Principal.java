@@ -65,7 +65,7 @@ public class Principal {
         
         // Consulta de Usuario
         ConsultaDeUsuarioInternalFrame = new ConsultaDeUsuario(frmGestionDeUsuarios, ICU, ICO);
-        ConsultaDeUsuarioInternalFrame.setSize(500, 500);
+        ConsultaDeUsuarioInternalFrame.setSize(500, 510);
         ConsultaDeUsuarioInternalFrame.setLocation(89, 77);
         ConsultaDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(ConsultaDeUsuarioInternalFrame);
