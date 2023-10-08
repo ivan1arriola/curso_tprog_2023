@@ -5,23 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.time.LocalDate;
 import java.util.HashSet;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.Fabrica;
-import main.java.logica.Controladores.CtrlUsuario;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.controladores.CtrlUsuario;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 
 public class ctrlOfertaTest2 {
