@@ -44,7 +44,6 @@ public class ConsultarOfertas extends JDialog {
     public ConsultarOfertas(Set<String> offerDetailsUnsort,  ICtrlOferta icoInstance,   ICtrlUsuario icUsuarioInstance,  String usuario) {
     	
     	ico = icoInstance; 
-    	icu = icUsuarioInstance; 
     	
     	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort); 
         Collections.sort(offerDetails,   String.CASE_INSENSITIVE_ORDER); 

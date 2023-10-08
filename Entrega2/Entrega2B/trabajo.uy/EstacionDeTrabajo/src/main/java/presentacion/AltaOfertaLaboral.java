@@ -67,10 +67,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public AltaOfertaLaboral(ICtrlUsuario icUsuario) {
+    public AltaOfertaLaboral(ICtrlUsuario icu) {
     	Fabrica fabrica = Fabrica.getInstance();
         ICtrlOferta ico = fabrica.getICtrlOferta();
-        icUsuario = icUsuario;
+        icUsuario = icu;
         icOferta = ico;
 
         setResizable(true);

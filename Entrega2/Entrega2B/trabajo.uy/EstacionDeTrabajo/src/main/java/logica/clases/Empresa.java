@@ -88,7 +88,7 @@ public class Empresa extends Usuario {
     }
 
     public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq){
-    	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  paq);
+    	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
         ofertasLaborales.add(ofertaLab);
         return ofertaLab;
     }

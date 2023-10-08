@@ -313,7 +313,7 @@ public class ElegirPostulante extends JDialog {
                 //ver de qué tipo es la oferta para ver su validez: oferta.fechaAlta + tipo.validez
                 LocalDate fechaResultado = fechaAlta.plusDays(duracion);
                 
-                if (icu.existePostulacion(espostulante,  esOferta)) { 
+                if (icUsuario.existePostulacion(espostulante,  esOferta)) { 
                 	JOptionPane.showMessageDialog(ElegirPostulante.this,  "El usuario indicado ya se encuentra postulado a la oferta indicada.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 	cbEmpresa.setEnabled(true);
                 	cbOferta.setEnabled(true);
