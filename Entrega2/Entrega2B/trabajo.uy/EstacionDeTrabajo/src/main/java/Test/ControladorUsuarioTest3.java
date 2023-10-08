@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
-
+import main.java.logica.datatypes.DTCompraPaquetes;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTOfertaExtendido;
@@ -188,6 +188,14 @@ public class ControladorUsuarioTest3 {
 			OfEx11.toString();
 			OfEx11.getFechaAlta();
 			Set<String> temp22 = (HashSet<String>) OfEx11.getKeywords();
+			
+			// DTCompraPaquete
+						String cualquiera = "nombvre";
+						LocalDate fechaA28 = LocalDate.of(2020, 12, 12);
+						DTCompraPaquetes reciboPaquete = new DTCompraPaquetes(cualquiera,fechaA28,fechaA28);
+						reciboPaquete.getNombre();
+						reciboPaquete.getFechaCompra();
+						reciboPaquete.getFechaVencimiento();
 			
 		}	
 }
