@@ -58,7 +58,7 @@ public interface ICtrlOferta {
 		
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
 		
-		public abstract void agregarTipoOfertaPaq(String paq, String TipoOferta, int cantidad);
+		public abstract void agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad);
 		
 		public abstract HashSet<String> listarPaquetes();
 		
