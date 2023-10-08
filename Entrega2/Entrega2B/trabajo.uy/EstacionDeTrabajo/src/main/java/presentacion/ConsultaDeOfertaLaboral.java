@@ -131,6 +131,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         		Set<String> keywords = icUsuario.listarKeywords(selectedUsuario1);
         		
+        		tAKey.setText("");
                 Iterator<String> iterator = keywords.iterator();
                 while (iterator.hasNext()) {
                 	tAKey.append(iterator.next());
@@ -270,6 +271,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         tAKey = new JTextArea();
         tAKey.setBounds(186,  537,  455,  61);
         getContentPane().add(tAKey);
+        tAKey.setEditable(false);
         
         tfPaquete = new JTextField();
         tfPaquete.setEditable(false);

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -52,9 +53,10 @@ public class AltaDePostulante extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public AltaDePostulante(ICtrlUsuario icUsuario) {
+    public AltaDePostulante(ICtrlUsuario icu) {
         // Se inicializa con el controlador de usuarios
-        icUsuario = icUsuario;
+    	Fabrica fabrica = Fabrica.getInstance();
+        icUsuario = fabrica.getICtrlUsuario();
 
         // Propiedades del JInternalFrame como dimensión,  posición dentro del frame, 
         // etc.
@@ -273,17 +275,17 @@ public class AltaDePostulante extends JInternalFrame {
             return false;
         }
 
-        if (!nombreU.matches("[\\p{L}]+$")) {
+        if (!nombreU.matches("[\\p{L} ]+$")) {
         	JOptionPane.showMessageDialog(this,  "El nombre indicado se compone de carácteres que no son letras.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
         	return false;
         }
         
-        if (!apellidoU.matches("[a-zA-Z]+$")) {
+        if (!apellidoU.matches("[\\p{L} ]+$")) {
         	JOptionPane.showMessageDialog(this,  "El apellido indicado se compone de carácteres que no son letras.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
         	return false;
         }
         
-        if (!correoU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2, }$")) {
+        if (!correoU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
         	JOptionPane.showMessageDialog(this,  "El correo electrónico indicado no es válido.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
         	return false;
         }
@@ -301,7 +303,7 @@ public class AltaDePostulante extends JInternalFrame {
         try {
             Integer.parseInt(anioU);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this,  "El anio debe ser un numero.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,  "El año debe ser un numero.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
@@ -320,14 +322,14 @@ public class AltaDePostulante extends JInternalFrame {
         try {
             Integer.parseInt(diaU);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this,  "El dia debe ser un numero.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,  "El día debe ser un numero.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
         try {
             LocalDate fecha = LocalDate.of(Integer.parseInt(anioU),  Integer.parseInt(mesU),  Integer.parseInt(diaU));
         } catch (DateTimeException e) {
-            JOptionPane.showMessageDialog(this,  "El día no es válido para el mes y anio.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,  "El día no es válido para el mes y año.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
