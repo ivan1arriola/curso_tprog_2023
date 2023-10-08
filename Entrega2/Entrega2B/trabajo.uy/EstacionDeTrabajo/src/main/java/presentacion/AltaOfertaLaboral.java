@@ -1,13 +1,15 @@
 package main.java.presentacion;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.datatypes.DTHora;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
-import main.java.logica.interfaces.ICtrlOferta;
-import main.java.logica.interfaces.ICtrlUsuario;
+//import main.java.excepciones.UsuarioNoExisteException;
+import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
+//import main.java.logica.Datatypes.*;
+import main.java.logica.Datatypes.DTHora;
+import main.java.logica.Datatypes.DTHorario;
+import main.java.logica.Enumerados.DepUY;
+import main.java.logica.Enumerados.EstadoOL;
 
 //import javax.swing.*;
 import javax.swing.JInternalFrame;
@@ -145,27 +147,30 @@ public class AltaOfertaLaboral extends JInternalFrame {
         ///BOTONES
              
         JButton addButton = new JButton("Agregar>");
-        addButton.setSize(79, 20);
-        addButton.setLocation(241, 409);
+        addButton.setSize(85, 20);
+        addButton.setLocation(235, 409);
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                transferirElemento(availableList, selectedListModel);
+                
                 if (availableList.getSelectedIndex() != -1) {
+                	transferirElemento(availableList, selectedListModel,availableListModel);
 	                String k = (String) availableList.getSelectedValue();
 	        		ks.add(k);
+	        	
                 }
             }
         });
         
         JButton removeButton = new JButton("<Quitar");
-        removeButton.setSize(79, 20);
+        removeButton.setSize(85, 20);
         removeButton.setLocation(342, 409);
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                transferirElemento(selectedList, availableListModel);
+                
                 if (selectedList.getSelectedIndex() != -1) {
+                	transferirElemento(selectedList, availableListModel,selectedListModel);
 	                String k = (String) selectedList.getSelectedValue();
 	        		ks.remove(k);
                 }
@@ -333,7 +338,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     	if(remu<=0) {JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     	} else {
 	                		try {
-	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks, EstadoOL.Ingresada, null, null);
+	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks, EstadoOL.Ingresada, , null);
 	                			if(!b) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 	                			}else {
@@ -501,6 +506,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         //availableListModel.clear();
         
         availableListModel.clear();
+        selectedListModel.clear();
                           
         for (String item : keysSorted) {
             availableListModel.addElement(item);
@@ -537,14 +543,36 @@ public class AltaOfertaLaboral extends JInternalFrame {
         //listadoKeywords.removeAllItems();
     }
     
-    private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel) {
+    private void transferirElemento(JList<String> sourceList, DefaultListModel<String> destinationModel,DefaultListModel<String> sourceModel ) {
         int selectedIndex = sourceList.getSelectedIndex();
+        
         if (selectedIndex != -1) {
             String selectedValue = sourceList.getSelectedValue();
             destinationModel.addElement(selectedValue);
             sourceList.clearSelection();
             sourceList.revalidate();
-            destinationModel.removeElementAt(selectedIndex);
+            //destinationModel.removeElementAt(selectedIndex);
+            sourceModel.removeElementAt(selectedIndex);
+            
+            ordenarModeloAlfabeticamente(destinationModel);
+            
+            sourceList.revalidate();
+            
         }
     }
+    
+    private void ordenarModeloAlfabeticamente(DefaultListModel<String> model) {
+        List<String> elements = new ArrayList<>();
+         
+        for (int i = 0; i < model.size(); i++) {
+            elements.add(model.getElementAt(i));
+        }
+        Collections.sort(elements, String.CASE_INSENSITIVE_ORDER);
+
+        model.clear();
+
+        for (String element : elements) {
+            model.addElement(element);
+        }
+    }   
 }
