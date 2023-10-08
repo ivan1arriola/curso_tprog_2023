@@ -14,6 +14,7 @@ import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 import auxiliar.OfertaLaboralBean;
 import enumeration.TipoUsuario;
 
@@ -109,14 +110,18 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 		DTOfertaExtendido dtOferta = getOfertaLaboral(nombreOferta);
 		Set<DTUsuario> postulantes = new HashSet<DTUsuario>();
 		
-		Set<DTPostulacion> postulantes = dtOferta.getPostulaciones();
+		Set<DTPostulacion> postulaciones = dtOferta.getPostulaciones();
+		
+		ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
+		
+		for( DTPostulacion postulacion : postulaciones) {
+			String nicknameUsuario = postulacion.getPostulante();
+			DTUsuario usuario = ctrlUsuario.obtenerDatosUsuario(nicknameUsuario);
+			postulantes.add(usuario);
+		}
 		
 		
-        
-		
-		
-		//ofertaLaboral.setPostulaciones(postulantes);
-		
+        ofertaBean.setPostulantes(postulantes);
  
    
     	
