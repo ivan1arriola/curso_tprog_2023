@@ -112,8 +112,11 @@ public class Empresa extends Usuario {
         String apellido = getApellido();
         String correoElectronico = getcorreoElectronico();
         String contraseña = getcontrasenia();
+<<<<<<< HEAD
         String descripcion = getDescripcion();
         String url = geturl();
+=======
+>>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
         byte[] imagen = getImagen();
         			       
         Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
@@ -123,7 +126,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);   
         }
         
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);
+        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contrasenia, descripcion, url, dtOfertas, imagen);
         
     }
     

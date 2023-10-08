@@ -39,12 +39,12 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-	    private ICtrlUsuario icu;
+	    //private ICtrlUsuario icu;
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    
-	    private AltaDePostulante altaDePostulanteInternalFrame;
-	    private AltaDeEmpresa altaDeEmpresaInternalFrame;
+//	    private AltaDePostulante altaDePostulanteInternalFrame;
+//	    private AltaDeEmpresa altaDeEmpresaInternalFrame;
 	    private JTextField nombreNuevo;
 	    private JTextField nombreActual;
 	    private JTextField apellidoNuevo;
@@ -195,8 +195,8 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		DTUsuario dtuser = (DTUsuario) icu.obtenerDatosUsuario(postulante.getNickname()); // obtengo los datos
 		nombreActual.setText(dtuser.getNombre());
 		apellidoActual.setText(dtuser.getApellido());
-		correoActual.setText(dtuser.getCorreo_electronico());
-		passActual.setText(dtuser.getContraseña());
+		correoActual.setText(dtuser.getcorreoElectronico());
+		passActual.setText(dtuser.getcontrasenia());
 		
 		DTPostulante dtpost = (DTPostulante) dtuser;
 		// Formatear la fecha de nacimiento del usuario y establecerla en fechaActual
