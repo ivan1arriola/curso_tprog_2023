@@ -145,13 +145,7 @@ public class ControladorUsuarioTest4 {
 			DTOfertaExtendido EXTRA = ICO.obtenerOfertaLaboral("analista");
 			
 			DTOfertaExtendidoSinPConK extremo = ICO.infoOfertaLaboralPostulante("Arnold","analista");
-//			ICO.tipoOferta("Oferta normal"); 
-			
-			// esto indica se compro 
-			InfoCompraOferta ununuunu = new InfoCompraOferta("Oferta normal",3);
-			
-//			ICO.compraPaquetes("Google","Paquete 2");		    
-//			DTTipoOferta nuevaTIPOF = ICO.tipoOferta("Oferta normal");
+
 		
 
 			
