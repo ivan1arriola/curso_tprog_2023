@@ -13,7 +13,7 @@ public class DTPostulante extends DTUsuario {
         this.nacionalidad = nacionalidad;
     }    
 
-    public LocalDate getFecha_nac() {
+    public LocalDate getFechaNac() {
         return fechanac;
     }
 

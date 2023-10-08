@@ -98,14 +98,14 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                				try {
 	                					ICU.altaEmpresaImagen(campos[2], campos[3], campos[4], campos[5],  campos[2],  campos2[1],  imageBytes);
 	                				} catch (Exception e2) {
-	                					
+	                					e2.printStackTrace();
 	                				}
 	                			} else {
 	                				
 	                				try {
 	                					ICU.altaEmpresaURLyImagen(campos[2],  campos[3],  campos[4],  campos[5],  campos[2],   campos2[1],  campos2[2],   imageBytes);
 	                				} catch (Exception e3) {
-	                					
+	                					e3.printStackTrace();
 	                				}
 	                				
 	                			}

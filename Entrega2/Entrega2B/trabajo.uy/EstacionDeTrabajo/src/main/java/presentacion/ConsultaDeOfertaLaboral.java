@@ -35,23 +35,23 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private JTextField tfCiudad;
 	private JComboBox<String> listaEmpresas;
 	private JComboBox<String> listaOfertasLaborales;
-	private String nombre_e;
+	private String nombreE;
 	private String selectedUsuario;
-	private VerPostulaciones VerPostulacionesJInternalFrame;
+	private VerPostulaciones verPostulacionesJInternalFrame;
 	private JTextArea tAKey;
 	private JTextField tfPaquete;
 	
 	/**
 	 * Create the application.
 	 */
-	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icUsuario) { 
-		icUsuario = icUsuario;
+	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icu) { 
+		icUsuario = icu;
 		
-		VerPostulacionesJInternalFrame = new VerPostulaciones();
-        VerPostulacionesJInternalFrame.setSize(700,  300);
-        VerPostulacionesJInternalFrame.setLocation(38,  63);
-        VerPostulacionesJInternalFrame.setVisible(false);
-        gui.getContentPane().add(VerPostulacionesJInternalFrame);
+		verPostulacionesJInternalFrame = new VerPostulaciones();
+        verPostulacionesJInternalFrame.setSize(700,  300);
+        verPostulacionesJInternalFrame.setLocation(38,  63);
+        verPostulacionesJInternalFrame.setVisible(false);
+        gui.getContentPane().add(verPostulacionesJInternalFrame);
 		
 		initialize();
 	}
@@ -148,9 +148,9 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         btnAceptar_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		listaOfertasLaborales.removeAllItems();
-        		nombre_e = (String) listaEmpresas.getSelectedItem();
+        		nombreE = (String) listaEmpresas.getSelectedItem();
         		try {
-                    Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombre_e);
+                    Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombreE);
                     Iterator<String> iterator = ofertas_laborales.iterator();
                     if (!ofertas_laborales.isEmpty()) {
                     	for (String it : ofertas_laborales) {
@@ -255,8 +255,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
         btnVerPostulaciones.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		VerPostulacionesJInternalFrame.actualizar(selectedUsuario);
-        		VerPostulacionesJInternalFrame.setVisible(true);
+        		verPostulacionesJInternalFrame.actualizar(selectedUsuario);
+        		verPostulacionesJInternalFrame.setVisible(true);
         		
         	}
         });
