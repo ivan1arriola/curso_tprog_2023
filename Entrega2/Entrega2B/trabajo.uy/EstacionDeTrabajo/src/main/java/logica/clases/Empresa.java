@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
@@ -18,8 +19,8 @@ public class Empresa extends Usuario {
 
     private String descripcion;
     private String url;
-    private HashSet<OfertaLaboral> ofertasLaborales;
-    private HashSet<InfoCompra> infoCompras;
+    private Set<OfertaLaboral> ofertasLaborales;
+    private Set<InfoCompra> infoCompras;
     
     // constructor empresa con imagen y url 
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
@@ -69,8 +70,8 @@ public class Empresa extends Usuario {
         this.url = urlE;
     }
 
-    public HashSet<String> listarOfertasLaborales(){
-        HashSet<String> lista = new HashSet<String>();
+    public Set<String> listarOfertasLaborales(){
+        Set<String> lista = new HashSet<String>();
         
         if (ofertasLaborales.size() != 0) {
 	        for (OfertaLaboral ol : ofertasLaborales){
@@ -87,22 +88,22 @@ public class Empresa extends Usuario {
     }
 
     public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq){
-    	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, paq);
-        ofertasLaborales.add(ol);
-        return ol;
+    	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, paq);
+        ofertasLaborales.add(ofertaLab);
+        return ofertaLab;
     }
 
     
     public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img) {
-    	OfertaLaboral ol = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img);
-    	ofertasLaborales.add(ol);
-    	return ol;
+    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img);
+    	ofertasLaborales.add(ofertaLab);
+    	return ofertaLab;
     }
     
     public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img, Paquete paquete) {
-    	OfertaLaboral ol = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img, paquete);
-    	ofertasLaborales.add(ol);
-    	return ol;	
+    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img, paquete);
+    	ofertasLaborales.add(ofertaLab);
+    	return ofertaLab;	
     }
     
     public DTUsuario obtenerDatosUsuario() { // obtenerDatosUsuario(): DTUsuario
@@ -113,7 +114,7 @@ public class Empresa extends Usuario {
         String contraseña = getContraseña();
         byte[] imagen = getImagen();
         			       
-        HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+        Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
         
         for (OfertaLaboral oferta : ofertasLaborales) {
         	DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
@@ -124,43 +125,43 @@ public class Empresa extends Usuario {
         
     }
     
-    public HashSet<String> listarOfertasLaboralesConfirmadas(){
-    	HashSet<String> res = new HashSet<String>();
+    public Set<String> listarOfertasLaboralesConfirmadas(){
+    	Set<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
-            OfertaLaboral ol = iterator.next();
-            if (ol.getEstado() == EstadoOL.Confirmada) {
-            	res.add(ol.getNombre());
+            OfertaLaboral ofertaLab = iterator.next();
+            if (ofertaLab.getEstado() == EstadoOL.Confirmada) {
+            	res.add(ofertaLab.getNombre());
             }
         }
         return res;
     }
     
-    public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks){
-    	HashSet<String> res = new HashSet<String>();
+    public Set<String> listarOfertasLaboralesConfirmadasKeyword(String keywords){
+    	Set<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
-            OfertaLaboral ol = iterator.next();
-            if (ol.getEstado() == EstadoOL.Confirmada && ol.tieneKeyword(ks)) {
-            	res.add(ol.getNombre());
+            OfertaLaboral ofertaLab = iterator.next();
+            if (ofertaLab.getEstado() == EstadoOL.Confirmada && ofertaLab.tieneKeyword(keywords)) {
+            	res.add(ofertaLab.getNombre());
             }
         }
         return res;
     }
     
-    public HashSet<String> listarOfertasLaboralesIngresadas(){
-    	HashSet<String> res = new HashSet<String>();
+    public Set<String> listarOfertasLaboralesIngresadas(){
+    	Set<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
-            OfertaLaboral ol = iterator.next();
-            if (ol.getEstado() == EstadoOL.Ingresada) {
-            	res.add(ol.getNombre());
+            OfertaLaboral ofertaLab = iterator.next();
+            if (ofertaLab.getEstado() == EstadoOL.Ingresada) {
+            	res.add(ofertaLab.getNombre());
             }
         }
         return res;
@@ -171,8 +172,8 @@ public class Empresa extends Usuario {
 
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
-            OfertaLaboral ol = iterator.next();
-            if (ol.getNombre().equals(nombre_oferta)) {
+            OfertaLaboral ofertaLab = iterator.next();
+            if (ofertaLab.getNombre().equals(nombre_oferta)) {
             	return true;
             }
         }
@@ -191,12 +192,12 @@ public class Empresa extends Usuario {
         	}
         }
     	float costo = paq.getCosto();
-    	LocalDate fa = paq.getfechaAlta();
+    	LocalDate fechaA = paq.getfechaAlta();
     	// int val = paq.getValidez();
-    	HashSet<DTCantTO> S = paq.obtenerDTSCantTO();
+    	HashSet<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
     	
-    	InfoCompra io = new InfoCompra(fa, costo, paq, this, S);
-    	infoCompras.add(io);
+    	InfoCompra infoComp = new InfoCompra(fechaA, costo, paq, this, ConjuntoS);
+    	infoCompras.add(infoComp);
     	return true;
     }
 
@@ -211,7 +212,7 @@ public class Empresa extends Usuario {
             String correoElectronico = getCorreo_electronico();
             String contraseña = getContraseña();
             byte[] imagen = getImagen(); 
-            HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+            Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
             for (OfertaLaboral oferta : ofertasLaborales) {
                 DTOfertaExtendido dtOferta = oferta.obtenerDatosOferta();
@@ -226,7 +227,7 @@ public class Empresa extends Usuario {
             String correoElectronico = getCorreo_electronico();
             String contraseña = getContraseña();
             byte[] imagen = getImagen(); 
-            HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
+            Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
             for (OfertaLaboral oferta : ofertasLaborales) {
                 if (oferta.getEstado() == EstadoOL.Confirmada) {
