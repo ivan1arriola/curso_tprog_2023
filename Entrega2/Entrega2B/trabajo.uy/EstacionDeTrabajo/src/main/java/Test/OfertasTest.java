@@ -212,7 +212,7 @@ public class OfertasTest {
 		Set<String> ingresadas = ICO.listarOfertasLaboralesIngresadas("ANTEL");
 		boolean ingresoNoVacio = !ingresadas.isEmpty();
 		assertTrue(ingresoNoVacio);
-		
+		 
 		ICO.aceptoOL("Content Manager");
 		Set<DTOfertaExtendido> confirmadas = ICO.listarOfertasLaboralesConfirmadas();
 		boolean esta = false;
