@@ -16,7 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import main.java.logica.interfaces.ICtrlUsuario;
-
+import main.java.excepciones.ExceptionUsuarioNickRepetido;
+import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
@@ -241,7 +243,7 @@ public class AltaDePostulante extends JInternalFrame {
             	try {
 	        		boolean exito = ICU.altaPostulante(nicknameU,  contraseña,  nombreU,  apellidoU,  correoU,  fechaU,  nacionalidadU);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (IllegalArgumentException e) {
+	        	} catch (ExceptionUsuarioNickRepetido|ExceptionUsuarioNickYCorreoRepetidos|ExceptionUsuarioCorreoRepetido e) {
 	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
 	            }
 
