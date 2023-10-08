@@ -195,7 +195,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		
 		DTEmpresa dtEmpr = (DTEmpresa)  dtuser; // obtengo los datos especificos
 		urlActual.setText(dtEmpr.getUrl());
-		descripcionActual.setText(dtEmpr.getUrl());
+		descripcionActual.setText(dtEmpr.getDescripcion());
 
 		
 		
