@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import main.java.logica.clases.Empresa;
 import main.java.logica.clases.InfoCompra;
 import main.java.logica.clases.InfoCompraOferta;
+import main.java.logica.clases.Keyword;
 import main.java.logica.clases.OfertaLaboral;
 import main.java.logica.clases.Paquete;
 import main.java.logica.clases.Postulacion;
@@ -35,6 +36,7 @@ import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
+import main.java.logica.manejadores.KeywordHandler;
 import main.java.logica.manejadores.OfertaLaboralHandler;
 import main.java.logica.manejadores.PaqueteHandler;
 import main.java.logica.manejadores.TipoOfertaHandler;
@@ -84,6 +86,9 @@ public class ControladorUsuarioTest5 {
 			ICO.altaTipoPublicacionOL("Oferta salada",  "visibilidad salada",   199,   190,   102340.0f,   LocalDate.now());
 			ICO.altaTipoPublicacionOL("Oferta dulce",  "visibilidad dulce",   199,   290,   102340.0f,   LocalDate.now());
 			ICO.altaTipoPublicacionOL("Oferta proteica",  "visibilidad proteica",   199,   1908,   1020340.0f,   LocalDate.now());	
+			TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+			TipoOferta NuevoTipoOferta = TOH.buscar("Oferta salada");
+			
 			// ---------------------------- creo Paquete ----------------------------
 			String str1 = "MeEncantaElQuesoSemiduro";
 			byte[] img33 = str1.getBytes();
@@ -95,10 +100,22 @@ public class ControladorUsuarioTest5 {
 			// ---------------------------- empresa Compra Paquete? ----------------------------
 			// tengo que obtener el controlador de TipoOferta para obtener el tipo de oferta
 			// y luego comprar el paquete
-			TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-			Map<String, TipoOferta> mapa = TOH.obtener();
+			TipoOfertaHandler TOHr = TipoOfertaHandler.getInstance();
+			Map<String, TipoOferta> mapa = TOHr.obtener();
 			String keyToLookup = "Oferta salada";
 			TipoOferta ofertaLaboralSalada = mapa.get(keyToLookup);
+			ofertaLaboralSalada.getCosto();
+			ofertaLaboralSalada.getDescripcion();
+			ofertaLaboralSalada.getDuracion();
+			ofertaLaboralSalada.getExposicion();
+			ofertaLaboralSalada.getFechaAlta();
+			ofertaLaboralSalada.getNombre();
+			ofertaLaboralSalada.setCosto(0);
+			ofertaLaboralSalada.setDescripcion("visibilidad salada");
+			ofertaLaboralSalada.setDuracion(190);
+			ofertaLaboralSalada.setExposicion(199);
+			ofertaLaboralSalada.setFechaAlta(LocalDate.now());
+			ofertaLaboralSalada.setNombre("Oferta salada");
 			// esta es la manera de decir en el sistema compre un paquete
 			//InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS)
 			// la idea es que si compra un paquete entonces genera automaticamente infoCompraOferta indicando la compra por adentro de un paquete
@@ -137,6 +154,61 @@ public class ControladorUsuarioTest5 {
 			nueva.setFechaVencimiento(LocalDate.now());
 			nueva.setICO(nueva.getICO());
 			nueva.setPaquete(Pack);	
+			
+			// mas constructores para oferta laboral
+			List<Keyword> myList = new ArrayList<>();
+	        myList.add(new Keyword("manzana"));
+	        myList.add(new Keyword("banana"));
+	        myList.add(new Keyword("frutilla"));
+			TipoOferta atrtOferta = ofertaLaboralSalada;
+			String atrnombre6 = "pensador";
+			String atrdescripcion6 = "Pensador de sistemas";
+			String atrciudad6 = "Montevideo";
+			DepUY atrdepartamento6 = DepUY.Montevideo;
+			LocalDate atrfechaAlta6 = LocalDate.of(2020, 12, 12);
+			EstadoOL estadoNuevo6 = EstadoOL.Ingresada;
+			imagen2 = "MeEncantaPensar";
+			float atrremuneracion = 1;
+			byte[] img3 = imagen2.getBytes();
+			DTHora horaSalada = new DTHora(8, 0);
+			DTHora horaSalada2 = new DTHora(1, 0);
+			DTHorario horarioSal = new DTHorario(horaSalada, horaSalada2);
+			// constructor sin paquete y sin imagen
+			OfertaLaboral nuevo000 = new OfertaLaboral(myList,  
+													   atrtOferta, 
+													   atrnombre6,
+													   atrdescripcion6,
+													   atrciudad6,
+													   atrdepartamento6,
+													   horarioSal,
+													   atrremuneracion,
+													   atrfechaAlta6,
+													   estadoNuevo6);
+//			// constructor sin imagen pero con paquete	
+			OfertaLaboral nuevo02 = new  OfertaLaboral(myList,  
+														atrtOferta,  
+														atrnombre6,  
+														atrdescripcion6,
+													    atrciudad6,
+													    atrdepartamento6, 
+													    horarioSal,
+														atrremuneracion,
+														atrfechaAlta6,
+														estadoNuevo6,   
+														Pack);
+						
+			// constructor sin imagen ni paquete	
+			OfertaLaboral nuevo0w2 = new   OfertaLaboral(myList,  
+														 atrtOferta,  
+														 atrnombre6,  
+														 atrdescripcion6,   
+														 atrciudad6,  
+														 atrdepartamento6,  
+														 horarioSal,  
+														 atrremuneracion,  
+														 atrfechaAlta6,  
+														 estadoNuevo6);
+				
 			// --------------------- compro paquete, ahora si ------------------------
 			String nickname22 = "The Clouds";
 			ICO.compraPaquetes(nickname22,"Paquete 7");		    
@@ -236,7 +308,25 @@ public class ControladorUsuarioTest5 {
 			 OLpensador.setPaquete(Pack);
 			 OLpensador.setRemuneracion(OLpensador.getRemuneracion());
 			 OLpensador.setTipoOferta(ofertaLaboralSalada);
-			 DTOfertaExtendidoConKeywordsPostulante auxi9= OLpensador.infoOfertaLaboralPost(nombre22);
+			 //  -------------------- agrego a oferta laborla la postulacion -----------------
+			 List<Postulacion> stringList = new ArrayList<>();
+			 stringList.add(Ultima);
+			 OLpensador.setPostulaciones(stringList);
+			 // ojo dice nombre, pero es con nickname
+			 DTOfertaExtendidoConKeywordsPostulante auxi9 = OLpensador.infoOfertaLaboralPost("ReneDescartes");
+			 auxi9.getCiudad();
+			 auxi9.getCosto();
+			 auxi9.getDatosPostulacion();
+			 auxi9.getDepartamento();
+			 auxi9.getDescripcion();
+			 auxi9.getEstado();
+			 auxi9.getFechaAlta();
+			 auxi9.getHorario();
+			 auxi9.getImagen();
+			 auxi9.getKeywords();
+			 auxi9.getNombre();
+			 auxi9.getRemuneracion();
+			 
 			 
 			 
 		}	
