@@ -2,20 +2,15 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="auxiliar.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
-<%@ page import="main.java.logica.datatypes.DTPostulacion" %>
+<%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
+<%@ page import="auxiliar.OfertaLaboralBean" %>
 
 <%
-
-	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario"); // Se supone que no se visualiza para Visitante
-	Set<DTPostulacion> postulaciones;
-	
-	if(tipoUsuario == TipoUsuario.Postulante){
-		
-	}
+    TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario"); // Se supone que no se visualiza para Visitante
+    OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
+    Set<DTUsuario> postulantes = ofertaLaboral.getPostulantes();
 %>
-
-
 
 <div>
     <div class="mt-4" id="postulaciones">
@@ -23,22 +18,47 @@
     </div>
 
     <div class="container">
-        <!-- Imagen 1 -->
-        <div class="d-flex align-items-center">
-            <img src="https://tinyurl.com/yckek63e" alt="Imagen 1" class="img-fluid" style="width: 100px; height: 100px">
-            <a href="../consultaPostulacion/lgarciaDesarrolloFrontEnd.html" target="_blank" class="ms-4">
-                lgarcia
-            </a>
+        <%
+            if ( postulantes.isEmpty()) {
+                if (tipoUsuario == TipoUsuario.Postulante) {
+        %>
+        <!-- Mensaje para Postulantes -->
+        <div class="alert alert-info">
+            <p> No te has postulado para esta oferta. </p>
+            <a href="<%= request.getContextPath() %>/postularOferta?id=<%= ofertaLaboral.getNombre() %>" class="btn btn-primary">Postular</a>
         </div>
+        <%
+                } else if (tipoUsuario == TipoUsuario.Empresa) {
+        %>
+        <!-- Mensaje para Empresas -->
+        <div class="alert alert-warning">
+            No hay postulantes para esta oferta en este momento.
+        </div>
+        <%
+                }
+            } else {
+                // Si hay postulantes, muestra la lista de postulantes como lo hiciste anteriormente
+                for (DTUsuario postulante : postulantes) { 
+                    byte[] imagenBytes = postulante.getImagen();
+                    String imagenBase64 = "";
 
-        <!-- Imagen 2 -->
+                    if (imagenBytes != null && imagenBytes.length > 0) {
+                        // Convierte los bytes de la imagen en una cadena base64
+                        imagenBase64 = "data:image/png;base64," + Base64.getEncoder().encodeToString(imagenBytes);
+                    } else {
+                        imagenBase64 = request.getContextPath() +  "/imagenNoFound.png";
+                    }
+        %>
+        <!-- Imagen del postulante -->
         <div class="d-flex align-items-center mt-2">
-            <img src="https://picsum.photos/100/100" alt="Imagen 2" class="img-fluid">
-            <a href="../consultaPostulacion/maroDesarrolloFrontEnd.html" target="_blank" class="ms-4">
-                maro
+            <img src="<%= imagenBase64 %>" alt="<%= postulante.getNombre() %>" class="img-fluid" style="width: 100px; height: 100px">
+            <a href="<%= request.getContextPath() %>/consultarpostulacion?p=<%= postulante.getNickname() %>" target="_blank" class="ms-4">
+                <%= postulante.getNickname() %>
             </a>
         </div>
+        <%
+                }
+            }
+        %>
     </div>
 </div>
-
-

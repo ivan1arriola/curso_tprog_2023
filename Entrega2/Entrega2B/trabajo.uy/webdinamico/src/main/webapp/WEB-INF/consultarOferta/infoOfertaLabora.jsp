@@ -17,7 +17,8 @@
     
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
     
-    boolean mostrarContenido = tipoUsuario == TipoUsuario.Empresa || tipoUsuario == TipoUsuario.Postulante;
+    boolean mostrarContenido = (tipoUsuario == TipoUsuario.Empresa && ofertaLaboral.getMostrarPostulantesYPaquetes())|| 
+    		tipoUsuario == TipoUsuario.Postulante;
 %>
 
 <!DOCTYPE html>
