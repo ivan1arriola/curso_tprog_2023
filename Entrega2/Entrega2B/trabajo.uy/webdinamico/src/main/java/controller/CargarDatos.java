@@ -41,7 +41,7 @@ public class CargarDatos extends HttpServlet {
         try {
             Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
             response.getWriter().append("Carga de datos exitosa");
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
         } catch (Exception e) {
             response.getWriter().append("Error al cargar datos: " + e.getMessage());
         }
