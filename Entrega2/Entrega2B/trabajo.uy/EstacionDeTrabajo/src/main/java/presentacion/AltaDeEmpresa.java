@@ -39,7 +39,7 @@ public class AltaDeEmpresa extends JInternalFrame {
     private JTextField textFieldDescripcion;
     private JTextField textFieldURL;
     private JLabel Contraseña;
-    private JLabel Descripcion; 
+    private JLabel descript; 
     private JLabel URL;
     private JLabel CorreoElectronico;
     private JTextField textFieldCorreoElectronico;
@@ -50,9 +50,9 @@ public class AltaDeEmpresa extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public AltaDeEmpresa(ICtrlUsuario icu) {
+    public AltaDeEmpresa(ICtrlUsuario icUsuario) {
         // Se inicializa con el controlador de usuarios
-        ICU = icu;
+        ICU = icUsuario;
 
         // Propiedades del JInternalFrame como dimensión,  posición dentro del frame, 
         // etc.

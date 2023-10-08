@@ -1,7 +1,7 @@
 package main.java.logica.controladores;
 
 import java.time.LocalDate;
-import java.util.HashMap;
+
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.HashSet;
@@ -46,7 +46,7 @@ public class CtrlOferta implements ICtrlOferta{
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		Map<String,   TipoOferta> tipoOf = TOH.obtener();
 		for (Entry<String,   TipoOferta> entry : tipoOf.entrySet()) {
-			res.add((entry.getValue().getNombre()));
+			res.add(entry.getValue().getNombre());
 		}
 
 		return res;

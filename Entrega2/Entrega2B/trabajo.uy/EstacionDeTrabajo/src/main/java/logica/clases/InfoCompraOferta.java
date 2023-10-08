@@ -1,7 +1,6 @@
 package main.java.logica.clases;
 
-// import java.util.ArrayList; NO SE USA (CHECKSTYLE)
-import java.util.HashSet;
+
 import java.util.Set;
 
 public class InfoCompraOferta {

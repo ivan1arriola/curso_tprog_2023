@@ -1,7 +1,7 @@
 package main.java.logica.datatypes;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+
 import java.util.Set;
 
 public class DTPostulanteExtendido extends DTPostulante {
