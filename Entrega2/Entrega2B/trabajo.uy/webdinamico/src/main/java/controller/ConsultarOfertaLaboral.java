@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
+import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTUsuario;
@@ -46,7 +48,6 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         ofertaLaboral.setCiudad(dtOferta.getCiudad());
         ofertaLaboral.setCosto(dtOferta.getCosto());
         ofertaLaboral.setDepartamento(dtOferta.getDepartamento());
-        ofertaLaboral.setEstado(dtOferta.getEstado());
         ofertaLaboral.setFechaDeAlta(dtOferta.getFechaDeAlta());
         ofertaLaboral.setHorario(dtOferta.getHorario());
         ofertaLaboral.setImagen(dtOferta.getImagen());
@@ -72,7 +73,6 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 
                 if (tipoUsuario == null) {
                 	tipoUsuario = TipoUsuario.Visitante;
-                	request.setAttribute("tipoUsuario", tipoUsuario);
                 }
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
@@ -105,14 +105,19 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
 
     // Carga los DTUsuario de los postulantes
-	private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
+	private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname) {
+		ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
 		
+		DTOfertaExtendidoSinPConK info = ctrl.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		
+		if( info instanceof DTOfertaExtendidoConKeywordsTit) {
+			ofertaBean.setMostrarPostulantesYPaquetes(true);
+		} 
+				
 		DTOfertaExtendido dtOferta = getOfertaLaboral(nombreOferta);
 		Set<DTUsuario> postulantes = new HashSet<DTUsuario>();
 		
 		Set<DTPostulacion> postulaciones = dtOferta.getPostulaciones();
-		
-		ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
 		
 		for( DTPostulacion postulacion : postulaciones) {
 			String nicknameUsuario = postulacion.getPostulante();
@@ -120,21 +125,27 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 			postulantes.add(usuario);
 		}
 		
-		
         ofertaBean.setPostulantes(postulantes);
  
-   
     	
 		return ofertaBean;
 	}
     
     private OfertaLaboralBean cargarDatosPostulante(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
 		DTOfertaExtendidoSinPConK nuevoDatos = ctrl.infoOfertaLaboralPostulante(nickname, nombreOferta);
+		
+		Set<DTUsuario> postulantes = new HashSet<DTUsuario>();
 		    	
     	if ( nuevoDatos instanceof DTOfertaExtendidoConKeywordsPostulante) {
     		DTOfertaExtendidoConKeywordsPostulante conPostulantes = (DTOfertaExtendidoConKeywordsPostulante) nuevoDatos;
-    		ofertaBean.setPostulacion(conPostulantes.getDatosPostulacion());
+    		ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
+    		DTPostulacion postulacion = conPostulantes.getDatosPostulacion();
+    		String nicknamePostulante = postulacion.getPostulante();
+    		
+    		postulantes.add(ctrlUsuario.obtenerDatosUsuario(nicknamePostulante));
     	}
+    	
+    	ofertaBean.setPostulantes(postulantes);
     	
 		return ofertaBean;
 	}

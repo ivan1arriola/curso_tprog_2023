@@ -25,7 +25,8 @@ public class OfertaLaboralBean {
 	private String paq;
 	private DTPaquete paquete;
 	private Set<String> keywords;
-	private DTUsuario postulante;
+	private boolean mostrarPostulantesYPaquetes;
+
 	
 	public OfertaLaboralBean() {
         this.nombre = null;
@@ -41,8 +42,8 @@ public class OfertaLaboralBean {
         this.paq = null;
         this.paquete = null;
         this.keywords = new HashSet<String>();
-        this.postulante = null;
         this.postulantes = new HashSet<DTUsuario>();
+        this.mostrarPostulantesYPaquetes = false;
     }
 	
 	
@@ -155,14 +156,6 @@ public class OfertaLaboralBean {
 	}
 
 
-	public DTUsuario getPostulante() {
-		return postulante;
-	}
-
-
-	public void setPostulante(DTUsuario postulante) {
-		this.postulante = postulante;
-	}
 
 
 	public Set<DTUsuario> getPostulantes() {
@@ -172,6 +165,19 @@ public class OfertaLaboralBean {
 
 	public void setPostulantes(Set<DTUsuario> postulantes) {
 		this.postulantes = postulantes;
+	}
+
+
+
+
+
+	public boolean getMostrarPostulantesYPaquetes() {
+		return mostrarPostulantesYPaquetes;
+	}
+
+
+	public void setMostrarPostulantesYPaquetes(boolean mostrarPostulantesYPaquetes) {
+		this.mostrarPostulantesYPaquetes = mostrarPostulantesYPaquetes;
 	}
 
 
