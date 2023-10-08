@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -18,6 +19,7 @@ import main.java.logica.interfaces.ICtrlCargaDeDatos;
 import org.junit.jupiter.api.BeforeAll;
 import java.util.Set;
 import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTTipoOferta;
 
 public class OfertasTest {
 	
@@ -235,6 +237,21 @@ public class OfertasTest {
 		ICO.compraPaquetes("ANTEL", "Demasiado");
 		
 		assertTrue(ICO.paqueteComprado("Demasiado"));
+		
+		
+		Set<String> keysLista = ICO.listarKeywords();
+		assertTrue(keysLista.contains("Freelance"));
+		
+		DTTipoOferta dtoferta = null;
+		
+		try {
+			dtoferta = ICO.obtenerDatosTO("Destacada");
+		} catch (ExcepcionTipoOfertaNoExistente e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals(dtoferta.getDescripcion(), "Destaca tu anuncio");
+		
 		
 	}
 	
