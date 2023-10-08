@@ -72,8 +72,8 @@ public class Empresa extends Usuario {
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
         
-        if(ofertasLaborales.size() != 0) {
-	        for(OfertaLaboral ol : ofertasLaborales){
+        if (ofertasLaborales.size() != 0) {
+	        for (OfertaLaboral ol : ofertasLaborales){
 	            lista.add(ol.getNombre());
 	        }
         }
@@ -94,7 +94,7 @@ public class Empresa extends Usuario {
 
     
     public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img) {
-    	OfertaLaboral ol = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado,img);
+    	OfertaLaboral ol = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img);
     	ofertasLaborales.add(ol);
     	return ol;
     }
@@ -131,7 +131,7 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getEstado() == EstadoOL.Confirmada) {
+            if (ol.getEstado() == EstadoOL.Confirmada) {
             	res.add(ol.getNombre());
             }
         }
@@ -145,7 +145,7 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getEstado() == EstadoOL.Confirmada && ol.tieneKeyword(ks)) {
+            if (ol.getEstado() == EstadoOL.Confirmada && ol.tieneKeyword(ks)) {
             	res.add(ol.getNombre());
             }
         }
@@ -159,7 +159,7 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getEstado() == EstadoOL.Ingresada) {
+            if (ol.getEstado() == EstadoOL.Ingresada) {
             	res.add(ol.getNombre());
             }
         }
@@ -172,7 +172,7 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getNombre().equals(nombre_oferta)) {
+            if (ol.getNombre().equals(nombre_oferta)) {
             	return true;
             }
         }
@@ -186,7 +186,7 @@ public class Empresa extends Usuario {
     
     public boolean compraPaquetes(Paquete paq) {
         for (InfoCompra ic : infoCompras) {
-        	if((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
+        	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
         		return false;
         	}
         }
@@ -195,14 +195,14 @@ public class Empresa extends Usuario {
     	// int val = paq.getValidez();
     	HashSet<DTCantTO> S = paq.obtenerDTSCantTO();
     	
-    	InfoCompra io = new InfoCompra(fa,costo,paq,this,S);
+    	InfoCompra io = new InfoCompra(fa, costo, paq, this, S);
     	infoCompras.add(io);
     	return true;
     }
 
 	@Override
     // corregido, se pasan mas parametros para la ejecucion
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta) {
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta) {
 		DTEmpresa empre;
 		if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();

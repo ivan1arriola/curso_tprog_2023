@@ -8,7 +8,7 @@ import main.java.logica.enumerados.EstadoOL;
 public class DTOfertaLaboral {
   private String nombre;
   private String descripcion;
-  private LocalDate fecha_de_alta;
+  private LocalDate fechaDeAlta;
   private float costo;
   private float remuneracion;
   private DTHorario horario;
@@ -21,7 +21,7 @@ public class DTOfertaLaboral {
 public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes) {
   nombre = nomb;
   descripcion = desc;
-  fecha_de_alta = fechaA;
+  fechaDeAlta = fechaA;
   costo = c;
   remuneracion = r;
   horario = h;
@@ -41,7 +41,7 @@ public String getDescripcion() {
 }
 	
 public LocalDate getFechaDeAlta() {
-  return fecha_de_alta;
+  return fechaDeAlta;
 }
 	
 public float getCosto() {
@@ -75,7 +75,7 @@ public EstadoOL getestado() {
 	
 @Override
 public String toString() {
-  return 	nombre + " - " + descripcion + "\n" + fecha_de_alta + "\n" + costo + " - " + remuneracion 
+  return 	nombre + " - " + descripcion + "\n" + fechaDeAlta + "\n" + costo + " - " + remuneracion 
         		+ " - " + horario + "\n" + departamento + "," + ciudad;
 }
 }
