@@ -1,10 +1,14 @@
 package main.java.presentacion;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 //import java.awt.*;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 //import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -54,15 +58,23 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         paquetesVisualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		
-        		if (paquetesVisualizar.getSelectedIndex() != 	-1 && paquetesVisualizar.getSelectedIndex() != 0) {
+        		if (paquetesVisualizar.getSelectedIndex() != -1 && paquetesVisualizar.getSelectedIndex() != 0) {
         			
-        			String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
+        			// String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
         	        Set<String> publicaciones = ICO.listarTipoDePublicaciones();
-        	        DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
-        	        Set<DTCantTO> tiposAgregados = dtpaq.getTiposDePub();
-          	        Set<String> tipoNoAgregado =new HashSet<>();;
+        	        //DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
+        	        //Set<DTCantTO> tiposAgregados = dtpaq.getTiposDePub();
+          	        //Set<String> tipoNoAgregado = new HashSet<>();
         	        
-        	        for (String publi : publicaciones) {
+          	        List<String> publiSorted = new ArrayList<>(publicaciones);
+                    Collections.sort(publiSorted,  String.CASE_INSENSITIVE_ORDER);
+        		   
+                    listadoTipoPub.addItem("");
+                    for (String elem : publiSorted) {
+                    	listadoTipoPub.addItem(elem);
+                    }
+                    
+        	        /*for (String publi : publicaciones) {
         	            // Verificar si el tipo está contenido en tiposAgregados
         	            boolean encontrado = false;
         	            for (DTCantTO dtTipo : tiposAgregados) {
@@ -81,7 +93,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         	        listadoTipoPub.addItem("");
         	        for (String element : tipoNoAgregado) {
         	    		listadoTipoPub.addItem(element);
-        	    	}
+        	    	}*/
         
         		}
         		
@@ -95,7 +107,9 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         		String text = cantidadMostrar.getText();
                 String op1 =  (String) paquetesVisualizar.getSelectedItem();
                 String op2 =  (String) listadoTipoPub.getSelectedItem();
-                if (!op1.equals("") && !op2.equals("")) {
+                if (paquetesVisualizar.getSelectedIndex() != -1 && paquetesVisualizar.getSelectedIndex() != 0
+                		&&
+                	listadoTipoPub.getSelectedIndex() != -1 && listadoTipoPub.getSelectedIndex() != 0) {
                 	try {
                 		if (text.isEmpty()) {
                 			JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "El campo cantidad no puede ser vacío.",   "ERROR - Agregar Tipo de Publicación de Oferta Labora",   JOptionPane.ERROR_MESSAGE);
@@ -105,7 +119,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                 			if (valor <= 0) {
                 				JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "El campo cantidad debe ser un número positivo.",   "ERROR - Agregar Tipo de Publicación de Oferta Labora",   JOptionPane.ERROR_MESSAGE);
                 			} else {
-                                ICO.agregarTipoOfertaPaq(op1,   op2,  valor);
+                                ICO.agregarTipoOfertaPaq(op1, op2, valor);
                                 JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "Se ha vinculado el tipo de publicacion a la Oferta Laboral",   "Agregar Tipo de Publicación de Oferta Labora",   JOptionPane.INFORMATION_MESSAGE);
                                 setVisible(false);		
                 			}
@@ -167,19 +181,29 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     
     public void actualizar() {
     	
-    	Set<String> paquetes = ico.listarPaquetes();
-        System.out.println(paquetes.size());
+    	paquetesVisualizar.removeAllItems();
+    	paquetesVisualizar.setEnabled(true);
+    	
+		Set<String> packs = ico.listarPaquetes();
+		List<String> packSorted = new ArrayList<>(packs);
+        Collections.sort(packSorted,  String.CASE_INSENSITIVE_ORDER);
+        
+        paquetesVisualizar.addItem("");
+		for (String elem : packSorted) {
+			
+			paquetesVisualizar.addItem(elem);
+		}
 
         	
     	//quedarse con los no comprados
-    	paquetesVisualizar.addItem(""); // casilla vacia
-    	for (String element1 : paquetes) {
+    	// paquetesVisualizar.addItem(""); // casilla vacia
+    	/*for (String element1 : paquetes) {
     		
     		if (!ico.paqueteComprado(element1)) {
     		   	//si nadie lo compro queda disponible	
     			paquetesVisualizar.addItem(element1);
     		}
-    	}
+    	}*/
     	
     	
     	/*HashSet<String> tiposDePub = ico.listarTipoDePublicaciones();

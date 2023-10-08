@@ -216,14 +216,17 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         	        String descripcion = descripcionTextArea.getText();
         	        int expos = (int) exposicionSpinner.getValue();
         	        int duracion = (int) duracionSpinner.getValue();
-        	        float costo = (float) costoSpinner.getValue();
-        	        
+        	        int costo1 = (int) costoSpinner.getValue();
+        	        float costo = (float) costo1;
         		        			
     	            boolean res = ctrlOferta.altaTipoPublicacionOL(nombre,  descripcion,  expos,  duracion,  costo,  fechaConvertida);
     	            System.out.print(res);
     	            if (res) {
     	                JOptionPane.showMessageDialog(null,  "Tipo de publicación de oferta laboral creado exitosamente.",  "Éxito",  JOptionPane.INFORMATION_MESSAGE);
     	                dispose();
+    	            }
+    	            else { 
+    	            	System.out.println("---ERROR---");
     	            }
     	            nombreField.setText("");
     	    		descripcionTextArea.setText("");

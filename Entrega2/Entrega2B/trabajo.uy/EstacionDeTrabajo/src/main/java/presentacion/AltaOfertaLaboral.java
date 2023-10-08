@@ -399,8 +399,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     
                     try {                   	
                     	
-                    	// System.out.println(keywords);
-                    	
+                    	                    	
                     	try {
                     		boolean noexiste = icUsuario.altaOfertaLaboral(empresa,  ofertaLab,  nomb,  desc,  horario,  remu,  ciu,  departamento,  LocalDate.now(),  keywords,  EstadoOL.Ingresada,  null,  opcionPaq);
 	                			if (!noexiste) {
