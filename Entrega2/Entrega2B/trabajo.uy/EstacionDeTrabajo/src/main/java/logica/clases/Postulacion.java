@@ -16,7 +16,7 @@ public class Postulacion {
     private Postulante postulante;
 
     // constructor
-    public Postulacion(Postulante postulante, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+    public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) {
         this.postulante = postulante;
         this.fecha = fecha;
         this.curriculumVitae = curriculumVitae;
@@ -79,7 +79,7 @@ public class Postulacion {
     
     // METODOS
     public DTPostulacion obtenerDT() {
-        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(), fecha, URLDocExtras, curriculumVitae, motivacion);
+        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   URLDocExtras,   curriculumVitae,   motivacion);
         return dtpostu;
     } 
 
@@ -87,7 +87,7 @@ public class Postulacion {
     	return OferLab.getNombre();
     }
 
-    public void editarPostulacion(String cvAbreviado,String motivacion) {
+    public void editarPostulacion(String cvAbreviado,  String motivacion) {
         this.curriculumVitae = cvAbreviado;
         this.motivacion = motivacion;
     }

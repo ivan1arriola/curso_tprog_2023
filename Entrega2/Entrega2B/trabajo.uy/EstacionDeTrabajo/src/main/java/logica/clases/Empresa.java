@@ -23,32 +23,32 @@ public class Empresa extends Usuario {
     private Set<InfoCompra> infoCompras;
     
     // constructor empresa con imagen y url 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
-        super(nickname, nombre, apellido, correo_electronico, contrasena, img);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc,  String urlE) {
+        super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = urlE;
     }
 
     // constructor empresa con imagen sin url 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc) {
-        super(nickname, nombre, apellido, correo_electronico, contrasena, img);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc) {
+        super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = null;
     }
 
     // constructor empresa con url sin imagen 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc, String urlE) {
-        super(nickname, nombre, apellido, correo_electronico, contrasena);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  String desc,  String urlE) {
+        super(nickname,  nombre,  apellido,  correo_electronico,  contrasena);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = urlE;
     }
 
     // constructor empresa sin imagen ni url 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc) {
-        super(nickname, nombre, apellido, correo_electronico, contrasena);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  String desc) {
+        super(nickname,  nombre,  apellido,  correo_electronico,  contrasena);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         url = null;
@@ -87,21 +87,21 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq){
-    	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, paq);
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq){
+    	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  paq);
         ofertasLaborales.add(ofertaLab);
         return ofertaLab;
     }
 
     
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img) {
-    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img);
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img) {
+    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img);
     	ofertasLaborales.add(ofertaLab);
     	return ofertaLab;
     }
     
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remu, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img, Paquete paquete) {
-    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw, tipo, nombre, descripcion, ciu, dep, horario, remu, fechaA, estado, img, paquete);
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img,  Paquete paquete) {
+    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img,  paquete);
     	ofertasLaborales.add(ofertaLab);
     	return ofertaLab;	
     }
@@ -123,7 +123,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);   
         }
         
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);
+        return new DTEmpresa(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  descripcion,  url,  dtOfertas,  imagen);
         
     }
     
@@ -198,14 +198,14 @@ public class Empresa extends Usuario {
     	// int val = paq.getValidez();
     	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
     	
-    	InfoCompra infoComp = new InfoCompra(fechaA, costo, paq, this, ConjuntoS);
+    	InfoCompra infoComp = new InfoCompra(fechaA,  costo,  paq,  this,  ConjuntoS);
     	infoCompras.add(infoComp);
     	return true;
     }
 
 	@Override
-    // corregido, se pasan mas parametros para la ejecucion
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta) {
+    // corregido,  se pasan mas parametros para la ejecucion
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,  String UsuarioQueSeHaceConsulta) {
 		DTEmpresa empre;
 		if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();
@@ -221,7 +221,7 @@ public class Empresa extends Usuario {
                 dtOfertas.add(dtOferta);
                 // muestro toda oferta laboral 
             }
-            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);   
+            empre = new DTEmpresa(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  descripcion,  url,  dtOfertas,  imagen);   
         } else {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -237,7 +237,7 @@ public class Empresa extends Usuario {
                     dtOfertas.add(dtOferta);   
                 }// si oferta laboral confirmada se muestra
             }
-            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen); 
+            empre = new DTEmpresa(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  descripcion,  url,  dtOfertas,  imagen); 
         }
         return empre;
     }

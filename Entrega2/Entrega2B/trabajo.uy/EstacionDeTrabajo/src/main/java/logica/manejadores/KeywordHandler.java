@@ -8,10 +8,10 @@ import main.java.logica.clases.Keyword;
 
 public class KeywordHandler {
 	private static KeywordHandler instancia = null;
-	private Map<String, Keyword> keys;
+	private Map<String,  Keyword> keys;
 	
 	private KeywordHandler() { 
-		keys = new HashMap<String, Keyword>(); 
+		keys = new HashMap<String,  Keyword>(); 
 	} // obtener instancia con getInstance() 
 	
 	public static KeywordHandler getInstance() {
@@ -25,14 +25,14 @@ public class KeywordHandler {
 		if (key == null) {
 	      throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
 		}
-		keys.put(key.getNombre(), key);
+		keys.put(key.getNombre(),  key);
 	}
 	
 	public boolean existe(String key) {
 		return keys.containsKey(key);
 	}
 
-	public Map<String, Keyword> obtener() {
+	public Map<String,  Keyword> obtener() {
 		return keys;
 	}
 }

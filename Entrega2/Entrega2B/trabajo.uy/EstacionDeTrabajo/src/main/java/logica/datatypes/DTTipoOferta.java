@@ -10,7 +10,7 @@ public class DTTipoOferta {
 	private int exposicion;
 	private String descripcion;
 	 
-	public DTTipoOferta(String nombre, LocalDate fechaAlta, float costo, int duracion, int exposicion, String descripcion) {
+	public DTTipoOferta(String nombre,  LocalDate fechaAlta,  float costo,  int duracion,  int exposicion,  String descripcion) {
 		this.nombre = nombre;
 		this.fechaAlta = fechaAlta;
 		this.costo = costo;

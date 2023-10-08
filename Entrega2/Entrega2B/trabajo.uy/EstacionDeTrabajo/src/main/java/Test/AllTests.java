@@ -7,9 +7,9 @@ import org.junit.platform.suite.api.Suite;
 
 
 @Suite
-@SelectClasses({ControladorUsuarioTest.class, 
-				ControladorUsuarioTest2.class, 
-				ControladorUsuarioTest3.class, 
+@SelectClasses({ControladorUsuarioTest.class,  
+				ControladorUsuarioTest2.class,  
+				ControladorUsuarioTest3.class,  
 				ctrlOfertaTest.class
 				})
 

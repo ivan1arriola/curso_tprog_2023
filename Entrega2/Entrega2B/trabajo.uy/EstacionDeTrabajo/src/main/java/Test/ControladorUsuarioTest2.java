@@ -50,9 +50,9 @@ public class ControladorUsuarioTest2 {
 
 			// Creating a set for testing
 			HashSet<String> pruebaKeyword = new HashSet<>(Arrays.asList(
-				"Trabajo nocturno", 
-				"horario vespertino", 
-				"full time", 
+				"Trabajo nocturno",  
+				"horario vespertino",  
+				"full time",  
 				"part time"
 			));
 
@@ -61,7 +61,7 @@ public class ControladorUsuarioTest2 {
 
 			for (String s : pruebaKeyword) {
 				if (!probandoEnSistema.contains(s)) {
-					assertEquals("El test keywords fallo",  true,  false);
+					assertEquals("El test keywords fallo",   true,   false);
 				}
 			}
 		
@@ -71,93 +71,93 @@ public class ControladorUsuarioTest2 {
 		    Set<String> UsuariosSistema = (HashSet<String>) ICU.listarNicknamesUsuarios();
 			for (String s : UsuariosSistema) {
 				if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon") && !s.equals("ASwatzenegger") && !s.equals("LeonardoVinchi")) {
-					assertEquals("El test usuarios en sistema fallo",  false,  true);
+					assertEquals("El test usuarios en sistema fallo",   false,   true);
 				}
 			
 			}
 
 			UsuarioHandler UH = UsuarioHandler.getInstance();
 			Postulante postulante1 = (Postulante) UH.buscarNick("LeonardoVinchi");
-			// obtuve empresa,  ahora creo DTEmpresa
+			// obtuve empresa,   ahora creo DTEmpresa
 			
-			ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),  
-												postulante1.getNombre(),  
-												postulante1.getApellido(),  
-												postulante1.getcorreoElectronico(),  
-												postulante1.getcontrasenia(),  
-												postulante1.getFechaNac(), 
+			ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),   
+												postulante1.getNombre(),   
+												postulante1.getApellido(),   
+												postulante1.getcorreoElectronico(),   
+												postulante1.getcontrasenia(),   
+												postulante1.getFechaNac(),  
 												postulante1.getNacionalidad());
 												
-			DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi", "LeonardoVinchi");
+			DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",  "LeonardoVinchi");
 			DTPostulante DTverdaderopostulante1 = (DTPostulante) DTpostulante1; // Casting;
 
-			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(),  
-														DTverdaderopostulante1.getNombre(),  
-														DTverdaderopostulante1.getApellido(),  
-														DTverdaderopostulante1.getcorreoElectronico(),  
-														DTverdaderopostulante1.getcontrasenia(),  
-														DTverdaderopostulante1.getFecha_nac(),  
+			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(),   
+														DTverdaderopostulante1.getNombre(),   
+														DTverdaderopostulante1.getApellido(),   
+														DTverdaderopostulante1.getcorreoElectronico(),   
+														DTverdaderopostulante1.getcontrasenia(),   
+														DTverdaderopostulante1.getFecha_nac(),   
 														DTverdaderopostulante1.getNacionalidad());	
 				
 			String str = "MeEncantaLaMOZARELLA";
 			byte[] img23 = str.getBytes();
 			
-			ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),  
-													DTverdaderopostulante1.getNombre(),  
-													DTverdaderopostulante1.getApellido(),  
-													DTverdaderopostulante1.getcorreoElectronico(),  
-													DTverdaderopostulante1.getcontrasenia(),  
-													img23,  
-													DTverdaderopostulante1.getFecha_nac(),  
+			ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),   
+													DTverdaderopostulante1.getNombre(),   
+													DTverdaderopostulante1.getApellido(),   
+													DTverdaderopostulante1.getcorreoElectronico(),   
+													DTverdaderopostulante1.getcontrasenia(),   
+													img23,   
+													DTverdaderopostulante1.getFecha_nac(),   
 													DTverdaderopostulante1.getNacionalidad());
 			postulante1 = (Postulante) UH.buscarNick("LeonardoVinchi");
-			DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi", "ASwatzenegger");
+			DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",  "ASwatzenegger");
 			DTPostulante DTverdaderopostulante12 = (DTPostulante) DTpostulante12; // Casting;
 
-			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(),  
-														DTverdaderopostulante12.getNombre(),  
-														DTverdaderopostulante12.getApellido(),  
-														DTverdaderopostulante12.getcorreoElectronico(),  
-														DTverdaderopostulante12.getcontrasenia(),  
-														DTverdaderopostulante12.getFecha_nac(),  
+			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(),   
+														DTverdaderopostulante12.getNombre(),   
+														DTverdaderopostulante12.getApellido(),   
+														DTverdaderopostulante12.getcorreoElectronico(),   
+														DTverdaderopostulante12.getcontrasenia(),   
+														DTverdaderopostulante12.getFecha_nac(),   
 														DTverdaderopostulante12.getNacionalidad());	
 			
 			DTUsuario empresa1 = ICU.obtenerDatosUsuario("Kreves");
 			DTEmpresa DTverdaderaempresa1 = (DTEmpresa) empresa1; // Casting;	
-			ICU.ingresarDatosEditadosEmpresa(DTverdaderaempresa1.getNickname(),  
-												DTverdaderaempresa1.getNombre(),  
-												DTverdaderaempresa1.getApellido(),  
-												DTverdaderaempresa1.getcorreoElectronico(),  
-												DTverdaderaempresa1.getcontrasenia(),  
+			ICU.ingresarDatosEditadosEmpresa(DTverdaderaempresa1.getNickname(),   
+												DTverdaderaempresa1.getNombre(),   
+												DTverdaderaempresa1.getApellido(),   
+												DTverdaderaempresa1.getcorreoElectronico(),   
+												DTverdaderaempresa1.getcontrasenia(),   
 												DTverdaderaempresa1.getDescripcion());
 			
-			ICU.ingresarDatosEditadosEmpresaImg(DTverdaderaempresa1.getNickname(),  
-												DTverdaderaempresa1.getNombre(),  
-												DTverdaderaempresa1.getApellido(),  
-												DTverdaderaempresa1.getcorreoElectronico(),  
-												DTverdaderaempresa1.getcontrasenia(),  
-												img23,  
+			ICU.ingresarDatosEditadosEmpresaImg(DTverdaderaempresa1.getNickname(),   
+												DTverdaderaempresa1.getNombre(),   
+												DTverdaderaempresa1.getApellido(),   
+												DTverdaderaempresa1.getcorreoElectronico(),   
+												DTverdaderaempresa1.getcontrasenia(),   
+												img23,   
 												DTverdaderaempresa1.getDescripcion());
 
-			ICU.ingresarDatosEditadosEmpresaURLImg(DTverdaderaempresa1.getNickname(),  
-													DTverdaderaempresa1.getNombre(),  
-													DTverdaderaempresa1.getApellido(),  
-													DTverdaderaempresa1.getcorreoElectronico(),  
-													DTverdaderaempresa1.getcontrasenia(),  
-													DTverdaderaempresa1.getUrl(),  
-													img23,  
+			ICU.ingresarDatosEditadosEmpresaURLImg(DTverdaderaempresa1.getNickname(),   
+													DTverdaderaempresa1.getNombre(),   
+													DTverdaderaempresa1.getApellido(),   
+													DTverdaderaempresa1.getcorreoElectronico(),   
+													DTverdaderaempresa1.getcontrasenia(),   
+													DTverdaderaempresa1.getUrl(),   
+													img23,   
 													DTverdaderaempresa1.getDescripcion());
 
-			ICU.ingresarDatosEditadosEmpresaURL(DTverdaderaempresa1.getNickname(),  
-												DTverdaderaempresa1.getNombre(),  
-												DTverdaderaempresa1.getApellido(),  
-												DTverdaderaempresa1.getcorreoElectronico(),  
-												DTverdaderaempresa1.getcontrasenia(),  
-												DTverdaderaempresa1.getUrl(),  
+			ICU.ingresarDatosEditadosEmpresaURL(DTverdaderaempresa1.getNickname(),   
+												DTverdaderaempresa1.getNombre(),   
+												DTverdaderaempresa1.getApellido(),   
+												DTverdaderaempresa1.getcorreoElectronico(),   
+												DTverdaderaempresa1.getcontrasenia(),   
+												DTverdaderaempresa1.getUrl(),   
 												DTverdaderaempresa1.getDescripcion());
-			// si no tiene url no lo toma,  en este caso google tiene url
+			// si no tiene url no lo toma,   en este caso google tiene url
 			if (!ICU.tieneURL("Google")) {
-				assertFalse("The test for user in system failed",  true);
+				assertFalse("The test for user in system failed",   true);
 			}
 			
 
@@ -165,8 +165,7 @@ public class ControladorUsuarioTest2 {
 			byte[] img233 = str1.getBytes();
 			// ------------------------- tipo oferta ---------------------------
 			boolean booleano;
-			booleano = ICO.altaTipoPublicacionOL("Oferta normal", "visibilidad normal",  1,  19,  100.0f,  LocalDate.now());
-			DTTipoOferta tipoOfertaDT = null;
+			booleano = ICO.altaTipoPublicacionOL("Oferta normal",  "visibilidad normal",   1,   19,   100.0f,   LocalDate.now());
 			try {
 				tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
 			} catch (ExcepcionTipoOfertaNoExistente e) {
@@ -179,16 +178,16 @@ public class ControladorUsuarioTest2 {
 			tipoOfertaDT.getDuracion();
 			tipoOfertaDT.getExposicion();
 			tipoOfertaDT.getDescripcion();
-			booleano = ICO.altaTipoPublicacionOL("Oferta destacada", "visibilidad destacada",  1,  19,  100.0f,  LocalDate.now());
-			booleano = ICO.altaTipoPublicacionOL("Oferta super destacada", "visibilidad super destacada",  1,  19,  100.0f,  LocalDate.now());
+			booleano = ICO.altaTipoPublicacionOL("Oferta destacada",  "visibilidad destacada",   1,   19,   100.0f,   LocalDate.now());
+			booleano = ICO.altaTipoPublicacionOL("Oferta super destacada",  "visibilidad super destacada",   1,   19,   100.0f,   LocalDate.now());
 			
-			booleano = ICO.altaPaqueteOL("Paquete 1", "un paquete basico",  1,  LocalDate.now(),  10.0f,  img233);	
+			booleano = ICO.altaPaqueteOL("Paquete 1",  "un paquete basico",   1,   LocalDate.now(),   10.0f,   img233);	
 
-			// los paquetes empiezan vacios,  se les va agregando tipos de oferta
+			// los paquetes empiezan vacios,   se les va agregando tipos de oferta
 
-			ICO.agregarTipoOfertaPaq("Paquete 1",  "Oferta normal", 20);
-			ICO.agregarTipoOfertaPaq("Paquete 1",  "Oferta destacada", 12);
-			ICO.agregarTipoOfertaPaq("Paquete 1",  "Oferta super destacada", 1);
+			ICO.agregarTipoOfertaPaq("Paquete 1",   "Oferta normal",  20);
+			ICO.agregarTipoOfertaPaq("Paquete 1",   "Oferta destacada",  12);
+			ICO.agregarTipoOfertaPaq("Paquete 1",   "Oferta super destacada",  1);
 		    
 			DTPaquete nuevo = ICO.obtenerDatosPaquete("Paquete 1");
 			nuevo.getCosto();
@@ -201,9 +200,9 @@ public class ControladorUsuarioTest2 {
 			// coloco todas keywors del sistema
 			Set<String> listaKeywords = (HashSet<String>) ICO.listarKeywords();
 			
-			DTHora hora1 = new DTHora(8,  0);
-			DTHora hora2 = new DTHora(1,  0);
-			DTHorario horario = new DTHorario(hora1, hora2);
+			DTHora hora1 = new DTHora(8,   0);
+			DTHora hora2 = new DTHora(1,   0);
+			DTHorario horario = new DTHorario(hora1,  hora2);
 			String TIPOOFERTASELECCIONADA = "Oferta normal";
 
 			
@@ -216,29 +215,29 @@ public class ControladorUsuarioTest2 {
 			float sueldo = 100222.0f;
 			String paquete = "Paquete 1";
 			EstadoOL estado = EstadoOL.Confirmada;	
-			ICO.altaOfertaLaboral(Nick, 
-								  TIPOOFERTASELECCIONADA, 
-								  desc, 
-								  titulo,
-								  horario, 
-								  sueldo, 
-								  ciudad, 
-								  departamento, 
-								  fecha,
-								  listaKeywords,
-								  estado,
-								  img233,
+			ICO.altaOfertaLaboral(Nick,  
+								  TIPOOFERTASELECCIONADA,  
+								  desc,  
+								  titulo, 
+								  horario,  
+								  sueldo,  
+								  ciudad,  
+								  departamento,  
+								  fecha, 
+								  listaKeywords, 
+								  estado, 
+								  img233, 
 								  paquete);
 
-			DTOfertaLaboral temporal3 = new DTOfertaLaboral( "Google", 
-							 "investigador IA", 
-							 LocalDate.now(), 
-							 100222.0f, 
-							 100222.0f, 
-							 horario, 
-							 departamento, 
-							 ciudad, 
-							 estado, 
+			DTOfertaLaboral temporal3 = new DTOfertaLaboral( "Google",  
+							 "investigador IA",  
+							 LocalDate.now(),  
+							 100222.0f,  
+							 100222.0f,  
+							 horario,  
+							 departamento,  
+							 ciudad,  
+							 estado,  
 							 img233);
 			temporal3.getCiudad();
 			temporal3.getCosto();
@@ -256,17 +255,17 @@ public class ControladorUsuarioTest2 {
 			Set<String> nombres = (HashSet<String>) ICU.obtenerNicknamesPostulantes();
 			
 			
-//			boolean existePostulacion(String nickname,  String nombre) {
+//			boolean existePostulacion(String nickname,   String nombre) {
 //				UsuarioHandler UH = UsuarioHandler.getInstance();
 //				Postulante p = (Postulante) UH.buscarNick(nickname);
-//				if(p != null) 
+//				if (p != null) 
 //					return p.existePostulacion(nombre);
 //				else
 //					// throw new IllegalArgumentException("Usuario " + nick + " no existe");
 //					return false;
 //			}
 //
-//			public Postulacion crearPostulacion(String nick,  String cv,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab) 
+//			public Postulacion crearPostulacion(String nick,   String cv,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) 
 		}
 		    
 }

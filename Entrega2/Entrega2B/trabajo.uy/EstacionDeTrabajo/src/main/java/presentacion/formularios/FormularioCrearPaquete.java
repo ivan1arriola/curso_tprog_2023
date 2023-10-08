@@ -21,25 +21,25 @@ public class FormularioCrearPaquete extends JPanel implements IFormulario {
 
     public FormularioCrearPaquete() {
         // Configurar el diseño del panel
-        setLayout(new GridLayout(4, 2, 10, 10));
+        setLayout(new GridLayout(4,  2,  10,  10));
 
         // Crear componentes
         JLabel lblNombre = new JLabel("Nombre:");
         nombreFieldText = new JTextField(20);
         
         JLabel lblDescripcion = new JLabel("Descripción:");
-        descripcionTextField = new JTextArea(5, 20);
+        descripcionTextField = new JTextArea(5,  20);
         descripcionTextField.setLineWrap(true);
         descripcionTextField.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(descripcionTextField);
         
         
         JLabel lblPeriodoValidez = new JLabel("Período de validez (días):");
-        periodoValidezSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+        periodoValidezSpinner = new JSpinner(new SpinnerNumberModel(1,  1,  Integer.MAX_VALUE,  1));
         
         
         JLabel lblDescuento = new JLabel("Descuento (%):");
-        descuentoSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
+        descuentoSpinner = new JSpinner(new SpinnerNumberModel(0,  0,  100,  1));
 
         // Agregar componentes al panel
         add(lblNombre);
@@ -80,23 +80,23 @@ public class FormularioCrearPaquete extends JPanel implements IFormulario {
 	    
 	    // Verificar que ningún campo esté vacío
 	    if (nombre.isEmpty() || descripcion.isEmpty()) {
-	        JOptionPane.showMessageDialog(this, "Ningún campo puede estar vacío.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+	        JOptionPane.showMessageDialog(this,  "Ningún campo puede estar vacío.",  "Error de validación",  JOptionPane.ERROR_MESSAGE);
 	        return false;
 	    }
 
 	    // Verificar que el período de validez sea un número entero mayor a 1
 	    if (periodoValidez < 1) {
-	        JOptionPane.showMessageDialog(this, "El período de validez debe ser un número entero mayor o igual a 1.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+	        JOptionPane.showMessageDialog(this,  "El período de validez debe ser un número entero mayor o igual a 1.",  "Error de validación",  JOptionPane.ERROR_MESSAGE);
 	        return false;
 	    }
 
 	    // Verificar que el descuento sea un número real entre 0 y 100 inclusive
 	    if (descuento < 0 || descuento > 100) {
-	        JOptionPane.showMessageDialog(this, "El descuento debe ser un número real entre 0 y 100 inclusive.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+	        JOptionPane.showMessageDialog(this,  "El descuento debe ser un número real entre 0 y 100 inclusive.",  "Error de validación",  JOptionPane.ERROR_MESSAGE);
 	        return false;
 	    }
 
-	    // Si todas las validaciones pasan, el formulario es válido
+	    // Si todas las validaciones pasan,  el formulario es válido
 	    return true;
 	}
 

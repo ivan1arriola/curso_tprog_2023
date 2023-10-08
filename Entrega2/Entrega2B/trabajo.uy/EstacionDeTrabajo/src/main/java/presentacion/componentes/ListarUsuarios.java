@@ -14,7 +14,7 @@ public class ListarUsuarios extends JPanel {
     private ListarUsuariosObserver observer;
 
     public ListarUsuarios() {
-        setLayout(new GridLayout(0, 2, 0, 0));
+        setLayout(new GridLayout(0,  2,  0,  0));
 
         JLabel lblSeleccionarUsuario = new JLabel("Seleccionar Usuario");
         add(lblSeleccionarUsuario);

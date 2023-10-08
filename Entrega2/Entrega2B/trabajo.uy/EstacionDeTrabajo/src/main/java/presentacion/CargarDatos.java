@@ -38,7 +38,7 @@ public class CargarDatos extends JInternalFrame {
 	 * Create the application.
 	 */
 	
-	public CargarDatos(ICtrlUsuario icu, ICtrlOferta ico) {
+	public CargarDatos(ICtrlUsuario icu,  ICtrlOferta ico) {
         Fabrica fabrica = Fabrica.getInstance();
 		ICCD = fabrica.getICtrlCargaDeDatos();
 		initialize();
@@ -54,7 +54,7 @@ public class CargarDatos extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Cargar datos");
-        setBounds(30, 30, 477, 153);
+        setBounds(30,  30,  477,  153);
         getContentPane().setLayout(null); //Absolute Layout
         
         JButton btnAceptar = new JButton("Aceptar");
@@ -62,12 +62,12 @@ public class CargarDatos extends JInternalFrame {
         	public void actionPerformed(ActionEvent evento) {
         		ICCD.cargarDatos();
                 
-                JOptionPane.showMessageDialog(CargarDatos.this, "Se han cargado los datos exitosamente.", "Carga de Datos", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(CargarDatos.this,  "Se han cargado los datos exitosamente.",  "Carga de Datos",  JOptionPane.INFORMATION_MESSAGE);
                 
                 setVisible(false);
         	}
         });
-        btnAceptar.setBounds(63, 78, 117, 25);
+        btnAceptar.setBounds(63,  78,  117,  25);
         getContentPane().add(btnAceptar);
         
         JButton btnCerrar = new JButton("Cerrar");
@@ -76,11 +76,11 @@ public class CargarDatos extends JInternalFrame {
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(297, 78, 117, 25);
+        btnCerrar.setBounds(297,  78,  117,  25);
         getContentPane().add(btnCerrar);
         
         JLabel lblSeleccioneAceptarPara = new JLabel("Seleccione aceptar para cargar los datos.");
-        lblSeleccioneAceptarPara.setBounds(81, 28, 332, 15);
+        lblSeleccioneAceptarPara.setBounds(81,  28,  332,  15);
         getContentPane().add(lblSeleccioneAceptarPara);
 	}
 }

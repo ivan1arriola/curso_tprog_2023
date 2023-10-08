@@ -20,34 +20,34 @@ public interface ICtrlOferta {
 		
 		public abstract boolean existeOferta(String nombre_oferta);
 		
-		public abstract boolean altaTipoPublicacionOL(String nomb, String descripcion, int expo, int dur, float costo, LocalDate fechA);
+		public abstract boolean altaTipoPublicacionOL(String nomb,  String descripcion,  int expo,  int dur,  float costo,  LocalDate fechA);
 		
-		public abstract boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] img);
+		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  byte[] img);
 		
 		public abstract boolean altaKeyword(String key);
 		
-		public abstract boolean compraPaquetes(String nickname_e, String paq);
+		public abstract boolean compraPaquetes(String nickname_e,  String paq);
 		
 		public abstract boolean 
-		altaOfertaLaboral(String nickname_e, String tipo, String nombre, 
-				String descripcion, DTHorario horario, float remun, String ciu, 
-				DepUY dep, LocalDate fechaA, Set<String> keys, 
-				EstadoOL estado, byte[] img, String paquete);
+		altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
+				String descripcion,  DTHorario horario,  float remun,  String ciu,  
+				DepUY dep,  LocalDate fechaA,  Set<String> keys,  
+				EstadoOL estado,  byte[] img,  String paquete);
 		
-		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
+		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante,  String nombre_oferta);
 		
-		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
+		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa,  String nombre_oferta);
 		
-		public abstract boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha);
+		public abstract boolean altaPostulacion(String nombre,  String nick,  String curriculumVitae,  String motivacion,  String URLDocE,  LocalDate fecha);
 		
 		public abstract 
 		DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
 		
 		public abstract Set<String> listarOfertasLaboralesKeywords(String keywords);
 		
-		public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
+		public abstract boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion);
 		
-		public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer);
+		public abstract DTPostulacion obtenerDatosPostulacionW(String nick,  String ofer);
 		
 		public abstract Set<String> 
 			listarOfertasLaboralesConfirmadas(String nickname_e);
@@ -65,7 +65,7 @@ public interface ICtrlOferta {
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
 		
 		public abstract void 
-		agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad);
+		agregarTipoOfertaPaq(String paquete,  String TipoOferta,  int cantidad);
 		
 		public abstract Set<String> listarPaquetes();
 		

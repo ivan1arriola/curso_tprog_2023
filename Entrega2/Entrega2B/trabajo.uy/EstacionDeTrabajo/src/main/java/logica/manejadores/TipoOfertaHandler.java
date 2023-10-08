@@ -7,12 +7,12 @@ import main.java.logica.clases.TipoOferta;
 
 public class TipoOfertaHandler {
 	private static TipoOfertaHandler tOfertaHandler = null;
-	private Map<String, TipoOferta> tipoOfertas;
+	private Map<String,  TipoOferta> tipoOfertas;
 	
 	
 	private TipoOfertaHandler() {
 		tipoOfertas = new HashMap<>();
-	} //Constructor privado, inicializa colección de ofertas
+	} //Constructor privado,  inicializa colección de ofertas
 	
 	
 	public static TipoOfertaHandler getInstance() {
@@ -27,14 +27,14 @@ public class TipoOfertaHandler {
     }
 	
 	public void agregar(TipoOferta tipoOferta) {
-        tipoOfertas.put(tipoOferta.getNombre(), tipoOferta);
+        tipoOfertas.put(tipoOferta.getNombre(),  tipoOferta);
     } 
     
     public TipoOferta buscar(String nombre) {
     	return tipoOfertas.get(nombre);
     } 
     
-    public Map<String, TipoOferta> obtener() {
+    public Map<String,  TipoOferta> obtener() {
         return tipoOfertas;
     }
 }

@@ -46,11 +46,11 @@ public class ControladorUsuarioTest {
 	    String nombre = "Arnold";
 	    String apellido = "Schwarzenegger";
 	    String correo = "Arnold@Skynet.com";
-	    LocalDate fechaNacimiento = LocalDate.of(1947, 7, 30);
+	    LocalDate fechaNacimiento = LocalDate.of(1947,  7,  30);
 	    String nacionalidad = "Austriaco";
 	  
 	    try {
-	        boolean b = ICU.altaPostulante(nickname, password, nombre, apellido, correo, fechaNacimiento, nacionalidad);
+	        boolean b = ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
 	    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
@@ -79,7 +79,7 @@ public class ControladorUsuarioTest {
 	                   &&
 	                   usu1.getcontrasenia().equals(password);
 
-	 assertEquals("El test usu1 fallo", true, result1);
+	 assertEquals("El test usu1 fallo",  true,  result1);
 	 
 	 // ------------------- postulante con imagen -------------------
 
@@ -88,13 +88,13 @@ public class ControladorUsuarioTest {
 	 nombre = "Leonardo";
 	 apellido = "Da Vinci";
 	 correo = "Leo@vinchi.com";
-	 fechaNacimiento = LocalDate.of(1452, 4, 15);
+	 fechaNacimiento = LocalDate.of(1452,  4,  15);
 	 nacionalidad = "Italiano";
 
 	 String str = "MeEncantaPintar";
 	 byte[] img = str.getBytes();
 
-	 boolean b = ICU.altaPostulanteImagen(nickname, password, nombre, apellido, fechaNacimiento, correo, nacionalidad, img);
+	 boolean b = ICU.altaPostulanteImagen(nickname,  password,  nombre,  apellido,  fechaNacimiento,  correo,  nacionalidad,  img);
 	 
 	// ------------------- datatypes usuario para postulante con imagen -------------------
 
@@ -122,7 +122,7 @@ public class ControladorUsuarioTest {
 		        }
 		    }
 
-		    if (!found) {assertEquals("El test usu2 loop fallo", true, false);}
+		    if (!found) {assertEquals("El test usu2 loop fallo",  true,  false);}
 	 }
    }
 	
@@ -145,7 +145,7 @@ public class ControladorUsuarioTest {
 		    String descripcion = "Vendemos armas.";
 
 		    try {
-		        boolean b = ICU.altaEmpresa(nickname, password, nombre, apellido, correo, descripcion);
+		        boolean b = ICU.altaEmpresa(nickname,  password,  nombre,  apellido,  correo,  descripcion);
 		    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 		        e.printStackTrace();
 		    } catch (ExceptionUsuarioNickRepetido e) {
@@ -155,7 +155,7 @@ public class ControladorUsuarioTest {
 		    }
 
 		    // ------------------- datatypes usuario para postulante -------------------
-		    // se obtiene con nickname, notar que estoy probando DTUsuario
+		    // se obtiene con nickname,  notar que estoy probando DTUsuario
 		    DTUsuario usu3 = ICU.obtenerDatosUsuario("Kreves");
 		    boolean result = usu3.getNickname().equals(nickname) 
 		    		&&
@@ -165,7 +165,7 @@ public class ControladorUsuarioTest {
 		            &&
 		            usu3.getcorreoElectronico().equals(correo) 
 		            &&
-		            usu3.getcontrasenia().equals(password);
+		            usu3.getContraseña().equals(password);
 		    assertEquals("El test usu3 fallo", result, true);
 		    
 		    // ------------------ empresa con url ------------------
@@ -178,7 +178,7 @@ public class ControladorUsuarioTest {
 		    String url = "www.google.com";
 
 		    try {
-		        boolean b = ICU.altaEmpresaURL(nickname, password, nombre, apellido, correo, descripcion, url);
+		        boolean b = ICU.altaEmpresaURL(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url);
 		    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 		        e.printStackTrace();
 		    } catch (ExceptionUsuarioNickRepetido e) {
@@ -188,11 +188,11 @@ public class ControladorUsuarioTest {
 		    }
 
 		    // ----------------- dataTypes empresa -----------------
-		    // se obtiene con nickname, notar que estoy probando DTUsuario
+		    // se obtiene con nickname,  notar que estoy probando DTUsuario
 		    UsuarioHandler UH = UsuarioHandler.getInstance();
 		    UH.buscarCorreo("Larry@hotmail.com");
 			Empresa empresa1 = (Empresa) UH.buscarNick("Google");
-			// obtuve empresa, ahora creo DTEmpresa
+			// obtuve empresa,  ahora creo DTEmpresa
 			DTUsuario DTempresa1 = empresa1.obtenerDatosUsuario();
 			DTEmpresa DTverdaderoEmpresa1 = (DTEmpresa) DTempresa1; // Casting
 			boolean result2 = DTempresa1.getNickname().equals(nickname) 
@@ -208,7 +208,7 @@ public class ControladorUsuarioTest {
 		            DTverdaderoEmpresa1.getDescripcion().equals(descripcion) 
 		            &&
 		            DTverdaderoEmpresa1.getUrl().equals(url);
-		assertEquals("El test usu4 fallo", result2, true);
+		assertEquals("El test usu4 fallo",  result2,  true);
 
 
 		    // ----------------- empresa con imagen ------------------
@@ -222,12 +222,12 @@ public class ControladorUsuarioTest {
 		    // imagen
 		    String str3 = "hola que tal";
 		byte[] img3 = str3.getBytes();
-		boolean b = ICU.altaEmpresaImagen(nickname, password, nombre, apellido, correo, descripcion, img3);
+		boolean b = ICU.altaEmpresaImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  img3);
 
 		Empresa empresa2 = (Empresa) UH.buscarNick("Apple");
 		DTUsuario DTempresa2 = empresa2.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa2 = (DTEmpresa) DTempresa2; // Casting
-		assertEquals("El test usu2 fallo", true, result2);
+		assertEquals("El test usu2 fallo",  true,  result2);
 		byte[] imagen4 = DTverdaderoEmpresa2.getImagen();
 		for (byte bYtesImagen : img3) {
 			boolean found = false;
@@ -238,7 +238,7 @@ public class ControladorUsuarioTest {
 				}
 			}
 			if (!found) {
-				assertEquals("El test usu4 loop fallo", true, false);
+				assertEquals("El test usu4 loop fallo",  true,  false);
 			}
 		}
 
@@ -253,7 +253,7 @@ public class ControladorUsuarioTest {
 				DTverdaderoEmpresa2.getcontrasenia().equals(password) 
 				&&
 				DTverdaderoEmpresa2.getDescripcion().equals(descripcion);
-		assertEquals("El test usu4 fallo", result3, true);
+		assertEquals("El test usu4 fallo",  result3,  true);
 
 		// ----------------- empresa con url e imagen ------------------
 		nickname = "Amazon";
@@ -266,12 +266,12 @@ public class ControladorUsuarioTest {
 		// imagen
 		String str4 = "hola que tal mi nombre es algo";
 		byte[] img4 = str4.getBytes();
-		boolean b2 = ICU.altaEmpresaURLyImagen(nickname, password, nombre, apellido, correo, descripcion, url, img4);
+		boolean b2 = ICU.altaEmpresaURLyImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url,  img4);
 
 		// ----------------- dataTypes empresa -----------------
-		// se obtiene con nickname, notar que estoy probando DTUsuario
+		// se obtiene con nickname,  notar que estoy probando DTUsuario
 		Empresa empresa3 = (Empresa) UH.buscarNick("Amazon");
-		// obtuve empresa, ahora creo DTEmpresa
+		// obtuve empresa,  ahora creo DTEmpresa
 		DTUsuario DTempresa3 = empresa3.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa3 = (DTEmpresa) DTempresa3; // Casting
 		boolean result4 = DTempresa3.getNickname().equals(nickname) 
@@ -287,7 +287,7 @@ public class ControladorUsuarioTest {
 				DTverdaderoEmpresa3.getDescripcion().equals(descripcion) 
 				&&
 				DTverdaderoEmpresa3.getUrl().equals(url);
-		assertEquals("El test usu4 fallo", result4, true);
+		assertEquals("El test usu4 fallo",  result4,  true);
 
 		byte[] imagen5 = DTverdaderoEmpresa3.getImagen();    
 		for (byte bYtesImagen : img4) {
@@ -299,7 +299,7 @@ public class ControladorUsuarioTest {
 				}
 			}
 			if (!found) {
-				assertEquals("El test usu4 loop fallo", true, false);
+				assertEquals("El test usu4 loop fallo",  true,  false);
 			}
 		}
 
@@ -308,7 +308,7 @@ public class ControladorUsuarioTest {
 		Set<String> EmpresaSistema = (HashSet<String>) ICU.listarEmpresas();
 		for (String s : EmpresaSistema) {
 			if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon")) {
-				assertEquals("El test empresa en sistema fallo", false, true);
+				assertEquals("El test empresa en sistema fallo",  false,  true);
 			}
 		}
 
@@ -317,7 +317,7 @@ public class ControladorUsuarioTest {
 		Set<String> UsuariosSistema = (HashSet<String>) ICU.listarNicknamesUsuarios();
 		for (String s : UsuariosSistema) {
 			if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon") && !s.equals("ASwatzenegger") && !s.equals("LeonardoVinchi")) {
-				assertEquals("El test usuarios en sistema fallo", false, true);
+				assertEquals("El test usuarios en sistema fallo",  false,  true);
 			}
 		}
 		
@@ -329,43 +329,11 @@ public class ControladorUsuarioTest {
 			Fabrica f = Fabrica.getInstance();
 			ICtrlUsuario ICU = f.getICtrlUsuario();
 
-			String[] nicknames = {"Kreves", "Google", "Apple", "Amazon", "ASwatzenegger", "LeonardoVinchi"};
-			String[] passwords = {"Pass", "Password", "Password", "Password", "contraseNaSeguraCreeme", "LaContrasenaMasSeguraDelMundo"};
-
-			String nickname = "Google";
-			String descripcion = "Analista de sistemas";
-			DTHora hora1 = new DTHora(8,  0);
-			DTHora hora2 = new DTHora(1,  0);
-			DTHorario horario = new DTHorario(hora1, hora2);
-			float remuneracion = 1000;
-			String ciudad = "Montevideo";
-			DepUY dep = DepUY.Montevideo;
-			LocalDate fechaA = LocalDate.of(2020, 12, 12);
-			List<String> pruebaKeyword1 = new ArrayList<>(Arrays.asList(
-	                "Trabajo nocturno",
-	                "horario vespertino",
-	                "full time",
-	                "part time"
-	        ));
-			EstadoOL estado = EstadoOL.Ingresada;
-			byte[] img = null;
-			String paquete = "paquete";
-//			public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA,List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida{
-			try {
-				ICU.altaOfertaLaboral(nickname, "Oferta normal", nombre, descripcion, horario, remuneracion, ciudad, dep, fechaA, pruebaKeyword1, estado, img, paquete);
-			} catch (ExceptionUsuarioNoEncontrado e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExceptionEmpresaInvalida e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-
+			String[] nicknames = {"Kreves",  "Google",  "Apple",  "Amazon",  "ASwatzenegger",  "LeonardoVinchi"};
+			String[] passwords = {"Pass",  "Password",  "Password",  "Password",  "contraseNaSeguraCreeme",  "LaContrasenaMasSeguraDelMundo"};
 		}
 
-		
-			
-		
+		// ------------------- testear keywords -------------------
+
 	
   }

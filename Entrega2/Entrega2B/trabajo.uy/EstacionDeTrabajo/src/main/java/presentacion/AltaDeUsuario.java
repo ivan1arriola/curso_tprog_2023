@@ -33,25 +33,25 @@ public class AltaDeUsuario extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public AltaDeUsuario(JFrame gui, ICtrlUsuario icu) {
+    public AltaDeUsuario(JFrame gui,  ICtrlUsuario icu) {
         // Se inicializa con el controlador de usuarios
         Fabrica fabrica = Fabrica.getInstance();
         icu = fabrica.getICtrlUsuario();
 
         AltaDePostulanteInternalFrame = new AltaDePostulante(icu);
-        // AltaDePostulanteInternalFrame.setSize(386, 312);
-        AltaDePostulanteInternalFrame.setLocation(5, 0);
+        // AltaDePostulanteInternalFrame.setSize(386,  312);
+        AltaDePostulanteInternalFrame.setLocation(5,  0);
         AltaDePostulanteInternalFrame.setVisible(false);
         // getContentPane().setLayout(null);
         gui.getContentPane().add(AltaDePostulanteInternalFrame);
         
         AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icu);
-        // AltaDeEmpresaInternalFrame.setSize(360, 168);
-        AltaDeEmpresaInternalFrame.setLocation(38, 63);
+        // AltaDeEmpresaInternalFrame.setSize(360,  168);
+        AltaDeEmpresaInternalFrame.setLocation(38,  63);
         AltaDeEmpresaInternalFrame.setVisible(false);
         gui.getContentPane().add(AltaDeEmpresaInternalFrame);
         
-        // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
+        // Propiedades del JInternalFrame como dimensión,  posición dentro del frame, 
         // etc.
 
         setResizable(true);
@@ -60,10 +60,10 @@ public class AltaDeUsuario extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta de Usuario");
-        setBounds(10, 40, 408, 186);
+        setBounds(10,  40,  408,  186);
                                                                 
         btnEmpresa = new JButton("Empresa");
-        btnEmpresa.setBounds(26, 67, 125, 25);
+        btnEmpresa.setBounds(26,  67,  125,  25);
         btnEmpresa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
@@ -73,13 +73,13 @@ public class AltaDeUsuario extends JInternalFrame {
         getContentPane().setLayout(null);
         
         lblIngreseNombre = new JLabel("Seleccione si es un postulante o una empresa:");
-        lblIngreseNombre.setBounds(26, 12, 337, 56);
+        lblIngreseNombre.setBounds(26,  12,  337,  56);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
         getContentPane().add(btnEmpresa);
         
         btnPostulante = new JButton("Postulante");
-        btnPostulante.setBounds(274, 67, 112, 25);
+        btnPostulante.setBounds(274,  67,  112,  25);
         btnPostulante.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
@@ -89,9 +89,9 @@ public class AltaDeUsuario extends JInternalFrame {
         getContentPane().add(btnPostulante);
                 
                         // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
-                        // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
+                        // Dado que antes de cerrar se limpia el formulario,  se invoca un método reutilizable para ello. 
 	btnCancelar = new JButton("Cerrar");
-	btnCancelar.setBounds(90, 116, 207, 25);
+	btnCancelar.setBounds(90,  116,  207,  25);
 	btnCancelar.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent evento) {
 	        setVisible(false);

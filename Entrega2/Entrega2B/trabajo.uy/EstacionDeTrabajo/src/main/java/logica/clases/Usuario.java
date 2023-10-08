@@ -64,7 +64,7 @@ public abstract class Usuario {
     	this.imagen = imagen;
     }
 
-    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia, byte[] imagen) {
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia,  byte[] imagen) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido; 
@@ -73,7 +73,7 @@ public abstract class Usuario {
         this.imagen = imagen;
     }
     
-    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia) {
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido; 
@@ -89,9 +89,9 @@ public abstract class Usuario {
     public abstract DTUsuario obtenerDatosUsuario();
     
     
-    // corregido, se pasan mas parametros para la ejecucion
+    // corregido,  se pasan mas parametros para la ejecucion
     // para visitantes colocar en usuario registrado actual 'nada'
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,  String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
 
 
     // NO ESTA EN EL DCD
