@@ -280,7 +280,7 @@ public class AltaDePostulante extends JInternalFrame {
         	return false;
         }
         
-        if (!apellidoU.matches("[a-zA-Z]+$")) {
+        if (!apellidoU.matches("[\\p{L}]+$")) {
         	JOptionPane.showMessageDialog(this,  "El apellido indicado se compone de carácteres que no son letras.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
         	return false;
         }

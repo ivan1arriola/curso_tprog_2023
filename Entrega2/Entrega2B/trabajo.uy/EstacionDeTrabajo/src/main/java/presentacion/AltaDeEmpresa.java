@@ -146,35 +146,41 @@ public class AltaDeEmpresa extends JInternalFrame {
 	    btnAceptar.setBounds(10,  236,  191,  25);
 	    btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
-	            setVisible(false);
+	        	 try {
+					cmdRegistroUsuarioActionPerformed(arg0);
+				} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
+						| ExceptionUsuarioNickRepetido e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	        }
 	    });
 	    getContentPane().add(btnAceptar);
 		
-			    // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
-			    // Dado que antes de cerrar se limpia el formulario,  se invoca un método reutilizable para ello. 
-			    btnCancelar = new JButton("Cancelar");
-			    btnCancelar.setBounds(232,  236,  180,  25);
-			    btnCancelar.addActionListener(new ActionListener() {
-			        public void actionPerformed(ActionEvent evento) {
-			            limpiarFormulario();
-			            setVisible(false);
-			        }
-			    });
-			    getContentPane().add(btnCancelar);
-			    
-			    passF = new JPasswordField();
-			    passF.setBounds(232,  128,  180,  18);
-			    getContentPane().add(passF);
-			    
-			    pFR = new JPasswordField();
-			    pFR.setBounds(232,  153,  180,  17);
-			    getContentPane().add(pFR);
-			    
-			    nombreEmpresa1 = new JLabel("Confirmación de contraseña:");
-			    nombreEmpresa1.setHorizontalAlignment(SwingConstants.RIGHT);
-			    nombreEmpresa1.setBounds(0,  153,  214,  17);
-			    getContentPane().add(nombreEmpresa1);
+	    // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
+	    // Dado que antes de cerrar se limpia el formulario,  se invoca un método reutilizable para ello. 
+	    btnCancelar = new JButton("Cancelar");
+	    btnCancelar.setBounds(232,  236,  180,  25);
+	    btnCancelar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent evento) {
+	            limpiarFormulario();
+	            setVisible(false);
+	        }
+	    });
+	    getContentPane().add(btnCancelar);
+	    
+	    passF = new JPasswordField();
+	    passF.setBounds(232,  128,  180,  18);
+	    getContentPane().add(passF);
+	    
+	    pFR = new JPasswordField();
+	    pFR.setBounds(232,  153,  180,  17);
+	    getContentPane().add(pFR);
+	    
+	    nombreEmpresa1 = new JLabel("Confirmación de contraseña:");
+	    nombreEmpresa1.setHorizontalAlignment(SwingConstants.RIGHT);
+	    nombreEmpresa1.setBounds(0,  153,  214,  17);
+	    getContentPane().add(nombreEmpresa1);
 	    }
 
 	    protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
@@ -197,7 +203,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	                limpiarFormulario();
 	                setVisible(false);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (IllegalArgumentException e) {
+	        	} catch (ExceptionUsuarioCorreoRepetido|ExceptionUsuarioNickYCorreoRepetidos|ExceptionUsuarioNickRepetido e) {
 	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
@@ -241,12 +247,12 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        	return 0;
 	        }
 	        
-	        if (!apellidoU.matches("[a-zA-Z]+$")) {
+	        if (!apellidoU.matches("[\\p{L}]+$")) {
 	        	JOptionPane.showMessageDialog(this,  "El apellido indicado se compone de carácteres que no son letras.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
 	        	return 0;
 	        }
 	        
-	        if (!correoelectronicoU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2, }$")) {
+	        if (!correoelectronicoU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
 	        	JOptionPane.showMessageDialog(this,  "El correo electrónico indicado no es válido.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
 	        	return 0;
 	        }
