@@ -96,16 +96,27 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                			
 	                			if (campos2.length == 2) {
 	                				try {
+<<<<<<< HEAD
+	                					ICU.altaEmpresaImagen(campos[2],campos[6],campos[3],campos[4], campos[5], campos2[1], imageBytes);
+	                				} catch (Exception e2) {
+=======
 	                					ICU.altaEmpresaImagen(campos[2], campos[3], campos[4], campos[5],  campos[2],  campos2[1],  imageBytes);
 	                				} catch (IllegalArgumentException e2) {
+>>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 	                					e2.printStackTrace();
 	                				}
 	                			} else {
 	                				
 	                				try {
+<<<<<<< HEAD
+	                					ICU.altaEmpresaURLyImagen(campos[2],campos[6],campos[3],campos[4], campos[5], campos2[1],campos2[2], imageBytes);
+	                				} catch (Exception e3) {
+	                					
+=======
 	                					ICU.altaEmpresaURLyImagen(campos[2],  campos[3],  campos[4],  campos[5],  campos[2],   campos2[1],  campos2[2],   imageBytes);
 	                				} catch (IllegalArgumentException e3) {
 	                					e3.printStackTrace();
+>>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 	                				}
 	                				
 	                			}
