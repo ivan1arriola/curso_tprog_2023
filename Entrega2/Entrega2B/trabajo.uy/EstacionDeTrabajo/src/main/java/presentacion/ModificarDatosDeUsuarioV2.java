@@ -43,7 +43,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	    
 	
 
-    public ModificarDatosDeUsuarioV2(JFrame gu, ICtrlUsuario icu) {
+    public ModificarDatosDeUsuarioV2(JFrame gui, ICtrlUsuario icu) {
     	// Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
         // icu = fabrica.getICtrlUsuario();
@@ -66,10 +66,10 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	
 		listarUsuarios = new JComboBox<>();
 		listarUsuarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				
 				try {            		
-	                    HashSet<String> nicks =  icu.listarNicknamesUsuarios();
+	                    Set<String> nicks =  icu.listarNicknamesUsuarios();
 	                    
                 } catch (Exception ex) {
                     	System.err.println("Error al obtener los usuarios");
@@ -85,7 +85,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 		btnCancelar = new JButton("Cerrar");
 		btnCancelar.setBounds(277, 109, 111, 25);
 		btnCancelar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
+		    public void actionPerformed(ActionEvent evento) {
 		        setVisible(false);
 		    }
 		});
@@ -93,7 +93,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	
 		JButton modificarBtn = new JButton("Ir a modificar");
 		modificarBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				
                 String selectedUsuario = (String) listarUsuarios.getSelectedItem(); // agarro el usuario
 				DTUsuario dtus = icu.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
@@ -102,7 +102,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && !(dtus instanceof DTEmpresa)) { 
 					DTPostulante dtpostu = (DTPostulante) dtus;
 					MDUP = new ModificarDatosDeUsuarioPostulante(icu, dtpostu);
-					gu.getContentPane().add(MDUP);
+					gui.getContentPane().add(MDUP);
 					setVisible(false);
 					MDUP.setVisible(true);
 	                // modificarUser.toFront();
@@ -112,7 +112,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				else if(listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
 					DTEmpresa dtempre = (DTEmpresa) dtus;
 					MDUE = new ModificarDatosDeUsuarioEmpresa(icu, dtempre);
-					gu.getContentPane().add(MDUE);
+					gui.getContentPane().add(MDUE);
 					setVisible(false);
 					MDUE.setVisible(true);
 	                //modificarUser.toFront();
@@ -127,13 +127,13 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
     
     
     public void actualizar() {
-    	Fabrica F = Fabrica.getInstance();
-    	icu = F.getICtrlUsuario();
+    	Fabrica fabrica = Fabrica.getInstance();
+    	icu = fabrica.getICtrlUsuario();
     	
     	listarUsuarios.removeAllItems(); 
         
         //comboBoxOfertas.removeAllItems(); 
-        HashSet<String> usuario = icu.listarNicknamesUsuarios();
+        Set<String> usuario = icu.listarNicknamesUsuarios();
         List<String> usuariosOrdenados = new ArrayList<>(usuario);
         Collections.sort(usuariosOrdenados, String.CASE_INSENSITIVE_ORDER);
         listarUsuarios.addItem(" ");

@@ -43,14 +43,14 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the application.
 	 */
-	public ConsultaDeOfertaLaboral(JFrame gu, ICtrlUsuario icu) { 
+	public ConsultaDeOfertaLaboral(JFrame gui, ICtrlUsuario icu) { 
 		ICU = icu;
 		
 		VerPostulacionesJInternalFrame = new VerPostulaciones();
         VerPostulacionesJInternalFrame.setSize(700, 300);
         VerPostulacionesJInternalFrame.setLocation(38, 63);
         VerPostulacionesJInternalFrame.setVisible(false);
-        gu.getContentPane().add(VerPostulacionesJInternalFrame);
+        gui.getContentPane().add(VerPostulacionesJInternalFrame);
 		
 		initialize();
 	}
@@ -73,7 +73,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		limpiarFormulario();
         		setVisible(false);
         	}
@@ -94,7 +94,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         
         listaOfertasLaborales = new JComboBox<String>();
         listaOfertasLaborales.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
         		String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
         		
@@ -128,7 +128,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         			tfPaquete.setText(paq);
         		}
         		
-        		HashSet<String> keywords = ICU.listarKeywords(selectedUsuario1);
+        		Set<String> keywords = ICU.listarKeywords(selectedUsuario1);
         		
                 Iterator<String> iterator = keywords.iterator();
                 while (iterator.hasNext()) {
@@ -144,7 +144,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         
         JButton btnAceptar_1 = new JButton("Desplegar Ofertas Laborales");
         btnAceptar_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		listaOfertasLaborales.removeAllItems();
         		nombre_e = (String) listaEmpresas.getSelectedItem();
         		try{
@@ -246,7 +246,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
         btnVerPostulaciones.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		VerPostulacionesJInternalFrame.actualizar(selectedUsuario);
         		VerPostulacionesJInternalFrame.setVisible(true);
         		
@@ -289,7 +289,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	
 	public void actualizar() {
 		listaEmpresas.removeAllItems();
-        HashSet<String> empresas = ICU.listarEmpresas();
+        Set<String> empresas = ICU.listarEmpresas();
         for(String elemento : empresas) {
         	listaEmpresas.addItem(elemento);
         }     				

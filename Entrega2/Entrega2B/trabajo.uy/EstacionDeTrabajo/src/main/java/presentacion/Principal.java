@@ -166,13 +166,13 @@ public class Principal {
         JMenu menuSistema = new JMenu("Sistema");
         menuBar.add(menuSistema);
 
-        JMenuItem CD = new JMenuItem("Cargar datos");
-        CD.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        JMenuItem CargarDatos = new JMenuItem("Cargar datos");
+        CargarDatos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent evento) {
         		CargarDatosInternalFrame.setVisible(true);
         	}
         });
-        menuSistema.add(CD);
+        menuSistema.add(CargarDatos);
         
         JMenuItem menuSalir = new JMenuItem("Salir");
         menuSalir.addActionListener(new ActionListener() {
@@ -191,7 +191,7 @@ public class Principal {
         // Se crea Alta de Usuario y se añade a la lista de "Casos de Uso"
         JMenuItem menuItemAltaDeUsuario = new JMenuItem("Alta de Usuario");
         menuItemAltaDeUsuario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 // Muestro el InternalFrame para dar de alta un usuario.
             	AltaDeUsuarioInternalFrame.setVisible(true);
             }
@@ -203,7 +203,7 @@ public class Principal {
         JMenuItem menuItemConsultaDeUsuario = new JMenuItem("Consulta de Usuario");
         
         menuItemConsultaDeUsuario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 // Muestro el InternalFrame para registrar un usuario
             	ConsultaDeUsuarioInternalFrame.actualizar();
                 ConsultaDeUsuarioInternalFrame.setVisible(true);
@@ -216,7 +216,7 @@ public class Principal {
         JMenuItem menuItemModificarDatosDeUsuario = new JMenuItem("Modificar Datos de Usuario");
         
         menuItemModificarDatosDeUsuario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 // Muestro el InternalFrame para registrar un usuario
             	ModificarDatosDeUsuarioInternalFrame.actualizar();
             	ModificarDatosDeUsuarioInternalFrame.setVisible(true);
@@ -230,7 +230,7 @@ public class Principal {
         
         JMenuItem AltaDeOferta = new JMenuItem("Alta de Oferta Laboral");
         AltaDeOferta.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		AltaDeOfertaLaboralInternalFrame.actualizar();
         		AltaDeOfertaLaboralInternalFrame.setVisible(true);
         	}
@@ -240,7 +240,7 @@ public class Principal {
         
         JMenuItem COL = new JMenuItem("Consulta de Oferta Laboral");
         COL.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		ConsultaDeOfertaLaboralInternalFrame.actualizar();
         		ConsultaDeOfertaLaboralInternalFrame.setVisible(true); 
         	}
@@ -249,7 +249,7 @@ public class Principal {
         
         JMenuItem POL = new JMenuItem("Postulación a Oferta Laboral");
         POL.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
             	PostulacionAOfertaLaboralInternalFrame.actualizar();
             	PostulacionAOfertaLaboralInternalFrame.setVisible(true);
             }
@@ -266,7 +266,7 @@ public class Principal {
         
         JMenuItem CrearPTPOL = new JMenuItem("Crear Paquete de Tipos de publicación de Ofertas Laborales");
         CrearPTPOL.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		CrearPaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame.setVisible(true);
         	}
         });

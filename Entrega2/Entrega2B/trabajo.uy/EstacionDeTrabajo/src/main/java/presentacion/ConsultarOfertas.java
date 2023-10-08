@@ -37,7 +37,7 @@ public class ConsultarOfertas extends JDialog {
 	private ICtrlOferta ico; 
 	private ICtrlUsuario icu; 
 	private String motiva; 
-	private String cv; 
+	private String curriculumVitae; 
 	private LocalDate fecha; 
 	private String fechaFormat; 
 	
@@ -107,7 +107,7 @@ public class ConsultarOfertas extends JDialog {
         
        // Seleccion de oferta para mostrar detalle 
         comboBox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
 
                 String selectedOferta = (String) comboBox.getSelectedItem(); 
                 
@@ -121,7 +121,7 @@ public class ConsultarOfertas extends JDialog {
 	        		for (DTPostulacion post : postulaciones) {
 	        		    if (post.getPostulante().equals(usuario)) {
 	        		        
-	        		    	cv = post.getcVitae(); 
+	        		    	curriculumVitae = post.getcVitae(); 
 	        		    	motiva =post.getMotivacion(); 
 	        		    	fecha = post.getFecha(); 
 	          		        break;  
@@ -141,7 +141,7 @@ public class ConsultarOfertas extends JDialog {
                 			+ "\n" + "Departamento,  Ciudad: " + dtOfer.getDepartamento() + ", " + dtOfer.getCiudad() + "\n"); 
                 
                 if (usr instanceof DTPostulante) {
-                	rightTextArea.append("CV Reducido: " + cv + "\n" + "Motivación: " + motiva + "\n"
+                	rightTextArea.append("CV Reducido: " + curriculumVitae + "\n" + "Motivación: " + motiva + "\n"
                 				          + "Fecha de Postulación: " + fechaFormat); 
                 }
                 

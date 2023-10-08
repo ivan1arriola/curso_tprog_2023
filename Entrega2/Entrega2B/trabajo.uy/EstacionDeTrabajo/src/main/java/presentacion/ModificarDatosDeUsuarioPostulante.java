@@ -213,7 +213,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		btnCancelar = new JButton("Cerrar");
 		btnCancelar.setBounds(390, 315, 111, 25);
 		btnCancelar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
+		    public void actionPerformed(ActionEvent evento) {
 		        setVisible(false);
 		    }
 		});
@@ -221,7 +221,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	
 		JButton modificarBtn = new JButton("Modificar");
 		modificarBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
        		String nombre = nombreNuevo.getText();
        		String apellido = apellidoNuevo.getText();
        		String correo = correoNuevo.getText();
