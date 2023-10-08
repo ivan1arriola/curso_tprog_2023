@@ -1,7 +1,5 @@
 package main.java.presentacion;
 
-
-
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
-
 import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,12 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import main.java.logica.Datatypes.DTOfertaExtendido;
 
 import main.java.logica.Fabrica;
-
-import main.java.logica.Clases.Usuario;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.clases.Usuario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private ICtrlUsuario ICU; 

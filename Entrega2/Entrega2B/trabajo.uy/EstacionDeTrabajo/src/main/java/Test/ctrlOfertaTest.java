@@ -2,13 +2,13 @@ package main.java.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTHora;
+import main.java.logica.datatypes.DTHora;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 

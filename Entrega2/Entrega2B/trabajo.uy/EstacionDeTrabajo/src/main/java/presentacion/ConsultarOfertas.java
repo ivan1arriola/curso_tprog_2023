@@ -1,19 +1,16 @@
 package main.java.presentacion;
-//
 
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Interfaces.ICtrlOferta;
-
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
 import java.awt.Font;
 import java.util.*;
-
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -24,12 +21,11 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.time.LocalDate;
-@SuppressWarnings("serial")
 
+@SuppressWarnings("serial")
 public class ConsultarOfertas extends JDialog {
 	
 	private Set<DTPostulacion> postulaciones;
@@ -42,7 +38,7 @@ public class ConsultarOfertas extends JDialog {
 	
     public ConsultarOfertas(Set<String> offerDetailsUnsort,ICtrlOferta icoInstance, ICtrlUsuario icuInstance,String usuario) {
     	
-    	ico=icoInstance;
+    	ico = icoInstance;
     	icu = icuInstance;
     	
     	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort);
@@ -133,19 +129,17 @@ public class ConsultarOfertas extends JDialog {
 
                 
 		        rightTextArea.setText("");  
-                rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" +
-        				"Descripción: " + dtOfer.getDescripcion() + "\n" +
-        				"Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" +
-        				"Costo: " + (int) dtOfer.getCosto() + "\n" +
-        				"Remuneración: " + (int) dtOfer.getRemuneracion() + "\n" +
-        				"Horario de Entrada: " + dtOfer.getHorario().getDesde() + "\n" +
-        				"Horario de Salida: " + dtOfer.getHorario().getHasta() + "\n" +
-        				"Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n");
+                rightTextArea.append("Nombre: " + dtOfer.getNombre() + "\n" + "Descripción: " + dtOfer.getDescripcion() 
+                			+ "\n" + "Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" + "Costo: " + (int) dtOfer.getCosto() 
+                			+ "\n" + "Remuneración: " + (int) dtOfer.getRemuneracion() + "\n" + "Horario de Entrada: " 
+                			+ dtOfer.getHorario().getDesde() + "\n" + "Horario de Salida: " + dtOfer.getHorario().getHasta()
+                			+ "\n" + "Departamento, Ciudad: " + dtOfer.getDepartamento() + "," + dtOfer.getCiudad() + "\n");
+                
                 if(usr instanceof DTPostulante) {
-                	rightTextArea.append("CV Reducido: " + cv + "\n" +
-        				"Motivación: " + motiva + "\n" + 
-        				"Fecha de Postulación: " + fechaFormat);
-                };
+                	rightTextArea.append("CV Reducido: " + cv + "\n" + "Motivación: " + motiva + "\n"
+                				          + "Fecha de Postulación: " + fechaFormat);
+                }
+                
         				
                 rightTextArea.append("\n");
 

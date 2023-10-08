@@ -1,13 +1,12 @@
 package main.java.presentacion;
 
 import javax.swing.JInternalFrame;
-
 import main.java.excepciones.UsuarioNoExisteException;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,11 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 
-/**
- * JInternalFrame que permite consultar la información de un usuario del sistema.
- * @author TProg2017
- *
- */
+
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame

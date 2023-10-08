@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -21,13 +20,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants; 
+import javax.swing.SwingConstants;
 
-
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-
-import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 import java.time.LocalDate;   
 import java.awt.GridBagLayout;
@@ -59,7 +56,7 @@ public class ElegirPostulante extends JDialog {
     
     public ElegirPostulante(String empresa,String offer, ICtrlUsuario icu, ICtrlOferta ico) {
     	controlUsr = icu;
-    	controlOfer=ico;
+    	controlOfer = ico;
     	postulantes = icu.obtenerNicknamesPostulantes();
     	
     	
@@ -98,7 +95,7 @@ public class ElegirPostulante extends JDialog {
       			cbOferta.removeAllItems();
       			
       				try {
-	                if (cbEmpresa.getSelectedIndex() != -1 && cbEmpresa.getSelectedIndex() != 0 ) {
+	                if (cbEmpresa.getSelectedIndex() != -1 && cbEmpresa.getSelectedIndex() != 0) {
 	                    String selectedEmpresa = (String) cbEmpresa.getSelectedItem();
 	                    Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
 	                    cbOferta.removeAllItems(); // Limpiar el comboBoxOfertas
@@ -117,7 +114,8 @@ public class ElegirPostulante extends JDialog {
       				} catch (Exception exc) {System.err.println("Error al obtener las ofertas laborales");} 
 	                
 	                
-      		} });     
+      		}
+      	});     
       	
       	
       	
@@ -317,8 +315,7 @@ public class ElegirPostulante extends JDialog {
                 //ver de qué tipo es la oferta para ver su validez: oferta.fechaAlta + tipo.validez
                 LocalDate fechaResultado = fechaAlta.plusDays(duracion);
                 
-                if(icu.existePostulacion(esPostulante, esOferta))
-                { 
+                if(icu.existePostulacion(esPostulante, esOferta)) { 
                 	JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
                 	cbEmpresa.setEnabled(true);
                 	cbOferta.setEnabled(true);
@@ -329,7 +326,8 @@ public class ElegirPostulante extends JDialog {
                 } else if (currentDate.isAfter(fechaResultado)) {
                 	
                 	//verificar las condiciones de fechas: tipo.validez+ oferta.fechaalta
-                	JOptionPane.showMessageDialog(ElegirPostulante.this, "Oferta no vigente", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);}
+                	JOptionPane.showMessageDialog(ElegirPostulante.this, "Oferta no vigente", "ERROR - Elegir Postulante", JOptionPane.ERROR_MESSAGE);
+                }
                 
                 else{
                     String esEmpresa = (String) cbEmpresa.getSelectedItem();

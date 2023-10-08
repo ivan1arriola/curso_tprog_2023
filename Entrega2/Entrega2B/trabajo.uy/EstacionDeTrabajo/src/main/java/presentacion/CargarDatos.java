@@ -17,26 +17,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-
 import java.util.ArrayList;
-
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTHora;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Interfaces.ICtrlCargaDeDatos;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.datatypes.DTHora;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.interfaces.ICtrlCargaDeDatos;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class CargarDatos extends JInternalFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ICtrlUsuario ICU;
 	private ICtrlOferta ICO;

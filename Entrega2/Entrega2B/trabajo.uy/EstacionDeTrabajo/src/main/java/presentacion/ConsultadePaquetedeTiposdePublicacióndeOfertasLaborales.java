@@ -10,17 +10,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
-
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTTipoOferta;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.datatypes.DTCantTO;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.datatypes.DTTipoOferta;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTable;
 

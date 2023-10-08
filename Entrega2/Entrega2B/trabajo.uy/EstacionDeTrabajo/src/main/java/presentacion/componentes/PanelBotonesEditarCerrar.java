@@ -2,7 +2,6 @@ package main.java.presentacion.componentes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -24,32 +23,32 @@ import javax.swing.JPanel;
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (modoEdicion) {
-                        // Si estamos en modo edición, guardar cambios
-                        if (clasePadre != null) {
-                            clasePadre.onGuardar();
-                        }
+                      // Si estamos en modo edición, guardar cambios
+                      if (clasePadre != null) {
+                        clasePadre.onGuardar();
+                      }
                     } else {
-                        // Si no estamos en modo edición, cambiar a modo edición
-                        if (clasePadre != null) {
-                            clasePadre.onEditar();
-                        }
+                      // Si no estamos en modo edición, cambiar a modo edición
+                      if (clasePadre != null) {
+                        clasePadre.onEditar();
+                      }
                     }
                 }
             });
-
+     
             btnCerrar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (modoEdicion) {
-                        // Si estamos en modo edición, descarta los cambios
-                        if (clasePadre != null) {
-                        	clasePadre.onDescartar();
-                        }
+                      // Si estamos en modo edición, descarta los cambios
+                      if (clasePadre != null) {
+                        clasePadre.onDescartar();
+                      }
                     } else {
-                        // Si no estamos en modo edición, cierra
-                        if (clasePadre != null) {
-                        	clasePadre.onCerrar();
-                        }
+                      // Si no estamos en modo edición, cierra
+                      if (clasePadre != null) {
+                        clasePadre.onCerrar();
+                      }
                     }
                 }
             });

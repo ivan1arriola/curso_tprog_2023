@@ -3,7 +3,6 @@ package main.java.presentacion.componentes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -20,7 +19,7 @@ public class PanelBotonesAceptarCancelar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (clasePadre != null) {
-                	clasePadre.onAceptar();
+                  clasePadre.onAceptar();
                 }
             }
         });
@@ -29,7 +28,7 @@ public class PanelBotonesAceptarCancelar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (clasePadre != null) {
-                	clasePadre.onCancelar();
+                  clasePadre.onCancelar();
                 }
             }
         });

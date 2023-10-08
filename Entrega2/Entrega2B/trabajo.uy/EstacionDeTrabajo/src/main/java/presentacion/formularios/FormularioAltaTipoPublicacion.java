@@ -2,13 +2,11 @@ package main.java.presentacion.formularios;
 
 
 import main.java.presentacion.componentes.IFormulario;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

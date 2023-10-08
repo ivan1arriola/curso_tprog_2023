@@ -6,7 +6,6 @@ package main.java.presentacion;
 
 import java.util.HashSet;
 import java.util.Set;
-
 //import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -23,13 +22,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
-//import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
+import main.java.logica.datatypes.DTCantTO;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     private JTextField CantidadMostrar;
@@ -57,7 +55,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         PaquetesVisualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if(PaquetesVisualizar.getSelectedIndex()!=-1 && PaquetesVisualizar.getSelectedIndex()!=0) {
+        		if(PaquetesVisualizar.getSelectedIndex() != 	-1 && PaquetesVisualizar.getSelectedIndex() != 0) {
         			
         			String paqElegido =  (String) PaquetesVisualizar.getSelectedItem();
         	        HashSet<String> publicaciones = ICO.listarTipoDePublicaciones();

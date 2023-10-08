@@ -9,7 +9,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-
 import main.java.presentacion.componentes.IFormulario;
 
 public class FormularioCrearPaquete extends JPanel implements IFormulario {

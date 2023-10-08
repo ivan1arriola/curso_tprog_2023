@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -21,9 +20,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 //import javax.swing.border.EmptyBorder;
-
 import main.java.logica.Fabrica;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlOferta;
 import main.java.presentacion.componentes.IAceptarCancelar;
 import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
 import main.java.presentacion.formularios.FormularioAltaTipoPublicacion;
@@ -32,7 +30,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
+public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
 	
 	private static final long serialVersionUID = 1L;
     ICtrlOferta ctrlOferta = Fabrica.getInstance().getICtrlOferta();
@@ -53,7 +51,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
         setBounds(100, 100, 380, 380);
 
         //JPanel mainPanel = new JPanel();
-        GridBagLayout gbl=new GridBagLayout();
+        GridBagLayout gbl = new GridBagLayout();
         //gbl.columnWeights = new double[]{0.0, 1.0};
         //GridBagConstraints gbc=new GridBagConstraints();
         getContentPane().setLayout(gbl);

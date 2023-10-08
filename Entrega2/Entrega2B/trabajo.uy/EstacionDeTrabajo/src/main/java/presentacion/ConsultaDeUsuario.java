@@ -2,25 +2,17 @@ package main.java.presentacion;
 
 
 
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-//import main.java.logica.Clases.*;
-import main.java.logica.Datatypes.DTUsuario;
-
-
-
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,7 +23,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -236,7 +227,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 
                 String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
                 
-                if (comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0 ) { 
+                if (comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) { 
                 	
 	                DTUsuario dtusr = controlUsr.obtenerDatosUsuario(selectedUsuario);
 	                String tipo;
@@ -287,7 +278,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                	PostuFecha.setText(formattedFecha);
 	                	
 	                
-	                };
+	                }
+	                
 	                EmpresaDesc.setCaretPosition(0);
 	                textFieldNick.setText(dtusr.getNickname());
 	                textFieldNombre.setText(dtusr.getNombre());
@@ -320,7 +312,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         
         btnVerOfertas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		if( comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) {
+        		if(comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) {
 	        		String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
 	        		Set<String> offerDetails;
 					try {

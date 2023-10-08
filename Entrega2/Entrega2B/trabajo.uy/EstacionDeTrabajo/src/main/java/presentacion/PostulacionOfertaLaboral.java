@@ -1,15 +1,11 @@
 package main.java.presentacion;
 
-import main.java.logica.Interfaces.ICtrlOferta;
-
-import main.java.logica.Interfaces.ICtrlUsuario;
-
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-
-
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 //import javax.swing.border.EmptyBorder;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -81,7 +76,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
             	try {
             		
             		            		
-                    if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0 ) {
+                    if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0) {
                         String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
                         Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
 
@@ -125,7 +120,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         comboBoxOfertas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	if(comboBoxOfertas.getSelectedIndex()!=-1) {
+            	if(comboBoxOfertas.getSelectedIndex() != -1) {
             		String oferta = (String) comboBoxOfertas.getSelectedItem();
              	    DTOfertaExtendido dtO = ico.obtenerOfertaLaboral(oferta);
              	    infoOferta.append(dtO.toString());
@@ -152,7 +147,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if(comboBoxEmpresa.getSelectedIndex()!=-1 && comboBoxOfertas.getSelectedIndex()!=-1  &&  comboBoxEmpresa.getSelectedIndex()!=0) {
+        		if(comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != -1  &&  comboBoxEmpresa.getSelectedIndex() != 0) {
         			String emp = (String) comboBoxEmpresa.getSelectedItem();
         			String offer = (String) comboBoxOfertas.getSelectedItem();
         			ElegirPostulante eligePostu = new ElegirPostulante(emp,offer, icu,ico);
@@ -166,7 +161,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                         "Elija empresa y oferta",
                         "Información",
                         JOptionPane.INFORMATION_MESSAGE
-                    );}
+                    );
+        		}
         	}
         });
         btnNewButton.setBounds(32, 213, 221, 23);
