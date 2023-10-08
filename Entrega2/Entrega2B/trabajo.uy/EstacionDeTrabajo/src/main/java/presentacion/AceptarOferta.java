@@ -1,22 +1,37 @@
 package main.java.presentacion;
 
-import javax.swing.*;
-import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.*;
+import main.java.logica.Datatypes.DTOfertaExtendido;
 import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Interfaces.*;
-import main.java.logica.Manejadores.*;
+import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.Interfaces.ICtrlUsuario;
+
 
 public class AceptarOferta extends JInternalFrame {
 	private ICtrlOferta controlOferta;

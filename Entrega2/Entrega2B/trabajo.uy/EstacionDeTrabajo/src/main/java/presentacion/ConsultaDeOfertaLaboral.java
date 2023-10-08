@@ -1,7 +1,6 @@
 package main.java.presentacion;
 
-import javax.swing.*;
-import java.awt.*;
+
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -17,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import main.java.logica.Datatypes.DTOfertaExtendido;

@@ -1,13 +1,30 @@
 package main.java.presentacion;
 //
 
-import main.java.logica.Interfaces.*;
-import main.java.logica.Datatypes.*;
-import javax.swing.*;
+import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTPostulacion;
+import main.java.logica.Datatypes.DTPostulante;
+import main.java.logica.Datatypes.DTUsuario;
+import main.java.logica.Interfaces.ICtrlOferta;
+
+
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
 import java.awt.Font;
 import java.util.*;
+
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.time.LocalDate;
@@ -71,7 +88,7 @@ public class ConsultarOfertas extends JDialog {
         
         JPanel rightPanel = new JPanel(new BorderLayout());
   
-        JComboBox<String> comboBox = new JComboBox<String>();
+        W<String> comboBox = new JComboBox<String>();
         comboBox.addItem("");
         for (String oferta : offerDetails) {
             comboBox.addItem(oferta);

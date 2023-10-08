@@ -27,7 +27,9 @@ public class PaqueteHandler {
         return paq.get(nombre);
     }
 	
-	public void agregar(Paquete p) { paq.put(p.getNombre(),p); };
+	public void agregar(Paquete p) { 
+		paq.put(p.getNombre(),p); 
+	};
     
     public Map<String, Paquete> obtener() { return paq; }
     

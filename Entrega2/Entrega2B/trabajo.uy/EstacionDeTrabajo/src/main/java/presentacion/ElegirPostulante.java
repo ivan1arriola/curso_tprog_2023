@@ -11,15 +11,29 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.*;
-import main.java.logica.Datatypes.*;
-import main.java.logica.Interfaces.*;
-import main.java.logica.Clases.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants; 
+
+
+import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.Interfaces.ICtrlUsuario;
+
+import main.java.logica.Datatypes.DTOfertaExtendido;
+
 import java.time.LocalDate;   
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import main.java.excepciones.*;
+
 
 
 //public class ElegirPostulante extends JInternalFrame {

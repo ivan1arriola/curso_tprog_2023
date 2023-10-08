@@ -257,6 +257,16 @@ public class CtrlOferta implements ICtrlOferta{
 		return e.listarOfertasLaboralesConfirmadas();
 	}
 	
+	public HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {
+		HashSet<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		HashMap<String,OfertaLaboral> ofertasLaborales = OLH.obtener();
+		for (Map.Entry<String,OfertaLaboral>entry : ofertasLaborales.entrySet()) {
+            res.add(entry.getValue().obtenerDatosOferta());
+        }
+		return res;
+	}
+	
 	public HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e){
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Empresa e = (Empresa) UH.buscarNick(nickname_e);
@@ -327,6 +337,8 @@ public class CtrlOferta implements ICtrlOferta{
 		
 	}
 	
+	
+	
 	// REVISAR EXCEPCIONES, NICK Y NOMBRE !!!!!
 	// nombre es el nombre de la OfertaLaboral y nick el nickname del Usuario.
 	
@@ -360,14 +372,6 @@ public class CtrlOferta implements ICtrlOferta{
 			}
 	}
 	
-	public HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {
-		HashSet<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
-		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		HashMap<String,OfertaLaboral> ofertasLaborales = OLH.obtener();
-		for (Map.Entry<String,OfertaLaboral>entry : ofertasLaborales.entrySet()) {
-            res.add(entry.getValue().obtenerDatosOferta());
-        }
-		return res;
-	}
+	
 		
 }

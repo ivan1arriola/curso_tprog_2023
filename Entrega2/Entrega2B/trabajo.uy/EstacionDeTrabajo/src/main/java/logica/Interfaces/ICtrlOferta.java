@@ -32,6 +32,7 @@ public interface ICtrlOferta {
 		public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
 		public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer);
 		public abstract HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e);
+		public abstract HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
 		public abstract HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e);
 		public abstract void rechazoOL(String nombre_oferta);
 		public abstract void aceptoOL(String nombre_oferta);
@@ -41,7 +42,7 @@ public interface ICtrlOferta {
 		public abstract HashSet<String> listarPaquetes();
 		public abstract DTPaquete obtenerDatosPaquete(String paq);
 		public abstract DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente;
-		public abstract HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
+		
 		
 		// ESTÁN PERO NO EN EL DCD
 		public abstract HashSet<String> listarKeywords();

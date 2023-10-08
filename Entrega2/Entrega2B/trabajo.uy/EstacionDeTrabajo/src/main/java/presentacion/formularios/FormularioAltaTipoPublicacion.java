@@ -1,11 +1,24 @@
 package main.java.presentacion.formularios;
 
-import javax.swing.*;
+
 import main.java.presentacion.componentes.IFormulario;
 
-import java.awt.*;
-import java.time.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario {
 

@@ -1,6 +1,6 @@
 package main.java.presentacion;
 
-import javax.swing.*;
+
 //import java.awt.*;
 
 
@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 //import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 //import java.awt.Font;
 //import javax.swing.JList;
 import javax.swing.JComboBox;
