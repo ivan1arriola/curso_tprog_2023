@@ -10,9 +10,9 @@ public class DTPostulacion {
 	private String motivacion;
 
 	public 
-	DTPostulacion(String nomb_p, LocalDate f, String URLDE, String cVitae, String motivacion) {
+	DTPostulacion(String nomb_p, LocalDate fecha, String URLDE, String cVitae, String motivacion) {
 		nombrePostulante = nomb_p;
-		fecha = f;
+		this.fecha = fecha;
 		uRLDocExtras = URLDE;
 		this.cVitae = cVitae;
 		this.motivacion = motivacion;

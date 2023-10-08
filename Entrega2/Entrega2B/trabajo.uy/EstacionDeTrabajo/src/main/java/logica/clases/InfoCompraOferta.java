@@ -2,14 +2,15 @@ package main.java.logica.clases;
 
 // import java.util.ArrayList; NO SE USA (CHECKSTYLE)
 import java.util.HashSet;
+import java.util.Set;
 
 public class InfoCompraOferta {
 	private int cant_restante;
-	private HashSet<TipoOferta> tipoOfertas;
+	private Set<TipoOferta> tipoOfertas;
 	
-	public InfoCompraOferta(TipoOferta t, int can_res) { 
+	public InfoCompraOferta(TipoOferta tipoOfer, int can_res) { 
 		this.cant_restante = can_res;
-		tipoOfertas.add(t);
+		tipoOfertas.add(tipoOfer);
 	} //Constructor
 	
 	public int getCant_res() {

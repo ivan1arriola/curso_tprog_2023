@@ -2,6 +2,7 @@ package main.java.logica.clases;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTPostulante;
@@ -15,7 +16,7 @@ public class Postulante extends Usuario{
     private LocalDate fechaNac;
     private String nacionalidad;
     // relaciones
-    private HashSet<Postulacion> postulaciones;
+    private Set<Postulacion> postulaciones;
 
     // constructor sin imagen
     public Postulante(String nickname,  String contrasena,  String nombre,  String apellido,  String correo_electronico,  LocalDate fechaNac,  String nacionalidad, byte[] img) {
@@ -40,7 +41,7 @@ public class Postulante extends Usuario{
     	return fechaNac;
     }
     
-    public HashSet<Postulacion> getPostulaciones() {
+    public Set<Postulacion> getPostulaciones() {
     	return postulaciones;
     }
     
@@ -57,7 +58,7 @@ public class Postulante extends Usuario{
     	this.nacionalidad = nacionalidad; 
     }
     
-    public void setPostulaciones(HashSet<Postulacion> postulaciones) { 
+    public void setPostulaciones(Set<Postulacion> postulaciones) { 
     	this.postulaciones = postulaciones; 
     }
 
@@ -72,10 +73,10 @@ public class Postulante extends Usuario{
         return postul;
     }
 
-    public Postulacion crearPostulacion(String cv,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab) {
-        Postulacion p = new Postulacion(this,  cv,  motivacion,  fecha,  URLDocExtras,  OferLab);
-        postulaciones.add(p);
-        return p;
+    public Postulacion crearPostulacion(String curriculumVitae,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab) {
+        Postulacion postulacion = new Postulacion(this,  curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OferLab);
+        postulaciones.add(postulacion);
+        return postulacion;
     }
 
     public boolean existePostulacion(String nombre) {
@@ -126,9 +127,9 @@ public class Postulante extends Usuario{
             byte[] imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
-            HashSet<Postulacion> posts = getPostulaciones();
+            Set<Postulacion> posts = getPostulaciones();
             
-            HashSet<DTPostulacion> postsDT = new HashSet<DTPostulacion>();
+            Set<DTPostulacion> postsDT = new HashSet<DTPostulacion>();
 
             for (Postulacion post : posts) {
                 DTPostulacion paux = post.obtenerDT();
@@ -150,8 +151,8 @@ public class Postulante extends Usuario{
         return postul;
     }
 
-    public HashSet<String> listarOfertasLaborales(){
-        HashSet<String> lista = new HashSet<String>();
+    public Set<String> listarOfertasLaborales(){
+        Set<String> lista = new HashSet<String>();
         
         if (postulaciones!=null) {
             for (Postulacion p : postulaciones){

@@ -2,12 +2,14 @@ package main.java.logica.manejadores;
 
 
 import java.util.HashMap;
+import java.util.Map;
+
 import main.java.logica.clases.OfertaLaboral;
 
 
 public class OfertaLaboralHandler {
 	private static OfertaLaboralHandler OLHandler = null;
-	private HashMap<String, OfertaLaboral> OfertasLaborales;
+	private Map<String, OfertaLaboral> OfertasLaborales;
 	
 	private OfertaLaboralHandler() { 
 		OfertasLaborales = new HashMap<>();
@@ -25,7 +27,7 @@ public class OfertaLaboralHandler {
 		OfertasLaborales.put(tipoOfertaL.getNombre(), tipoOfertaL); 
 	}
 	
-    public HashMap<String, OfertaLaboral> obtener() {
+    public Map<String, OfertaLaboral> obtener() {
     	return OfertasLaborales;
     }
 	

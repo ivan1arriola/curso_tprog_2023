@@ -4,9 +4,9 @@ public class DTHora {
   private int hora;
   private int minutos;
 	
-public DTHora(int h, int m) {
- hora = h;
- minutos = m;
+public DTHora(int hora, int min) {
+ this.hora = hora;
+ minutos = min;
 }
 	
 public int getHora() {

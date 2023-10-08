@@ -40,7 +40,7 @@ public class AltaDeEmpresa extends JInternalFrame {
     private JLabel URL;
     private JLabel CorreoElectronico;
     private JTextField textFieldCorreoElectronico;
-    private JPasswordField pF;
+    private JPasswordField passF;
     private JPasswordField pFR;
     private JLabel NombreEmpresa_1;
 
@@ -155,16 +155,16 @@ public class AltaDeEmpresa extends JInternalFrame {
 			    btnCancelar = new JButton("Cancelar");
 			    btnCancelar.setBounds(232, 236, 180, 25);
 			    btnCancelar.addActionListener(new ActionListener() {
-			        public void actionPerformed(ActionEvent e) {
+			        public void actionPerformed(ActionEvent evento) {
 			            limpiarFormulario();
 			            setVisible(false);
 			        }
 			    });
 			    getContentPane().add(btnCancelar);
 			    
-			    pF = new JPasswordField();
-			    pF.setBounds(232, 128, 180, 18);
-			    getContentPane().add(pF);
+			    passF = new JPasswordField();
+			    passF.setBounds(232, 128, 180, 18);
+			    getContentPane().add(passF);
 			    
 			    pFR = new JPasswordField();
 			    pFR.setBounds(232, 153, 180, 17);
@@ -186,7 +186,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        String correoelectronicoU = this.textFieldCorreoElectronico.getText();
 	        String descripcionU = this.textFieldDescripcion.getText();
 	        String urlU = this.textFieldURL.getText();
-	        String contraseña = this.pF.getText();
+	        String contraseña = this.passF.getText();
 	        String recontraseña = this.pFR.getText();
 	        
 	        int resCheck = checkFormulario();
@@ -226,7 +226,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        String correoelectronicoU = this.textFieldCorreoElectronico.getText();
 	        String descripcionU = this.textFieldDescripcion.getText();
 	        String urlU = this.textFieldURL.getText();
-	        String contraseña = this.pF.getText();
+	        String contraseña = this.passF.getText();
 	        String recontraseña = this.pFR.getText();
 	        
 	
@@ -272,7 +272,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	    	textFieldNombre.setText("");
 	        textFieldApellido.setText("");
 	        textFieldCorreoElectronico.setText("");
-	        pF.setText("");
+	        passF.setText("");
 	        pFR.setText("");
 	        textFieldDescripcion.setText("");
 	        textFieldURL.setText("");

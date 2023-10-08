@@ -8,18 +8,18 @@ import main.java.logica.datatypes.DTPostulacion;
 public class Postulacion {
     // atributos
     private LocalDate fecha;
-    private String CV;
+    private String curriculumVitae;
     private String motivacion;
     private String URLDocExtras;
     // relaciones
     private OfertaLaboral OferLab;
-    private Postulante p;
+    private Postulante postulante;
 
     // constructor
-    public Postulacion(Postulante p, String CV, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
-        this.p = p;
+    public Postulacion(Postulante postulante, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+        this.postulante = postulante;
         this.fecha = fecha;
-        this.CV = CV;
+        this.curriculumVitae = curriculumVitae;
         this.motivacion = motivacion;
         this.URLDocExtras = URLDocExtras;
         this.OferLab = OferLab;
@@ -27,19 +27,19 @@ public class Postulacion {
 
 
 	// GETTERS
-    public LocalDate     getFecha() { 
+    public LocalDate getFecha() { 
     	return fecha;
     }
     
-    public String 	     getCV() {
-    	return CV;
+    public String getCV() {
+    	return curriculumVitae;
     }
     
-    public String 	     getMotivacion() {
+    public String getMotivacion() {
     	return motivacion;
     }
     
-    public String 	     getURLDocExtras() {
+    public String getURLDocExtras() {
     	return URLDocExtras;
     }
     
@@ -47,8 +47,8 @@ public class Postulacion {
     	return OferLab;
     }
     
-    public Postulante    getPostulante() {
-    	return p;
+    public Postulante getPostulante() {
+    	return postulante;
     }
 
 
@@ -57,8 +57,8 @@ public class Postulacion {
     	this.fecha = fecha;
     } 
     
-    public void setCV(String CV) {
-    	this.CV = CV;
+    public void setCV(String curriculumVitae) {
+    	this.curriculumVitae = curriculumVitae;
     }	
      
     public void setMotivacion(String motivacion) {
@@ -73,13 +73,13 @@ public class Postulacion {
     	this.OferLab = OferLab; 
     }
     
-    public void setPostulante(Postulante p) {
-    	this.p = p; 
+    public void setPostulante(Postulante postulante) {
+    	this.postulante = postulante; 
     }
     
     // METODOS
     public DTPostulacion obtenerDT() {
-        DTPostulacion dtpostu = new DTPostulacion(p.getNickname(), fecha, URLDocExtras, CV, motivacion);
+        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(), fecha, URLDocExtras, curriculumVitae, motivacion);
         return dtpostu;
     } 
 
@@ -88,7 +88,7 @@ public class Postulacion {
     }
 
     public void editarPostulacion(String cvAbreviado,String motivacion) {
-        this.CV = cvAbreviado;
+        this.curriculumVitae = cvAbreviado;
         this.motivacion = motivacion;
     }
 
@@ -98,6 +98,6 @@ public class Postulacion {
     }
 
     public String obtenerNicknamePostulante() { 
-    	return p.getNickname();
+    	return postulante.getNickname();
     }
 }

@@ -184,6 +184,7 @@ public class ControladorUsuarioTest {
 		    // ----------------- dataTypes empresa -----------------
 		    // se obtiene con nickname, notar que estoy probando DTUsuario
 		    UsuarioHandler UH = UsuarioHandler.getInstance();
+		    UH.buscarCorreo("Larry@hotmail.com");
 			Empresa empresa1 = (Empresa) UH.buscarNick("Google");
 			// obtuve empresa, ahora creo DTEmpresa
 			DTUsuario DTempresa1 = empresa1.obtenerDatosUsuario();
