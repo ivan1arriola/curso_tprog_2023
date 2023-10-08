@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
 import main.java.logica.clases.Usuario;
 import main.java.logica.datatypes.DTOfertaExtendido;
@@ -112,7 +114,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         		tfCosto.setText(String.valueOf(infoConsOf.getCosto()));
         		
-        		tfRemuneracion.setText(String.valueOf(infoConsOf.getCosto()));
+        		tfRemuneracion.setText(String.valueOf(infoConsOf.getRemuneracion()));
         		
         		tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
         		
@@ -133,6 +135,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                 Iterator<String> iterator = keywords.iterator();
                 while (iterator.hasNext()) {
                 	tAKey.append(iterator.next());
+                	tAKey.append("\n");
                 }
         		
         		
@@ -160,7 +163,13 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
         		} catch (IllegalArgumentException e1) {
         			JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this,  e1.getMessage(),  "ERROR - Consulta de Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
-        		}
+        		} catch (ExceptionEmpresaInvalida e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExceptionUsuarioNoEncontrado e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         });
         btnAceptar_1.setBounds(12,  67,  629,  25);

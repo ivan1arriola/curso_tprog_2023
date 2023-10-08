@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
+import main.java.excepciones.ExceptionUsuarioNickRepetido;
+import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 import javax.swing.JPasswordField;
@@ -145,7 +148,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	    btnAceptar.setBounds(10,  236,  191,  25);
 	    btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
-	            cmdRegistroUsuarioActionPerformed(arg0);
+	            setVisible(false);
 	        }
 	    });
 	    getContentPane().add(btnAceptar);
@@ -176,7 +179,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 			    getContentPane().add(NombreEmpresa_1);
 	    }
 
-	    protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) {
+	    protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
 	        // TODO Auto-generated method stub
 	
 	        // Obtengo datos de los controles Swing

@@ -52,7 +52,7 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}		
@@ -76,7 +76,7 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}
@@ -101,7 +101,7 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}
@@ -127,7 +127,7 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}

@@ -33,6 +33,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     private JTextField cantidadMostrar;
     private ICtrlOferta ico;
     private JComboBox<String> listadoTipoPub;
+    private JComboBox<String> PaquetesVisualizar;
     //private JComboBox<String> paquetesVisualizar;
     
     /**

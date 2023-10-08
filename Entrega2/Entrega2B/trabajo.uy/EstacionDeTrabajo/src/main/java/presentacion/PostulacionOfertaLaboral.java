@@ -1,5 +1,7 @@
 package main.java.presentacion;
 
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTPostulante;
@@ -98,7 +100,13 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                     }
                 } catch (IllegalArgumentException ex) {
                     System.err.println("Error al obtener las ofertas laborales");
-                }
+                } catch (ExceptionEmpresaInvalida e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExceptionUsuarioNoEncontrado e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                      
               }
       });
