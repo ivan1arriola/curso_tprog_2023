@@ -22,7 +22,29 @@ import java.net.URL;
 import java.io.FileReader;
 // import java.io.IOException; NO SE USA (CHECKSTYLE)
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Set;
 
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+import java.util.ArrayList;
+import main.java.logica.Fabrica;
+import main.java.logica.datatypes.DTHora;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.interfaces.ICtrlCargaDeDatos;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import main.java.presentacion.CargarDatos;
 
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
@@ -58,7 +80,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            byte[] buffer = new byte[1024];
 	            int bytesRead;
 	            while ((bytesRead = inputStream.read(buffer)) != -1) {
-	                byteArrayOutputStream.write(buffer,  0,  bytesRead);
+	                byteArrayOutputStream.write(buffer, 0, bytesRead);
 	            }
 
 	            // Obtener el arreglo de bytes de la imagen
@@ -68,55 +90,44 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            inputStream.close();
 	            byteArrayOutputStream.close();
             	
-            	if (tipo.equals("P")) {
+            	if(tipo.equals("P")) {
             		try (BufferedReader reader1 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Postulantes.csv"))) {
                 		reader1.readLine();
-	                	while ((linea1 = reader1.readLine()) != null) {
+	                	while((linea1 = reader1.readLine()) != null) {
 	                		String[] campos1 = linea1.split(";");
 	                		String user1 = campos1[0];
 	                		
 	                		String user = campos[0];
 	                		
-	                		if (user.equals(user1)) {
+	                		if(user.equals(user1)) {
 	                	        String dateString = campos1[1];
 	                	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	                	        LocalDate localDate = LocalDate.parse(dateString,  formatter);
-                	        	ICU.altaPostulanteImagen(campos[2], campos[6],  campos[3], campos[4], localDate, campos[5], campos1[2],  imageBytes);
+	                	        LocalDate localDate = LocalDate.parse(dateString, formatter);
+                	        	ICU.altaPostulanteImagen(campos[2],campos[6], campos[3],campos[4],localDate,campos[5],campos1[2], imageBytes);
 	                		}
 	                	}
             		}
             	} else {
             		try (BufferedReader reader2 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Empresas.csv"))) {
                 		reader2.readLine();
-	                	while ((linea2 = reader2.readLine()) != null) {
+	                	while((linea2 = reader2.readLine()) != null) {
 	                		String[] campos2 = linea2.split(";");
 		                    String user = campos[0];
 	                		String user2 = campos2[0];
-	                		if (user.equals(user2)) {
+	                		if(user.equals(user2)) {
 	                			
-	                			if (campos2.length == 2) {
+	                			if(campos2.length == 2) {
 	                				try {
-<<<<<<< HEAD
 	                					ICU.altaEmpresaImagen(campos[2],campos[6],campos[3],campos[4], campos[5], campos2[1], imageBytes);
 	                				} catch (Exception e2) {
-=======
-	                					ICU.altaEmpresaImagen(campos[2], campos[3], campos[4], campos[5],  campos[2],  campos2[1],  imageBytes);
-	                				} catch (IllegalArgumentException e2) {
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 	                					e2.printStackTrace();
 	                				}
 	                			} else {
 	                				
 	                				try {
-<<<<<<< HEAD
 	                					ICU.altaEmpresaURLyImagen(campos[2],campos[6],campos[3],campos[4], campos[5], campos2[1],campos2[2], imageBytes);
 	                				} catch (Exception e3) {
-	                					
-=======
-	                					ICU.altaEmpresaURLyImagen(campos[2],  campos[3],  campos[4],  campos[5],  campos[2],   campos2[1],  campos2[2],   imageBytes);
-	                				} catch (IllegalArgumentException e3) {
 	                					e3.printStackTrace();
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 	                				}
 	                				
 	                			}
@@ -127,7 +138,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                     }		                		
             	}
             } 
-        } catch (IOException e4) {
+        } catch(IOException e4) {
         	e4.printStackTrace();
         }
         
@@ -138,9 +149,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	while ((linea3 = reader3.readLine()) != null) {
         		String[] campos3 = linea3.split(";");
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        		LocalDate fechaLocal = LocalDate.parse(campos3[6],  formatter);
+        		LocalDate fechaLocal = LocalDate.parse(campos3[6], formatter);
         		
-        		ICO.altaTipoPublicacionOL(campos3[1],  campos3[2],  Integer.parseInt(campos3[3]),  Integer.parseInt(campos3[4]),  Float.valueOf(campos3[5]),  fechaLocal);
+        		ICO.altaTipoPublicacionOL(campos3[1], campos3[2], Integer.parseInt(campos3[3]), Integer.parseInt(campos3[4]), Float.valueOf(campos3[5]), fechaLocal);
         	}
         } catch (IOException e7) {
         	e7.printStackTrace();
@@ -181,7 +192,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            byte[] buffer = new byte[1024];
 	            int bytesRead;
 	            while ((bytesRead = inputStream.read(buffer)) != -1) {
-	                byteArrayOutputStream.write(buffer,  0,  bytesRead);
+	                byteArrayOutputStream.write(buffer, 0, bytesRead);
 	            }
 
 	            // Obtener el arreglo de bytes de la imagen
@@ -192,9 +203,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            byteArrayOutputStream.close();
         		
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        		LocalDate fecha = LocalDate.parse(campos13[5],  formatter);
+        		LocalDate fecha = LocalDate.parse(campos13[5], formatter);
         		
-        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), imageBytes);
+        		ICO.altaPaqueteOL(campos13[1], campos13[2], Integer.parseInt(campos13[3].split(" ")[0]), fecha, Float.valueOf(campos13[4]),imageBytes);
         	}
         } catch (IOException e40) {
         	e40.printStackTrace();
@@ -225,7 +236,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            byte[] buffer = new byte[1024];
 	            int bytesRead;
 	            while ((bytesRead = inputStream.read(buffer)) != -1) {
-	                byteArrayOutputStream.write(buffer,  0,  bytesRead);
+	                byteArrayOutputStream.write(buffer, 0, bytesRead);
 	            }
 
 	            // Obtener el arreglo de bytes de la imagen
@@ -240,13 +251,13 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		String[] desdehasta = horario.split(" - ");
         		String[] horadesde = desdehasta[0].split(":");
         		String[] horahasta = desdehasta[1].split(":");
-        		DTHora desde = new DTHora(Integer.parseInt(horadesde[0]), Integer.parseInt(horadesde[1]));
-        		DTHora hasta = new DTHora(Integer.parseInt(horahasta[0]), Integer.parseInt(horahasta[1]));
-        		DTHorario hor = new DTHorario(desde, hasta);
+        		DTHora desde = new DTHora(Integer.parseInt(horadesde[0]),Integer.parseInt(horadesde[1]));
+        		DTHora hasta = new DTHora(Integer.parseInt(horahasta[0]),Integer.parseInt(horahasta[1]));
+        		DTHorario hor = new DTHorario(desde,hasta);
         		
         		// Obtener fecha
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        		LocalDate fecha = LocalDate.parse(campos5[9],  formatter);
+        		LocalDate fecha = LocalDate.parse(campos5[9], formatter);
         						
         		// Nickname del Usuario
         		String nickname_e = null;
@@ -262,7 +273,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader6.readLine();
                 	while ((linea6 = reader6.readLine()) != null) {
                 		String[] campos6 = linea6.split(";");
-                		if (campos6[0].equals(campos5[7])) {
+                		if(campos6[0].equals(campos5[7])) {
                 			nickname_e = campos6[2];
                 		}
                 	}
@@ -275,7 +286,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader7.readLine();
                 	while ((linea7 = reader7.readLine()) != null) {
                 		String[] campos7 = linea7.split(";");
-                		if (campos7[0].equals(campos5[8])) {
+                		if(campos7[0].equals(campos5[8])) {
                 			tipodeP = campos7[1];
                 		}
                 	}
@@ -288,16 +299,16 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader8.readLine();
                 	while ((linea8 = reader8.readLine()) != null) {
                 		String[] campos8 = linea8.split(";");
-                		if (campos8[0].equals(campos5[0])) {
+                		if(campos8[0].equals(campos5[0])) {
                 			String ks = campos8[1];
-                			String[] kss = ks.split(",  ");
-                			for (int i = 0; i <= kss.length-1; i++) {
+                			String[] kss = ks.split(", ");
+                			for(int i = 0; i <= kss.length-1; i++) {
                     			try (BufferedReader reader9 = new BufferedReader(new FileReader("src/main/datos/Keywords.csv"))) {
                     				String linea9;
                     				reader9.readLine();
-                    				while ((linea9 = reader9.readLine()) != null) {
+                    				while((linea9 = reader9.readLine()) != null) {
                     					String[] campos9 = linea9.split(";");
-                    					if (kss[i].equals(campos9[0])) {
+                    					if(kss[i].equals(campos9[0])) {
                     						keys.add(campos9[1]);
                     					}
                     				}
@@ -393,15 +404,14 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
                 
                 String paq = campos5[11];
-                if (campos5[11].equals("Sin paquete")) { 
-                	paq = null; } else {
+                if(campos5[11].equals("Sin paquete")) { paq = null; } else {
                 	try (BufferedReader reader15 = new BufferedReader(new FileReader("src/main/datos/Paquetes.csv"))) {
                     	String linea15;
                     	reader15.readLine();
                     	boolean fin = false;
-                    	while ((linea15 = reader15.readLine()) != null && !fin) {
+                    	while((linea15 = reader15.readLine()) != null && !fin) {
                     		String[] campos15 = linea15.split(";");
-                    		if (paq.equals(campos15[0])) {	
+                    		if(paq.equals(campos15[0])) {	
                     			paq = campos15[1];
                     			fin = true;
                     		}
@@ -411,11 +421,11 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
                 
         		try {
-        			ICU.altaOfertaLaboral(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  imageBytes,  paq);
+        			ICU.altaOfertaLaboral(nickname_e, tipodeP, campos5[1], campos5[2], hor, Float.valueOf(campos5[6]), campos5[4], dep, fecha, keys, estado, imageBytes, paq);
         		} catch (ExceptionUsuarioNoEncontrado eune) {
-        			eune.printStackTrace();
-        		} catch (ExceptionEmpresaInvalida eei) {
-        			eei.printStackTrace();
+
+        		} catch(ExceptionEmpresaInvalida eei) {
+        			
         		}
         	}
         } catch (IOException e9) {
@@ -443,7 +453,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader11.readLine();
                 	while ((linea11 = reader11.readLine()) != null) {
                 		String[] campos11 = linea11.split(";");
-                		if (campos11[0].equals(campos10[1])) {
+                		if(campos11[0].equals(campos10[1])) {
                 			user = campos11[2];
                 		}
                 	}
@@ -457,7 +467,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader12.readLine();
                 	while ((linea12 = reader12.readLine()) != null) {
                 		String[] campos12 = linea12.split(";");
-                		if (campos12[0].equals(campos10[5])) {
+                		if(campos12[0].equals(campos10[5])) {
                 			ol = campos12[1];
                 		}
                 	}
@@ -469,13 +479,13 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		String[] partes = campos10[4].split("/");
         		if (partes[0].length() == 1) {
         		    partes[0] = "0" + partes[0];
-        		    campos10[4] = String.join("/",  partes);
+        		    campos10[4] = String.join("/", partes);
         		}
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        		LocalDate fecha = LocalDate.parse(campos10[4],  formatter);
+        		LocalDate fecha = LocalDate.parse(campos10[4], formatter);
         		
-        		// No hay URLDocExtras,  por eso el "".
-        		if (!ICO.altaPostulacion(ol,  user,  campos10[2],  campos10[3],  "",  fecha)) {
+        		// No hay URLDocExtras, por eso el "".
+        		if (!ICO.altaPostulacion(ol, user, campos10[2], campos10[3], "", fecha)) {
         			// EXCEPCIÓN.
         		}
         		
@@ -502,7 +512,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader15.readLine();
                 	while ((linea15 = reader15.readLine()) != null) {
                 		String[] campos15 = linea15.split(";");
-                		if ((campos14[2].substring(1)).equals(campos15[0])) {
+                		if((campos14[2].substring(1)).equals(campos15[0])) {
                 			TipoPub = campos15[1];
                 		}
                 	}
@@ -515,14 +525,14 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	reader16.readLine();
                 	while ((linea16 = reader16.readLine()) != null) {
                 		String[] campos16 = linea16.split(";");
-                		if ((campos14[1].substring(1)).equals(campos16[0])) {
+                		if((campos14[1].substring(1)).equals(campos16[0])) {
                 			paq = campos16[1];
                 		}
                 	}
         		} catch (IOException e42) {
         			e42.printStackTrace();
         		}
-        		ICO.agregarTipoOfertaPaq(paq,  TipoPub,  Integer.parseInt(campos14[3].substring(1)));
+        		ICO.agregarTipoOfertaPaq(paq, TipoPub, Integer.parseInt(campos14[3].substring(1)));
         	}
         } catch (IOException e41) {
         	e41.printStackTrace();
