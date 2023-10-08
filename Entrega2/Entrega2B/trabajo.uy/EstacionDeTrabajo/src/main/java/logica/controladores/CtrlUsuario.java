@@ -185,12 +185,13 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return res;
 	}
 
-	public void ingresarDatosEditados(String nickname,   String nombre,   String apellido) {
-		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Usuario user = UsuarioH.buscarNick(nickname);
-		user.setNombre(nombre);
-		user.setApellido(apellido);
-	}
+// no existe mas
+//	public void ingresarDatosEditados(String nickname,   String nombre,   String apellido) {
+//		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+//		Usuario user = UsuarioH.buscarNick(nickname);
+//		user.setNombre(nombre);
+//		user.setApellido(apellido);
+//	}
 
 	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida{
 		List<Keyword> keywords = new ArrayList<>();

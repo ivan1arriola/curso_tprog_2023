@@ -165,7 +165,7 @@ public class ControladorUsuarioTest {
 		            &&
 		            usu3.getcorreoElectronico().equals(correo) 
 		            &&
-		            usu3.getContraseña().equals(password);
+		            usu3.getcontrasenia().equals(password);
 		    assertEquals("El test usu3 fallo", result, true);
 		    
 		    // ------------------ empresa con url ------------------
@@ -312,6 +312,8 @@ public class ControladorUsuarioTest {
 			}
 		}
 
+			
+		
 		// ------------------- ver usuarios en el sistema -------------------
 		// si no esta uno aborta
 		Set<String> UsuariosSistema = (HashSet<String>) ICU.listarNicknamesUsuarios();
@@ -320,20 +322,20 @@ public class ControladorUsuarioTest {
 				assertEquals("El test usuarios en sistema fallo",  false,  true);
 			}
 		}
+		b = ICU.validarCredenciales("Bezo@porBezo.com",  "Password");
+		assertEquals("El test validarCredenciales fallo",  true,  b);
+		b = ICU.validarCredenciales("Larry@hotmail.com", "Pass");
+		if (b) {
+			assertEquals("El test validarCredenciales fallo",  true,  b);
+		}
+		nickname = "Amazon";
+		b = ICU.validarCredenciales(nickname,  "Password");
+		assertEquals("El test validarCredenciales fallo",  true,  b);
+		b = ICU.validarCredenciales(nickname, "Pass");
+		if (b) {
+			assertEquals("El test validarCredenciales fallo",  true,  b);
+		}
 		
-		}
+	}
 
-		//------------------- testear validar credenciales -------------------
-		@Test    
-		void validarCredencialesTest() {
-			Fabrica f = Fabrica.getInstance();
-			ICtrlUsuario ICU = f.getICtrlUsuario();
-
-			String[] nicknames = {"Kreves",  "Google",  "Apple",  "Amazon",  "ASwatzenegger",  "LeonardoVinchi"};
-			String[] passwords = {"Pass",  "Password",  "Password",  "Password",  "contraseNaSeguraCreeme",  "LaContrasenaMasSeguraDelMundo"};
-		}
-
-		// ------------------- testear keywords -------------------
-
-	
   }

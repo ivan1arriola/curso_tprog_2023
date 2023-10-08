@@ -166,6 +166,7 @@ public class ControladorUsuarioTest2 {
 			// ------------------------- tipo oferta ---------------------------
 			boolean booleano;
 			booleano = ICO.altaTipoPublicacionOL("Oferta normal",  "visibilidad normal",   1,   19,   100.0f,   LocalDate.now());
+			DTTipoOferta tipoOfertaDT=null;
 			try {
 				tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
 			} catch (ExcepcionTipoOfertaNoExistente e) {
