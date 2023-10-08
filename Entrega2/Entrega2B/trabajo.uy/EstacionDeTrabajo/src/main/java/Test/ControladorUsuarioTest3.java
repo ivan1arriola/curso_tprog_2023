@@ -13,20 +13,10 @@ import main.java.logica.datatypes.DTOfertaExtendidoConKeywords;
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
 
 import main.java.logica.datatypes.DTPostulacion;
-import main.java.logica.datatypes.DTPostulante;
-import main.java.logica.datatypes.DTTipoOferta;
-import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
-import main.java.logica.interfaces.ICtrlOferta;
-import main.java.logica.interfaces.ICtrlUsuario;
-import main.java.logica.manejadores.UsuarioHandler;
-import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
-import main.java.logica.Fabrica;
 
-import java.util.List;
 import java.util.Set;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ControladorUsuarioTest3 {
