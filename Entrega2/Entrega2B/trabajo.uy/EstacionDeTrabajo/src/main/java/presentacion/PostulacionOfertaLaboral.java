@@ -2,10 +2,9 @@ package main.java.presentacion;
 
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.datatypes.DTEmpresa;
+
 import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.datatypes.DTPostulante;
-import main.java.logica.datatypes.DTUsuario;
+
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
@@ -14,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 //import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 //import javax.swing.border.EmptyBorder;

@@ -1,7 +1,7 @@
 package main.java.presentacion;
 
 import javax.swing.JInternalFrame;
-import main.java.excepciones.UsuarioNoExisteException;
+
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTPostulante;
 import main.java.logica.datatypes.DTUsuario;
@@ -10,25 +10,19 @@ import main.java.logica.Fabrica;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
+
 import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JScrollPane;
+
 
 
 @SuppressWarnings("serial")
@@ -109,7 +103,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				} 
 				
 				// El combobox no esta vacio y el usuario es una EMPRESA	
-				else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
+				else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && dtus instanceof DTEmpresa) {
 					DTEmpresa dtempre = (DTEmpresa) dtus;
 					mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icUsuario,  dtempre);
 					gui.getContentPane().add(mDUEmpresa);

@@ -22,29 +22,7 @@ import java.net.URL;
 import java.io.FileReader;
 // import java.io.IOException; NO SE USA (CHECKSTYLE)
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Set;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import java.util.ArrayList;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTHora;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
-import main.java.logica.interfaces.ICtrlCargaDeDatos;
-import main.java.logica.interfaces.ICtrlOferta;
-import main.java.logica.interfaces.ICtrlUsuario;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import main.java.presentacion.CargarDatos;
 
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
