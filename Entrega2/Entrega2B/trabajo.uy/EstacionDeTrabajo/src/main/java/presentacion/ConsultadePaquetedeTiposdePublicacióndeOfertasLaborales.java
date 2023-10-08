@@ -278,7 +278,9 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
 		descripcion.setText(""); 
 		costoPaquete.setText("");  // muestro el costo
 		paqueteDescuento.setText(""); 
-		validezPaquete.setText(""); 
+		validezPaquete.setText("");
+		listadoPaquetes.setSelectedIndex(-1);
+		campoTipoDePublicacion.setText("");
 		descript.setText(""); 
 		tableModel.setRowCount(0); 
     }

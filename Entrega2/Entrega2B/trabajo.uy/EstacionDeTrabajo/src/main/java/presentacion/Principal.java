@@ -95,7 +95,7 @@ public class Principal {
 
         // AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame
         AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame = new AgregarTipodePublicacióndeOfertaLaboral(ICO, ICU);
-        AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setSize(600,  300);
+        AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setSize(600,  250);
         AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setLocation(89,  77);
         AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame);
@@ -139,7 +139,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
         
         aceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
-        aceptarOfertaInternalFrame.setSize(550,  350);
+        aceptarOfertaInternalFrame.setSize(400,  270);
         aceptarOfertaInternalFrame.setLocation(89,  77);
         aceptarOfertaInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(aceptarOfertaInternalFrame);

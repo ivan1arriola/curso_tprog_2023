@@ -168,6 +168,9 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     public void actualizar() {
     	
     	Set<String> paquetes = ico.listarPaquetes();
+        System.out.println(paquetes.size());
+
+        	
     	//quedarse con los no comprados
     	paquetesVisualizar.addItem(""); // casilla vacia
     	for (String element1 : paquetes) {
