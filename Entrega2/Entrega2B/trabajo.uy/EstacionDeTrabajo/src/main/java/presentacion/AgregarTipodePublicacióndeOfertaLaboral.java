@@ -30,10 +30,10 @@ import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
-    private JTextField CantidadMostrar;
+    private JTextField cantidadMostrar;
     private ICtrlOferta ico;
     private JComboBox<String> listadoTipoPub;
-    private JComboBox<String> PaquetesVisualizar;
+    //private JComboBox<String> paquetesVisualizar;
     
     /**
      * Create the application.
@@ -91,7 +91,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         JButton btnNewButton_1 = new JButton("Aceptar");
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		String text = CantidadMostrar.getText();
+        		String text = cantidadMostrar.getText();
                 String op1 =  (String) PaquetesVisualizar.getSelectedItem();
                 String op2 =  (String) listadoTipoPub.getSelectedItem();
                 if (!op1.equals("") && !op2.equals("")) {
@@ -142,10 +142,10 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         lblIngresoCI_1.setBounds(10,   105,   170,   15);
         getContentPane().add(lblIngresoCI_1);
         
-        CantidadMostrar = new JTextField();
-        CantidadMostrar.setColumns(10);
-        CantidadMostrar.setBounds(190,   100,   298,   24);
-        getContentPane().add(CantidadMostrar);
+        cantidadMostrar = new JTextField();
+        cantidadMostrar.setColumns(10);
+        cantidadMostrar.setBounds(190,   100,   298,   24);
+        getContentPane().add(cantidadMostrar);
         
         JLabel lblIngresoCI_1_1 = new JLabel("Tipo publicacion:");
         lblIngresoCI_1_1.setBounds(10,   68,   170,   15);
@@ -188,6 +188,6 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     }
     
     private void limpiarFormulario() {
-    	CantidadMostrar.setText(""); 
+    	cantidadMostrar.setText(""); 
     }
 }

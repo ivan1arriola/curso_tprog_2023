@@ -21,31 +21,31 @@ import java.awt.event.ActionEvent;
 public class AltaDeUsuario extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
-	private JInternalFrame ADU;
-    private ICtrlUsuario icu;
+	
+    private ICtrlUsuario icUsuario;
     private JButton btnCancelar;
     private JButton btnEmpresa;
     private JButton btnPostulante;
     private JLabel lblIngreseNombre;
-    private AltaDePostulante AltaDePostulanteInternalFrame;
+    private AltaDePostulante altaDePostulanteInternalFrame;
     private AltaDeEmpresa AltaDeEmpresaInternalFrame;
     
     /**
      * Create the frame.
      */
-    public AltaDeUsuario(JFrame gui,  ICtrlUsuario icu) {
+    public AltaDeUsuario(JFrame gui,  ICtrlUsuario icUsuario) {
         // Se inicializa con el controlador de usuarios
         Fabrica fabrica = Fabrica.getInstance();
-        icu = fabrica.getICtrlUsuario();
+        icUsuario = fabrica.getICtrlUsuario();
 
-        AltaDePostulanteInternalFrame = new AltaDePostulante(icu);
-        // AltaDePostulanteInternalFrame.setSize(386,  312);
-        AltaDePostulanteInternalFrame.setLocation(5,  0);
-        AltaDePostulanteInternalFrame.setVisible(false);
+        altaDePostulanteInternalFrame = new AltaDePostulante(icUsuario);
+        // altaDePostulanteInternalFrame.setSize(386,  312);
+        altaDePostulanteInternalFrame.setLocation(5,  0);
+        altaDePostulanteInternalFrame.setVisible(false);
         // getContentPane().setLayout(null);
-        gui.getContentPane().add(AltaDePostulanteInternalFrame);
+        gui.getContentPane().add(altaDePostulanteInternalFrame);
         
-        AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icu);
+        AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icUsuario);
         // AltaDeEmpresaInternalFrame.setSize(360,  168);
         AltaDeEmpresaInternalFrame.setLocation(38,  63);
         AltaDeEmpresaInternalFrame.setVisible(false);
@@ -83,7 +83,7 @@ public class AltaDeUsuario extends JInternalFrame {
         btnPostulante.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
-        		AltaDePostulanteInternalFrame.setVisible(true);
+        		altaDePostulanteInternalFrame.setVisible(true);
         	}
         });
         getContentPane().add(btnPostulante);
