@@ -1,9 +1,10 @@
 package main.java.presentacion;
 
-import main.java.logica.datatypes.DTEmpresa;
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+
 import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.datatypes.DTPostulante;
-import main.java.logica.datatypes.DTUsuario;
+
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 //import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 //import javax.swing.border.EmptyBorder;
@@ -30,17 +31,17 @@ import javax.swing.ScrollPaneConstants;
 public class PostulacionOfertaLaboral extends JInternalFrame {
 	//private ICtrlOferta controlOferta;
 	private ICtrlUsuario controlUsuario;
-	private HashSet<String> empresas;
+	private Set<String> empresas;
 	private JComboBox<String> comboBoxEmpresa;
 	private JComboBox<String> comboBoxOfertas;
 	private JTextArea infoOferta;
 	
-	public PostulacionOfertaLaboral(ICtrlOferta ico, ICtrlUsuario icu) {
+	public PostulacionOfertaLaboral(ICtrlOferta ico,  ICtrlUsuario icUsuario) {
 		
   	//controlOferta = ico;
-		controlUsuario = icu;
+		controlUsuario = icUsuario;
 		
-		empresas = icu.listarEmpresas();
+		empresas = icUsuario.listarEmpresas();
 
         
         setResizable(true);
@@ -50,55 +51,61 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         setClosable(true);
         getContentPane().setLayout(null);
         setTitle("Postulación a Oferta Laboral");
-        setBounds(30, 30, 500, 280);
+        setBounds(30,  30,  500,  280);
         
         
         JLabel eligeEmpresa = new JLabel("Elija empresa:");
-        eligeEmpresa.setBounds(10, 0, 150, 40);
+        eligeEmpresa.setBounds(10,  0,  150,  40);
         JLabel labelOfertas = new JLabel("Ofertas disponibles:");
-        labelOfertas.setBounds(10, 40, 150, 40);
+        labelOfertas.setBounds(10,  40,  150,  40);
         
         // Combo Empresas
         comboBoxEmpresa = new JComboBox<>();
-        comboBoxEmpresa.setBounds(240, 5, 210, 30);
+        comboBoxEmpresa.setBounds(240,  5,  210,  30);
         comboBoxEmpresa.setEditable(false);
         comboBoxEmpresa.setVisible(true);
         
         
         
        comboBoxOfertas = new JComboBox<>(); 
-       comboBoxOfertas.setBounds(240,40, 210, 30);
+       comboBoxOfertas.setBounds(240, 40,  210,  30);
         
         
         comboBoxEmpresa.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
             	
             	try {
             		
             		            		
                     if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0) {
                         String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
-                        Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
+                        Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
 
                         comboBoxOfertas.removeAllItems(); // Limpiar el comboBoxOfertas
                      
                         if (ofertasEmpresa.isEmpty()) {
 
 
-                            JOptionPane.showMessageDialog(null, "No hay ofertas de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null,  "No hay ofertas de esta empresa",  "Mensaje",  JOptionPane.INFORMATION_MESSAGE);
                         } 
                         else {
                         	List<String> ofertasSorted = new ArrayList<>(ofertasEmpresa);
-                            Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
+                            Collections.sort(ofertasSorted,  String.CASE_INSENSITIVE_ORDER);
                         	
                             for (String oferta : ofertasSorted) {
                                 comboBoxOfertas.addItem(oferta);
                             }
                         }
                     }
-                } catch (Exception ex) {
+                } catch (IllegalArgumentException ex) {
                     System.err.println("Error al obtener las ofertas laborales");
-                }
+                } catch (ExceptionEmpresaInvalida e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExceptionUsuarioNoEncontrado e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                      
               }
       });
@@ -106,21 +113,21 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         //////////////
      
         JLabel verOferta = new JLabel("Ver Oferta");
-        verOferta.setBounds(10, 135, 82, 30);
+        verOferta.setBounds(10,  135,  82,  30);
         JTextArea infoOferta = new JTextArea();
         infoOferta.setEditable(false);;
-        //infoOferta.setBounds(252, 81, 198, 148);
+        //infoOferta.setBounds(252,  81,  198,  148);
         
         
         JScrollPane infoScrollPane = new JScrollPane(infoOferta);
-        infoScrollPane.setBounds(150, 80, 300, 120);
+        infoScrollPane.setBounds(150,  80,  300,  120);
         infoScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         comboBoxOfertas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
             	
-            	if(comboBoxOfertas.getSelectedIndex() != -1) {
+            	if (comboBoxOfertas.getSelectedIndex() != -1) {
             		String oferta = (String) comboBoxOfertas.getSelectedItem();
              	    DTOfertaExtendido dtO = ico.obtenerOfertaLaboral(oferta);
              	    infoOferta.append(dtO.toString());
@@ -145,36 +152,36 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         
         JButton btnNewButton = new JButton("Elegir Postulante");
         btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
-        		if(comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != -1  &&  comboBoxEmpresa.getSelectedIndex() != 0) {
+        		if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != -1  &&  comboBoxEmpresa.getSelectedIndex() != 0) {
         			String emp = (String) comboBoxEmpresa.getSelectedItem();
         			String offer = (String) comboBoxOfertas.getSelectedItem();
-        			ElegirPostulante eligePostu = new ElegirPostulante(emp,offer, icu,ico);
-        			eligePostu.actualizar(emp, offer);
+        			ElegirPostulante eligePostu = new ElegirPostulante(emp, offer,  icUsuario, ico);
+        			eligePostu.actualizar(emp,  offer);
         			getContentPane().add(eligePostu);
         			eligePostu.setVisible(true);
         		}
         		
         		else {
-        			JOptionPane.showMessageDialog(PostulacionOfertaLaboral.this,
-                        "Elija empresa y oferta",
-                        "Información",
+        			JOptionPane.showMessageDialog(PostulacionOfertaLaboral.this, 
+                        "Elija empresa y oferta", 
+                        "Información", 
                         JOptionPane.INFORMATION_MESSAGE
                     );
         		}
         	}
         });
-        btnNewButton.setBounds(32, 213, 221, 23);
+        btnNewButton.setBounds(32,  213,  221,  23);
         getContentPane().add(btnNewButton);
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(265, 212, 213, 24);
+        btnCerrar.setBounds(265,  212,  213,  24);
         getContentPane().add(btnCerrar);
 
 
@@ -190,9 +197,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         comboBoxEmpresa.removeAllItems(); 
         
         //comboBoxOfertas.removeAllItems(); 
-        HashSet<String> empresas = controlUsuario.listarEmpresas();
+        Set<String> empresas = controlUsuario.listarEmpresas();
         List<String> empresasSorted = new ArrayList<>(empresas);
-        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        Collections.sort(empresasSorted,  String.CASE_INSENSITIVE_ORDER);
         comboBoxEmpresa.addItem(" ");
         for (String nickname : empresasSorted) {
         	

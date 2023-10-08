@@ -1,10 +1,9 @@
 package main.java.presentacion;
 
-import java.awt.EventQueue;
-import java.awt.Font;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
-import java.util.HashSet;
+
 import java.util.Set;
 import java.util.Iterator;
 import java.time.format.DateTimeFormatter;
@@ -17,13 +16,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
-import main.java.logica.clases.Usuario;
+
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
-	private ICtrlUsuario ICU; 
+	private ICtrlUsuario icUsuario; 
 	private JTextField tfNombre;
 	private JTextField tfDescripcion;
 	private JTextField tfFechaDeAlta;
@@ -34,23 +35,23 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private JTextField tfCiudad;
 	private JComboBox<String> listaEmpresas;
 	private JComboBox<String> listaOfertasLaborales;
-	private String nombre_e;
+	private String nombreE;
 	private String selectedUsuario;
-	private VerPostulaciones VerPostulacionesJInternalFrame;
+	private VerPostulaciones verPostulacionesJInternalFrame;
 	private JTextArea tAKey;
 	private JTextField tfPaquete;
 	
 	/**
 	 * Create the application.
 	 */
-	public ConsultaDeOfertaLaboral(JFrame gu, ICtrlUsuario icu) { 
-		ICU = icu;
+	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icu) { 
+		icUsuario = icu;
 		
-		VerPostulacionesJInternalFrame = new VerPostulaciones();
-        VerPostulacionesJInternalFrame.setSize(700, 300);
-        VerPostulacionesJInternalFrame.setLocation(38, 63);
-        VerPostulacionesJInternalFrame.setVisible(false);
-        gu.getContentPane().add(VerPostulacionesJInternalFrame);
+		verPostulacionesJInternalFrame = new VerPostulaciones();
+        verPostulacionesJInternalFrame.setSize(700,  300);
+        verPostulacionesJInternalFrame.setLocation(38,  63);
+        verPostulacionesJInternalFrame.setVisible(false);
+        gui.getContentPane().add(verPostulacionesJInternalFrame);
 		
 		initialize();
 	}
@@ -60,7 +61,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	 */
 	private void initialize() {
 		Fabrica fab = Fabrica.getInstance();
-		ICtrlUsuario ICU = fab.getICtrlUsuario();
+		ICtrlUsuario icUsuario = fab.getICtrlUsuario();
 		
         setResizable(true);
         setIconifiable(true);
@@ -68,40 +69,40 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Oferta Laboral");
-        setBounds(30, 30, 660, 716);
+        setBounds(30,  30,  660,  716);
         getContentPane().setLayout(null);
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		limpiarFormulario();
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(521, 647, 117, 25);
+        btnCerrar.setBounds(521,  647,  117,  25);
         getContentPane().add(btnCerrar);
         
         listaEmpresas = new JComboBox<String>();
-        listaEmpresas.setBounds(186, 20, 455, 28);
+        listaEmpresas.setBounds(186,  20,  455,  28);
         getContentPane().add(listaEmpresas);
 
         
 
         
         JLabel lblIngresoCI_1 = new JLabel("Lista de empresas:");
-        lblIngresoCI_1.setBounds(12, 27, 170, 15);
+        lblIngresoCI_1.setBounds(12,  27,  170,  15);
         getContentPane().add(lblIngresoCI_1);
         
         listaOfertasLaborales = new JComboBox<String>();
         listaOfertasLaborales.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
         		String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
         		
-        		if(selectedUsuario1 != null) {
+        		if (selectedUsuario1 != null) {
         			selectedUsuario = selectedUsuario1;
         		}
-        		DTOfertaExtendido infoConsOf = ICU.consultaOfertaLaboral(selectedUsuario);
+        		DTOfertaExtendido infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
         		tfNombre.setText(infoConsOf.getNombre());
         		tfDescripcion.setText(infoConsOf.getDescripcion());
         		
@@ -112,164 +113,171 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         		tfCosto.setText(String.valueOf(infoConsOf.getCosto()));
         		
-        		tfRemuneracion.setText(String.valueOf(infoConsOf.getCosto()));
+        		tfRemuneracion.setText(String.valueOf(infoConsOf.getRemuneracion()));
         		
         		tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
         		
         		tfDepartamento.setText((infoConsOf.getDepartamento()).name());
         		
-        		tfCiudad.setText((infoConsOf.getCiudad()));
+        		tfCiudad.setText(infoConsOf.getCiudad());
         		String paq = infoConsOf.getPaquete();
         		
-        		if(paq == null) {
+        		if (paq == null) {
         			tfPaquete.setText("No fue comprado con un paquete.");
         		}
         		else {
         			tfPaquete.setText(paq);
         		}
         		
-        		HashSet<String> keywords = ICU.listarKeywords(selectedUsuario1);
+        		Set<String> keywords = icUsuario.listarKeywords(selectedUsuario1);
         		
                 Iterator<String> iterator = keywords.iterator();
                 while (iterator.hasNext()) {
                 	tAKey.append(iterator.next());
+                	tAKey.append("\n");
                 }
         		
         		
 
         	}
         });
-        listaOfertasLaborales.setBounds(186, 107, 455, 28);
+        listaOfertasLaborales.setBounds(186,  107,  455,  28);
         getContentPane().add(listaOfertasLaborales);
         
         JButton btnAceptar_1 = new JButton("Desplegar Ofertas Laborales");
         btnAceptar_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		listaOfertasLaborales.removeAllItems();
-        		nombre_e = (String) listaEmpresas.getSelectedItem();
-        		try{
-                    Set<String> ofertas_laborales = ICU.listarOfertasLaborales(nombre_e);
+        		nombreE = (String) listaEmpresas.getSelectedItem();
+        		try {
+                    Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombreE);
                     Iterator<String> iterator = ofertas_laborales.iterator();
-                    if(!ofertas_laborales.isEmpty()) {
+                    if (!ofertas_laborales.isEmpty()) {
                     	for (String it : ofertas_laborales) {
                     		listaOfertasLaborales.addItem(it);
                     	}
                     } else {
-                    	JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this, "La empresa seleccionada no tiene ofertas laborales.", "ERROR - Consulta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                    	JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this,  "La empresa seleccionada no tiene ofertas laborales.",  "ERROR - Consulta de Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
                     }
 
-        		} catch(Exception e1) {
-        			JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this, e1.getMessage(), "ERROR - Consulta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-        		}
+        		} catch (IllegalArgumentException e1) {
+        			JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this,  e1.getMessage(),  "ERROR - Consulta de Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+        		} catch (ExceptionEmpresaInvalida e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExceptionUsuarioNoEncontrado e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         });
-        btnAceptar_1.setBounds(12, 67, 629, 25);
+        btnAceptar_1.setBounds(12,  67,  629,  25);
         getContentPane().add(btnAceptar_1);
         
         JLabel lblIngresoCI_1_2 = new JLabel("Ofertas Laborales:");
-        lblIngresoCI_1_2.setBounds(12, 114, 170, 15);
+        lblIngresoCI_1_2.setBounds(12,  114,  170,  15);
         getContentPane().add(lblIngresoCI_1_2);
         
 
         
         JLabel lblIngresoCI_1_2_1 = new JLabel("Nombre:");
-        lblIngresoCI_1_2_1.setBounds(12, 156, 170, 15);
+        lblIngresoCI_1_2_1.setBounds(12,  156,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1);
         
         JLabel lblIngresoCI_1_2_1_1 = new JLabel("Descripción:");
-        lblIngresoCI_1_2_1_1.setBounds(12, 199, 170, 15);
+        lblIngresoCI_1_2_1_1.setBounds(12,  199,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1);
         
         JLabel lblIngresoCI_1_2_1_1_1 = new JLabel("Fecha de alta:");
-        lblIngresoCI_1_2_1_1_1.setBounds(12, 240, 170, 15);
+        lblIngresoCI_1_2_1_1_1.setBounds(12,  240,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1);
         
         tfNombre = new JTextField();
         tfNombre.setEditable(false);
-        tfNombre.setBounds(186, 149, 455, 30);
+        tfNombre.setBounds(186,  149,  455,  30);
         getContentPane().add(tfNombre);
         
         tfDescripcion = new JTextField();
         tfDescripcion.setEditable(false);
-        tfDescripcion.setBounds(186, 192, 455, 30);
+        tfDescripcion.setBounds(186,  192,  455,  30);
         getContentPane().add(tfDescripcion);
         
         tfFechaDeAlta = new JTextField();
         tfFechaDeAlta.setEditable(false);
-        tfFechaDeAlta.setBounds(186, 233, 455, 30);
+        tfFechaDeAlta.setBounds(186,  233,  455,  30);
         getContentPane().add(tfFechaDeAlta);
         
         JLabel lblIngresoCI_1_2_1_1_1_1 = new JLabel("Costo:");
-        lblIngresoCI_1_2_1_1_1_1.setBounds(12, 283, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1.setBounds(12,  283,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1 = new JLabel("Remuneración:");
-        lblIngresoCI_1_2_1_1_1_1_1.setBounds(12, 328, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1.setBounds(12,  328,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1);
         
         tfCosto = new JTextField();
         tfCosto.setEditable(false);
-        tfCosto.setBounds(186, 275, 455, 30);
+        tfCosto.setBounds(186,  275,  455,  30);
         getContentPane().add(tfCosto);
         
         tfRemuneracion = new JTextField();
         tfRemuneracion.setEditable(false);
-        tfRemuneracion.setBounds(186, 321, 455, 30);
+        tfRemuneracion.setBounds(186,  321,  455,  30);
         getContentPane().add(tfRemuneracion);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1 = new JLabel("Horario:");
-        lblIngresoCI_1_2_1_1_1_1_1_1.setBounds(12, 378, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1.setBounds(12,  378,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1);
         
         tfHorario = new JTextField();
         tfHorario.setEditable(false);
-        tfHorario.setBounds(186, 371, 455, 30);
+        tfHorario.setBounds(186,  371,  455,  30);
         getContentPane().add(tfHorario);
         
         tfDepartamento = new JTextField();
         tfDepartamento.setEditable(false);
-        tfDepartamento.setBounds(186, 413, 455, 30);
+        tfDepartamento.setBounds(186,  413,  455,  30);
         getContentPane().add(tfDepartamento);
         
         tfCiudad = new JTextField();
         tfCiudad.setEditable(false);
-        tfCiudad.setBounds(186, 455, 455, 30);
+        tfCiudad.setBounds(186,  455,  455,  30);
         getContentPane().add(tfCiudad);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1 = new JLabel("Departamento:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1.setBounds(12, 420, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1.setBounds(12,  420,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1 = new JLabel("Ciudad:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1.setBounds(12, 462, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1.setBounds(12,  462,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1);
         
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
         btnVerPostulaciones.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		VerPostulacionesJInternalFrame.actualizar(selectedUsuario);
-        		VerPostulacionesJInternalFrame.setVisible(true);
+        	public void actionPerformed(ActionEvent evento) {
+        		verPostulacionesJInternalFrame.actualizar(selectedUsuario);
+        		verPostulacionesJInternalFrame.setVisible(true);
         		
         	}
         });
-        btnVerPostulaciones.setBounds(12, 610, 626, 25);
+        btnVerPostulaciones.setBounds(12,  610,  626,  25);
         getContentPane().add(btnVerPostulaciones);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1 = new JLabel("Keywords:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12, 560, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12,  560,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1);
         
         tAKey = new JTextArea();
-        tAKey.setBounds(186, 537, 455, 61);
+        tAKey.setBounds(186,  537,  455,  61);
         getContentPane().add(tAKey);
         
         tfPaquete = new JTextField();
         tfPaquete.setEditable(false);
-        tfPaquete.setBounds(186, 497, 455, 30);
+        tfPaquete.setBounds(186,  497,  455,  30);
         getContentPane().add(tfPaquete);
         
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2 = new JLabel("Paquete:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12, 504, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12,  504,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2);
 
         
@@ -289,8 +297,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	
 	public void actualizar() {
 		listaEmpresas.removeAllItems();
-        HashSet<String> empresas = ICU.listarEmpresas();
-        for(String elemento : empresas) {
+        Set<String> empresas = icUsuario.listarEmpresas();
+        for (String elemento : empresas) {
         	listaEmpresas.addItem(elemento);
         }     				
 	}

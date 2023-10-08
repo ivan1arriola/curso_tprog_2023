@@ -1,4 +1,4 @@
-package main.java.presentacion.formularios;
+/*package main.java.presentacion.formularios;
 
 
 import main.java.presentacion.componentes.IFormulario;
@@ -34,26 +34,27 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.insets = new Insets(5, 5, 5, 5);
+        constraints.insets = new Insets(5,  5,  5,  5);
         constraints.gridx = 0;
         constraints.gridy = 0;
         
-        addField("Nombre:", nombreField = new JTextField(), constraints);
+        addField("Nombre:",  nombreField = new JTextField(),  constraints);
         
         constraints.gridy++;
-        addField("Descripción:", createScroll(descripcionTextArea = createTextArea(5, 20)), constraints);
+        addField("Descripción:",  
+        		createScroll(descripcionTextArea = createTextArea(5,  20)),  constraints);
         
         constraints.gridy++;
-        addField("Exposición:", exposicionSpinner = createSpinner(1, 1, 100, 1), constraints);
+        addField("Exposición:",  exposicionSpinner = createSpinner(1,  1,  100,  1),  constraints);
         
         constraints.gridy++;
-        addField("Duración en días:", duracionSpinner = createSpinner(1, 1, Integer.MAX_VALUE, 1), constraints);
+        addField("Duración en días:",  duracionSpinner = createSpinner(1,  1,  Integer.MAX_VALUE,  1),  constraints);
         
         constraints.gridy++;
-        addField("Costo:", costoSpinner = createcostoSpinner(), constraints);
+        addField("Costo:",  costoSpinner = createcostoSpinner(),  constraints);
         
         constraints.gridy++;
-        addField("Fecha de alta:", fechaAltaField = createFechaAltaField(), constraints);
+        addField("Fecha de alta:",  fechaAltaField = createFechaAltaField(),  constraints);
 
         fechaActual = LocalDate.now();
         setearFecha(fechaActual);
@@ -61,12 +62,12 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         limpiar();
     }
     
-    private void addField(String labelText, JComponent component, GridBagConstraints constraints) {
+    private void addField(String labelText,  JComponent component,  GridBagConstraints constraints) {
         JLabel label = new JLabel(labelText);
-        add(label, constraints);
+        add(label,  constraints);
         constraints.gridx++;
         constraints.weightx = 1.0; 
-        add(component, constraints);
+        add(component,  constraints);
         constraints.gridx = 0; 
         constraints.gridy++; 
         constraints.weightx = 0.0; 
@@ -77,19 +78,19 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
         return scrollPane;
     }
     
-    private JTextArea createTextArea(int rows, int columns) {
-        JTextArea textArea = new JTextArea(rows, columns);
+    private JTextArea createTextArea(int rows,  int columns) {
+        JTextArea textArea = new JTextArea(rows,  columns);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         return textArea;
     }
     
-    private JSpinner createSpinner(int value, int min, int max, int step) {
-        return new JSpinner(new SpinnerNumberModel(value, min, max, step));
+    private JSpinner createSpinner(int value,  int min,  int max,  int step) {
+        return new JSpinner(new SpinnerNumberModel(value,  min,  max,  step));
     }
 
     private JSpinner createcostoSpinner() {
-        SpinnerNumberModel model = new SpinnerNumberModel(0.0, 0.0, Double.MAX_VALUE, 0.01);
+        SpinnerNumberModel model = new SpinnerNumberModel(0.0,  0.0,  Double.MAX_VALUE,  0.01);
         JSpinner spinner = new JSpinner(model);
         
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
@@ -154,7 +155,7 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
     }
 
     private void showErrorDialog(String message) {
-        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null,  message,  "Error",  JOptionPane.ERROR_MESSAGE);
     }
     
 
@@ -178,4 +179,4 @@ public class FormularioAltaTipoPublicacion extends JPanel implements IFormulario
 	
 
 }
-
+*/

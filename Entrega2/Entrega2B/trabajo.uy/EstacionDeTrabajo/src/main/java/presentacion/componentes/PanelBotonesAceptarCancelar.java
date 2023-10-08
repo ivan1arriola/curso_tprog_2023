@@ -19,7 +19,7 @@ public class PanelBotonesAceptarCancelar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (clasePadre != null) {
-                	clasePadre.onAceptar();
+                  clasePadre.onAceptar();
                 }
             }
         });
@@ -28,7 +28,7 @@ public class PanelBotonesAceptarCancelar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (clasePadre != null) {
-                	clasePadre.onCancelar();
+                  clasePadre.onCancelar();
                 }
             }
         });

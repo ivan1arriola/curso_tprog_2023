@@ -14,7 +14,7 @@ public class TipoOferta {
     private String descripcion;
 
     // Constructor
-    public TipoOferta(String nombre, LocalDate fechaAlta, float costo, int duracion, int exposicion, String descripcion) {
+    public TipoOferta(String nombre,  LocalDate fechaAlta,  float costo,  int duracion,  int exposicion,  String descripcion) {
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;
         this.costo = costo;
@@ -74,7 +74,7 @@ public class TipoOferta {
     }
     
     public DTTipoOferta obtenerDT(){ //getDTTipoOferta
-        DTTipoOferta dtTO = new DTTipoOferta(nombre, fechaAlta, costo, duracion, exposicion,descripcion);
+        DTTipoOferta dtTO = new DTTipoOferta(nombre,  fechaAlta,  costo,  duracion,  exposicion, descripcion);
         return dtTO;
     }
 }

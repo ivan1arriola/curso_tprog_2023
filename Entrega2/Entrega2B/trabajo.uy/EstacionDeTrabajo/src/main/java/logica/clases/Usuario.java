@@ -9,7 +9,7 @@ public abstract class Usuario {
 	private String nickname;
     private String nombre;
     private String apellido;
-    private String correo_electronico;
+    private String correoElectronico;
     private String contrasenia;
     private byte[] imagen;
 
@@ -26,11 +26,11 @@ public abstract class Usuario {
     	return apellido;
     }
     
-    public String getCorreo_electronico() { 
-    	return correo_electronico;
+    public String getcorreoElectronico() { 
+    	return correoElectronico;
     }
     
-	public String getContraseña() { 
+	public String getcontrasenia() { 
 		return contrasenia;
 	}
 	
@@ -52,11 +52,11 @@ public abstract class Usuario {
     	this.apellido = apellido;
     }
     
-    public void setCorreo_electronico(String correo_electronico) {
-    	this.correo_electronico = correo_electronico;
+    public void setCorreoElectronico(String correoElectronico) {
+    	this.correoElectronico = correoElectronico;
     }
     
-    public void setContraseña(String contrasenia) {
+    public void setContrasenia(String contrasenia) {
     	this.contrasenia = contrasenia;
     }
     
@@ -64,20 +64,20 @@ public abstract class Usuario {
     	this.imagen = imagen;
     }
 
-    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia, byte[] imagen) {
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia,  byte[] imagen) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido; 
-        this.correo_electronico = correo_electronico;
+        this.correoElectronico = correo_electronico;
         this.contrasenia = contrasenia;
         this.imagen = imagen;
     }
     
-    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia) {
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido; 
-        this.correo_electronico = correo_electronico;
+        this.correoElectronico = correo_electronico;
         this.contrasenia = contrasenia;
         imagen = null;
     }
@@ -89,9 +89,9 @@ public abstract class Usuario {
     public abstract DTUsuario obtenerDatosUsuario();
     
     
-    // corregido, se pasan mas parametros para la ejecucion
+    // corregido,  se pasan mas parametros para la ejecucion
     // para visitantes colocar en usuario registrado actual 'nada'
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,  String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
 
 
     // NO ESTA EN EL DCD

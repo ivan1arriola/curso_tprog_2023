@@ -1,28 +1,13 @@
 package main.java.presentacion;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import java.util.ArrayList;
+
 import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTHora;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlCargaDeDatos;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
@@ -33,18 +18,14 @@ import javax.swing.JOptionPane;
 public class CargarDatos extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
-	private ICtrlUsuario ICU;
-	private ICtrlOferta ICO;
-	private ICtrlCargaDeDatos ICCD;
+	private ICtrlCargaDeDatos iCCDatos;
 	/**
 	 * Create the application.
 	 */
 	
-	public CargarDatos(ICtrlUsuario icu, ICtrlOferta ico) {
+	public CargarDatos(ICtrlUsuario icUsuario,  ICtrlOferta ico) {
         Fabrica fabrica = Fabrica.getInstance();
-		ICCD = fabrica.getICtrlCargaDeDatos();
-		ICU = icu;
-		ICO = ico;
+		iCCDatos = fabrica.getICtrlCargaDeDatos();
 		initialize();
 	}
 
@@ -58,33 +39,33 @@ public class CargarDatos extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Cargar datos");
-        setBounds(30, 30, 477, 153);
+        setBounds(30,  30,  477,  153);
         getContentPane().setLayout(null); //Absolute Layout
         
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		ICCD.cargarDatos();
+        	public void actionPerformed(ActionEvent evento) {
+        		iCCDatos.cargarDatos();
                 
-                JOptionPane.showMessageDialog(CargarDatos.this, "Se han cargado los datos exitosamente.", "Carga de Datos", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(CargarDatos.this,  "Se han cargado los datos exitosamente.",  "Carga de Datos",  JOptionPane.INFORMATION_MESSAGE);
                 
                 setVisible(false);
         	}
         });
-        btnAceptar.setBounds(63, 78, 117, 25);
+        btnAceptar.setBounds(63,  78,  117,  25);
         getContentPane().add(btnAceptar);
         
         JButton btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(297, 78, 117, 25);
+        btnCerrar.setBounds(297,  78,  117,  25);
         getContentPane().add(btnCerrar);
         
         JLabel lblSeleccioneAceptarPara = new JLabel("Seleccione aceptar para cargar los datos.");
-        lblSeleccioneAceptarPara.setBounds(81, 28, 332, 15);
+        lblSeleccioneAceptarPara.setBounds(81,  28,  332,  15);
         getContentPane().add(lblSeleccioneAceptarPara);
 	}
 }
