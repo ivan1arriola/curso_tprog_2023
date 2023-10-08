@@ -32,7 +32,7 @@ import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario; 
 
 
-public class aceptarOferta extends JInternalFrame {
+public class AceptarOferta extends JInternalFrame {
 	private ICtrlOferta controlOferta; 
 	private ICtrlUsuario controlUsuario; 
 	private JComboBox<String> comboBoxEmpresa; 
@@ -41,7 +41,7 @@ public class aceptarOferta extends JInternalFrame {
 	private JTextArea ofertaDetalle; 
     
 	
-    public aceptarOferta(ICtrlOferta ICO,  ICtrlUsuario ICU) {
+    public AceptarOferta(ICtrlOferta ICO,  ICtrlUsuario ICU) {
     	controlUsuario = ICU; 
     	controlOferta = ICO; 
     	setResizable(true); 

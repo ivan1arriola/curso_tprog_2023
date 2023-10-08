@@ -349,7 +349,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		postulante.setCorreoElectronico(correo);
 		postulante.setContrasenia(contraseña); 
 		postulante.setImagen(imagen);
-		postulante.setFechaNac(fecha_nac);
+		postulante.setFechaNac(fechanac);
 		postulante.setNacionalidad(nacionalidad);
 	}
 
@@ -360,7 +360,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		postulante.setApellido(apellido);
 		postulante.setCorreoElectronico(correo);
 		postulante.setContrasenia(contraseña); 
-		postulante.setFechaNac(fecha_nac);
+		postulante.setFechaNac(fechanac);
 		postulante.setNacionalidad(nacionalidad);
 	}
 
