@@ -131,6 +131,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         		Set<String> keywords = icUsuario.listarKeywords(selectedUsuario1);
         		
+        		tAKey.setText("");
                 Iterator<String> iterator = keywords.iterator();
                 while (iterator.hasNext()) {
                 	tAKey.append(iterator.next());
