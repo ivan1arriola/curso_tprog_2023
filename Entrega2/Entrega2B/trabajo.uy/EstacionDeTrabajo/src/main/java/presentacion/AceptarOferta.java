@@ -93,7 +93,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    }
 	                }
 	                
-    				} catch (Exception exc) {
+    				} catch (NullPointerException exc) {
     					System.err.println("Error al obtener las ofertas laborales"); } 
 	                
 	                
@@ -225,7 +225,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    controlOferta.rechazoOL(selectedOferta); 
 	               	}
         		
-        		} catch (Exception ex) {
+        		} catch (IllegalArgumentException ex) {
         			JOptionPane.showMessageDialog(null,   "Error al rechazar" + ex.getMessage(),   "Error",   JOptionPane.ERROR_MESSAGE); 
         		}
         		limpiarFormulario(); 
@@ -246,7 +246,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    JOptionPane.showMessageDialog(null,   "Oferta confirmada",   "",   JOptionPane.INFORMATION_MESSAGE); 
 	                    
 	        		}
-        		} catch (Exception ex) {
+        		} catch (IllegalArgumentException ex) {
         			JOptionPane.showMessageDialog(null,   "Error al confirmar" + ex.getMessage(),   "Error",   JOptionPane.ERROR_MESSAGE); 
         		}
         		

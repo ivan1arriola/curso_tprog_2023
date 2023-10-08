@@ -158,7 +158,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                     	JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this,  "La empresa seleccionada no tiene ofertas laborales.",  "ERROR - Consulta de Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
                     }
 
-        		} catch (Exception e1) {
+        		} catch (IllegalArgumentException e1) {
         			JOptionPane.showMessageDialog(ConsultaDeOfertaLaboral.this,  e1.getMessage(),  "ERROR - Consulta de Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
         		}
         	}

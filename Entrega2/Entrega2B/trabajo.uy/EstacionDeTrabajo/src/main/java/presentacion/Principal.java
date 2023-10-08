@@ -34,7 +34,7 @@ public class Principal {
                 try {
                     Principal window = new Principal();
                     window.frmGestionDeUsuarios.setVisible(true);
-                } catch (Exception e) {
+                } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
             }

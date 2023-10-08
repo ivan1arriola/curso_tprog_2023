@@ -71,7 +71,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				try {            		
 	                    Set<String> nicks =  icu.listarNicknamesUsuarios();
 	                    
-                } catch (Exception ex) {
+                } catch (IllegalArgumentException ex) {
                     	System.err.println("Error al obtener los usuarios");
                 }
 				

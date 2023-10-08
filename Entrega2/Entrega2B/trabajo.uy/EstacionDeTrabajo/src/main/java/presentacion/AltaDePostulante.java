@@ -241,7 +241,7 @@ public class AltaDePostulante extends JInternalFrame {
             	try {
 	        		boolean exito = ICU.altaPostulante(nicknameU,  contraseña,  nombreU,  apellidoU,  correoU,  fechaU,  nacionalidadU);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (Exception e) {
+	        	} catch (IllegalArgumentException e) {
 	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
 	            }
 

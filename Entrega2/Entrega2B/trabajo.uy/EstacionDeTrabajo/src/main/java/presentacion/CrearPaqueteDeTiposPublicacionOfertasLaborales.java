@@ -177,7 +177,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
     	    		descuento.setValue(1.0);
     	    		
 
-    	        } catch (Exception ex) {
+    	        } catch (IllegalArgumentException ex) {
     	            JOptionPane.showMessageDialog(null,  "Ocurrió error: " + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
     	        }
         		

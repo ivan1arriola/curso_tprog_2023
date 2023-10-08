@@ -196,7 +196,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	                limpiarFormulario();
 	                setVisible(false);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (Exception e) {
+	        	} catch (IllegalArgumentException e) {
 	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
 	            }
 	        }

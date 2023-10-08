@@ -109,7 +109,7 @@ public class ElegirPostulante extends JDialog {
 	                    }
 	                }
 	                
-      				} catch (Exception exc) {
+      				} catch (IllegalArgumentException exc) {
       					System.err.println("Error al obtener las ofertas laborales"); } 
 	                
 	                
