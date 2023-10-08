@@ -35,15 +35,16 @@ public class ConsultarOfertas extends JDialog {
 	
 	private Set<DTPostulacion> postulaciones; 
 	private ICtrlOferta ico; 
-	private ICtrlUsuario icUsuario; 
+	private ICtrlUsuario icu; 
 	private String motiva; 
 	private String curriculumVitae; 
 	private LocalDate fecha; 
 	private String fechaFormat; 
 	
-    public ConsultarOfertas(Set<String> offerDetailsUnsort,  ICtrlOferta icoInstance,   ICtrlUsuario icUsuarioInstance,  String usuario) {
+    public ConsultarOfertas(Set<String> offerDetailsUnsort,  ICtrlOferta icoInstance,   ICtrlUsuario icuInstance,  String usuario) {
     	
     	ico = icoInstance; 
+    	icu = icuInstance; 
     	
     	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort); 
         Collections.sort(offerDetails,   String.CASE_INSENSITIVE_ORDER); 
@@ -112,7 +113,7 @@ public class ConsultarOfertas extends JDialog {
                 
                 DTOfertaExtendido dtOfer = ico.obtenerOfertaLaboral(selectedOferta); 
                
-                DTUsuario usr = icUsuario.obtenerDatosUsuario(usuario); 
+                DTUsuario usr = icu.obtenerDatosUsuario(usuario); 
                 
                 if (usr instanceof DTPostulante) {
         		postulaciones = dtOfer.getPostulaciones(); 
@@ -181,5 +182,3 @@ public class ConsultarOfertas extends JDialog {
          setVisible(true); 
      }
     }
-
-

@@ -67,7 +67,7 @@ public class AltaDePostulante extends JInternalFrame {
         setBounds(10,  40,  461,  393);
         getContentPane().setLayout(null);
         
-        nickname = new JLabel("nickname:");
+        nickname = new JLabel("Nickname:");
         nickname.setBounds(162,  12,  73,  15);
         nickname.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(nickname);
@@ -80,7 +80,7 @@ public class AltaDePostulante extends JInternalFrame {
         // Una etiqueta (JLabel) indicandp que en el siguiente campo debe ingresarse 
         // el nombre del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
-        nombre = new JLabel("nombre:");
+        nombre = new JLabel("Nombre:");
         nombre.setBounds(99,  41,  136,  25);
         nombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(nombre);
@@ -95,7 +95,7 @@ public class AltaDePostulante extends JInternalFrame {
         // Una etiqueta (JLabel) indicandp que en el siguiente campo debe ingresarse 
         // el apellido del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
-        apellido = new JLabel("apellido:");
+        apellido = new JLabel("Apellido:");
         apellido.setBounds(99,  76,  136,  19);
         apellido.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(apellido);
@@ -121,7 +121,7 @@ public class AltaDePostulante extends JInternalFrame {
         // Una etiqueta (JLabel) indicando que en el siguiente campo debe ingresarse 
         // la cédula del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
-        nacionalidad = new JLabel("nacionalidad:");
+        nacionalidad = new JLabel("Nacionalidad:");
         nacionalidad.setBounds(99,  179,  136,  19);
         nacionalidad.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(nacionalidad);
@@ -140,7 +140,7 @@ public class AltaDePostulante extends JInternalFrame {
 		lblIngreseCi1.setHorizontalAlignment(SwingConstants.RIGHT);
 		getContentPane().add(lblIngreseCi1);
 		
-		anio = new JLabel("anio:");
+		anio = new JLabel("Año:");
 		anio.setBounds(203,  235,  32,  15);
 		anio.setHorizontalAlignment(SwingConstants.RIGHT);
 		getContentPane().add(anio);
