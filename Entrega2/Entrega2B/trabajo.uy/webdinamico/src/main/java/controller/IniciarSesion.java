@@ -14,6 +14,8 @@ import main.java.logica.datatypes.DTUsuario;
 import java.io.IOException;
 import java.util.Base64;
 
+import enumeration.TipoUsuario;
+
 @WebServlet("/iniciarsesion")
 public class IniciarSesion extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -66,10 +68,10 @@ public class IniciarSesion extends HttpServlet {
         DTUsuario usuario = obtenerUsuario(identificador);
         session.setAttribute("nickname", usuario.getNickname());
         if( usuario instanceof DTPostulante) {
-        	session.setAttribute("tipoUsuario", "Postulante");
+        	session.setAttribute("tipoUsuario", TipoUsuario.Postulante);
         }
         if( usuario instanceof DTEmpresa) {
-        	session.setAttribute("tipoUsuario", "Empresa");
+        	session.setAttribute("tipoUsuario", TipoUsuario.Empresa);
         }
         
 
