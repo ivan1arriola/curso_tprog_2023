@@ -1,8 +1,6 @@
 package main.java.presentacion;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -13,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
+import main.java.excepciones.ExceptionUsuarioNickRepetido;
+import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 import javax.swing.JPasswordField;
@@ -21,35 +22,35 @@ import javax.swing.JPasswordField;
 public class AltaDeEmpresa extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
-    private ICtrlUsuario ICU;
+    private ICtrlUsuario icUsuario;
     
     // Los componentes gráficos se agregan como atributos de la clase
     // para facilitar su acceso desde diferentes métodos de la misma.
     private JTextField textFieldNombre;
     private JTextField textFieldApellido;
-    private JLabel Nombre_1;
-    private JLabel Apellido;
+    private JLabel nombre1;
+    private JLabel apellido;
     private JButton btnAceptar;
     private JButton btnCancelar;
     private JTextField textFieldNickname;
-    private JLabel Nickname;
+    private JLabel nickname;
     private JTextField textFieldDescripcion;
     private JTextField textFieldURL;
-    private JLabel Contraseña;
-    private JLabel Descripcion; 
-    private JLabel URL;
-    private JLabel CorreoElectronico;
+    private JLabel contrasenia;
+    private JLabel descripcion; 
+    private JLabel uRL;
+    private JLabel correoElectronico;
     private JTextField textFieldCorreoElectronico;
     private JPasswordField passF;
     private JPasswordField pFR;
-    private JLabel NombreEmpresa_1;
+    private JLabel nombreEmpresa1;;
 
     /**
      * Create the frame.
      */
     public AltaDeEmpresa(ICtrlUsuario icu) {
         // Se inicializa con el controlador de usuarios
-        ICU = icu;
+        icUsuario = icu;
 
         // Propiedades del JInternalFrame como dimensión,  posición dentro del frame, 
         // etc.
@@ -62,10 +63,10 @@ public class AltaDeEmpresa extends JInternalFrame {
         setBounds(10,  40,  434,  305);
         getContentPane().setLayout(null);
                                                                                 
-        Nickname = new JLabel("Nickname:");
-        Nickname.setBounds(141,  12,  73,  13);
-        Nickname.setHorizontalAlignment(SwingConstants.RIGHT);
-        getContentPane().add(Nickname);
+        nickname = new JLabel("Nickname:");
+        nickname.setBounds(141,  12,  73,  13);
+        nickname.setHorizontalAlignment(SwingConstants.RIGHT);
+        getContentPane().add(nickname);
         
         textFieldNickname = new JTextField();
         textFieldNickname.setBounds(232,  9,  180,  18);
@@ -75,10 +76,10 @@ public class AltaDeEmpresa extends JInternalFrame {
         // Una etiqueta (JLabel) indicandp que en el siguiente campo debe ingresarse 
         // el nombre del usuario. El texto está alineado horizontalmente a la derecha para
         // que quede casi pegado al campo de texto.
-        Nombre_1 = new JLabel("Nombre:");
-        Nombre_1.setBounds(51,  36,  163,  25);
-        Nombre_1.setHorizontalAlignment(SwingConstants.RIGHT);
-        getContentPane().add(Nombre_1);
+        nombre1 = new JLabel("Nombre:");
+        nombre1.setBounds(51,  36,  163,  25);
+        nombre1.setHorizontalAlignment(SwingConstants.RIGHT);
+        getContentPane().add(nombre1);
 
         // Una campo de texto (JTextField) para ingresar el nombre del usuario. 
         // Por defecto es posible ingresar cualquier string.
@@ -90,10 +91,10 @@ public class AltaDeEmpresa extends JInternalFrame {
 		// Una etiqueta (JLabel) indicandp que en el siguiente campo debe ingresarse 
 		// el apellido del usuario. El texto está alineado horizontalmente a la derecha para
 		// que quede casi pegado al campo de texto.
-		Apellido = new JLabel("Apellido:");
-		Apellido.setBounds(51,  71,  163,  19);
-		Apellido.setHorizontalAlignment(SwingConstants.RIGHT);
-		getContentPane().add(Apellido);
+		apellido = new JLabel("Apellido:");
+		apellido.setBounds(51,  71,  163,  19);
+		apellido.setHorizontalAlignment(SwingConstants.RIGHT);
+		getContentPane().add(apellido);
 		
 		// Una campo de texto (JTextField) para ingresar el apellido del usuario. 
 		// Por defecto es posible ingresar cualquier string.
@@ -102,10 +103,10 @@ public class AltaDeEmpresa extends JInternalFrame {
 		getContentPane().add(textFieldApellido);
 		textFieldApellido.setColumns(10);
                                                                                                                 
-		CorreoElectronico = new JLabel("Correo electrónico:");
-		CorreoElectronico.setBounds(78,  102,  136,  15);
-		CorreoElectronico.setHorizontalAlignment(SwingConstants.RIGHT);
-		getContentPane().add(CorreoElectronico);
+		correoElectronico = new JLabel("Correo electrónico:");
+		correoElectronico.setBounds(78,  102,  136,  15);
+		correoElectronico.setHorizontalAlignment(SwingConstants.RIGHT);
+		getContentPane().add(correoElectronico);
 		
 		textFieldCorreoElectronico = new JTextField();
 		textFieldCorreoElectronico.setBounds(232,  100,  180,  19);
@@ -113,25 +114,25 @@ public class AltaDeEmpresa extends JInternalFrame {
 		textFieldCorreoElectronico.setColumns(10);
 		getContentPane().add(textFieldCorreoElectronico);
 		
-		Contraseña = new JLabel("Contraseña:");
-		Contraseña.setBounds(41,  129,  173,  17);
-		Contraseña.setHorizontalAlignment(SwingConstants.RIGHT);
-		getContentPane().add(Contraseña);
+		contrasenia = new JLabel("Contraseña:");
+		contrasenia.setBounds(41,  129,  173,  17);
+		contrasenia.setHorizontalAlignment(SwingConstants.RIGHT);
+		getContentPane().add(contrasenia);
 		
-		Descripcion = new JLabel("Descripción:");
-		Descripcion.setBounds(127,  180,  87,  15);
-		Descripcion.setHorizontalAlignment(SwingConstants.RIGHT);
-		getContentPane().add(Descripcion);
+		descripcion = new JLabel("Descripción:");
+		descripcion.setBounds(127,  180,  87,  15);
+		descripcion.setHorizontalAlignment(SwingConstants.RIGHT);
+		getContentPane().add(descripcion);
 		
 		textFieldDescripcion = new JTextField();
 		textFieldDescripcion.setBounds(232,  178,  180,  19);
 		textFieldDescripcion.setColumns(10);
 		getContentPane().add(textFieldDescripcion);
 	    
-	    URL = new JLabel("URL:");
-	    URL.setBounds(182,  207,  32,  15);
-	    URL.setHorizontalAlignment(SwingConstants.RIGHT);
-	    getContentPane().add(URL);
+	    uRL = new JLabel("URL:");
+	    uRL.setBounds(182,  207,  32,  15);
+	    uRL.setHorizontalAlignment(SwingConstants.RIGHT);
+	    getContentPane().add(uRL);
 	    
 	    textFieldURL = new JTextField();
 	    textFieldURL.setBounds(232,  205,  180,  19);
@@ -145,7 +146,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	    btnAceptar.setBounds(10,  236,  191,  25);
 	    btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
-	            cmdRegistroUsuarioActionPerformed(arg0);
+	            setVisible(false);
 	        }
 	    });
 	    getContentPane().add(btnAceptar);
@@ -170,13 +171,13 @@ public class AltaDeEmpresa extends JInternalFrame {
 			    pFR.setBounds(232,  153,  180,  17);
 			    getContentPane().add(pFR);
 			    
-			    NombreEmpresa_1 = new JLabel("Confirmación de contraseña:");
-			    NombreEmpresa_1.setHorizontalAlignment(SwingConstants.RIGHT);
-			    NombreEmpresa_1.setBounds(0,  153,  214,  17);
-			    getContentPane().add(NombreEmpresa_1);
+			    nombreEmpresa1 = new JLabel("Confirmación de contraseña:");
+			    nombreEmpresa1.setHorizontalAlignment(SwingConstants.RIGHT);
+			    nombreEmpresa1.setBounds(0,  153,  214,  17);
+			    getContentPane().add(nombreEmpresa1);
 	    }
 
-	    protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) {
+	    protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
 	        // TODO Auto-generated method stub
 	
 	        // Obtengo datos de los controles Swing
@@ -192,7 +193,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        int resCheck = checkFormulario();
 	        if (resCheck == 1) {
 	        	try {
-	        		boolean exito = ICU.altaEmpresa(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU);
+	        		boolean exito = icUsuario.altaEmpresa(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU);
 	                limpiarFormulario();
 	                setVisible(false);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
@@ -204,9 +205,9 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        	try {
 	                limpiarFormulario();
 	                setVisible(false);
-	        		boolean exito = ICU.altaEmpresaURL(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU,  urlU);  
+	        		boolean exito = icUsuario.altaEmpresaURL(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU,  urlU);  
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (Exception e) {
+	        	} catch (ExceptionUsuarioCorreoRepetido|ExceptionUsuarioNickYCorreoRepetidos|ExceptionUsuarioNickRepetido e) {
 	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
 	            }        	
 	        }

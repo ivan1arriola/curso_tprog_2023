@@ -1,13 +1,11 @@
 package main.java.presentacion;
 
-import java.awt.EventQueue;
-import java.awt.Font;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JButton;
@@ -38,10 +36,10 @@ import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 public class ElegirPostulante extends JDialog {
 
 	private ICtrlUsuario controlUsr;
-	private JLabel LblcvRed;
-    private JLabel Lblmotiva;
-    private JLabel LblFecha;
-    private JLabel Postulante;
+	private JLabel lblcvRed;
+    private JLabel lblmotiva;
+    private JLabel lblFecha;
+    private JLabel postulante;
     private JTextField dateTextField;
     private DateTimeFormatter dateFormatter;
     private JComboBox<String> cbEmpresa;
@@ -49,14 +47,14 @@ public class ElegirPostulante extends JDialog {
     private JComboBox<String> cbPostula;
     private JTextArea cvred;
     private JTextArea motiva;
-    private JTextField textField_1;
+    private JTextField textField1;
     private Set<String> postulantes;
     private Set<String> empresas;
     private Set<String> ofertas;
     
-    public ElegirPostulante(String empresa, String offer,  ICtrlUsuario icu,  ICtrlOferta ico) {
-    	controlUsr = icu;
-    	postulantes = icu.obtenerNicknamesPostulantes();
+    public ElegirPostulante(String empresa, String offer,  ICtrlUsuario icUsuario,  ICtrlOferta ico) {
+    	controlUsr = icUsuario;
+    	postulantes = icUsuario.obtenerNicknamesPostulantes();
     	
     	
       	setResizable(true);
@@ -81,7 +79,7 @@ public class ElegirPostulante extends JDialog {
       	gbc_lblEmpre.insets = new Insets(0,  15,  5,  5);
       	gbc_lblEmpre.gridx = 0;
       	gbc_lblEmpre.gridy = 0;
-      	getContentPane().add(lblEmpre,  gbc_lblEmpre);
+      	getContentPane().add( lblEmpre,  gbc_lblEmpre);
       	
       	//COMBO BOX EMPRESA
       	cbEmpresa = new JComboBox<>();
@@ -96,7 +94,7 @@ public class ElegirPostulante extends JDialog {
       				try {
 	                if (cbEmpresa.getSelectedIndex() != -1 && cbEmpresa.getSelectedIndex() != 0) {
 	                    String selectedEmpresa = (String) cbEmpresa.getSelectedItem();
-	                    Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
+	                    Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
 	                    cbOferta.removeAllItems(); // Limpiar el comboBoxOfertas
 	                 
 	                    if (ofertasEmpresa.isEmpty()) {
@@ -133,7 +131,7 @@ public class ElegirPostulante extends JDialog {
       	gbc_lblNewLabel.insets = new Insets(0,  15,  5,  5);
       	gbc_lblNewLabel.gridx = 0;
       	gbc_lblNewLabel.gridy = 1;
-      	getContentPane().add(lblNewLabel,  gbc_lblNewLabel);
+      	getContentPane().add( lblNewLabel,  gbc_lblNewLabel);
       	
       	//COMBOBOX OFERTA
       	cbOferta = new JComboBox<>();
@@ -150,17 +148,17 @@ public class ElegirPostulante extends JDialog {
        
         /////////
      
-        Postulante = new JLabel("Postulante");
-        gbl.setConstraints(Postulante,  gbc);
-        GridBagConstraints gbc_Postulante = new GridBagConstraints();
-        gbc_Postulante.anchor = GridBagConstraints.WEST;
-        gbc_Postulante.insets = new Insets(5,  15,  5,  5);
-        gbc_Postulante.gridx = 0;
-        gbc_Postulante.gridy = 2;
-        getContentPane().add(Postulante,  gbc_Postulante);
+        postulante = new JLabel("postulante");
+        gbl.setConstraints(postulante,  gbc);
+        GridBagConstraints gbc_postulante = new GridBagConstraints();
+        gbc_postulante.anchor = GridBagConstraints.WEST;
+        gbc_postulante.insets = new Insets(5,  15,  5,  5);
+        gbc_postulante.gridx = 0;
+        gbc_postulante.gridy = 2;
+        getContentPane().add(postulante,  gbc_postulante);
         
         
-        //COMBOBOX POSTULANTE
+        //COMBOBOX postulante
         cbPostula = new JComboBox<String>();
 
     	
@@ -184,15 +182,15 @@ public class ElegirPostulante extends JDialog {
         
 
         ////
-        LblcvRed = new JLabel("CV Reducido");
-        LblcvRed.setHorizontalAlignment(SwingConstants.CENTER);
-        gbl.setConstraints(LblcvRed,  gbc);
+        lblcvRed = new JLabel("CV Reducido");
+        lblcvRed.setHorizontalAlignment(SwingConstants.CENTER);
+        gbl.setConstraints( lblcvRed,  gbc);
         GridBagConstraints gbc_LblcvRed = new GridBagConstraints();
         gbc_LblcvRed.anchor = GridBagConstraints.WEST;
         gbc_LblcvRed.insets = new Insets(0,  15,  5,  5);
         gbc_LblcvRed.gridx = 0;
         gbc_LblcvRed.gridy = 3;
-        getContentPane().add(LblcvRed,  gbc_LblcvRed);
+        getContentPane().add( lblcvRed,  gbc_LblcvRed);
         /////
         
   
@@ -218,25 +216,25 @@ public class ElegirPostulante extends JDialog {
         gbc_URL.gridy = 4;
         getContentPane().add(URL,  gbc_URL);
         
-        textField_1 = new JTextField(); // url
-        GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-        gbc_textField_1.insets = new Insets(0,  0,  5,  5);
-        gbc_textField_1.gridx = 1;
-        gbc_textField_1.gridy = 4;
-        gbc_textField_1.ipadx = 150;
-        getContentPane().add(textField_1,  gbc_textField_1);
-        textField_1.setColumns(10);
+        textField1 = new JTextField(); // url
+        GridBagConstraints gbc_textField1 = new GridBagConstraints();
+        gbc_textField1.insets = new Insets(0,  0,  5,  5);
+        gbc_textField1.gridx = 1;
+        gbc_textField1.gridy = 4;
+        gbc_textField1.ipadx = 150;
+        getContentPane().add(textField1,  gbc_textField1);
+        textField1.setColumns(10);
         
         
         /////
-        Lblmotiva = new JLabel("Motivación");
-        gbl.setConstraints(Lblmotiva,  gbc);
+        lblmotiva = new JLabel("Motivación");
+        gbl.setConstraints( lblmotiva,  gbc);
         GridBagConstraints gbc_Lblmotiva = new GridBagConstraints();
         gbc_Lblmotiva.anchor = GridBagConstraints.WEST;
         gbc_Lblmotiva.insets = new Insets(0,  15,  5,  5);
         gbc_Lblmotiva.gridx = 0;
         gbc_Lblmotiva.gridy = 5;
-        getContentPane().add(Lblmotiva,  gbc_Lblmotiva);
+        getContentPane().add( lblmotiva,  gbc_Lblmotiva);
         
         
         /////
@@ -258,13 +256,13 @@ public class ElegirPostulante extends JDialog {
         dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate currentDate = LocalDate.now();
         
-        LblFecha = new JLabel("Fecha Postulación");
+        lblFecha = new JLabel("Fecha Postulación");
         GridBagConstraints gbc_LblFecha = new GridBagConstraints();
         gbc_LblFecha.insets = new Insets(0,  15,  5,  5);
         gbc_LblFecha.anchor = GridBagConstraints.WEST;
         gbc_LblFecha.gridx = 0;
         gbc_LblFecha.gridy = 6;
-        getContentPane().add(LblFecha,  gbc_LblFecha);
+        getContentPane().add( lblFecha,  gbc_LblFecha);
         
         dateTextField = new JTextField(10); // El tamaño se puede ajustar
         dateTextField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -308,31 +306,31 @@ public class ElegirPostulante extends JDialog {
         	public void actionPerformed(ActionEvent evento) {
         		
                 String esOferta = (String) cbOferta.getSelectedItem();
-                String esPostulante = (String) cbPostula.getSelectedItem(); 	
+                String espostulante = (String) cbPostula.getSelectedItem(); 	
                 DTOfertaExtendido dtofer = ico.obtenerOfertaLaboral(offer);
                 LocalDate fechaAlta = dtofer.getFechaDeAlta();
                 int duracion = ico.tipoOferta(esOferta).getDuracion(); //duracion segun tipo de pub
                 //ver de qué tipo es la oferta para ver su validez: oferta.fechaAlta + tipo.validez
                 LocalDate fechaResultado = fechaAlta.plusDays(duracion);
                 
-                if (icu.existePostulacion(esPostulante,  esOferta)) { 
-                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "El usuario indicado ya se encuentra postulado a la oferta indicada.",  "ERROR - Elegir Postulante",  JOptionPane.ERROR_MESSAGE);
+                if (icUsuario.existePostulacion(espostulante,  esOferta)) { 
+                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "El usuario indicado ya se encuentra postulado a la oferta indicada.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 	cbEmpresa.setEnabled(true);
                 	cbOferta.setEnabled(true);
                 }  else if (motiva.getText().isBlank()) {
-                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "No ha escrito la motivación.",  "ERROR - Elegir Postulante",  JOptionPane.ERROR_MESSAGE);
+                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "No ha escrito la motivación.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 } else if (cvred.getText().isBlank()) {
-                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "No ha escrito el CV reducido.",  "ERROR - Elegir Postulante",  JOptionPane.ERROR_MESSAGE);
+                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "No ha escrito el CV reducido.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 } else if (currentDate.isAfter(fechaResultado)) {
                 	
                 	//verificar las condiciones de fechas: tipo.validez+ oferta.fechaalta
-                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "Oferta no vigente",  "ERROR - Elegir Postulante",  JOptionPane.ERROR_MESSAGE);
+                	JOptionPane.showMessageDialog(ElegirPostulante.this,  "Oferta no vigente",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 }
                 
                 else {
-                    String esEmpresa = (String) cbEmpresa.getSelectedItem();
+                    //String esEmpresa = (String) cbEmpresa.getSelectedItem();
                     String curriculumVitae = cvred.getText();
-                    ico.altaPostulacion(esOferta,  esPostulante,  curriculumVitae,  motiva.getText(),  textField_1.getText(),  currentDate);
+                    ico.altaPostulacion(esOferta,  espostulante,  curriculumVitae,  motiva.getText(),  textField1.getText(),  currentDate);
                     JOptionPane.showMessageDialog(btnCrear,  "Postulación creada exitosamente",  "Éxito",  JOptionPane.INFORMATION_MESSAGE);
                     setVisible(false);
                 }
@@ -366,7 +364,7 @@ public class ElegirPostulante extends JDialog {
         try {
         ofertas = controlUsr.listarOfertasLaborales(empresa);
         }
-        catch (Exception e){
+        catch (ExceptionUsuarioNoEncontrado|ExceptionEmpresaInvalida e){
         	JOptionPane.showMessageDialog(this,  "Búsqueda de ofertas inválida",  "Error",  JOptionPane.INFORMATION_MESSAGE);
         }
         

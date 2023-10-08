@@ -1,19 +1,17 @@
 package main.java.presentacion;
 
-import java.awt.BorderLayout;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -35,8 +33,8 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
     private JTextArea descripcion;
     private JSpinner periodo;
     private JSpinner descuento;
-    private JButton Aceptar;
-    private JButton Cancelar;
+    private JButton aceptar;
+    private JButton cancelar;
     
 
     public CrearPaqueteDeTiposPublicacionOfertasLaborales() {
@@ -130,26 +128,26 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         getContentPane().add(descuento,  gbc_Descuento);
         
         
-        Aceptar = new JButton("Aceptar");
+        aceptar = new JButton("Aceptar");
         GridBagConstraints gbc_Aceptar = new GridBagConstraints();
         gbc_Aceptar.anchor = GridBagConstraints.WEST;
         gbc_Aceptar.ipadx = 4;
         gbc_Aceptar.insets = new Insets(10,  10,  5,  5);
         gbc_Aceptar.gridx = 0;
         gbc_Aceptar.gridy = 4;
-        getContentPane().add(Aceptar,  gbc_Aceptar);
+        getContentPane().add(aceptar, gbc_Aceptar);
         
-        Cancelar = new JButton("Cancelar");
+        cancelar = new JButton("Cancelar");
         GridBagConstraints gbc_Cancelar = new GridBagConstraints();
         gbc_Cancelar.insets = new Insets(10,  0,  5,  10);
         gbc_Cancelar.ipadx = 4;
         gbc_Cancelar.anchor = GridBagConstraints.EAST;
         gbc_Cancelar.gridx = 1;
         gbc_Cancelar.gridy = 4;
-        getContentPane().add(Cancelar,  gbc_Cancelar);
+        getContentPane().add(cancelar,  gbc_Cancelar);
         
         
-        Aceptar.addActionListener(new ActionListener() {
+        aceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		
         		try {
@@ -184,7 +182,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         	}
         });
         
-        Cancelar.addActionListener(new ActionListener() {
+        cancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		onCancelar();
         	}

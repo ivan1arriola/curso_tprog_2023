@@ -30,10 +30,11 @@ import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
-    private JTextField CantidadMostrar;
+    private JTextField cantidadMostrar;
     private ICtrlOferta ico;
     private JComboBox<String> listadoTipoPub;
-    private JComboBox<String> PaquetesVisualizar;
+    private JComboBox<String> paquetesVisualizar;
+    //private JComboBox<String> paquetesVisualizar;
     
     /**
      * Create the application.
@@ -43,19 +44,19 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     	ico = ICO;
         initialize();
            
-        PaquetesVisualizar = new JComboBox<String>();
-        PaquetesVisualizar.setBounds(190,   27,   298,   24);
-        getContentPane().add(PaquetesVisualizar);    
+        paquetesVisualizar = new JComboBox<String>();
+        paquetesVisualizar.setBounds(190,   27,   298,   24);
+        getContentPane().add(paquetesVisualizar);    
         listadoTipoPub = new JComboBox<String>();
         listadoTipoPub.setBounds(190,   63,   298,   24);
         getContentPane().add(listadoTipoPub);
 
-        PaquetesVisualizar.addActionListener(new ActionListener() {
+        paquetesVisualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		
-        		if (PaquetesVisualizar.getSelectedIndex() != 	-1 && PaquetesVisualizar.getSelectedIndex() != 0) {
+        		if (paquetesVisualizar.getSelectedIndex() != 	-1 && paquetesVisualizar.getSelectedIndex() != 0) {
         			
-        			String paqElegido =  (String) PaquetesVisualizar.getSelectedItem();
+        			String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
         	        Set<String> publicaciones = ICO.listarTipoDePublicaciones();
         	        DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
         	        Set<DTCantTO> tiposAgregados = dtpaq.getTiposDePub();
@@ -91,8 +92,8 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         JButton btnNewButton_1 = new JButton("Aceptar");
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		String text = CantidadMostrar.getText();
-                String op1 =  (String) PaquetesVisualizar.getSelectedItem();
+        		String text = cantidadMostrar.getText();
+                String op1 =  (String) paquetesVisualizar.getSelectedItem();
                 String op2 =  (String) listadoTipoPub.getSelectedItem();
                 if (!op1.equals("") && !op2.equals("")) {
                 	try {
@@ -142,10 +143,10 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         lblIngresoCI_1.setBounds(10,   105,   170,   15);
         getContentPane().add(lblIngresoCI_1);
         
-        CantidadMostrar = new JTextField();
-        CantidadMostrar.setColumns(10);
-        CantidadMostrar.setBounds(190,   100,   298,   24);
-        getContentPane().add(CantidadMostrar);
+        cantidadMostrar = new JTextField();
+        cantidadMostrar.setColumns(10);
+        cantidadMostrar.setBounds(190,   100,   298,   24);
+        getContentPane().add(cantidadMostrar);
         
         JLabel lblIngresoCI_1_1 = new JLabel("Tipo publicacion:");
         lblIngresoCI_1_1.setBounds(10,   68,   170,   15);
@@ -167,13 +168,16 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     public void actualizar() {
     	
     	Set<String> paquetes = ico.listarPaquetes();
+        System.out.println(paquetes.size());
+
+        	
     	//quedarse con los no comprados
-    	PaquetesVisualizar.addItem(""); // casilla vacia
+    	paquetesVisualizar.addItem(""); // casilla vacia
     	for (String element1 : paquetes) {
     		
     		if (!ico.paqueteComprado(element1)) {
     		   	//si nadie lo compro queda disponible	
-    			PaquetesVisualizar.addItem(element1);
+    			paquetesVisualizar.addItem(element1);
     		}
     	}
     	
@@ -188,6 +192,6 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     }
     
     private void limpiarFormulario() {
-    	CantidadMostrar.setText(""); 
+    	cantidadMostrar.setText(""); 
     }
 }

@@ -20,7 +20,7 @@ public class OfertaLaboral {
 	// atributos
 	private String nombre;
 	private String descripcion;
-	private LocalDate fecha_de_alta;
+	private LocalDate fechaAlta;
 	private Float costo; // atributo calculado
 	private Float remuneracion;
 	private DTHorario horario;
@@ -37,7 +37,7 @@ public class OfertaLaboral {
 	
 
 	// constructor con paquete y imagen
-	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfecha_de_alta,  EstadoOL estadoNuevo,  byte[] imagennueva,  Paquete paq) {
+	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,  byte[] imagennueva,  Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -52,17 +52,17 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}		
-		this.fecha_de_alta = atrfecha_de_alta;
+		this.fechaAlta = atrfechaAlta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
 
 	// constructor sin paquete y con imagen
-	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfecha_de_alta,  EstadoOL estadoNuevo,  byte[] imagennueva) {
+	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,  byte[] imagennueva) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -76,17 +76,17 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}
-		this.fecha_de_alta = atrfecha_de_alta;
+		this.fechaAlta = atrfechaAlta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
 
 	// constructor sin imagen pero con paquete	
-	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfecha_de_alta,  EstadoOL estadoNuevo,   Paquete paq) {
+	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,   Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -101,18 +101,18 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}
 			
-		this.fecha_de_alta = atrfecha_de_alta;
+		this.fechaAlta = atrfechaAlta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
 
 	// constructor sin imagen ni paquete	
-	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfecha_de_alta,  EstadoOL estadoNuevo) {
+	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -127,12 +127,12 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq*(1/descuento);
 		} else {
 			this.costo = costodadoPaq;
 		}
 
-		this.fecha_de_alta = atrfecha_de_alta;
+		this.fechaAlta = atrfechaAlta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
 	}
@@ -162,8 +162,8 @@ public class OfertaLaboral {
 		return remuneracion;
 	}
 	
-	public LocalDate getFecha_de_alta() {
-		return fecha_de_alta; 
+	public LocalDate getFechaAlta() {
+		return fechaAlta; 
 	}
 	
 	public Float getCosto() { 
@@ -219,8 +219,8 @@ public class OfertaLaboral {
 		remuneracion = Remunera;
 	}
 	
-	public void setFecha_de_alta(LocalDate fecha) {
-		fecha_de_alta = fecha; 
+	public void setFechaAlta(LocalDate fecha) {
+		fechaAlta = fecha; 
 	}
 	
 	public void setCosto(float cost) {
@@ -270,7 +270,7 @@ public class OfertaLaboral {
 		if (paq != null) {
 			paq_nomb = paq.getNombre();
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),   getDescripcion(),   getFecha_de_alta(),   getCosto(),   getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   posts,   getImagen(),   paq_nomb);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),   getDescripcion(),   getFechaAlta(),   getCosto(),   getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   posts,   getImagen(),   paq_nomb);
 		return dtoe;
 	}
 	
@@ -289,7 +289,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),   getDescripcion(),   getFecha_de_alta(),   getCosto(),   getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   getImagen(),   nuevo);
+		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),   getDescripcion(),   getFechaAlta(),   getCosto(),   getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   getImagen(),   nuevo);
 		return dtoe;
 	}
 	
@@ -309,7 +309,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),  getDescripcion(),  getFecha_de_alta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   getPaquete(),   nuevo);
+		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   getPaquete(),   nuevo);
 		return dtoe;
 	} 
 
@@ -335,7 +335,7 @@ public class OfertaLaboral {
 		for (int i = 0; i < keywords.size() && !salir; i++) {
 			keys.add(keywords.get(i).getNombre());
 		}
-		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),  getDescripcion(),  getFecha_de_alta(),  getCosto(),   getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  keys,  dtPost);
+		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),   getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  keys,  dtPost);
 
 		
 		return 	entregar;	

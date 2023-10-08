@@ -1,7 +1,7 @@
 package main.java.presentacion;
 
 import javax.swing.JInternalFrame;
-import main.java.excepciones.UsuarioNoExisteException;
+
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTPostulante;
 import main.java.logica.datatypes.DTUsuario;
@@ -10,43 +10,37 @@ import main.java.logica.Fabrica;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
+
 import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JScrollPane;
+
 
 
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-	    private ICtrlUsuario icu; 
+	    private ICtrlUsuario icUsuario; 
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    private JComboBox<String> listarUsuarios;
-	    private ModificarDatosDeUsuarioEmpresa MDUE;
-	    private ModificarDatosDeUsuarioPostulante MDUP;
+	    private ModificarDatosDeUsuarioEmpresa mDUEmpresa;
+	    private ModificarDatosDeUsuarioPostulante mDUPost;
 	    
 	
 
-    public ModificarDatosDeUsuarioV2(JFrame gui,  ICtrlUsuario icu) {
+    public ModificarDatosDeUsuarioV2(JFrame gui,  ICtrlUsuario icUsuario) {
     	// Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
-        // icu = fabrica.getICtrlUsuario();
+        // icUsuario = fabrica.getICtrlUsuario();
     	
         setResizable(true);
         setIconifiable(true);
@@ -69,7 +63,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 			public void actionPerformed(ActionEvent evento) {
 				
 				try {            		
-	                    Set<String> nicks =  icu.listarNicknamesUsuarios();
+	                    Set<String> nicks =  icUsuario.listarNicknamesUsuarios();
 	                    
                 } catch (IllegalArgumentException ex) {
                     	System.err.println("Error al obtener los usuarios");
@@ -96,25 +90,25 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 			public void actionPerformed(ActionEvent evento) {
 				
                 String selectedUsuario = (String) listarUsuarios.getSelectedItem(); // agarro el usuario
-				DTUsuario dtus = icu.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
+				DTUsuario dtus = icUsuario.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
 				
 				// El combobox no esta vacio y el usuario es un POSTULANTE
 				if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && !(dtus instanceof DTEmpresa)) { 
 					DTPostulante dtpostu = (DTPostulante) dtus;
-					MDUP = new ModificarDatosDeUsuarioPostulante(icu,  dtpostu);
-					gui.getContentPane().add(MDUP);
+					mDUPost = new ModificarDatosDeUsuarioPostulante(icUsuario,  dtpostu);
+					gui.getContentPane().add(mDUPost);
 					setVisible(false);
-					MDUP.setVisible(true);
+					mDUPost.setVisible(true);
 	                // modificarUser.toFront();
 				} 
 				
 				// El combobox no esta vacio y el usuario es una EMPRESA	
-				else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
+				else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && dtus instanceof DTEmpresa) {
 					DTEmpresa dtempre = (DTEmpresa) dtus;
-					MDUE = new ModificarDatosDeUsuarioEmpresa(icu,  dtempre);
-					gui.getContentPane().add(MDUE);
+					mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icUsuario,  dtempre);
+					gui.getContentPane().add(mDUEmpresa);
 					setVisible(false);
-					MDUE.setVisible(true);
+					mDUEmpresa.setVisible(true);
 	                //modificarUser.toFront();
 				}
 			}
@@ -128,12 +122,12 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
     
     public void actualizar() {
     	Fabrica fabrica = Fabrica.getInstance();
-    	icu = fabrica.getICtrlUsuario();
+    	icUsuario = fabrica.getICtrlUsuario();
     	
     	listarUsuarios.removeAllItems(); 
         
         //comboBoxOfertas.removeAllItems(); 
-        Set<String> usuario = icu.listarNicknamesUsuarios();
+        Set<String> usuario = icUsuario.listarNicknamesUsuarios();
         List<String> usuariosOrdenados = new ArrayList<>(usuario);
         Collections.sort(usuariosOrdenados,  String.CASE_INSENSITIVE_ORDER);
         listarUsuarios.addItem(" ");

@@ -172,22 +172,22 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         getContentPane().add(fechaAltaField,  gbc_Fecha);
         
         
-        JButton Aceptar = new JButton("Aceptar");
+        JButton aceptar = new JButton("Aceptar");
         GridBagConstraints gbc_Aceptar = new GridBagConstraints();
         gbc_Aceptar.ipadx = 4;
         gbc_Aceptar.insets = new Insets(10,  0,  0,  5);
         gbc_Aceptar.gridx = 0;
         gbc_Aceptar.gridy = 6;
-        getContentPane().add(Aceptar,  gbc_Aceptar);
+        getContentPane().add(aceptar,  gbc_Aceptar);
         
-        JButton Cancelar = new JButton("Cancelar");
+        JButton cancelar = new JButton("Cancelar");
         GridBagConstraints gbc_Cancelar = new GridBagConstraints();
         gbc_Cancelar.insets = new Insets(10,  0,  0,  0);
         gbc_Cancelar.ipadx = 4;
         gbc_Cancelar.anchor = GridBagConstraints.EAST;
         gbc_Cancelar.gridx = 1;
         gbc_Cancelar.gridy = 6;
-        getContentPane().add(Cancelar,  gbc_Cancelar);
+        getContentPane().add(cancelar,  gbc_Cancelar);
         
      
         
@@ -204,7 +204,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         containerPanel.add(Cancelar);
         getContentPane().add(containerPanel,  gbc_botones);*/
         
-        Aceptar.addActionListener(new ActionListener() {
+        aceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		
         		try {
@@ -238,7 +238,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         	}
         });
         
-        Cancelar.addActionListener(new ActionListener() {
+        cancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		onCancelar();
         	}

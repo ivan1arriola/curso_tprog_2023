@@ -1,7 +1,7 @@
 package main.java.logica.datatypes;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+
 import java.util.Set;
 
 public class DTPostulanteExtendido extends DTPostulante {
@@ -14,9 +14,9 @@ public class DTPostulanteExtendido extends DTPostulante {
         return postulaciones;
     } 
 
-    public DTPostulanteExtendido(String nickname,  String correo_electronico,  String apellido,  String nombre,  String contraseña,  byte[] imagen,  LocalDate fecha_nac,  String nacionalidad,  Set<DTPostulacion> posts) {
+    public DTPostulanteExtendido(String nickname,  String correo_electronico,  String apellido,  String nombre,  String contraseña,  byte[] imagen,  LocalDate fechanac,  String nacionalidad,  Set<DTPostulacion> posts) {
         super(nickname,  correo_electronico,  apellido,  nombre,  contraseña,  imagen,  
-        	  fecha_nac,  nacionalidad);
+        	  fechanac,  nacionalidad);
         postulaciones = posts;
     }
 }

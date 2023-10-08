@@ -1,7 +1,6 @@
 package main.java.logica.datatypes;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;

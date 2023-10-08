@@ -33,7 +33,7 @@ public interface ICtrlUsuario {
     public abstract boolean altaEmpresa(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc) throws ExceptionUsuarioCorreoRepetido,  ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido;
     
     public abstract boolean altaPostulante(String nick,  String contraseña,  String nombre, 
-    		String apellido,  String mail,  LocalDate fecha_nac,  String nacionalidad) 
+    		String apellido,  String mail,  LocalDate fechanac,  String nacionalidad) 
     	    throws 
     	    ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido,  ExceptionUsuarioCorreoRepetido;
     
@@ -91,9 +91,9 @@ public interface ICtrlUsuario {
 
     public abstract boolean validarCredenciales(String identificador,  String contraseña); // NUEVA OPERACION que reemplaza las 2 anteriores
     
-    public abstract void ingresarDatosEditadosPostulanteImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  LocalDate fecha_nac,  String nacionalidad); // PRONTA
+    public abstract void ingresarDatosEditadosPostulanteImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  LocalDate fechanac,  String nacionalidad); // PRONTA
     
-    public abstract void ingresarDatosEditadosPostulante(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  LocalDate fecha_nac,  String nacionalidad); // PRONTA
+    public abstract void ingresarDatosEditadosPostulante(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  LocalDate fechanac,  String nacionalidad); // PRONTA
     
     public abstract void ingresarDatosEditadosEmpresaURL(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String URL,  String descripcion); // PRONTA
     
@@ -109,7 +109,7 @@ public interface ICtrlUsuario {
     
     public abstract boolean altaEmpresaURLyImagen(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  String URL,  byte[] imagen); // PRONTA
      
-    public abstract boolean altaPostulanteImagen(String nick,  String contraseña,  String nombre,  String apellido,  LocalDate fecha_nac,  String mail,  String nacionalidad,  byte[] imagen); // PRONTA
+    public abstract boolean altaPostulanteImagen(String nick,  String contraseña,  String nombre,  String apellido,  LocalDate fechanac,  String mail,  String nacionalidad,  byte[] imagen); // PRONTA
      
     public abstract boolean altaEmpresaImagen(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  byte[] imagen); // PRONTA
      

@@ -4,10 +4,7 @@ package main.java.presentacion;
 import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlUsuario;
 
-import java.awt.GridBagLayout;
-import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -21,35 +18,35 @@ import java.awt.event.ActionEvent;
 public class AltaDeUsuario extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
-	private JInternalFrame ADU;
-    private ICtrlUsuario icu;
+	
+    private ICtrlUsuario icUsuario;
     private JButton btnCancelar;
     private JButton btnEmpresa;
     private JButton btnPostulante;
     private JLabel lblIngreseNombre;
-    private AltaDePostulante AltaDePostulanteInternalFrame;
-    private AltaDeEmpresa AltaDeEmpresaInternalFrame;
+    private AltaDePostulante altaDePostulanteInternalFrame;
+    private AltaDeEmpresa altaDeEmpresaInternalFrame;
     
     /**
      * Create the frame.
      */
-    public AltaDeUsuario(JFrame gui,  ICtrlUsuario icu) {
+    public AltaDeUsuario(JFrame gui,  ICtrlUsuario icUsuario) {
         // Se inicializa con el controlador de usuarios
         Fabrica fabrica = Fabrica.getInstance();
-        icu = fabrica.getICtrlUsuario();
+        icUsuario = fabrica.getICtrlUsuario();
 
-        AltaDePostulanteInternalFrame = new AltaDePostulante(icu);
-        // AltaDePostulanteInternalFrame.setSize(386,  312);
-        AltaDePostulanteInternalFrame.setLocation(5,  0);
-        AltaDePostulanteInternalFrame.setVisible(false);
+        altaDePostulanteInternalFrame = new AltaDePostulante(icUsuario);
+        // altaDePostulanteInternalFrame.setSize(386,  312);
+        altaDePostulanteInternalFrame.setLocation(5,  0);
+        altaDePostulanteInternalFrame.setVisible(false);
         // getContentPane().setLayout(null);
-        gui.getContentPane().add(AltaDePostulanteInternalFrame);
+        gui.getContentPane().add(altaDePostulanteInternalFrame);
         
-        AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icu);
-        // AltaDeEmpresaInternalFrame.setSize(360,  168);
-        AltaDeEmpresaInternalFrame.setLocation(38,  63);
-        AltaDeEmpresaInternalFrame.setVisible(false);
-        gui.getContentPane().add(AltaDeEmpresaInternalFrame);
+        altaDeEmpresaInternalFrame = new AltaDeEmpresa(icUsuario);
+        // altaDeEmpresaInternalFrame.setSize(360,  168);
+        altaDeEmpresaInternalFrame.setLocation(38,  63);
+        altaDeEmpresaInternalFrame.setVisible(false);
+        gui.getContentPane().add(altaDeEmpresaInternalFrame);
         
         // Propiedades del JInternalFrame como dimensión,  posición dentro del frame, 
         // etc.
@@ -67,7 +64,7 @@ public class AltaDeUsuario extends JInternalFrame {
         btnEmpresa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
-        		AltaDeEmpresaInternalFrame.setVisible(true);
+        		altaDeEmpresaInternalFrame.setVisible(true);
         	}
         });
         getContentPane().setLayout(null);
@@ -83,7 +80,7 @@ public class AltaDeUsuario extends JInternalFrame {
         btnPostulante.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
-        		AltaDePostulanteInternalFrame.setVisible(true);
+        		altaDePostulanteInternalFrame.setVisible(true);
         	}
         });
         getContentPane().add(btnPostulante);

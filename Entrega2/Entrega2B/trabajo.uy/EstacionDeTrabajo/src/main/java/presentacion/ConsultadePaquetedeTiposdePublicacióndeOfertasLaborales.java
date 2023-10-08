@@ -6,7 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox; 
 import java.awt.event.ActionListener; 
 import java.time.format.DateTimeFormatter; 
-import java.util.HashSet; 
 import java.util.Set; 
 import java.awt.event.ActionEvent; 
 import javax.swing.table.DefaultTableModel; 
@@ -25,10 +24,10 @@ import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JInternalFrame {
-	private JTextField CostoPaquete; 
-	private JTextField PaqueteDescuento; 
-	private JTextField ValidezPaquete; 
-	private JTextField Descripcion; 
+	private JTextField costoPaquete; 
+	private JTextField paqueteDescuento; 
+	private JTextField validezPaquete; 
+	private JTextField descript; 
 	private JTable table; 
 	private JTextField campoTipoDePublicacion; 
 	private JTextField fechaDeAlta; 
@@ -36,7 +35,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
 	private JTextField duracion; 
 	private JTextField exposicion; 
 	private JTextField descripcion; 
-	private ICtrlUsuario icu; 
+	private ICtrlUsuario icUsuario; 
     private ICtrlOferta ico; 
     private JComboBox<String> listadoPaquetes; 
     private static DefaultTableModel tableModel; 
@@ -94,11 +93,11 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
         listadoPaquetes.setBounds(158,   36,   365,   21); 
         getContentPane().add(listadoPaquetes); 
    
-        CostoPaquete = new JTextField(); 
-        CostoPaquete.setEditable(false); 
-        CostoPaquete.setBounds(160,   87,   505,   19); 
-        getContentPane().add(CostoPaquete); 
-        CostoPaquete.setColumns(10); 
+        costoPaquete = new JTextField(); 
+        costoPaquete.setEditable(false); 
+        costoPaquete.setBounds(160,   87,   505,   19); 
+        getContentPane().add(costoPaquete); 
+        costoPaquete.setColumns(10); 
         
         JButton btnCerrar = new JButton("Cerrar"); 
         btnCerrar.addActionListener(new ActionListener() {
@@ -127,23 +126,23 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
         
         
         
-        PaqueteDescuento = new JTextField(); 
-        PaqueteDescuento.setEditable(false); 
-        PaqueteDescuento.setColumns(10); 
-        PaqueteDescuento.setBounds(160,   125,   507,   19); 
-        getContentPane().add(PaqueteDescuento); 
+        paqueteDescuento = new JTextField(); 
+        paqueteDescuento.setEditable(false); 
+        paqueteDescuento.setColumns(10); 
+        paqueteDescuento.setBounds(160,   125,   507,   19); 
+        getContentPane().add(paqueteDescuento); 
         
-        ValidezPaquete = new JTextField(); 
-        ValidezPaquete.setEditable(false); 
-        ValidezPaquete.setColumns(10); 
-        ValidezPaquete.setBounds(160,   165,   507,   19); 
-        getContentPane().add(ValidezPaquete); 
+        validezPaquete = new JTextField(); 
+        validezPaquete.setEditable(false); 
+        validezPaquete.setColumns(10); 
+        validezPaquete.setBounds(160,   165,   507,   19); 
+        getContentPane().add(validezPaquete); 
         
-        Descripcion = new JTextField(); 
-        Descripcion.setEditable(false); 
-        Descripcion.setColumns(10); 
-        Descripcion.setBounds(160,   207,   507,   19); 
-        getContentPane().add(Descripcion); 
+        descript = new JTextField(); 
+        descript.setEditable(false); 
+        descript.setColumns(10); 
+        descript.setBounds(160,   207,   507,   19); 
+        getContentPane().add(descript); 
         
         JLabel lblCosto_1 = new JLabel("Validez:"); 
         lblCosto_1.setFont(new Font("Dialog",   Font.BOLD,   16)); 
@@ -185,10 +184,10 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
         		String paqueteSeleccionado = (String) listadoPaquetes.getSelectedItem(); 
         		if (paqueteSeleccionado != "") {
         			paqDT = ICO.obtenerDatosPaquete(paqueteSeleccionado); 
-            		CostoPaquete.setText(String.valueOf(paqDT.getCosto()));  // muestro el costo
-            		PaqueteDescuento.setText(String.valueOf(paqDT.getDescuento())); 
-            		ValidezPaquete.setText(String.valueOf(paqDT.getValidez())); 
-            		Descripcion.setText(String.valueOf(paqDT.getDescripcion())); 
+            		costoPaquete.setText(String.valueOf(paqDT.getCosto()));  // muestro el costo
+            		paqueteDescuento.setText(String.valueOf(paqDT.getDescuento())); 
+            		validezPaquete.setText(String.valueOf(paqDT.getValidez())); 
+            		descript.setText(String.valueOf(paqDT.getDescripcion())); 
     	        } 
         		actualizarTabla(); 
         	}
@@ -277,10 +276,12 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
 		duracion.setText("");  // muestro la duración
 		exposicion.setText("");  // muestro la exposición
 		descripcion.setText(""); 
-		CostoPaquete.setText("");  // muestro el costo
-		PaqueteDescuento.setText(""); 
-		ValidezPaquete.setText(""); 
-		Descripcion.setText(""); 
+		costoPaquete.setText("");  // muestro el costo
+		paqueteDescuento.setText(""); 
+		validezPaquete.setText("");
+		listadoPaquetes.setSelectedIndex(-1);
+		campoTipoDePublicacion.setText("");
+		descript.setText(""); 
 		tableModel.setRowCount(0); 
     }
     

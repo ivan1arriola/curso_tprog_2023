@@ -40,7 +40,7 @@ import java.awt.event.ActionEvent;
 public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
 		//private JInternalFrame aDU;
-	    //private ICtrlUsuario icu;
+	    //private ICtrlUsuario icUsuario;
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    
@@ -66,7 +66,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	    private JTextArea descripcionNuevo;
 	    private JTextArea descripcionActual;
 
-    public ModificarDatosDeUsuarioEmpresa(ICtrlUsuario icu,  DTEmpresa empresa) {
+    public ModificarDatosDeUsuarioEmpresa(ICtrlUsuario icUsuario,  DTEmpresa empresa) {
 
         setResizable(true);
         setIconifiable(true);
@@ -187,7 +187,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		
 		
 		// SETEO LOS DATOS DEL USUARUO QUE YA ESTAN EN EL SISTEMA
-		DTUsuario dtuser = (DTUsuario) icu.obtenerDatosUsuario(empresa.getNickname()); // obtengo los datos genericos
+		DTUsuario dtuser = (DTUsuario) icUsuario.obtenerDatosUsuario(empresa.getNickname()); // obtengo los datos genericos
 		nombreActual.setText(dtuser.getNombre());
 		apellidoActual.setText(dtuser.getApellido());
 		correoActual.setText(dtuser.getcorreoElectronico());
@@ -195,7 +195,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		
 		DTEmpresa dtEmpr = (DTEmpresa)  dtuser; // obtengo los datos especificos
 		urlActual.setText(dtEmpr.getUrl());
-		descripcionActual.setText(dtEmpr.getUrl());
+		descripcionActual.setText(dtEmpr.getDescripcion());
 
 		
 		
@@ -243,10 +243,10 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
        		
        		else {
            		if (!url.isEmpty()) {
-	               	icu.ingresarDatosEditadosEmpresaURL(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  url,  descripcion);
+           			icUsuario.ingresarDatosEditadosEmpresaURL(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  url,  descripcion);
            		}
            		else { 
-	               	icu.ingresarDatosEditadosEmpresa(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  descripcion);
+           			icUsuario.ingresarDatosEditadosEmpresa(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  descripcion);
            		}
            		
            		JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "Los datos se han modificado exitosamente",  "Modificar Datos de Usuario",  JOptionPane.INFORMATION_MESSAGE);

@@ -26,7 +26,6 @@ import javax.swing.ScrollPaneConstants;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -62,9 +61,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
     private JLabel lblNacion;
    
   
-    public ConsultaDeUsuario(JFrame base,   ICtrlUsuario icu,   ICtrlOferta ico) {
+    public ConsultaDeUsuario(JFrame base,   ICtrlUsuario icUsuario,   ICtrlOferta ico) {
         
-        controlUsr = icu;
+        controlUsr = icUsuario;
         controlOfer = ico;
          
         // Propiedades del JInternalFrame como dimensión,   posición dentro del frame,   etc.
@@ -264,7 +263,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	                	
 	                	DTPostulante postula = (DTPostulante) dtusr;
 	                	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	                	String formattedFecha = postula.getFecha_nac().format(formatter);
+	                	String formattedFecha = postula.getFechaNac().format(formatter);
 	                	
 	                	nacionalidad.setVisible(true);
 	                	postuFecha.setVisible(true);

@@ -182,5 +182,3 @@ public class ConsultarOfertas extends JDialog {
          setVisible(true); 
      }
     }
-
-

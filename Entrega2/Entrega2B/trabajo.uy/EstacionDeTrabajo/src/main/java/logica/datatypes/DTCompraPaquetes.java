@@ -7,13 +7,13 @@ import java.time.LocalDate;
 public class DTCompraPaquetes {
 	
 	private String nombre;
-	private LocalDate fecha_compra;
-	private LocalDate fecha_vencimiento;
+	private LocalDate fechacompra;
+	private LocalDate fechavencimiento;
 	
-	public DTCompraPaquetes(String nomb,  LocalDate fecha_comp,  LocalDate fecha_venc) {
+	public DTCompraPaquetes(String nomb,  LocalDate fechacomp,  LocalDate fechavenc) {
 		nombre = nomb;
-		fecha_compra = fecha_comp;
-		fecha_vencimiento = fecha_venc;
+		fechacompra = fechacomp;
+		fechavencimiento = fechavenc;
 	}
 
 	String getNombre() {
@@ -21,10 +21,10 @@ public class DTCompraPaquetes {
 	}
 	
 	LocalDate getFechaCompra() {
-		return fecha_compra;
+		return fechacompra;
 	}
 	
 	LocalDate getFechaVencimiento() { 
-		return fecha_vencimiento;
+		return fechavencimiento;
 	}
 }

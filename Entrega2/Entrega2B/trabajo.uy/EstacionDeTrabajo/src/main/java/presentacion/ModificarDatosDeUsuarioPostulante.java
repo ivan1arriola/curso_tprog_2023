@@ -39,7 +39,7 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-	    //private ICtrlUsuario icu;
+	    //private ICtrlUsuario icUsuario;
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    
@@ -65,10 +65,10 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	    private JTextField fechaActual;
 	    private JLabel lblNewLabel8;
 	    
-    public ModificarDatosDeUsuarioPostulante(ICtrlUsuario icu,  DTPostulante postulante) {
+    public ModificarDatosDeUsuarioPostulante(ICtrlUsuario icUsuario,  DTPostulante postulante) {
     	// Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
-        // icu = fabrica.getICtrlUsuario();
+        // icUsuario = fabrica.getICtrlUsuario();
 
 
         setResizable(true);
@@ -192,7 +192,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		
 		
 		// SETEO LOS DATOS DEL USUARUO QUE YA ESTAN EN EL SISTEMA 
-		DTUsuario dtuser = (DTUsuario) icu.obtenerDatosUsuario(postulante.getNickname()); // obtengo los datos
+		DTUsuario dtuser = (DTUsuario) icUsuario.obtenerDatosUsuario(postulante.getNickname()); // obtengo los datos
 		nombreActual.setText(dtuser.getNombre());
 		apellidoActual.setText(dtuser.getApellido());
 		correoActual.setText(dtuser.getcorreoElectronico());
@@ -201,7 +201,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		DTPostulante dtpost = (DTPostulante) dtuser;
 		// Formatear la fecha de nacimiento del usuario y establecerla en fechaActual
 	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	    String fechaNacimientoFormateada = dtpost.getFecha_nac().format(dateFormatter);
+	    String fechaNacimientoFormateada = dtpost.getFechaNac().format(dateFormatter);
 	    fechaActual.setText(fechaNacimientoFormateada);
 		
 		
@@ -257,7 +257,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
        		}
        		
        		else {
-       		    icu.ingresarDatosEditadosPostulante(postulante.getNickname(),  nombre,  apellido,  correo,  pass,  parsearFecha,  nac);
+       		    icUsuario.ingresarDatosEditadosPostulante(postulante.getNickname(),  nombre,  apellido,  correo,  pass,  parsearFecha,  nac);
                	JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this,  "Los datos se han modificado exitosamente",  "Modificar Datos de Usuario",  JOptionPane.INFORMATION_MESSAGE);
                	setVisible(false);
                	limpiarFormulario();
