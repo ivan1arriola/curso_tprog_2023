@@ -3,6 +3,9 @@
 <%@ page import="main.java.logica.datatypes.DTPostulante" %>
 <%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.io.IOException" %>
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +42,7 @@ boolean editable = (boolean) request.getAttribute("editable");
                         byte[] imagenUsuario = usuario.getImagen();
                         if (imagenUsuario != null) {
                             // Genera un nombre de archivo único para la imagen
-                            String nombreArchivo = "imagen_usuario_" + usuario.getNickname) + ".png";
+                            String nombreArchivo = "imagen_usuario_" + usuario.getNickname() + ".png";
                             
                             // Ruta en el servidor donde se guardará la imagen temporalmente
                             String rutaTemporal = getServletContext().getRealPath("/temp/");
@@ -58,7 +61,7 @@ boolean editable = (boolean) request.getAttribute("editable");
                                 e.printStackTrace();
                             }
                         %>
-                            <img src="data:image/png;base64,<%= imagenBase64 %>"
+                            <img src="<%=request.getContextPath() + "/temp/" + nombreArchivo %>"
                                 alt="Imagen de Usuario" class="img-fluid mb-3 rounded-circle img-thumbnail perfil" />
                         <%
                         } else {
