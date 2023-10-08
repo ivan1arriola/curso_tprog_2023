@@ -14,14 +14,25 @@ import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
+import org.junit.jupiter.api.BeforeAll;
 
-class OfertasTest {
+public class OfertasTest {
+	
+	private static ICtrlUsuario ICU;
+	private static ICtrlOferta ICO;
+	private static Fabrica f;
+	
+	@BeforeAll
+	static void setUp() {
+		f = Fabrica.getInstance();
+	    ICU = f.getICtrlUsuario();
+	    ICO = f.getICtrlOferta();
+        // Puedes realizar configuraciones adicionales aquí
+    }
 
 	@Test
 	void altaPostulanteTest() {
-	    Fabrica f = Fabrica.getInstance();
-	    ICtrlUsuario ICU = f.getICtrlUsuario();
-	    ICtrlOferta ICO = f.getICtrlOferta();
+
 	  
 	    // ------------------- postulante sin imagen -------------------
 	    String nickname = "NickPrueba";
@@ -74,10 +85,7 @@ class OfertasTest {
 	
 	@Test
 	void altaPostulanteValido() {
-	    Fabrica f = Fabrica.getInstance();
-	    ICtrlUsuario ICU = f.getICtrlUsuario();
-	    ICtrlOferta ICO = f.getICtrlOferta();
-	  
+	    	  
 	    String nickname = "Otronick";
 	    String password = "notedigo";
 	    String nombre = "Juancito";
@@ -135,11 +143,7 @@ class OfertasTest {
 	
 	@Test
 	void altaPostulanteDesc() {
-	    Fabrica f = Fabrica.getInstance();
-	    
-	    ICtrlOferta ICO = f.getICtrlOferta();
-	  
-	    		 
+	   
 		String offer = "Demasiado";
 		String desc = "";
 		int valido = 10;
@@ -173,7 +177,32 @@ class OfertasTest {
 	    boolean keys2 = ICO.altaKeyword("key1");
 	    assertFalse(keys2, "Alta key repetida");
 		
-	
 	}
 	
+	@Test
+	void compraPaqTest() {
+		try {
+			boolean empresita = ICU.altaEmpresa("Empresario", "tupass", "Pepito", "Gomez", "yoquese@hotmail.com", "geniales");
+		} catch (ExceptionUsuarioNickYCorreoRepetidos e) {
+	        e.printStackTrace();
+	    } catch (ExceptionUsuarioNickRepetido e) {
+	        e.printStackTrace();
+	    } catch (ExceptionUsuarioCorreoRepetido e) {
+	        e.printStackTrace();
+	    }
+			
+		boolean comprado = ICO.compraPaquetes("Empresario", "EjemploOferta");
+		
+		assertTrue(comprado, "Compra ok");
+		
+		}
+	
+	
+
 }
+	
+	
+	
+	
+	
+
