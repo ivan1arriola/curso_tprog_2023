@@ -30,7 +30,8 @@ import java.time.LocalDate;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
 
 //public class ElegirPostulante extends JInternalFrame {
@@ -109,7 +110,7 @@ public class ElegirPostulante extends JDialog {
 	                    }
 	                }
 	                
-      				} catch (IllegalArgumentException exc) {
+      				} catch (ExceptionEmpresaInvalida|ExceptionUsuarioNoEncontrado exc) {
       					System.err.println("Error al obtener las ofertas laborales"); } 
 	                
 	                

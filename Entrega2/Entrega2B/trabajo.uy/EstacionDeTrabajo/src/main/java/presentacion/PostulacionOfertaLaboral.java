@@ -96,7 +96,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                             }
                         }
                     }
-                } catch (IllegalArgumentException ex) {
+                } catch (Exception ex) {
                     System.err.println("Error al obtener las ofertas laborales");
                 }
                      
