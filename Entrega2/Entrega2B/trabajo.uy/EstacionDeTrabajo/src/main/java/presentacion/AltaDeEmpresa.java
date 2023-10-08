@@ -207,7 +207,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	                setVisible(false);
 	        		boolean exito = icUsuario.altaEmpresaURL(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU,  urlU);  
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (Exception e) {
+	        	} catch (ExceptionUsuarioCorreoRepetido|ExceptionUsuarioNickYCorreoRepetidos|ExceptionUsuarioNickRepetido e) {
 	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
 	            }        	
 	        }
