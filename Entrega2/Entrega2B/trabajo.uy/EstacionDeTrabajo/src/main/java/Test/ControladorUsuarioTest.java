@@ -10,13 +10,19 @@ import org.junit.jupiter.api.Test;
 
 import main.java.logica.clases.Empresa;
 import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTHora;
+import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.manejadores.UsuarioHandler;
+import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
 
 import java.util.List;
@@ -67,11 +73,11 @@ public class ControladorUsuarioTest {
 	                   &&
 	                   usu1.getApellido().equals(apellido)
 	                   &&
-	                   usu1.getCorreo_electronico().equals(correo) 
+	                   usu1.getcorreoElectronico().equals(correo) 
 	                   &&
 	                   usu1.getImagen() == null 
 	                   &&
-	                   usu1.getContraseña().equals(password);
+	                   usu1.getcontrasenia().equals(password);
 
 	 assertEquals("El test usu1 fallo", true, result1);
 	 
@@ -101,9 +107,9 @@ public class ControladorUsuarioTest {
 	                   &&
 	                   usu2.getApellido().equals(apellido) 
 	                   &&
-	                   usu2.getCorreo_electronico().equals(correo) 
+	                   usu2.getcorreoElectronico().equals(correo) 
 	                   &&
-	                   usu2.getContraseña().equals(password);
+	                   usu2.getcontrasenia().equals(password);
 	 assertEquals("El test usu2 fallo", true, result2);
 	 byte[] imagen = usu2.getImagen();
 	 for (byte bYtesImagen : img) {
@@ -157,9 +163,9 @@ public class ControladorUsuarioTest {
 		            &&
 		            usu3.getApellido().equals(apellido) 
 		            &&
-		            usu3.getCorreo_electronico().equals(correo) 
+		            usu3.getcorreoElectronico().equals(correo) 
 		            &&
-		            usu3.getContraseña().equals(password);
+		            usu3.getcontrasenia().equals(password);
 		    assertEquals("El test usu3 fallo", result, true);
 		    
 		    // ------------------ empresa con url ------------------
@@ -195,9 +201,9 @@ public class ControladorUsuarioTest {
 					&&
 		            DTverdaderoEmpresa1.getApellido().equals(apellido) 
 		            &&
-		            DTverdaderoEmpresa1.getCorreo_electronico().equals(correo) 
+		            DTverdaderoEmpresa1.getcorreoElectronico().equals(correo) 
 		            &&
-		            DTverdaderoEmpresa1.getContraseña().equals(password) 
+		            DTverdaderoEmpresa1.getcontrasenia().equals(password) 
 		            &&
 		            DTverdaderoEmpresa1.getDescripcion().equals(descripcion) 
 		            &&
@@ -242,9 +248,9 @@ public class ControladorUsuarioTest {
 				&&
 				DTverdaderoEmpresa2.getApellido().equals(apellido) 
 				&&
-				DTverdaderoEmpresa2.getCorreo_electronico().equals(correo) 
+				DTverdaderoEmpresa2.getcorreoElectronico().equals(correo) 
 				&&
-				DTverdaderoEmpresa2.getContraseña().equals(password) 
+				DTverdaderoEmpresa2.getcontrasenia().equals(password) 
 				&&
 				DTverdaderoEmpresa2.getDescripcion().equals(descripcion);
 		assertEquals("El test usu4 fallo", result3, true);
@@ -274,9 +280,9 @@ public class ControladorUsuarioTest {
 				&&
 				DTverdaderoEmpresa3.getApellido().equals(apellido) 
 				&&
-				DTverdaderoEmpresa3.getCorreo_electronico().equals(correo) 
+				DTverdaderoEmpresa3.getcorreoElectronico().equals(correo) 
 				&&
-				DTverdaderoEmpresa3.getContraseña().equals(password) 
+				DTverdaderoEmpresa3.getcontrasenia().equals(password) 
 				&&
 				DTverdaderoEmpresa3.getDescripcion().equals(descripcion) 
 				&&
@@ -299,7 +305,7 @@ public class ControladorUsuarioTest {
 
 		// ------------------- ver empresa en el sistema -------------------
 		// si no esta uno aborta
-		HashSet<String> EmpresaSistema = ICU.listarEmpresas();
+		Set<String> EmpresaSistema = (HashSet<String>) ICU.listarEmpresas();
 		for (String s : EmpresaSistema) {
 			if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon")) {
 				assertEquals("El test empresa en sistema fallo", false, true);
@@ -308,7 +314,7 @@ public class ControladorUsuarioTest {
 
 		// ------------------- ver usuarios en el sistema -------------------
 		// si no esta uno aborta
-		HashSet<String> UsuariosSistema = ICU.listarNicknamesUsuarios();
+		Set<String> UsuariosSistema = (HashSet<String>) ICU.listarNicknamesUsuarios();
 		for (String s : UsuariosSistema) {
 			if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon") && !s.equals("ASwatzenegger") && !s.equals("LeonardoVinchi")) {
 				assertEquals("El test usuarios en sistema fallo", false, true);
@@ -325,9 +331,41 @@ public class ControladorUsuarioTest {
 
 			String[] nicknames = {"Kreves", "Google", "Apple", "Amazon", "ASwatzenegger", "LeonardoVinchi"};
 			String[] passwords = {"Pass", "Password", "Password", "Password", "contraseNaSeguraCreeme", "LaContrasenaMasSeguraDelMundo"};
+
+			String nickname = "Google";
+			String descripcion = "Analista de sistemas";
+			DTHora hora1 = new DTHora(8,  0);
+			DTHora hora2 = new DTHora(1,  0);
+			DTHorario horario = new DTHorario(hora1, hora2);
+			float remuneracion = 1000;
+			String ciudad = "Montevideo";
+			DepUY dep = DepUY.Montevideo;
+			LocalDate fechaA = LocalDate.of(2020, 12, 12);
+			List<String> pruebaKeyword1 = new ArrayList<>(Arrays.asList(
+	                "Trabajo nocturno",
+	                "horario vespertino",
+	                "full time",
+	                "part time"
+	        ));
+			EstadoOL estado = EstadoOL.Ingresada;
+			byte[] img = null;
+			String paquete = "paquete";
+//			public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA,List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida{
+			try {
+				ICU.altaOfertaLaboral(nickname, "Oferta normal", nombre, descripcion, horario, remuneracion, ciudad, dep, fechaA, pruebaKeyword1, estado, img, paquete);
+			} catch (ExceptionUsuarioNoEncontrado e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionEmpresaInvalida e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
 		}
 
-		// ------------------- testear keywords -------------------
-
+		
+			
+		
 	
   }

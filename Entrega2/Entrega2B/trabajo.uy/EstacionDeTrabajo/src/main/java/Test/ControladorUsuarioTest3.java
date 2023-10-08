@@ -53,8 +53,8 @@ public class ControladorUsuarioTest3 {
 			// Getters
 			post.getPostulante();
 			post.getFecha();
-			post.getURLDocExtras();
-			post.getCV();
+			post.getuRLDocExtras();
+			post.getcVitae();
 			post.getMotivacion();
 		
 			String nombreOL = "Administrador Google";
@@ -108,7 +108,7 @@ public class ControladorUsuarioTest3 {
 			OfEx.getImagen();
 			OfEx.getPaquete();
 			OfEx.toString();
-			HashSet<DTPostulacion> temp = OfEx.getPostulaciones();
+			Set<DTPostulacion> temp = (HashSet<DTPostulacion>) OfEx.getPostulaciones();
 
 			String nombre = "Asesor";
 			String descripcion = "Asesoramiento";
@@ -157,7 +157,7 @@ public class ControladorUsuarioTest3 {
 			OfEx1.getImagen();
 			OfEx1.toString();
 			Set<DTPostulacion> temp1 = OfEx1.getPostulaciones();
-			HashSet<String> temp2 = OfEx1.getKeywords();
+			Set<String> temp2 = (HashSet<String>) OfEx1.getKeywords();
 
 			// testear DATATYPES Oferta Extendidos
 			String nombre1 = "Asesor";
@@ -204,7 +204,7 @@ public class ControladorUsuarioTest3 {
 			OfEx11.getImagen();
 			OfEx11.toString();
 			OfEx11.getFechaAlta();
-			HashSet<String> temp22 = OfEx11.getKeywords();
+			Set<String> temp22 = (HashSet<String>) OfEx11.getKeywords();
 			
 		}	
 }

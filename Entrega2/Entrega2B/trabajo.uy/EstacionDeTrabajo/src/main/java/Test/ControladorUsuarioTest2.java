@@ -5,10 +5,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 
 import main.java.logica.clases.Postulante;
+import main.java.logica.clases.TipoOferta;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
@@ -54,7 +57,7 @@ public class ControladorUsuarioTest2 {
 			));
 
 			// Listing keywords from the system
-			HashSet<String> probandoEnSistema = ICO.listarKeywords();
+			Set<String> probandoEnSistema = (HashSet<String>) ICO.listarKeywords();
 
 			for (String s : pruebaKeyword) {
 				if (!probandoEnSistema.contains(s)) {
@@ -65,7 +68,7 @@ public class ControladorUsuarioTest2 {
 
 			// ---------------- empresa sin url ni imagen ----------------
 		    // notar que tiene todos los usuarios creados
-		    HashSet<String> UsuariosSistema = ICU.listarNicknamesUsuarios();
+		    Set<String> UsuariosSistema = (HashSet<String>) ICU.listarNicknamesUsuarios();
 			for (String s : UsuariosSistema) {
 				if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon") && !s.equals("ASwatzenegger") && !s.equals("LeonardoVinchi")) {
 					assertEquals("El test usuarios en sistema fallo",  false,  true);
@@ -163,6 +166,7 @@ public class ControladorUsuarioTest2 {
 			// ------------------------- tipo oferta ---------------------------
 			boolean booleano;
 			booleano = ICO.altaTipoPublicacionOL("Oferta normal", "visibilidad normal",  1,  19,  100.0f,  LocalDate.now());
+			DTTipoOferta tipoOfertaDT = null;
 			try {
 				tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
 			} catch (ExcepcionTipoOfertaNoExistente e) {
@@ -195,7 +199,7 @@ public class ControladorUsuarioTest2 {
 			nuevo.getTiposDePub();
 			nuevo.getValidez();
 			// coloco todas keywors del sistema
-			HashSet<String> listaKeywords = ICO.listarKeywords();
+			Set<String> listaKeywords = (HashSet<String>) ICO.listarKeywords();
 			
 			DTHora hora1 = new DTHora(8,  0);
 			DTHora hora2 = new DTHora(1,  0);
@@ -247,9 +251,9 @@ public class ControladorUsuarioTest2 {
 			temporal3.getNombre();
 			temporal3.getRemuneracion();
 			temporal3.toString();
-			HashSet<String> auxiliar = ICO.listarOfertasLaboralesConfirmadas("Google");
+			Set<String> auxiliar = (HashSet<String>) ICO.listarOfertasLaboralesConfirmadas("Google");
 			// obtener nombres de los postulantes
-			HashSet<String> nombres = ICU.obtenerNicknamesPostulantes();
+			Set<String> nombres = (HashSet<String>) ICU.obtenerNicknamesPostulantes();
 			
 			
 //			boolean existePostulacion(String nickname,  String nombre) {
