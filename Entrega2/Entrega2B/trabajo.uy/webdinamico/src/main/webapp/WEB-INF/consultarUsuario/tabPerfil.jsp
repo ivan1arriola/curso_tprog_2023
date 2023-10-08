@@ -6,6 +6,7 @@
 <%
 DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
 %>
+
 <div class="tab-content" id="myTabsContent">
                 <!-- Tab de perfil -->
                 <div class="tab-pane fade show active" id="perfil-panel" style="margin-top: 20px">
@@ -39,6 +40,8 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
                                 <jsp:include page="./camposEmpresa.jsp" />
                                 
                                 <% }%>
+                                
+                                
                             </div>
                         </div>
                     </form>

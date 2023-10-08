@@ -10,6 +10,7 @@
 <%
 // Obtener el objeto de usuario desde los atributos de la solicitud
 DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
+boolean editable = (boolean) request.getAttribute("editable");
 %>
 
 <head>
@@ -73,8 +74,11 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
             </ul>
 
             <!-- Contenido de las pestañas -->
-            <jsp:include page="./tabPerfil.jsp" />
-                
+            <%if(editable){ %>
+            <jsp:include page="./tabPerfilEditable.jsp" />
+            <%} else { %>
+              <jsp:include page="./tabPerfil.jsp" />
+             <%} %>  
             <%if (usuario instanceof DTEmpresa){ %>
             <jsp:include page="./tabOfertasLaborales.jsp" />
             <%} %>
@@ -82,12 +86,9 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
         </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
 
     <!-- Otros scripts aquí -->
 

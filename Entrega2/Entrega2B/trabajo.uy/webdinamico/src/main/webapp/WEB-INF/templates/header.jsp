@@ -21,7 +21,7 @@
   
   <% 
     // Verificar si existe una sesión y si el atributo "usuario" está presente
-    if (session != null && session.getAttribute("usuario") != null) {
+    if (session != null && session.getAttribute("nickname") != null) {
   %>
   
   <jsp:include page="/WEB-INF/templates/header/usuario.jsp"></jsp:include>

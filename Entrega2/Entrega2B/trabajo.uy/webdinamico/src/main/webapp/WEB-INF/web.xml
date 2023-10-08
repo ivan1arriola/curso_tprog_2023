@@ -139,4 +139,24 @@
     <servlet-name>CargarDatos</servlet-name>
     <url-pattern>/CargarDatos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>Cierra la sesion y redirige a /home</description>
+    <display-name>CerrarSesion</display-name>
+    <servlet-name>CerrarSesion</servlet-name>
+    <servlet-class>controller.CerrarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CerrarSesion</servlet-name>
+    <url-pattern>/CerrarSesion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarUsuario</display-name>
+    <servlet-name>ModificarUsuario</servlet-name>
+    <servlet-class>controller.ModificarUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarUsuario</servlet-name>
+    <url-pattern>/ModificarUsuario</url-pattern>
+  </servlet-mapping>
 </web-app>

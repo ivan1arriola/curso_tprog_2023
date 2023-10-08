@@ -52,9 +52,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	public CtrlCargaDeDatos() {}
 	
 	public void cargarDatos() {
-		Fabrica F = Fabrica.getInstance();
-		ICtrlUsuario ICU = F.getICtrlUsuario();
-		ICtrlOferta ICO = F.getICtrlOferta();
+		Fabrica fabrica = Fabrica.getInstance();
+		ICtrlUsuario ICU = fabrica.getICtrlUsuario();
+		ICtrlOferta ICO = fabrica.getICtrlOferta();
 		try (BufferedReader reader = new BufferedReader(new FileReader("src/main/datos/Usuarios.csv"))) {
             String linea;
             String linea1;
@@ -300,8 +300,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	while ((linea8 = reader8.readLine()) != null) {
                 		String[] campos8 = linea8.split(";");
                 		if(campos8[0].equals(campos5[0])) {
-                			String ks = campos8[1];
-                			String[] kss = ks.split(", ");
+                			String keyss = campos8[1];
+                			String[] kss = keyss.split(", ");
                 			for(int i = 0; i <= kss.length-1; i++) {
                     			try (BufferedReader reader9 = new BufferedReader(new FileReader("src/main/datos/Keywords.csv"))) {
                     				String linea9;
@@ -445,7 +445,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		String user = null;
         		
         		// Oferta Laboral
-        		String ol = null;
+        		String oferLab = null;
         		
         		// Hallar usuario
         		try (BufferedReader reader11 = new BufferedReader(new FileReader("src/main/datos/Usuarios.csv"))) {
@@ -468,7 +468,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	while ((linea12 = reader12.readLine()) != null) {
                 		String[] campos12 = linea12.split(";");
                 		if(campos12[0].equals(campos10[5])) {
-                			ol = campos12[1];
+                			oferLab = campos12[1];
                 		}
                 	}
                 } catch (IOException e32) {
@@ -485,7 +485,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		LocalDate fecha = LocalDate.parse(campos10[4], formatter);
         		
         		// No hay URLDocExtras, por eso el "".
-        		if (!ICO.altaPostulacion(ol, user, campos10[2], campos10[3], "", fecha)) {
+        		if (!ICO.altaPostulacion(oferLab, user, campos10[2], campos10[3], "", fecha)) {
         			// EXCEPCIÓN.
         		}
         		
