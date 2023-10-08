@@ -1,16 +1,13 @@
 package main.java.presentacion;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-//import main.java.excepciones.UsuarioNoExisteException;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
-//import main.java.logica.Datatypes.*;
-import main.java.logica.Datatypes.DTHora;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-
+import main.java.logica.datatypes.DTHora;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -337,7 +334,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     	if(remu<=0) {JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     	} else {
 	                		try {
-	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks, EstadoOL.Ingresada, , null);
+	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(),ks, EstadoOL.Ingresada, null, null);
 	                			if(!b) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 	                			}else {
