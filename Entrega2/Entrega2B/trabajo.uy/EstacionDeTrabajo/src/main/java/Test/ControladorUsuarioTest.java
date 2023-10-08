@@ -121,6 +121,7 @@ public class ControladorUsuarioTest {
 		    if (!found) {assertEquals("El test usu2 loop fallo", true, false);}
 	 }
    }
+	
   @Test
   void altaEmpresaTest() throws ExceptionUsuarioNickYCorreoRepetidos {
 		    Fabrica f = Fabrica.getInstance();
@@ -236,11 +237,16 @@ public class ControladorUsuarioTest {
 			}
 		}
 
-		boolean result3 = DTempresa2.getNickname().equals(nickname) &&
-				DTverdaderoEmpresa2.getNombre().equals(nombre) &&
-				DTverdaderoEmpresa2.getApellido().equals(apellido) &&
-				DTverdaderoEmpresa2.getCorreo_electronico().equals(correo) &&
-				DTverdaderoEmpresa2.getContraseña().equals(password) &&
+		boolean result3 = DTempresa2.getNickname().equals(nickname) 
+				        &&
+				DTverdaderoEmpresa2.getNombre().equals(nombre) 
+				&&
+				DTverdaderoEmpresa2.getApellido().equals(apellido) 
+				&&
+				DTverdaderoEmpresa2.getCorreo_electronico().equals(correo) 
+				&&
+				DTverdaderoEmpresa2.getContraseña().equals(password) 
+				&&
 				DTverdaderoEmpresa2.getDescripcion().equals(descripcion);
 		assertEquals("El test usu4 fallo", result3, true);
 
@@ -263,12 +269,18 @@ public class ControladorUsuarioTest {
 		// obtuve empresa, ahora creo DTEmpresa
 		DTUsuario DTempresa3 = empresa3.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa3 = (DTEmpresa) DTempresa3; // Casting
-		boolean result4 = DTempresa3.getNickname().equals(nickname) &&
-				DTverdaderoEmpresa3.getNombre().equals(nombre) &&
-				DTverdaderoEmpresa3.getApellido().equals(apellido) &&
-				DTverdaderoEmpresa3.getCorreo_electronico().equals(correo) &&
-				DTverdaderoEmpresa3.getContraseña().equals(password) &&
-				DTverdaderoEmpresa3.getDescripcion().equals(descripcion) &&
+		boolean result4 = DTempresa3.getNickname().equals(nickname) 
+				&&
+				DTverdaderoEmpresa3.getNombre().equals(nombre) 
+				&&
+				DTverdaderoEmpresa3.getApellido().equals(apellido) 
+				&&
+				DTverdaderoEmpresa3.getCorreo_electronico().equals(correo) 
+				&&
+				DTverdaderoEmpresa3.getContraseña().equals(password) 
+				&&
+				DTverdaderoEmpresa3.getDescripcion().equals(descripcion) 
+				&&
 				DTverdaderoEmpresa3.getUrl().equals(url);
 		assertEquals("El test usu4 fallo", result4, true);
 

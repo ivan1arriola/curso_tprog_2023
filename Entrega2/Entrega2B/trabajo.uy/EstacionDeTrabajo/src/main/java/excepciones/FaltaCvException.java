@@ -1,4 +1,5 @@
 package main.java.excepciones;
+
 import java.io.Serializable;
 
 public class FaltaCvException extends Exception implements Serializable {

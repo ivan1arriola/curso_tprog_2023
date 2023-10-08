@@ -39,22 +39,63 @@ public class Paquete {
     }
 
     	// GETTERS
-    public String getNombre() 						{ return nombre; }
-    public String getDescripcion() 					{ return descripcion; }
-    public float getCosto() 						{ return costo; }
-    public float getDescuento()						{ return descuento; }
-    public int getValidez() 						{ return validez; }
-    public byte[] getImagen()						{ return imagen; }
-    public Set<OfertaPaquete> getOfertaPaquete() 	{ return oferPaq; }
-    public Set<InfoCompra> getInfoCompra()          { return infCompraAsociada; }
-    public LocalDate getfechaAlta()                 { return fechaAlta;    }
+    public String getNombre() {
+    	return nombre; 
+    }
+    
+    public String getDescripcion() {
+    	return descripcion;
+    }
+    
+    public float getCosto() {
+    	return costo;
+    }
+    
+    public float getDescuento()	{
+    	return descuento;
+    }
+    
+    public int getValidez() {
+    	return validez;
+    }
+    
+    public byte[] getImagen() {
+    	return imagen; 
+    }
+    
+    public Set<OfertaPaquete> getOfertaPaquete() {
+    	return oferPaq;
+    }
+    
+    public Set<InfoCompra> getInfoCompra() {
+    	return infCompraAsociada;
+    }
+    
+    public LocalDate getfechaAlta()  {
+    	return fechaAlta;
+    }
 
     // SETTERS
-    public void setNombre(String nombre) 						{ this.nombre = nombre; }
-    public void setDescripcion(String descripcion) 				{ this.descripcion = descripcion; }
-    public void setCosto(float costo) 							{ this.costo = costo; }
-    public void setDuracion(float descuento) 					{ this.descuento = descuento; }
-    public void setValidez(int validez) 						{ this.validez = validez; }
+    public void setNombre(String nombre) {
+    	this.nombre = nombre;
+    }
+    
+    public void setDescripcion(String descripcion) {
+    	this.descripcion = descripcion;
+    }
+    
+    public void setCosto(float costo) 	{
+    	this.costo = costo;
+    }
+    
+    public void setDuracion(float descuento) {
+    	this.descuento = descuento; 
+    }
+    
+    public void setValidez(int validez) {
+    	this.validez = validez;
+    }
+    
     public void setOfertaPaquete(HashSet<OfertaPaquete> oferPaq) 	{ 
 		float Costo = 0;
         this.oferPaq = oferPaq;
@@ -72,7 +113,10 @@ public class Paquete {
         Costo = (float) (Costo-(Costo*descuento*0.01)); 
         this.costo = Costo;
     }
-    public void setInfoCompra(HashSet<InfoCompra> InfoCom)       	{ this.infCompraAsociada = InfoCom; }
+    
+    public void setInfoCompra(HashSet<InfoCompra> InfoCom) {
+    	this.infCompraAsociada = InfoCom;
+    }
 
 
 

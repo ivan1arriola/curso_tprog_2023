@@ -136,36 +136,118 @@ public class OfertaLaboral {
 	}
 	
 	// Getters
-	public String getNombre() 					{ return nombre; 		}
-	public String getDescripcion() 				{ return descripcion;   }
-	public String getCiudad() 					{ return ciudad; 		}
-	public DepUY getDepartamento() 				{ return departamento; 	}
-	public DTHorario getHorario() 				{ return horario; 		}
-	public Float getRemuneracion() 				{ return remuneracion; 	}
-	public LocalDate getFecha_de_alta() 		{ return fecha_de_alta; }
-	public Float getCosto() 					{ return costo; 		}
-	public List<Postulacion> getPostulaciones() { return postulaciones; }
-	public TipoOferta getTipoOferta() 			{ return tOferta; 		}
-	public List<Keyword> getKeywords()			{ return keywords; 		}
-	public EstadoOL getEstado()                 { return estado;        }
-	public byte[] getImagen()                   { return imagen;        }
-	public Paquete getPaquete()					{ return paqueteAsoc;   }
+	public String getNombre() {
+		return nombre; 	
+	}
+	
+	public String getDescripcion() { 
+		return descripcion;
+	}
+	
+	public String getCiudad() { 
+		return ciudad;
+	}
+	
+	public DepUY getDepartamento() { 
+		return departamento; 
+	}	
+	
+	public DTHorario getHorario() {
+		return horario;
+	}
+	
+	public Float getRemuneracion() {
+		return remuneracion;
+	}
+	
+	public LocalDate getFecha_de_alta() {
+		return fecha_de_alta; 
+	}
+	
+	public Float getCosto() { 
+		return costo; 
+	}
+	
+	public List<Postulacion> getPostulaciones() {
+		return postulaciones; 
+	}
+	
+	public TipoOferta getTipoOferta() {
+		return tOferta;
+	}
+	
+	public List<Keyword> getKeywords() { 
+		return keywords;
+	}
+	
+	public EstadoOL getEstado() { 
+		return estado; 
+	}
+	
+	public byte[] getImagen()  {
+		return imagen;
+	}
+	
+	public Paquete getPaquete() {
+		return paqueteAsoc;   
+	}
 	
 	// Setters
-	public void setNombre(String nomb) 						{ nombre = nomb; 			}
-	public void setDescripcion(String Desc) 				{ descripcion = Desc; 		}
-	public void setCiudad(String Ciud) 						{ ciudad = Ciud;			}
-	public void setDepartamento(DepUY Departa) 				{ departamento = Departa; 	}
-	public void setHorario(DTHorario Horar) 				{ horario = Horar; 			}
-	public void setRemuneracion(Float Remunera) 			{ remuneracion = Remunera;	}
-	public void setFecha_de_alta(LocalDate fecha) 			{ fecha_de_alta = fecha; 	}
-	public void setCosto(float c)							{ costo = c; 				}
-	public void setPostulaciones(List<Postulacion> posts) 	{ postulaciones = posts; 	}
-	public void setTipoOferta(TipoOferta to) 				{ tOferta = to; 			}
-	public void setKeywords(List<Keyword> ks)				{ keywords = ks; 			}
-	public void setEstado(EstadoOL estad)                   {  estado = estad;          }
-	public void setImagen(byte[] imagenNueva)               { imagen = imagenNueva;   	}
-	public void setPaquete(Paquete paqueteA)                {paqueteAsoc = paqueteA;    }
+	public void setNombre(String nomb) {
+		nombre = nomb;
+	}
+	
+	public void setDescripcion(String Desc) {
+		descripcion = Desc;
+	}
+	
+	public void setCiudad(String Ciud) 	{
+		ciudad = Ciud;
+	}
+	
+	public void setDepartamento(DepUY Departa) {
+		departamento = Departa;
+	}
+	
+	public void setHorario(DTHorario Horar) {
+		horario = Horar; 
+	}
+	
+	public void setRemuneracion(Float Remunera) {
+		remuneracion = Remunera;
+	}
+	
+	public void setFecha_de_alta(LocalDate fecha) {
+		fecha_de_alta = fecha; 
+	}
+	
+	public void setCosto(float c) {
+		costo = c;
+	}
+	
+	public void setPostulaciones(List<Postulacion> posts) {
+		postulaciones = posts;
+	}
+	
+	public void setTipoOferta(TipoOferta to) {
+		tOferta = to;
+	}
+	
+	public void setKeywords(List<Keyword> ks) {
+		keywords = ks;
+	}
+	
+	public void setEstado(EstadoOL estad) {
+		estado = estad; 
+	}
+	
+	public void setImagen(byte[] imagenNueva) {
+		imagen = imagenNueva;
+	}
+	
+	public void setPaquete(Paquete paqueteA) {
+		paqueteAsoc = paqueteA;    
+	}
 	
 	// -------------- funciones ---------------------
 

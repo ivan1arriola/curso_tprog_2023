@@ -1,4 +1,5 @@
 package main.java.excepciones;
+
 import java.io.Serializable;
 
 public class ExceptionUsuarioNickRepetido extends Exception implements Serializable {
