@@ -18,7 +18,7 @@ public class InfoCompra {
     private Set<InfoCompraOferta> infoCompraOfertas;
 
     // constructor
-    public InfoCompra(LocalDate fechaCompra, float costo, Paquete pack, Empresa empres,Set<DTCantTO> conjuntoS) {
+    public InfoCompra(LocalDate fechaCompra,  float costo,  Paquete pack,  Empresa empres, Set<DTCantTO> conjuntoS) {
         // atributos
         this.fechaCompra = fechaCompra;
         this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
@@ -30,7 +30,7 @@ public class InfoCompra {
         TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
         for (DTCantTO elemento : conjuntoS) {
             TipoOferta tipoOfer = TOH.buscar(elemento.getNombre());
-            InfoCompraOferta ico = new InfoCompraOferta(tipoOfer,elemento.getCantidad());
+            InfoCompraOferta ico = new InfoCompraOferta(tipoOfer, elemento.getCantidad());
             infoCompraOfertas.add(ico);
         }
     }
@@ -90,7 +90,7 @@ public class InfoCompra {
 
     // Metodos
     public DTCompraPaquetes obtenerDatosPaquete() {
-        DTCompraPaquetes nuevacompra = new DTCompraPaquetes(paquete.getNombre(), fechaCompra, fechaVencimiento);
+        DTCompraPaquetes nuevacompra = new DTCompraPaquetes(paquete.getNombre(),  fechaCompra,  fechaVencimiento);
         return nuevacompra;
     }
 }

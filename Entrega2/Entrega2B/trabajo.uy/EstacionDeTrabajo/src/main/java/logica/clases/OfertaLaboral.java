@@ -37,7 +37,7 @@ public class OfertaLaboral {
 	
 
 	// constructor con paquete y imagen
-	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo,byte[] imagennueva,Paquete paq) {
+	public OfertaLaboral(List<Keyword> atrkeywords, TipoOferta atrtOferta, String atrnombre, String atrdescripcion,  String atrciudad, DepUY atrdepartamento, DTHorario atrhorario, Float atrremuneracion, LocalDate atrfecha_de_alta, EstadoOL estadoNuevo, byte[] imagennueva, Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -62,7 +62,7 @@ public class OfertaLaboral {
 	}
 
 	// constructor sin paquete y con imagen
-	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo,byte[] imagennueva) {
+	public OfertaLaboral(List<Keyword> atrkeywords, TipoOferta atrtOferta, String atrnombre, String atrdescripcion,  String atrciudad, DepUY atrdepartamento, DTHorario atrhorario, Float atrremuneracion, LocalDate atrfecha_de_alta, EstadoOL estadoNuevo, byte[] imagennueva) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -86,7 +86,7 @@ public class OfertaLaboral {
 	}
 
 	// constructor sin imagen pero con paquete	
-	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo, Paquete paq) {
+	public OfertaLaboral(List<Keyword> atrkeywords, TipoOferta atrtOferta, String atrnombre, String atrdescripcion,  String atrciudad, DepUY atrdepartamento, DTHorario atrhorario, Float atrremuneracion, LocalDate atrfecha_de_alta, EstadoOL estadoNuevo,  Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -112,7 +112,7 @@ public class OfertaLaboral {
 	}
 
 	// constructor sin imagen ni paquete	
-	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion, String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta,EstadoOL estadoNuevo) {
+	public OfertaLaboral(List<Keyword> atrkeywords, TipoOferta atrtOferta, String atrnombre, String atrdescripcion,  String atrciudad, DepUY atrdepartamento, DTHorario atrhorario, Float atrremuneracion, LocalDate atrfecha_de_alta, EstadoOL estadoNuevo) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -270,7 +270,7 @@ public class OfertaLaboral {
 		if(paq != null) {
 			paq_nomb = paq.getNombre();
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(), getDescripcion(), getFecha_de_alta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),  getDescripcion(),  getFecha_de_alta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  posts,  getImagen(),  paq_nomb);
 		return dtoe;
 	}
 	
@@ -289,7 +289,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(), getDescripcion(), getFecha_de_alta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo);
+		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),  getDescripcion(),  getFecha_de_alta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo);
 		return dtoe;
 	}
 	
@@ -309,7 +309,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),nuevo, getPaquete(), nuevo);
+		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(), getDescripcion(), getFecha_de_alta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo,  getPaquete(),  nuevo);
 		return dtoe;
 	} 
 
@@ -335,7 +335,7 @@ public class OfertaLaboral {
 		for (int i = 0; i < keywords.size() && !salir; i++) {
 			keys.add(keywords.get(i).getNombre());
 		}
-		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dtPost);
+		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(), getDescripcion(), getFecha_de_alta(), getCosto(),  getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), keys, dtPost);
 
 		
 		return 	entregar;	

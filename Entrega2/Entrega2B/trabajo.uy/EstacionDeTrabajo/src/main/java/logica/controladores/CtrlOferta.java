@@ -44,8 +44,8 @@ public class CtrlOferta implements ICtrlOferta{
 	public Set<String> listarTipoDePublicaciones(){
 		Set<String> res = new HashSet<>(); // PQ NO ME DEJA?
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-		Map<String,TipoOferta> tipoOf = TOH.obtener();
-		for (Entry<String, TipoOferta> entry : tipoOf.entrySet()) {
+		Map<String,  TipoOferta> tipoOf = TOH.obtener();
+		for (Entry<String,  TipoOferta> entry : tipoOf.entrySet()) {
 			res.add((entry.getValue().getNombre()));
 		}
 
@@ -58,7 +58,7 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	// crear un tipoOferta	
-	public boolean altaTipoPublicacionOL(String nomb, String desc, int expo, int dur, float costo, LocalDate fechaA) {
+	public boolean altaTipoPublicacionOL(String nomb,  String desc,  int expo,  int dur,  float costo,  LocalDate fechaA) {
 		if (nomb == null || nomb.isEmpty()) {
 			throw new IllegalArgumentException("El nombre no puede estar vacío.");
 		}
@@ -91,14 +91,14 @@ public class CtrlOferta implements ICtrlOferta{
 		if (existe) {
 			throw new IllegalArgumentException("Ya existe una oferta con ese nombre");
 		} else {
-			TipoOferta tipoOfer = new TipoOferta(nomb, fechaA, costo, dur, expo, desc); 
+			TipoOferta tipoOfer = new TipoOferta(nomb,  fechaA,  costo,  dur,  expo,  desc); 
 			TOH.agregar(tipoOfer);
 			return true;
 		}
 	}
 
 	// crear un paquete
-	public boolean altaPaqueteOL(String nombre, String descripcion, int validez, LocalDate fechaA, float descuento, byte[] imagen) {
+	public boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  byte[] imagen) {
 		// Verificar si el argumento 'nombre' es vacío
 		if (nombre.isEmpty()) {
 			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -114,7 +114,7 @@ public class CtrlOferta implements ICtrlOferta{
 			throw new IllegalArgumentException("El argumento 'validez' debe ser mayor a 0.");
 		}
 
-		// Verificar si 'descuento' es un porcentaje válido (mayor a 0, menor o igual a 100)
+		// Verificar si 'descuento' es un porcentaje válido (mayor a 0,  menor o igual a 100)
 		if (descuento < 0 || descuento > 100) {
 			throw new IllegalArgumentException("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.");
 		}
@@ -123,7 +123,7 @@ public class CtrlOferta implements ICtrlOferta{
 
 		boolean existe = PaqueteH.existe(nombre);
 		if(!existe) {
-			Paquete paq = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
+			Paquete paq = new Paquete(nombre,  descripcion,  validez,  fechaA,  descuento,  imagen);
 			PaqueteH.agregar(paq);
 		}
 		else {
@@ -143,7 +143,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 	
-	public boolean compraPaquetes(String nickname_e, String paq) {
+	public boolean compraPaquetes(String nickname_e,  String paq) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 		
@@ -153,7 +153,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return empresa.compraPaquetes(paquete);
 	}
 	
-	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) {
+	public boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  Set<String> keys,  EstadoOL estado,  byte[] img,  String paquete) {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paq = null;
 		if (paquete != null) {
@@ -168,20 +168,20 @@ public class CtrlOferta implements ICtrlOferta{
 		if(!ofer) {
 			List<Keyword> keywords = new ArrayList<Keyword>();
 			KeywordHandler KeywordH = KeywordHandler.getInstance();
-			Map<String, Keyword> keyss = KeywordH.obtener();
-			for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
+			Map<String,  Keyword> keyss = KeywordH.obtener();
+			for (Map.Entry<String,  Keyword> entry : keyss.entrySet()) {
 				if(keys.contains(entry.getKey())) {
 					keywords.add(entry.getValue());
 				}
 			}
 			
-			OfertaLaboral oferLab = empresa.altaOfertaLaboral(tipoOfer, nombre, descripcion, horario, remun, ciu, dep, fechaA, keywords, estado, img, paq);
+			OfertaLaboral oferLab = empresa.altaOfertaLaboral(tipoOfer,  nombre,  descripcion,  horario,  remun,  ciu,  dep,  fechaA,  keywords,  estado,  img,  paq);
 			OLH.agregar(oferLab);
 		}
 		return !ofer;
 	}
 
-	public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) {
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante,  String nombre_oferta) {
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
 		boolean existe = oferLab.existePostulacion(nombre_postulante);
@@ -193,7 +193,7 @@ public class CtrlOferta implements ICtrlOferta{
 		}
 	}
 	
-	public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) {
+	public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa,  String nombre_oferta) {
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -209,13 +209,13 @@ public class CtrlOferta implements ICtrlOferta{
 		return auxiliar;
 	}
 	
-	public boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha) {
+	public boolean altaPostulacion(String nombre,  String nick,  String curriculumVitae,  String motivacion,  String URLDocE,  LocalDate fecha) {
 		CtrlUsuario CtrllUser = new CtrlUsuario();
-		boolean existe = CtrllUser.existePostulacion(nick, nombre);
+		boolean existe = CtrllUser.existePostulacion(nick,  nombre);
 		if (!existe) {
 			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 			OfertaLaboral oferLab = OLH.buscar(nombre);
-			Postulacion postulacion = CtrllUser.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocE, oferLab);
+			Postulacion postulacion = CtrllUser.crearPostulacion(nick,  curriculumVitae,  motivacion,  fecha,  URLDocE,  oferLab);
 			oferLab.registrarPostulacion(postulacion);
 		}
 		return !existe;
@@ -229,10 +229,10 @@ public class CtrlOferta implements ICtrlOferta{
 	
 	public Set<String> listarOfertasLaboralesKeywords(String keywords){
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Map<String,Usuario> usuarios = UsuarioH.obtenerNick();
+		Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
 		Set<String> res = new HashSet<String>();
 		
-		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+		for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
 			Usuario user = entry.getValue();
 			if(user.esEmpresa()) {
 				Empresa empresa = (Empresa) user;
@@ -244,14 +244,14 @@ public class CtrlOferta implements ICtrlOferta{
 		return res;
 	}
 	
-	public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) {
+	public boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion) {
 		CtrlUsuario CtrlUser = new CtrlUsuario();
-		return CtrlUser.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
+		return CtrlUser.modificarPostulacion(nombre,  nick,  cvAbreviado,  motivacion);
 	}
 	
-	public DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) {
+	public DTPostulacion obtenerDatosPostulacionW(String nick,  String ofer) {
 		CtrlUsuario CtrlUser = new CtrlUsuario();
-		return CtrlUser.obtenerDatosPostulacionW(nick,ofer);
+		return CtrlUser.obtenerDatosPostulacionW(nick, ofer);
 	}
 	
 	public Set<String> listarOfertasLaboralesConfirmadas(String nickname_e){
@@ -263,8 +263,8 @@ public class CtrlOferta implements ICtrlOferta{
 	public Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {
 		Set<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		Map<String,OfertaLaboral> ofertasLaborales = OLH.obtener();
-		for (Map.Entry<String,OfertaLaboral> entry : ofertasLaborales.entrySet()) {
+		Map<String, OfertaLaboral> ofertasLaborales = OLH.obtener();
+		for (Map.Entry<String, OfertaLaboral> entry : ofertasLaborales.entrySet()) {
             res.add(entry.getValue().obtenerDatosOferta());
         }
 		return res;
@@ -299,20 +299,20 @@ public class CtrlOferta implements ICtrlOferta{
 		return oferLab.obtenerDatosOferta();
 	}
 	
-	public void agregarTipoOfertaPaq(String paq, String TipoOfer, int cantidad) {
+	public void agregarTipoOfertaPaq(String paq,  String TipoOfer,  int cantidad) {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paquete = PaqueteH.buscar(paq);
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		TipoOferta tipoO = TOH.buscar(TipoOfer);
-		paquete.crearOfertaPaquete(tipoO, cantidad);
+		paquete.crearOfertaPaquete(tipoO,  cantidad);
 	}
 	
 	public Set<String> listarPaquetes(){
 		Set<String> res = new HashSet<>();
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-		Map<String, Paquete> paquetes = PaqueteH.obtener();
+		Map<String,  Paquete> paquetes = PaqueteH.obtener();
 		
-		for (Map.Entry<String, Paquete> entry : paquetes.entrySet()) {
+		for (Map.Entry<String,  Paquete> entry : paquetes.entrySet()) {
 			Paquete paq = entry.getValue();
 			res.add(paq.getNombre());
 		}
@@ -342,14 +342,14 @@ public class CtrlOferta implements ICtrlOferta{
 	
 	
 	
-	// REVISAR EXCEPCIONES, NICK Y NOMBRE !!!!!
+	// REVISAR EXCEPCIONES,  NICK Y NOMBRE !!!!!
 	// nombre es el nombre de la OfertaLaboral y nick el nickname del Usuario.
 	
 	public Set<String> listarKeywords(){
 		Set<String> res = new HashSet<>();
 		KeywordHandler KeywordH = KeywordHandler.getInstance();
-		Map<String,Keyword> keys = KeywordH.obtener();
-		for (Map.Entry<String, Keyword> entry : keys.entrySet()) {
+		Map<String, Keyword> keys = KeywordH.obtener();
+		for (Map.Entry<String,  Keyword> entry : keys.entrySet()) {
 			res.add(entry.getKey());
 		}
 		return res;
@@ -369,8 +369,10 @@ public class CtrlOferta implements ICtrlOferta{
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paquet = PaqueteH.buscar(pack);
 
-		if(paquet.getInfoCompra()==null) {return false; //nadie lo compro 
-		} else {return true;
+		if(paquet.getInfoCompra()==null) {
+			return false; //nadie lo compro 
+		} else {
+			return true;
 		//ya fue comprado
 			}
 	}
