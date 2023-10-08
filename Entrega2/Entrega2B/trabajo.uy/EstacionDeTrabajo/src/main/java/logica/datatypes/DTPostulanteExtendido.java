@@ -7,8 +7,6 @@ public class DTPostulanteExtendido extends DTPostulante {
 
 	private HashSet<DTPostulacion> postulaciones;
 
-    
-
     public HashSet<DTPostulacion> getPostulaciones() {
         return postulaciones;
     } 

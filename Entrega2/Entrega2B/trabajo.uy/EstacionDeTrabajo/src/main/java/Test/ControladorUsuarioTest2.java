@@ -15,6 +15,7 @@ import main.java.logica.clases.Postulante;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaLaboral;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.datatypes.DTPostulante;
 import main.java.logica.datatypes.DTTipoOferta;
@@ -90,7 +91,8 @@ public class ControladorUsuarioTest2 {
 												postulante1.getNacionalidad());
 												
 			DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi","LeonardoVinchi");
-			DTPostulante DTverdaderopostulante1 = (DTPostulante) DTpostulante1; // Casting;
+			DTpostulante1.toString();
+;			DTPostulante DTverdaderopostulante1 = (DTPostulante) DTpostulante1; // Casting;
 
 			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(), 
 														DTverdaderopostulante1.getNombre(), 
@@ -167,12 +169,19 @@ public class ControladorUsuarioTest2 {
 			// ------------------------- tipo oferta ---------------------------
 			boolean booleano;
 			booleano = ICO.altaTipoPublicacionOL("Oferta normal","visibilidad normal", 1, 19, 100.0f, LocalDate.now());
+			DTTipoOferta tipoOfertaDT= null;
 			try {
-				DTTipoOferta tipo = ICO.obtenerDatosTO("Oferta normal");
+				tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
 			} catch (ExcepcionTipoOfertaNoExistente e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			tipoOfertaDT.getNombre();
+			tipoOfertaDT.getFechaAlta();
+			tipoOfertaDT.getCosto();
+			tipoOfertaDT.getDuracion();
+			tipoOfertaDT.getExposicion();
+			tipoOfertaDT.getDescripcion();
 			booleano = ICO.altaTipoPublicacionOL("Oferta destacada","visibilidad destacada", 1, 19, 100.0f, LocalDate.now());
 			booleano = ICO.altaTipoPublicacionOL("Oferta super destacada","visibilidad super destacada", 1, 19, 100.0f, LocalDate.now());
 			
@@ -185,7 +194,13 @@ public class ControladorUsuarioTest2 {
 			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta super destacada",1);
 		    
 			DTPaquete nuevo = ICO.obtenerDatosPaquete("Paquete 1");
-			
+			nuevo.getCosto();
+			nuevo.getDescripcion();
+			nuevo.getDescuento();
+			nuevo.getFechaAlta();
+			nuevo.getNombre();
+			nuevo.getTiposDePub();
+			nuevo.getValidez();
 			// coloco todas keywors del sistema
 			HashSet<String> listaKeywords = ICO.listarKeywords();
 			
@@ -193,22 +208,52 @@ public class ControladorUsuarioTest2 {
 			DTHora hora2 = new DTHora(1, 0);
 			DTHorario horario = new DTHorario(hora1,hora2);
 			String TIPOOFERTASELECCIONADA = "Oferta normal";
+
 			
-			ICO.altaOfertaLaboral("Google", 
+			String Nick = "Google";
+			String desc = "investigador IA";
+			String titulo = "Investigador de IA";
+			String ciudad = "montevideo1";
+			DepUY departamento = DepUY.Montevideo;
+			LocalDate fecha = LocalDate.now();
+			float sueldo = 100222.0f;
+			String paquete = "Paquete 1";
+			EstadoOL estado = EstadoOL.Confirmada;	
+			ICO.altaOfertaLaboral(Nick, 
 								  TIPOOFERTASELECCIONADA, 
-								  "investigador IA", 
-								  "Investigador de IA",
+								  desc, 
+								  titulo,
 								  horario, 
-								  100222.0f, 
-								  "montevideo1", 
-								  DepUY.Montevideo, 
-								  LocalDate.now(),
+								  sueldo, 
+								  ciudad, 
+								  departamento, 
+								  fecha,
 								  listaKeywords,
-								  EstadoOL.Confirmada,
+								  estado,
 								  img233,
-								  "Paquete 1");
-			
-			
+								  paquete);
+
+			DTOfertaLaboral temporal3 = new DTOfertaLaboral( "Google", 
+							 "investigador IA", 
+							 LocalDate.now(), 
+							 100222.0f, 
+							 100222.0f, 
+							 horario, 
+							 departamento, 
+							 ciudad, 
+							 estado, 
+							 img233);
+			temporal3.getCiudad();
+			temporal3.getCosto();
+			temporal3.getDepartamento();
+			temporal3.getDescripcion();
+			temporal3.getestado();
+			temporal3.getFechaDeAlta();
+			temporal3.getHorario();
+			temporal3.getImagen();
+			temporal3.getNombre();
+			temporal3.getRemuneracion();
+			temporal3.toString();
 			HashSet<String> auxiliar = ICO.listarOfertasLaboralesConfirmadas("Google");
 			// obtener nombres de los postulantes
 			HashSet<String> nombres = ICU.obtenerNicknamesPostulantes();
