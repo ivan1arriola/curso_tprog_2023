@@ -83,7 +83,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().setLayout(null);
    
         
-        JLabel lblNewLabel = new JLabel("Listado Empresas");
+        JLabel lblNewLabel = new JLabel("Listado Empresas:");
         lblNewLabel.setBounds(21,  31,  191,  14);
         getContentPane().add(lblNewLabel);
         
@@ -145,8 +145,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
         ///BOTONES
              
         JButton addButton = new JButton("Agregar>");
-        addButton.setSize(85,  20);
-        addButton.setLocation(235,  409);
+        addButton.setSize(109,  20);
+        addButton.setLocation(211,  409);
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evento) {
@@ -161,7 +161,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         });
         
         JButton removeButton = new JButton("<Quitar");
-        removeButton.setSize(85,  20);
+        removeButton.setSize(114,  20);
         removeButton.setLocation(342,  409);
         removeButton.addActionListener(new ActionListener() {
             @Override
@@ -192,7 +192,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         	}
         });
         
-        JLabel lblNewLabel_1 = new JLabel("Listado de Tipo de Oferta");
+        JLabel lblNewLabel_1 = new JLabel("Listado de Tipo de Oferta:");
         lblNewLabel_1.setBounds(21,  64,  191,  18);
         getContentPane().add(lblNewLabel_1);
         
@@ -207,39 +207,39 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(listadoOfertas);
         
      
-        JLabel lblNewLabel_2 = new JLabel("Nombre");
+        JLabel lblNewLabel_2 = new JLabel("Nombre:");
         lblNewLabel_2.setBounds(21,  93,  138,  14);
         getContentPane().add(lblNewLabel_2);
         
-        JLabel lblNewLabel_3 = new JLabel("Descripcion");
+        JLabel lblNewLabel_3 = new JLabel("Descripcion:");
         lblNewLabel_3.setBounds(21,  124,  139,  14);
         getContentPane().add(lblNewLabel_3);
         
-        JLabel lblNewLabel_4 = new JLabel("Desde ");
-        lblNewLabel_4.setBounds(174,  187,  98,  14);
+        JLabel lblNewLabel_4 = new JLabel("Desde:");
+        lblNewLabel_4.setBounds(140,  187,  98,  14);
         getContentPane().add(lblNewLabel_4);
         
-        JLabel lblNewLabel_5 = new JLabel("Hasta");
-        lblNewLabel_5.setBounds(396,  187,  46,  14);
+        JLabel lblNewLabel_5 = new JLabel("Hasta:");
+        lblNewLabel_5.setBounds(371,  187,  53,  14);
         getContentPane().add(lblNewLabel_5);
         
-        JLabel lblNewLabel_6 = new JLabel("Remuneracion");
+        JLabel lblNewLabel_6 = new JLabel("Remuneracion:");
         lblNewLabel_6.setBounds(21,  255,  177,  14);
         getContentPane().add(lblNewLabel_6);
         
-        JLabel lblNewLabel_7 = new JLabel("Departamento");
+        JLabel lblNewLabel_7 = new JLabel("Departamento:");
         lblNewLabel_7.setBounds(21,  284,  139,  14);
         getContentPane().add(lblNewLabel_7);
         
-        JLabel lblNewLabel_8 = new JLabel("Ciudad");
+        JLabel lblNewLabel_8 = new JLabel("Ciudad:");
         lblNewLabel_8.setBounds(359,  284,  65,  14);
         getContentPane().add(lblNewLabel_8);
         
-        JLabel lblNewLabel_9 = new JLabel("Fecha de Alta");
+        JLabel lblNewLabel_9 = new JLabel("Fecha de Alta:");
         lblNewLabel_9.setBounds(21,  313,  177,  14);
         getContentPane().add(lblNewLabel_9);
         
-        JLabel lblNewLabel_10 = new JLabel("Keywords");
+        JLabel lblNewLabel_10 = new JLabel("Keywords:");
         lblNewLabel_10.setBounds(21,  354,  139,  14);
         getContentPane().add(lblNewLabel_10);
         

@@ -114,13 +114,13 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(AltaDeKeywordsInternalFrame);
         
         PostulacionAOfertaLaboralInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
-        PostulacionAOfertaLaboralInternalFrame.setSize(550,  290);
+        PostulacionAOfertaLaboralInternalFrame.setSize(480,  290);
         PostulacionAOfertaLaboralInternalFrame.setLocation(89,  77);
         PostulacionAOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(PostulacionAOfertaLaboralInternalFrame);
         
         AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame = new AltaTipoPublicaciónOfertaLaboral();
-        AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setSize(550,  290);
+        AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setSize(500,  350);
         AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setLocation(89,  77);
         AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeTipoDePublicacionDeOfertaLaboralInternalFrame);
