@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 import java.io.IOException;
 import java.util.HashSet;

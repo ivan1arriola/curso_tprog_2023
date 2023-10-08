@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="main.java.logica.Datatypes.DTOfertaExtendido" %>
+<%@ page import="main.java.logica.datatypes.DTOfertaExtendido" %>
 
 <%
 	// Obtener el objeto de usuario desde los atributos de la solicitud
 	DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofertaLaboral");
+	byte[] imagen = ofertaLaboral.getImagen();
+	String imagenString;
+	if(imagen != null){
+		imagenString = new String(Base64.getEncoder().encode(imagen));
+	} else {
+		imagenString = request.getContextPath() +  "/imagenNoFound.png";
+	}
+	
+	ofertaLaboral.
 %>
 
 <!DOCTYPE html>
@@ -30,6 +39,7 @@
             <!-- Contenido aqui -->
             
             <div class="container">
+            <h1 class="text-center mt-3">Información Básica de la Oferta Laboral</h1>
                 <div class="row">
                   <div class="col-9 d-flex">
                     <div class="mt-4" id="detalleOferta">
@@ -37,7 +47,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="d-flex align-items-center mt-2">
-                              <img src="https://tinyurl.com/45nsf34m" alt="Descripción de la imagen" class="img-fluid">
+                              <img src="<%= imagenString %>"   alt="Descripción de la imagen" class="img-fluid">
                               <div style="margin-left: 20px;">
                                 <h2><%= ofertaLaboral.getNombre() %></h2>
                               </div>
@@ -46,7 +56,7 @@
                         </div>
                       </div>
 
-                      <h3 class="text-center mt-3">Información Básica de la Oferta Laboral</h3>
+                      
                       <p><span class="fw-bold" id="nombre"><%= ofertaLaboral.getNombre() %></span> <span id="descripcion"><%= ofertaLaboral.getDescripcion() %></span></p>
 
                       <p class="mb-05"><span class="fw-bold">Remuneración:</span> <span id="remuneracionOferta"><%= ofertaLaboral.getRemuneracion() %> pesos

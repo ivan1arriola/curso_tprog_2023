@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTTipoOferta;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.datatypes.DTTipoOferta;
+import main.java.logica.interfaces.ICtrlOferta;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -30,7 +30,7 @@ public class ListarTiposPublicacion extends HttpServlet {
 
 	private HashSet<DTTipoOferta> obtenerTipoOfertas(){
 		ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
-		HashSet<String> lista =  ctrl.listarTipoDePublicaciones();
+		HashSet<String> lista =  (HashSet<String>) ctrl.listarTipoDePublicaciones();
 		HashSet<DTTipoOferta> tipoOfertas = new HashSet<DTTipoOferta>();
 		for (String nombreTipoOferta : lista) {
 			try {
