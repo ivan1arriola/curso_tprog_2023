@@ -178,7 +178,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         gbc_Aceptar.insets = new Insets(10,  0,  0,  5);
         gbc_Aceptar.gridx = 0;
         gbc_Aceptar.gridy = 6;
-        getContentPane().add(Aceptar,  gbc_Aceptar);
+        getContentPane().add(aceptar,  gbc_Aceptar);
         
         JButton cancelar = new JButton("Cancelar");
         GridBagConstraints gbc_Cancelar = new GridBagConstraints();
@@ -187,7 +187,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         gbc_Cancelar.anchor = GridBagConstraints.EAST;
         gbc_Cancelar.gridx = 1;
         gbc_Cancelar.gridy = 6;
-        getContentPane().add(Cancelar,  gbc_Cancelar);
+        getContentPane().add(cancelar,  gbc_Cancelar);
         
      
         

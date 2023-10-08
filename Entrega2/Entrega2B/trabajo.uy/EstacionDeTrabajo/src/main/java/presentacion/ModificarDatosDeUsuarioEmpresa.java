@@ -243,10 +243,10 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
        		
        		else {
            		if (!url.isEmpty()) {
-	               	icu.ingresarDatosEditadosEmpresaURL(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  url,  descripcion);
+           			icUsuario.ingresarDatosEditadosEmpresaURL(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  url,  descripcion);
            		}
            		else { 
-	               	icu.ingresarDatosEditadosEmpresa(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  descripcion);
+           			icUsuario.ingresarDatosEditadosEmpresa(empresa.getNickname(),  nombre,  apellido,  correo,  pass,  descripcion);
            		}
            		
            		JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "Los datos se han modificado exitosamente",  "Modificar Datos de Usuario",  JOptionPane.INFORMATION_MESSAGE);

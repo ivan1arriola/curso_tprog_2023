@@ -101,7 +101,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				// El combobox no esta vacio y el usuario es un POSTULANTE
 				if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && !(dtus instanceof DTEmpresa)) { 
 					DTPostulante dtpostu = (DTPostulante) dtus;
-					mDUPost = new ModificarDatosDeUsuarioPostulante(icu,  dtpostu);
+					mDUPost = new ModificarDatosDeUsuarioPostulante(icUsuario,  dtpostu);
 					gui.getContentPane().add(mDUPost);
 					setVisible(false);
 					mDUPost.setVisible(true);
@@ -111,7 +111,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 				// El combobox no esta vacio y el usuario es una EMPRESA	
 				else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
 					DTEmpresa dtempre = (DTEmpresa) dtus;
-					mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icu,  dtempre);
+					mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icUsuario,  dtempre);
 					gui.getContentPane().add(mDUEmpresa);
 					setVisible(false);
 					mDUEmpresa.setVisible(true);
@@ -128,7 +128,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
     
     public void actualizar() {
     	Fabrica fabrica = Fabrica.getInstance();
-    	icu = fabrica.getICtrlUsuario();
+    	icUsuario = fabrica.getICtrlUsuario();
     	
     	listarUsuarios.removeAllItems(); 
         
