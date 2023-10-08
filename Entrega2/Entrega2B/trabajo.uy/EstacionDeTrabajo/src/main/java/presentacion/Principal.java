@@ -14,8 +14,8 @@ import javax.swing.JMenuItem;
 
 public class Principal {
     private JFrame frmGestionDeUsuarios;
-    private AltaDeUsuario AltaDeUsuarioInternalFrame;
-    private ConsultaDeUsuario ConsultaDeUsuarioInternalFrame;
+    private AltaDeUsuario altaDeUsuarioInternalFrame;
+    private ConsultaDeUsuario consultaDeUsuarioInternalFrame;
     private ModificarDatosDeUsuarioV2 ModificarDatosDeUsuarioInternalFrame;
     private CargarDatos CargarDatosInternalFrame;
     private ConsultaDeOfertaLaboral ConsultaDeOfertaLaboralInternalFrame;
@@ -26,7 +26,7 @@ public class Principal {
     private AgregarTipodePublicacióndeOfertaLaboral AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame;
     private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame;
     private AltaDeKeywords AltaDeKeywordsInternalFrame;
-    private AceptarOferta AceptarOfertaInternalFrame;
+    private aceptarOferta aceptarOfertaInternalFrame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -57,19 +57,19 @@ public class Principal {
         // Cada InternalFrame usa un layout diferente,  simplemente para mostrar distintas opciones.
         
         // Alta de Usuario
-        AltaDeUsuarioInternalFrame = new AltaDeUsuario(frmGestionDeUsuarios,  ICU);
-        AltaDeUsuarioInternalFrame.setSize(408,  189);
-        AltaDeUsuarioInternalFrame.setLocation(89,  77);
-        AltaDeUsuarioInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(AltaDeUsuarioInternalFrame);
+        altaDeUsuarioInternalFrame = new AltaDeUsuario(frmGestionDeUsuarios,  ICU);
+        altaDeUsuarioInternalFrame.setSize(408,  189);
+        altaDeUsuarioInternalFrame.setLocation(89,  77);
+        altaDeUsuarioInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(altaDeUsuarioInternalFrame);
         
         // Consulta de Usuario
-        ConsultaDeUsuarioInternalFrame = new ConsultaDeUsuario(frmGestionDeUsuarios,  ICU,  ICO);
-        ConsultaDeUsuarioInternalFrame.setSize(500,  510);
-        ConsultaDeUsuarioInternalFrame.setLocation(89,  77);
-        ConsultaDeUsuarioInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(ConsultaDeUsuarioInternalFrame);
-        //frmGestionDeUsuarios.getContentPane().add(ConsultaDeUsuarioInternalFrame);
+        consultaDeUsuarioInternalFrame = new ConsultaDeUsuario(frmGestionDeUsuarios,  ICU,  ICO);
+        consultaDeUsuarioInternalFrame.setSize(500,  510);
+        consultaDeUsuarioInternalFrame.setLocation(89,  77);
+        consultaDeUsuarioInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(consultaDeUsuarioInternalFrame);
+        //frmGestionDeUsuarios.getContentPane().add(consultaDeUsuarioInternalFrame);
         
         
         // CargarDatos
@@ -138,11 +138,11 @@ public class Principal {
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
         
-        AceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
-        AceptarOfertaInternalFrame.setSize(550,  350);
-        AceptarOfertaInternalFrame.setLocation(89,  77);
-        AceptarOfertaInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().add(AceptarOfertaInternalFrame);
+        aceptarOfertaInternalFrame = new aceptarOferta(ICO, ICU);
+        aceptarOfertaInternalFrame.setSize(550,  350);
+        aceptarOfertaInternalFrame.setLocation(89,  77);
+        aceptarOfertaInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(aceptarOfertaInternalFrame);
         
     }
 
@@ -193,7 +193,7 @@ public class Principal {
         menuItemAltaDeUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
                 // Muestro el InternalFrame para dar de alta un usuario.
-            	AltaDeUsuarioInternalFrame.setVisible(true);
+            	altaDeUsuarioInternalFrame.setVisible(true);
             }
         });
      
@@ -205,8 +205,8 @@ public class Principal {
         menuItemConsultaDeUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
                 // Muestro el InternalFrame para registrar un usuario
-            	ConsultaDeUsuarioInternalFrame.actualizar();
-                ConsultaDeUsuarioInternalFrame.setVisible(true);
+            	consultaDeUsuarioInternalFrame.actualizar();
+                consultaDeUsuarioInternalFrame.setVisible(true);
             }
         });   
         
@@ -292,11 +292,11 @@ public class Principal {
         mnOfertaL.add(ConsultarPTPOL);
 
         
-        JMenuItem AceptarOffer = new JMenuItem("Aceptar/Rechazar Oferta");
-        AceptarOffer.addActionListener(new ActionListener() {
+        JMenuItem aceptarOffer = new JMenuItem("Aceptar/Rechazar Oferta");
+        aceptarOffer.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		AceptarOfertaInternalFrame.actualizar();
-        		AceptarOfertaInternalFrame.setVisible(true);
+        		aceptarOfertaInternalFrame.actualizar();
+        		aceptarOfertaInternalFrame.setVisible(true);
         	}
         });
         mnOfertaL.add(AceptarOffer);

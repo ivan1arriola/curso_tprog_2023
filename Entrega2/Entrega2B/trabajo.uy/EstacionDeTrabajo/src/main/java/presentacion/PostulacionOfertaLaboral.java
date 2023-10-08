@@ -35,12 +35,12 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 	private JComboBox<String> comboBoxOfertas;
 	private JTextArea infoOferta;
 	
-	public PostulacionOfertaLaboral(ICtrlOferta ico,  ICtrlUsuario icu) {
+	public PostulacionOfertaLaboral(ICtrlOferta ico,  ICtrlUsuario icUsuario) {
 		
   	//controlOferta = ico;
-		controlUsuario = icu;
+		controlUsuario = icUsuario;
 		
-		empresas = icu.listarEmpresas();
+		empresas = icUsuario.listarEmpresas();
 
         
         setResizable(true);
@@ -78,7 +78,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
             		            		
                     if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0) {
                         String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
-                        Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
+                        Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
 
                         comboBoxOfertas.removeAllItems(); // Limpiar el comboBoxOfertas
                      
@@ -150,7 +150,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         		if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != -1  &&  comboBoxEmpresa.getSelectedIndex() != 0) {
         			String emp = (String) comboBoxEmpresa.getSelectedItem();
         			String offer = (String) comboBoxOfertas.getSelectedItem();
-        			ElegirPostulante eligePostu = new ElegirPostulante(emp, offer,  icu, ico);
+        			ElegirPostulante eligePostu = new ElegirPostulante(emp, offer,  icUsuario, ico);
         			eligePostu.actualizar(emp,  offer);
         			getContentPane().add(eligePostu);
         			eligePostu.setVisible(true);
