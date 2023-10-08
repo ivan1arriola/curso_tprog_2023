@@ -159,7 +159,7 @@ public class ControladorUsuarioTest2 {
 												DTverdaderaempresa1.getUrl(), 
 												DTverdaderaempresa1.getDescripcion());
 			// si no tiene url no lo toma, en este caso google tiene url
-			if (!ICU.tieneURL("Google")){
+			if (!ICU.tieneURL("Google")) {
 				assertFalse("The test for user in system failed", true);
 			}
 			

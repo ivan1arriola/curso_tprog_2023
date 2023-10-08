@@ -108,7 +108,7 @@ public class Paquete {
             Costo = Costo + CostoTO*cantidadTotal;
         }
         
-        Costo = (float) (Costo-(Costo*descuento*0.01)); 
+        Costo = (float) (Costo - (Costo * descuento *0.01)); 
         this.costo = Costo;
     }
     
@@ -135,7 +135,7 @@ public class Paquete {
             Costo = Costo + CostoTO*cantidadTotal;
         }
             
-        Costo = (float) (Costo-(Costo*descuento*0.01)); 
+        Costo = (float) (Costo - (Costo * descuento * 0.01)); 
         this.costo = Costo;
     }
 
@@ -151,7 +151,7 @@ public class Paquete {
         return dtpaq;
     }
     
-    public HashSet<DTCantTO> obtenerDTSCantTO(){
+    public HashSet<DTCantTO> obtenerDTSCantTO() {
         // devolver cantidad y nombre de cada paquete
         HashSet<DTCantTO> SetNuevo = new HashSet<DTCantTO>();
         for (OfertaPaquete OfertaAnalizar : oferPaq) {

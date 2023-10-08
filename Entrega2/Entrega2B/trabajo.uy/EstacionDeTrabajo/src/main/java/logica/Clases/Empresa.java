@@ -68,11 +68,11 @@ public class Empresa extends Usuario {
         this.url = urlE;
     }
 
-    public HashSet<String> listarOfertasLaborales(){
+    public HashSet<String> listarOfertasLaborales() {
         HashSet<String> lista = new HashSet<String>();
         
         if(ofertasLaborales.size() != 0) {
-	        for(OfertaLaboral ol : ofertasLaborales){
+	        for(OfertaLaboral ol : ofertasLaborales) {
 	            lista.add(ol.getNombre());
 	        }
         }
@@ -85,7 +85,7 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq){
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) {
     	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, paq);
         ofertasLaborales.add(ol);
         return ol;
@@ -123,7 +123,7 @@ public class Empresa extends Usuario {
         
     }
     
-    public HashSet<String> listarOfertasLaboralesConfirmadas(){
+    public HashSet<String> listarOfertasLaboralesConfirmadas() {
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
@@ -137,7 +137,7 @@ public class Empresa extends Usuario {
         return res;
     }
     
-    public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks){
+    public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks) {
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
@@ -151,7 +151,7 @@ public class Empresa extends Usuario {
         return res;
     }
     
-    public HashSet<String> listarOfertasLaboralesIngresadas(){
+    public HashSet<String> listarOfertasLaboralesIngresadas() {
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 

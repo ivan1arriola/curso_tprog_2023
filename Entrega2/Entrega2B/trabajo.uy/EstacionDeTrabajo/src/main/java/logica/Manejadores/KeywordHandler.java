@@ -20,7 +20,7 @@ public class KeywordHandler {
 		return instancia;
 	}
 	
-	public void agregar(Keyword key){
+	public void agregar(Keyword key) {
 		if (key == null) {
 			throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
 		}

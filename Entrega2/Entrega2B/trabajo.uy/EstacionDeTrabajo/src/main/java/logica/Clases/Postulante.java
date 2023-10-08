@@ -9,7 +9,7 @@ import java.util.HashSet;
 
 
 
-public class Postulante extends Usuario{
+public class Postulante extends Usuario {
     // atributos
     private LocalDate fecha_nac;
     private String nacionalidad;
@@ -152,7 +152,7 @@ public class Postulante extends Usuario{
     public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
         
-        if(postulaciones!=null) {
+        if(postulaciones != null) {
             for(Postulacion p : postulaciones){
                 lista.add(p.obtenerNombreOfertaLaboral());
             }

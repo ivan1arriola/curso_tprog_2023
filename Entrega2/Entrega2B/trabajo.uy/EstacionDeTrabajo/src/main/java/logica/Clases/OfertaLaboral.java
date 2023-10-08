@@ -50,7 +50,7 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq*descuento;
+			this.costo = costodadoPaq - costodadoPaq * descuento;
 		} else {
 			this.costo = costodadoPaq;
 		}		
@@ -255,7 +255,7 @@ public class OfertaLaboral {
 		postulaciones.add(p);
 	} // registra una postulacion a la lista de postulaciones	
 
-	public DTOfertaExtendido obtenerDatosOferta(){
+	public DTOfertaExtendido obtenerDatosOferta() {
 		HashSet<DTPostulacion> posts = new HashSet<>();
 		// muestro todas las postulaciones
 		for(int i = 0; i < postulaciones.size(); i++) {
@@ -301,7 +301,7 @@ public class OfertaLaboral {
 	return false;
 	}
 
-	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario(){
+	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario() {
 		List<Keyword> keys = getKeywords();
 		HashSet<String> nuevo = new HashSet<>();
 		for (Keyword item : keys) {

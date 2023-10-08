@@ -130,7 +130,7 @@ public class VerPostulaciones extends JInternalFrame {
 		DTOfertaExtendido DatosOferta = ICU.consultaOfertaLaboral(nombre_o);
 		postulaciones = DatosOferta.getPostulaciones();
 		
-		for(DTPostulacion element: postulaciones) {
+		for(DTPostulacion element : postulaciones) {
 			listadoPostulaciones.addItem(element.getPostulante());
 		}
 	}

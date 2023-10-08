@@ -12,15 +12,15 @@ public class UsuarioHandler {
 
     private static UsuarioHandler instancia;
 
-    public boolean existeNick(String nombre){
+    public boolean existeNick(String nombre) {
         return nickUsuariosMap.containsKey(nombre);
     }
     
-    public boolean existeCorreo(String mail){
+    public boolean existeCorreo(String mail) {
     	return correoUsuariosMap.containsKey(mail);
     }
     
-    public void agregar(Usuario usuario){
+    public void agregar(Usuario usuario) {
         nickUsuariosMap.put(usuario.getNickname(), usuario);
         correoUsuariosMap.put(usuario.getCorreo_electronico(), usuario);
     }
@@ -29,7 +29,7 @@ public class UsuarioHandler {
         return nickUsuariosMap.get(nombre);
     }
     
-    public Usuario buscarCorreo(String mail){
+    public Usuario buscarCorreo(String mail) {
         if (!correoUsuariosMap.containsKey(mail)) {
             throw new IllegalArgumentException("Usuario no encontrado");
         }
@@ -48,11 +48,11 @@ public class UsuarioHandler {
         return instancia;
     }
 
-    public HashMap<String, Usuario> obtenerNick(){
+    public HashMap<String, Usuario> obtenerNick() {
         return nickUsuariosMap;
     }
     
-    public HashMap<String, Usuario> obtenerCorreo(){
+    public HashMap<String, Usuario> obtenerCorreo() {
         return correoUsuariosMap;
     }
 }

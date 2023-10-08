@@ -52,9 +52,9 @@ public class AceptarOferta extends JInternalFrame {
         setBounds(30, 30, 500, 285);
         
         
-        GridBagLayout gbl=new GridBagLayout();
+        GridBagLayout gbl = new GridBagLayout();
         gbl.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0};
-        GridBagConstraints gbc=new GridBagConstraints();
+        GridBagConstraints gbc = new GridBagConstraints();
       	getContentPane().setLayout(gbl);
       	
     	comboBoxEmpresa = new JComboBox<>();

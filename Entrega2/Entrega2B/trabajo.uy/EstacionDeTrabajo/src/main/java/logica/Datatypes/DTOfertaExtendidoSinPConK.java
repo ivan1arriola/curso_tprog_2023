@@ -18,7 +18,7 @@ public class DTOfertaExtendidoSinPConK  {
 	private byte[] imagen;
 	private HashSet<String> keywords;
 	
-	public DTOfertaExtendidoSinPConK(String n, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL e, byte[] img, HashSet<String> keys){
+	public DTOfertaExtendidoSinPConK(String n, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL e, byte[] img, HashSet<String> keys) {
 		// no es subclase de DTOfertaExtendido, es una version sin postulaciones
 		nombre = n;
 		descripcion = desc;

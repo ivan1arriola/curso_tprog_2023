@@ -37,7 +37,7 @@ public class ConsultarOfertas extends JDialog {
 	
     public ConsultarOfertas(Set<String> offerDetailsUnsort,ICtrlOferta icoInstance, ICtrlUsuario icuInstance,String usuario) {
     	
-    	ico=icoInstance;
+    	ico = icoInstance;
     	icu = icuInstance;
     	
     	List<String> offerDetails = new ArrayList<>(offerDetailsUnsort);

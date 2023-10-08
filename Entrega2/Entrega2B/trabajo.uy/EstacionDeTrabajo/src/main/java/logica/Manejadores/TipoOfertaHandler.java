@@ -14,7 +14,9 @@ public class TipoOfertaHandler {
 	
 	
 	public static TipoOfertaHandler getInstance() {
-		if (tOfertaHandler==null) {tOfertaHandler = new TipoOfertaHandler();} 
+		if (tOfertaHandler == null) { 
+			tOfertaHandler = new TipoOfertaHandler(); 
+		} 
 		return tOfertaHandler;
 	}
 	

@@ -31,16 +31,16 @@ import main.java.logica.Manejadores.TipoOfertaHandler;
 import main.java.logica.Manejadores.UsuarioHandler;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 
-public class CtrlOferta implements ICtrlOferta{
+public class CtrlOferta implements ICtrlOferta {
 
 	public CtrlOferta() {}
 	
-	public Set<String> listarEmpresas(){
+	public Set<String> listarEmpresas() {
 		CtrlUsuario CU = new CtrlUsuario();
 		return CU.listarEmpresas();
 	}
 	
-	public HashSet<String> listarTipoDePublicaciones(){
+	public HashSet<String> listarTipoDePublicaciones() {
 		HashSet<String> res = new HashSet<>(); // PQ NO ME DEJA?
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		HashMap<String,TipoOferta> tipoOf = TOH.obtener();
@@ -51,7 +51,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return res;
 	}
 	
-	public boolean existeOferta(String nombre_oferta){
+	public boolean existeOferta(String nombre_oferta) {
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		return OLH.existe(nombre_oferta);
 	}

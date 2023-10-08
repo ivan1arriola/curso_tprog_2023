@@ -119,7 +119,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         comboBoxOfertas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	if(comboBoxOfertas.getSelectedIndex()!=-1) {
+            	if(comboBoxOfertas.getSelectedIndex() != -1) {
             		String oferta = (String) comboBoxOfertas.getSelectedItem();
              	    DTOfertaExtendido dtO = ico.obtenerOfertaLaboral(oferta);
              	    infoOferta.append(dtO.toString());
@@ -146,7 +146,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		if(comboBoxEmpresa.getSelectedIndex()!=-1 && comboBoxOfertas.getSelectedIndex()!=-1  &&  comboBoxEmpresa.getSelectedIndex()!=0) {
+        		if(comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != -1  &&  comboBoxEmpresa.getSelectedIndex() != 0) {
         			String emp = (String) comboBoxEmpresa.getSelectedItem();
         			String offer = (String) comboBoxOfertas.getSelectedItem();
         			ElegirPostulante eligePostu = new ElegirPostulante(emp,offer, icu,ico);
