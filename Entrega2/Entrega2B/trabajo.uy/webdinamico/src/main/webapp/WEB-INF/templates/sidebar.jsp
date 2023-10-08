@@ -13,16 +13,16 @@ if (session != null && session.getAttribute("nickname") != null) {
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-            	<li class="list-group-item">
+            	<li class="list-group-item list-group-item-action border-0 py-1">
                     <a href="<%= request.getContextPath() %>/consultarusuario?u=<%=nickname %>" class="list-group-item list-group-item-action border-0 py-1">Mi Perfil</a>
                 </li>
             <% if (tipo == TipoUsuario.Empresa) { %>
-                <li class="list-group-item">
+                <li class="list-group-item list-group-item-action border-0 py-1">
                     <a href="<%= request.getContextPath() %>/altaofertalaboral" class="list-group-item list-group-item-action border-0 py-1">Alta Oferta Laboral</a>
                 </li>
             <% } %>
             <% if (tipo == TipoUsuario.Postulante) { %>
-                <li class="list-group-item">
+                <li class="list-group-item list-group-item-action border-0 py-1">
                     <a href="<%= request.getContextPath() %>/ofertaslaborales" class="list-group-item list-group-item-action border-0 py-1">Postular a Oferta Laboral</a>
                 </li>
             <% } %>

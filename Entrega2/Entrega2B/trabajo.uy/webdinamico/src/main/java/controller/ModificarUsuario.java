@@ -30,13 +30,7 @@ public class ModificarUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
     
-    private void modificaPostulante() {
-    	
-    }
-    
-    private void modificarEmpresa() {
-    	
-    }
+
     
     public static LocalDate convertirCadenaAFecha(String fechaEnCadena) {
         try {
