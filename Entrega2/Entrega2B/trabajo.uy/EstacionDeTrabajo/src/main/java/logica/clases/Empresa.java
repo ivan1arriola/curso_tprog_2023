@@ -112,6 +112,8 @@ public class Empresa extends Usuario {
         String apellido = getApellido();
         String correoElectronico = getcorreoElectronico();
         String contraseña = getcontrasenia();
+        String descripcion = getDescripcion();
+        String url = geturl();
         byte[] imagen = getImagen();
         			       
         Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
@@ -121,7 +123,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);   
         }
         
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contrasenia, descripcion, url, dtOfertas, imagen);
+        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);
         
     }
     

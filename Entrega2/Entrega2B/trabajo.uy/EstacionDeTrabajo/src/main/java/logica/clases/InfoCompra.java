@@ -2,6 +2,7 @@ package main.java.logica.clases;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTCompraPaquetes;
@@ -14,10 +15,10 @@ public class InfoCompra {
     private float costo;
     private Paquete paquete;
     private Empresa empres;
-    private HashSet<InfoCompraOferta> infoCompraOfertas;
+    private Set<InfoCompraOferta> infoCompraOfertas;
 
     // constructor
-    public InfoCompra(LocalDate fechaCompra, float costo, Paquete pack, Empresa empres,HashSet<DTCantTO> S) {
+    public InfoCompra(LocalDate fechaCompra, float costo, Paquete pack, Empresa empres,Set<DTCantTO> conjuntoS) {
         // atributos
         this.fechaCompra = fechaCompra;
         this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
@@ -27,9 +28,9 @@ public class InfoCompra {
         this.paquete = pack;
         
         TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-        for (DTCantTO elemento : S) {
-            TipoOferta to = TOH.buscar(elemento.getNombre());
-            InfoCompraOferta ico = new InfoCompraOferta(to,elemento.getCantidad());
+        for (DTCantTO elemento : conjuntoS) {
+            TipoOferta tipoOfer = TOH.buscar(elemento.getNombre());
+            InfoCompraOferta ico = new InfoCompraOferta(tipoOfer,elemento.getCantidad());
             infoCompraOfertas.add(ico);
         }
     }
@@ -56,7 +57,7 @@ public class InfoCompra {
     	return costo;
     }
     
-    public HashSet<InfoCompraOferta> getICO() {
+    public Set<InfoCompraOferta> getICO() {
     	return infoCompraOfertas;
     }
 
@@ -83,7 +84,7 @@ public class InfoCompra {
     	this.costo = costo;
     } 
     
-    public void setICO(HashSet<InfoCompraOferta> ICO) {
+    public void setICO(Set<InfoCompraOferta> ICO) {
     	this.infoCompraOfertas = ICO;
     }
 
