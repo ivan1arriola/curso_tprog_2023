@@ -9,7 +9,7 @@ import main.java.logica.enumerados.EstadoOL;
 public class DTOfertaExtendido {
   private String nombre;
   private String descripcion;
-  private LocalDate fecha_de_alta;
+  private LocalDate fechaDeAlta;
   private float costo;
   private float remuneracion;
   private DTHorario horario;
@@ -24,7 +24,7 @@ public class DTOfertaExtendido {
 public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, HashSet<DTPostulacion> post, byte[] img, String paquete) {
   nombre = nomb;
   descripcion = desc;
-  fecha_de_alta = fechaA;
+  fechaDeAlta = fechaA;
   costo = c;
   remuneracion = r;
   horario = h;
@@ -45,7 +45,7 @@ public String getDescripcion() {
 }
 	
 public LocalDate getFechaDeAlta() {
-  return fecha_de_alta;
+  return fechaDeAlta;
 }
 	
 public float getCosto() {
@@ -87,7 +87,7 @@ public String getPaquete() {
 	@Override
 public String toString() {
   String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n"  
-		  		+ "Fecha de alta: " + fecha_de_alta + "\n" + "Costo: " 
+		  		+ "Fecha de alta: " + fechaDeAlta + "\n" + "Costo: " 
 		  		+ (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n" 
 		  		+ "Horario de Entrada: " + horario.getDesde() + "\n" 
 		  		+ "Horario de Salida: " + horario.getHasta() + "\n" + ciudad

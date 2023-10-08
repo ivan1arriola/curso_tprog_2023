@@ -5,16 +5,16 @@ import java.time.LocalDate;
 public class DTPostulacion {
 	private String nombrePostulante;
 	private LocalDate fecha;
-	private String URLDocExtras;
-	private String CV;
+	private String uRLDocExtras;
+	private String cVitae;
 	private String motivacion;
 
 	public 
-	DTPostulacion(String nomb_p, LocalDate f, String URLDE, String CV, String motivacion) {
+	DTPostulacion(String nomb_p, LocalDate f, String URLDE, String cVitae, String motivacion) {
 		nombrePostulante = nomb_p;
 		fecha = f;
-		URLDocExtras = URLDE;
-		this.CV = CV;
+		uRLDocExtras = URLDE;
+		this.cVitae = cVitae;
 		this.motivacion = motivacion;
 	}
 	
@@ -26,12 +26,12 @@ public class DTPostulacion {
     	return fecha;
     }
     
-    public String getURLDocExtras() {
-    	return URLDocExtras;
+    public String getuRLDocExtras() {
+    	return uRLDocExtras;
     }
     
-    public String getCV() {
-    	return CV;
+    public String getcVitae() {
+    	return cVitae;
     }
     
     public String getMotivacion() {

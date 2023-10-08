@@ -41,16 +41,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JTextField nombre;
 	private JTextField ciudad;
 	private JTextField remuneracion;
-	private JTextField fechaAlta_1;
+	private JTextField fechaAlta1;
 	private JComboBox<String> listadoEmpresas;
 	private JComboBox<String> listadoOfertas;
 	//private JComboBox<String> listadoKeywords;
 	private JComboBox<String> listadoDepartamentos;
-	private ICtrlUsuario ICU;
+	private ICtrlUsuario icUsuario;
     private JTextArea descripcion;
     private String empresa;
     private String ofertaLab;
-	private ICtrlOferta ICO;
+	private ICtrlOferta icOferta;
 	private JSpinner desdehora;
 	private JSpinner desdemin;
 	private JSpinner hastahora;
@@ -69,8 +69,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
     public AltaOfertaLaboral(ICtrlUsuario icu) {
     	Fabrica fabrica = Fabrica.getInstance();
         ICtrlOferta ico = fabrica.getICtrlOferta();
-        ICU = icu;
-        ICO = ico;
+        icUsuario = icu;
+        icOferta = ico;
 
         setResizable(true);
         setIconifiable(false);
@@ -106,7 +106,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         ////////////
         /*availableListModel = new DefaultListModel<>();
         selectedListModel = new DefaultListModel<>();
-        HashSet<String> keys = ICO.listarKeywords();
+        HashSet<String> keys = icOferta.listarKeywords();
         List<String> keysSorted = new ArrayList<>(keys);
         Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         
@@ -118,7 +118,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         availableListModel = new DefaultListModel<>();
         selectedListModel = new DefaultListModel<>();
         
-        /*HashSet<String> keys = ICO.listarKeywords();
+        /*HashSet<String> keys = icOferta.listarKeywords();
         List<String> keysSorted = new ArrayList<>(keys);
         Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         for (String item : keysSorted) {
@@ -336,7 +336,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     		JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     	} else {
 	                		try {
-	                			boolean b = ICU.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(), ks, EstadoOL.Ingresada, null, null);
+	                			boolean b = icUsuario.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(), ks, EstadoOL.Ingresada, null, null);
 	                			if (!b) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 	                			} else {
@@ -425,16 +425,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(list);*/
        
         
-        fechaAlta_1 = new JTextField();
-        fechaAlta_1.setBounds(140, 309, 100, 20);
-        getContentPane().add(fechaAlta_1);
-        fechaAlta_1.setColumns(10);
+        fechaAlta1 = new JTextField();
+        fechaAlta1.setBounds(140, 309, 100, 20);
+        getContentPane().add(fechaAlta1);
+        fechaAlta1.setColumns(10);
         
         
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate currentDate = LocalDate.now();
-		fechaAlta_1.setText(currentDate.format(dateFormatter));
-		fechaAlta_1.setEditable(false);
+		fechaAlta1.setText(currentDate.format(dateFormatter));
+		fechaAlta1.setEditable(false);
 		
 		desdehora = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
 		desdehora.setBounds(111, 212, 46, 20);
@@ -491,8 +491,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	
 		listadoEmpresas.removeAllItems();
   //listadoKeywords.removeAllItems();
-  HashSet<String> empresas = ICU.listarEmpresas();
-  HashSet<String> keys = ICO.listarKeywords();
+  HashSet<String> empresas = icUsuario.listarEmpresas();
+  HashSet<String> keys = icOferta.listarKeywords();
   List<String> keysSorted = new ArrayList<>(keys);
   Collections.sort(keysSorted, String.CASE_INSENSITIVE_ORDER);
         
@@ -520,7 +520,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         	listadoEmpresas.addItem(elemento);
         }
         
-        HashSet<String> tiposDePub = ICO.listarTipoDePublicaciones();
+        HashSet<String> tiposDePub = icOferta.listarTipoDePublicaciones();
         List<String> tipoSorted = new ArrayList<>(tiposDePub);
         Collections.sort(tipoSorted, String.CASE_INSENSITIVE_ORDER);
      
@@ -537,7 +537,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	descripcion.setText("");
         remuneracion.setText("");
         ciudad.setText("");
-        //fechaAlta_1.setText("");
+        //fechaAlta1.setText("");
         //listadoKeywords.removeAllItems();
     }
     

@@ -2,18 +2,18 @@ package main.java.logica.datatypes;
 
 public class DTUsuario {
     private String nickname;
-    private String correo_electronico;
+    private String correoElectronico;
     private String apellido;
     private String nombre;
-    private String contraseña;
+    private String contrasenia;
     private byte[] imagen;
 
-    public DTUsuario(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] img) {
+    public DTUsuario(String nickname, String correoElectronico, String apellido, String nombre, String contrasenia, byte[] img) {
         this.nickname = nickname;
-        this.correo_electronico = correo_electronico;
+        this.correoElectronico = correoElectronico;
         this.apellido = apellido; 
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasenia = contrasenia;
         this.imagen = img;
     }
 
@@ -26,16 +26,16 @@ public class DTUsuario {
     	return nickname; 
     }
     
-    public String getCorreo_electronico() {
-    	return correo_electronico; 
+    public String getcorreoElectronico() {
+    	return correoElectronico; 
     }
     
     public String getApellido() { 
     	return apellido;
     }
     
-    public String getContraseña() {
-    	return contraseña;
+    public String getcontrasenia() {
+    	return contrasenia;
     }
     
     public String getNombre() {
