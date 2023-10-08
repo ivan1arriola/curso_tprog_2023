@@ -1,4 +1,4 @@
-package main.java.logica.Datatypes;
+package main.java.logica.datatypes;
 
 public class DTCantTO {
 	private String nombre;

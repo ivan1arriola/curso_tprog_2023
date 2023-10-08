@@ -1,4 +1,4 @@
-package main.java.logica.Datatypes;
+package main.java.logica.datatypes;
 
 public class DTHora {
 	private int hora;

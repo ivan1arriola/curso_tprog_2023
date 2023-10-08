@@ -1,7 +1,8 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
 import java.time.LocalDate;
-import main.java.logica.Datatypes.DTTipoOferta;
+
+import main.java.logica.datatypes.DTTipoOferta;
 
 public class TipoOferta {
     // Atributos

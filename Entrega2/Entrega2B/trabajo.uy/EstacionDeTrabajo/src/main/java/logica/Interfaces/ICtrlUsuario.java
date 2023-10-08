@@ -1,4 +1,4 @@
-package main.java.logica.Interfaces;
+package main.java.logica.interfaces;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -9,16 +9,16 @@ import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.Clases.OfertaLaboral;
-import main.java.logica.Clases.Postulacion;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
+import main.java.logica.clases.OfertaLaboral;
+import main.java.logica.clases.Postulacion;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 
 
 

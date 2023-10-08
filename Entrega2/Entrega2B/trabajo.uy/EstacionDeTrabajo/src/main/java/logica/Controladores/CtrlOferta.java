@@ -1,4 +1,4 @@
-package main.java.logica.Controladores;
+package main.java.logica.controladores;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -8,39 +8,40 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-import main.java.logica.Clases.OfertaLaboral;
-import main.java.logica.Clases.Postulacion;
-import main.java.logica.Clases.Paquete;
-import main.java.logica.Clases.TipoOferta;
-import main.java.logica.Clases.Usuario;
-import main.java.logica.Clases.Empresa;
-import main.java.logica.Clases.Keyword;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Datatypes.DTTipoOferta;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Manejadores.KeywordHandler;
-import main.java.logica.Manejadores.OfertaLaboralHandler;
-import main.java.logica.Manejadores.PaqueteHandler;
-import main.java.logica.Manejadores.TipoOfertaHandler;
-import main.java.logica.Manejadores.UsuarioHandler;
+
+import main.java.logica.clases.Empresa;
+import main.java.logica.clases.Keyword;
+import main.java.logica.clases.OfertaLaboral;
+import main.java.logica.clases.Paquete;
+import main.java.logica.clases.Postulacion;
+import main.java.logica.clases.TipoOferta;
+import main.java.logica.clases.Usuario;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTTipoOferta;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.manejadores.KeywordHandler;
+import main.java.logica.manejadores.OfertaLaboralHandler;
+import main.java.logica.manejadores.PaqueteHandler;
+import main.java.logica.manejadores.TipoOfertaHandler;
+import main.java.logica.manejadores.UsuarioHandler;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 
-public class CtrlOferta implements ICtrlOferta {
+public class CtrlOferta implements ICtrlOferta{
 
 	public CtrlOferta() {}
 	
-	public Set<String> listarEmpresas() {
+	public Set<String> listarEmpresas(){
 		CtrlUsuario CU = new CtrlUsuario();
 		return CU.listarEmpresas();
 	}
 	
-	public HashSet<String> listarTipoDePublicaciones() {
+	public HashSet<String> listarTipoDePublicaciones(){
 		HashSet<String> res = new HashSet<>(); // PQ NO ME DEJA?
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		HashMap<String,TipoOferta> tipoOf = TOH.obtener();
@@ -51,7 +52,7 @@ public class CtrlOferta implements ICtrlOferta {
 		return res;
 	}
 	
-	public boolean existeOferta(String nombre_oferta) {
+	public boolean existeOferta(String nombre_oferta){
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		return OLH.existe(nombre_oferta);
 	}

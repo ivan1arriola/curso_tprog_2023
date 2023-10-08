@@ -1,6 +1,6 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
-import main.java.logica.Datatypes.DTCantTO;
+import main.java.logica.datatypes.DTCantTO;
 
 public class OfertaPaquete {
  private int cantidad;

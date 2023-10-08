@@ -1,13 +1,14 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
-import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsTit;
-import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class OfertaLaboral {
 		float costodadoPaq = tOferta.getCosto();
 		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
-			this.costo = costodadoPaq - costodadoPaq * descuento;
+			this.costo = costodadoPaq - costodadoPaq*descuento;
 		} else {
 			this.costo = costodadoPaq;
 		}		
@@ -255,7 +256,7 @@ public class OfertaLaboral {
 		postulaciones.add(p);
 	} // registra una postulacion a la lista de postulaciones	
 
-	public DTOfertaExtendido obtenerDatosOferta() {
+	public DTOfertaExtendido obtenerDatosOferta(){
 		HashSet<DTPostulacion> posts = new HashSet<>();
 		// muestro todas las postulaciones
 		for(int i = 0; i < postulaciones.size(); i++) {
@@ -301,7 +302,7 @@ public class OfertaLaboral {
 	return false;
 	}
 
-	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario() {
+	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario(){
 		List<Keyword> keys = getKeywords();
 		HashSet<String> nuevo = new HashSet<>();
 		for (Keyword item : keys) {

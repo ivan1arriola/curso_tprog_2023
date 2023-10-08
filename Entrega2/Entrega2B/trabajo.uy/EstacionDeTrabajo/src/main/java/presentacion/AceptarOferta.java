@@ -24,10 +24,10 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 
 public class AceptarOferta extends JInternalFrame {

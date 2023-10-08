@@ -1,4 +1,4 @@
-package main.java.logica.Controladores;
+package main.java.logica.controladores;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,28 +12,27 @@ import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.Clases.Empresa;
-import main.java.logica.Clases.Keyword;
-import main.java.logica.Clases.OfertaLaboral;
-import main.java.logica.Clases.Paquete;
-import main.java.logica.Clases.Postulacion;
-import main.java.logica.Clases.Postulante;
-// import main.java.logica.Clases.TipoOferta; NO SE USA (CHECKSTYLE)
-import main.java.logica.Clases.Usuario;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Manejadores.KeywordHandler;
-import main.java.logica.Manejadores.OfertaLaboralHandler;
-import main.java.logica.Manejadores.PaqueteHandler;
-import main.java.logica.Manejadores.TipoOfertaHandler;
-import main.java.logica.Manejadores.UsuarioHandler;
+import main.java.logica.clases.Empresa;
+import main.java.logica.clases.Keyword;
+import main.java.logica.clases.OfertaLaboral;
+import main.java.logica.clases.Paquete;
+import main.java.logica.clases.Postulacion;
+import main.java.logica.clases.Postulante;
+import main.java.logica.clases.Usuario;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.interfaces.ICtrlUsuario;
+import main.java.logica.manejadores.KeywordHandler;
+import main.java.logica.manejadores.OfertaLaboralHandler;
+import main.java.logica.manejadores.PaqueteHandler;
+import main.java.logica.manejadores.TipoOfertaHandler;
+import main.java.logica.manejadores.UsuarioHandler;
 
 // import main.java.logica.Controladores.*; NO SE USA (CHECKSTYLE)
 

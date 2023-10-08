@@ -2,7 +2,8 @@ package main.java.presentacion;
 
 
 import main.java.logica.Fabrica;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import java.awt.GridBagLayout;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;

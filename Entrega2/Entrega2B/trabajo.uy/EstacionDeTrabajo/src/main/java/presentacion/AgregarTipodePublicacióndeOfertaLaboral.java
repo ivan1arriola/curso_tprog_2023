@@ -21,13 +21,13 @@ import javax.swing.JOptionPane;
 //import javax.swing.JList;
 import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-//import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
+import main.java.logica.datatypes.DTCantTO;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     private JTextField CantidadMostrar;

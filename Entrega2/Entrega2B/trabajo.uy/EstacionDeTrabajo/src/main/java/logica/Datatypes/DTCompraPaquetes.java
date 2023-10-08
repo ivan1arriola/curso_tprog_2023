@@ -1,4 +1,4 @@
-package main.java.logica.Datatypes;
+package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 // import java.util.ArrayList; NO SE USA (CHECKSTYLE)
@@ -10,7 +10,7 @@ public class DTCompraPaquetes {
 	private LocalDate fecha_compra;
 	private LocalDate fecha_vencimiento;
 	
-	public DTCompraPaquetes(String nomb, LocalDate fecha_comp, LocalDate fecha_venc) {
+	public DTCompraPaquetes(String nomb, LocalDate fecha_comp, LocalDate fecha_venc){
 		nombre = nomb;
 		fecha_compra = fecha_comp;
 		fecha_vencimiento = fecha_venc;

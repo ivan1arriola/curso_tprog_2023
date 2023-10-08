@@ -1,10 +1,11 @@
-package main.java.logica.Datatypes;
+package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Clases.Paquete;
+
+import main.java.logica.clases.Paquete;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 
 public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
 	private HashSet<String> postulaciones;

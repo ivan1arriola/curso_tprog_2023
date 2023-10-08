@@ -1,11 +1,11 @@
 package main.java.logica;
 
-import main.java.logica.Controladores.CtrlCargaDeDatos;
-import main.java.logica.Controladores.CtrlOferta;
-import main.java.logica.Controladores.CtrlUsuario;
-import main.java.logica.Interfaces.ICtrlCargaDeDatos;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.controladores.CtrlCargaDeDatos;
+import main.java.logica.controladores.CtrlOferta;
+import main.java.logica.controladores.CtrlUsuario;
+import main.java.logica.interfaces.ICtrlCargaDeDatos;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 
 public class Fabrica {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="main.java.logica.Datatypes.DTOfertaExtendido" %>
+<%@ page import="main.java.logica.datatypes.DTOfertaExtendido" %>
 
 <%
 	// Obtener el objeto de usuario desde los atributos de la solicitud

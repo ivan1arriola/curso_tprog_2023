@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 //import javax.swing.border.EmptyBorder;
 import main.java.logica.Fabrica;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlOferta;
 import main.java.presentacion.componentes.IAceptarCancelar;
 import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
 import main.java.presentacion.formularios.FormularioAltaTipoPublicacion;

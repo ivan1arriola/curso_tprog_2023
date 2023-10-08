@@ -1,11 +1,12 @@
 package main.java.presentacion;
 
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

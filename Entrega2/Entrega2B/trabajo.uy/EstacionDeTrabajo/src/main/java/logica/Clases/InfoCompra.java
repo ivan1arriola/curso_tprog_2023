@@ -1,10 +1,11 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Manejadores.TipoOfertaHandler;
-import main.java.logica.Datatypes.DTCompraPaquetes;
+
+import main.java.logica.datatypes.DTCantTO;
+import main.java.logica.datatypes.DTCompraPaquetes;
+import main.java.logica.manejadores.TipoOfertaHandler;
 
 
 public class InfoCompra {

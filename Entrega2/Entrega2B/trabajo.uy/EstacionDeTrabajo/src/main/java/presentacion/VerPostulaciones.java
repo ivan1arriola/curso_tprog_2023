@@ -15,11 +15,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import main.java.logica.Fabrica;
-import main.java.logica.Clases.Usuario;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTPostulacion;
+import main.java.logica.clases.Usuario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 public class VerPostulaciones extends JInternalFrame {
 	private JTextField tfFecha;

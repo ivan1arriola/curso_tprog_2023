@@ -1,4 +1,4 @@
-package main.java.logica.Datatypes;
+package main.java.logica.datatypes;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -7,16 +7,18 @@ import static org.junit.Assert.assertThrows;
 import java.time.LocalDate;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Manejadores.UsuarioHandler;
+
+import main.java.logica.clases.Empresa;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+import main.java.logica.manejadores.UsuarioHandler;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.Fabrica;
-import main.java.logica.Clases.Empresa;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTUsuario;
+
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;

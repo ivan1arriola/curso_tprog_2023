@@ -1,9 +1,10 @@
-package main.java.logica.Datatypes;
+package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
+
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 
 public class DTOfertaExtendidoConKeywordsPostulante extends DTOfertaExtendidoSinPConK {
 	private DTPostulacion datos_postulacion;

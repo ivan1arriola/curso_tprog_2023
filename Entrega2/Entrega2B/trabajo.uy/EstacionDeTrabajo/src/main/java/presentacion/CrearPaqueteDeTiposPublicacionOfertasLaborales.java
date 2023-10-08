@@ -22,7 +22,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import main.java.logica.Fabrica;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlOferta;
 
 
 public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFrame {

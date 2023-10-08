@@ -1,19 +1,17 @@
-package main.java.logica.Interfaces;
+package main.java.logica.interfaces;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-// import main.java.logica.Datatypes.DTOfertaExtendidoConKeywordsPostulante;
-import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
-// import main.java.logica.Datatypes.DTOfertaLaboral;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTPostulacion;
-import main.java.logica.Datatypes.DTTipoOferta;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.datatypes.DTPostulacion;
+import main.java.logica.datatypes.DTTipoOferta;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 
 public interface ICtrlOferta {
 	    public abstract Set<String> listarEmpresas();
@@ -36,11 +34,11 @@ public interface ICtrlOferta {
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 		
-		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
+		public abstract boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha);
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
 		
-		public abstract HashSet<String> listarOfertasLaboralesKeywords(String ks);
+		public abstract HashSet<String> listarOfertasLaboralesKeywords(String keywords);
 		
 		public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
 		
@@ -60,7 +58,7 @@ public interface ICtrlOferta {
 		
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
 		
-		public abstract void agregarTipoOfertaPaq(String paq, String TO, int cantidad);
+		public abstract void agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad);
 		
 		public abstract HashSet<String> listarPaquetes();
 		

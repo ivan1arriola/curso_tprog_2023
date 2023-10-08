@@ -1,4 +1,4 @@
-package main.java.logica.Controladores;
+package main.java.logica.controladores;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

@@ -1,8 +1,9 @@
-package main.java.logica.Manejadores;
+package main.java.logica.manejadores;
 
 
 import java.util.HashMap;
-import main.java.logica.Clases.OfertaLaboral;
+
+import main.java.logica.clases.OfertaLaboral;
 
 
 public class OfertaLaboralHandler {

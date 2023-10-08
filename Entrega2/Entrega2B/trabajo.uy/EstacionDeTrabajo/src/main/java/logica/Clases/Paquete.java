@@ -1,13 +1,14 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
 import java.util.Iterator;
 import java.util.Set;
 import java.time.LocalDate;
 import java.util.HashSet;
-import main.java.logica.Datatypes.DTPaquete;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Manejadores.TipoOfertaHandler;
+
 //import main.java.logica.Clases.TipoOferta;
+import main.java.logica.datatypes.DTCantTO;
+import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.manejadores.TipoOfertaHandler;
 
 public class Paquete {
     // Atributos
@@ -108,7 +109,7 @@ public class Paquete {
             Costo = Costo + CostoTO*cantidadTotal;
         }
         
-        Costo = (float) (Costo - (Costo * descuento *0.01)); 
+        Costo = (float) (Costo-(Costo*descuento*0.01)); 
         this.costo = Costo;
     }
     
@@ -135,7 +136,7 @@ public class Paquete {
             Costo = Costo + CostoTO*cantidadTotal;
         }
             
-        Costo = (float) (Costo - (Costo * descuento * 0.01)); 
+        Costo = (float) (Costo-(Costo*descuento*0.01)); 
         this.costo = Costo;
     }
 
@@ -151,7 +152,7 @@ public class Paquete {
         return dtpaq;
     }
     
-    public HashSet<DTCantTO> obtenerDTSCantTO() {
+    public HashSet<DTCantTO> obtenerDTSCantTO(){
         // devolver cantidad y nombre de cada paquete
         HashSet<DTCantTO> SetNuevo = new HashSet<DTCantTO>();
         for (OfertaPaquete OfertaAnalizar : oferPaq) {

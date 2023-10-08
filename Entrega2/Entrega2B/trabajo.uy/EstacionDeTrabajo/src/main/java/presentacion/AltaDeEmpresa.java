@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import main.java.logica.Interfaces.ICtrlUsuario;
+
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")

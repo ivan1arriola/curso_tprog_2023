@@ -1,16 +1,17 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import main.java.logica.Datatypes.DTHorario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
-import main.java.logica.Datatypes.DTUsuario;
-import main.java.logica.Datatypes.DTCantTO;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Enumerados.DepUY;
-import main.java.logica.Enumerados.EstadoOL;
+
+import main.java.logica.datatypes.DTCantTO;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.enumerados.DepUY;
+import main.java.logica.enumerados.EstadoOL;
 
 
 public class Empresa extends Usuario {
@@ -68,11 +69,11 @@ public class Empresa extends Usuario {
         this.url = urlE;
     }
 
-    public HashSet<String> listarOfertasLaborales() {
+    public HashSet<String> listarOfertasLaborales(){
         HashSet<String> lista = new HashSet<String>();
         
         if(ofertasLaborales.size() != 0) {
-	        for(OfertaLaboral ol : ofertasLaborales) {
+	        for(OfertaLaboral ol : ofertasLaborales){
 	            lista.add(ol.getNombre());
 	        }
         }
@@ -85,7 +86,7 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) {
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq){
     	OfertaLaboral ol = new OfertaLaboral(atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, paq);
         ofertasLaborales.add(ol);
         return ol;
@@ -123,7 +124,7 @@ public class Empresa extends Usuario {
         
     }
     
-    public HashSet<String> listarOfertasLaboralesConfirmadas() {
+    public HashSet<String> listarOfertasLaboralesConfirmadas(){
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
@@ -137,7 +138,7 @@ public class Empresa extends Usuario {
         return res;
     }
     
-    public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks) {
+    public HashSet<String> listarOfertasLaboralesConfirmadasKeyword(String ks){
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 
@@ -151,7 +152,7 @@ public class Empresa extends Usuario {
         return res;
     }
     
-    public HashSet<String> listarOfertasLaboralesIngresadas() {
+    public HashSet<String> listarOfertasLaboralesIngresadas(){
     	HashSet<String> res = new HashSet<String>();
         Iterator<OfertaLaboral> iterator = ofertasLaborales.iterator();
 

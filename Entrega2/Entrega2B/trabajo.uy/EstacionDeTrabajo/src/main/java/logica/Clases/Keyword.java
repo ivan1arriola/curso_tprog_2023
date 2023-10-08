@@ -1,4 +1,4 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
 public class Keyword {
 	private String nombre;

@@ -1,4 +1,4 @@
-package main.java.logica.Clases;
+package main.java.logica.clases;
 
 // import java.util.ArrayList; NO SE USA (CHECKSTYLE)
 import java.util.HashSet;

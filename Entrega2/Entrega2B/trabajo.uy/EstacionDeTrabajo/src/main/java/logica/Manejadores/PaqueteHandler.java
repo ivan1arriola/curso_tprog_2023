@@ -1,8 +1,9 @@
-package main.java.logica.Manejadores;
+package main.java.logica.manejadores;
 
 import java.util.HashMap;
 import java.util.Map;
-import main.java.logica.Clases.Paquete;
+
+import main.java.logica.clases.Paquete;
 
 public class PaqueteHandler {
 	private static PaqueteHandler instancia = null;
