@@ -20,10 +20,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants; 
-import main.java.logica.Interfaces.ICtrlOferta;
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Datatypes.DTOfertaExtendido;
+import javax.swing.SwingConstants;
+
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
+
 import java.time.LocalDate;   
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;

@@ -16,10 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import main.java.logica.Datatypes.DTOfertaExtendido;
+
 import main.java.logica.Fabrica;
-import main.java.logica.Clases.Usuario;
-import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.clases.Usuario;
+import main.java.logica.datatypes.DTOfertaExtendido;
+import main.java.logica.interfaces.ICtrlUsuario;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private ICtrlUsuario ICU; 

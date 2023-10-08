@@ -2,13 +2,12 @@ package main.java.presentacion;
 
 
 
-import main.java.logica.Interfaces.ICtrlUsuario;
-import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
+import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.Fabrica;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-//import main.java.logica.Clases.*;
-import main.java.logica.Datatypes.DTUsuario;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import java.awt.Font;

@@ -6,9 +6,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import main.java.logica.Datatypes.DTEmpresa;
-import main.java.logica.Datatypes.DTPostulante;
-import main.java.logica.Datatypes.DTUsuario;
+
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

@@ -2,8 +2,8 @@
 
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.HashSet" %>
-<%@ page import="main.java.logica.Datatypes.DTEmpresa" %>
-<%@ page import="main.java.logica.Datatypes.DTOfertaExtendido" %>
+<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
+<%@ page import="main.java.logica.datatypes.DTOfertaExtendido" %>
 <%@ page import="java.util.Base64" %>
 
 <%
