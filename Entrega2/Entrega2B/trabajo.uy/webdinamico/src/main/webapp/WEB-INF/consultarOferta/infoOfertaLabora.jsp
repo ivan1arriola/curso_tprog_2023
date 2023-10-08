@@ -2,6 +2,7 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Base64" %>
 <%@ page import="auxiliar.OfertaLaboralBean" %>
+<%@ page import="enumeration.TipoUsuario" %>
 
 <%
     // Obtener el objeto de usuario desde los atributos de la solicitud
@@ -13,6 +14,10 @@
     } else {
         imagenString = request.getContextPath() + "/imagenNoFound.png";
     }
+    
+    TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+    
+    boolean mostrarContenido = tipoUsuario == TipoUsuario.Empresa || tipoUsuario == TipoUsuario.Postulante;
 %>
 
 <!DOCTYPE html>
@@ -35,36 +40,69 @@
 
         <div class="container col-9">
             <!-- Contenido aquí -->
-            
+                        
             <div class="container">
-                <h1 class="text-center mt-3">Información Básica de la Oferta Laboral</h1>
                 <div class="row">
+                    <h1 class="text-center mt-3">Información Básica de la Oferta Laboral</h1>
+                </div>
+                
+                <div class="row">
+
                     <div class="col-9 d-flex">
-                        <div class="mt-4" id="detalleOferta">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="d-flex align-items-center mt-2">
-                                            <img src="<%= imagenString %>" alt="Descripción de la imagen" class="img-fluid">
-                                            <div style="margin-left: 20px;">
-                                                <h2><%= ofertaLaboral.getNombre() %></h2>
-                                            </div>
-                                        </div>
+                        <div class="container" id="detalleOferta">
+                            <div class="row align-items-center mt-2">
+                                    
+                                    <div class="col-6">
+                                        <img src="<%= imagenString %>" alt="Descripción de la imagen" class="img-fluid ofertaLaboral-img">
                                     </div>
-                                </div>
+                                    <div class="col-6 text-center">
+                                        <h2><%= ofertaLaboral.getNombre() %></h2>
+                                    </div>
+                                    
                             </div>
-
-                            <p><span class="fw-bold" id="nombre"><%= ofertaLaboral.getNombre() %></span> <span id="descripcion"><%= ofertaLaboral.getDescripcion() %></span></p>
-
-                            <p class="mb-05"><span class="fw-bold">Remuneración:</span> <span id="remuneracionOferta"><%= ofertaLaboral.getRemuneracion() %> pesos
-                                uruguayos</span></p>
-                            <p class="mb-05"><span class="fw-bold">Horario:</span> <span id="horarioOferta"><%= ofertaLaboral.getHorario() %></span></p>
-                            <p class="mb-05"><span class="fw-bold">Departamento:</span> <span
-                                id="departamentoOferta"><%= ofertaLaboral.getDepartamento() %></span></p>
-                            <p class="mb-3"><span class="fw-bold">Ciudad:</span> <span id="ciudadOferta"><%= ofertaLaboral.getCiudad() %></span></p>
-
-                            <p class="mb-05"><span class="fw-bold">Fecha de Alta:</span> <span id="fechaAltaOferta"><%= ofertaLaboral.getFechaDeAlta() %></span></p>
-                            <p class="mb-3"><span class="fw-bold">Costo:</span> <span id="costoOferta"><%= ofertaLaboral.getCosto() %></span></p>
+                                   
+                            
+                            <div class="row align-items-center mt-2">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Nombre:</th>
+                                            <td><%= ofertaLaboral.getNombre() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descripción:</th>
+                                            <td><%= ofertaLaboral.getDescripcion() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Remuneración:</th>
+                                            <td><%= ofertaLaboral.getRemuneracion() %> pesos uruguayos</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Horario:</th>
+                                            <td><%= ofertaLaboral.getHorario() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Departamento:</th>
+                                            <td><%= ofertaLaboral.getDepartamento() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ciudad:</th>
+                                            <td><%= ofertaLaboral.getCiudad() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha de Alta:</th>
+                                            <td><%= ofertaLaboral.getFechaDeAlta() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Costo:</th>
+                                            <td><%= ofertaLaboral.getCosto() %></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                            
+                            
 
                             <div>
 							    <p class="fw-bold">
@@ -78,7 +116,9 @@
 							            </div>
 							        <% } else {
 							           for (String keyword : keywords) { %>
-							            <li class="list-group-item"><%= keyword %></li>
+							            <a href="<%= request.getContextPath() %>/ofertaslaborales?key=<%= keyword %>" class="list-group-item">
+							            	<%= keyword %>
+							            </a>
 							        <%   }
 							           } %>
 							    </ul>
@@ -86,11 +126,17 @@
 
                         </div>
                     </div>
-
+                    
                     <div class="col-3 text-center">
-                        <jsp:include page="./postulantes.jsp" />
-                        <jsp:include page="./paquetes.jsp" />
-                    </div>
+
+                        <% if (mostrarContenido) { %>
+                                
+                            <jsp:include page="./postulantes.jsp" />
+                            <jsp:include page="./paquetes.jsp" />
+                            
+                        <% } %>
+                    
+                     </div>
                 </div>
             </div>
         </div>
