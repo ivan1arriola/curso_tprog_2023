@@ -12,6 +12,7 @@ import main.java.logica.enumerados.EstadoOL;
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.HashSet;
 
 
@@ -222,20 +223,20 @@ public class OfertaLaboral {
 		fecha_de_alta = fecha; 
 	}
 	
-	public void setCosto(float c) {
-		costo = c;
+	public void setCosto(float cost) {
+		costo = cost;
 	}
 	
 	public void setPostulaciones(List<Postulacion> posts) {
 		postulaciones = posts;
 	}
 	
-	public void setTipoOferta(TipoOferta to) {
-		tOferta = to;
+	public void setTipoOferta(TipoOferta tipoOfer) {
+		tOferta = tipoOfer;
 	}
 	
-	public void setKeywords(List<Keyword> ks) {
-		keywords = ks;
+	public void setKeywords(List<Keyword> keys) {
+		keywords = keys;
 	}
 	
 	public void setEstado(EstadoOL estad) {
@@ -252,12 +253,12 @@ public class OfertaLaboral {
 	
 	// -------------- funciones ---------------------
 
-	public void registrarPostulacion(Postulacion p) {
-		postulaciones.add(p);
+	public void registrarPostulacion(Postulacion post) {
+		postulaciones.add(post);
 	} // registra una postulacion a la lista de postulaciones	
 
 	public DTOfertaExtendido obtenerDatosOferta(){
-		HashSet<DTPostulacion> posts = new HashSet<>();
+		Set<DTPostulacion> posts = new HashSet<>();
 		// muestro todas las postulaciones
 		for(int i = 0; i < postulaciones.size(); i++) {
 			Postulacion elem = postulaciones.get(i);
@@ -284,7 +285,7 @@ public class OfertaLaboral {
 	
 	public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante() {
 		List<Keyword> keys = getKeywords();
-		HashSet<String> nuevo = new HashSet<>();
+		Set<String> nuevo = new HashSet<>();
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
@@ -304,7 +305,7 @@ public class OfertaLaboral {
 
 	public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario(){
 		List<Keyword> keys = getKeywords();
-		HashSet<String> nuevo = new HashSet<>();
+		Set<String> nuevo = new HashSet<>();
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
@@ -321,20 +322,20 @@ public class OfertaLaboral {
 	}
 
 	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante) {
-		int j = 0;
+		int indicebuscado = 0;
 		boolean salir = false;
 		for (int i = 0; i < postulaciones.size() && !salir; i++) {
 			if(postulaciones.get(i).obtenerNicknamePostulante().equals(nombre_postulante)) {
-				j = i;
+				indicebuscado = i;
 				salir = true;
 			}
 		}
-		DTPostulacion dt = postulaciones.get(j).obtenerDT();
-		HashSet<String> keys = new HashSet<String>();
+		DTPostulacion dtPost = postulaciones.get(indicebuscado).obtenerDT();
+		Set<String> keys = new HashSet<String>();
 		for (int i = 0; i < keywords.size() && !salir; i++) {
 			keys.add(keywords.get(i).getNombre());
 		}
-		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dt);
+		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(), getRemuneracion(),getHorario(),getDepartamento(),getCiudad(),getEstado(),getImagen(),keys,dtPost);
 
 		
 		return 	entregar;	

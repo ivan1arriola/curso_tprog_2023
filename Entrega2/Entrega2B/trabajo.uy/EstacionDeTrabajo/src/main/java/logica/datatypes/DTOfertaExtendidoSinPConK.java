@@ -2,6 +2,8 @@ package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
+
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 
@@ -16,19 +18,20 @@ public class DTOfertaExtendidoSinPConK  {
 	private String ciudad;
 	private EstadoOL estado;
 	private byte[] imagen;
-	private HashSet<String> keywords;
+	private Set<String> keywords;
 	
-	public DTOfertaExtendidoSinPConK(String n, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL e, byte[] img, HashSet<String> keys) {
+	public DTOfertaExtendidoSinPConK(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estado, byte[] img, Set<String> keys) {
 		// no es subclase de DTOfertaExtendido, es una version sin postulaciones
-		nombre = n;
+		nombre = nomb;
 		descripcion = desc;
 		fechaAlta = fechaA;
-		costo = c;
-		remuneracion = r;
-		horario = h;
+		costo = cost;
+		remuneracion = remu;
+		this.horario = horario;
 		departamento = dep;
 		ciudad = ciu;
 		imagen = img;
+		this.estado = estado;
 		keywords = keys;
 	}
 	
@@ -72,7 +75,7 @@ public class DTOfertaExtendidoSinPConK  {
 		return imagen;
 	}
 	
-	public HashSet<String> getKeywords() {
+	public Set<String> getKeywords() {
 		return keywords;
 	}
 	

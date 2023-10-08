@@ -18,13 +18,13 @@ public class DTOfertaLaboral {
   private EstadoOL estado;
 	
 	
-public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes) {
+public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
-  costo = c;
-  remuneracion = r;
-  horario = h;
+  costo = cost;
+  remuneracion = remu;
+  this.horario = horario;
   departamento = dep;
   ciudad = ciu;
   estado = estadoOL;

@@ -18,16 +18,16 @@ public class DTOfertaExtendidoConKeywords {
   private EstadoOL estado;
   private Set<DTPostulacion> postulaciones;
   private byte[] imagen; 
-  private HashSet<String> keywords;
+  private Set<String> keywords;
 	
 	
-public DTOfertaExtendidoConKeywords(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, HashSet<String> keys) {
+public DTOfertaExtendidoConKeywords(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, Set<String> keys) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
-  costo = c;
-  remuneracion = r;
-  horario = h;
+  costo = cost;
+  remuneracion = remu;
+  this.horario = horario;
   departamento = dep;
   ciudad = ciu;
   estado = est;
@@ -80,7 +80,7 @@ public byte[] getImagen() {
   return imagen;
 }
 	
-public HashSet<String> getKeywords() {
+public Set<String> getKeywords() {
   return keywords;
 }
 

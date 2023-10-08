@@ -2,6 +2,8 @@ package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
+
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 
@@ -16,18 +18,18 @@ public class DTOfertaExtendido {
   private DepUY departamento;
   private String ciudad;
   private EstadoOL estado;
-  private HashSet<DTPostulacion> postulaciones;
+  private Set<DTPostulacion> postulaciones;
   private byte[] imagen; 
   private String paq;
 	
 	
-public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, HashSet<DTPostulacion> post, byte[] img, String paquete) {
+public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
-  costo = c;
-  remuneracion = r;
-  horario = h;
+  costo = cost;
+  remuneracion = remu;
+  this.horario = horario;
   departamento = dep;
   ciudad = ciu;
   estado = est;
@@ -72,7 +74,7 @@ public EstadoOL getEstado() {
   return estado; 
 }
 	
-public HashSet<DTPostulacion> getPostulaciones() {
+public Set<DTPostulacion> getPostulaciones() {
   return postulaciones;
 }
 	
