@@ -1,28 +1,13 @@
 package main.java.presentacion;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import java.util.ArrayList;
+
 import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTHora;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlCargaDeDatos;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
@@ -33,14 +18,14 @@ import javax.swing.JOptionPane;
 public class CargarDatos extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
-	private ICtrlCargaDeDatos ICCD;
+	private ICtrlCargaDeDatos iCCDatos;
 	/**
 	 * Create the application.
 	 */
 	
-	public CargarDatos(ICtrlUsuario icu,  ICtrlOferta ico) {
+	public CargarDatos(ICtrlUsuario icUsuario,  ICtrlOferta ico) {
         Fabrica fabrica = Fabrica.getInstance();
-		ICCD = fabrica.getICtrlCargaDeDatos();
+		iCCDatos = fabrica.getICtrlCargaDeDatos();
 		initialize();
 	}
 
@@ -60,7 +45,7 @@ public class CargarDatos extends JInternalFrame {
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		ICCD.cargarDatos();
+        		iCCDatos.cargarDatos();
                 
                 JOptionPane.showMessageDialog(CargarDatos.this,  "Se han cargado los datos exitosamente.",  "Carga de Datos",  JOptionPane.INFORMATION_MESSAGE);
                 

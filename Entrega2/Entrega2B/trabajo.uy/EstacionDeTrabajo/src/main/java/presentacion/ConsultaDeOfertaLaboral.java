@@ -43,8 +43,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the application.
 	 */
-	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icu) { 
-		ICU = icu;
+	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icUsuario) { 
+		ICU = icUsuario;
 		
 		VerPostulacionesJInternalFrame = new VerPostulaciones();
         VerPostulacionesJInternalFrame.setSize(700,  300);

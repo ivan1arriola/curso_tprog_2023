@@ -8,17 +8,17 @@ public class InfoCompraOferta {
 	private int cantRestante;
 	private Set<TipoOferta> tipoOfertas;
 	
-	public InfoCompraOferta(TipoOferta tipoOfer,  int can_res) { 
-		this.cantRestante = can_res;
+	public InfoCompraOferta(TipoOferta tipoOfer,  int canres) { 
+		this.cantRestante = canres;
 		tipoOfertas.add(tipoOfer);
 	} //Constructor
 	
-	public int getCant_res() {
+	public int getCantres() {
 		return cantRestante; 
 	}
 	
-	public void setCant_res(int cant_rest) { 
-		cantRestante = cant_rest;
+	public void setCantres(int cantrest) { 
+		cantRestante = cantrest;
 	}
 	
 }
