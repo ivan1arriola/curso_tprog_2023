@@ -205,7 +205,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
         	esEmpresa = true;
         	
             DTEmpresa empresa = (DTEmpresa) usuario;
-            String nombreEmpresa = empresa.getNombreEmpresa();
+            String nombreEmpresa = empresa.getNombre();
             String descripcion = empresa.getDescripcion();
             String url = empresa.getUrl();
 
