@@ -10,11 +10,11 @@ import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
+import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import main.java.excepciones.ExceptionUsuarioNickRepetido;
 
 
-import main.java.excepciones.*;
-
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -169,7 +169,7 @@ public class ctrlOfertaTest {
         String empresaN = "Apple Com.";
     	ICtrlUsuario ICU = Fabrica.getInstance().getICtrlUsuario();
     	try {
-			boolean b = ICU.altaEmpresa("Apple Com.",  "Steve",  "Jobs",  "stevejobs1@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
+			boolean bool = ICU.altaEmpresa("Apple Com.",  "Steve",  "Jobs",  "stevejobs1@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
 				| ExceptionUsuarioNickRepetido e) {
 			// TODO Auto-generated catch block

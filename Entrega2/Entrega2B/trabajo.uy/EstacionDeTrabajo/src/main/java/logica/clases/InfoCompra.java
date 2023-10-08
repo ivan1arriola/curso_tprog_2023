@@ -1,7 +1,7 @@
 package main.java.logica.clases;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+
 import java.util.Set;
 
 import main.java.logica.datatypes.DTCantTO;
