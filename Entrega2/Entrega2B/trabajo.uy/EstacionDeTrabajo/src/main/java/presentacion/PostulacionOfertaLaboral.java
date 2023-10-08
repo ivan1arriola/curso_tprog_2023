@@ -1,5 +1,7 @@
 package main.java.presentacion;
+
 import main.java.logica.Interfaces.ICtrlOferta;
+
 import main.java.logica.Interfaces.ICtrlUsuario;
 
 import main.java.logica.Datatypes.DTEmpresa;
@@ -103,7 +105,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                     System.err.println("Error al obtener las ofertas laborales");
                 }
                      
-              };
+              }
       });
         
         //////////////
@@ -129,7 +131,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
              	    infoOferta.append(dtO.toString());
             	}
                 
-              };
+              }
       });
         
         
@@ -186,7 +188,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     
     private void limpiarFormulario() {
         infoOferta.setText("");
-    };
+    }
 	
     public void actualizar() {
         comboBoxEmpresa.removeAllItems(); 

@@ -1,5 +1,6 @@
 package main.java.presentacion;
-//
+
+
 
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Interfaces.ICtrlOferta;
@@ -368,7 +369,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         Nacionalidad.setText("");
     	PostuFecha.setText("");
 
-    };
+    }
     
     public void actualizar() {
         comboBoxUsuarios.removeAllItems(); // Limpiar los elementos actuales

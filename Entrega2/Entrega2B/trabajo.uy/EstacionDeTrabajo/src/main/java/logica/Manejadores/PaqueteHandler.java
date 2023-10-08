@@ -29,7 +29,7 @@ public class PaqueteHandler {
 	
 	public void agregar(Paquete p) { 
 		paq.put(p.getNombre(),p); 
-	};
+	}
     
     public Map<String, Paquete> obtener() { return paq; }
     

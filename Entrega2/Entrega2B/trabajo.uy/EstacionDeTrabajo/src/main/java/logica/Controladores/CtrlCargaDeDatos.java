@@ -35,7 +35,7 @@ import main.java.presentacion.CargarDatos;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
-	public CtrlCargaDeDatos() {};
+	public CtrlCargaDeDatos() {}
 	
 	public void cargarDatos() {
 		Fabrica F = Fabrica.getInstance();

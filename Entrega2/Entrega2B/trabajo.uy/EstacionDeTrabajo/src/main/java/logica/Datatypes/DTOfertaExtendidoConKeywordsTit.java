@@ -1,4 +1,5 @@
 package main.java.logica.Datatypes;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 
@@ -17,6 +18,11 @@ public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
 		this.paq = paq;
 	}
 	
-	public Paquete getPaquete() 	            { return paq; }
-    public HashSet<String>  getpostulaciones() 	{ return postulaciones; }
+	public Paquete getPaquete() {
+		return paq;
+	}
+	
+    public HashSet<String>  getpostulaciones() {
+    	return postulaciones;
+    }
 }

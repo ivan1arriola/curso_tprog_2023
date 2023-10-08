@@ -17,10 +17,24 @@ public class DTPostulacion {
 		this.motivacion = motivacion;
 	}
 	
-	public String getPostulante() 	{ return nombrePostulante; }
-    public LocalDate getFecha() 	{ return fecha; }
-    public String getURLDocExtras() { return URLDocExtras; }
-    public String getCV() 			{ return CV; }
-    public String getMotivacion() 	{ return motivacion; }
+	public String getPostulante() {
+		return nombrePostulante;
+	}
+	
+    public LocalDate getFecha() {
+    	return fecha;
+    }
+    
+    public String getURLDocExtras() {
+    	return URLDocExtras;
+    }
+    
+    public String getCV() {
+    	return CV;
+    }
+    
+    public String getMotivacion() {
+    	return motivacion;
+    }
 
 }

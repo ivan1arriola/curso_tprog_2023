@@ -54,17 +54,29 @@ public class Postulacion {
 
 
     // SETTERS
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; } 
+    public void setFecha(LocalDate fecha) { 
+    	this.fecha = fecha;
+    } 
     
-    public void setCV(String CV) { this.CV = CV; }	
+    public void setCV(String CV) {
+    	this.CV = CV;
+    }	
      
-    public void setMotivacion(String motivacion)    	{ this.motivacion = motivacion; }
+    public void setMotivacion(String motivacion) {
+    	this.motivacion = motivacion;
+    }
      
-    public void setURLDocExtras(String URLDocExtras) 	{ this.URLDocExtras = URLDocExtras; }
+    public void setURLDocExtras(String URLDocExtras) {
+    	this.URLDocExtras = URLDocExtras;
+    }
     
-    public void setOfertaLaboral(OfertaLaboral OferLab)	{ this.OferLab = OferLab; }
+    public void setOfertaLaboral(OfertaLaboral OferLab)	{
+    	this.OferLab = OferLab; 
+    }
     
-    public void setPostulante(Postulante p)				{ this.p = p; }
+    public void setPostulante(Postulante p) {
+    	this.p = p; 
+    }
     
     // METODOS
     public DTPostulacion obtenerDT() {
@@ -72,7 +84,9 @@ public class Postulacion {
         return dtpostu;
     } 
 
-    public String obtenerNombreOfertaLaboral() { return OferLab.getNombre(); }
+    public String obtenerNombreOfertaLaboral() { 
+    	return OferLab.getNombre();
+    }
 
     public void editarPostulacion(String cvAbreviado,String motivacion) {
         this.CV = cvAbreviado;
@@ -84,5 +98,7 @@ public class Postulacion {
         return OferLab.getNombre().equals(nombre); // retorna true si el nombre de la oferta es igual al nombre que se le pasa por parametro
     }
 
-    public String obtenerNicknamePostulante() {return p.getNickname();}
+    public String obtenerNicknamePostulante() { 
+    	return p.getNickname();
+    }
 }

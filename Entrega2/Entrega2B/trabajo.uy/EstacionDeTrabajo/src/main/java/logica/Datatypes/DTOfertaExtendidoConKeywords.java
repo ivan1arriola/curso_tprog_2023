@@ -37,18 +37,53 @@ public class DTOfertaExtendidoConKeywords {
 		keywords = keys;
 	}
 	
-	public String getNombre() 			{ return nombre; }
-	public String getDescripcion() 		{ return descripcion; }
-	public LocalDate getFechaDeAlta() 	{ return fecha_de_alta; }
-	public float getCosto() 			{ return costo; }
-	public float getRemuneracion() 		{ return remuneracion; }
-	public DTHorario getHorario() 		{ return horario; }
-	public DepUY getDepartamento() 		{ return departamento; }
-	public String getCiudad() 			{ return ciudad; }
-	public EstadoOL getEstado() 		{ return estado; }
-	public Set<DTPostulacion> getPostulaciones() { return postulaciones; }
-	public byte[] getImagen() 			{ return imagen; }
-	public HashSet<String> getKeywords() { return keywords; }
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	
+	public LocalDate getFechaDeAlta() {
+		return fecha_de_alta;
+	}
+	
+	public float getCosto() {
+		return costo;
+	}
+	
+	public float getRemuneracion() {
+		return remuneracion;
+	}
+	
+	public DTHorario getHorario() {
+		return horario;
+	}	
+	
+	public DepUY getDepartamento()	{
+		return departamento;
+	}
+	
+	public String getCiudad() { 
+		return ciudad;
+	}
+	
+	public EstadoOL getEstado()	{
+		return estado;
+	}
+	
+	public Set<DTPostulacion> getPostulaciones() { 
+		return postulaciones;
+	}
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+	
+	public HashSet<String> getKeywords() {
+		return keywords;
+	}
 
 	
 	

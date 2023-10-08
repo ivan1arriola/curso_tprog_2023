@@ -44,6 +44,7 @@ public class CargarDatos extends JInternalFrame {
 	/**
 	 * Create the application.
 	 */
+	
 	public CargarDatos(ICtrlUsuario icu, ICtrlOferta ico) {
         Fabrica fabrica = Fabrica.getInstance();
 		ICCD = fabrica.getICtrlCargaDeDatos();

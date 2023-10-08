@@ -34,7 +34,7 @@ import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 
 public class CtrlOferta implements ICtrlOferta{
 
-	public CtrlOferta() {};
+	public CtrlOferta() {}
 	
 	public Set<String> listarEmpresas(){
 		CtrlUsuario CU = new CtrlUsuario();

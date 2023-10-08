@@ -20,8 +20,13 @@ public class OfertaLaboralHandler {
 		return OLHandler;
 	}
 	
-	public void agregar(OfertaLaboral tipoOfertaL) { OfertasLaborales.put(tipoOfertaL.getNombre(), tipoOfertaL); }
-    public HashMap<String, OfertaLaboral> obtener() { return OfertasLaborales; }
+	public void agregar(OfertaLaboral tipoOfertaL) {
+		OfertasLaborales.put(tipoOfertaL.getNombre(), tipoOfertaL); 
+	}
+	
+    public HashMap<String, OfertaLaboral> obtener() {
+    	return OfertasLaborales;
+    }
 	
     public boolean existe(String nombre) {
     	if (OfertasLaborales.containsKey(nombre)) {

@@ -22,12 +22,29 @@ public class DTUsuario {
         return nickname + " - " + nombre + " " + apellido + " " + imagen;
     }
 
-    public String getNickname() 			{ return nickname; }
-    public String getCorreo_electronico() 	{ return correo_electronico; }
-    public String getApellido() 			{ return apellido; }
-    public String getContraseña() 			{ return contraseña; }
-    public String getNombre() 				{ return nombre; }  
-    public byte[] getImagen() 				{ return imagen; }
+    public String getNickname() { 
+    	return nickname; 
+    }
+    
+    public String getCorreo_electronico() {
+    	return correo_electronico; 
+    }
+    
+    public String getApellido() { 
+    	return apellido;
+    }
+    
+    public String getContraseña() {
+    	return contraseña;
+    }
+    
+    public String getNombre() {
+    	return nombre;
+    }  
+    
+    public byte[] getImagen() {
+    	return imagen;
+    }
     
     
 }

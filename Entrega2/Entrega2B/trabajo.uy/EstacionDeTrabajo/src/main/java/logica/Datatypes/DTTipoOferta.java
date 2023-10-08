@@ -1,4 +1,5 @@
 package main.java.logica.Datatypes;
+
 import java.time.LocalDate;
 
 public class DTTipoOferta {
@@ -22,6 +23,7 @@ public class DTTipoOferta {
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}

@@ -14,21 +14,55 @@ public abstract class Usuario {
     private byte[] imagen;
 
     //Getters
-    public String getNickname() 			{ return nickname; }
-    public String getNombre() 				{ return nombre;     }
-    public String getApellido() 			{ return apellido; }
-    public String getCorreo_electronico() 	{ return correo_electronico; }
-	public String getContraseña() 			{ return contrasenia; }
-	public byte[] getImagen() 				{ return imagen; }
+    public String getNickname() {
+    	return nickname;
+    }
+    
+    public String getNombre() 	{ 
+    	return nombre;  
+    }
+    
+    public String getApellido() { 
+    	return apellido;
+    }
+    
+    public String getCorreo_electronico() { 
+    	return correo_electronico;
+    }
+    
+	public String getContraseña() { 
+		return contrasenia;
+	}
+	
+	public byte[] getImagen() { 
+		return imagen;
+	}
     
 
     // Setters
-    public void setNickname(String nickname) 						{ this.nickname = nickname; }
-    public void setNombre(String nombre) 							{ this.nombre = nombre; }
-    public void setApellido(String apellido) 						{ this.apellido = apellido; }
-    public void setCorreo_electronico(String correo_electronico) 	{ this.correo_electronico = correo_electronico; }
-    public void setContraseña(String contrasenia) 					{ this.contrasenia = contrasenia; }
-    public void setImagen(byte[] imagen) 							{ this.imagen = imagen; }
+    public void setNickname(String nickname) { 
+    	this.nickname = nickname;
+    }
+    
+    public void setNombre(String nombre) {
+    	this.nombre = nombre;
+    }
+    
+    public void setApellido(String apellido) {
+    	this.apellido = apellido;
+    }
+    
+    public void setCorreo_electronico(String correo_electronico) {
+    	this.correo_electronico = correo_electronico;
+    }
+    
+    public void setContraseña(String contrasenia) {
+    	this.contrasenia = contrasenia;
+    }
+    
+    public void setImagen(byte[] imagen) {
+    	this.imagen = imagen;
+    }
 
     public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia, byte[] imagen) {
         this.nickname = nickname;

@@ -338,7 +338,7 @@ public class ElegirPostulante extends JDialog {
                     JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     setVisible(false);
                 }
-        	};
+        	}
         });
         
         
@@ -403,7 +403,7 @@ public class ElegirPostulante extends JDialog {
         cbOferta.setSelectedItem(offer);
         
         revalidate(); // Actualizar la interfaz gráfica
-    };
+    }
     
 
 }

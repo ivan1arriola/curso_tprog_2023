@@ -257,6 +257,7 @@ public class AceptarOferta extends JInternalFrame {
     
 
 }
+    
     private void limpiarFormulario() {
         ofertaDetalle.setText("");
     }

@@ -1,4 +1,5 @@
 package main.java.logica.Clases;
+
 import java.time.LocalDate;
 
 import main.java.logica.Datatypes.DTTipoOferta;
@@ -23,20 +24,54 @@ public class TipoOferta {
     }
 
 	// GETTERS
-    public String getNombre() 		{ return nombre; }
-    public LocalDate getFechaAlta() { return fechaAlta; }
-    public float getCosto() 		{ return costo; }
-    public int getDuracion() 		{ return duracion; }
-    public int getExposicion() 		{ return exposicion;     }
-    public String getDescripcion() 	{ return descripcion; }
+    public String getNombre() 		{ 
+    	return nombre; 
+    }
+    
+    public LocalDate getFechaAlta() {
+    	return fechaAlta;
+    }
+    
+    public float getCosto() {
+    	return costo;
+    }
+    
+    public int getDuracion() {
+    	return duracion;
+    }
+    
+    public int getExposicion() {
+    	return exposicion;     
+    }
+    
+    public String getDescripcion() 	{
+    	return descripcion;
+    }
     
     // SETTERS
-    public void setNombre(String nombre) 			{ this.nombre = nombre; }
-    public void setFechaAlta(LocalDate fechaAlta) 	{ this.fechaAlta = fechaAlta;     }
-    public void setCosto(float costo) 				{ this.costo = costo; }
-    public void setDuracion(int duracion) 			{ this.duracion = duracion; }
-    public void setExposicion(int exposicion) 		{ this.exposicion = exposicion; }
-    public void setDescripcion(String descripcion) 	{ this.descripcion = descripcion; }
+    public void setNombre(String nombre) {
+    	this.nombre = nombre;
+    }
+    
+    public void setFechaAlta(LocalDate fechaAlta) {
+    	this.fechaAlta = fechaAlta;
+    }
+    
+    public void setCosto(float costo) {
+    	this.costo = costo;
+    }
+    
+    public void setDuracion(int duracion) {
+    	this.duracion = duracion;
+    }
+    
+    public void setExposicion(int exposicion) {
+    	this.exposicion = exposicion;
+    }
+    
+    public void setDescripcion(String descripcion) 	{
+    	this.descripcion = descripcion;
+    }
     
     public DTTipoOferta obtenerDT(){ //getDTTipoOferta
         DTTipoOferta dtTO = new DTTipoOferta(nombre, fechaAlta, costo, duracion, exposicion,descripcion);

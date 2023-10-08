@@ -36,14 +36,30 @@ public class Postulante extends Usuario{
 
 
     // Getters
-    public LocalDate getFecha_nac() { return fecha_nac; }
-    public HashSet<Postulacion> getPostulaciones() { return postulaciones; }
-    public String getNacionalidad() { return nacionalidad; }
+    public LocalDate getFecha_nac() { 
+    	return fecha_nac;
+    }
+    
+    public HashSet<Postulacion> getPostulaciones() {
+    	return postulaciones;
+    }
+    
+    public String getNacionalidad() {
+    	return nacionalidad;
+    }
 
     // Setters
-    public void setFecha_nac(LocalDate fecha_nac) { this.fecha_nac = fecha_nac; }
-    public void setNacionalidad(String nacionalidad) { this.nacionalidad = nacionalidad; }
-    public void setPostulaciones(HashSet<Postulacion> postulaciones) { this.postulaciones = postulaciones; }
+    public void setFecha_nac(LocalDate fecha_nac) {
+    	this.fecha_nac = fecha_nac;
+    }
+    
+    public void setNacionalidad(String nacionalidad) {
+    	this.nacionalidad = nacionalidad; 
+    }
+    
+    public void setPostulaciones(HashSet<Postulacion> postulaciones) { 
+    	this.postulaciones = postulaciones; 
+    }
 
     // Metodos
     public boolean esEmpresa() {

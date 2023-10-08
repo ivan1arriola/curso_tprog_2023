@@ -9,6 +9,7 @@ public class DTEmpresaConCompras extends DTEmpresa {
 		super(nick, mail, ap, nombre, contraseña, desc, URL, ols, img);
 		compra_paquetes = dtcp;
 	}
+	
 	// Getters y setters
 	public HashSet<DTCompraPaquetes> getCompraPaquetes() {
 		return compra_paquetes;

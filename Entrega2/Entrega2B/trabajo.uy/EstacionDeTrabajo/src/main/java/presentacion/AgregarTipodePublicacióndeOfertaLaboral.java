@@ -37,10 +37,12 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     private ICtrlOferta ico;
     private JComboBox<String> listadoTipoPub;
     private JComboBox<String> PaquetesVisualizar;
+    
     /**
      * Create the application.
      */
     public AgregarTipodePublicacióndeOfertaLaboral(ICtrlOferta ICO,ICtrlUsuario ICU) {
+    	
     	icu = ICU;
     	ico = ICO;
         initialize();
