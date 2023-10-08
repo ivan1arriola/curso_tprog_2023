@@ -299,7 +299,7 @@ public class Principal {
         		aceptarOfertaInternalFrame.setVisible(true);
         	}
         });
-        mnOfertaL.add(aceptarOfertaInternalFrame);
+        mnOfertaL.add(aceptarOffer);
         
         
         
