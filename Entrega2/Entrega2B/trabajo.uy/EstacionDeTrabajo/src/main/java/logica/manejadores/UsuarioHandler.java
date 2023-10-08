@@ -22,7 +22,7 @@ public class UsuarioHandler {
     
     public void agregar(Usuario usuario) {
         nickUsuariosMap.put(usuario.getNickname(), usuario);
-        correoUsuariosMap.put(usuario.getCorreo_electronico(), usuario);
+        correoUsuariosMap.put(usuario.getcorreoElectronico(), usuario);
     }
     
     public Usuario buscarNick(String nombre) {
