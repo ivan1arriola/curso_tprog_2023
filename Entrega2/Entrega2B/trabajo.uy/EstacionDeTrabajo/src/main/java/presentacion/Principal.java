@@ -133,7 +133,7 @@ public class Principal {
         
         
         AltaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
-        AltaDeOfertaLaboralInternalFrame.setSize(550,  500);
+        AltaDeOfertaLaboralInternalFrame.setSize(550,  550);
         AltaDeOfertaLaboralInternalFrame.setLocation(50,  50);
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
