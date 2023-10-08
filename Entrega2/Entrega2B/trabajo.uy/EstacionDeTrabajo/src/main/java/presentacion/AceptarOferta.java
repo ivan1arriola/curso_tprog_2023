@@ -46,11 +46,11 @@ public class AceptarOferta extends JInternalFrame {
         setClosable(true); 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 
         setTitle("Aceptar o Rechazar Oferta"); 
-        setBounds(30,   30,   500,   285); 
+        setBounds(30,   30,   380,   275); 
         
         
         GridBagLayout gbl = new GridBagLayout(); 
-        gbl.columnWeights = new double[]{0.0,   1.0,   0.0,   0.0}; 
+        gbl.columnWeights = new double[]{0.0,   1.0,   0.0}; 
         GridBagConstraints gbc = new GridBagConstraints(); 
       	getContentPane().setLayout(gbl); 
       	
@@ -106,8 +106,7 @@ public class AceptarOferta extends JInternalFrame {
     	getContentPane().add(lblEmpre,   gbc_lblEmpre); 
     	
     	
-    	GridBagConstraints gbc_cbEmpresa = new GridBagConstraints(); 
-    	gbc_cbEmpresa.fill = GridBagConstraints.HORIZONTAL; 
+    	GridBagConstraints gbc_cbEmpresa = new GridBagConstraints();
     	gbc_cbEmpresa.gridwidth = 2; 
     	gbc_cbEmpresa.insets = new Insets(0,   0,   10,   5); 
     	gbc_cbEmpresa.gridx = 1; 
@@ -130,8 +129,7 @@ public class AceptarOferta extends JInternalFrame {
       	comboBoxOfertas.setEnabled(true); 
 
       	
-      	GridBagConstraints gbc_cbOferta = new GridBagConstraints(); 
-      	gbc_cbOferta.fill = GridBagConstraints.HORIZONTAL; 
+      	GridBagConstraints gbc_cbOferta = new GridBagConstraints();
       	gbc_cbOferta.gridwidth = 2; 
       	gbc_cbOferta.insets = new Insets(0,   0,   10,   5); 
       	gbc_cbOferta.gridx = 1; 
@@ -164,8 +162,7 @@ public class AceptarOferta extends JInternalFrame {
         GridBagConstraints gbc_infoScrollPane = new GridBagConstraints(); 
         gbc_infoScrollPane.anchor = GridBagConstraints.SOUTH; 
         gbc_infoScrollPane.gridwidth = 2; 
-        gbc_infoScrollPane.gridheight = 3; 
-        gbc_infoScrollPane.fill = GridBagConstraints.HORIZONTAL; 
+        gbc_infoScrollPane.gridheight = 3;
         gbc_infoScrollPane.ipadx = 200; 
         gbc_infoScrollPane.ipady = 50; 
         gbc_infoScrollPane.insets = new Insets(5,   0,   5,   5); 
@@ -176,38 +173,38 @@ public class AceptarOferta extends JInternalFrame {
         JButton Confirmar = new JButton("Confirmar"); 
         
         GridBagConstraints gbc_Confirmar = new GridBagConstraints(); 
+        gbc_Confirmar.anchor = GridBagConstraints.EAST;
         gbc_Confirmar.insets = new Insets(5,   5,   0,   5); 
-        gbc_Confirmar.gridx = 2; 
+        gbc_Confirmar.gridx = 0; 
         gbc_Confirmar.gridy = 6; 
         getContentPane().add(Confirmar,   gbc_Confirmar); 
         
+        Confirmar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent evento3) {
+        		
+        		
+        		try {
+	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
+	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem(); 
+	                    controlOferta.aceptoOL(selectedOferta); 
+	                    JOptionPane.showMessageDialog(null,   "Oferta confirmada",   "",   JOptionPane.INFORMATION_MESSAGE); 
+	                    
+	        		}
+        		} catch (IllegalArgumentException ex) {
+        			JOptionPane.showMessageDialog(null,   "Error al confirmar" + ex.getMessage(),   "Error",   JOptionPane.ERROR_MESSAGE); 
+        		}
+        		
+        		
+        	}
+        }); 
+        
         JButton Rechazar = new JButton("Rechazar"); 
         GridBagConstraints gbc_Rechazar = new GridBagConstraints(); 
+        gbc_Rechazar.anchor = GridBagConstraints.EAST;
         gbc_Rechazar.insets = new Insets(5,   5,   0,   10); 
-        gbc_Rechazar.gridx = 3; 
+        gbc_Rechazar.gridx = 1; 
         gbc_Rechazar.gridy = 6; 
         getContentPane().add(Rechazar,   gbc_Rechazar); 
-        
-        
-        comboBoxOfertas.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent evento1) {
-
-    			ofertaDetalle.setText(""); 
-    			
-
-	                if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
-	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem(); 
-
-	                    DTOfertaExtendido dto = ICO.obtenerOfertaLaboral(selectedOferta); 
-	                	ofertaDetalle.append(dto.toString()); 
-	                	ofertaDetalle.setCaretPosition(0);      
-	 
-	                }
-
-	                
-	                
-    		}
-    	});    
         
         
         
@@ -231,24 +228,26 @@ public class AceptarOferta extends JInternalFrame {
         	}
         }); 
         
-        Confirmar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent evento3) {
-        		
-        		
-        		try {
-	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
+        
+        comboBoxOfertas.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent evento1) {
+
+    			ofertaDetalle.setText(""); 
+    			
+
+	                if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
 	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem(); 
-	                    controlOferta.aceptoOL(selectedOferta); 
-	                    JOptionPane.showMessageDialog(null,   "Oferta confirmada",   "",   JOptionPane.INFORMATION_MESSAGE); 
-	                    
-	        		}
-        		} catch (IllegalArgumentException ex) {
-        			JOptionPane.showMessageDialog(null,   "Error al confirmar" + ex.getMessage(),   "Error",   JOptionPane.ERROR_MESSAGE); 
-        		}
-        		
-        		
-        	}
-        }); 
+
+	                    DTOfertaExtendido dto = ICO.obtenerOfertaLaboral(selectedOferta); 
+	                	ofertaDetalle.append(dto.toString()); 
+	                	ofertaDetalle.setCaretPosition(0);      
+	 
+	                }
+
+	                
+	                
+    		}
+    	});    
                 
         
     
