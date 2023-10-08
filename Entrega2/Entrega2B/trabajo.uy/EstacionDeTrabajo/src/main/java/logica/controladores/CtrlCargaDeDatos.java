@@ -127,7 +127,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                				try {
 	                					ICU.altaEmpresaURLyImagen(campos[2],campos[6],campos[3],campos[4], campos[5], campos2[1],campos2[2], imageBytes);
 	                				} catch (Exception e3) {
-	                					
+	                					e3.printStackTrace();
 	                				}
 	                				
 	                			}
