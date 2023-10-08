@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -33,7 +35,6 @@ import main.java.logica.interfaces.ICtrlUsuario;
 public class AceptarOferta extends JInternalFrame {
 	private ICtrlOferta controlOferta;
 	private ICtrlUsuario controlUsuario;
-	private HashSet<String> empresas;
 	private JComboBox<String> comboBoxEmpresa;
 	private JComboBox<String> comboBoxOfertas;
 	//private JTextArea infoOferta;
@@ -62,7 +63,7 @@ public class AceptarOferta extends JInternalFrame {
     	comboBoxEmpresa.setEditable(false);
     	
     	comboBoxEmpresa.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
+    		public void actionPerformed(ActionEvent evento) {
 
     			comboBoxOfertas.removeAllItems();
     			
@@ -72,7 +73,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    //Set<String> ofertasEmpresa = controlUsuario.listarOfertasLaborales(selectedEmpresa);
 	                    comboBoxOfertas.removeAllItems();
 	                    
-	                    HashSet<String> ofertasIngresadas = controlOferta.listarOfertasLaboralesIngresadas(selectedEmpresa);
+	                    Set<String> ofertasIngresadas = controlOferta.listarOfertasLaboralesIngresadas(selectedEmpresa);
 	                    
 	                    if (ofertasIngresadas.isEmpty()) {
 	
@@ -192,7 +193,7 @@ public class AceptarOferta extends JInternalFrame {
         
         
         comboBoxOfertas.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
+    		public void actionPerformed(ActionEvent evento1) {
 
     			ofertaDetalle.setText("");
     			
@@ -214,7 +215,7 @@ public class AceptarOferta extends JInternalFrame {
         
         
         Rechazar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento2) {
         		
         		try {
         		
@@ -234,7 +235,7 @@ public class AceptarOferta extends JInternalFrame {
         });
         
         Confirmar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento3) {
         		
         		
         		try {
@@ -265,7 +266,7 @@ public class AceptarOferta extends JInternalFrame {
         comboBoxEmpresa.removeAllItems(); 
       
         //comboBoxOfertas.removeAllItems(); 
-        HashSet<String> empresas = controlUsuario.listarEmpresas();
+        Set<String> empresas = controlUsuario.listarEmpresas();
         List<String> empresasSorted = new ArrayList<>(empresas);
         Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
         comboBoxEmpresa.addItem(" ");

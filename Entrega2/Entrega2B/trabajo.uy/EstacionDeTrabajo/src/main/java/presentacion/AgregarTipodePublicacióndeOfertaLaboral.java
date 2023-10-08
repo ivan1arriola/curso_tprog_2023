@@ -31,7 +31,6 @@ import main.java.logica.interfaces.ICtrlUsuario;
 
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     private JTextField CantidadMostrar;
-    private ICtrlUsuario icu;
     private ICtrlOferta ico;
     private JComboBox<String> listadoTipoPub;
     private JComboBox<String> PaquetesVisualizar;
@@ -41,7 +40,6 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
      */
     public AgregarTipodePublicacióndeOfertaLaboral(ICtrlOferta ICO,ICtrlUsuario ICU) {
     	
-    	icu = ICU;
     	ico = ICO;
         initialize();
            
@@ -53,15 +51,15 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         getContentPane().add(listadoTipoPub);
 
         PaquetesVisualizar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		
         		if(PaquetesVisualizar.getSelectedIndex() != 	-1 && PaquetesVisualizar.getSelectedIndex() != 0) {
         			
         			String paqElegido =  (String) PaquetesVisualizar.getSelectedItem();
-        	        HashSet<String> publicaciones = ICO.listarTipoDePublicaciones();
+        	        Set<String> publicaciones = ICO.listarTipoDePublicaciones();
         	        DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
         	        Set<DTCantTO> tiposAgregados = dtpaq.getTiposDePub();
-          	        HashSet<String> tipoNoAgregado =new HashSet<>();;
+          	        Set<String> tipoNoAgregado =new HashSet<>();;
         	        
         	        for (String publi : publicaciones) {
         	            // Verificar si el tipo está contenido en tiposAgregados
@@ -168,7 +166,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     
     public void actualizar() {
     	
-    	HashSet<String> paquetes = ico.listarPaquetes();
+    	Set<String> paquetes = ico.listarPaquetes();
     	//quedarse con los no comprados
     	PaquetesVisualizar.addItem("");// casilla vacia
     	for (String element1 : paquetes) {
