@@ -9,7 +9,8 @@ public class DTPostulacion {
 	private String CV;
 	private String motivacion;
 
-	public DTPostulacion(String nomb_p, LocalDate f, String URLDE, String CV, String motivacion) {
+	public 
+	DTPostulacion(String nomb_p, LocalDate f, String URLDE, String CV, String motivacion) {
 		nombrePostulante = nomb_p;
 		fecha = f;
 		URLDocExtras = URLDE;

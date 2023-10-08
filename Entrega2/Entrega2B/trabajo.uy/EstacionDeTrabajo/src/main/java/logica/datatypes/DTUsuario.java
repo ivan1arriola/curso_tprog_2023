@@ -1,7 +1,5 @@
 package main.java.logica.datatypes;
-/**
- * Descripción de la clase DTUsuario.
- */
+
 public class DTUsuario {
     private String nickname;
     private String correo_electronico;
