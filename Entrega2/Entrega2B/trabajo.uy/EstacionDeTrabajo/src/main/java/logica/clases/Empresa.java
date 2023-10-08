@@ -110,8 +110,8 @@ public class Empresa extends Usuario {
     	String nickname =  getNickname();
     	String nombre = getNombre();
         String apellido = getApellido();
-        String correoElectronico = getCorreo_electronico();
-        String contraseña = getContraseña();
+        String correoElectronico = getcorreoElectronico();
+        String contraseña = getcontrasenia();
         byte[] imagen = getImagen();
         			       
         Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
@@ -121,7 +121,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);   
         }
         
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen);
+        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contrasenia, descripcion, url, dtOfertas, imagen);
         
     }
     
@@ -209,8 +209,8 @@ public class Empresa extends Usuario {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
-            String correoElectronico = getCorreo_electronico();
-            String contraseña = getContraseña();
+            String correoElectronico = getcorreoElectronico();
+            String contraseña = getcontrasenia();
             byte[] imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
@@ -224,8 +224,8 @@ public class Empresa extends Usuario {
             String nickname =  getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
-            String correoElectronico = getCorreo_electronico();
-            String contraseña = getContraseña();
+            String correoElectronico = getcorreoElectronico();
+            String contraseña = getcontrasenia();
             byte[] imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
