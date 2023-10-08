@@ -155,13 +155,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evento) {
-                
-                if (availableList.getSelectedIndex() != -1) {
-                	transferirElemento(availableList,  selectedListModel,  availableListModel);
-	                String key = (String) availableList.getSelectedValue();
-	        		keywords.add(key);
-	        		System.out.println(keywords);
-	        	
+            	String selectedValue = availableList.getSelectedValue(); // Obtiene el valor del elemento seleccionado
+
+                if (selectedValue != null) { // Verifica si se ha seleccionado un elemento
+                    String key = (String) selectedValue; // Convierte el valor en una cadena si es necesario
+                    transferirElemento(availableList, selectedListModel, availableListModel);
+                    keywords.add(key);
                 }
             }
         });
