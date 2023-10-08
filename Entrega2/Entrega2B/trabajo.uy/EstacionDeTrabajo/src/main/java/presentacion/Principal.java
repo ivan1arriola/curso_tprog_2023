@@ -286,7 +286,7 @@ public class Principal {
         ConsultarPTPOL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.actualizar();
-        		consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(true);
+        		consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(true); 
         	}
         });
         mnOfertaL.add(ConsultarPTPOL);
