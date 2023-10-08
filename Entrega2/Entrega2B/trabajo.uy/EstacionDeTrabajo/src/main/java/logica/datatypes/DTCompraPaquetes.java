@@ -16,15 +16,15 @@ public class DTCompraPaquetes {
 		fechavencimiento = fechavenc;
 	}
 
-	String getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 	
-	LocalDate getFechaCompra() {
+	public LocalDate getFechaCompra() {
 		return fechacompra;
 	}
 	
-	LocalDate getFechaVencimiento() { 
+	public LocalDate getFechaVencimiento() { 
 		return fechavencimiento;
 	}
 }

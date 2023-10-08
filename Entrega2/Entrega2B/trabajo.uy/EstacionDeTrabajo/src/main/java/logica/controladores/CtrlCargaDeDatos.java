@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.io.FileReader;
 // import java.io.IOException; NO SE USA (CHECKSTYLE)
@@ -33,7 +34,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 		Fabrica fabrica = Fabrica.getInstance();
 		ICtrlUsuario ICU = fabrica.getICtrlUsuario();
 		ICtrlOferta ICO = fabrica.getICtrlOferta();
-		try (BufferedReader reader = new BufferedReader(new FileReader("src/main/datos/Usuarios.csv"))) {
+		try (InputStream inputStream1 = getClass().getResourceAsStream("/main/datos/Usuarios.csv");
+			     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream1))) {
             String linea;
             String linea1;
         	String linea2;
@@ -69,7 +71,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            byteArrayOutputStream.close();
             	
             	if (tipo.equals("P")) {
-            		try (BufferedReader reader1 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Postulantes.csv"))) {
+            		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Usuarios-Postulantes.csv");
+           			     BufferedReader reader1 = new BufferedReader(new InputStreamReader(inputStream2))) {
                 		reader1.readLine();
 	                	while ((linea1 = reader1.readLine()) != null) {
 	                		String[] campos1 = linea1.split(";");
@@ -86,7 +89,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                	}
             		}
             	} else {
-            		try (BufferedReader reader2 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Empresas.csv"))) {
+            		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Usuarios-Empresas.csv");
+            			     BufferedReader reader2 = new BufferedReader(new InputStreamReader(inputStream2))) {
                 		reader2.readLine();
 	                	while ((linea2 = reader2.readLine()) != null) {
 	                		String[] campos2 = linea2.split(";");
@@ -119,8 +123,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         } catch (IOException e4) {
         	e4.printStackTrace();
         }
-        
-        try (BufferedReader reader3 = new BufferedReader(new FileReader("src/main/datos/TipoPublicacion.csv"))) {
+		
+        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
+       	     BufferedReader reader3 = new BufferedReader(new InputStreamReader(inputStream2))) {
         	String linea3;
         	reader3.readLine();
         	
@@ -134,8 +139,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         } catch (IOException e7) {
         	e7.printStackTrace();
         }
-        
-        try (BufferedReader reader4 = new BufferedReader(new FileReader("src/main/datos/Keywords.csv"))) {
+        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Keywords.csv");
+          	     BufferedReader reader4 = new BufferedReader(new InputStreamReader(inputStream2))) {
         	String linea4;
         	reader4.readLine();
         	
@@ -148,7 +153,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	e8.printStackTrace();
         }
         
-        try (BufferedReader reader13 = new BufferedReader(new FileReader("src/main/datos/Paquetes.csv"))) {
+        
+        
+        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+        	     BufferedReader reader13 = new BufferedReader(new InputStreamReader(inputStream2))) {
         	String linea13;
         	reader13.readLine();
         	while ((linea13 = reader13.readLine()) != null) {
@@ -189,7 +197,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	e40.printStackTrace();
         }
         
-        try (BufferedReader reader5 = new BufferedReader(new FileReader("src/main/datos/OfertasLaborales.csv"))) {
+        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/OfertasLaborales.csv");
+       	     BufferedReader reader5 = new BufferedReader(new InputStreamReader(inputStream2))) {
         	String linea5;
         	reader5.readLine();
         	
@@ -246,7 +255,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		// Lista de keywords
         		List<String> keys = new ArrayList<>();
         		
-        		try (BufferedReader reader6 = new BufferedReader(new FileReader("src/main/datos/Usuarios.csv"))) {
+        		
+        		
+        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/Usuarios.csv");
+                 	     BufferedReader reader6 = new BufferedReader(new InputStreamReader(inputStream3))) {
         			String linea6;
                 	reader6.readLine();
                 	while ((linea6 = reader6.readLine()) != null) {
@@ -259,7 +271,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         			e20.printStackTrace();
         		}
         		
-        		try (BufferedReader reader7 = new BufferedReader(new FileReader("src/main/datos/TipoPublicacion.csv"))) {
+        		
+        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
+               	     BufferedReader reader7 = new BufferedReader(new InputStreamReader(inputStream3))) {
         			String linea7;
                 	reader7.readLine();
                 	while ((linea7 = reader7.readLine()) != null) {
@@ -272,7 +286,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         			e21.printStackTrace();
         		}
         		
-        		try (BufferedReader reader8 = new BufferedReader(new FileReader("src/main/datos/OfertasLaboralesKeywords.csv"))) {
+        		
+        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/OfertasLaboralesKeywords.csv");
+        	       	     BufferedReader reader8 = new BufferedReader(new InputStreamReader(inputStream3))) {
         			String linea8;
                 	reader8.readLine();
                 	while ((linea8 = reader8.readLine()) != null) {
@@ -281,7 +297,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 			String keyss = campos8[1];
                 			String[] kss = keyss.split(",  ");
                 			for (int i = 0; i <= kss.length-1; i++) {
-                    			try (BufferedReader reader9 = new BufferedReader(new FileReader("src/main/datos/Keywords.csv"))) {
+                				
+                				
+                    			try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/Keywords.csv");
+                          	       	     BufferedReader reader9 = new BufferedReader(new InputStreamReader(inputStream4))) {
                     				String linea9;
                     				reader9.readLine();
                     				while ((linea9 = reader9.readLine()) != null) {
@@ -384,7 +403,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 String paq = campos5[11];
                 if (campos5[11].equals("Sin paquete")) { 
                 	paq = null; } else {
-                	try (BufferedReader reader15 = new BufferedReader(new FileReader("src/main/datos/Paquetes.csv"))) {
+                		
+                	try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+             	       	     BufferedReader reader15 = new BufferedReader(new InputStreamReader(inputStream4))) {
                     	String linea15;
                     	reader15.readLine();
                     	boolean fin = false;
@@ -411,9 +432,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	e9.printStackTrace();
         }
         
-
-        
-        try (BufferedReader reader10 = new BufferedReader(new FileReader("src/main/datos/Postulaciones.csv"))) {
+        try (InputStream inputStream1 = getClass().getResourceAsStream("/main/datos/Postulaciones.csv");
+       	     BufferedReader reader10 = new BufferedReader(new InputStreamReader(inputStream1))) {
         	String linea10;
         	reader10.readLine();
         	
@@ -427,7 +447,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		String oferLab = null;
         		
         		// Hallar usuario
-        		try (BufferedReader reader11 = new BufferedReader(new FileReader("src/main/datos/Usuarios.csv"))) {
+        		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Usuarios.csv");
+        	       	     BufferedReader reader11 = new BufferedReader(new InputStreamReader(inputStream2))) {
         			String linea11;
                 	reader11.readLine();
                 	while ((linea11 = reader11.readLine()) != null) {
@@ -441,7 +462,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
         		
         		// Hallar Oferta Laboral
-        		try (BufferedReader reader12 = new BufferedReader(new FileReader("src/main/datos/OfertasLaborales.csv"))) {
+        		
+        		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/OfertasLaborales.csv");
+       	       	     BufferedReader reader12 = new BufferedReader(new InputStreamReader(inputStream2))) {
         			String linea12;
                 	reader12.readLine();
                 	while ((linea12 = reader12.readLine()) != null) {
@@ -473,7 +496,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	e30.printStackTrace();
         }
         
-        try (BufferedReader reader14 = new BufferedReader(new FileReader("src/main/datos/TiposPublicacionPaquetes.csv"))) {
+        
+        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/TiposPublicacionPaquetes.csv");
+         	     BufferedReader reader14 = new BufferedReader(new InputStreamReader(inputStream2))) {
         	String linea14;
         	reader14.readLine();
         	while ((linea14 = reader14.readLine()) != null) {
@@ -485,8 +510,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
         		// TipoPub
         		String TipoPub = null;
-        		
-        		try (BufferedReader reader15 = new BufferedReader(new FileReader("src/main/datos/TipoPublicacion.csv"))) {
+        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
+               	     BufferedReader reader15 = new BufferedReader(new InputStreamReader(inputStream3))) {
                 	String linea15;
                 	reader15.readLine();
                 	while ((linea15 = reader15.readLine()) != null) {
@@ -499,7 +524,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         			e42.printStackTrace();
         		}
         		
-        		try (BufferedReader reader16 = new BufferedReader(new FileReader("src/main/datos/Paquetes.csv"))) {
+        		
+        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+        	       	     BufferedReader reader16 = new BufferedReader(new InputStreamReader(inputStream3))) {
                 	String linea16;
                 	reader16.readLine();
                 	while ((linea16 = reader16.readLine()) != null) {
