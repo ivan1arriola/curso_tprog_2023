@@ -194,7 +194,7 @@ public class Empresa extends Usuario {
     	float costo = paq.getCosto();
     	LocalDate fechaA = paq.getfechaAlta();
     	// int val = paq.getValidez();
-    	HashSet<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
+    	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
     	
     	InfoCompra infoComp = new InfoCompra(fechaA, costo, paq, this, ConjuntoS);
     	infoCompras.add(infoComp);
