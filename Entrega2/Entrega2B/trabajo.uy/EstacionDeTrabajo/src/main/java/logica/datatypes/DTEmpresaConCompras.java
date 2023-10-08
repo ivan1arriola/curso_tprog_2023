@@ -1,18 +1,19 @@
 package main.java.logica.datatypes;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class DTEmpresaConCompras extends DTEmpresa {
-	private HashSet<DTCompraPaquetes> compra_paquetes;
+	private Set<DTCompraPaquetes> compraPaquetes;
 	 
-	public DTEmpresaConCompras(String nick, String mail, String ap, String nombre, String contraseña, byte[] img, String desc, String URL, HashSet<DTOfertaExtendido> ols, HashSet<DTCompraPaquetes> dtcp) {
-		super(nick, mail, ap, nombre, contraseña, desc, URL, ols, img);
-		compra_paquetes = dtcp;
+	public DTEmpresaConCompras(String nick, String mail, String apellido, String nombre, String contraseña, byte[] img, String desc, String URL, Set<DTOfertaExtendido> ols, Set<DTCompraPaquetes> dtcp) {
+		super(nick, mail, apellido, nombre, contraseña, desc, URL, ols, img);
+		compraPaquetes = dtcp;
 	}
 	
 	// Getters y setters
-	public HashSet<DTCompraPaquetes> getCompraPaquetes() {
-		return compra_paquetes;
+	public Set<DTCompraPaquetes> getCompraPaquetes() {
+		return compraPaquetes;
 	}
 
 }

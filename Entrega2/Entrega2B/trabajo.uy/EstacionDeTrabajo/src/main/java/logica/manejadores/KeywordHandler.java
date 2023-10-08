@@ -1,13 +1,14 @@
 package main.java.logica.manejadores;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import main.java.logica.clases.Keyword;
 
 
 public class KeywordHandler {
 	private static KeywordHandler instancia = null;
-	private HashMap<String, Keyword> keys;
-	
+	private Map<String, Keyword> keys;
 	
 	private KeywordHandler() { 
 		keys = new HashMap<String, Keyword>(); 
@@ -22,7 +23,7 @@ public class KeywordHandler {
 	
 	public void agregar(Keyword key) {
 		if (key == null) {
-			throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
+	      throw new IllegalArgumentException("La keyword a agregar no puede ser vacia");
 		}
 		keys.put(key.getNombre(), key);
 	}
@@ -31,7 +32,7 @@ public class KeywordHandler {
 		return keys.containsKey(key);
 	}
 
-	public HashMap<String, Keyword> obtener() {
+	public Map<String, Keyword> obtener() {
 		return keys;
 	}
 }

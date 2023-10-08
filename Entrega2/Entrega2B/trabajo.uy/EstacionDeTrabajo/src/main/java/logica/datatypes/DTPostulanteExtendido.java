@@ -2,17 +2,21 @@ package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 public class DTPostulanteExtendido extends DTPostulante {
 
-	private HashSet<DTPostulacion> postulaciones;
+	private Set<DTPostulacion> postulaciones;
 
-    public HashSet<DTPostulacion> getPostulaciones() {
+    
+
+    public Set<DTPostulacion> getPostulaciones() {
         return postulaciones;
     } 
 
-    public DTPostulanteExtendido(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad, HashSet<DTPostulacion> posts) {
-        super(nickname, correo_electronico, apellido, nombre, contraseña, imagen, fecha_nac, nacionalidad);
+    public DTPostulanteExtendido(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad, Set<DTPostulacion> posts) {
+        super(nickname, correo_electronico, apellido, nombre, contraseña, imagen, 
+        	  fecha_nac, nacionalidad);
         postulaciones = posts;
     }
 }

@@ -20,8 +20,8 @@ public class Paquete {
     private LocalDate fechaAlta;
     private byte[] imagen;
     // Relaciones
-    private HashSet<OfertaPaquete> oferPaq;
-    private HashSet<InfoCompra> infCompraAsociada;
+    private Set<OfertaPaquete> oferPaq;
+    private Set<InfoCompra> infCompraAsociada;
 
     // Constructor
     public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento,byte[] imagen) {
@@ -95,7 +95,7 @@ public class Paquete {
     	this.validez = validez;
     }
     
-    public void setOfertaPaquete(HashSet<OfertaPaquete> oferPaq) 	{ 
+    public void setOfertaPaquete(Set<OfertaPaquete> oferPaq) 	{ 
 		float Costo = 0;
         this.oferPaq = oferPaq;
         // cambie oferta paquete, cambie el precio del mismo
@@ -104,8 +104,8 @@ public class Paquete {
             String nombreOferta = DTcantaux.getNombre(); // nombre lo uso para buscar
             int cantidadTotal = DTcantaux.getCantidad();
             TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-			TipoOferta TO = TOH.buscar(nombreOferta);
-            float CostoTO = TO.getCosto(); // obtuve precio de la oferta
+			TipoOferta TipoOfer = TOH.buscar(nombreOferta);
+            float CostoTO = TipoOfer.getCosto(); // obtuve precio de la oferta
             Costo = Costo + CostoTO*cantidadTotal;
         }
         
@@ -113,7 +113,7 @@ public class Paquete {
         this.costo = Costo;
     }
     
-    public void setInfoCompra(HashSet<InfoCompra> InfoCom) {
+    public void setInfoCompra(Set<InfoCompra> InfoCom) {
     	this.infCompraAsociada = InfoCom;
     }
 
@@ -131,8 +131,8 @@ public class Paquete {
             String nombreOferta = DTcantaux.getNombre(); // nombre lo uso para buscar
             int cantidadTotal = DTcantaux.getCantidad();
             TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-			TipoOferta TO = TOH.buscar(nombreOferta);
-            float CostoTO = TO.getCosto(); // obtuve precio de la oferta
+			TipoOferta TipoOfer = TOH.buscar(nombreOferta);
+            float CostoTO = TipoOfer.getCosto(); // obtuve precio de la oferta
             Costo = Costo + CostoTO*cantidadTotal;
         }
             
@@ -142,9 +142,9 @@ public class Paquete {
 
     public DTPaquete getDTPaquete() {
         Set<DTCantTO> individual = new HashSet<>();
-        Iterator<OfertaPaquete> it = oferPaq.iterator(); 
-        while (it.hasNext()) { 
-            OfertaPaquete actual = it.next();
+        Iterator<OfertaPaquete> iterador = oferPaq.iterator(); 
+        while (iterador.hasNext()) { 
+            OfertaPaquete actual = iterador.next();
             individual.add(actual.getDTCantTO());
         }
         
@@ -152,9 +152,9 @@ public class Paquete {
         return dtpaq;
     }
     
-    public HashSet<DTCantTO> obtenerDTSCantTO(){
+    public Set<DTCantTO> obtenerDTSCantTO(){
         // devolver cantidad y nombre de cada paquete
-        HashSet<DTCantTO> SetNuevo = new HashSet<DTCantTO>();
+        Set<DTCantTO> SetNuevo = new HashSet<DTCantTO>();
         for (OfertaPaquete OfertaAnalizar : oferPaq) {
             // Por cada oferta paquete, obtengo su DTCantTO y lo agrego al SetNuevo
             DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO();

@@ -40,10 +40,10 @@ public class AltaDeKeywords extends JInternalFrame {
         
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent evento) {
         		String text = KeywordIngresada.getText();
-        		boolean b = ICO.altaKeyword(text);
-        		if(b) {
+        		boolean notexist = ICO.altaKeyword(text);
+        		if(notexist) {
         			JOptionPane.showMessageDialog(AltaDeKeywords.this, "La Keyword fue dada de alta exitosamente.", "Alta de Keywords", JOptionPane.INFORMATION_MESSAGE);
         			limpiarFormulario();
         			setVisible(false);

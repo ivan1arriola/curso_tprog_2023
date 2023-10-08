@@ -46,7 +46,7 @@ public class AltaDePostulante extends JInternalFrame {
     private JTextField tfAnio;
     private JLabel mail;
     private JTextField tfMail;
-    private JPasswordField pF;
+    private JPasswordField passF;
     private JPasswordField pFR;
 
     /**
@@ -187,7 +187,7 @@ public class AltaDePostulante extends JInternalFrame {
         btnCancelar = new JButton("Cancelar");
         btnCancelar.setBounds(244, 324, 195, 25);
         btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evento) {
                 limpiarFormulario();
                 setVisible(false);
             }
@@ -205,9 +205,9 @@ public class AltaDePostulante extends JInternalFrame {
 	    ReContraseña.setBounds(10, 158, 225, 19);
 	    getContentPane().add(ReContraseña);
 	    
-	    pF = new JPasswordField();
-	    pF.setBounds(242, 134, 201, 19);
-	    getContentPane().add(pF);
+	    passF = new JPasswordField();
+	    passF.setBounds(242, 134, 201, 19);
+	    getContentPane().add(passF);
 	    
 	    pFR = new JPasswordField();
 	    pFR.setBounds(242, 158, 201, 19);
@@ -232,8 +232,8 @@ public class AltaDePostulante extends JInternalFrame {
         String mesU = tfMes.getText();
         String diaU = tfDia.getText();
         String nacionalidadU = this.tfNacionalidad.getText();
-        String contraseña = this.pF.getText();
-        String recontraseña = this.pF.getText();
+        String contraseña = this.passF.getText();
+        String recontraseña = this.pFR.getText();
 
         if (checkFormulario()) {
             	LocalDate fechaU = LocalDate.of(Integer.parseInt(anioU), Integer.parseInt(mesU), Integer.parseInt(diaU));
@@ -265,7 +265,7 @@ public class AltaDePostulante extends JInternalFrame {
         String mesU = this.tfMes.getText();
         String diaU = this.tfDia.getText();
         String nacionalidadU = this.tfNacionalidad.getText();
-        String contraseña = this.pF.getText();
+        String contraseña = this.passF.getText();
         String recontraseña = this.pFR.getText();
 
         if (nicknameU.isEmpty() || nombreU.isEmpty() || apellidoU.isEmpty() || correoU.isEmpty() || anioU.isEmpty() || mesU.isEmpty() || diaU.isEmpty() || nacionalidadU.isEmpty()) {
@@ -343,7 +343,7 @@ public class AltaDePostulante extends JInternalFrame {
         tfNombre.setText("");
         tfApellido.setText("");
         tfMail.setText("");
-        pF.setText("");
+        passF.setText("");
         pFR.setText("");
         tfAnio.setText("");
         tfMes.setText("");

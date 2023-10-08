@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.io.FileReader;
-import java.io.IOException;
+// import java.io.IOException; NO SE USA (CHECKSTYLE)
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -86,14 +86,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                	        String dateString = campos1[1];
 	                	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	                	        LocalDate localDate = LocalDate.parse(dateString, formatter);
-	                	        try {
-
-	                	        	ICU.altaPostulanteImagen(campos[2],campos[6], campos[3],campos[4],localDate,campos[5],campos1[2], imageBytes);
-	                	        }	                		
+                	        	ICU.altaPostulanteImagen(campos[2],campos[6], campos[3],campos[4],localDate,campos[5],campos1[2], imageBytes);
 	                		}
-		            		}catch (IOException e6) {
-		            			e6.printStackTrace();
-			                }
+	                	}
+            		}
             	} else {
             		try (BufferedReader reader2 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Empresas.csv"))) {
                 		reader2.readLine();
@@ -521,10 +517,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		}
         		ICO.agregarTipoOfertaPaq(paq, TipoPub, Integer.parseInt(campos14[3].substring(1)));
         	}
-        	
         } catch (IOException e41) {
         	e41.printStackTrace();
         }
-	}
-	
+		}
 }

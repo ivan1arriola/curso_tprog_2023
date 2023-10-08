@@ -2,6 +2,8 @@ package main.java.logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
+
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 
@@ -9,25 +11,25 @@ import main.java.logica.enumerados.EstadoOL;
 public class DTOfertaExtendido {
   private String nombre;
   private String descripcion;
-  private LocalDate fecha_de_alta;
+  private LocalDate fechaDeAlta;
   private float costo;
   private float remuneracion;
   private DTHorario horario;
   private DepUY departamento;
   private String ciudad;
   private EstadoOL estado;
-  private HashSet<DTPostulacion> postulaciones;
+  private Set<DTPostulacion> postulaciones;
   private byte[] imagen; 
   private String paq;
 	
 	
-public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float c, float r, DTHorario h, DepUY dep, String ciu, EstadoOL est, HashSet<DTPostulacion> post, byte[] img, String paquete) {
+public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete) {
   nombre = nomb;
   descripcion = desc;
-  fecha_de_alta = fechaA;
-  costo = c;
-  remuneracion = r;
-  horario = h;
+  fechaDeAlta = fechaA;
+  costo = cost;
+  remuneracion = remu;
+  this.horario = horario;
   departamento = dep;
   ciudad = ciu;
   estado = est;
@@ -45,7 +47,7 @@ public String getDescripcion() {
 }
 	
 public LocalDate getFechaDeAlta() {
-  return fecha_de_alta;
+  return fechaDeAlta;
 }
 	
 public float getCosto() {
@@ -72,7 +74,7 @@ public EstadoOL getEstado() {
   return estado; 
 }
 	
-public HashSet<DTPostulacion> getPostulaciones() {
+public Set<DTPostulacion> getPostulaciones() {
   return postulaciones;
 }
 	
@@ -86,10 +88,12 @@ public String getPaquete() {
 	
 	@Override
 public String toString() {
-  String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n"  + "Fecha de alta: " 
-				 + fecha_de_alta + "\n" + "Costo: " + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n" 
-			     + "Horario de Entrada: " + horario.getDesde() + "\n" + "Horario de Salida: " + horario.getHasta() + "\n" 
-				 + ciudad + ", " + departamento + "\n"  + "Estado: " + estado;
+  String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n"  
+		  		+ "Fecha de alta: " + fechaDeAlta + "\n" + "Costo: " 
+		  		+ (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n" 
+		  		+ "Horario de Entrada: " + horario.getDesde() + "\n" 
+		  		+ "Horario de Salida: " + horario.getHasta() + "\n" + ciudad
+		  		+ ", " + departamento + "\n"  + "Estado: " + estado;
 
   return texto;
 }

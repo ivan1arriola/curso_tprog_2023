@@ -39,110 +39,110 @@ import main.java.logica.manejadores.UsuarioHandler;
 public class CtrlUsuario implements ICtrlUsuario {
 	// empresa con URL y sin imagen	
 	public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean b1 = UH.existeNick(nick);
-		boolean b2 = UH.existeCorreo(mail);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existeNick = UsuarioH.existeNick(nick);
+		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(b1 && b2) {
+		if(existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(b1) {
+			if(existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(b2) {
+			else if(existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
-		if (!b1 && !b2) {
-			Empresa e = new Empresa(nick, nombre, apellido, mail, contraseña, desc, URL);
-			UH.agregar(e);
+		if (!existeNick && !existeCorreo) {
+			Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, desc, URL);
+			UsuarioH.agregar(empresa);
 		}
 		
-		return !b1 && !b2;
+		return !existeNick && !existeCorreo;
 	}
 
 	// empresa sin URL ni imagen
 	public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean b1 = UH.existeNick(nick);
-		boolean b2 = UH.existeCorreo(mail);
-		
-		if(b1 && b2) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existeNick = UsuarioH.existeNick(nick);
+		boolean existeCorreo = UsuarioH.existeCorreo(mail);
+
+		if(existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
-		
 		else {
-			if(b1) {
+			if(existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(b2) {
+			else if(existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
-		if (!b1 && !b2) {
-			Empresa e = new Empresa(nick, nombre, apellido, mail, contraseña, desc);
-			UH.agregar(e);
+		if (!existeNick && !existeCorreo) {
+			Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, desc);
+			UsuarioH.agregar(empresa);
 		}
-		return !b1 && !b2;
+		
+		return !existeNick && !existeCorreo;
 	}
 
 	public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean b1 = UH.existeNick(nick);
-		boolean b2 = UH.existeCorreo(mail);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existeNick = UsuarioH.existeNick(nick);
+		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(b1 && b2) {
+		if(existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(b1) {
+			if(existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(b2) {
+			else if(existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
-		if (!b1 && !b2) {
-			Postulante p = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
-			UH.agregar(p);
+		if (!existeNick && !existeCorreo) {
+			Postulante postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
+			UsuarioH.agregar(postulante);
 		}
 		
-		return !b1 && !b2;
+		return !existeNick && !existeCorreo;
 	}
 
-	public HashSet<String> listarEmpresas(){
-		HashSet<String> res = new HashSet<>();
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashMap<String,Usuario> usuarios = UH.obtenerNick();
+	public Set<String> listarEmpresas(){
+		Set<String> res = new HashSet<>();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Map<String,Usuario> usuarios = UsuarioH.obtenerNick();
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-			Usuario u = entry.getValue();
-			boolean b = u.esEmpresa();
-			if(b) {
-				res.add(u.getNickname());
+			Usuario user = entry.getValue();
+			boolean esEmp = user.esEmpresa();
+			if(esEmp) {
+				res.add(user.getNickname());
 			}
 		}
 		return res;
 	}
 
 	public DTOfertaExtendido consultaOfertaLaboral(String nombre) {
-		CtrlOferta CO = new CtrlOferta();
-		return CO.obtenerOfertaLaboral(nombre);
+		CtrlOferta CtrlOfer = new CtrlOferta();
+		return CtrlOfer.obtenerOfertaLaboral(nombre);
 	}
 
 	public DTUsuario obtenerDatosUsuario(String nick) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Usuario u = UH.buscarNick(nick);
-		return u.obtenerDatosUsuario();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Usuario user = UsuarioH.buscarNick(nick);
+		return user.obtenerDatosUsuario();
 	}
 
-	public HashSet<String> listarNicknamesUsuarios(){
-		HashSet<String> res = new HashSet<>();
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashMap<String, Usuario> usuarios = UH.obtenerNick(); 
+	public Set<String> listarNicknamesUsuarios(){
+		Set<String> res = new HashSet<>();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Map<String, Usuario> usuarios = UsuarioH.obtenerNick(); 
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
 			// Usuario u = entry.getValue(); NO SE USA (CHECKSTYLE)
 			res.add(entry.getKey()); 
@@ -151,10 +151,10 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	public boolean existePostulacion(String nickname, String nombre) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Postulante p = (Postulante) UH.buscarNick(nickname);
-		if(p != null) {
-			return p.existePostulacion(nombre);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
+		if(postulante != null) {
+			return postulante.existePostulacion(nombre);
 		}
 		else {
 			// throw new IllegalArgumentException("Usuario " + nick + " no existe");
@@ -162,22 +162,22 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 	}
 
-	public Postulacion crearPostulacion(String nick, String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
+	public Postulacion crearPostulacion(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		
-		Postulante p = (Postulante) UH.buscarNick(nick);
-		if (p == null) { throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
-		return p.crearPostulacion(cv, motivacion, fecha, URLDocExtras, OferLab);
+		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
+		if (postulante == null) { throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
+		return postulante.crearPostulacion(curriculumVitae, motivacion, fecha, URLDocExtras, OferLab);
 	}
 
-	public HashSet<String> obtenerNicknamesPostulantes() {
-		HashSet<String> res = new HashSet<>();
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashMap<String,Usuario> usuarios = UH.obtenerNick();
+	public Set<String> obtenerNicknamesPostulantes() {
+		Set<String> res = new HashSet<>();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Map<String,Usuario> usuarios = UsuarioH.obtenerNick();
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-			Usuario u = entry.getValue();
-			boolean b = u.esEmpresa();
-			if(!b) {
+			Usuario user = entry.getValue();
+			boolean esEmp = user.esEmpresa();
+			if(!esEmp) {
 				res.add(entry.getKey());
 			}
 		}
@@ -185,45 +185,45 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	public void ingresarDatosEditados(String nickname, String nombre, String apellido) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Usuario u = UH.buscarNick(nickname);
-		u.setNombre(nombre);
-		u.setApellido(apellido);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Usuario user = UsuarioH.buscarNick(nickname);
+		user.setNombre(nombre);
+		user.setApellido(apellido);
 	}
 
 	public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA,List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida{
 		List<Keyword> keywords = new ArrayList<>();
 		
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		KeywordHandler KH = KeywordHandler.getInstance();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		KeywordHandler KeywordH = KeywordHandler.getInstance();
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		
-		HashMap<String,Keyword> k = KH.obtener();
-		for (Map.Entry<String, Keyword> entry : k.entrySet()) {
+		Map<String,Keyword> keyw = KeywordH.obtener();
+		for (Map.Entry<String, Keyword> entry : keyw.entrySet()) {
 			if(keys.contains(entry.getKey())) {
 				keywords.add(entry.getValue());
 			}
 		}
 		
-		if(UH.existeNick(nickname_e)) {
-			Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		if(UsuarioH.existeNick(nickname_e)) {
+			Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 			
-			if(e != null) {
-				CtrlOferta CO = new CtrlOferta();
-				boolean ofer = CO.existeOferta(nombre);
+			if(empresa != null) {
+				CtrlOferta CtrlOfer = new CtrlOferta();
+				boolean ofer = CtrlOfer .existeOferta(nombre);
 				if(!ofer) {
-					PaqueteHandler PH = PaqueteHandler.getInstance();
+					PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 					Paquete paq;
 					if(paquete != null) {
-						paq = PH.buscar(paquete);
+						paq = PaqueteH.buscar(paquete);
 					}
 					else { 
 						paq = null;
 					}
 					
-					OfertaLaboral ol = e.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
-					OLH.agregar(ol);
+					OfertaLaboral oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
+					OLH.agregar(oferL);
 				}
 				return !ofer;
 			}
@@ -241,9 +241,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 	
 	
 	public Set<String> listarOfertasLaborales(String nickname){
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Usuario u = UH.buscarNick(nickname);
-		return u.listarOfertasLaborales();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Usuario user = UsuarioH.buscarNick(nickname);
+		return user.listarOfertasLaborales();
 	}
 
 
@@ -251,11 +251,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 	// ################################  NUEVAS OPERACIONES ################################ 
 	// -------------------------------------------------------------------------------------
 	
-	public HashSet<String> listarKeywords(String nombre_oferta){
+	public Set<String> listarKeywords(String nombre_oferta){
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-		OfertaLaboral ol = OLH.buscar(nombre_oferta);
-		List<Keyword> keywords = ol.getKeywords();
-		HashSet<String> res = new HashSet<String>();
+		OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
+		List<Keyword> keywords = oferLab.getKeywords();
+		Set<String> res = new HashSet<String>();
 		for (int i = 0; i < keywords.size(); i++) {
 			res.add(keywords.get(i).getNombre());
 		}
@@ -263,22 +263,22 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Usuario u = UH.buscarNick(nick);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Usuario usuario = UsuarioH.buscarNick(nick);
 		if (nick.equals(UsuarioNickname)) {
-			DTUsuario user = u.obtenerDatosUsuario();
+			DTUsuario user = usuario.obtenerDatosUsuario();
 			return user;
 		}
 		else {
-			DTUsuario userEsp = u.obtenerDatosUsuarioEspecial(UsuarioNickname, nick);
+			DTUsuario userEsp = usuario.obtenerDatosUsuarioEspecial(UsuarioNickname, nick);
 			return userEsp;
 		}	
 	}
 
 	public DTUsuario obtenerDatosUsuarioVisitantes(String nick) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Usuario u = UH.buscarNick(nick);
-		DTUsuario user = u.obtenerDatosUsuario();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Usuario usuario = UsuarioH.buscarNick(nick);
+		DTUsuario user = usuario.obtenerDatosUsuario();
 		return user;
 	}
 
@@ -295,17 +295,17 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 	public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Postulante u = (Postulante) UH.buscarNick(postulante_nick);
-		DTPostulacion datosPostu = u.obtenerDatosPostulacion(postulante_nick, ofer);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
+		DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulante_nick, ofer);
 		return datosPostu;
 	}
 
 
 	public DTPaquete obtenerDatosPaquete(String paq) {
-		PaqueteHandler PH = PaqueteHandler.getInstance();
-		Paquete p = PH.buscar(paq);
-		DTPaquete datosPaq = p.getDTPaquete();
+		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
+		Paquete paquete = PaqueteH.buscar(paq);
+		DTPaquete datosPaq = paquete.getDTPaquete();
 		return datosPaq;
 		
 	}
@@ -315,18 +315,18 @@ public class CtrlUsuario implements ICtrlUsuario {
 	// public  boolean iniciarSesionNickname(String nickname, String contrasenia); 
 
 
-	public boolean validarCredenciales(String id, String contraseña) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Usuario u;
+	public boolean validarCredenciales(String identificador, String contraseña) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Usuario user;
 		// Verificar si 'id' es un correo electrónico. Poner la er que sigue el correo
-		if (id.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-			u = UH.buscarCorreo(id);
-			if (u.getContraseña().equals(contraseña)) { return true; }
+		if (identificador.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+			user = UsuarioH.buscarCorreo(identificador);
+			if (user.getcontrasenia().equals(contraseña)) { return true; }
 			else 									  { return false; }
 		} 
 		else {
-			u = UH.buscarNick(id); 
-			if (u.getContraseña().equals(contraseña)) { return true; }
+			user = UsuarioH.buscarNick(identificador); 
+			if (user.getcontrasenia().equals(contraseña)) { return true; }
 			else 									  {return false; }
 			
 		}
@@ -337,95 +337,95 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 	public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fecha_nac, String nacionalidad) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Postulante postulante = (Postulante) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
 		postulante.setApellido(apellido);
-		postulante.setCorreo_electronico(correo);
-		postulante.setContraseña(contraseña); 
+		postulante.setCorreoElectronico(correo);
+		postulante.setContrasenia(contraseña); 
 		postulante.setImagen(imagen);
-		postulante.setFecha_nac(fecha_nac);
+		postulante.setFechaNac(fecha_nac);
 		postulante.setNacionalidad(nacionalidad);
 	}
 
 	public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fecha_nac, String nacionalidad) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Postulante postulante = (Postulante) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
 		postulante.setApellido(apellido);
-		postulante.setCorreo_electronico(correo);
-		postulante.setContraseña(contraseña); 
-		postulante.setFecha_nac(fecha_nac);
+		postulante.setCorreoElectronico(correo);
+		postulante.setContrasenia(contraseña); 
+		postulante.setFechaNac(fecha_nac);
 		postulante.setNacionalidad(nacionalidad);
 	}
 
 
 	public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa empresa = (Empresa) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
 		empresa.setApellido(apellido);
-		empresa.setContraseña(contraseña); 
-		empresa.setCorreo_electronico(correo);
+		empresa.setContrasenia(contraseña); 
+		empresa.setCorreoElectronico(correo);
 		empresa.seturl(URL); 
 		empresa.setDescripcion(descripcion);
 		
 	}
 
 	public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa empresa = (Empresa) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
 		empresa.setApellido(apellido);
-		empresa.setCorreo_electronico(correo);
-		empresa.setContraseña(contraseña); 
+		empresa.setCorreoElectronico(correo);
+		empresa.setContrasenia(contraseña); 
 		empresa.setDescripcion(descripcion);
 	}
 
 	public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa empresa = (Empresa) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
 		empresa.setApellido(apellido);
-		empresa.setContraseña(contraseña);
-		empresa.setCorreo_electronico(correo);
+		empresa.setContrasenia(contraseña); 
+		empresa.setCorreoElectronico(correo);
 		empresa.seturl(URL); 
 		empresa.setImagen(imagen);
 		empresa.setDescripcion(descripcion);
 	}
 
 	public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa empresa = (Empresa) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
 		empresa.setApellido(apellido);
-		empresa.setCorreo_electronico(correo);
-		empresa.setContraseña(contraseña); 
+		empresa.setCorreoElectronico(correo);
+		empresa.setContrasenia(contraseña); 
 		empresa.setImagen(imagen);
 		empresa.setDescripcion(descripcion);
 	}
 
 	public boolean tieneURL(String nickname) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa empresa = (Empresa) UH.buscarNick(nickname);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		boolean tiene = empresa.tieneURL();
 		return tiene;
 	}
 
 	public boolean hayPostulacionW(String postulante_nick, String ofer) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Postulante postulante = (Postulante) UH.buscarNick(postulante_nick);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante postulante = (Postulante) UsuarioH.buscarNick(postulante_nick);
 		boolean existe = postulante.existePostulacion(ofer);
 		return existe;
 	}
 
 	
-	public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, String URL, byte[] imagen) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail));
+	public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existe = (UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail));
 		if (!existe) {
-			Empresa e = new Empresa(nick, nombre, ap, mail, contraseña, imagen, desc, URL); // falta agregarle el parametro img
-			UH.agregar(e);
+			Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, imagen, desc, URL); // falta agregarle el parametro img
+			UsuarioH.agregar(empresa);
 			return true;
 		}
 		else { return false; }
@@ -435,23 +435,23 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 	// alta postulante con imagen
 	public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String nacionalidad, byte[] imagen) { 
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail));
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existe = (UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail));
 		if (!existe) {
-			Postulante p = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad, imagen); // falta agregarle el parametro img
-			UH.agregar(p);
+			Postulante postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad, imagen); // falta agregarle el parametro img
+			UsuarioH.agregar(postulante);
 			return true;
 		}
 		else { return false; }
 	}
 
 	// necesito otro constructor?
-	public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, byte[] imagen) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail));
+	public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existe = (UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail));
 		if (!existe) {
-			Empresa e = new Empresa(nick, nombre, ap, mail, contraseña, imagen, desc); //  agregarle el parametro img
-			UH.agregar(e);
+			Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, imagen, desc); //  agregarle el parametro img
+			UsuarioH.agregar(empresa);
 			return true;
 		}
 		else { return false; }
@@ -459,17 +459,17 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 
-	public HashSet<String> listarPostulantesDeOfertas(String nickname_e, String oferta) {
-		HashSet<String> res = new HashSet<>();
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashMap<String, Usuario> usuarios = UH.obtenerNick();
+	public Set<String> listarPostulantesDeOfertas(String nickname_e, String oferta) {
+		Set<String> res = new HashSet<>();
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-			Usuario u = entry.getValue();
-			if (!(u.esEmpresa())) {
-				Postulante p = (Postulante) u;
-				boolean esta = p.existePostulacion(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
+			Usuario user = entry.getValue();
+			if (!(user.esEmpresa())) {
+				Postulante postulante = (Postulante) user;
+				boolean esta = postulante.existePostulacion(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
 				if (esta) {
-					res.add(p.getNickname());
+					res.add(postulante.getNickname());
 				}
 			}
 		}
@@ -477,16 +477,16 @@ public class CtrlUsuario implements ICtrlUsuario {
 		
 	}
 
-	public HashSet<String> listarOfertasLaboralesConfirmadas(String nickname_e) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa empresa = (Empresa) UH.buscarNick(nickname_e);
-		HashSet<String> OLConfirmadas = empresa.listarOfertasLaboralesConfirmadas(); // falta implementar la operacion
+	public Set<String> listarOfertasLaboralesConfirmadas(String nickname_e) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
+		Set<String> OLConfirmadas = empresa.listarOfertasLaboralesConfirmadas(); // falta implementar la operacion
 		return OLConfirmadas;
 	}
 
 	public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Postulante postulante= (Postulante) UH.buscarNick(nick);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante postulante= (Postulante) UsuarioH.buscarNick(nick);
 		boolean edito = postulante.editarPostulacion(nombre, cvAbreviado, motivacion); // falta operacion
 		return edito;
 	}

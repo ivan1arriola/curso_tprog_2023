@@ -1,16 +1,13 @@
 package main.java.presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -18,22 +15,17 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
 //import javax.swing.border.EmptyBorder;
 import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlOferta;
-import main.java.presentacion.componentes.IAceptarCancelar;
-import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
-import main.java.presentacion.formularios.FormularioAltaTipoPublicacion;
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
 	
 	private static final long serialVersionUID = 1L;
-    ICtrlOferta ctrlOferta = Fabrica.getInstance().getICtrlOferta();
+    private ICtrlOferta ctrlOferta = Fabrica.getInstance().getICtrlOferta();
     private JTextField nombreField;
     private JTextArea descripcionTextArea;
     private JSpinner exposicionSpinner;
@@ -239,7 +231,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
     	    		exposicionSpinner.setValue(1);
     	    		duracionSpinner.setValue(1);
     	    	    costoSpinner.setValue(1);
-    	        } catch (Exception ex) {
+    	        } catch (IllegalArgumentException ex) {
     	            JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     	        }
         		

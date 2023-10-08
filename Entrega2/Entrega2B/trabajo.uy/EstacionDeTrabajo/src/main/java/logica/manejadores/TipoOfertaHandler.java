@@ -1,11 +1,13 @@
 package main.java.logica.manejadores;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import main.java.logica.clases.TipoOferta;
 
 public class TipoOfertaHandler {
 	private static TipoOfertaHandler tOfertaHandler = null;
-	private HashMap<String, TipoOferta> tipoOfertas;
+	private Map<String, TipoOferta> tipoOfertas;
 	
 	
 	private TipoOfertaHandler() {
@@ -32,7 +34,7 @@ public class TipoOfertaHandler {
     	return tipoOfertas.get(nombre);
     } 
     
-    public HashMap<String, TipoOferta> obtener() {
+    public Map<String, TipoOferta> obtener() {
         return tipoOfertas;
     }
 }

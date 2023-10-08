@@ -12,14 +12,14 @@ public class DTPaquete {
 	private Set<DTCantTO> tiposDePub;
 	private LocalDate fechaA;
 	
-	public DTPaquete(String nomb, float c, float d, int v, String desc, Set<DTCantTO> tdp, LocalDate fA) {
+	public DTPaquete(String nomb, float cost, float descuento, int valid, String desc, Set<DTCantTO> tdp, LocalDate fechaAlta) {
 		nombre = nomb;
-		costo = c;
-		descuento = d;
-		validez = v;
+		costo = cost;
+		this.descuento = descuento;
+		validez = valid;
 		descripcion = desc;
 		tiposDePub = tdp;
-		fechaA = fA;
+		fechaA = fechaAlta;
 	}
 
 	public String getNombre() {
