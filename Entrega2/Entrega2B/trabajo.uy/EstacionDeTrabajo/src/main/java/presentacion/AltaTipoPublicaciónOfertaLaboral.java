@@ -18,12 +18,6 @@ import javax.swing.SwingConstants;
 //import javax.swing.border.EmptyBorder;
 import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlOferta;
-<<<<<<< HEAD
-=======
-import main.java.presentacion.componentes.IAceptarCancelar;
-import main.java.presentacion.componentes.PanelBotonesAceptarCancelar;
-//import main.java.presentacion.formularios.FormularioAltaTipoPublicacion;
->>>>>>> 496862e437dbf17eb548948dd80cc8894fd9e027
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
