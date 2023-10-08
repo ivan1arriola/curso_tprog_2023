@@ -168,7 +168,7 @@ public class AltaDePostulante extends JInternalFrame {
 		tfDia = new JTextField();
 		tfDia.setBounds(242, 295, 201, 19);
 		tfDia.setColumns(10);
-		getContentPane().add(tfDia);this.
+		getContentPane().add(tfDia);
         
         // Un botón (JButton) con un evento asociado que permite registrar el usuario.
         // Dado que el código de registro tiene cierta complejidad, conviene delegarlo
