@@ -11,7 +11,6 @@ import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 
-//import javax.swing.*;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
