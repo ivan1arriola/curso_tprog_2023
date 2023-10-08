@@ -56,7 +56,7 @@ public class ElegirPostulante extends JDialog {
     
     public ElegirPostulante(String empresa,String offer, ICtrlUsuario icu, ICtrlOferta ico) {
     	controlUsr = icu;
-    	controlOfer=ico;
+    	controlOfer = ico;
     	postulantes = icu.obtenerNicknamesPostulantes();
     	
     	

@@ -49,7 +49,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         setBounds(100, 100, 300, 300);
 
                
-        GridBagLayout gbl=new GridBagLayout();
+        GridBagLayout gbl = new GridBagLayout();
         getContentPane().setLayout(gbl);
       	
       	JLabel lblNombre = new JLabel("Nombre");

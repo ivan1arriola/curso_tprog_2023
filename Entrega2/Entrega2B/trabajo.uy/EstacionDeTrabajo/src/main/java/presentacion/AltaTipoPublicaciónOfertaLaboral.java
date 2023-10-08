@@ -30,7 +30,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
+public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
 	
 	private static final long serialVersionUID = 1L;
     ICtrlOferta ctrlOferta = Fabrica.getInstance().getICtrlOferta();
@@ -51,7 +51,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
         setBounds(100, 100, 380, 380);
 
         //JPanel mainPanel = new JPanel();
-        GridBagLayout gbl=new GridBagLayout();
+        GridBagLayout gbl = new GridBagLayout();
         //gbl.columnWeights = new double[]{0.0, 1.0};
         //GridBagConstraints gbc=new GridBagConstraints();
         getContentPane().setLayout(gbl);
