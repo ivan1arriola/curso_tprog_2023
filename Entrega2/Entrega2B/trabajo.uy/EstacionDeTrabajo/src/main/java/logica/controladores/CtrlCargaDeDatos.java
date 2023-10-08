@@ -87,7 +87,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	                	        LocalDate localDate = LocalDate.parse(dateString, formatter);
 	                	        try {
-
 	                	        	ICU.altaPostulanteImagen(campos[2],campos[6], campos[3],campos[4],localDate,campos[5],campos1[2], imageBytes);
 	                	        }	                		
 	                		}

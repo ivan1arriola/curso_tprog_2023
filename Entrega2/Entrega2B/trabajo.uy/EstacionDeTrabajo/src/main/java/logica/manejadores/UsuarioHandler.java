@@ -1,14 +1,16 @@
 package main.java.logica.manejadores;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import main.java.logica.clases.Usuario;
 
 //import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
 public class UsuarioHandler {
 
-    private HashMap<String, Usuario> nickUsuariosMap;
-    private HashMap<String, Usuario> correoUsuariosMap;
+    private Map<String, Usuario> nickUsuariosMap;
+    private Map<String, Usuario> correoUsuariosMap;
 
     private static UsuarioHandler instancia;
 
@@ -48,11 +50,11 @@ public class UsuarioHandler {
         return instancia;
     }
 
-    public HashMap<String, Usuario> obtenerNick() {
+    public Map<String, Usuario> obtenerNick() {
         return nickUsuariosMap;
     }
     
-    public HashMap<String, Usuario> obtenerCorreo() {
+    public Map<String, Usuario> obtenerCorreo() {
         return correoUsuariosMap;
     }
 }

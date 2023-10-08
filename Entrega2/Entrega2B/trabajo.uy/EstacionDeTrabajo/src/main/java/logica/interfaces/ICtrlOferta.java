@@ -1,7 +1,7 @@
 package main.java.logica.interfaces;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.Set;
 import java.util.Set;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.logica.datatypes.DTHorario;
@@ -16,7 +16,7 @@ import main.java.logica.enumerados.EstadoOL;
 public interface ICtrlOferta {
 	    public abstract Set<String> listarEmpresas();
 	    
-		public abstract HashSet<String> listarTipoDePublicaciones();
+		public abstract Set<String> listarTipoDePublicaciones();
 		
 		public abstract boolean existeOferta(String nombre_oferta);
 		
@@ -31,7 +31,7 @@ public interface ICtrlOferta {
 		public abstract boolean 
 		altaOfertaLaboral(String nickname_e, String tipo, String nombre, 
 				String descripcion, DTHorario horario, float remun, String ciu, 
-				DepUY dep, LocalDate fechaA, HashSet<String> keys, 
+				DepUY dep, LocalDate fechaA, Set<String> keys, 
 				EstadoOL estado, byte[] img, String paquete);
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
@@ -43,31 +43,31 @@ public interface ICtrlOferta {
 		public abstract 
 		DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
 		
-		public abstract HashSet<String> listarOfertasLaboralesKeywords(String keywords);
+		public abstract Set<String> listarOfertasLaboralesKeywords(String keywords);
 		
 		public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
 		
 		public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer);
 		
-		public abstract HashSet<String> 
+		public abstract Set<String> 
 			listarOfertasLaboralesConfirmadas(String nickname_e);
 		
-		public abstract HashSet<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
+		public abstract Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
 		
-		public abstract HashSet<String> listarOfertasLaboralesIngresadas(String nickname_e);
+		public abstract Set<String> listarOfertasLaboralesIngresadas(String nickname_e);
 		
 		public abstract void rechazoOL(String nombre_oferta);
 		
 		public abstract void aceptoOL(String nombre_oferta);
 		
-		public abstract HashSet<String> listarPostulantes();
+		public abstract Set<String> listarPostulantes();
 		
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
 		
 		public abstract void 
 		agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad);
 		
-		public abstract HashSet<String> listarPaquetes();
+		public abstract Set<String> listarPaquetes();
 		
 		public abstract DTPaquete obtenerDatosPaquete(String paq);
 		
@@ -76,7 +76,7 @@ public interface ICtrlOferta {
 		
 		
 		// ESTÁN PERO NO EN EL DCD
-		public abstract HashSet<String> listarKeywords();
+		public abstract Set<String> listarKeywords();
 		
 		public abstract DTTipoOferta tipoOferta(String oferta);
 		

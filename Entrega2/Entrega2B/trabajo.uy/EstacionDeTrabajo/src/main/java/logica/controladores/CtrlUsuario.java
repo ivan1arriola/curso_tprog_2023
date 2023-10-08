@@ -39,79 +39,79 @@ import main.java.logica.manejadores.UsuarioHandler;
 public class CtrlUsuario implements ICtrlUsuario {
 	// empresa con URL y sin imagen	
 	public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean b1 = UH.existeNick(nick);
-		boolean b2 = UH.existeCorreo(mail);
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existeNick = UsuarioH.existeNick(nick);
+		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(b1 && b2) {
+		if(existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(b1) {
+			if(existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(b2) {
+			else if(existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
-		if (!b1 && !b2) {
-			Empresa e = new Empresa(nick, nombre, apellido, mail, contraseña, desc, URL);
-			UH.agregar(e);
+		if (!existeNick && !existeCorreo) {
+			Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, desc, URL);
+			UsuarioH.agregar(empresa);
 		}
 		
-		return !b1 && !b2;
+		return !existeNick && !existeCorreo;
 	}
 
 	// empresa sin URL ni imagen
 	public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean b1 = UH.existeNick(nick);
-		boolean b2 = UH.existeCorreo(mail);
-		
-		if(b1 && b2) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		boolean existeNick = UsuarioH.existeNick(nick);
+		boolean existeCorreo = UsuarioH.existeCorreo(mail);
+
+		if(existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
-		
 		else {
-			if(b1) {
+			if(existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(b2) {
+			else if(existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
-		if (!b1 && !b2) {
-			Empresa e = new Empresa(nick, nombre, apellido, mail, contraseña, desc);
-			UH.agregar(e);
+		if (!existeNick && !existeCorreo) {
+			Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, desc);
+			UsuarioH.agregar(empresa);
 		}
-		return !b1 && !b2;
+		
+		return !existeNick && !existeCorreo;
 	}
 
 	public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean b1 = UH.existeNick(nick);
-		boolean b2 = UH.existeCorreo(mail);
+		boolean existeNick = UsuarioH.existeNick(nick);
+		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(b1 && b2) {
+		if(existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(b1) {
+			if(existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(b2) {
+			else if(existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
-		if (!b1 && !b2) {
+		if (!existeNick && !existeCorreo) {
 			Postulante p = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
 			UH.agregar(p);
 		}
 		
-		return !b1 && !b2;
+		return !existeNick && !existeCorreo;
 	}
 
 	public HashSet<String> listarEmpresas(){
