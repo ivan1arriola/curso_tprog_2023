@@ -88,7 +88,7 @@ public class ConsultarOfertas extends JDialog {
         
         JPanel rightPanel = new JPanel(new BorderLayout());
   
-        <String> comboBox = new JComboBox<String>();
+        JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addItem("");
         for (String oferta : offerDetails) {
             comboBox.addItem(oferta);
