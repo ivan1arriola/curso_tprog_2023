@@ -28,12 +28,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import javax.swing.ButtonGroup;
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
 
 
 @SuppressWarnings("serial")
@@ -63,7 +64,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
     private JList<String> selectedList;
 	private DefaultListModel<String> availableListModel;
     private DefaultListModel<String> selectedListModel;
-	
+	private String opcionPaq;
+	private JComboBox<String> comboPaquete;
     /**
      * Create the frame.
      */
@@ -79,12 +81,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta Oferta Laboral");
-        setBounds(30,  30,  550,  500);
+        setBounds(30,  30,  550,  550);
         getContentPane().setLayout(null);
    
         
         JLabel lblNewLabel = new JLabel("Listado Empresas:");
-        lblNewLabel.setBounds(21,  31,  191,  14);
+        lblNewLabel.setBounds(21,  25,  191,  14);
         getContentPane().add(lblNewLabel);
         
         table = new JTable();
@@ -134,11 +136,11 @@ public class AltaOfertaLaboral extends JInternalFrame {
             
         JScrollPane AvailableL = new JScrollPane(availableList);
         AvailableL.setSize(180,  60);
-        AvailableL.setLocation(140,  338);
+        AvailableL.setLocation(140,  330);
         getContentPane().add(AvailableL);
         
         JScrollPane SelectedL = new JScrollPane(selectedList);
-        SelectedL.setLocation(342,  338);
+        SelectedL.setLocation(342,  330);
         SelectedL.setSize(180,  60);
         getContentPane().add(SelectedL);
         
@@ -146,7 +148,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
              
         JButton addButton = new JButton("Agregar>");
         addButton.setSize(109,  20);
-        addButton.setLocation(211,  409);
+        addButton.setLocation(211,  400);
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evento) {
@@ -162,7 +164,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         JButton removeButton = new JButton("<Quitar");
         removeButton.setSize(114,  20);
-        removeButton.setLocation(342,  409);
+        removeButton.setLocation(342,  400);
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evento) {
@@ -183,7 +185,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         
         ///////////////////
         listadoEmpresas = new JComboBox<String>();
-        listadoEmpresas.setBounds(270,  27,  253,  22);
+        listadoEmpresas.setBounds(270,  21,  253,  22);
         getContentPane().add(listadoEmpresas);
         
         listadoEmpresas.addActionListener(new ActionListener() {
@@ -193,7 +195,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         });
         
         JLabel lblNewLabel_1 = new JLabel("Listado de Tipo de Oferta:");
-        lblNewLabel_1.setBounds(21,  64,  191,  18);
+        lblNewLabel_1.setBounds(21,  52,  191,  18);
         getContentPane().add(lblNewLabel_1);
         
         listadoOfertas = new JComboBox<String>();
@@ -203,7 +205,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         		ofertaLab = (String) listadoOfertas.getSelectedItem();
         	}
         });
-        listadoOfertas.setBounds(270,  60,  253,  22);
+        listadoOfertas.setBounds(269,  50,  253,  22);
         getContentPane().add(listadoOfertas);
         
      
@@ -212,36 +214,85 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_2);
         
         JLabel lblNewLabel_3 = new JLabel("Descripcion:");
-        lblNewLabel_3.setBounds(21,  124,  139,  14);
+        lblNewLabel_3.setBounds(21,  120,  139,  14);
         getContentPane().add(lblNewLabel_3);
         
         JLabel lblNewLabel_4 = new JLabel("Desde:");
-        lblNewLabel_4.setBounds(140,  187,  98,  14);
+        lblNewLabel_4.setBounds(140,  180,  98,  14);
         getContentPane().add(lblNewLabel_4);
         
         JLabel lblNewLabel_5 = new JLabel("Hasta:");
-        lblNewLabel_5.setBounds(371,  187,  53,  14);
+        lblNewLabel_5.setBounds(371,  180,  53,  14);
         getContentPane().add(lblNewLabel_5);
         
         JLabel lblNewLabel_6 = new JLabel("Remuneracion:");
-        lblNewLabel_6.setBounds(21,  255,  177,  14);
+        lblNewLabel_6.setBounds(21,  248,  177,  14);
         getContentPane().add(lblNewLabel_6);
         
         JLabel lblNewLabel_7 = new JLabel("Departamento:");
-        lblNewLabel_7.setBounds(21,  284,  139,  14);
+        lblNewLabel_7.setBounds(21,  280,  139,  14);
         getContentPane().add(lblNewLabel_7);
         
         JLabel lblNewLabel_8 = new JLabel("Ciudad:");
-        lblNewLabel_8.setBounds(359,  284,  65,  14);
+        lblNewLabel_8.setBounds(359,  280,  65,  14);
         getContentPane().add(lblNewLabel_8);
         
         JLabel lblNewLabel_9 = new JLabel("Fecha de Alta:");
-        lblNewLabel_9.setBounds(21,  313,  177,  14);
+        lblNewLabel_9.setBounds(21,  310,  177,  14);
         getContentPane().add(lblNewLabel_9);
         
         JLabel lblNewLabel_10 = new JLabel("Keywords:");
-        lblNewLabel_10.setBounds(21,  354,  139,  14);
+        lblNewLabel_10.setBounds(21,  338,  139,  14);
         getContentPane().add(lblNewLabel_10);
+        
+        
+        JLabel lblNewLabel_11 = new JLabel("Paquete:");
+        lblNewLabel_11.setBounds(21,  435,  145,  14);
+        getContentPane().add(lblNewLabel_11);
+        
+        ////////// BOTONES PAQUETE
+         
+		ButtonGroup buttonGroup = new ButtonGroup();
+		JRadioButton botonSinPaq = new JRadioButton("Sin Paquete");
+		JRadioButton botonConPaq = new JRadioButton("Con Paquete");
+		
+		buttonGroup.add(botonConPaq);
+        buttonGroup.add(botonSinPaq);
+		botonSinPaq.setBounds(140, 427, 109, 23);
+		getContentPane().add(botonSinPaq);
+		botonConPaq.setBounds(251, 427, 109, 23);
+		getContentPane().add(botonConPaq);
+		
+		botonSinPaq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				opcionPaq = "Sin Paquete";
+				
+			}
+		});
+		
+		comboPaquete = new JComboBox<String>();
+		comboPaquete.setBounds(261, 457, 180, 22);
+		getContentPane().add(comboPaquete);
+		
+		botonConPaq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				comboPaquete.setEnabled(true);
+				//comboPaquete.setSelectedItem("Opción 1");
+				//seleccionar en combobox el paquete
+				//opcionPaq = "Sin Paquete";
+				
+			}
+		});
+		
+		comboPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				opcionPaq = (String) comboPaquete.getSelectedItem();
+			}
+		});
+		
+        ////////////
+        
         
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
@@ -337,7 +388,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     		JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La remuneración debe ser un número positivo",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
                     	} else {
 	                		try {
-	                			boolean noexiste = icUsuario.altaOfertaLaboral(empresa,  ofertaLab,  nomb,  desc,  horario,  remu,  ciu,  departamento,  LocalDate.now(),  keywords,  EstadoOL.Ingresada,  null,  null);
+	                			boolean noexiste = icUsuario.altaOfertaLaboral(empresa,  ofertaLab,  nomb,  desc,  horario,  remu,  ciu,  departamento,  LocalDate.now(),  keywords,  EstadoOL.Ingresada,  null,  opcionPaq);
 	                			if (!noexiste) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Ya existe una oferta laboral con el nombre indicado.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
 	                			} else {
@@ -360,7 +411,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         	}
         });
         
-        btnAceptar.setBounds(335,  436,  89,  23);
+        btnAceptar.setBounds(342,  490,  89,  23);
         getContentPane().add(btnAceptar);
         
         JButton btnCerrar = new JButton("Cerrar");
@@ -369,16 +420,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
         		setVisible(false);
         	}
         });
-        btnCerrar.setBounds(434,  436,  89,  23);
+        btnCerrar.setBounds(433,  490,  89,  23);
         getContentPane().add(btnCerrar);
         
         nombre = new JTextField();
-        nombre.setBounds(205,  93,  318,  20);
+        nombre.setBounds(205,  90,  318,  20);
         getContentPane().add(nombre);
         nombre.setColumns(10);
         
         descripcion = new JTextArea();
-        descripcion.setBounds(205,  124,  317,  54);
+        descripcion.setBounds(205,  120,  317,  54);
         getContentPane().add(descripcion);
         
         listadoDepartamentos = new JComboBox<String>();
@@ -387,7 +438,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         		dep = (String) listadoDepartamentos.getSelectedItem();
         	}
         });
-        listadoDepartamentos.setBounds(140,  280,  191,  22);
+        listadoDepartamentos.setBounds(140,  275,  191,  22);
         getContentPane().add(listadoDepartamentos);
         
         listadoDepartamentos.addItem("Artigas");
@@ -412,12 +463,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
        
         ciudad = new JTextField();
-        ciudad.setBounds(414,  281,  109,  20);
+        ciudad.setBounds(414,  275,  109,  20);
         getContentPane().add(ciudad);
         ciudad.setColumns(10);
         
         remuneracion = new JTextField();
-        remuneracion.setBounds(140,  253,  382,  20);
+        remuneracion.setBounds(140,  245,  382,  20);
         getContentPane().add(remuneracion);
         remuneracion.setColumns(10);
         
@@ -427,7 +478,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
        
         
         fechaAlta1 = new JTextField();
-        fechaAlta1.setBounds(140,  309,  100,  20);
+        fechaAlta1.setBounds(140,  304,  100,  20);
         getContentPane().add(fechaAlta1);
         fechaAlta1.setColumns(10);
         
@@ -438,7 +489,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		fechaAlta1.setEditable(false);
 		
 		desdehora = new JSpinner(new SpinnerNumberModel(0,  0,  23,  1));
-		desdehora.setBounds(111,  212,  46,  20);
+		desdehora.setBounds(111,  205,  46,  20);
 		getContentPane().add(desdehora);
 	    JComponent editor = desdehora.getEditor();
 	        if (editor instanceof JSpinner.DefaultEditor) {
@@ -447,7 +498,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		
 		
 		desdemin = new JSpinner(new SpinnerNumberModel(0,  0,  59,  1));
-		desdemin.setBounds(194,  212,  46,  20);
+		desdemin.setBounds(194,  205,  46,  20);
 		getContentPane().add(desdemin);
 	     JComponent editor1 = desdemin.getEditor();
 	        if (editor1 instanceof JSpinner.DefaultEditor) {
@@ -455,7 +506,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	        }
 		
 		hastahora = new JSpinner(new SpinnerNumberModel(0,  0,  23,  1));
-		hastahora.setBounds(333,  212,  46,  20);
+		hastahora.setBounds(333,  205,  46,  20);
 		getContentPane().add(hastahora);
 	     JComponent editor2 = hastahora.getEditor();
 	        if (editor2 instanceof JSpinner.DefaultEditor) {
@@ -463,7 +514,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	        }
 		
 		hastamin = new JSpinner(new SpinnerNumberModel(0,  0,  59,  1));
-		hastamin.setBounds(420,  212,  46,  20);
+		hastamin.setBounds(420,  205,  46,  20);
 		getContentPane().add(hastamin);
 	     JComponent editor3 = hastamin.getEditor();
 	        if (editor3 instanceof JSpinner.DefaultEditor) {
@@ -471,20 +522,29 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	        }
 		
 		JLabel lblHora = new JLabel("Hora");
-		lblHora.setBounds(72,  214,  70,  15);
+		lblHora.setBounds(72,  205,  70,  15);
 		getContentPane().add(lblHora);
 		
 		JLabel lblHora_1 = new JLabel("Hora");
-		lblHora_1.setBounds(301,  215,  70,  15);
+		lblHora_1.setBounds(301,  205,  70,  15);
 		getContentPane().add(lblHora_1);
 		
 		JLabel lblMin = new JLabel("Min");
-		lblMin.setBounds(163,  214,  35,  15);
+		lblMin.setBounds(163,  205,  35,  15);
 		getContentPane().add(lblMin);
 		
 		JLabel lblMin_1 = new JLabel("Min");
-		lblMin_1.setBounds(389,  215,  35,  15);
+		lblMin_1.setBounds(389,  205,  35,  15);
 		getContentPane().add(lblMin_1);
+		
+		
+				
+
+		
+
+		
+		
+		
     }
     
     public void actualizar() {
@@ -530,7 +590,22 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		listadoOfertas.addItem("");
 		for (String elemento : tipoSorted) {
 			listadoOfertas.addItem(elemento);
+			
+		}	
+			
+		comboPaquete.removeAllItems();
+		comboPaquete.setEnabled(false);
+		Set<String> packs = icOferta.listarPaquetes();
+		List<String> packSorted = new ArrayList<>(packs);
+        Collections.sort(packSorted,  String.CASE_INSENSITIVE_ORDER);
+        comboPaquete.addItem("");
+		for (String elem : packSorted) {
+			comboPaquete.addItem(elem);
 		}
+			
+		
+		
+		
 	}
     
     private void limpiarFormulario() {

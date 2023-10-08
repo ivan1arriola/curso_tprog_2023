@@ -2,7 +2,6 @@ package main.java.Test;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -10,25 +9,17 @@ import org.junit.jupiter.api.Test;
 
 import main.java.logica.clases.Empresa;
 import main.java.logica.datatypes.DTEmpresa;
-import main.java.logica.datatypes.DTHora;
-import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTUsuario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.manejadores.UsuarioHandler;
-import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
 
-import java.util.List;
 import java.util.Set;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class ControladorUsuarioTest {
 
@@ -122,7 +113,9 @@ public class ControladorUsuarioTest {
 		        }
 		    }
 
-		    if (!found) {assertEquals("El test usu2 loop fallo",  true,  false);}
+		    if (!found) {
+		    	assertEquals("El test usu2 loop fallo",  true,  false);
+		    	}
 	 }
    }
 	
@@ -130,7 +123,7 @@ public class ControladorUsuarioTest {
   void altaEmpresaTest() throws ExceptionUsuarioNickYCorreoRepetidos {
 		    Fabrica f = Fabrica.getInstance();
 		    ICtrlUsuario ICU = f.getICtrlUsuario();
-		    ICtrlOferta ICO = f.getICtrlOferta();
+		    //ICtrlOferta ICO = f.getICtrlOferta();
 		    
 		    // imagen
 		    String str2 = "hello";

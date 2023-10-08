@@ -9,9 +9,11 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import main.java.logica.clases.Empresa;
+import main.java.logica.clases.InfoCompraOferta;
 import main.java.logica.clases.OfertaLaboral;
 import main.java.logica.clases.Postulacion;
 import main.java.logica.clases.Postulante;
+import main.java.logica.clases.TipoOferta;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
@@ -112,9 +114,48 @@ public class ControladorUsuarioTest4 {
 			}
 			
 			Set<String> nuevamente = ICO.listarOfertasLaboralesKeywords("Trabajo nocturno");
+			// esto es para crear una postulacion de verdad
+			String nick113 = "LeonardoVinchi";
+			ICO.altaPostulacion("analista",nick113,"CV","descripccion interesante", "wwww.Linkedin.com/usuario", LocalDate.of(2020, 12, 12));
 			
-			ICO.altaPostulacion("analista",nick,"CV asad","quiero DORMIR", LocalDate.of(2020, 12, 12))
-				
+			nuevamente =  ICO.listarPaquetes();
+			
+			nuevamente =  ICO.listarTipoDePublicaciones();
+			
+			Set<DTOfertaExtendido> nuevoOfertaEX = ICO.listarOfertasLaboralesConfirmadas();
+			
+			ICO.paqueteComprado("Paquete 1");
+			
+			DTOfertaExtendidoSinPConK nuevaExsinpconk = ICO.infoOfertaLaboralEmpresa("Google","analista");
+			
+			String str1 = "MeEncantaLaMOZARELLA11111";
+			byte[] img33 = str1.getBytes();
+			ICO.altaPaqueteOL("Paquete 2",  "un paquete bueno",   1,   LocalDate.now(),   10.0f,   img33);	
+
+			// los paquetes empiezan vacios,   se les va agregando tipos de oferta
+
+			ICO.agregarTipoOfertaPaq("Paquete 2",   "Oferta normal",  20);
+			ICO.agregarTipoOfertaPaq("Paquete 2",   "Oferta destacada",  12);
+			
+			ICO.listarOfertasLaboralesIngresadas("Google");
+			ICO.listarEmpresas();
+			ICO.listarPostulantes();
+//			
+			
+			DTOfertaExtendido EXTRA = ICO.obtenerOfertaLaboral("analista");
+			
+			DTOfertaExtendidoSinPConK extremo = ICO.infoOfertaLaboralPostulante("Arnold","analista");
+//			ICO.tipoOferta("Oferta normal"); 
+			
+			// esto indica se compro 
+			InfoCompraOferta ununuunu = new InfoCompraOferta("Oferta normal",3);
+			
+//			ICO.compraPaquetes("Google","Paquete 2");		    
+//			DTTipoOferta nuevaTIPOF = ICO.tipoOferta("Oferta normal");
+		
+
+			
+			
 		}	
 }
 
