@@ -34,11 +34,11 @@ public interface ICtrlOferta {
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
 		
-		public abstract boolean altaPostulacion(String nombre, String nick, String cv, String motivacion, String URLDocE, LocalDate fecha);
+		public abstract boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha);
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
 		
-		public abstract HashSet<String> listarOfertasLaboralesKeywords(String ks);
+		public abstract HashSet<String> listarOfertasLaboralesKeywords(String keywords);
 		
 		public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
 		
@@ -58,7 +58,7 @@ public interface ICtrlOferta {
 		
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
 		
-		public abstract void agregarTipoOfertaPaq(String paq, String TO, int cantidad);
+		public abstract void agregarTipoOfertaPaq(String paq, String TipoOferta, int cantidad);
 		
 		public abstract HashSet<String> listarPaquetes();
 		
