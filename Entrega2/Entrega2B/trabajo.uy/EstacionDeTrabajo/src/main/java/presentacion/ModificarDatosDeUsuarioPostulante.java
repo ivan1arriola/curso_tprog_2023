@@ -11,6 +11,7 @@ import main.java.logica.interfaces.ICtrlUsuario;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -53,9 +54,9 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	    private JLabel lblNewLabel3;
 	    private JTextField correoActual;
 	    private JLabel lblNewLabel4;
-	    private JTextField passNuevo;
+	    private JPasswordField passNuevo;
 	    private JTextField passActual;
-	    private JTextField confirmPassNuevo;
+	    private JPasswordField confirmPassNuevo;
 	    private JLabel lblNewLabel5;
 	    private JLabel lblNewLabel6;
 	    private JLabel lblNewLabel7;
@@ -140,7 +141,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		lblNewLabel4.setBounds(10,  186,  161,  14);
 		getContentPane().add(lblNewLabel4);
 		
-		passNuevo = new JTextField();
+		passNuevo = new JPasswordField();
 		passNuevo.setColumns(10);
 		passNuevo.setBounds(222,  186,  123,  20);
 		getContentPane().add(passNuevo);
@@ -151,7 +152,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 		passActual.setBounds(381,  184,  120,  20);
 		getContentPane().add(passActual);
 		
-		confirmPassNuevo = new JTextField();
+		confirmPassNuevo = new JPasswordField();
 		confirmPassNuevo.setColumns(10);
 		confirmPassNuevo.setBounds(222,  215,  123,  20);
 		getContentPane().add(confirmPassNuevo);

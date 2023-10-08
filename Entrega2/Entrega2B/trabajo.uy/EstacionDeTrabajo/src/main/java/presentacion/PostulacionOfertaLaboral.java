@@ -79,7 +79,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
             		            		
                     if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0) {
                         String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
-                        Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
+                        Set<String> ofertasEmpresa = icUsuario.listarOfertasLaboralesConfirmadas(selectedEmpresa);
 
                         comboBoxOfertas.removeAllItems(); // Limpiar el comboBoxOfertas
                      
@@ -99,13 +99,13 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
                     }
                 } catch (IllegalArgumentException ex) {
                     System.err.println("Error al obtener las ofertas laborales");
-                } catch (ExceptionEmpresaInvalida e) {
+                }/* catch (ExceptionEmpresaInvalida e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ExceptionUsuarioNoEncontrado e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				} */
                      
               }
       });
@@ -129,7 +129,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
             	
             	if (comboBoxOfertas.getSelectedIndex() != -1) {
             		String oferta = (String) comboBoxOfertas.getSelectedItem();
-             	    DTOfertaExtendido dtO = ico.obtenerOfertaLaboral(oferta);
+            		DTOfertaExtendido dtO = ico.obtenerOfertaLaboral(oferta);
+            		infoOferta.setText("");
              	    infoOferta.append(dtO.toString());
             	}
                 
@@ -160,7 +161,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         			ElegirPostulante eligePostu = new ElegirPostulante(emp, offer,  icUsuario, ico);
         			eligePostu.actualizar(emp,  offer);
         			getContentPane().add(eligePostu);
+        			setVisible(false);
         			eligePostu.setVisible(true);
+        			
         		}
         		
         		else {

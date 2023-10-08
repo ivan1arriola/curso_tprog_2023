@@ -160,6 +160,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 	transferirElemento(availableList,  selectedListModel,  availableListModel);
 	                String key = (String) availableList.getSelectedValue();
 	        		keywords.add(key);
+	        		System.out.println(keywords);
 	        	
                 }
             }
@@ -267,12 +268,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		botonConPaq.setBounds(251, 427, 109, 23);
 		getContentPane().add(botonConPaq);
 		
-		botonSinPaq.setSelected(true);
+		opcionPaq = null;
 		
 		botonSinPaq.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				comboPaquete.setEnabled(false);
-				opcionPaq = "Sin Paquete";
+				opcionPaq = null;
 				comboPaquete.setSelectedIndex(-1);
 			}
 		});
@@ -280,6 +281,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		comboPaquete = new JComboBox<String>();
 		comboPaquete.setBounds(261, 457, 180, 22);
 		getContentPane().add(comboPaquete);
+		comboPaquete.setSelectedIndex(-1);
+
 		
 		botonConPaq.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -378,6 +381,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 String nomb = nombre.getText();
                 String ciu = ciudad.getText();
                 String desc = descripcion.getText();
+                Float remu = Float.parseFloat(remuneracion.getText());
                 
                 if (nomb.isEmpty() || ciu.isEmpty() || desc.isEmpty() || remuneracion.getText().isEmpty()) {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "No pueden existir campos vacíos.",  "ERROR - Alta de Oferta",  JOptionPane.ERROR_MESSAGE);
@@ -385,38 +389,34 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "El nombre indicado se compone de carácteres que no son letras.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
                 } else if (!ciu.matches("^[\\p{L} ]+$")) {
                 	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La ciudad indicada se compone de carácteres que no son letras.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
-                } else {
+                } else  if (remu <= 0) {
+            		JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La remuneración debe ser un número positivo",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+            	} else if (!botonConPaq.isSelected() && !botonSinPaq.isSelected()) { 
+            		JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Debe seleccionar si la oferta corresponde a un paquete o no.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+
+            	}
+                
+                else {
                     
-                    try {
-                    	Float remu = Float.parseFloat(remuneracion.getText());
+                    try {                   	
                     	
-                    	List<String> keys = new ArrayList<>(); // Crea un Set vacío
-
-                    	// Recorre los elementos seleccionados en selectedList y agrégalos a mySet
-                    	int[] selectedIndices = selectedList.getSelectedIndices(); // Obtiene los índices de los elementos seleccionados
-
-                    	for (int selectedIndex : selectedIndices) {
-                    	    String selectedElement = selectedList.getSelectedValue(); // Obtiene el elemento seleccionado
-                    	    keys.add(selectedElement); // Agrega el elemento al Set
-                    	}
+                    	// System.out.println(keywords);
                     	
-                    	if (remu <= 0) {
-                    		JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La remuneración debe ser un número positivo",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
-                    	} else {
-	                		try {
-	                			boolean noexiste = icUsuario.altaOfertaLaboral(empresa,  ofertaLab,  nomb,  desc,  horario,  remu,  ciu,  departamento,  LocalDate.now(),  keys,  EstadoOL.Ingresada,  null,  opcionPaq);
+                    	try {
+                    		boolean noexiste = icUsuario.altaOfertaLaboral(empresa,  ofertaLab,  nomb,  desc,  horario,  remu,  ciu,  departamento,  LocalDate.now(),  keywords,  EstadoOL.Ingresada,  null,  opcionPaq);
 	                			if (!noexiste) {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Ya existe una oferta laboral con el nombre indicado.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
 	                			} else {
 	                				JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La oferta laboral se dio de alta exitosamente",  "Alta Oferta Laboral",  JOptionPane.INFORMATION_MESSAGE);
+	                				botonSinPaq.setSelected(false);
+	                		        botonConPaq.setSelected(false);
 	                				setVisible(false);
 	                				limpiarFormulario();
 	                			}
-	                		} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
+	                	} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
 	                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  e1.getMessage(),  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
-	                		}   
+	                	}   
 	                		
-                    }
                     } catch (NumberFormatException e1) {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La remuneración debe ser un número.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
                     }
@@ -637,7 +637,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
         hastamin.setValue(0);
         listadoEmpresas.setSelectedIndex(-1);
         listadoOfertas.setSelectedIndex(-1);
-        botonSinPaq.setSelected(true);
+        botonSinPaq.setSelected(false);
+        botonConPaq.setSelected(false);
         //fechaAlta1.setText("");
         //listadoKeywords.removeAllItems();
     }

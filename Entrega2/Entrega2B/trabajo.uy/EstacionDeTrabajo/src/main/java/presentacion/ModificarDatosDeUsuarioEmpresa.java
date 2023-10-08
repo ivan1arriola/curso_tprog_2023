@@ -11,6 +11,7 @@ import main.java.logica.interfaces.ICtrlUsuario;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -54,9 +55,9 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	    private JLabel lblNewLabel3;
 	    private JTextField correoActual;
 	    private JLabel lblNewLabel4;
-	    private JTextField passNuevo;
+	    private JPasswordField passNuevo;
 	    private JTextField passActual;
-	    private JTextField confirmPassNuevo;
+	    private JPasswordField confirmPassNuevo;
 	    private JLabel lblNewLabel5;
 	    private JLabel lblNewLabel6;
 	    private JLabel lblNewLabel7;
@@ -137,7 +138,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		lblNewLabel4.setBounds(10,  186,  97,  17);
 		getContentPane().add(lblNewLabel4);
 		
-		passNuevo = new JTextField();
+		passNuevo = new JPasswordField();
 		passNuevo.setColumns(10);
 		passNuevo.setBounds(179,  186,  123,  20);
 		getContentPane().add(passNuevo);
@@ -148,7 +149,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 		passActual.setBounds(343,  185,  120,  20);
 		getContentPane().add(passActual);
 		
-		confirmPassNuevo = new JTextField();
+		confirmPassNuevo = new JPasswordField();
 		confirmPassNuevo.setColumns(10);
 		confirmPassNuevo.setBounds(179,  215,  123,  20);
 		getContentPane().add(confirmPassNuevo);
@@ -228,18 +229,15 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
        		else if (!pass.equals(confirmPass)) {
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "El campo contraseña y confirmar contraseña no son iguales.",  "ERRROR - Modificar Datos de Usuario",  JOptionPane.ERROR_MESSAGE);
        		}
-       		else if (!nombre.matches("[a-zA-Z]+$")) {
+       		else if (!nombre.matches("[\\p{L} ]+$")) {
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "El nombre solo puede contener letras.",  "ERRROR - Modificar Datos de Usuario",  JOptionPane.ERROR_MESSAGE);
        		}
-       		else if (!apellido.matches("[a-zA-Z]+$")){
+       		else if (!apellido.matches("[\\p{L} ]+$")){
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "El apellido solo puede contener letras.",  "ERRROR - Modificar Datos de Usuario",  JOptionPane.ERROR_MESSAGE);
        		}
-       		else if (!correo.matches("[a-zA-Z]+$")){
+       		else if (!correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "No sigue el formato que debe tener correo,  por favor ingrese un correo valido.",  "ERRROR - Modificar Datos de Usuario",  JOptionPane.ERROR_MESSAGE);
        		} 
-       		else if (!descripcion.matches("[a-zA-Z]+$")){
-       			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this,  "La descripcion solo puede contener letras.",  "ERRROR - Modificar Datos de Usuario",  JOptionPane.ERROR_MESSAGE);
-       		}
        		
        		else {
            		if (!url.isEmpty()) {
