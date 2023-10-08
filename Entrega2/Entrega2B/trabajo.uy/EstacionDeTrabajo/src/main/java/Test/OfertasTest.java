@@ -194,7 +194,7 @@ public class OfertasTest {
 		boolean comprado = ICO.compraPaquetes("Empresario", "EjemploOferta");
 		
 		assertTrue(comprado, "Compra ok");
-		
+		 
 		}
 	
 	
