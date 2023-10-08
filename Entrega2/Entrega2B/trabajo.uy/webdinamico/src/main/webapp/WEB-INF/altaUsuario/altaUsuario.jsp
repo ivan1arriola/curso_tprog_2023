@@ -47,15 +47,12 @@
           <section>
             <h2 class="h4">Información Personal</h2>
             
-         	<% String alert = request.getParameter("alert"); %>
-			<% if (true) { %>
-			    <!-- Incluye la alerta de Bootstrap aquí -->
-			    <jsp:include page="/WEB-INF/templates/alert.jsp">
-			        <jsp:param name="alert" value="<%= alert %>" />
-			    </jsp:include>
-			<% } %>
-			
-			
+         <% String mensajeError = (String) request.getAttribute("alert");
+                   if (mensajeError != null && !mensajeError.isEmpty()) { %>
+                    <div class="alert alert-danger"><%= mensajeError %></div>
+        <% } %>
+
+
             <!-- Input de Nickname -->
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="nickname-input" name="nickname" placeholder=" " required value="<%= nickname != null ? nickname : "" %>"> 
@@ -224,9 +221,9 @@
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
     
     <script src="<%= request.getContextPath() %>/js/altaUsuario.js"></script>
     

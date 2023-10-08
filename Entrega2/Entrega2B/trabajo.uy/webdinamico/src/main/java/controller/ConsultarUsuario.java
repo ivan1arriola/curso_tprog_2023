@@ -37,13 +37,25 @@ public class ConsultarUsuario extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nickname = request.getParameter("u");
+        String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
 
         if (nickname != null && !nickname.isEmpty()) {
             try {
                 DTUsuario usuario = obtenerDatosUsuario(nickname);
+                if (usuario == null) {
+                    throw new Exception("No se encontraron datos de usuario.");
+                }
                 request.setAttribute("usuario", usuario);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/infoUsuario.jsp");
-                dispatcher.forward(request, response);
+
+                if (nickname.equals(nicknameUsuarioLogueado)) {
+                	request.setAttribute("editable", true);
+                } else {
+                	request.setAttribute("editable", false);
+                }
+                    
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/infoUsuario.jsp");
+                    dispatcher.forward(request, response);
+                
             } catch (Exception e) {
                 String mensajeError = "Ocurrió un error al obtener los datos del usuario: " + e.getMessage();
                 request.setAttribute("mensajeError", mensajeError);
@@ -51,10 +63,10 @@ public class ConsultarUsuario extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         } else {
-        	String mensajeError = "Ocurrió un error al obtener los datos del usuario: No se proporciono el usuario";
+            String mensajeError = "Ocurrió un error al obtener los datos del usuario: No se proporcionó el usuario";
             request.setAttribute("mensajeError", mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            dispatcher.forward(request, response);       
+            dispatcher.forward(request, response);
         }
     }
 

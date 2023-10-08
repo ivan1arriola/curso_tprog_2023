@@ -29,8 +29,6 @@ public class ListarOfertasLaborales extends HttpServlet {
     // Funcion para simular la logica
     private HashSet<DTOfertaExtendido> getOfertasLaborales() {
         HashSet<DTOfertaExtendido> ofertas = Fabrica.getInstance().getICtrlOferta().listarOfertasLaboralesConfirmadas();
-
-
         return ofertas;
     }
 
