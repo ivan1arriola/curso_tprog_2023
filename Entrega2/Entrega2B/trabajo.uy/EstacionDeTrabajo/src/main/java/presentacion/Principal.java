@@ -26,7 +26,7 @@ public class Principal {
     private AgregarTipodePublicacióndeOfertaLaboral AgregarTipoDePublicaciónDeOfertaLaboralAPaquetenternalFrame;
     private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales ConsultaDePaqueteDeTiposDePublicaciónDeOfertasLaboralesInternalFrame;
     private AltaDeKeywords AltaDeKeywordsInternalFrame;
-    private aceptarOferta aceptarOfertaInternalFrame;
+    private AceptarOferta aceptarOfertaInternalFrame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -138,7 +138,7 @@ public class Principal {
         AltaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(AltaDeOfertaLaboralInternalFrame);
         
-        aceptarOfertaInternalFrame = new aceptarOferta(ICO, ICU);
+        aceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
         aceptarOfertaInternalFrame.setSize(550,  350);
         aceptarOfertaInternalFrame.setLocation(89,  77);
         aceptarOfertaInternalFrame.setVisible(false);
@@ -299,7 +299,7 @@ public class Principal {
         		aceptarOfertaInternalFrame.setVisible(true);
         	}
         });
-        mnOfertaL.add(AceptarOffer);
+        mnOfertaL.add(aceptarOfertaInternalFrame);
         
         
         
