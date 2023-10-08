@@ -1,10 +1,9 @@
 package main.java.presentacion;
 
-import java.awt.EventQueue;
-import java.awt.Font;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
-import java.util.HashSet;
+
 import java.util.Set;
 import java.util.Iterator;
 import java.time.format.DateTimeFormatter;
@@ -20,12 +19,12 @@ import javax.swing.JComboBox;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
-import main.java.logica.clases.Usuario;
+
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.interfaces.ICtrlUsuario;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
-	private ICtrlUsuario ICU; 
+	private ICtrlUsuario icUsuario; 
 	private JTextField tfNombre;
 	private JTextField tfDescripcion;
 	private JTextField tfFechaDeAlta;
@@ -36,23 +35,23 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private JTextField tfCiudad;
 	private JComboBox<String> listaEmpresas;
 	private JComboBox<String> listaOfertasLaborales;
-	private String nombre_e;
+	private String nombreE;
 	private String selectedUsuario;
-	private VerPostulaciones VerPostulacionesJInternalFrame;
+	private VerPostulaciones verPostulacionesJInternalFrame;
 	private JTextArea tAKey;
 	private JTextField tfPaquete;
 	
 	/**
 	 * Create the application.
 	 */
-	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icUsuario) { 
-		ICU = icUsuario;
+	public ConsultaDeOfertaLaboral(JFrame gui,  ICtrlUsuario icu) { 
+		icUsuario = icu;
 		
-		VerPostulacionesJInternalFrame = new VerPostulaciones();
-        VerPostulacionesJInternalFrame.setSize(700,  300);
-        VerPostulacionesJInternalFrame.setLocation(38,  63);
-        VerPostulacionesJInternalFrame.setVisible(false);
-        gui.getContentPane().add(VerPostulacionesJInternalFrame);
+		verPostulacionesJInternalFrame = new VerPostulaciones();
+        verPostulacionesJInternalFrame.setSize(700,  300);
+        verPostulacionesJInternalFrame.setLocation(38,  63);
+        verPostulacionesJInternalFrame.setVisible(false);
+        gui.getContentPane().add(verPostulacionesJInternalFrame);
 		
 		initialize();
 	}
@@ -62,7 +61,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	 */
 	private void initialize() {
 		Fabrica fab = Fabrica.getInstance();
-		ICtrlUsuario ICU = fab.getICtrlUsuario();
+		ICtrlUsuario icUsuario = fab.getICtrlUsuario();
 		
         setResizable(true);
         setIconifiable(true);
@@ -103,7 +102,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		if (selectedUsuario1 != null) {
         			selectedUsuario = selectedUsuario1;
         		}
-        		DTOfertaExtendido infoConsOf = ICU.consultaOfertaLaboral(selectedUsuario);
+        		DTOfertaExtendido infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
         		tfNombre.setText(infoConsOf.getNombre());
         		tfDescripcion.setText(infoConsOf.getDescripcion());
         		
@@ -120,7 +119,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		
         		tfDepartamento.setText((infoConsOf.getDepartamento()).name());
         		
-        		tfCiudad.setText((infoConsOf.getCiudad()));
+        		tfCiudad.setText(infoConsOf.getCiudad());
         		String paq = infoConsOf.getPaquete();
         		
         		if (paq == null) {
@@ -130,7 +129,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         			tfPaquete.setText(paq);
         		}
         		
-        		Set<String> keywords = ICU.listarKeywords(selectedUsuario1);
+        		Set<String> keywords = icUsuario.listarKeywords(selectedUsuario1);
         		
                 Iterator<String> iterator = keywords.iterator();
                 while (iterator.hasNext()) {
@@ -149,9 +148,9 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         btnAceptar_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		listaOfertasLaborales.removeAllItems();
-        		nombre_e = (String) listaEmpresas.getSelectedItem();
+        		nombreE = (String) listaEmpresas.getSelectedItem();
         		try {
-                    Set<String> ofertas_laborales = ICU.listarOfertasLaborales(nombre_e);
+                    Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombreE);
                     Iterator<String> iterator = ofertas_laborales.iterator();
                     if (!ofertas_laborales.isEmpty()) {
                     	for (String it : ofertas_laborales) {
@@ -256,8 +255,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
         btnVerPostulaciones.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		VerPostulacionesJInternalFrame.actualizar(selectedUsuario);
-        		VerPostulacionesJInternalFrame.setVisible(true);
+        		verPostulacionesJInternalFrame.actualizar(selectedUsuario);
+        		verPostulacionesJInternalFrame.setVisible(true);
         		
         	}
         });
@@ -298,7 +297,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	
 	public void actualizar() {
 		listaEmpresas.removeAllItems();
-        Set<String> empresas = ICU.listarEmpresas();
+        Set<String> empresas = icUsuario.listarEmpresas();
         for (String elemento : empresas) {
         	listaEmpresas.addItem(elemento);
         }     				

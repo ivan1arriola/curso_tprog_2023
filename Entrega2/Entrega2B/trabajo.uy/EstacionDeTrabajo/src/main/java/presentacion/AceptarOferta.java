@@ -3,7 +3,6 @@ package main.java.presentacion;
 
 import java.util.ArrayList; 
 import java.util.Collections; 
-import java.util.HashSet; 
 import java.util.List; 
 import java.util.Set; 
 
@@ -18,16 +17,13 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants; 
 import javax.swing.SwingConstants; 
 import java.awt.event.ActionListener; 
-import java.time.LocalDate; 
-import java.util.HashSet; 
 import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout; 
 import java.awt.Insets; 
 import java.awt.event.ActionEvent; 
-import com.jgoodies.forms.factories.DefaultComponentFactory; 
-import main.java.logica.Fabrica; 
+
 import main.java.logica.datatypes.DTOfertaExtendido; 
-import main.java.logica.enumerados.DepUY; 
+
 import main.java.logica.interfaces.ICtrlOferta; 
 import main.java.logica.interfaces.ICtrlUsuario; 
 
