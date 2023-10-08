@@ -18,7 +18,7 @@ public class DTOfertaLaboral {
   private EstadoOL estado;
 	
 	
-public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes) {
+public DTOfertaLaboral(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estadoOL,  byte[] imagenBytes) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -77,7 +77,7 @@ public EstadoOL getestado() {
 public String toString() {
 
   return 	nombre + " - " + descripcion + "\n" + fechaDeAlta + "\n" + costo + " - " + remuneracion 
-        		+ " - " + horario + "\n" + departamento + "," + ciudad;
+        		+ " - " + horario + "\n" + departamento + ", " + ciudad;
 
 }
 }

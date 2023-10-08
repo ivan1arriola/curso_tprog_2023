@@ -41,7 +41,7 @@ public class AceptarOferta extends JInternalFrame {
 	private JTextArea ofertaDetalle; 
     
 	
-    public AceptarOferta(ICtrlOferta ICO, ICtrlUsuario ICU) {
+    public AceptarOferta(ICtrlOferta ICO,  ICtrlUsuario ICU) {
     	controlUsuario = ICU; 
     	controlOferta = ICO; 
     	setResizable(true); 
@@ -50,11 +50,11 @@ public class AceptarOferta extends JInternalFrame {
         setClosable(true); 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 
         setTitle("Aceptar o Rechazar Oferta"); 
-        setBounds(30,  30,  500,  285); 
+        setBounds(30,   30,   500,   285); 
         
         
         GridBagLayout gbl = new GridBagLayout(); 
-        gbl.columnWeights = new double[]{0.0,  1.0,  0.0,  0.0}; 
+        gbl.columnWeights = new double[]{0.0,   1.0,   0.0,   0.0}; 
         GridBagConstraints gbc = new GridBagConstraints(); 
       	getContentPane().setLayout(gbl); 
       	
@@ -77,12 +77,12 @@ public class AceptarOferta extends JInternalFrame {
 	                    
 	                    if (ofertasIngresadas.isEmpty()) {
 	
-	                        JOptionPane.showMessageDialog(AceptarOferta.this,  "No hay ofertas de esta empresa",  "Mensaje",  JOptionPane.INFORMATION_MESSAGE); 
+	                        JOptionPane.showMessageDialog(AceptarOferta.this,   "No hay ofertas de esta empresa",   "Mensaje",   JOptionPane.INFORMATION_MESSAGE); 
 	                    } 
 	                    else {
 	                    	
 	                    	List<String> ofertasSorted = new ArrayList<>(ofertasIngresadas); 
-		                    Collections.sort(ofertasSorted,  String.CASE_INSENSITIVE_ORDER); 
+		                    Collections.sort(ofertasSorted,   String.CASE_INSENSITIVE_ORDER); 
 		                    comboBoxOfertas.addItem(" "); 
 		                    for (String offer : ofertasSorted) {
 		                    	
@@ -104,29 +104,29 @@ public class AceptarOferta extends JInternalFrame {
     	lblEmpre.setHorizontalAlignment(SwingConstants.LEFT); 
     	GridBagConstraints gbc_lblEmpre = new GridBagConstraints(); 
     	gbc_lblEmpre.anchor = GridBagConstraints.WEST; 
-    	gbc_lblEmpre.insets = new Insets(0,  15,  5,  5); 
+    	gbc_lblEmpre.insets = new Insets(0,   15,   5,   5); 
     	gbc_lblEmpre.gridx = 0; 
     	gbc_lblEmpre.gridy = 0; 
-    	getContentPane().add(lblEmpre,  gbc_lblEmpre); 
+    	getContentPane().add(lblEmpre,   gbc_lblEmpre); 
     	
     	
     	GridBagConstraints gbc_cbEmpresa = new GridBagConstraints(); 
     	gbc_cbEmpresa.fill = GridBagConstraints.HORIZONTAL; 
     	gbc_cbEmpresa.gridwidth = 2; 
-    	gbc_cbEmpresa.insets = new Insets(0,  0,  10,  5); 
+    	gbc_cbEmpresa.insets = new Insets(0,   0,   10,   5); 
     	gbc_cbEmpresa.gridx = 1; 
     	gbc_cbEmpresa.gridy = 0; 
     	gbc_cbEmpresa.ipadx = 180; 
-    	getContentPane().add(comboBoxEmpresa,  gbc_cbEmpresa); 
+    	getContentPane().add(comboBoxEmpresa,   gbc_cbEmpresa); 
     	
     	
     	JLabel lblNewLabel = new JLabel("Oferta"); 
       	GridBagConstraints gbc_lblNewLabel = new GridBagConstraints(); 
       	gbc_lblNewLabel.anchor = GridBagConstraints.WEST; 
-      	gbc_lblNewLabel.insets = new Insets(0,  15,  5,  5); 
+      	gbc_lblNewLabel.insets = new Insets(0,   15,   5,   5); 
       	gbc_lblNewLabel.gridx = 0; 
       	gbc_lblNewLabel.gridy = 1; 
-      	getContentPane().add(lblNewLabel,  gbc_lblNewLabel); 
+      	getContentPane().add(lblNewLabel,   gbc_lblNewLabel); 
       	
       	//COMBOBOX OFERTA
       	comboBoxOfertas = new JComboBox<>(); 
@@ -137,20 +137,20 @@ public class AceptarOferta extends JInternalFrame {
       	GridBagConstraints gbc_cbOferta = new GridBagConstraints(); 
       	gbc_cbOferta.fill = GridBagConstraints.HORIZONTAL; 
       	gbc_cbOferta.gridwidth = 2; 
-      	gbc_cbOferta.insets = new Insets(0,  0,  10,  5); 
+      	gbc_cbOferta.insets = new Insets(0,   0,   10,   5); 
       	gbc_cbOferta.gridx = 1; 
       	gbc_cbOferta.gridy = 1; 
       	gbc_cbOferta.ipadx=180; 
-      	getContentPane().add(comboBoxOfertas,  gbc_cbOferta); 
+      	getContentPane().add(comboBoxOfertas,   gbc_cbOferta); 
       	
       	JLabel lblOfertaDetalle = new JLabel("Detalles de Oferta:"); 
       	GridBagConstraints gbc_lblOfDet = new GridBagConstraints(); 
       	gbc_lblOfDet.gridheight = 2; 
       	gbc_lblOfDet.anchor = GridBagConstraints.WEST; 
-      	gbc_lblOfDet.insets = new Insets(0,  15,  5,  5); 
+      	gbc_lblOfDet.insets = new Insets(0,   15,   5,   5); 
       	gbc_lblOfDet.gridx = 0; 
       	gbc_lblOfDet.gridy = 2; 
-      	getContentPane().add(lblOfertaDetalle,  gbc_lblOfDet); 
+      	getContentPane().add(lblOfertaDetalle,   gbc_lblOfDet); 
   	
       	
       	ofertaDetalle = new JTextArea(); 
@@ -160,7 +160,7 @@ public class AceptarOferta extends JInternalFrame {
         
       	
       	JScrollPane infoScrollPane = new JScrollPane(ofertaDetalle); 
-      	infoScrollPane.setBounds(150,  80,  300,  120); 
+      	infoScrollPane.setBounds(150,   80,   300,   120); 
         infoScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
         infoScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED); 
         
@@ -172,25 +172,25 @@ public class AceptarOferta extends JInternalFrame {
         gbc_infoScrollPane.fill = GridBagConstraints.HORIZONTAL; 
         gbc_infoScrollPane.ipadx = 200; 
         gbc_infoScrollPane.ipady = 50; 
-        gbc_infoScrollPane.insets = new Insets(5,  0,  5,  5); 
+        gbc_infoScrollPane.insets = new Insets(5,   0,   5,   5); 
         gbc_infoScrollPane.gridx = 1; 
         gbc_infoScrollPane.gridy = 2; 
-        getContentPane().add(infoScrollPane,  gbc_infoScrollPane); 
+        getContentPane().add(infoScrollPane,   gbc_infoScrollPane); 
         
         JButton Confirmar = new JButton("Confirmar"); 
         
         GridBagConstraints gbc_Confirmar = new GridBagConstraints(); 
-        gbc_Confirmar.insets = new Insets(5,  5,  0,  5); 
+        gbc_Confirmar.insets = new Insets(5,   5,   0,   5); 
         gbc_Confirmar.gridx = 2; 
         gbc_Confirmar.gridy = 6; 
-        getContentPane().add(Confirmar,  gbc_Confirmar); 
+        getContentPane().add(Confirmar,   gbc_Confirmar); 
         
         JButton Rechazar = new JButton("Rechazar"); 
         GridBagConstraints gbc_Rechazar = new GridBagConstraints(); 
-        gbc_Rechazar.insets = new Insets(5,  5,  0,  10); 
+        gbc_Rechazar.insets = new Insets(5,   5,   0,   10); 
         gbc_Rechazar.gridx = 3; 
         gbc_Rechazar.gridy = 6; 
-        getContentPane().add(Rechazar,  gbc_Rechazar); 
+        getContentPane().add(Rechazar,   gbc_Rechazar); 
         
         
         comboBoxOfertas.addActionListener(new ActionListener() {
@@ -226,7 +226,7 @@ public class AceptarOferta extends JInternalFrame {
 	               	}
         		
         		} catch (Exception ex) {
-        			JOptionPane.showMessageDialog(null,  "Error al rechazar" + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE); 
+        			JOptionPane.showMessageDialog(null,   "Error al rechazar" + ex.getMessage(),   "Error",   JOptionPane.ERROR_MESSAGE); 
         		}
         		limpiarFormulario(); 
         		dispose(); 
@@ -243,11 +243,11 @@ public class AceptarOferta extends JInternalFrame {
 	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
 	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem(); 
 	                    controlOferta.aceptoOL(selectedOferta); 
-	                    JOptionPane.showMessageDialog(null,  "Oferta confirmada",  "",  JOptionPane.INFORMATION_MESSAGE); 
+	                    JOptionPane.showMessageDialog(null,   "Oferta confirmada",   "",   JOptionPane.INFORMATION_MESSAGE); 
 	                    
 	        		}
         		} catch (Exception ex) {
-        			JOptionPane.showMessageDialog(null,  "Error al confirmar" + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE); 
+        			JOptionPane.showMessageDialog(null,   "Error al confirmar" + ex.getMessage(),   "Error",   JOptionPane.ERROR_MESSAGE); 
         		}
         		
         		
@@ -269,7 +269,7 @@ public class AceptarOferta extends JInternalFrame {
         //comboBoxOfertas.removeAllItems();  
         Set<String> empresas = controlUsuario.listarEmpresas(); 
         List<String> empresasSorted = new ArrayList<>(empresas); 
-        Collections.sort(empresasSorted,  String.CASE_INSENSITIVE_ORDER); 
+        Collections.sort(empresasSorted,   String.CASE_INSENSITIVE_ORDER); 
         comboBoxEmpresa.addItem(" "); 
         for (String nickname : empresasSorted) {
         	

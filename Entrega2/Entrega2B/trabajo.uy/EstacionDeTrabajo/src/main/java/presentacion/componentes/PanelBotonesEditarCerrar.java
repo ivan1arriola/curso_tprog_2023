@@ -23,12 +23,12 @@ import javax.swing.JPanel;
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (modoEdicion) {
-                      // Si estamos en modo edición, guardar cambios
+                      // Si estamos en modo edición,  guardar cambios
                       if (clasePadre != null) {
                         clasePadre.onGuardar();
                       }
                     } else {
-                      // Si no estamos en modo edición, cambiar a modo edición
+                      // Si no estamos en modo edición,  cambiar a modo edición
                       if (clasePadre != null) {
                         clasePadre.onEditar();
                       }
@@ -40,12 +40,12 @@ import javax.swing.JPanel;
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (modoEdicion) {
-                      // Si estamos en modo edición, descarta los cambios
+                      // Si estamos en modo edición,  descarta los cambios
                       if (clasePadre != null) {
                         clasePadre.onDescartar();
                       }
                     } else {
-                      // Si no estamos en modo edición, cierra
+                      // Si no estamos en modo edición,  cierra
                       if (clasePadre != null) {
                         clasePadre.onCerrar();
                       }
@@ -56,7 +56,7 @@ import javax.swing.JPanel;
             add(btnEditar);
             add(btnCerrar);
 
-            // Inicialmente, configurar el componente en modo no edición
+            // Inicialmente,  configurar el componente en modo no edición
             modoEdicion = false;
             actualizarBotones();
         }

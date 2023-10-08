@@ -9,11 +9,11 @@ import main.java.logica.clases.OfertaLaboral;
 
 public class OfertaLaboralHandler {
 	private static OfertaLaboralHandler OLHandler = null;
-	private Map<String, OfertaLaboral> OfertasLaborales;
+	private Map<String,  OfertaLaboral> OfertasLaborales;
 	
 	private OfertaLaboralHandler() { 
 		OfertasLaborales = new HashMap<>();
-	} //Constructor privado, inicializa colección de ofertas laborales
+	} //Constructor privado,  inicializa colección de ofertas laborales
 	
 	
 	public static OfertaLaboralHandler getInstance() {
@@ -24,10 +24,10 @@ public class OfertaLaboralHandler {
 	}
 	
 	public void agregar(OfertaLaboral tipoOfertaL) {
-		OfertasLaborales.put(tipoOfertaL.getNombre(), tipoOfertaL); 
+		OfertasLaborales.put(tipoOfertaL.getNombre(),  tipoOfertaL); 
 	}
 	
-    public Map<String, OfertaLaboral> obtener() {
+    public Map<String,  OfertaLaboral> obtener() {
     	return OfertasLaborales;
     }
 	

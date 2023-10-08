@@ -4,7 +4,7 @@ public class DTHorario {
 	private DTHora desde;
 	private DTHora hasta;
 	
-	public DTHorario(DTHora desde, DTHora hasta) {
+	public DTHorario(DTHora desde,  DTHora hasta) {
 		this.desde = desde;
 		this.hasta = hasta;
 	}

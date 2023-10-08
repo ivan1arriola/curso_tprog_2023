@@ -8,7 +8,7 @@ public class InfoCompraOferta {
 	private int cant_restante;
 	private Set<TipoOferta> tipoOfertas;
 	
-	public InfoCompraOferta(TipoOferta tipoOfer, int can_res) { 
+	public InfoCompraOferta(TipoOferta tipoOfer,  int can_res) { 
 		this.cant_restante = can_res;
 		tipoOfertas.add(tipoOfer);
 	} //Constructor

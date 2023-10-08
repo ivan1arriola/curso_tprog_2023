@@ -12,7 +12,7 @@ public class DTPaquete {
 	private Set<DTCantTO> tiposDePub;
 	private LocalDate fechaA;
 	
-	public DTPaquete(String nomb, float cost, float descuento, int valid, String desc, Set<DTCantTO> tdp, LocalDate fechaAlta) {
+	public DTPaquete(String nomb,  float cost,  float descuento,  int valid,  String desc,  Set<DTCantTO> tdp,  LocalDate fechaAlta) {
 		nombre = nomb;
 		costo = cost;
 		this.descuento = descuento;

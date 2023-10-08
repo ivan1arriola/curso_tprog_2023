@@ -8,7 +8,7 @@ public class DTUsuario {
     private String contrasenia;
     private byte[] imagen;
 
-    public DTUsuario(String nickname, String correoElectronico, String apellido, String nombre, String contrasenia, byte[] img) {
+    public DTUsuario(String nickname,  String correoElectronico,  String apellido,  String nombre,  String contrasenia,  byte[] img) {
         this.nickname = nickname;
         this.correoElectronico = correoElectronico;
         this.apellido = apellido; 

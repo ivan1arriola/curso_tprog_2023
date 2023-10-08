@@ -6,11 +6,11 @@ import main.java.logica.clases.Paquete;
 
 public class PaqueteHandler {
 	private static PaqueteHandler instancia = null;
-	private Map<String, Paquete> paq;
+	private Map<String,  Paquete> paq;
 	
 	
 	private PaqueteHandler() {
-		paq = new HashMap<String, Paquete>();
+		paq = new HashMap<String,  Paquete>();
 	} 
 	
 	public static PaqueteHandler getInstance() {
@@ -32,10 +32,10 @@ public class PaqueteHandler {
     }
 	
 	public void agregar(Paquete paquete) { 
-		paq.put(paquete.getNombre(), paquete); 
+		paq.put(paquete.getNombre(),  paquete); 
 	}
     
-    public Map<String, Paquete> obtener() {
+    public Map<String,  Paquete> obtener() {
     	return paq;
     }
     

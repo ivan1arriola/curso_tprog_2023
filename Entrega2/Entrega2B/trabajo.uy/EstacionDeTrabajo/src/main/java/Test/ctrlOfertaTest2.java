@@ -28,7 +28,7 @@ public class ctrlOfertaTest2 {
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 		
 		try {
-			boolean b = ICU.altaEmpresa("Apple Co.", "Steve", "Jobs", "stevejobs@hotmail.com", "Apple Co.", "Vendemos celulares caros pero buenos.");
+			boolean b = ICU.altaEmpresa("Apple Co.",  "Steve",  "Jobs",  "stevejobs@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
 				| ExceptionUsuarioNickRepetido e) {
 			// TODO Auto-generated catch block
@@ -37,12 +37,12 @@ public class ctrlOfertaTest2 {
 		
 
 		DTEmpresa datosEmpresa = (DTEmpresa) ICU.obtenerDatosUsuario("Apple Co.");           // Obtengo los datos
-		assertEquals(datosEmpresa.getNombre(), "Steve");
-		assertEquals(datosEmpresa.getApellido(), "Jobs");
-		assertEquals(datosEmpresa.getNickname(), "Apple Co.");
-		assertEquals("Vendemos celulares caros pero buenos.",datosEmpresa.getDescripcion()); // La descripción asociada es correcta.
-		assertEquals(datosEmpresa.getCorreo_electronico(), "stevejobs@hotmail.com");
-		assertEquals(datosEmpresa.getNombre(), "Apple Co.");
+		assertEquals(datosEmpresa.getNombre(),  "Steve");
+		assertEquals(datosEmpresa.getApellido(),  "Jobs");
+		assertEquals(datosEmpresa.getNickname(),  "Apple Co.");
+		assertEquals("Vendemos celulares caros pero buenos.", datosEmpresa.getDescripcion()); // La descripción asociada es correcta.
+		assertEquals(datosEmpresa.getCorreo_electronico(),  "stevejobs@hotmail.com");
+		assertEquals(datosEmpresa.getNombre(),  "Apple Co.");
 	}
 	@Test
 	void altaEmpresaURLTest() {
@@ -50,15 +50,15 @@ public class ctrlOfertaTest2 {
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 		boolean b = false;
 		try {
-			b = ICU.altaEmpresaURL("Samsung", "Lee", "Byung", "leebyung@hotmail.com", "Samsung", "Vendemos celulares a precio de competencia", "www.samsung.com");
+			b = ICU.altaEmpresaURL("Samsung",  "Lee",  "Byung",  "leebyung@hotmail.com",  "Samsung",  "Vendemos celulares a precio de competencia",  "www.samsung.com");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido e1) {
 			// no se realiza ninguna acción.
 		}
 		DTEmpresa datosEmpresa = (DTEmpresa) ICU.obtenerDatosUsuario("Samsung");
-		assertEquals(datosEmpresa.getUrl(),"www.samsung.com");
+		assertEquals(datosEmpresa.getUrl(), "www.samsung.com");
 		HashSet<String> usuarios = ICU.listarNicknamesUsuarios();
 		
-		assertEquals(true,usuarios.contains("Samsung"));        // Si "Apple Co." esta en la lista de usuarios.
+		assertEquals(true, usuarios.contains("Samsung"));        // Si "Apple Co." esta en la lista de usuarios.
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class ctrlOfertaTest2 {
 		
 		HashSet<String> keywords = ICO.listarKeywords();
 		
-		assertEquals(true, keywords.contains("Trabajo nocturno")); // Se dio de alta la keyword
+		assertEquals(true,  keywords.contains("Trabajo nocturno")); // Se dio de alta la keyword
 	}
 	
 	@Test
@@ -77,14 +77,14 @@ public class ctrlOfertaTest2 {
 		Fabrica f = Fabrica.getInstance();
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 
-		LocalDate fechaDeNacGauss = LocalDate.of(1777, 4, 30);
+		LocalDate fechaDeNacGauss = LocalDate.of(1777,  4,  30);
 		try {
-			boolean b = ICU.altaPostulante("gaussito",
-										   "Contrasena",
-										   "Frederich", 
-										   "Gauss", 
-										   "gauss@hotmail.com", 
-										   fechaDeNacGauss, 
+			boolean b = ICU.altaPostulante("gaussito", 
+										   "Contrasena", 
+										   "Frederich",  
+										   "Gauss",  
+										   "gauss@hotmail.com",  
+										   fechaDeNacGauss,  
 										   "Aleman");
 		
 			
@@ -103,7 +103,7 @@ public class ctrlOfertaTest2 {
 		
 		HashSet<String> postulantes = ICO.listarPostulantes();
 		
-		assertEquals(13, postulantes.size());
+		assertEquals(13,  postulantes.size());
 	}
 	
 	@Test
@@ -111,16 +111,16 @@ public class ctrlOfertaTest2 {
 		Fabrica f = Fabrica.getInstance();
 		ICtrlUsuario icu = f.getICtrlUsuario();
 		boolean b;
-		LocalDate fecha = LocalDate.of(1800,7,4);
+		LocalDate fecha = LocalDate.of(1800, 7, 4);
 		
 		
 		try {
-			b = icu.altaPostulante("Name", 
-									   "Contrasena",
-									   "mellamo", 
-									   "ape", 
-									   "mailcito@h.com", 
-									   fecha,
+			b = icu.altaPostulante("Name",  
+									   "Contrasena", 
+									   "mellamo",  
+									   "ape",  
+									   "mailcito@h.com",  
+									   fecha, 
 									   "Uruguayo");
 		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido
 				| ExceptionUsuarioCorreoRepetido e) {
@@ -130,7 +130,7 @@ public class ctrlOfertaTest2 {
 		
 		
 		
-		assertThrows( ExceptionUsuarioNickYCorreoRepetidos.class, () -> {icu.altaPostulante("Name", "Contrasena","mellamo", "ape", "mailcito@h.com", fecha, "Venezolano"); });
+		assertThrows( ExceptionUsuarioNickYCorreoRepetidos.class,  () -> {icu.altaPostulante("Name",  "Contrasena", "mellamo",  "ape",  "mailcito@h.com",  fecha,  "Venezolano"); });
 
 	}
 	
@@ -141,14 +141,14 @@ public class ctrlOfertaTest2 {
 
         // Agregar un usuario ficticio para probar la obtención de datos
         try {
-            ctrlUsuario.altaPostulante("nickU","contraSegura" ,"NombreU", "ApellidoU", "correoU@example.com", LocalDate.now(), "NacionalidadU");
+            ctrlUsuario.altaPostulante("nickU", "contraSegura" , "NombreU",  "ApellidoU",  "correoU@example.com",  LocalDate.now(),  "NacionalidadU");
         } catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido e) {
             // Manejo de excepciones
         }
 
         DTUsuario datosUsuario = ctrlUsuario.obtenerDatosUsuario("nickU");
         assertNotNull(datosUsuario);
-        assertEquals("NombreU", datosUsuario.getNombre());
+        assertEquals("NombreU",  datosUsuario.getNombre());
     }
 	
 	@Test
@@ -156,12 +156,12 @@ public class ctrlOfertaTest2 {
 		Fabrica f = Fabrica.getInstance();
 		ICtrlUsuario icu =f.getICtrlUsuario();
 		try {
-			boolean b = icu.altaEmpresa("Ezequiel", "Dan", "Ale", "soyoy@mail.com", "Empresarios","Los mejores");
+			boolean b = icu.altaEmpresa("Ezequiel",  "Dan",  "Ale",  "soyoy@mail.com",  "Empresarios", "Los mejores");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido e) {
 
 		}
 		try {
-			boolean b2 = icu.altaEmpresa("Otro", "Dan", "Ale", "nadie@mail.com", "Empresarios","Geniales");
+			boolean b2 = icu.altaEmpresa("Otro",  "Dan",  "Ale",  "nadie@mail.com",  "Empresarios", "Geniales");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido e) {
 
 		}
@@ -176,16 +176,16 @@ public class ctrlOfertaTest2 {
 		ICtrlUsuario ICU = f.getICtrlUsuario();
 	    
 		try {
-            assertTrue(ICU.altaPostulante("nick1","pass", "Juan", "Perez", "juan@example.com", LocalDate.of(1990, 5, 15), "Mexicana"));
-            assertTrue(ICU.altaPostulante("nick2","pass",  "Maria", "Lopez", "maria@example.com", LocalDate.of(1988, 9, 10), "Colombiana"));
-            assertTrue(ICU.altaPostulante("nick3", "pass", "Carlos", "Gomez", "carlos@example.com", LocalDate.of(1995, 2, 25), "Argentino"));
-            assertTrue(ICU.altaPostulante("nick4","pass",  "Laura", "Ramirez", "laura@example.com", LocalDate.of(1992, 7, 8), "Chilena"));
-            assertTrue(ICU.altaPostulante("nick5","pass",  "Andres", "Torres", "andres@example.com", LocalDate.of(1987, 11, 3), "Peruano"));
-            assertTrue(ICU.altaPostulante("nick6","pass",  "Sofia", "Martinez", "sofia@example.com", LocalDate.of(1998, 4, 20), "Ecuatoriana"));
-            assertTrue(ICU.altaPostulante("nick7","pass",  "Gabriel", "Rios", "gabriel@example.com", LocalDate.of(1993, 10, 1), "Uruguaya"));
-            assertTrue(ICU.altaPostulante("nick8","pass",  "Ana", "Silva", "ana@example.com", LocalDate.of(1991, 12, 12), "Paraguaya"));
-            assertTrue(ICU.altaPostulante("nick9","pass",  "Miguel", "Fernandez", "miguel@example.com", LocalDate.of(1989, 6, 30), "Boliviana"));
-            assertTrue(ICU.altaPostulante("nick10","pass",  "Carmen", "Gutierrez", "carmen@example.com", LocalDate.of(1997, 3, 5), "Venezolana"));
+            assertTrue(ICU.altaPostulante("nick1", "pass",  "Juan",  "Perez",  "juan@example.com",  LocalDate.of(1990,  5,  15),  "Mexicana"));
+            assertTrue(ICU.altaPostulante("nick2", "pass",   "Maria",  "Lopez",  "maria@example.com",  LocalDate.of(1988,  9,  10),  "Colombiana"));
+            assertTrue(ICU.altaPostulante("nick3",  "pass",  "Carlos",  "Gomez",  "carlos@example.com",  LocalDate.of(1995,  2,  25),  "Argentino"));
+            assertTrue(ICU.altaPostulante("nick4", "pass",   "Laura",  "Ramirez",  "laura@example.com",  LocalDate.of(1992,  7,  8),  "Chilena"));
+            assertTrue(ICU.altaPostulante("nick5", "pass",   "Andres",  "Torres",  "andres@example.com",  LocalDate.of(1987,  11,  3),  "Peruano"));
+            assertTrue(ICU.altaPostulante("nick6", "pass",   "Sofia",  "Martinez",  "sofia@example.com",  LocalDate.of(1998,  4,  20),  "Ecuatoriana"));
+            assertTrue(ICU.altaPostulante("nick7", "pass",   "Gabriel",  "Rios",  "gabriel@example.com",  LocalDate.of(1993,  10,  1),  "Uruguaya"));
+            assertTrue(ICU.altaPostulante("nick8", "pass",   "Ana",  "Silva",  "ana@example.com",  LocalDate.of(1991,  12,  12),  "Paraguaya"));
+            assertTrue(ICU.altaPostulante("nick9", "pass",   "Miguel",  "Fernandez",  "miguel@example.com",  LocalDate.of(1989,  6,  30),  "Boliviana"));
+            assertTrue(ICU.altaPostulante("nick10", "pass",   "Carmen",  "Gutierrez",  "carmen@example.com",  LocalDate.of(1997,  3,  5),  "Venezolana"));
             
         } catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido e) {
             
@@ -201,29 +201,29 @@ public class ctrlOfertaTest2 {
         assertTrue(nicknamesPostu.contains("nick10")); // Asegura que el nickname "nick10" esté en la lista
         String str = "MeEncantaPintar";
    	    byte[] img = str.getBytes();
-		 DTUsuario dtus = new DTUsuario("nick1", 
-				 						"Juan", 
-				 						"Perez", 
-				 						"juan@example.com", 
-				 						"contrasena", 
+		 DTUsuario dtus = new DTUsuario("nick1",  
+				 						"Juan",  
+				 						"Perez",  
+				 						"juan@example.com",  
+				 						"contrasena",  
 				 						img);
 		 dtus = ICU.obtenerDatosUsuario("nick1");
 
          assertNotNull(dtus); // Asegura que se haya obtenido un DTUsuario válido
-         assertEquals("nick1", dtus.getNickname());
-         assertEquals("Juan", dtus.getNombre());
-         assertEquals("Perez", dtus.getApellido());
-         assertEquals("juan@example.com", dtus.getCorreo_electronico());
+         assertEquals("nick1",  dtus.getNickname());
+         assertEquals("Juan",  dtus.getNombre());
+         assertEquals("Perez",  dtus.getApellido());
+         assertEquals("juan@example.com",  dtus.getCorreo_electronico());
 	}
          @Test
          void testAltaPostulante() {
      		Fabrica f = Fabrica.getInstance();
              ICtrlUsuario ctrlUsuario = f.getICtrlUsuario();
-             LocalDate fechaNac = LocalDate.of(1990, 1, 1);
+             LocalDate fechaNac = LocalDate.of(1990,  1,  1);
 
              // Verificar que se puede dar de alta un postulante correctamente
              assertDoesNotThrow(() -> {
-                 ctrlUsuario.altaPostulante("pepito","pass", "Nombre", "Apellido", "correo1@example.com", fechaNac, "Nacionalidad");
+                 ctrlUsuario.altaPostulante("pepito", "pass",  "Nombre",  "Apellido",  "correo1@example.com",  fechaNac,  "Nacionalidad");
              });
          }
      	
@@ -234,7 +234,7 @@ public class ctrlOfertaTest2 {
 
              // Agregar una empresa ficticia para probar la lista
              try {
-                 ctrlUsuario.altaEmpresa("nickE", "NombreE", "ApellidoE", "correoE@example.com", "EmpresaE", "DescripciónE");
+                 ctrlUsuario.altaEmpresa("nickE",  "NombreE",  "ApellidoE",  "correoE@example.com",  "EmpresaE",  "DescripciónE");
              } catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido e) {
                  // Manejo de excepciones
              }
@@ -252,12 +252,12 @@ public class ctrlOfertaTest2 {
      	Fabrica f = Fabrica.getInstance();
      	ICtrlUsuario CtrlUsuario = f.getICtrlUsuario();
              CtrlUsuario ctrlUsuario = new CtrlUsuario();
-             LocalDate fechaNac = LocalDate.of(1990, 1, 1);
+             LocalDate fechaNac = LocalDate.of(1990,  1,  1);
 
              // Alta de postulante exitoso
              boolean altaExitosa = false;
      		try {
-     			altaExitosa = ctrlUsuario.altaPostulante("nick123","pass", "Juan", "Perez", "ajuan@example.com", fechaNac, "Argentina");
+     			altaExitosa = ctrlUsuario.altaPostulante("nick123", "pass",  "Juan",  "Perez",  "ajuan@example.com",  fechaNac,  "Argentina");
      		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido e) {
      			// TODO Auto-generated catch block
      			e.printStackTrace();
@@ -269,7 +269,7 @@ public class ctrlOfertaTest2 {
              // Alta exitosa de empresa
              boolean altaEmpresaExitoso = false;
      		try {
-     			altaEmpresaExitoso = ctrlUsuario.altaEmpresa("nick789", "Empresa2", "Apellido2", "empresa@example.com", "EmpresaE", "DescripciónE");
+     			altaEmpresaExitoso = ctrlUsuario.altaEmpresa("nick789",  "Empresa2",  "Apellido2",  "empresa@example.com",  "EmpresaE",  "DescripciónE");
      		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido
      				| ExceptionUsuarioCorreoRepetido e) {
      			// TODO Auto-generated catch block
@@ -284,10 +284,10 @@ public class ctrlOfertaTest2 {
              // Obtener datos de un usuario para verificar que los datos sean correctos
              DTUsuario datosUsuario = ctrlUsuario.obtenerDatosUsuario("nick123");
              assertNotNull(datosUsuario);
-             assertEquals("Juan", datosUsuario.getNombre());
+             assertEquals("Juan",  datosUsuario.getNombre());
 
              // Verificar que no existe postulación en un usuario
-             assertFalse(ctrlUsuario.existePostulacion("nick123", "Oferta1"));
+             assertFalse(ctrlUsuario.existePostulacion("nick123",  "Oferta1"));
 
          }
          

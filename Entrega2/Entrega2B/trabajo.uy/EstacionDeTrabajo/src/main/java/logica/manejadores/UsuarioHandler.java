@@ -9,8 +9,8 @@ import main.java.logica.clases.Usuario;
 
 public class UsuarioHandler {
 
-    private Map<String, Usuario> nickUsuariosMap;
-    private Map<String, Usuario> correoUsuariosMap;
+    private Map<String,  Usuario> nickUsuariosMap;
+    private Map<String,  Usuario> correoUsuariosMap;
 
     private static UsuarioHandler instancia;
 
@@ -23,8 +23,8 @@ public class UsuarioHandler {
     }
     
     public void agregar(Usuario usuario) {
-        nickUsuariosMap.put(usuario.getNickname(), usuario);
-        correoUsuariosMap.put(usuario.getcorreoElectronico(), usuario);
+        nickUsuariosMap.put(usuario.getNickname(),  usuario);
+        correoUsuariosMap.put(usuario.getcorreoElectronico(),  usuario);
     }
     
     public Usuario buscarNick(String nombre) {
@@ -39,8 +39,8 @@ public class UsuarioHandler {
     }
     
     private UsuarioHandler() {
-    	nickUsuariosMap = new HashMap<String, Usuario>();
-        correoUsuariosMap = new HashMap<String, Usuario>();
+    	nickUsuariosMap = new HashMap<String,  Usuario>();
+        correoUsuariosMap = new HashMap<String,  Usuario>();
     }
     
     public static UsuarioHandler getInstance() {
@@ -50,11 +50,11 @@ public class UsuarioHandler {
         return instancia;
     }
 
-    public Map<String, Usuario> obtenerNick() {
+    public Map<String,  Usuario> obtenerNick() {
         return nickUsuariosMap;
     }
     
-    public Map<String, Usuario> obtenerCorreo() {
+    public Map<String,  Usuario> obtenerCorreo() {
         return correoUsuariosMap;
     }
 }

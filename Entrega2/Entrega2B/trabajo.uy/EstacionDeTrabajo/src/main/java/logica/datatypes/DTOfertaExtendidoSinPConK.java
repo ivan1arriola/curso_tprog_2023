@@ -20,8 +20,8 @@ public class DTOfertaExtendidoSinPConK  {
 	private byte[] imagen;
 	private Set<String> keywords;
 	
-	public DTOfertaExtendidoSinPConK(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estado, byte[] img, Set<String> keys) {
-		// no es subclase de DTOfertaExtendido, es una version sin postulaciones
+	public DTOfertaExtendidoSinPConK(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estado,  byte[] img,  Set<String> keys) {
+		// no es subclase de DTOfertaExtendido,  es una version sin postulaciones
 		nombre = nomb;
 		descripcion = desc;
 		fechaAlta = fechaA;

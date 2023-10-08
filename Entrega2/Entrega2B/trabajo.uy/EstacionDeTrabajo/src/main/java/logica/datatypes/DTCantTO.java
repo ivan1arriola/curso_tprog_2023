@@ -4,7 +4,7 @@ public class DTCantTO {
 	private String nombre;
 	private int cantidad;
 	 
-	public DTCantTO(String nombre, int cantidad) {
+	public DTCantTO(String nombre,  int cantidad) {
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 	}

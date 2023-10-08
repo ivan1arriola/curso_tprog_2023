@@ -12,9 +12,9 @@ public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
 	private Set<String> postulaciones;
 	private Paquete paq;
 
-public DTOfertaExtendidoConKeywordsTit(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario,
-       DepUY dep, String ciu, EstadoOL estado, byte[] img, Set<String> keys, Paquete paq, Set<String> postulaciones) {
-  super(nomb, desc, fechaA, cost, remu, horario, dep, ciu, estado, img, keys);
+public DTOfertaExtendidoConKeywordsTit(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario, 
+       DepUY dep,  String ciu,  EstadoOL estado,  byte[] img,  Set<String> keys,  Paquete paq,  Set<String> postulaciones) {
+  super(nomb,  desc,  fechaA,  cost,  remu,  horario,  dep,  ciu,  estado,  img,  keys);
   this.postulaciones = postulaciones;
   this.paq = paq;
 }

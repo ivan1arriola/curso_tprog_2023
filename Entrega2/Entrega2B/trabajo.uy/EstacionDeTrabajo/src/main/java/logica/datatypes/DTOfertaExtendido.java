@@ -23,7 +23,7 @@ public class DTOfertaExtendido {
   private String paq;
 	
 	
-public DTOfertaExtendido(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete) {
+public DTOfertaExtendido(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  byte[] img,  String paquete) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -93,7 +93,7 @@ public String toString() {
 		  		+ (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n" 
 		  		+ "Horario de Entrada: " + horario.getDesde() + "\n" 
 		  		+ "Horario de Salida: " + horario.getHasta() + "\n" + ciudad
-		  		+ ", " + departamento + "\n"  + "Estado: " + estado;
+		  		+ ",  " + departamento + "\n"  + "Estado: " + estado;
 
   return texto;
 }

@@ -38,25 +38,25 @@ import main.java.logica.manejadores.UsuarioHandler;
 
 public class CtrlUsuario implements ICtrlUsuario {
 	// empresa con URL y sin imagen	
-	public boolean altaEmpresaURL(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  String URL) throws ExceptionUsuarioCorreoRepetido,  ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido {
+	public boolean altaEmpresaURL(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   String URL) throws ExceptionUsuarioCorreoRepetido,   ExceptionUsuarioNickYCorreoRepetidos,   ExceptionUsuarioNickRepetido {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existeNick = UsuarioH.existeNick(nick);
 		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(existeNick && existeCorreo) {
+		if (existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(existeNick) {
+			if (existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(existeCorreo) {
+			else if (existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
 		if (!existeNick && !existeCorreo) {
-			Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  desc,  URL);
+			Empresa empresa = new Empresa(nick,   nombre,   apellido,   mail,   contraseña,   desc,   URL);
 			UsuarioH.agregar(empresa);
 		}
 		
@@ -64,50 +64,50 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	// empresa sin URL ni imagen
-	public boolean altaEmpresa(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc) throws ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido,  ExceptionUsuarioCorreoRepetido {
+	public boolean altaEmpresa(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc) throws ExceptionUsuarioNickYCorreoRepetidos,   ExceptionUsuarioNickRepetido,   ExceptionUsuarioCorreoRepetido {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existeNick = UsuarioH.existeNick(nick);
 		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(existeNick && existeCorreo) {
+		if (existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(existeNick) {
+			if (existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(existeCorreo) {
+			else if (existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
 		if (!existeNick && !existeCorreo) {
-			Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  desc);
+			Empresa empresa = new Empresa(nick,   nombre,   apellido,   mail,   contraseña,   desc);
 			UsuarioH.agregar(empresa);
 		}
 		
 		return !existeNick && !existeCorreo;
 	}
 
-	public boolean altaPostulante(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  LocalDate fecha_nac,  String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido,  ExceptionUsuarioCorreoRepetido {
+	public boolean altaPostulante(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   LocalDate fecha_nac,   String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos,   ExceptionUsuarioNickRepetido,   ExceptionUsuarioCorreoRepetido {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existeNick = UsuarioH.existeNick(nick);
 		boolean existeCorreo = UsuarioH.existeCorreo(mail);
 
-		if(existeNick && existeCorreo) {
+		if (existeNick && existeCorreo) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
 		else {
-			if(existeNick) {
+			if (existeNick) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
 			}
-			else if(existeCorreo) {
+			else if (existeCorreo) {
 				throw new ExceptionUsuarioCorreoRepetido("Existe un usuario con el correo electrónico indicado.");
 			}
 		}
 		
 		if (!existeNick && !existeCorreo) {
-			Postulante postulante = new Postulante(nick,  contraseña,  nombre,  apellido,  mail,  fecha_nac,  nacionalidad);
+			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fecha_nac,   nacionalidad);
 			UsuarioH.agregar(postulante);
 		}
 		
@@ -117,11 +117,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 	public Set<String> listarEmpresas(){
 		Set<String> res = new HashSet<>();
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
-		for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
+		Map<String,  Usuario> usuarios = UsuarioH.obtenerNick();
+		for (Map.Entry<String,   Usuario> entry : usuarios.entrySet()) {
 			Usuario user = entry.getValue();
 			boolean esEmp = user.esEmpresa();
-			if(esEmp) {
+			if (esEmp) {
 				res.add(user.getNickname());
 			}
 		}
@@ -142,18 +142,18 @@ public class CtrlUsuario implements ICtrlUsuario {
 	public Set<String> listarNicknamesUsuarios(){
 		Set<String> res = new HashSet<>();
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Map<String,  Usuario> usuarios = UsuarioH.obtenerNick(); 
-		for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
+		Map<String,   Usuario> usuarios = UsuarioH.obtenerNick(); 
+		for (Map.Entry<String,   Usuario> entry : usuarios.entrySet()) {
 			// Usuario u = entry.getValue(); NO SE USA (CHECKSTYLE)
 			res.add(entry.getKey()); 
 		}
 		return res;
 	}
 
-	public boolean existePostulacion(String nickname,  String nombre) {
+	public boolean existePostulacion(String nickname,   String nombre) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
-		if(postulante != null) {
+		if (postulante != null) {
 			return postulante.existePostulacion(nombre);
 		}
 		else {
@@ -162,37 +162,37 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 	}
 
-	public Postulacion crearPostulacion(String nick,  String curriculumVitae,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab) {
+	public Postulacion crearPostulacion(String nick,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
 		if (postulante == null) { 
 			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
-		return postulante.crearPostulacion(curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OferLab);
+		return postulante.crearPostulacion(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
 	}
 
 	public Set<String> obtenerNicknamesPostulantes() {
 		Set<String> res = new HashSet<>();
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
-		for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
+		Map<String,  Usuario> usuarios = UsuarioH.obtenerNick();
+		for (Map.Entry<String,   Usuario> entry : usuarios.entrySet()) {
 			Usuario user = entry.getValue();
 			boolean esEmp = user.esEmpresa();
-			if(!esEmp) {
+			if (!esEmp) {
 				res.add(entry.getKey());
 			}
 		}
 		return res;
 	}
 
-	public void ingresarDatosEditados(String nickname,  String nombre,  String apellido) {
+	public void ingresarDatosEditados(String nickname,   String nombre,   String apellido) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Usuario user = UsuarioH.buscarNick(nickname);
 		user.setNombre(nombre);
 		user.setApellido(apellido);
 	}
 
-	public boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA, List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida{
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida{
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -200,30 +200,30 @@ public class CtrlUsuario implements ICtrlUsuario {
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		
-		Map<String, Keyword> keyw = KeywordH.obtener();
-		for (Map.Entry<String,  Keyword> entry : keyw.entrySet()) {
-			if(keys.contains(entry.getKey())) {
+		Map<String,  Keyword> keyw = KeywordH.obtener();
+		for (Map.Entry<String,   Keyword> entry : keyw.entrySet()) {
+			if (keys.contains(entry.getKey())) {
 				keywords.add(entry.getValue());
 			}
 		}
 		
-		if(UsuarioH.existeNick(nickname_e)) {
+		if (UsuarioH.existeNick(nickname_e)) {
 			Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 			
-			if(empresa != null) {
+			if (empresa != null) {
 				CtrlOferta CtrlOfer = new CtrlOferta();
 				boolean ofer = CtrlOfer .existeOferta(nombre);
-				if(!ofer) {
+				if (!ofer) {
 					PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 					Paquete paq;
-					if(paquete != null) {
+					if (paquete != null) {
 						paq = PaqueteH.buscar(paquete);
 					}
 					else { 
 						paq = null;
 					}
 					
-					OfertaLaboral oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo),  nombre,  descripcion,  horario,  remun,  ciu,  dep,  FechaA,  keywords,  estado,  img,  paq);
+					OfertaLaboral oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo),   nombre,   descripcion,   horario,   remun,   ciu,   dep,   FechaA,   keywords,   estado,   img,   paq);
 					OLH.agregar(oferL);
 				}
 				return !ofer;
@@ -263,7 +263,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return res;
 	}
 
-	public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname,  String nick) {
+	public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname,   String nick) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Usuario usuario = UsuarioH.buscarNick(nick);
 		if (nick.equals(UsuarioNickname)) {
@@ -271,7 +271,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 			return user;
 		}
 		else {
-			DTUsuario userEsp = usuario.obtenerDatosUsuarioEspecial(UsuarioNickname,  nick);
+			DTUsuario userEsp = usuario.obtenerDatosUsuarioEspecial(UsuarioNickname,   nick);
 			return userEsp;
 		}	
 	}
@@ -295,10 +295,10 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 
-	public DTPostulacion obtenerDatosPostulacionW(String postulante_nick,  String ofer) {
+	public DTPostulacion obtenerDatosPostulacionW(String postulante_nick,   String ofer) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
-		DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulante_nick,  ofer);
+		DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulante_nick,   ofer);
 		return datosPostu;
 	}
 
@@ -312,11 +312,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	// NO EXISTEN MAS
-	// public  boolean  iniciarSesionCorreo(String email,  String contrasenia); 
-	// public  boolean iniciarSesionNickname(String nickname,  String contrasenia); 
+	// public  boolean  iniciarSesionCorreo(String email,   String contrasenia); 
+	// public  boolean iniciarSesionNickname(String nickname,   String contrasenia); 
 
 
-	public boolean validarCredenciales(String identificador,  String contraseña) {
+	public boolean validarCredenciales(String identificador,   String contraseña) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Usuario user;
 		// Verificar si 'id' es un correo electrónico. Poner la er que sigue el correo
@@ -341,7 +341,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 
-	public void ingresarDatosEditadosPostulanteImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  LocalDate fecha_nac,  String nacionalidad) {
+	public void ingresarDatosEditadosPostulanteImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   byte[] imagen,   LocalDate fecha_nac,   String nacionalidad) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
@@ -353,7 +353,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		postulante.setNacionalidad(nacionalidad);
 	}
 
-	public void ingresarDatosEditadosPostulante(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  LocalDate fecha_nac,  String nacionalidad) {
+	public void ingresarDatosEditadosPostulante(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   LocalDate fecha_nac,   String nacionalidad) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
@@ -365,7 +365,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 
-	public void ingresarDatosEditadosEmpresaURL(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String URL,  String descripcion) {
+	public void ingresarDatosEditadosEmpresaURL(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String URL,   String descripcion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
@@ -377,7 +377,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		
 	}
 
-	public void ingresarDatosEditadosEmpresa(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String descripcion) {
+	public void ingresarDatosEditadosEmpresa(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String descripcion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
@@ -387,7 +387,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		empresa.setDescripcion(descripcion);
 	}
 
-	public void ingresarDatosEditadosEmpresaURLImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String URL,  byte[] imagen,  String descripcion) {
+	public void ingresarDatosEditadosEmpresaURLImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String URL,   byte[] imagen,   String descripcion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
@@ -399,7 +399,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		empresa.setDescripcion(descripcion);
 	}
 
-	public void ingresarDatosEditadosEmpresaImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  String descripcion) {
+	public void ingresarDatosEditadosEmpresaImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   byte[] imagen,   String descripcion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
@@ -417,7 +417,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return tiene;
 	}
 
-	public boolean hayPostulacionW(String postulante_nick,  String ofer) {
+	public boolean hayPostulacionW(String postulante_nick,   String ofer) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(postulante_nick);
 		boolean existe = postulante.existePostulacion(ofer);
@@ -425,11 +425,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	
-	public boolean altaEmpresaURLyImagen(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  String URL,  byte[] imagen) {
+	public boolean altaEmpresaURLyImagen(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   String URL,   byte[] imagen) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
-			Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  imagen,  desc,  URL); // falta agregarle el parametro img
+			Empresa empresa = new Empresa(nick,   nombre,   apellido,   mail,   contraseña,   imagen,   desc,   URL); // falta agregarle el parametro img
 			UsuarioH.agregar(empresa);
 			return true;
 		}
@@ -440,11 +440,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 	// alta postulante con imagen
-	public boolean altaPostulanteImagen(String nick,  String contraseña,  String nombre,  String apellido,  LocalDate fecha_nac,  String mail,  String nacionalidad,  byte[] imagen) { 
+	public boolean altaPostulanteImagen(String nick,   String contraseña,   String nombre,   String apellido,   LocalDate fecha_nac,   String mail,   String nacionalidad,   byte[] imagen) { 
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
-			Postulante postulante = new Postulante(nick,  contraseña,  nombre,  apellido,  mail,  fecha_nac,  nacionalidad,  imagen); // falta agregarle el parametro img
+			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fecha_nac,   nacionalidad,   imagen); // falta agregarle el parametro img
 			UsuarioH.agregar(postulante);
 			return true;
 		}
@@ -453,11 +453,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	// necesito otro constructor?
-	public boolean altaEmpresaImagen(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  byte[] imagen) {
+	public boolean altaEmpresaImagen(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   byte[] imagen) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
-			Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  imagen,  desc); //  agregarle el parametro img
+			Empresa empresa = new Empresa(nick,   nombre,   apellido,   mail,   contraseña,   imagen,   desc); //  agregarle el parametro img
 			UsuarioH.agregar(empresa);
 			return true;
 		}
@@ -467,11 +467,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 
-	public Set<String> listarPostulantesDeOfertas(String nickname_e,  String oferta) {
+	public Set<String> listarPostulantesDeOfertas(String nickname_e,   String oferta) {
 		Set<String> res = new HashSet<>();
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Map<String,  Usuario> usuarios = UsuarioH.obtenerNick();
-		for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
+		Map<String,   Usuario> usuarios = UsuarioH.obtenerNick();
+		for (Map.Entry<String,   Usuario> entry : usuarios.entrySet()) {
 			Usuario user = entry.getValue();
 			if (!(user.esEmpresa())) {
 				Postulante postulante = (Postulante) user;
@@ -492,10 +492,10 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return OLConfirmadas;
 	}
 
-	public boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion) {
+	public boolean modificarPostulacion(String nombre,   String nick,   String cvAbreviado,   String motivacion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante= (Postulante) UsuarioH.buscarNick(nick);
-		boolean edito = postulante.editarPostulacion(nombre,  cvAbreviado,  motivacion); // falta operacion
+		boolean edito = postulante.editarPostulacion(nombre,   cvAbreviado,   motivacion); // falta operacion
 		return edito;
 	}
 

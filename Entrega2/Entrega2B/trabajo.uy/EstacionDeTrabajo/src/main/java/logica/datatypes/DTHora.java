@@ -4,7 +4,7 @@ public class DTHora {
   private int hora;
   private int minutos;
 	
-public DTHora(int hora, int min) {
+public DTHora(int hora,  int min) {
  this.hora = hora;
  minutos = min;
 }
@@ -18,7 +18,7 @@ public int getMinutos() {
 } 
 	  
 public String toString() { 
-  return String.format("%02d:%02d", getHora(), getMinutos());
+  return String.format("%02d:%02d",  getHora(),  getMinutos());
 }
 }   
  

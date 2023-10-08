@@ -21,7 +21,7 @@ public class DTOfertaExtendidoConKeywords {
   private Set<String> keywords;
 	
 	
-public DTOfertaExtendidoConKeywords(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, Set<String> keys) {
+public DTOfertaExtendidoConKeywords(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  byte[] img,  Set<String> keys) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -92,7 +92,7 @@ public String toString() {
   String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n" + "Fecha de alta: " + fechaDeAlta 
 				     + "\n" + "Costo: " + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n" 
 				     + "Horario de Entrada: " + horario.getDesde() + "\n" + "Horario de Salida: " + horario.getHasta() 
-				     + "\n" + ciudad + ", " + departamento + "\n"  
+				     + "\n" + ciudad + ",  " + departamento + "\n"  
 				     + "Estado: " + estado;
 
   return texto;

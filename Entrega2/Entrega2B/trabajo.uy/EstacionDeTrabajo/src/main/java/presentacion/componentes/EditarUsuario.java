@@ -50,7 +50,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
     private JLabel lblNacionalidad;
 
     public EditarUsuario() {
-        setLayout(new GridLayout(9, 2));
+        setLayout(new GridLayout(9,  2));
         
         // Campos Usuario
 
@@ -156,7 +156,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
     }
     
     public void setEditable(boolean habilitar) {
-        // Habilitar o deshabilitar todos los campos, dependiendo del valor de "habilitar"
+        // Habilitar o deshabilitar todos los campos,  dependiendo del valor de "habilitar"
         nicknameField.setEditable(false);
         nombreField.setEditable(habilitar);
         apellidoField.setEditable(habilitar);
@@ -197,7 +197,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
 
             setVisibleCamposPostulante(true);
 
-            setLayout(new GridLayout(9, 2)); 
+            setLayout(new GridLayout(9,  2)); 
             
         } else if (usuario instanceof DTEmpresa) {
         	
@@ -215,7 +215,7 @@ public class EditarUsuario extends JPanel implements IFormulario {
 
             setVisibleCamposEmpresa(true);
 
-            setLayout(new GridLayout(9, 2));
+            setLayout(new GridLayout(9,  2));
         }
         
         setEditable(false);
@@ -237,13 +237,13 @@ public class EditarUsuario extends JPanel implements IFormulario {
             String descripcion = descripcionField.getText();
             String url = urlField.getText();
 
-            return new DTEmpresa(nickname, correo, apellido, nombre, nombreEmpresa, descripcion, url);
+            return new DTEmpresa(nickname,  correo,  apellido,  nombre,  nombreEmpresa,  descripcion,  url);
         } else {
             String fechaNacimientoStr = fechaNacimientoField.getText();
-            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr,  DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String nacionalidad = nacionalidadField.getText();
 
-           // return new DTPostulante(nickname, correo, apellido, nombre, fechaNacimiento, nacionalidad);
+           // return new DTPostulante(nickname,  correo,  apellido,  nombre,  fechaNacimiento,  nacionalidad);
         }
 		return null;
     }
