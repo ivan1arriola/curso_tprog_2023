@@ -1,14 +1,12 @@
 package main.java.presentacion;
 
 import javax.swing.JInternalFrame;
-
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Fabrica;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,16 +30,11 @@ import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
-
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
 
-/**
- * JInternalFrame que permite consultar la información de un usuario del sistema.
- * @author TProg2017
- *
- */
+
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
@@ -86,7 +79,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
         setBounds(10, 40, 533, 394);
         getContentPane().setLayout(null);
         
-        lblIngreseNombre = new JLabel("Modifique los datos del postulante: " + postulante.getNickname() );
+        lblIngreseNombre = new JLabel("Modifique los datos del postulante: " + postulante.getNickname());
         lblIngreseNombre.setBounds(30, 11, 418, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
@@ -243,7 +236,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
                 LocalDate parsearFecha = LocalDate.parse(fecha, dateFormatter); // valida la fecha
            
        		
-       		if(nombre.isEmpty() || apellido.isEmpty() ||  correo.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() ||  fecha.isEmpty() || nac.isEmpty() ) {
+       		if(nombre.isEmpty() || apellido.isEmpty() ||  correo.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() ||  fecha.isEmpty() || nac.isEmpty()) {
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "No puede haber campos vacíos.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
        		}
        		else if (!pass.equals(confirmPass)) {

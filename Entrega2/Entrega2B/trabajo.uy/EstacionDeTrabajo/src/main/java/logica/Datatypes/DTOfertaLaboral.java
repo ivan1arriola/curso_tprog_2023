@@ -1,7 +1,6 @@
 package main.java.logica.Datatypes;
 
 import java.time.LocalDate;
-
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 
@@ -69,11 +68,14 @@ public class DTOfertaLaboral {
 		return imagen;
 	}
 	
-	public EstadoOL getestado() { return estado;}
+	public EstadoOL getestado() { 
+		return estado;
+	}
 	
 	
     @Override
     public String toString() {
-        return 	nombre + " - " + descripcion + "\n" + fecha_de_alta + "\n" + costo + " - " + remuneracion + " - " + horario + "\n" + departamento +","+ciudad;
+        return 	nombre + " - " + descripcion + "\n" + fecha_de_alta + "\n" + costo + " - " + remuneracion 
+        		+ " - " + horario + "\n" + departamento +","+ciudad;
     }
 }

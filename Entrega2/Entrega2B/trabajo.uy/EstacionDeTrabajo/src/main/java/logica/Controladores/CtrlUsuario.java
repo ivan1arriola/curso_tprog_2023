@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
@@ -74,6 +73,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		if(b1 && b2) {
 			throw new ExceptionUsuarioNickYCorreoRepetidos("Existe un usuario con el nickname indicado y existe un usuario con el correo electrónico indicados.");
 		}
+		
 		else {
 			if(b1) {
 				throw new ExceptionUsuarioNickRepetido("Existe un usuario con el nickname indicado.");
@@ -266,7 +266,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Usuario u = UH.buscarNick(nick);
-		if ( nick.equals(UsuarioNickname) ) {
+		if (nick.equals(UsuarioNickname)) {
 			DTUsuario user = u.obtenerDatosUsuario();
 			return user;
 		}
@@ -423,7 +423,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	
 	public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, String URL, byte[] imagen) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
+		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail));
 		if (!existe) {
 			Empresa e = new Empresa(nick, nombre, ap, mail, contraseña, imagen, desc, URL); // falta agregarle el parametro img
 			UH.agregar(e);
@@ -437,7 +437,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	// alta postulante con imagen
 	public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fecha_nac, String mail, String nacionalidad, byte[] imagen) { 
 		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
+		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail));
 		if (!existe) {
 			Postulante p = new Postulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad, imagen); // falta agregarle el parametro img
 			UH.agregar(p);
@@ -449,7 +449,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	// necesito otro constructor?
 	public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String ap, String mail, String desc, byte[] imagen) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
-		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail) );
+		boolean existe = (UH.existeNick(nick) || UH.existeCorreo(mail));
 		if (!existe) {
 			Empresa e = new Empresa(nick, nombre, ap, mail, contraseña, imagen, desc); //  agregarle el parametro img
 			UH.agregar(e);
@@ -466,7 +466,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		HashMap<String, Usuario> usuarios = UH.obtenerNick();
 		for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
 			Usuario u = entry.getValue();
-			if ( !(u.esEmpresa()) ) {
+			if (!(u.esEmpresa())) {
 				Postulante p = (Postulante) u;
 				boolean esta = p.existePostulacion(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
 				if (esta) {

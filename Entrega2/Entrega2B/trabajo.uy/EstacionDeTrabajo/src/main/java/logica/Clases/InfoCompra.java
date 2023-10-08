@@ -2,10 +2,8 @@ package main.java.logica.Clases;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-
 import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Manejadores.TipoOfertaHandler;
-
 import main.java.logica.Datatypes.DTCompraPaquetes;
 
 
@@ -18,7 +16,7 @@ public class InfoCompra {
     private HashSet<InfoCompraOferta> infoCompraOfertas;
 
     // constructor
-    public InfoCompra (LocalDate fechaCompra, float costo, Paquete pack, Empresa empres,HashSet<DTCantTO> S) {
+    public InfoCompra(LocalDate fechaCompra, float costo, Paquete pack, Empresa empres,HashSet<DTCantTO> S) {
         // atributos
         this.fechaCompra = fechaCompra;
         this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez

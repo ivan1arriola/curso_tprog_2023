@@ -1,7 +1,6 @@
 package main.java.logica.Clases;
 
 import java.util.Set;
-
 import main.java.logica.Datatypes.DTUsuario;
 
 public abstract class Usuario {

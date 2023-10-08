@@ -7,11 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 
 public class AltaDeKeywords extends JInternalFrame {

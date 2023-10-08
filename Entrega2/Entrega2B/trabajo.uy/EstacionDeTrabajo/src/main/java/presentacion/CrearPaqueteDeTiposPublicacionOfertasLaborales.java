@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -22,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-
 import main.java.logica.Fabrica;
 import main.java.logica.Interfaces.ICtrlOferta;
 
@@ -166,7 +164,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         	        
         	        LocalDate fechaAlta = LocalDate.now();
         			        		        			
-    	            boolean res = ctrlOferta.altaPaqueteOL(nombrePaq, descripcionField, validez, fechaAlta ,descuentoPaq, null);
+    	            boolean res = ctrlOferta.altaPaqueteOL(nombrePaq, descripcionField, validez, fechaAlta, descuentoPaq, null);
     	            
     	            //System.out.print(res);
     	            if (res) {

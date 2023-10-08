@@ -1,17 +1,14 @@
 package main.java.presentacion.componentes;
 
 import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

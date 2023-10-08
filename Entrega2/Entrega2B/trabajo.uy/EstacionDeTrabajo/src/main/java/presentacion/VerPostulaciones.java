@@ -1,7 +1,6 @@
 package main.java.presentacion;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
@@ -15,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
-
 import main.java.logica.Fabrica;
 import main.java.logica.Clases.Usuario;
 import main.java.logica.Interfaces.ICtrlOferta;

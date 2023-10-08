@@ -9,10 +9,14 @@ public class KeywordHandler {
 	private HashMap<String, Keyword> keys;
 	
 	
-	private KeywordHandler() { keys = new HashMap<String, Keyword>(); } // obtener instancia con getInstance() 
+	private KeywordHandler() { 
+		keys = new HashMap<String, Keyword>(); 
+	} // obtener instancia con getInstance() 
 	
 	public static KeywordHandler getInstance() {
-		if (instancia == null) { instancia = new KeywordHandler(); } 
+		if (instancia == null) { 
+			instancia = new KeywordHandler();
+		} 
 		return instancia;
 	}
 	
@@ -27,5 +31,7 @@ public class KeywordHandler {
 		return keys.containsKey(key);
 	}
 
-	public HashMap<String, Keyword> obtener() { return keys; }
+	public HashMap<String, Keyword> obtener() {
+		return keys;
+	}
 }

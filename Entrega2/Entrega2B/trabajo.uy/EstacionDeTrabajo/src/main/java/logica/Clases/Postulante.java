@@ -4,7 +4,6 @@ import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Datatypes.DTPostulanteExtendido;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 
@@ -72,7 +71,7 @@ public class Postulante extends Usuario{
         return postul;
     }
 
-    public Postulacion crearPostulacion (String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+    public Postulacion crearPostulacion(String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
         Postulacion p = new Postulacion(this, cv, motivacion, fecha, URLDocExtras, OferLab);
         postulaciones.add(p);
         return p;
@@ -154,7 +153,7 @@ public class Postulante extends Usuario{
         HashSet<String> lista = new HashSet<String>();
         
         if(postulaciones!=null) {
-            for( Postulacion p : postulaciones){
+            for(Postulacion p : postulaciones){
                 lista.add(p.obtenerNombreOfertaLaboral());
             }
         }

@@ -1,7 +1,6 @@
 package main.java.logica.Clases;
 
 import java.time.LocalDate;
-
 import main.java.logica.Datatypes.DTTipoOferta;
 
 public class TipoOferta {

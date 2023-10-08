@@ -8,7 +8,6 @@ import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.Datatypes.DTPostulacion;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
-
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +48,7 @@ public class OfertaLaboral {
 		this.paqueteAsoc = paq;
 		
 		float costodadoPaq = tOferta.getCosto();
-		if ( this.paqueteAsoc != null ) {
+		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
 			this.costo = costodadoPaq - costodadoPaq*descuento;
 		} else {
@@ -73,7 +72,7 @@ public class OfertaLaboral {
 		this.imagen = imagennueva;
 		this.paqueteAsoc = null;	
 		float costodadoPaq = tOferta.getCosto();
-		if ( this.paqueteAsoc != null ) {
+		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
 			this.costo = costodadoPaq - costodadoPaq*descuento;
 		} else {
@@ -98,7 +97,7 @@ public class OfertaLaboral {
 		this.imagen = null;
 		
 		float costodadoPaq = tOferta.getCosto();
-		if ( this.paqueteAsoc != null ) {
+		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
 			this.costo = costodadoPaq - costodadoPaq*descuento;
 		} else {
@@ -124,7 +123,7 @@ public class OfertaLaboral {
 		this.imagen = null;
 	
 		float costodadoPaq = tOferta.getCosto();
-		if ( this.paqueteAsoc != null ) {
+		if (this.paqueteAsoc != null) {
 			float descuento = paqueteAsoc.getDescuento();
 			this.costo = costodadoPaq - costodadoPaq*descuento;
 		} else {
@@ -269,7 +268,7 @@ public class OfertaLaboral {
 		if(paq != null) {
 			paq_nomb = paq.getNombre();
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), getEstado() , posts, getImagen(), paq_nomb);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(), getDescripcion(), getFecha_de_alta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb);
 		return dtoe;
 	}
 	
@@ -288,7 +287,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado() , getImagen(), nuevo);
+		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getNombre(), getDescripcion(), getFecha_de_alta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo);
 		return dtoe;
 	}
 	

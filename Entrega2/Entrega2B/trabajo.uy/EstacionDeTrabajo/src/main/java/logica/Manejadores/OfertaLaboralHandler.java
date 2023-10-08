@@ -2,7 +2,6 @@ package main.java.logica.Manejadores;
 
 
 import java.util.HashMap;
-
 import main.java.logica.Clases.OfertaLaboral;
 
 
@@ -10,7 +9,9 @@ public class OfertaLaboralHandler {
 	private static OfertaLaboralHandler OLHandler = null;
 	private HashMap<String, OfertaLaboral> OfertasLaborales;
 	
-	private OfertaLaboralHandler() { OfertasLaborales = new HashMap<>(); } //Constructor privado, inicializa colección de ofertas laborales
+	private OfertaLaboralHandler() { 
+		OfertasLaborales = new HashMap<>();
+	} //Constructor privado, inicializa colección de ofertas laborales
 	
 	
 	public static OfertaLaboralHandler getInstance() {
@@ -35,6 +36,8 @@ public class OfertaLaboralHandler {
         return false;
     } 
 
-    public OfertaLaboral buscar(String nombre) { return OfertasLaborales.get(nombre); }
+    public OfertaLaboral buscar(String nombre) {
+    	return OfertasLaborales.get(nombre);
+    }
     
 }

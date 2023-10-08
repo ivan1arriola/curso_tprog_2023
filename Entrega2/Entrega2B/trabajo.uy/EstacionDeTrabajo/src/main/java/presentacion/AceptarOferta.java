@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -70,7 +67,7 @@ public class AceptarOferta extends JInternalFrame {
     			comboBoxOfertas.removeAllItems();
     			
     				try {
-	                if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0 ) {
+	                if (comboBoxEmpresa.getSelectedIndex() != -1 && comboBoxEmpresa.getSelectedIndex() != 0) {
 	                    String selectedEmpresa = (String) comboBoxEmpresa.getSelectedItem();
 	                    //Set<String> ofertasEmpresa = controlUsuario.listarOfertasLaborales(selectedEmpresa);
 	                    comboBoxOfertas.removeAllItems();
@@ -98,7 +95,8 @@ public class AceptarOferta extends JInternalFrame {
     				} catch (Exception exc) {System.err.println("Error al obtener las ofertas laborales");} 
 	                
 	                
-    		} });     
+    		}
+    	});     
     	
     	JLabel lblEmpre = new JLabel("Empresa");
     	lblEmpre.setHorizontalAlignment(SwingConstants.LEFT);
@@ -199,7 +197,7 @@ public class AceptarOferta extends JInternalFrame {
     			ofertaDetalle.setText("");
     			
 
-	                if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
+	                if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
 	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
 
 	                    DTOfertaExtendido dto = ICO.obtenerOfertaLaboral(selectedOferta);
@@ -210,7 +208,8 @@ public class AceptarOferta extends JInternalFrame {
 
 	                
 	                
-    		} });   
+    		}
+    	});   
         
         
         
@@ -219,7 +218,7 @@ public class AceptarOferta extends JInternalFrame {
         		
         		try {
         		
-	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
+	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
 	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
 	                    controlOferta.rechazoOL(selectedOferta);
 	               	}
@@ -239,7 +238,7 @@ public class AceptarOferta extends JInternalFrame {
         		
         		
         		try {
-	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0 ) {
+	        		if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
 	                    String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
 	                    controlOferta.aceptoOL(selectedOferta);
 	                    JOptionPane.showMessageDialog(null, "Oferta confirmada", "", JOptionPane.INFORMATION_MESSAGE);

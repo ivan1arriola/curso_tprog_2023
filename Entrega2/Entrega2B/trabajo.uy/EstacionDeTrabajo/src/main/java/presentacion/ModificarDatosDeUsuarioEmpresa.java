@@ -1,14 +1,12 @@
 package main.java.presentacion;
 
 import javax.swing.JInternalFrame;
-
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Fabrica;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,16 +30,11 @@ import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
-
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
 
-/**
- * JInternalFrame que permite consultar la información de un usuario del sistema.
- * @author TProg2017
- *
- */
+
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
@@ -83,7 +76,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
         setBounds(10, 40, 507, 423);
         getContentPane().setLayout(null);
         
-        lblIngreseNombre = new JLabel("Modifique los datos de la empresa: " + empresa.getNickname() );
+        lblIngreseNombre = new JLabel("Modifique los datos de la empresa: " + empresa.getNickname());
         lblIngreseNombre.setBounds(12, 12, 375, 34);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
@@ -228,7 +221,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
        		String url = ulrNuevo.getText();
 
        		
-       		if(nombre.isEmpty() || apellido.isEmpty() ||  correo.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() ||  descripcion.isEmpty() ) {
+       		if(nombre.isEmpty() || apellido.isEmpty() ||  correo.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() ||  descripcion.isEmpty()) {
        			JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this, "Todos los campos son obligatorios excepto la URL.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
        		}
        		else if (!pass.equals(confirmPass)) {
@@ -248,7 +241,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
        		}
        		
        		else {
-           		if (!url.isEmpty() ) {
+           		if (!url.isEmpty()) {
 	               	icu.ingresarDatosEditadosEmpresaURL(empresa.getNickname(), nombre, apellido, correo, pass, url, descripcion);
            		}
            		else { 

@@ -2,7 +2,6 @@ package main.java.logica.Datatypes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 
@@ -69,15 +68,21 @@ public class DTOfertaExtendido {
 		return ciudad;
 	}
 	
-	public EstadoOL getEstado() { return estado; }
+	public EstadoOL getEstado() {
+		return estado; 
+	}
 	
 	public HashSet<DTPostulacion> getPostulaciones() {
 		return postulaciones;
 	}
 	
-	public byte[] getImagen() { return imagen; }
+	public byte[] getImagen() {
+		return imagen;
+	}
 	
-	public String getPaquete() { return paq; }
+	public String getPaquete() {
+		return paq;
+	}
 	
 	@Override
 	public String toString() {

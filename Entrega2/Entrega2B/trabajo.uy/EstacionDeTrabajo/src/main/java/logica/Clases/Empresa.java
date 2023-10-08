@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
 import main.java.logica.Datatypes.DTUsuario;
@@ -73,7 +72,7 @@ public class Empresa extends Usuario {
         HashSet<String> lista = new HashSet<String>();
         
         if(ofertasLaborales.size() != 0) {
-	        for( OfertaLaboral ol : ofertasLaborales){
+	        for(OfertaLaboral ol : ofertasLaborales){
 	            lista.add(ol.getNombre());
 	        }
         }

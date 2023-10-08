@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-
 import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Postulacion;
 import main.java.logica.Clases.Paquete;
@@ -261,7 +260,7 @@ public class CtrlOferta implements ICtrlOferta{
 		HashSet<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		HashMap<String,OfertaLaboral> ofertasLaborales = OLH.obtener();
-		for (Map.Entry<String,OfertaLaboral>entry : ofertasLaborales.entrySet()) {
+		for (Map.Entry<String,OfertaLaboral> entry : ofertasLaborales.entrySet()) {
             res.add(entry.getValue().obtenerDatosOferta());
         }
 		return res;

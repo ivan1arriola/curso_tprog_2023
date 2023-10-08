@@ -1,16 +1,11 @@
 package main.java.presentacion;
 
 import java.awt.EventQueue;
-
-
-
 import main.java.logica.Fabrica;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
@@ -22,10 +21,7 @@ import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
 
 
-/**
- * @author TProg2017
- *
- */
+
 public interface ICtrlUsuario {
     
     public abstract boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
@@ -34,7 +30,7 @@ public interface ICtrlUsuario {
     
     public abstract boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
     
-    public abstract HashSet<String>listarEmpresas();
+    public abstract HashSet<String> listarEmpresas();
     
     public abstract DTOfertaExtendido consultaOfertaLaboral(String nombre);
     

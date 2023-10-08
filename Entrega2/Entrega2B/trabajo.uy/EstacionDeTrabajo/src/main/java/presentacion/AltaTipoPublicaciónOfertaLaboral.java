@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -21,7 +20,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 //import javax.swing.border.EmptyBorder;
-
 import main.java.logica.Fabrica;
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.presentacion.componentes.IAceptarCancelar;

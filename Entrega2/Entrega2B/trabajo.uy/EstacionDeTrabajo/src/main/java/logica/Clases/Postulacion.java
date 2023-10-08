@@ -1,8 +1,6 @@
 package main.java.logica.Clases;
 
 import java.time.LocalDate;
-
-
 import main.java.logica.Datatypes.DTPostulacion;
 
 

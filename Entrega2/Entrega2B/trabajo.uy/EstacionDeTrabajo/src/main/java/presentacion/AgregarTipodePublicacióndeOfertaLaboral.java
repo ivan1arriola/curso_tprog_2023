@@ -6,7 +6,6 @@ package main.java.presentacion;
 
 import java.util.HashSet;
 import java.util.Set;
-
 //import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -22,7 +21,6 @@ import javax.swing.JOptionPane;
 //import javax.swing.JList;
 import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 //import main.java.logica.Fabrica;
 import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Datatypes.DTPaquete;

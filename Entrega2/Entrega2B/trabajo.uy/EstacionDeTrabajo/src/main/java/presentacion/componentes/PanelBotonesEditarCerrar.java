@@ -2,7 +2,6 @@ package main.java.presentacion.componentes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -45,11 +44,12 @@ import javax.swing.JPanel;
                         if (clasePadre != null) {
                         	clasePadre.onDescartar();
                         }
-                    } else {
+                    } 
+                    else {
                         // Si no estamos en modo edición, cierra
-                        if (clasePadre != null) {
-                        	clasePadre.onCerrar();
-                        }
+                        	if (clasePadre != null) {
+                        		clasePadre.onCerrar();
+                        	}
                     }
                 }
             });

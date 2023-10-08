@@ -3,7 +3,6 @@ package main.java.logica.Interfaces;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTOfertaExtendido;

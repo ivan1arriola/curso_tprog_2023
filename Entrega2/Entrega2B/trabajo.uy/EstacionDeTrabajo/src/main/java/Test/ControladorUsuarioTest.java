@@ -3,13 +3,10 @@ package main.java.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
-
-
-
-
 import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Manejadores.UsuarioHandler;
@@ -20,7 +17,6 @@ import main.java.logica.Fabrica;
 import main.java.logica.Clases.Empresa;
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Datatypes.DTUsuario;
-
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
@@ -313,7 +309,8 @@ public class ControladorUsuarioTest {
 		for (String s : UsuariosSistema) {
 			if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon") && !s.equals("ASwatzenegger") && !s.equals("LeonardoVinchi")) {
 				assertEquals("El test usuarios en sistema fallo", false, true);
-			}}
+			}
+		}
 		
 		}
 

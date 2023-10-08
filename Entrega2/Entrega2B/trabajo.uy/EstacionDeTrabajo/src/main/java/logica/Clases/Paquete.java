@@ -2,11 +2,8 @@ package main.java.logica.Clases;
 
 import java.util.Iterator;
 import java.util.Set;
-
-
 import java.time.LocalDate;
 import java.util.HashSet;
-
 import main.java.logica.Datatypes.DTPaquete;
 import main.java.logica.Datatypes.DTCantTO;
 import main.java.logica.Manejadores.TipoOfertaHandler;
