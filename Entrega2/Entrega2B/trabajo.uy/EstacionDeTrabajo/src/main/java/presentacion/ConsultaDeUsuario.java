@@ -1,19 +1,42 @@
 package main.java.presentacion;
 //
 
-import main.java.logica.Interfaces.*;
+import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
+import main.java.logica.Datatypes.DTEmpresa;
+import main.java.logica.Datatypes.DTPostulante;
 //import main.java.logica.Clases.*;
-import main.java.logica.Datatypes.*;
-import javax.swing.*;
+import main.java.logica.Datatypes.DTUsuario;
+
+
 
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
-import java.awt.event.*;
+
 import java.awt.Font;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 
@@ -53,12 +76,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
     private JTextField postNacion;
   
     public ConsultaDeUsuario(JFrame base, ICtrlUsuario icu, ICtrlOferta ico) {
-
-    	//desktopPane = new JDesktopPane();
-        //getContentPane().add(desktopPane);
-    	/*Fabrica fabrica = Fabrica.getInstance();
-        icu = fabrica.getICtrlUsuario();
-        ico = fabrica.getICtrlOferta();*/
         
         controlUsr = icu;
         controlOfer = ico;
@@ -229,7 +246,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	
 	                	DTEmpresa empresa = (DTEmpresa) dtusr;
 	                	
-	                	if(empresa.getUrl()==null) {dire = "No tiene";} else {dire=empresa.getUrl();}
+	                	if(empresa.getUrl()==null) {dire = "No tiene";} 
+	                	else {dire=empresa.getUrl();}
 		                	Nacionalidad.setVisible(false);
 		                	PostuFecha.setVisible(false);
 		                	lblNacion.setVisible(false);
@@ -302,7 +320,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         btnVerOfertas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if( comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) {
-	        		String selectedUsuario = (String)comboBoxUsuarios.getSelectedItem();
+	        		String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
 	        		Set<String> offerDetails;
 					try {
 						offerDetails = controlUsr.listarOfertasLaborales(selectedUsuario);

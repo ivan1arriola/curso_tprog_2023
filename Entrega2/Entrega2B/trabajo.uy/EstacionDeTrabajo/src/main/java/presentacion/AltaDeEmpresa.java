@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import main.java.logica.Interfaces.*;
+import main.java.logica.Interfaces.ICtrlUsuario;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
@@ -258,8 +258,9 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        if (urlU.isEmpty()) {
 	        	return 1;
 	        }
-	        else
+	        else {
 	        	return 2;
+	        }
 	    }
 	
 	    // Permite borrar el contenido de un formulario antes de cerrarlo.

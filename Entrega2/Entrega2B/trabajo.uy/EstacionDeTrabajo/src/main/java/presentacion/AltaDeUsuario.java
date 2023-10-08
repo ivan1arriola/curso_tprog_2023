@@ -1,6 +1,5 @@
 package main.java.presentacion;
 
-import javax.swing.*;
 
 import main.java.logica.Fabrica;
 import main.java.logica.Interfaces.ICtrlUsuario;
@@ -10,7 +9,13 @@ import java.awt.GridBagLayout;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

@@ -1,8 +1,12 @@
 package main.java.logica.Controladores;
 
 import java.time.LocalDate;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
@@ -13,15 +17,25 @@ import main.java.logica.Clases.Empresa;
 import main.java.logica.Clases.Keyword;
 import main.java.logica.Clases.OfertaLaboral;
 import main.java.logica.Clases.Paquete;
+import main.java.logica.Clases.Postulacion;
 import main.java.logica.Clases.Postulante;
 // import main.java.logica.Clases.TipoOferta; NO SE USA (CHECKSTYLE)
 import main.java.logica.Clases.Usuario;
-import main.java.logica.Clases.Postulacion;
-import main.java.logica.Datatypes.*;
+import main.java.logica.Datatypes.DTHorario;
+import main.java.logica.Datatypes.DTOfertaExtendido;
+import main.java.logica.Datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.Datatypes.DTPaquete;
+import main.java.logica.Datatypes.DTPostulacion;
+import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Enumerados.DepUY;
 import main.java.logica.Enumerados.EstadoOL;
-import main.java.logica.Interfaces.*;
-import main.java.logica.Manejadores.*;
+import main.java.logica.Interfaces.ICtrlUsuario;
+import main.java.logica.Manejadores.KeywordHandler;
+import main.java.logica.Manejadores.OfertaLaboralHandler;
+import main.java.logica.Manejadores.PaqueteHandler;
+import main.java.logica.Manejadores.TipoOfertaHandler;
+import main.java.logica.Manejadores.UsuarioHandler;
+
 // import main.java.logica.Controladores.*; NO SE USA (CHECKSTYLE)
 
 public class CtrlUsuario implements ICtrlUsuario {
@@ -140,18 +154,20 @@ public class CtrlUsuario implements ICtrlUsuario {
 	public boolean existePostulacion(String nickname, String nombre) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Postulante p = (Postulante) UH.buscarNick(nickname);
-		if(p != null) 
+		if(p != null) {
 			return p.existePostulacion(nombre);
-		else
+		}
+		else {
 			// throw new IllegalArgumentException("Usuario " + nick + " no existe");
 			return false;
+		}
 	}
 
 	public Postulacion crearPostulacion(String nick, String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		
 		Postulante p = (Postulante) UH.buscarNick(nick);
-		if (p == null) throw new IllegalArgumentException("Usuario " + nick + " no existe");
+		if (p == null) { throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
 		return p.crearPostulacion(cv, motivacion, fecha, URLDocExtras, OferLab);
 	}
 
@@ -186,8 +202,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 		
 		HashMap<String,Keyword> k = KH.obtener();
 		for (Map.Entry<String, Keyword> entry : k.entrySet()) {
-			if(keys.contains(entry.getKey()))
+			if(keys.contains(entry.getKey())) {
 				keywords.add(entry.getValue());
+			}
 		}
 		
 		if(UH.existeNick(nickname_e)) {
@@ -202,9 +219,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 					if(paquete != null) {
 						paq = PH.buscar(paquete);
 					}
-					else
+					else { 
 						paq = null;
-						
+					}
 					
 					OfertaLaboral ol = e.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
 					OLH.agregar(ol);

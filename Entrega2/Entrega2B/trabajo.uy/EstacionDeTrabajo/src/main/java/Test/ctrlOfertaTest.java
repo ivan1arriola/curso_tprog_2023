@@ -8,8 +8,12 @@ import main.java.logica.Interfaces.ICtrlOferta;
 import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Datatypes.DTHorario;
 import main.java.logica.Datatypes.DTHora;
-import static org.junit.jupiter.api.Assertions.*;
+
 import main.java.excepciones.*;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -185,7 +189,7 @@ public class ctrlOfertaTest {
         // Agregar una oferta utilizando la función altaTipoPublicacionOL
         //boolean resultadoAlta = ctrlOferta.altaTipoPublicacionOL(nombreOferta, descripcion, exposicion, duracion, costo, fechaAlta);
         
-        boolean resultadoAlta = ctrlOferta.altaOfertaLaboral (empresaN, tipoO,nombreOferta,desc,horario,remun,ciu,depto,fechaAlta,keys);
+        boolean resultadoAlta = ctrlOferta.altaOfertaLaboral(empresaN, tipoO,nombreOferta,desc,horario,remun,ciu,depto,fechaAlta,keys);
         
                 
         

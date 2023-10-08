@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.time.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.BorderFactory;
@@ -224,9 +224,9 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame{
         			LocalDate fechaConvertida = LocalDate.parse(fechaTexto, formatter);
         			String nombre = nombreField.getText();
         	        String descripcion = descripcionTextArea.getText();
-        	        int expos = (int)exposicionSpinner.getValue();
-        	        int duracion = (int)duracionSpinner.getValue();
-        	        float costo = (float)costoSpinner.getValue();
+        	        int expos = (int) exposicionSpinner.getValue();
+        	        int duracion = (int) duracionSpinner.getValue();
+        	        float costo = (float) costoSpinner.getValue();
         	        
         		        			
     	            boolean res = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, expos, duracion, costo, fechaConvertida);

@@ -1,13 +1,14 @@
 package main.java.presentacion;
-import main.java.logica.Interfaces.*;
-import main.java.logica.Clases.*;
+import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.Interfaces.ICtrlUsuario;
+
 import main.java.logica.Datatypes.DTEmpresa;
 import main.java.logica.Datatypes.DTPostulante;
 import main.java.logica.Datatypes.DTUsuario;
 import main.java.logica.Datatypes.DTOfertaExtendido;
 
-import javax.swing.*;
-import java.awt.*;
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,6 +18,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 //import javax.swing.border.EmptyBorder;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class PostulacionOfertaLaboral extends JInternalFrame {

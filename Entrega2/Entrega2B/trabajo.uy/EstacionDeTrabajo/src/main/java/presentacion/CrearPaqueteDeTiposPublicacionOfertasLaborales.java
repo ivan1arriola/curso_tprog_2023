@@ -158,7 +158,7 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
         			       			
         			String nombrePaq = nombre.getText();
         	        String descripcionField = descripcion.getText();
-        	        int validez = (int)periodo.getValue();
+        	        int validez = (int) periodo.getValue();
         	        
         	        
         	        Double descuValue = (Double) descuento.getValue();

@@ -131,8 +131,9 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getEstado() == EstadoOL.Confirmada)
+            if(ol.getEstado() == EstadoOL.Confirmada) {
             	res.add(ol.getNombre());
+            }
         }
         return res;
     }
@@ -144,8 +145,9 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getEstado() == EstadoOL.Confirmada && ol.tieneKeyword(ks))
+            if(ol.getEstado() == EstadoOL.Confirmada && ol.tieneKeyword(ks)) {
             	res.add(ol.getNombre());
+            }
         }
         return res;
     }
@@ -157,8 +159,9 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getEstado() == EstadoOL.Ingresada)
+            if(ol.getEstado() == EstadoOL.Ingresada) {
             	res.add(ol.getNombre());
+            }
         }
         return res;
     }
@@ -169,8 +172,9 @@ public class Empresa extends Usuario {
         // Recorremos el HashSet usando el Iterator
         while (iterator.hasNext()) {
             OfertaLaboral ol = iterator.next();
-            if(ol.getNombre().equals(nombre_oferta))
+            if(ol.getNombre().equals(nombre_oferta)) {
             	return true;
+            }
         }
         
     	return false;

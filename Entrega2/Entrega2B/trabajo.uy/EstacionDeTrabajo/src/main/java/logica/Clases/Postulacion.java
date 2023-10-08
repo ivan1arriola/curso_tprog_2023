@@ -28,20 +28,42 @@ public class Postulacion {
 
 
 	// GETTERS
-    public LocalDate     getFecha() 		{ return fecha; }
-    public String 	     getCV() 			{ return CV; }
-    public String 	     getMotivacion() 	{ return motivacion; }
-    public String 	     getURLDocExtras()	{ return URLDocExtras; }
-    public OfertaLaboral getOfertaLaboral()	{ return OferLab; }
-    public Postulante    getPostulante()	{ return p; }
+    public LocalDate     getFecha() { 
+    	return fecha;
+    }
+    
+    public String 	     getCV() {
+    	return CV;
+    }
+    
+    public String 	     getMotivacion() {
+    	return motivacion;
+    }
+    
+    public String 	     getURLDocExtras() {
+    	return URLDocExtras;
+    }
+    
+    public OfertaLaboral getOfertaLaboral()	{
+    	return OferLab;
+    }
+    
+    public Postulante    getPostulante() {
+    	return p;
+    }
 
 
     // SETTERS
-    public void setFecha(LocalDate fecha) 			 	{ this.fecha = fecha; }
-    public void setCV(String CV) 		   			 	{ this.CV = CV; }	
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; } 
+    
+    public void setCV(String CV) { this.CV = CV; }	
+     
     public void setMotivacion(String motivacion)    	{ this.motivacion = motivacion; }
+     
     public void setURLDocExtras(String URLDocExtras) 	{ this.URLDocExtras = URLDocExtras; }
+    
     public void setOfertaLaboral(OfertaLaboral OferLab)	{ this.OferLab = OferLab; }
+    
     public void setPostulante(Postulante p)				{ this.p = p; }
     
     // METODOS

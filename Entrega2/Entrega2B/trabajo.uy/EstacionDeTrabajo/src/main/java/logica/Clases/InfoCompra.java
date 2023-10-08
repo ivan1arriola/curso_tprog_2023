@@ -1,4 +1,5 @@
 package main.java.logica.Clases;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 
@@ -35,21 +36,57 @@ public class InfoCompra {
     }
 
     // Getters
-    public LocalDate getfCompra() {return fechaCompra;}
-    public Paquete getPaquete() {return paquete;}
-    public LocalDate getFechaVencimiento() {return fechaVencimiento;}
-    public Empresa getEmpresa() {return empres;}
-    public float getCosto() {return costo;}
-    public HashSet<InfoCompraOferta> getICO() {return infoCompraOfertas;}
+    public LocalDate getfCompra()  {
+    	return fechaCompra;
+    }
+    
+    public Paquete getPaquete() {
+    	return paquete;
+    }
+    
+    public LocalDate getFechaVencimiento() {
+    	return fechaVencimiento;
+    }
+    
+    public Empresa getEmpresa() {
+    	return empres;
+    
+    }
+    
+    public float getCosto() {
+    	return costo;
+    }
+    
+    public HashSet<InfoCompraOferta> getICO() {
+    	return infoCompraOfertas;
+    }
 
 
     // Setters
-    public void setfCompra(LocalDate fCompra) {this.fechaCompra = fCompra;}
-    public void setPaquete(Paquete paquete) {this.paquete = paquete;}      
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {this.fechaVencimiento = fechaVencimiento;}
-    public void setEmpresa(Empresa empres) {this.empres = empres;}
-    public void setCosto(float costo) {this.costo = costo;} 
-    public void setICO(HashSet<InfoCompraOferta> ICO) {this.infoCompraOfertas = ICO;}
+    public void setfCompra(LocalDate fCompra) {
+    	this.fechaCompra = fCompra;
+    
+    }
+    
+    public void setPaquete(Paquete paquete) {
+    	this.paquete = paquete;
+    }      
+    
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+    	this.fechaVencimiento = fechaVencimiento;
+    }
+    
+    public void setEmpresa(Empresa empres) {
+    	this.empres = empres;
+    }
+    
+    public void setCosto(float costo) {
+    	this.costo = costo;
+    } 
+    
+    public void setICO(HashSet<InfoCompraOferta> ICO) {
+    	this.infoCompraOfertas = ICO;
+    }
 
     // Metodos
     public DTCompraPaquetes obtenerDatosPaquete() {

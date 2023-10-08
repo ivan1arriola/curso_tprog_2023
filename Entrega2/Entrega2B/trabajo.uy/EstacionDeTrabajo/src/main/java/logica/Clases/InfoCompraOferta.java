@@ -11,7 +11,13 @@ public class InfoCompraOferta {
 		this.cant_restante = can_res;
 		tipoOfertas.add(t);
 	} //Constructor
-	public int getCant_res() { return cant_restante; }
-	public void setCant_res(int cant_rest) { cant_restante = cant_rest; }
+	
+	public int getCant_res() {
+		return cant_restante; 
+	}
+	
+	public void setCant_res(int cant_rest) { 
+		cant_restante = cant_rest;
+	}
 	
 }

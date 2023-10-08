@@ -1,19 +1,25 @@
 package main.java.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import java.time.LocalDate;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
-import main.java.excepciones.*;
-import main.java.logica.Controladores.*;
-import main.java.logica.Datatypes.*;
-import main.java.logica.Enumerados.*;
-import main.java.logica.Interfaces.*;
+
+
+
+
+import main.java.logica.Interfaces.ICtrlOferta;
+import main.java.logica.Interfaces.ICtrlUsuario;
 import main.java.logica.Manejadores.UsuarioHandler;
+import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
+import main.java.excepciones.ExceptionUsuarioNickRepetido;
+import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.Fabrica;
 import main.java.logica.Clases.Empresa;
+import main.java.logica.Datatypes.DTEmpresa;
+import main.java.logica.Datatypes.DTUsuario;
 
 import java.util.List;
 import java.util.Set;
@@ -57,11 +63,16 @@ public class ControladorUsuarioTest {
 	 // Obtaining user data with a nickname (testing DTUsuario)
 	 DTUsuario usu1 = ICU.obtenerDatosUsuario("ASwatzenegger");
 
-	 boolean result1 = usu1.getNickname().equals(nickname) &&
-	                   usu1.getNombre().equals(nombre) &&
-	                   usu1.getApellido().equals(apellido) &&
-	                   usu1.getCorreo_electronico().equals(correo) &&
-	                   usu1.getImagen() == null &&
+	 boolean result1 = usu1.getNickname().equals(nickname) 
+			 		   &&
+	                   usu1.getNombre().equals(nombre) 
+	                   &&
+	                   usu1.getApellido().equals(apellido)
+	                   &&
+	                   usu1.getCorreo_electronico().equals(correo) 
+	                   &&
+	                   usu1.getImagen() == null 
+	                   &&
 	                   usu1.getContraseña().equals(password);
 
 	 assertEquals("El test usu1 fallo", true, result1);
@@ -86,10 +97,14 @@ public class ControladorUsuarioTest {
 	 // Obtaining user data with a nickname (testing DTUsuario)
 	 DTUsuario usu2 = ICU.obtenerDatosUsuario("LeonardoVinchi");
 
-	 boolean result2 = usu2.getNickname().equals(nickname) &&
-	                   usu2.getNombre().equals(nombre) &&
-	                   usu2.getApellido().equals(apellido) &&
-	                   usu2.getCorreo_electronico().equals(correo) &&
+	 boolean result2 = usu2.getNickname().equals(nickname)
+			 	       &&
+	                   usu2.getNombre().equals(nombre) 
+	                   &&
+	                   usu2.getApellido().equals(apellido) 
+	                   &&
+	                   usu2.getCorreo_electronico().equals(correo) 
+	                   &&
 	                   usu2.getContraseña().equals(password);
 	 assertEquals("El test usu2 fallo", true, result2);
 	 byte[] imagen = usu2.getImagen();
@@ -106,6 +121,7 @@ public class ControladorUsuarioTest {
 		    if (!found) {assertEquals("El test usu2 loop fallo", true, false);}
 	 }
    }
+	
   @Test
   void altaEmpresaTest() throws ExceptionUsuarioNickYCorreoRepetidos {
 		    Fabrica f = Fabrica.getInstance();
@@ -137,10 +153,14 @@ public class ControladorUsuarioTest {
 		    // ------------------- datatypes usuario para postulante -------------------
 		    // se obtiene con nickname, notar que estoy probando DTUsuario
 		    DTUsuario usu3 = ICU.obtenerDatosUsuario("Kreves");
-		    boolean result = usu3.getNickname().equals(nickname) &&
-		            usu3.getNombre().equals(nombre) &&
-		            usu3.getApellido().equals(apellido) &&
-		            usu3.getCorreo_electronico().equals(correo) &&
+		    boolean result = usu3.getNickname().equals(nickname) 
+		    		&&
+		            usu3.getNombre().equals(nombre) 
+		            &&
+		            usu3.getApellido().equals(apellido) 
+		            &&
+		            usu3.getCorreo_electronico().equals(correo) 
+		            &&
 		            usu3.getContraseña().equals(password);
 		    assertEquals("El test usu3 fallo", result, true);
 		    
@@ -170,12 +190,18 @@ public class ControladorUsuarioTest {
 			// obtuve empresa, ahora creo DTEmpresa
 			DTUsuario DTempresa1 = empresa1.obtenerDatosUsuario();
 			DTEmpresa DTverdaderoEmpresa1 = (DTEmpresa) DTempresa1; // Casting
-			boolean result2 = DTempresa1.getNickname().equals(nickname) &&
-					DTverdaderoEmpresa1.getNombre().equals(nombre) &&
-		            DTverdaderoEmpresa1.getApellido().equals(apellido) &&
-		            DTverdaderoEmpresa1.getCorreo_electronico().equals(correo) &&
-		            DTverdaderoEmpresa1.getContraseña().equals(password) &&
-		            DTverdaderoEmpresa1.getDescripcion().equals(descripcion) &&
+			boolean result2 = DTempresa1.getNickname().equals(nickname) 
+					&&
+					DTverdaderoEmpresa1.getNombre().equals(nombre) 
+					&&
+		            DTverdaderoEmpresa1.getApellido().equals(apellido) 
+		            &&
+		            DTverdaderoEmpresa1.getCorreo_electronico().equals(correo) 
+		            &&
+		            DTverdaderoEmpresa1.getContraseña().equals(password) 
+		            &&
+		            DTverdaderoEmpresa1.getDescripcion().equals(descripcion) 
+		            &&
 		            DTverdaderoEmpresa1.getUrl().equals(url);
 		assertEquals("El test usu4 fallo", result2, true);
 
@@ -211,11 +237,16 @@ public class ControladorUsuarioTest {
 			}
 		}
 
-		boolean result3 = DTempresa2.getNickname().equals(nickname) &&
-				DTverdaderoEmpresa2.getNombre().equals(nombre) &&
-				DTverdaderoEmpresa2.getApellido().equals(apellido) &&
-				DTverdaderoEmpresa2.getCorreo_electronico().equals(correo) &&
-				DTverdaderoEmpresa2.getContraseña().equals(password) &&
+		boolean result3 = DTempresa2.getNickname().equals(nickname) 
+				        &&
+				DTverdaderoEmpresa2.getNombre().equals(nombre) 
+				&&
+				DTverdaderoEmpresa2.getApellido().equals(apellido) 
+				&&
+				DTverdaderoEmpresa2.getCorreo_electronico().equals(correo) 
+				&&
+				DTverdaderoEmpresa2.getContraseña().equals(password) 
+				&&
 				DTverdaderoEmpresa2.getDescripcion().equals(descripcion);
 		assertEquals("El test usu4 fallo", result3, true);
 
@@ -238,12 +269,18 @@ public class ControladorUsuarioTest {
 		// obtuve empresa, ahora creo DTEmpresa
 		DTUsuario DTempresa3 = empresa3.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa3 = (DTEmpresa) DTempresa3; // Casting
-		boolean result4 = DTempresa3.getNickname().equals(nickname) &&
-				DTverdaderoEmpresa3.getNombre().equals(nombre) &&
-				DTverdaderoEmpresa3.getApellido().equals(apellido) &&
-				DTverdaderoEmpresa3.getCorreo_electronico().equals(correo) &&
-				DTverdaderoEmpresa3.getContraseña().equals(password) &&
-				DTverdaderoEmpresa3.getDescripcion().equals(descripcion) &&
+		boolean result4 = DTempresa3.getNickname().equals(nickname) 
+				&&
+				DTverdaderoEmpresa3.getNombre().equals(nombre) 
+				&&
+				DTverdaderoEmpresa3.getApellido().equals(apellido) 
+				&&
+				DTverdaderoEmpresa3.getCorreo_electronico().equals(correo) 
+				&&
+				DTverdaderoEmpresa3.getContraseña().equals(password) 
+				&&
+				DTverdaderoEmpresa3.getDescripcion().equals(descripcion) 
+				&&
 				DTverdaderoEmpresa3.getUrl().equals(url);
 		assertEquals("El test usu4 fallo", result4, true);
 

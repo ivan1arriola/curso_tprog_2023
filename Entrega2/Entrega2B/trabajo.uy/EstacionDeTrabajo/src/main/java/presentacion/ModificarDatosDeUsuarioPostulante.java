@@ -71,11 +71,6 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
 	    private JTextField fechaActual;
 	    private JLabel lblNewLabel_8;
 	    
-	    
-	    
-	    /**
-	     * Create the frame.
-	     */
     public ModificarDatosDeUsuarioPostulante(ICtrlUsuario icu, DTPostulante postulante) {
     	// Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
