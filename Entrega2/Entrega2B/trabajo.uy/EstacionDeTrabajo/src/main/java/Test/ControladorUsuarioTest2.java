@@ -96,7 +96,7 @@ public class ControladorUsuarioTest2 {
 														DTverdaderopostulante1.getApellido(),   
 														DTverdaderopostulante1.getcorreoElectronico(),   
 														DTverdaderopostulante1.getcontrasenia(),   
-														DTverdaderopostulante1.getFecha_nac(),   
+														DTverdaderopostulante1.getFechaNac(),   
 														DTverdaderopostulante1.getNacionalidad());	
 				
 			String str = "MeEncantaLaMOZARELLA";
@@ -108,7 +108,7 @@ public class ControladorUsuarioTest2 {
 													DTverdaderopostulante1.getcorreoElectronico(),   
 													DTverdaderopostulante1.getcontrasenia(),   
 													img23,   
-													DTverdaderopostulante1.getFecha_nac(),   
+													DTverdaderopostulante1.getFechaNac(),   
 													DTverdaderopostulante1.getNacionalidad());
 			postulante1 = (Postulante) UH.buscarNick("LeonardoVinchi");
 			DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",  "ASwatzenegger");
@@ -119,7 +119,7 @@ public class ControladorUsuarioTest2 {
 														DTverdaderopostulante12.getApellido(),   
 														DTverdaderopostulante12.getcorreoElectronico(),   
 														DTverdaderopostulante12.getcontrasenia(),   
-														DTverdaderopostulante12.getFecha_nac(),   
+														DTverdaderopostulante12.getFechaNac(),   
 														DTverdaderopostulante12.getNacionalidad());	
 			
 			DTUsuario empresa1 = ICU.obtenerDatosUsuario("Kreves");

@@ -110,6 +110,11 @@ public class ControladorUsuarioTest4 {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			Set<String> nuevamente = ICO.listarOfertasLaboralesKeywords("Trabajo nocturno");
+			
+			ICO.altaPostulacion("analista",nick,"CV asad","quiero DORMIR", LocalDate.of(2020, 12, 12))
+				
 		}	
 }
 
