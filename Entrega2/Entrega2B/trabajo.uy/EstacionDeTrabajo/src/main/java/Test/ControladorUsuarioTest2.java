@@ -15,6 +15,8 @@ import main.java.logica.Interfaces.*;
 import main.java.logica.Manejadores.UsuarioHandler;
 import main.java.logica.Fabrica;
 import main.java.logica.Clases.Empresa;
+import main.java.logica.Clases.OfertaLaboral;
+import main.java.logica.Clases.Postulacion;
 import main.java.logica.Clases.Postulante;
 
 import java.util.List;
@@ -157,6 +159,12 @@ public class ControladorUsuarioTest2 {
 			// ------------------------- tipo oferta ---------------------------
 			boolean booleano;
 			booleano = ICO.altaTipoPublicacionOL("Oferta normal","visibilidad normal", 1, 19, 100.0f, LocalDate.now());
+			try {
+				DTTipoOferta tipo = ICO.obtenerDatosTO("Oferta normal");
+			} catch (ExcepcionTipoOfertaNoExistente e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			booleano = ICO.altaTipoPublicacionOL("Oferta destacada","visibilidad destacada", 1, 19, 100.0f, LocalDate.now());
 			booleano = ICO.altaTipoPublicacionOL("Oferta super destacada","visibilidad super destacada", 1, 19, 100.0f, LocalDate.now());
 			
@@ -168,6 +176,47 @@ public class ControladorUsuarioTest2 {
 			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta destacada",12);
 			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta super destacada",1);
 		    
+			DTPaquete nuevo = ICO.obtenerDatosPaquete("Paquete 1");
+			
+			// coloco todas keywors del sistema
+			HashSet<String> listaKeywords = ICO.listarKeywords();
+			
+			DTHora hora1 = new DTHora(8, 0);
+			DTHora hora2 = new DTHora(1, 0);
+			DTHorario horario = new DTHorario(hora1,hora2);
+			String TIPOOFERTASELECCIONADA = "Oferta normal";
+			
+			ICO.altaOfertaLaboral("Google", 
+								  TIPOOFERTASELECCIONADA, 
+								  "investigador IA", 
+								  "Investigador de IA",
+								  horario, 
+								  100222.0f, 
+								  "montevideo1", 
+								  DepUY.Montevideo, 
+								  LocalDate.now(),
+								  listaKeywords,
+								  EstadoOL.Confirmada,
+								  img233,
+								  "Paquete 1");
+			
+			
+			HashSet<String> auxiliar = ICO.listarOfertasLaboralesConfirmadas("Google");
+			// obtener nombres de los postulantes
+			HashSet<String> nombres = ICU.obtenerNicknamesPostulantes();
+			
+			
+//			boolean existePostulacion(String nickname, String nombre) {
+//				UsuarioHandler UH = UsuarioHandler.getInstance();
+//				Postulante p = (Postulante) UH.buscarNick(nickname);
+//				if(p != null) 
+//					return p.existePostulacion(nombre);
+//				else
+//					// throw new IllegalArgumentException("Usuario " + nick + " no existe");
+//					return false;
+//			}
+//
+//			public Postulacion crearPostulacion(String nick, String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) 
 		}
 		    
 }
