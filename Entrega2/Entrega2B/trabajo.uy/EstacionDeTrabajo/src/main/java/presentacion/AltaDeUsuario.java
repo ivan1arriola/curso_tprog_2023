@@ -4,10 +4,7 @@ package main.java.presentacion;
 import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlUsuario;
 
-import java.awt.GridBagLayout;
-import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -28,7 +25,7 @@ public class AltaDeUsuario extends JInternalFrame {
     private JButton btnPostulante;
     private JLabel lblIngreseNombre;
     private AltaDePostulante altaDePostulanteInternalFrame;
-    private AltaDeEmpresa AltaDeEmpresaInternalFrame;
+    private AltaDeEmpresa altaDeEmpresaInternalFrame;
     
     /**
      * Create the frame.
@@ -45,11 +42,11 @@ public class AltaDeUsuario extends JInternalFrame {
         // getContentPane().setLayout(null);
         gui.getContentPane().add(altaDePostulanteInternalFrame);
         
-        AltaDeEmpresaInternalFrame = new AltaDeEmpresa(icUsuario);
-        // AltaDeEmpresaInternalFrame.setSize(360,  168);
-        AltaDeEmpresaInternalFrame.setLocation(38,  63);
-        AltaDeEmpresaInternalFrame.setVisible(false);
-        gui.getContentPane().add(AltaDeEmpresaInternalFrame);
+        altaDeEmpresaInternalFrame = new AltaDeEmpresa(icUsuario);
+        // altaDeEmpresaInternalFrame.setSize(360,  168);
+        altaDeEmpresaInternalFrame.setLocation(38,  63);
+        altaDeEmpresaInternalFrame.setVisible(false);
+        gui.getContentPane().add(altaDeEmpresaInternalFrame);
         
         // Propiedades del JInternalFrame como dimensión,  posición dentro del frame, 
         // etc.
@@ -67,7 +64,7 @@ public class AltaDeUsuario extends JInternalFrame {
         btnEmpresa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		setVisible(false);
-        		AltaDeEmpresaInternalFrame.setVisible(true);
+        		altaDeEmpresaInternalFrame.setVisible(true);
         	}
         });
         getContentPane().setLayout(null);

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class DTPostulante extends DTUsuario {
 
-    private LocalDate fecha_nac;
+    private LocalDate fechanac;
     private String nacionalidad;
 
     public DTPostulante(String nickname,  String correo_electronico,  String apellido,  String nombre,  String contraseña,  byte[] imagen,  LocalDate fechaNac,  String nacionalidad) {
@@ -14,7 +14,7 @@ public class DTPostulante extends DTUsuario {
     }    
 
     public LocalDate getFecha_nac() {
-        return fecha_nac;
+        return fechanac;
     }
 
     public String getNacionalidad() {

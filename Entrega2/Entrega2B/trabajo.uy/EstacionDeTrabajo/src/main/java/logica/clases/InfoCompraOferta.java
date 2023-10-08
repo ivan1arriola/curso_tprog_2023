@@ -5,20 +5,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class InfoCompraOferta {
-	private int cant_restante;
+	private int cantRestante;
 	private Set<TipoOferta> tipoOfertas;
 	
-	public InfoCompraOferta(TipoOferta tipoOfer,  int can_res) { 
-		this.cant_restante = can_res;
+	public InfoCompraOferta(TipoOferta tipoOfer,  int canres) { 
+		this.cantRestante = canres;
 		tipoOfertas.add(tipoOfer);
 	} //Constructor
 	
-	public int getCant_res() {
-		return cant_restante; 
+	public int getCantres() {
+		return cantRestante; 
 	}
 	
-	public void setCant_res(int cant_rest) { 
-		cant_restante = cant_rest;
+	public void setCantres(int cantrest) { 
+		cantRestante = cantrest;
 	}
 	
 }

@@ -10,19 +10,19 @@ public class Postulacion {
     private LocalDate fecha;
     private String curriculumVitae;
     private String motivacion;
-    private String URLDocExtras;
+    private String uRLDocExtras;
     // relaciones
-    private OfertaLaboral OferLab;
+    private OfertaLaboral oferLab;
     private Postulante postulante;
 
     // constructor
-    public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) {
+    public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String uRLDocExtras,   OfertaLaboral oferLab) {
         this.postulante = postulante;
         this.fecha = fecha;
         this.curriculumVitae = curriculumVitae;
         this.motivacion = motivacion;
-        this.URLDocExtras = URLDocExtras;
-        this.OferLab = OferLab;
+        this.uRLDocExtras = uRLDocExtras;
+        this.oferLab = oferLab;
     }
 
 
@@ -39,12 +39,12 @@ public class Postulacion {
     	return motivacion;
     }
     
-    public String getURLDocExtras() {
-    	return URLDocExtras;
+    public String getuRLDocExtras() {
+    	return uRLDocExtras;
     }
     
     public OfertaLaboral getOfertaLaboral()	{
-    	return OferLab;
+    	return oferLab;
     }
     
     public Postulante getPostulante() {
@@ -65,12 +65,12 @@ public class Postulacion {
     	this.motivacion = motivacion;
     }
      
-    public void setURLDocExtras(String URLDocExtras) {
-    	this.URLDocExtras = URLDocExtras;
+    public void setuRLDocExtras(String uRLDocExtras) {
+    	this.uRLDocExtras = uRLDocExtras;
     }
     
-    public void setOfertaLaboral(OfertaLaboral OferLab)	{
-    	this.OferLab = OferLab; 
+    public void setOfertaLaboral(OfertaLaboral oferLab)	{
+    	this.oferLab = oferLab; 
     }
     
     public void setPostulante(Postulante postulante) {
@@ -79,12 +79,12 @@ public class Postulacion {
     
     // METODOS
     public DTPostulacion obtenerDT() {
-        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   URLDocExtras,   curriculumVitae,   motivacion);
+        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion);
         return dtpostu;
     } 
 
     public String obtenerNombreOfertaLaboral() { 
-    	return OferLab.getNombre();
+    	return oferLab.getNombre();
     }
 
     public void editarPostulacion(String cvAbreviado,  String motivacion) {
@@ -94,7 +94,7 @@ public class Postulacion {
 
     // dentro caso uso postulacion a oferta laboral
     public Boolean esPostulacion(String nombre){
-        return OferLab.getNombre().equals(nombre); // retorna true si el nombre de la oferta es igual al nombre que se le pasa por parametro
+        return oferLab.getNombre().equals(nombre); // retorna true si el nombre de la oferta es igual al nombre que se le pasa por parametro
     }
 
     public String obtenerNicknamePostulante() { 

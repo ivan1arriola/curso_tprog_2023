@@ -89,7 +89,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return !existeNick && !existeCorreo;
 	}
 
-	public boolean altaPostulante(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   LocalDate fecha_nac,   String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos,   ExceptionUsuarioNickRepetido,   ExceptionUsuarioCorreoRepetido {
+	public boolean altaPostulante(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   LocalDate fechanac,   String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos,   ExceptionUsuarioNickRepetido,   ExceptionUsuarioCorreoRepetido {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existeNick = UsuarioH.existeNick(nick);
 		boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -107,7 +107,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 		
 		if (!existeNick && !existeCorreo) {
-			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fecha_nac,   nacionalidad);
+			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fechanac,   nacionalidad);
 			UsuarioH.agregar(postulante);
 		}
 		
@@ -341,7 +341,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 
-	public void ingresarDatosEditadosPostulanteImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   byte[] imagen,   LocalDate fecha_nac,   String nacionalidad) {
+	public void ingresarDatosEditadosPostulanteImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   byte[] imagen,   LocalDate fechanac,   String nacionalidad) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
@@ -353,7 +353,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		postulante.setNacionalidad(nacionalidad);
 	}
 
-	public void ingresarDatosEditadosPostulante(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   LocalDate fecha_nac,   String nacionalidad) {
+	public void ingresarDatosEditadosPostulante(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   LocalDate fechanac,   String nacionalidad) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
@@ -440,11 +440,11 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 	// alta postulante con imagen
-	public boolean altaPostulanteImagen(String nick,   String contraseña,   String nombre,   String apellido,   LocalDate fecha_nac,   String mail,   String nacionalidad,   byte[] imagen) { 
+	public boolean altaPostulanteImagen(String nick,   String contraseña,   String nombre,   String apellido,   LocalDate fechanac,   String mail,   String nacionalidad,   byte[] imagen) { 
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
-			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fecha_nac,   nacionalidad,   imagen); // falta agregarle el parametro img
+			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fechanac,   nacionalidad,   imagen); // falta agregarle el parametro img
 			UsuarioH.agregar(postulante);
 			return true;
 		}

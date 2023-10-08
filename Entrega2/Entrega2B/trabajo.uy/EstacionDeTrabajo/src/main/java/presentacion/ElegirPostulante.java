@@ -52,9 +52,9 @@ public class ElegirPostulante extends JDialog {
     private Set<String> empresas;
     private Set<String> ofertas;
     
-    public ElegirPostulante(String empresa, String offer,  ICtrlUsuario icu,  ICtrlOferta ico) {
-    	controlUsr = icu;
-    	postulantes = icu.obtenerNicknamesPostulantes();
+    public ElegirPostulante(String empresa, String offer,  ICtrlUsuario icUsuario,  ICtrlOferta ico) {
+    	controlUsr = icUsuario;
+    	postulantes = icUsuario.obtenerNicknamesPostulantes();
     	
     	
       	setResizable(true);
@@ -94,7 +94,7 @@ public class ElegirPostulante extends JDialog {
       				try {
 	                if (cbEmpresa.getSelectedIndex() != -1 && cbEmpresa.getSelectedIndex() != 0) {
 	                    String selectedEmpresa = (String) cbEmpresa.getSelectedItem();
-	                    Set<String> ofertasEmpresa = icu.listarOfertasLaborales(selectedEmpresa);
+	                    Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
 	                    cbOferta.removeAllItems(); // Limpiar el comboBoxOfertas
 	                 
 	                    if (ofertasEmpresa.isEmpty()) {

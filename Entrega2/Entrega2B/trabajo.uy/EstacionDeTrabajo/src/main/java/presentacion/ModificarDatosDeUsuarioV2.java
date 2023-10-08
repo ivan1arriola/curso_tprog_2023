@@ -34,19 +34,19 @@ import javax.swing.JScrollPane;
 @SuppressWarnings("serial")
 public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-	    private ICtrlUsuario icu; 
+	    private ICtrlUsuario icUsuario; 
 	    private JButton btnCancelar;
 	    private JLabel lblIngreseNombre;
 	    private JComboBox<String> listarUsuarios;
-	    private ModificarDatosDeUsuarioEmpresa MDUE;
-	    private ModificarDatosDeUsuarioPostulante MDUP;
+	    private ModificarDatosDeUsuarioEmpresa mDUEmpresa;
+	    private ModificarDatosDeUsuarioPostulante mDUPost;
 	    
 	
 
-    public ModificarDatosDeUsuarioV2(JFrame gui,  ICtrlUsuario icu) {
+    public ModificarDatosDeUsuarioV2(JFrame gui,  ICtrlUsuario icUsuario) {
     	// Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
-        // icu = fabrica.getICtrlUsuario();
+        // icUsuario = fabrica.getICtrlUsuario();
     	
         setResizable(true);
         setIconifiable(true);
@@ -69,7 +69,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 			public void actionPerformed(ActionEvent evento) {
 				
 				try {            		
-	                    Set<String> nicks =  icu.listarNicknamesUsuarios();
+	                    Set<String> nicks =  icUsuario.listarNicknamesUsuarios();
 	                    
                 } catch (IllegalArgumentException ex) {
                     	System.err.println("Error al obtener los usuarios");
@@ -96,25 +96,25 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 			public void actionPerformed(ActionEvent evento) {
 				
                 String selectedUsuario = (String) listarUsuarios.getSelectedItem(); // agarro el usuario
-				DTUsuario dtus = icu.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
+				DTUsuario dtus = icUsuario.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
 				
 				// El combobox no esta vacio y el usuario es un POSTULANTE
 				if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && !(dtus instanceof DTEmpresa)) { 
 					DTPostulante dtpostu = (DTPostulante) dtus;
-					MDUP = new ModificarDatosDeUsuarioPostulante(icu,  dtpostu);
-					gui.getContentPane().add(MDUP);
+					mDUPost = new ModificarDatosDeUsuarioPostulante(icu,  dtpostu);
+					gui.getContentPane().add(mDUPost);
 					setVisible(false);
-					MDUP.setVisible(true);
+					mDUPost.setVisible(true);
 	                // modificarUser.toFront();
 				} 
 				
 				// El combobox no esta vacio y el usuario es una EMPRESA	
 				else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0  && (dtus instanceof DTEmpresa)) {
 					DTEmpresa dtempre = (DTEmpresa) dtus;
-					MDUE = new ModificarDatosDeUsuarioEmpresa(icu,  dtempre);
-					gui.getContentPane().add(MDUE);
+					mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icu,  dtempre);
+					gui.getContentPane().add(mDUEmpresa);
 					setVisible(false);
-					MDUE.setVisible(true);
+					mDUEmpresa.setVisible(true);
 	                //modificarUser.toFront();
 				}
 			}
@@ -133,7 +133,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
     	listarUsuarios.removeAllItems(); 
         
         //comboBoxOfertas.removeAllItems(); 
-        Set<String> usuario = icu.listarNicknamesUsuarios();
+        Set<String> usuario = icUsuario.listarNicknamesUsuarios();
         List<String> usuariosOrdenados = new ArrayList<>(usuario);
         Collections.sort(usuariosOrdenados,  String.CASE_INSENSITIVE_ORDER);
         listarUsuarios.addItem(" ");
