@@ -32,7 +32,7 @@ import main.java.presentacion.CargarDatos;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
-	public CtrlCargaDeDatos() {}
+	// public CtrlCargaDeDatos() {}
 	
 	public void cargarDatos() {
 		Fabrica F = Fabrica.getInstance();
@@ -93,6 +93,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 		            		}catch (IOException e6) {
 		            			e6.printStackTrace();
 			                }
+            		}
             	} else {
             		try (BufferedReader reader2 = new BufferedReader(new FileReader("src/main/datos/Usuarios-Empresas.csv"))) {
                 		reader2.readLine();
@@ -520,10 +521,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		}
         		ICO.agregarTipoOfertaPaq(paq, TipoPub, Integer.parseInt(campos14[3].substring(1)));
         	}
-        	
         } catch (IOException e41) {
         	e41.printStackTrace();
         }
-	}
-	
+		}
 }

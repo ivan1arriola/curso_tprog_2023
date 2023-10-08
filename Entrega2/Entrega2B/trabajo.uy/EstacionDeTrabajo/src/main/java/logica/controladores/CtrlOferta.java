@@ -288,7 +288,7 @@ public class CtrlOferta implements ICtrlOferta{
 		oferLab.setEstado(EstadoOL.Confirmada);
 	}
 	
-	public HashSet<String> listarPostulantes(){
+	public Set<String> listarPostulantes(){
 		CtrlUsuario CtrlUser = new CtrlUsuario();
 		return CtrlUser.obtenerNicknamesPostulantes();
 	}
@@ -322,8 +322,8 @@ public class CtrlOferta implements ICtrlOferta{
 	
 	public DTPaquete obtenerDatosPaquete(String paq) {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-		Paquete paq = PaqueteH.buscar(paq);
-		return paq.getDTPaquete();
+		Paquete paquete = PaqueteH.buscar(paq);
+		return paquete.getDTPaquete();
 	}
 	
 	public DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente {
