@@ -169,7 +169,7 @@ public class ctrlOfertaTest {
         String empresaN = "Apple Com.";
     	ICtrlUsuario ICU = Fabrica.getInstance().getICtrlUsuario();
     	try {
-			boolean bool = ICU.altaEmpresa("Apple Com.",  "Steve",  "Jobs",  "stevejobs1@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
+			ICU.altaEmpresa("Apple Com.",  "Steve",  "Jobs",  "stevejobs1@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
 				| ExceptionUsuarioNickRepetido e) {
 			// TODO Auto-generated catch block
