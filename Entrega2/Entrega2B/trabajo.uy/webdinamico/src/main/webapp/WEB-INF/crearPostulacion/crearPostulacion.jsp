@@ -22,13 +22,12 @@
                 <!-- Contenido aqui -->
                 
                 <div class="row">
-        <h1 class="">Postulación a Oferta Laboral</h1>
+        <h1 class="">Postulación a Oferta Laboral </h1>
       </div>
 
-
-
+<form class="form-signin needs-validation" novalidate action="CrearPostulacion" method="post">
       <div class="row">
-
+		
         <div class="col-9">
           <!-- Nombre del Postulante -->
           <div class="row">
@@ -41,21 +40,18 @@
               </div>
             </div>
           </div>
-          
-          					                    
-          
-
+         
 
           <!-- CV Abreviado -->
           <div class="mb-3">
             <label for="cvAbreviado" class="form-label">CV Abreviado:</label>
-            <textarea class="form-control" id="cvAbreviado" rows="4" placeholder="CV Abreviado"></textarea>
+            <textarea class="form-control" name="cvAbreviado" id="cvAbreviado" rows="4" placeholder="CV Abreviado"></textarea>
           </div>
 
           <!-- Motivación -->
           <div class="mb-3">
             <label for="motivacion" class="form-label">Motivación:</label>
-            <textarea class="form-control" id="motivacion" rows="4" placeholder="Motivación"></textarea>
+            <textarea class="form-control" name="motivacion" id="motivacion" rows="4" placeholder="Motivación"></textarea>
           </div>
 
           <!-- Fecha de Postulación (automática) -->
@@ -82,17 +78,22 @@
           </script>
 
 
-          <button class="btn btn-primary" id="btnPostularse">
+          <button class="btn btn-primary" id="btnPostularse" type="submit">
             Postularse
           </button>
         </div>
+        </form>
+
 
         <div class="col-3">
           <div class="card">
             <img src="https://www.coherdi.mx/wp-content/uploads/2017/05/esrategias-inversion.jpg"
               class="card-img-top" />
             <div class="card-body text-center">
-              <a href="consultarOfertaLaboral/<%request.getAttribute("oferta");%>" class="text"><%request.getAttribute("oferta");%></a>
+            
+                        
+            <a href="<%=request.getContextPath() %>/consultarofertalaboral?o=<%= request.getAttribute("oferta") %>" class="text"><%= request.getAttribute("oferta") %></a> 
+               
             </div>
           </div>
         </div>
