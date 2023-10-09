@@ -10,16 +10,24 @@ public class InfoCompraOferta {
 	
 	public InfoCompraOferta(TipoOferta tipoOfer,  int canres) { 
 		this.cantRestante = canres;
-		Set<TipoOferta> tipoOfertas = new HashSet<>();
-		tipoOfertas.add(tipoOfer);
+		Set<TipoOferta> tipoOfertasNuevo = new HashSet<>();
+		tipoOfertasNuevo.add(tipoOfer);
+		this.tipoOfertas = tipoOfertasNuevo;
 	} //Constructor
 	
 	public int getCantres() {
 		return cantRestante; 
 	}
 	
+	public Set<TipoOferta> gettipoOfertas(){
+		return tipoOfertas;
+	}
+	
 	public void setCantres(int cantrest) { 
 		cantRestante = cantrest;
 	}
 	
+	public void settipoOfertas( Set<TipoOferta> tipoOfertas) {
+		this.tipoOfertas = tipoOfertas;
+	}
 }

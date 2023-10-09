@@ -13,6 +13,7 @@ import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
+import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -110,8 +111,12 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 		
 		DTOfertaExtendidoSinPConK info = ctrl.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
 		
+		DTPaquete paquete = null;
+		
 		if( info instanceof DTOfertaExtendidoConKeywordsTit) {
 			ofertaBean.setMostrarPostulantesYPaquetes(true);
+			DTOfertaExtendidoConKeywordsTit masData = (DTOfertaExtendidoConKeywordsTit) info;
+			paquete = masData.getPaquete();
 		} 
 				
 		DTOfertaExtendido dtOferta = getOfertaLaboral(nombreOferta);
@@ -126,6 +131,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 		}
 		
         ofertaBean.setPostulantes(postulantes);
+        ofertaBean.setPaquete(paquete);
  
     	
 		return ofertaBean;
