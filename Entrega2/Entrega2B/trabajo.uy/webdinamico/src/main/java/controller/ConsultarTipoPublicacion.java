@@ -10,6 +10,7 @@ import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTTipoOferta;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Servlet implementation class ConsultarTipoPublicacion
@@ -31,6 +32,8 @@ public class ConsultarTipoPublicacion extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
         String nombre = request.getParameter("tp");
 
         try {

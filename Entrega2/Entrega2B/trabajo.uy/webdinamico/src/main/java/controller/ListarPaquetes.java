@@ -45,6 +45,8 @@ public class ListarPaquetes extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
         try {
             Set<DTPaquete> paquetes = obtenerPaquetes();
 

@@ -12,6 +12,7 @@ import main.java.logica.interfaces.ICtrlOferta;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Servlet implementation class ListarTiposPublicacion
@@ -48,7 +49,8 @@ public class ListarTiposPublicacion extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
 		request.setAttribute("tiposOferta", obtenerTipoOfertas());
 		request.getRequestDispatcher("/WEB-INF/listar/tipospublicacion.jsp").forward(request, response);
 	}

@@ -12,6 +12,7 @@ import main.java.logica.datatypes.DTPaquete;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 
 /**
@@ -34,6 +35,8 @@ public class ConsultarPaquete extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
         String nombrePaquete = request.getParameter("p");
 
         try {
