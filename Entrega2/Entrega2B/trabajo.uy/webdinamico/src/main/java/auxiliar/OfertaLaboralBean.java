@@ -21,7 +21,7 @@ public class OfertaLaboralBean {
 	private String ciudad;
 	private EstadoOL estado;
 	private Set<DTUsuario> postulantes;
-	private byte[] imagen; 
+	private String imagen; 
 	private String paq;
 	private DTPaquete paquete;
 	private Set<String> keywords;
@@ -121,7 +121,7 @@ public class OfertaLaboralBean {
 
 
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
