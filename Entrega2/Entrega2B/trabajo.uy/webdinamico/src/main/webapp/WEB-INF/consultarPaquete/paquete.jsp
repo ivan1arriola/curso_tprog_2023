@@ -2,7 +2,11 @@
 <%@ page import="main.java.logica.datatypes.DTCantTO" %>
 <%@ page import="java.util.HashSet" %>
 
-<% %>
+<% 
+
+ boolean mostrarComprar = (boolean) request.getAttribute("mostrarComprar");
+
+%>
 
 <!DOCTYPE html>
 <html>
@@ -42,7 +46,9 @@
                             </div>
                             
                             
-               
+                            <% if ( mostrarComprar){ %>
+                            <jsp:include page="./comprarPaquete.jsp" />
+                            <%} %>
                          
                         </div>
                     </div>

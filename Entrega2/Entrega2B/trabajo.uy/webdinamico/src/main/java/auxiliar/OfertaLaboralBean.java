@@ -21,7 +21,7 @@ public class OfertaLaboralBean {
 	private String ciudad;
 	private EstadoOL estado;
 	private Set<DTUsuario> postulantes;
-	private byte[] imagen; 
+	private String imagen; 
 	private String paq;
 	private DTPaquete paquete;
 	private Set<String> keywords;
@@ -38,7 +38,7 @@ public class OfertaLaboralBean {
         this.departamento = null;
         this.ciudad = null;
         this.estado = null;
-        this.imagen = null;
+        this.setImagen(null);
         this.paq = null;
         this.paquete = null;
         this.keywords = new HashSet<String>();
@@ -121,13 +121,7 @@ public class OfertaLaboralBean {
 
 
 
-    public byte[] getImagen() {
-        return imagen;
-    }
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
-    }
 
     public String getPaq() {
         return paq;
@@ -178,6 +172,16 @@ public class OfertaLaboralBean {
 
 	public void setMostrarPostulantesYPaquetes(boolean mostrarPostulantesYPaquetes) {
 		this.mostrarPostulantesYPaquetes = mostrarPostulantesYPaquetes;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 

@@ -41,28 +41,10 @@ boolean editable = (boolean) request.getAttribute("editable");
                         <%
                         // Mostrar la imagen del usuario si está disponible
                         String imagenUsuario = usuario.getImagen();
-                        if (imagenUsuario != null) {
-                            // Genera un nombre de archivo único para la imagen
-                            String nombreArchivo = "imagen_usuario_" + usuario.getNickname() + ".png";
-                            
-                            // Ruta en el servidor donde se guardará la imagen temporalmente
-                            String rutaTemporal = getServletContext().getRealPath("/temp/");
-                            
-                            // Crea el directorio temporal si no existe
-                            File directorioTemporal = new File(rutaTemporal);
-                            if (!directorioTemporal.exists()) {
-                                directorioTemporal.mkdirs();
-                            }
-                            
-                            // Guarda la imagen en un archivo temporal
-                            File archivoImagen = new File(rutaTemporal, nombreArchivo);
-                            try (FileOutputStream fos = new FileOutputStream(archivoImagen)) {
-                                fos.write(imagenUsuario);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                        if(imagenUsuario != null){
+                      
                         %>
-                            <img src="<%=request.getContextPath() + "/temp/" + nombreArchivo %>"
+                            <img src="<%= imagenUsuario %>"
                                 alt="Imagen de Usuario" class="img-fluid mb-3 rounded-circle img-thumbnail perfil" />
                         <%
                         } else {

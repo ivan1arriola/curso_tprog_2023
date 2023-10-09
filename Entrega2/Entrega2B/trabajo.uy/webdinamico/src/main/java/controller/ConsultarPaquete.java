@@ -38,20 +38,58 @@ public class ConsultarPaquete extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	
+    	
+    	
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
         String nombrePaquete = request.getParameter("p");
+        request.setAttribute("mostrarComprar", false);
         
 		HttpSession session = request.getSession(false);
-		TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
-		
-		if(tipo == TipoUsuario.Empresa) {
-			request.setAttribute("mostrarComprar", true);
+		if( session == null) {
 			
-			request.setAttribute("yaSeCompro", false);
 		} else {
-			request.setAttribute("mostrarComprar", false);
+			
+			
+			String nickname = (String) session.getAttribute("nickname");
+			if(nickname != null) {
+				
+				TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
+				Set<String> paquetes = Fabrica.getInstance().getICtrlOferta().listarComprasPaquete(nickname);
+
+				if(tipo == TipoUsuario.Empresa && !paquetes.contains(nombrePaquete)) {
+					
+					request.setAttribute("mostrarComprar", true);
+					request.setAttribute("yaSeCompro", false);
+					
+				} else if(tipo == TipoUsuario.Empresa ) {
+					
+					request.setAttribute("mostrarComprar", true);
+					request.setAttribute("yaSeCompro", true);	
+					
+				}
+				
+			}
+			
+			
+			
+			
+			
+			
+			
 		}
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
 		
 		
 		
