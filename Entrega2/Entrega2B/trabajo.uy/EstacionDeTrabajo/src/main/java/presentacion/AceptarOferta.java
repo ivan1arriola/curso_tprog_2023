@@ -33,7 +33,7 @@ public class AceptarOferta extends JInternalFrame {
 	private JComboBox<String> comboBoxEmpresa; 
 	private JComboBox<String> comboBoxOfertas; 
 	//private JTextArea infoOferta; 
-	private JTextArea ofertaDetalle; 
+	private JTextArea ofertaDetalle;  
     
 	
     public AceptarOferta(ICtrlOferta ICO,  ICtrlUsuario ICU) {

@@ -217,7 +217,7 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         	        int expos = (int) exposicionSpinner.getValue();
         	        int duracion = (int) duracionSpinner.getValue();
         	        int costo1 = (int) costoSpinner.getValue();
-        	        float costo = (float) costo1;
+        	        float costo = (float) costo1; 
         		        			
     	            boolean res = ctrlOferta.altaTipoPublicacionOL(nombre,  descripcion,  expos,  duracion,  costo,  fechaConvertida);
     	            if (res) {
