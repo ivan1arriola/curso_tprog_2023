@@ -497,8 +497,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         }
         
         
-        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/TiposPublicacionPaquetes.csv");
-         	     BufferedReader reader14 = new BufferedReader(new InputStreamReader(inputStream2))) {
+        try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/TiposPublicacionPaquetes.csv");
+         	     BufferedReader reader14 = new BufferedReader(new InputStreamReader(inputStream3))) {
         	String linea14;
         	reader14.readLine();
         	while ((linea14 = reader14.readLine()) != null) {
@@ -510,8 +510,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
         		// TipoPub
         		String TipoPub = null;
-        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
-               	     BufferedReader reader15 = new BufferedReader(new InputStreamReader(inputStream3))) {
+        		try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
+               	     BufferedReader reader15 = new BufferedReader(new InputStreamReader(inputStream4))) {
                 	String linea15;
                 	reader15.readLine();
                 	while ((linea15 = reader15.readLine()) != null) {
@@ -525,8 +525,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		}
         		
         		
-        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
-        	       	     BufferedReader reader16 = new BufferedReader(new InputStreamReader(inputStream3))) {
+        		try (InputStream inputStream5 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+        	       	     BufferedReader reader16 = new BufferedReader(new InputStreamReader(inputStream5))) {
                 	String linea16;
                 	reader16.readLine();
                 	while ((linea16 = reader16.readLine()) != null) {
@@ -544,50 +544,50 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	e41.printStackTrace();
         }
 	
-		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/PaqueteCompras.csv");
-	    	     BufferedReader reader17 = new BufferedReader(new InputStreamReader(inputStream3))) {
-        	String linea17;
-        	reader17.readLine();
-        	while ((linea17 = reader17.readLine()) != null) {
-        		String[] campos14 = linea17.split(";");
-        		String nickname_e = campos14[1];
-        		String paq = campos14[2];
-        		
-        		try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/Usuario.csv");
-       	       	     BufferedReader reader18 = new BufferedReader(new InputStreamReader(inputStream4))) {
-	               	String linea18;
-	               	reader18.readLine();
-	               	while ((linea18 = reader18.readLine()) != null) {
-	               		String[] campos18 = linea18.split(";");
-	               		if (campos18[0].equals(nickname_e)) {
-	               			nickname_e = campos18[2];
-	               		}
-	               	}
-		   		} catch (IOException e42) {
-		   			e42.printStackTrace();
-		   		}
-        		
-        		try (InputStream inputStream5 = getClass().getResourceAsStream("/main/datos/Paquete.csv");
-          	       	     BufferedReader reader19 = new BufferedReader(new InputStreamReader(inputStream5))) {
-   	               	String linea19;
-   	               	reader19.readLine();
-   	               	while ((linea19 = reader19.readLine()) != null) {
-   	               		String[] campos19 = linea19.split(";");
-   	               		if (campos19[0].equals(paq)) {
-   	               			paq = campos19[1];
-   	               		}
-   	               	}
-   		   		} catch (IOException e42) {
-   		   			e42.printStackTrace();
-   		   		}
-        		
-        		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        		LocalDate fecha = LocalDate.parse(campos14[3],  formatter);
-        		
-        		ICO.compraPaquetes(nickname_e,  paq, fecha, Integer.parseInt(campos14[4]));
-        	}
-		} catch (IOException e41) {
-        	e41.printStackTrace();
-        }
+        try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/PaquetesCompras.csv");
+        	     BufferedReader reader17 = new BufferedReader(new InputStreamReader(inputStream3))) {
+			   	String linea17;
+			   	reader17.readLine();
+			   	while ((linea17 = reader17.readLine()) != null) {
+			   		String[] campos14 = linea17.split(";");
+			   		String nickname_e = campos14[1];
+			   		String paq = campos14[2];
+			   		
+			   		try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/Usuarios.csv");
+			  	       	     BufferedReader reader18 = new BufferedReader(new InputStreamReader(inputStream4))) {
+			               	String linea18;
+			               	reader18.readLine();
+			               	while ((linea18 = reader18.readLine()) != null) {
+			               		String[] campos18 = linea18.split(";");
+			               		if (campos18[0].equals(nickname_e)) {
+			               			nickname_e = campos18[2];
+			               		}
+			               	}
+				   		} catch (IOException e42) {
+				   			e42.printStackTrace();
+				   		}
+			   		
+			   		try (InputStream inputStream5 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+			     	       	     BufferedReader reader19 = new BufferedReader(new InputStreamReader(inputStream5))) {
+			               	String linea19;
+			               	reader19.readLine();
+			               	while ((linea19 = reader19.readLine()) != null) {
+			               		String[] campos19 = linea19.split(";");
+			               		if (campos19[0].equals(paq)) {
+			               			paq = campos19[1];
+			               		}
+			               	}
+				   		} catch (IOException e42) {
+				   			e42.printStackTrace();
+				   		}
+			   		
+			   		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			   		LocalDate fecha = LocalDate.parse(campos14[3],  formatter);
+			   		
+			   		ICO.compraPaquetes(nickname_e,  paq, fecha, Integer.parseInt(campos14[4]));
+			   	}
+       	} catch (IOException e41) {
+			e41.printStackTrace();
 		}
+	}
 }
