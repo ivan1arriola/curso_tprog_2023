@@ -1,10 +1,7 @@
-package main.java.Test;
+package main.java.test;
 
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
-
-
-
 
 @Suite
 @SelectClasses({ControladorUsuarioTest.class,  
