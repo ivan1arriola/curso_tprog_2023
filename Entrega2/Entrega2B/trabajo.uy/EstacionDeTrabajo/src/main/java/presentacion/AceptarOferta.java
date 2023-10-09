@@ -17,7 +17,6 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants; 
 import javax.swing.SwingConstants; 
 import java.awt.event.ActionListener; 
-import java.awt.GridBagConstraints; 
 
 import java.awt.event.ActionEvent; 
 
@@ -28,6 +27,7 @@ import main.java.logica.interfaces.ICtrlUsuario;
 
 
 public class AceptarOferta extends JInternalFrame {
+	private static final long serialVersionUID = 1L;
 	private ICtrlOferta controlOferta; 
 	private ICtrlUsuario controlUsuario; 
 	private JComboBox<String> comboBoxEmpresa; 
@@ -46,7 +46,7 @@ public class AceptarOferta extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 
         setTitle("Aceptar o Rechazar Oferta"); 
         setBounds(30,   30,   395,   259);
-        GridBagConstraints gbc = new GridBagConstraints();
+//        GridBagConstraints gbc = new GridBagConstraints();
       	
     	comboBoxEmpresa = new JComboBox<>(); 
     	comboBoxEmpresa.setBounds(156, 16, 209, 24);
