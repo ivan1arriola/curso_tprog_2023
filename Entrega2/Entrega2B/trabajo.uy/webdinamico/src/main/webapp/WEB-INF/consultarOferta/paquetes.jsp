@@ -4,10 +4,12 @@
 
 <% OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
 	DTPaquete paquete = ofertaLaboral.getPaquete();
-	
+	if (paquete !=null){
 
 
 %>
+
+
 <div>
     <div class="mt-4" id="paquete">
         <h1 class="text-center">Paquete</h1>
@@ -22,3 +24,5 @@
         </div>
     </div>
 </div>
+
+<%}%>

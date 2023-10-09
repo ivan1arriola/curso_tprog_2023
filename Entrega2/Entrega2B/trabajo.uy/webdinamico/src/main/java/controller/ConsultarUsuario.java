@@ -8,9 +8,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Fabrica;
+import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.datatypes.DTUsuario;
+import main.java.logica.interfaces.ICtrlOferta;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -31,6 +34,23 @@ public class ConsultarUsuario extends HttpServlet {
     public DTUsuario obtenerDatosUsuario(String nick) throws UsuarioNoExisteException {
       return Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuario(nick);
     }
+    
+    public void cargarDTPaquete (HttpServletRequest request, HttpServletResponse response, String nickname) {
+    	
+    	ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
+    	Set<String> paquetes = ctrl.listarComprasPaquete(nickname);
+    	
+    	Set<DTPaquete> dtPaquetes = new HashSet<DTPaquete>(); 
+    	
+    	if(paquetes != null && !paquetes.isEmpty()) {
+    		for(String nombre : paquetes) {
+    			dtPaquetes.add(ctrl.obtenerDatosPaquete(nombre));
+    		}
+    		
+    	}
+
+		request.setAttribute("paquetes", dtPaquetes);
+    }
 
 
 	/**
@@ -41,9 +61,14 @@ public class ConsultarUsuario extends HttpServlet {
 		request.setAttribute("keys", keys);
         String nickname = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
+        
+        
 
         if (nickname != null && !nickname.isEmpty()) {
             try {
+            	
+            	
+        		
                 DTUsuario usuario = obtenerDatosUsuario(nickname);
                 if (usuario == null) {
                     throw new Exception("No se encontraron datos de usuario.");
@@ -51,6 +76,7 @@ public class ConsultarUsuario extends HttpServlet {
                 request.setAttribute("usuario", usuario);
 
                 if (nickname.equals(nicknameUsuarioLogueado)) {
+                	cargarDTPaquete(request, response, nickname);
                 	request.setAttribute("editable", true);
                 } else {
                 	request.setAttribute("editable", false);
