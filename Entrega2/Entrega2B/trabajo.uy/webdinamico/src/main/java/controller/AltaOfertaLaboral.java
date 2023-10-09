@@ -35,7 +35,8 @@ public class AltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
 		HttpSession session = request.getSession(false);
 		if(session == null) {
 			response.sendRedirect(request.getContextPath() + "/ofertaslaborales");

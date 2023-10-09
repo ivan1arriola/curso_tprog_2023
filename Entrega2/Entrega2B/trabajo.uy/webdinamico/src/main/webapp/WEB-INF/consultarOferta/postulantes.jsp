@@ -25,7 +25,7 @@
         <!-- Mensaje para Postulantes -->
         <div class="alert alert-info">
             <p> No te has postulado para esta oferta. </p>
-            <a href="<%= request.getContextPath() %>/postularOferta?id=<%= ofertaLaboral.getNombre() %>" class="btn btn-primary">Postular</a>
+            <a href="<%= request.getContextPath() %>/crearpostulacion?id=<%= ofertaLaboral.getNombre() %>" class="btn btn-primary">Postular</a>
         </div>
         <%
                 } else if (tipoUsuario == TipoUsuario.Empresa) {
