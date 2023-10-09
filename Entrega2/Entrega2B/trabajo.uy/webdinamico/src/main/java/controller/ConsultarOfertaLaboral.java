@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTEmpresa;
+//import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
@@ -93,7 +93,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 request.setAttribute("ofertaLaboral", ofertaBean);
                 request.getRequestDispatcher("/WEB-INF/consultarOferta/infoOfertaLabora.jsp").forward(request, response);
 
-            } catch (Exception e) {
+            } catch (IOException e) {
                 String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: " + e.getMessage();
                 request.setAttribute("mensajeError", mensajeError);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
@@ -116,7 +116,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 		
 		DTPaquete paquete = null;
 		
-		if( info instanceof DTOfertaExtendidoConKeywordsTit) {
+		if ( info instanceof DTOfertaExtendidoConKeywordsTit) {
 			ofertaBean.setMostrarPostulantesYPaquetes(true);
 			DTOfertaExtendidoConKeywordsTit masData = (DTOfertaExtendidoConKeywordsTit) info;
 			paquete = masData.getPaquete();
@@ -127,7 +127,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 		
 		Set<DTPostulacion> postulaciones = dtOferta.getPostulaciones();
 		
-		for( DTPostulacion postulacion : postulaciones) {
+		for ( DTPostulacion postulacion : postulaciones) {
 			String nicknameUsuario = postulacion.getPostulante();
 			DTUsuario usuario = ctrlUsuario.obtenerDatosUsuario(nicknameUsuario);
 			postulantes.add(usuario);
