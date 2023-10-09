@@ -64,12 +64,12 @@ public class AltaDeEmpresa extends JInternalFrame {
         getContentPane().setLayout(null);
                                                                                 
         nickname = new JLabel("Nickname:");
-        nickname.setBounds(141,  12,  73,  13);
+        nickname.setBounds(141,  12,  73,  13); 
         nickname.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(nickname);
         
-        textFieldNickname = new JTextField();
-        textFieldNickname.setBounds(232,  9,  180,  18);
+        textFieldNickname = new JTextField(); 
+        textFieldNickname.setBounds(232,  9, 180,  18);
         textFieldNickname.setColumns(10);
         getContentPane().add(textFieldNickname);
 
