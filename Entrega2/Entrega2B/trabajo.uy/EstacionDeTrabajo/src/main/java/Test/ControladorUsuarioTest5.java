@@ -1,326 +1,322 @@
-package main.java.Test;
+package main.java.Test ;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThrows;
-import java.time.LocalDate;
-import java.util.HashSet;
-import org.junit.jupiter.api.Test;
+import java.time.LocalDate ;
+import java.util.HashSet ;
+import org.junit.jupiter.api.Test ;
 
-import main.java.logica.clases.Empresa;
-import main.java.logica.clases.InfoCompra;
-import main.java.logica.clases.InfoCompraOferta;
-import main.java.logica.clases.Keyword;
-import main.java.logica.clases.OfertaLaboral;
-import main.java.logica.clases.Paquete;
-import main.java.logica.clases.Postulacion;
-import main.java.logica.clases.Postulante;
-import main.java.logica.clases.TipoOferta;
-import main.java.logica.clases.Usuario;
-import main.java.logica.datatypes.DTCantTO;
-import main.java.logica.datatypes.DTCompraPaquetes;
-import main.java.logica.datatypes.DTEmpresa;
-import main.java.logica.datatypes.DTHora;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
-import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.datatypes.DTPaquete;
+import main.java.logica.clases.Empresa ;
+import main.java.logica.clases.InfoCompra ;
+import main.java.logica.clases.InfoCompraOferta ;
+import main.java.logica.clases.Keyword ;
+import main.java.logica.clases.OfertaLaboral ;
+import main.java.logica.clases.Paquete ;
+import main.java.logica.clases.Postulacion ;
 
-import main.java.logica.datatypes.DTTipoOferta;
-import main.java.logica.datatypes.DTUsuario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
-import main.java.logica.interfaces.ICtrlOferta;
-import main.java.logica.interfaces.ICtrlUsuario;
-import main.java.logica.manejadores.OfertaLaboralHandler;
-import main.java.logica.manejadores.PaqueteHandler;
-import main.java.logica.manejadores.TipoOfertaHandler;
-import main.java.logica.manejadores.UsuarioHandler;
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
-import main.java.logica.Fabrica;
+import main.java.logica.clases.TipoOferta ;
+import main.java.logica.clases.Usuario ;
+import main.java.logica.datatypes.DTCantTO ;
 
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Arrays;
+import main.java.logica.datatypes.DTHora ;
+import main.java.logica.datatypes.DTHorario ;
+import main.java.logica.datatypes.DTOfertaExtendido ;
+import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante ;
+import main.java.logica.datatypes.DTOfertaExtendidoSinPConK ;
+import main.java.logica.datatypes.DTPaquete ;
+
+import main.java.logica.datatypes.DTTipoOferta ;
+import main.java.logica.datatypes.DTUsuario ;
+import main.java.logica.enumerados.DepUY ;
+import main.java.logica.enumerados.EstadoOL ;
+import main.java.logica.interfaces.ICtrlOferta ;
+import main.java.logica.interfaces.ICtrlUsuario ;
+import main.java.logica.manejadores.OfertaLaboralHandler ;
+import main.java.logica.manejadores.PaqueteHandler ;
+import main.java.logica.manejadores.TipoOfertaHandler ;
+import main.java.logica.manejadores.UsuarioHandler ;
+import main.java.excepciones.ExceptionEmpresaInvalida ;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado ;
+import main.java.logica.Fabrica ;
+
+import java.util.List ;
+import java.util.Map ;
+import java.util.ArrayList ;
+import java.util.Arrays ;
 
 
 public class ControladorUsuarioTest5 {
 		
 		@Test
 		void TestPARAUSUARIo(){
-			Fabrica f = Fabrica.getInstance();
-		    ICtrlUsuario ICU = f.getICtrlUsuario();
-		    ICtrlOferta ICO = f.getICtrlOferta();
+			Fabrica f = Fabrica.getInstance() ;
+		    ICtrlUsuario ICU = f.getICtrlUsuario() ;
+		    ICtrlOferta ICO = f.getICtrlOferta() ;
 			
 		    // ---------------------------- creo Postulante ---------------------------- 
-			String nickname2 = "ReneDescartes";
-			String password2 = "LaContrasenaMasSeguraDelMundo";
-			String nombre2 = "Rene";
-			String apellido2 = "Descartes";
-			String correo2 = "CogitoErgo@Zum.com";
-			LocalDate fechaNacimiento2 = LocalDate.of(1596,  3,  31);
-			String nacionalidad2 = "Frances";
-			String imagen2 = "MeEncantaPensar";
-			byte[] img2 = imagen2.getBytes();
-			ICU.altaPostulanteImagen(nickname2,  password2,  nombre2,  apellido2,  fechaNacimiento2,  correo2,  nacionalidad2,  img2);
+			String nickname2 = "ReneDescartes" ;
+			String password2 = "LaContrasenaMasSeguraDelMundo" ;
+			String nombre2 = "Rene" ;
+			String apellido2 = "Descartes" ;
+			String correo2 = "CogitoErgo@Zum.com" ;
+			LocalDate fechaNacimiento2 = LocalDate.of(1596,   3,   31) ;
+			String nacionalidad2 = "Frances" ;
+			String imagen2 = "MeEncantaPensar" ;
+			byte[] img2 = imagen2.getBytes() ;
+			ICU.altaPostulanteImagen(nickname2,   password2,   nombre2,   apellido2,   fechaNacimiento2,   correo2,   nacionalidad2,   img2) ;
 			// ---------------------------- creo Empresa ----------------------------
-			String nickname = "The Clouds";
-			String password = "LaContrasenaMasSeguraDelMundo";
-			String nombre = "Socrates";
-			String apellido = "of Grece";
-			String correo = "Socrates@gmail.com";
-			String descripcion = "I know that I know nothing.";
-			String imagen ="made by Aristophanes";
-			byte[] img = imagen.getBytes();
-			ICU.altaEmpresaImagen(nickname,password,  nombre,  apellido, correo ,descripcion,  img);
+			String nickname = "The Clouds" ;
+			String password = "LaContrasenaMasSeguraDelMundo" ;
+			String nombre = "Socrates" ;
+			String apellido = "of Grece" ;
+			String correo = "Socrates@gmail.com" ;
+			String descripcion = "I know that I know nothing." ;
+			String imagen ="made by Aristophanes" ;
+			byte[] img = imagen.getBytes() ;
+			ICU.altaEmpresaImagen(nickname, password,   nombre,   apellido,  correo , descripcion,   img) ;
 			// ---------------------------- creo TipoOferta ----------------------------
-			ICO.altaTipoPublicacionOL("Oferta salada",  "visibilidad salada",   199,   190,   102340.0f,   LocalDate.now());
-			ICO.altaTipoPublicacionOL("Oferta dulce",  "visibilidad dulce",   199,   290,   102340.0f,   LocalDate.now());
-			ICO.altaTipoPublicacionOL("Oferta proteica",  "visibilidad proteica",   199,   1908,   1020340.0f,   LocalDate.now());	
-			TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-			TipoOferta NuevoTipoOferta = TOH.buscar("Oferta salada");
+			ICO.altaTipoPublicacionOL("Oferta salada",   "visibilidad salada",    199,    190,    102340.0f,    LocalDate.now()) ;
+			ICO.altaTipoPublicacionOL("Oferta dulce",   "visibilidad dulce",    199,    290,    102340.0f,    LocalDate.now()) ;
+			ICO.altaTipoPublicacionOL("Oferta proteica",   "visibilidad proteica",    199,    1908,    1020340.0f,    LocalDate.now()) ;	
+			TipoOfertaHandler TOH = TipoOfertaHandler.getInstance() ;
+			TipoOferta NuevoTipoOferta = TOH.buscar("Oferta salada") ;
 			
 			// ---------------------------- creo Paquete ----------------------------
-			String str1 = "MeEncantaElQuesoSemiduro";
-			byte[] img33 = str1.getBytes();
-			ICO.altaPaqueteOL("Paquete 7",  "un paquete espectacular, con mucho queso",   1,   LocalDate.now(),   10.0f,   img33);
-			// los paquetes empiezan vacios,   se les va agregando tipos de oferta
-			ICO.agregarTipoOfertaPaq("Paquete 7",   "Oferta salada",  20);
-			ICO.agregarTipoOfertaPaq("Paquete 7",   "Oferta dulce",  12);
-			ICO.agregarTipoOfertaPaq("Paquete 7",   "Oferta proteica",  1);
+			String str1 = "MeEncantaElQuesoSemiduro" ;
+			byte[] img33 = str1.getBytes() ;
+			ICO.altaPaqueteOL("Paquete 7",   "un paquete espectacular,  con mucho queso",    1,    LocalDate.now(),    10.0f,    img33) ;
+			// los paquetes empiezan vacios,    se les va agregando tipos de oferta
+			ICO.agregarTipoOfertaPaq("Paquete 7",    "Oferta salada",   20) ;
+			ICO.agregarTipoOfertaPaq("Paquete 7",    "Oferta dulce",   12) ;
+			ICO.agregarTipoOfertaPaq("Paquete 7",    "Oferta proteica",   1) ;
 			// ---------------------------- empresa Compra Paquete? ----------------------------
 			// tengo que obtener el controlador de TipoOferta para obtener el tipo de oferta
 			// y luego comprar el paquete
-			TipoOfertaHandler TOHr = TipoOfertaHandler.getInstance();
-			Map<String, TipoOferta> mapa = TOHr.obtener();
-			String keyToLookup = "Oferta salada";
-			TipoOferta ofertaLaboralSalada = mapa.get(keyToLookup);
-			ofertaLaboralSalada.getCosto();
-			ofertaLaboralSalada.getDescripcion();
-			ofertaLaboralSalada.getDuracion();
-			ofertaLaboralSalada.getExposicion();
-			ofertaLaboralSalada.getFechaAlta();
-			ofertaLaboralSalada.getNombre();
-			ofertaLaboralSalada.setCosto(0);
-			ofertaLaboralSalada.setDescripcion("visibilidad salada");
-			ofertaLaboralSalada.setDuracion(190);
-			ofertaLaboralSalada.setExposicion(199);
-			ofertaLaboralSalada.setFechaAlta(LocalDate.now());
-			ofertaLaboralSalada.setNombre("Oferta salada");
+			TipoOfertaHandler TOHr = TipoOfertaHandler.getInstance() ;
+			Map<String,  TipoOferta> mapa = TOHr.obtener() ;
+			String keyToLookup = "Oferta salada" ;
+			TipoOferta ofertaLaboralSalada = mapa.get(keyToLookup) ;
+			ofertaLaboralSalada.getCosto() ;
+			ofertaLaboralSalada.getDescripcion() ;
+			ofertaLaboralSalada.getDuracion() ;
+			ofertaLaboralSalada.getExposicion() ;
+			ofertaLaboralSalada.getFechaAlta() ;
+			ofertaLaboralSalada.getNombre() ;
+			ofertaLaboralSalada.setCosto(0) ;
+			ofertaLaboralSalada.setDescripcion("visibilidad salada") ;
+			ofertaLaboralSalada.setDuracion(190) ;
+			ofertaLaboralSalada.setExposicion(199) ;
+			ofertaLaboralSalada.setFechaAlta(LocalDate.now()) ;
+			ofertaLaboralSalada.setNombre("Oferta salada") ;
 			// esta es la manera de decir en el sistema compre un paquete
-			//InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS)
+			//InfoCompra(LocalDate fechaCompra,    float costo,    Paquete pack,    Empresa empres,   Set<DTCantTO> conjuntoS)
 			// la idea es que si compra un paquete entonces genera automaticamente infoCompraOferta indicando la compra por adentro de un paquete
-			// haciendose con operacion InfoCompraOferta ununuunu = new InfoCompraOferta(ofertaLaboralSalada,3);
-			// esto indica se compro, notar que no hay caso de uso para comprar paquete
+			// haciendose con operacion InfoCompraOferta ununuunu = new InfoCompraOferta(ofertaLaboralSalada, 3) ;
+			// esto indica se compro,  notar que no hay caso de uso para comprar paquete
 			// todo esto no esta armado
 			// seria asi el orden
-			InfoCompraOferta ununuunu = new InfoCompraOferta(ofertaLaboralSalada,3);
-			DTCantTO nuevamente = new DTCantTO("Oferta salada",3);
-			HashSet<DTCantTO> hashSet = new HashSet<>();
-	        hashSet.add(nuevamente);
-			LocalDate fechaCompra = LocalDate.now();
-			float costo = 10.0f;
+			InfoCompraOferta ununuunu = new InfoCompraOferta(ofertaLaboralSalada, 3) ;
+			DTCantTO nuevamente = new DTCantTO("Oferta salada", 3) ;
+			HashSet<DTCantTO> hashSet = new HashSet<>() ;
+	        hashSet.add(nuevamente) ;
+			LocalDate fechaCompra = LocalDate.now() ;
+			float costo = 10.0f ;
 			// obtener paquete
-			PaqueteHandler PH = PaqueteHandler.getInstance();
-			Map<String,  Paquete> mapaPaquete = PH.obtener();
-			keyToLookup = "Paquete 7";
-			Paquete Pack = mapaPaquete.get(keyToLookup);
+			PaqueteHandler PH = PaqueteHandler.getInstance() ;
+			Map<String,   Paquete> mapaPaquete = PH.obtener() ;
+			keyToLookup = "Paquete 7" ;
+			Paquete Pack = mapaPaquete.get(keyToLookup) ;
 			// obtener empresa
-			UsuarioHandler UH = UsuarioHandler.getInstance();
-			Map<String,  Usuario> mapaUsuario = UH.obtenerNick();
-			keyToLookup = "The Clouds";
-			Empresa empres = (Empresa) mapaUsuario.get(keyToLookup);
-			InfoCompra nueva = new InfoCompra(fechaCompra,   costo,   Pack,   empres,  hashSet);
+			UsuarioHandler UH = UsuarioHandler.getInstance() ;
+			Map<String,   Usuario> mapaUsuario = UH.obtenerNick() ;
+			keyToLookup = "The Clouds" ;
+			Empresa empres = (Empresa) mapaUsuario.get(keyToLookup) ;
+			InfoCompra nueva = new InfoCompra(fechaCompra,    costo,    Pack,    empres,   hashSet) ;
 			// getters y setters
-			nueva.getCosto();
-			nueva.getEmpresa();
-			nueva.getfCompra();
-			nueva.getFechaVencimiento();
-			nueva.getICO();
-			nueva.getPaquete();
-			nueva.obtenerDatosPaquete();
-			nueva.setCosto(10.0f);
-			nueva.setEmpresa(empres);
-			nueva.setfCompra(LocalDate.now());
-			nueva.setFechaVencimiento(LocalDate.now());
-			nueva.setICO(nueva.getICO());
-			nueva.setPaquete(Pack);	
+			nueva.getCosto() ;
+			nueva.getEmpresa() ;
+			nueva.getfCompra() ;
+			nueva.getFechaVencimiento() ;
+			nueva.getICO() ;
+			nueva.getPaquete() ;
+			nueva.obtenerDatosPaquete() ;
+			nueva.setCosto(10.0f) ;
+			nueva.setEmpresa(empres) ;
+			nueva.setfCompra(LocalDate.now()) ;
+			nueva.setFechaVencimiento(LocalDate.now()) ;
+			nueva.setICO(nueva.getICO()) ;
+			nueva.setPaquete(Pack) ;	
 			
 			// mas constructores para oferta laboral
-			List<Keyword> myList = new ArrayList<>();
-	        myList.add(new Keyword("manzana"));
-	        myList.add(new Keyword("banana"));
-	        myList.add(new Keyword("frutilla"));
-			TipoOferta atrtOferta = ofertaLaboralSalada;
-			String atrnombre6 = "pensador";
-			String atrdescripcion6 = "Pensador de sistemas";
-			String atrciudad6 = "Montevideo";
-			DepUY atrdepartamento6 = DepUY.Montevideo;
-			LocalDate atrfechaAlta6 = LocalDate.of(2020, 12, 12);
-			EstadoOL estadoNuevo6 = EstadoOL.Ingresada;
-			imagen2 = "MeEncantaPensar";
-			float atrremuneracion = 1;
-			byte[] img3 = imagen2.getBytes();
-			DTHora horaSalada = new DTHora(8, 0);
-			DTHora horaSalada2 = new DTHora(1, 0);
-			DTHorario horarioSal = new DTHorario(horaSalada, horaSalada2);
+			List<Keyword> myList = new ArrayList<>() ;
+	        myList.add(new Keyword("manzana")) ;
+	        myList.add(new Keyword("banana")) ;
+	        myList.add(new Keyword("frutilla")) ;
+			TipoOferta atrtOferta = ofertaLaboralSalada ;
+			String atrnombre6 = "pensador" ;
+			String atrdescripcion6 = "Pensador de sistemas" ;
+			String atrciudad6 = "Montevideo" ;
+			DepUY atrdepartamento6 = DepUY.Montevideo ;
+			LocalDate atrfechaAlta6 = LocalDate.of(2020,  12,  12) ;
+			EstadoOL estadoNuevo6 = EstadoOL.Ingresada ;
+			imagen2 = "MeEncantaPensar" ;
+			float atrremuneracion = 1 ;
+			byte[] img3 = imagen2.getBytes() ;
+			DTHora horaSalada = new DTHora(8,  0) ;
+			DTHora horaSalada2 = new DTHora(1,  0) ;
+			DTHorario horarioSal = new DTHorario(horaSalada,  horaSalada2) ;
 			// constructor sin paquete y sin imagen
-			OfertaLaboral nuevo000 = new OfertaLaboral(myList,  
-													   atrtOferta, 
-													   atrnombre6,
-													   atrdescripcion6,
-													   atrciudad6,
-													   atrdepartamento6,
-													   horarioSal,
-													   atrremuneracion,
-													   atrfechaAlta6,
-													   estadoNuevo6);
+			OfertaLaboral nuevo000 = new OfertaLaboral(myList,   
+													   atrtOferta,  
+													   atrnombre6, 
+													   atrdescripcion6, 
+													   atrciudad6, 
+													   atrdepartamento6, 
+													   horarioSal, 
+													   atrremuneracion, 
+													   atrfechaAlta6, 
+													   estadoNuevo6) ;
 //			// constructor sin imagen pero con paquete	
-			OfertaLaboral nuevo02 = new  OfertaLaboral(myList,  
-														atrtOferta,  
-														atrnombre6,  
-														atrdescripcion6,
-													    atrciudad6,
-													    atrdepartamento6, 
-													    horarioSal,
-														atrremuneracion,
-														atrfechaAlta6,
-														estadoNuevo6,   
-														Pack);
+			OfertaLaboral nuevo02 = new  OfertaLaboral(myList,   
+														atrtOferta,   
+														atrnombre6,   
+														atrdescripcion6, 
+													    atrciudad6, 
+													    atrdepartamento6,  
+													    horarioSal, 
+														atrremuneracion, 
+														atrfechaAlta6, 
+														estadoNuevo6,    
+														Pack) ;
 						
 			// constructor sin imagen ni paquete	
-			OfertaLaboral nuevo0w2 = new   OfertaLaboral(myList,  
-														 atrtOferta,  
-														 atrnombre6,  
-														 atrdescripcion6,   
-														 atrciudad6,  
-														 atrdepartamento6,  
-														 horarioSal,  
-														 atrremuneracion,  
-														 atrfechaAlta6,  
-														 estadoNuevo6);
+			OfertaLaboral nuevo0w2 = new   OfertaLaboral(myList,   
+														 atrtOferta,   
+														 atrnombre6,   
+														 atrdescripcion6,    
+														 atrciudad6,   
+														 atrdepartamento6,   
+														 horarioSal,   
+														 atrremuneracion,   
+														 atrfechaAlta6,   
+														 estadoNuevo6) ;
 				
-			// --------------------- compro paquete, ahora si ------------------------
-			String nickname22 = "The Clouds";
-			ICO.compraPaquetes(nickname22,"Paquete 7");		    
+			// --------------------- compro paquete,  ahora si ------------------------
+			String nickname22 = "The Clouds" ;
+			ICO.compraPaquetes(nickname22, "Paquete 7") ;		    
 			
 			// ---------------------------- Empresa Crea Trabajo ---------------------------- 
-			nickname22 = "The Clouds";	
-			String nombre22 = "pensador";
-			String descripcion2 = "Pensador de sistemas";
-			DTHora hora12 = new DTHora(8, 0);
-			DTHora hora22 = new DTHora(1, 0);
-			DTHorario horario2 = new DTHorario(hora12, hora22);
-			float remuneracion2 = 1;
-			String ciudad2 = "Montevideo";
-			DepUY dep2 = DepUY.Montevideo;
-			LocalDate fechaA2 = LocalDate.of(2020, 12, 12);
+			nickname22 = "The Clouds" ;	
+			String nombre22 = "pensador" ;
+			String descripcion2 = "Pensador de sistemas" ;
+			DTHora hora12 = new DTHora(8,  0) ;
+			DTHora hora22 = new DTHora(1,  0) ;
+			DTHorario horario2 = new DTHorario(hora12,  hora22) ;
+			float remuneracion2 = 1 ;
+			String ciudad2 = "Montevideo" ;
+			DepUY dep2 = DepUY.Montevideo ;
+			LocalDate fechaA2 = LocalDate.of(2020,  12,  12) ;
 
 			List<String> pruebaKeyword1 = new ArrayList<>(Arrays.asList(
-			    "Trabajo nocturno",
-			    "horario vespertino",
-			    "full time",
+			    "Trabajo nocturno", 
+			    "horario vespertino", 
+			    "full time", 
 			    "part time"
-			));
+			)) ;
 
-			EstadoOL estado = EstadoOL.Ingresada;
-			String paquete = "Paquete 7";
+			EstadoOL estado = EstadoOL.Ingresada ;
+			String paquete = "Paquete 7" ;
 			try {
-				ICU.altaOfertaLaboral(nickname22, "Oferta salada", nombre22, descripcion2, horario2, remuneracion2, ciudad2, dep2, fechaA2, pruebaKeyword1, estado, img, paquete);
+				ICU.altaOfertaLaboral(nickname22,  "Oferta salada",  nombre22,  descripcion2,  horario2,  remuneracion2,  ciudad2,  dep2,  fechaA2,  pruebaKeyword1,  estado,  img,  paquete) ;
 			} catch (ExceptionUsuarioNoEncontrado e) {
 			    // TODO Auto-generated catch block
-			    e.printStackTrace();
+			    e.printStackTrace() ;
 			} catch (ExceptionEmpresaInvalida e) {
 			    // TODO Auto-generated catch block
-			    e.printStackTrace();
+			    e.printStackTrace() ;
 			}	
-			DTTipoOferta nuevoTO = ICO.tipoOferta(nombre22); 	
+			DTTipoOferta nuevoTO = ICO.tipoOferta(nombre22) ; 	
 			// -----------------------------------------------------------
-			 DTOfertaExtendidoSinPConK nuevo = ICU.infoOfertaLaboralVisitante("pensador");
-			 nuevo.getCosto();
-			 DTOfertaExtendido nuevo1 = ICU.consultaOfertaLaboral("pensador");
+			 DTOfertaExtendidoSinPConK nuevo = ICU.infoOfertaLaboralVisitante("pensador") ;
+			 nuevo.getCosto() ;
+			 DTOfertaExtendido nuevo1 = ICU.consultaOfertaLaboral("pensador") ;
 			 
-			 DTPaquete nuevo51 = ICU.obtenerDatosPaquete(paquete);
+			 DTPaquete nuevo51 = ICU.obtenerDatosPaquete(paquete) ;
 			 
-			 DTUsuario nuevo555 = ICU.obtenerDatosUsuarioVisitantes(nickname22);
+			 DTUsuario nuevo555 = ICU.obtenerDatosUsuarioVisitantes(nickname22) ;
 			 
 			// ------------------------------------------------------------------------------------------
-			 OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-			 Map<String, OfertaLaboral> mapaOL =OLH.obtener();
-			 keyToLookup = "pensador";
-			 OfertaLaboral OLpensador = mapaOL.get(keyToLookup);
+			 OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance() ;
+			 Map<String,  OfertaLaboral> mapaOL =OLH.obtener() ;
+			 keyToLookup = "pensador" ;
+			 OfertaLaboral OLpensador = mapaOL.get(keyToLookup) ;
 			// ------------------------------------------------------------------------------------------
-			 String nick = "ReneDescartes";
-			 String curriculumVitae = "Soy un pensador";
-			 String motivacion = "Me gusta pensar";
-			 LocalDate fecha = LocalDate.of(2020, 12, 12);
-			 String URLDocExtras = "www.google.com";
-			 Postulacion Ultima = ICU.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocExtras, OLpensador);
-			 Ultima.getCV();
-			 Ultima.getFecha();
-			 Ultima.getMotivacion();
-			 Ultima.getOfertaLaboral();
-			 Ultima.getPostulante();
-			 Ultima.getuRLDocExtras();
-			 Ultima.setCV(Ultima.getCV());
-			 Ultima.setFecha(LocalDate.of(2020, 12, 12));
-			 Ultima.setMotivacion("Me gusta pensar");
-			 Ultima.setOfertaLaboral(OLpensador);
-			 Ultima.setPostulante(Ultima.getPostulante());
-			 Ultima.setuRLDocExtras("www.google.com");
-			 Ultima.esPostulacion(nombre22);
-			 Ultima.editarPostulacion(URLDocExtras, motivacion);
+			 String nick = "ReneDescartes" ;
+			 String curriculumVitae = "Soy un pensador" ;
+			 String motivacion = "Me gusta pensar" ;
+			 LocalDate fecha = LocalDate.of(2020,  12,  12) ;
+			 String URLDocExtras = "www.google.com" ;
+			 Postulacion Ultima = ICU.crearPostulacion(nick,  curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OLpensador) ;
+			 Ultima.getCV() ;
+			 Ultima.getFecha() ;
+			 Ultima.getMotivacion() ;
+			 Ultima.getOfertaLaboral() ;
+			 Ultima.getPostulante() ;
+			 Ultima.getuRLDocExtras() ;
+			 Ultima.setCV(Ultima.getCV()) ;
+			 Ultima.setFecha(LocalDate.of(2020,  12,  12)) ;
+			 Ultima.setMotivacion("Me gusta pensar") ;
+			 Ultima.setOfertaLaboral(OLpensador) ;
+			 Ultima.setPostulante(Ultima.getPostulante()) ;
+			 Ultima.setuRLDocExtras("www.google.com") ;
+			 Ultima.esPostulacion(nombre22) ;
+			 Ultima.editarPostulacion(URLDocExtras,  motivacion) ;
 			 // ------------------------------- operaciones oferta laboral  ---------------------------
 			 
-			 OLpensador.getCiudad();
-			 OLpensador.getCosto();
-			 OLpensador.getDepartamento();
-			 OLpensador.getDescripcion();
-			 OLpensador.getEstado();
-			 OLpensador.getFechaAlta();
-			 OLpensador.getHorario();
-			 OLpensador.getImagen();
-			 OLpensador.getKeywords();
-			 OLpensador.getNombre();
-			 OLpensador.getPaquete();
-			 OLpensador.getPostulaciones();
-			 OLpensador.getRemuneracion();
-			 OLpensador.getTipoOferta();
-			 OLpensador.setCiudad("Montevideo");
-			 OLpensador.setCosto(1);
-			 OLpensador.setDepartamento(DepUY.Montevideo);
-			 OLpensador.setDescripcion("Pensador de sistemas");
-			 OLpensador.setEstado(EstadoOL.Ingresada);
-			 OLpensador.setFechaAlta(LocalDate.of(2020, 12, 12));
-			 OLpensador.setHorario(horario2);
-			 OLpensador.setImagen(img);
-			 OLpensador.setKeywords(OLpensador.getKeywords());
-			 OLpensador.setNombre("pensador");
-			 OLpensador.setPaquete(Pack);
-			 OLpensador.setRemuneracion(OLpensador.getRemuneracion());
-			 OLpensador.setTipoOferta(ofertaLaboralSalada);
+			 OLpensador.getCiudad() ;
+			 OLpensador.getCosto() ;
+			 OLpensador.getDepartamento() ;
+			 OLpensador.getDescripcion() ;
+			 OLpensador.getEstado() ;
+			 OLpensador.getFechaAlta() ;
+			 OLpensador.getHorario() ;
+			 OLpensador.getImagen() ;
+			 OLpensador.getKeywords() ;
+			 OLpensador.getNombre() ;
+			 OLpensador.getPaquete() ;
+			 OLpensador.getPostulaciones() ;
+			 OLpensador.getRemuneracion() ;
+			 OLpensador.getTipoOferta() ;
+			 OLpensador.setCiudad("Montevideo") ;
+			 OLpensador.setCosto(1) ;
+			 OLpensador.setDepartamento(DepUY.Montevideo) ;
+			 OLpensador.setDescripcion("Pensador de sistemas") ;
+			 OLpensador.setEstado(EstadoOL.Ingresada) ;
+			 OLpensador.setFechaAlta(LocalDate.of(2020,  12,  12)) ;
+			 OLpensador.setHorario(horario2) ;
+			 OLpensador.setImagen(img) ;
+			 OLpensador.setKeywords(OLpensador.getKeywords()) ;
+			 OLpensador.setNombre("pensador") ;
+			 OLpensador.setPaquete(Pack) ;
+			 OLpensador.setRemuneracion(OLpensador.getRemuneracion()) ;
+			 OLpensador.setTipoOferta(ofertaLaboralSalada) ;
 			 //  -------------------- agrego a oferta laborla la postulacion -----------------
-			 List<Postulacion> stringList = new ArrayList<>();
-			 stringList.add(Ultima);
-			 OLpensador.setPostulaciones(stringList);
-			 // ojo dice nombre, pero es con nickname
-			 DTOfertaExtendidoConKeywordsPostulante auxi9 = OLpensador.infoOfertaLaboralPost("ReneDescartes");
-			 auxi9.getCiudad();
-			 auxi9.getCosto();
-			 auxi9.getDatosPostulacion();
-			 auxi9.getDepartamento();
-			 auxi9.getDescripcion();
-			 auxi9.getEstado();
-			 auxi9.getFechaAlta();
-			 auxi9.getHorario();
-			 auxi9.getImagen();
-			 auxi9.getKeywords();
-			 auxi9.getNombre();
-			 auxi9.getRemuneracion();
+			 List<Postulacion> stringList = new ArrayList<>() ;
+			 stringList.add(Ultima) ;
+			 OLpensador.setPostulaciones(stringList) ;
+			 // ojo dice nombre,  pero es con nickname
+			 DTOfertaExtendidoConKeywordsPostulante auxi9 = OLpensador.infoOfertaLaboralPost("ReneDescartes") ;
+			 auxi9.getCiudad() ;
+			 auxi9.getCosto() ;
+			 auxi9.getDatosPostulacion() ;
+			 auxi9.getDepartamento() ;
+			 auxi9.getDescripcion() ;
+			 auxi9.getEstado() ;
+			 auxi9.getFechaAlta() ;
+			 auxi9.getHorario() ;
+			 auxi9.getImagen() ;
+			 auxi9.getKeywords() ;
+			 auxi9.getNombre() ;
+			 auxi9.getRemuneracion() ;
 			 
 			 
 			 
