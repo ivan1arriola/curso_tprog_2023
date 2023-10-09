@@ -25,7 +25,7 @@
         <h1 class="">Postulación a Oferta Laboral </h1>
       </div>
 
-<form class="form-signin needs-validation" novalidate action="CrearPostulacion" method="post">
+<form class="form-signin needs-validation" novalidate action="crearpostulacion" method="post">
       <div class="row">
 		
         <div class="col-9">
@@ -60,6 +60,8 @@
             <input type="text" class="form-control" id="fechaPostulacion" readonly disabled />
           </div>
 
+
+		<input type="text" name="nombreOferta" placeholder="nombreDeLaOferta" value="<%= request.getAttribute("oferta") %>">
 
           <script>
             // Obtener la fecha actual

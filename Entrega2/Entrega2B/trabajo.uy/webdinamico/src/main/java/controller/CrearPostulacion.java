@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Set;
 
 import jakarta.servlet.ServletException;
@@ -53,7 +54,13 @@ public class CrearPostulacion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String cvAbrev = request.getParameter("cvAbreviado");
+		String motiv = request.getParameter("motivacion");
+		HttpSession session = request.getSession(false);
+		String nickname = (String) session.getAttribute("nickname");
+		String nombreOferta = request.getParameter("nombreOferta");
+		Fabrica.getInstance().getICtrlOferta().altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, null, LocalDate.now());
+		response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
 	}
 
 }
