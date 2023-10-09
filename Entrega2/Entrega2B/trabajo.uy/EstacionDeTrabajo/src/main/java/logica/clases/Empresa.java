@@ -8,11 +8,13 @@ import java.util.Set;
 
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTEmpresaConCompras;
 import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
+import main.java.logica.datatypes.DTCompraPaquetes;
 
 
 public class Empresa extends Usuario {
@@ -225,7 +227,17 @@ public class Empresa extends Usuario {
                 dtOfertas.add(dtOferta);
                 // muestro toda oferta laboral 
             }
-            empre = new DTEmpresa(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  descripcion,  url,  dtOfertas,  imagen);   
+            
+            Set<DTCompraPaquetes> compras = new HashSet<>();
+            for (InfoCompra infoComp : infoCompras) {
+                String elem = infoComp.getPaquete().getNombre();
+                DTCompraPaquetes dtcp = new DTCompraPaquetes(elem,infoComp.getfCompra(),infoComp.getFechaVencimiento());
+                compras.add(dtcp);
+                // muestro toda oferta laboral
+            }
+        	
+
+        	empre = new DTEmpresaConCompras(nickname, correoElectronico, apellido, nombre, contraseña, imagen, descripcion, url, dtOfertas, compras);
         } else {
             String nickname =  getNickname();
             String nombre = getNombre();
