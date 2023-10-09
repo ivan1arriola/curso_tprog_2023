@@ -6,13 +6,9 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import main.java.logica.clases.OfertaLaboral;
-import main.java.logica.clases.Postulacion;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
-import main.java.logica.datatypes.DTOfertaExtendido;
 
-import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -25,7 +21,6 @@ import main.java.logica.Fabrica;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -72,13 +67,18 @@ public class ControladorUsuarioTest4 {
 			    e.printStackTrace();
 			}
 
-			Set<String> nuevo = ICU.listarPostulantesDeOfertas(nickname, nombre);
-			Set<String> holaaaa = ICU.listarKeywords("analista");
+//			Set<String> nuevo = 
+			ICU.listarPostulantesDeOfertas(nickname, nombre);
+//			Set<String> holaaaa = 
+			ICU.listarKeywords("analista");
 			
-			DTUsuario gogogo = ICU.obtenerDatosUsuarioEspecial("Google", "Google");
-			gogogo = ICU.obtenerDatosUsuarioEspecial("Google", "Kreves");
+//			DTUsuario gogogo = 
+			ICU.obtenerDatosUsuarioEspecial("Google", "Google");
+//			gogogo = 
+			ICU.obtenerDatosUsuarioEspecial("Google", "Kreves");
 			
-			boolean sefs = ICU.existePostulacion("ASwatzenegger",  "analista");
+//			boolean sefs = 
+			ICU.existePostulacion("ASwatzenegger",  "analista");
 
 			String nick = "ASwatzenegger";
 			String curriculumVitae = "CV";
@@ -88,7 +88,8 @@ public class ControladorUsuarioTest4 {
 			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 			Map<String,  OfertaLaboral> mapa =OLH.obtener();
 			OfertaLaboral oferta = mapa.get("analista");
-			Postulacion nueva = ICU.crearPostulacion(nick,  curriculumVitae,  motivacion,  fecha,  URLDocExtras,  oferta);
+//			Postulacion nueva = 
+			ICU.crearPostulacion(nick,  curriculumVitae,  motivacion,  fecha,  URLDocExtras,  oferta);
 			ICU.modificarPostulacion("analista", nick, "CV asad", "quiero DORMIR");
 			ICU.obtenerDatosPostulacionW("ASwatzenegger", "analista");
 			ICU.hayPostulacionW("ASwatzenegger", "analista");
@@ -100,20 +101,25 @@ public class ControladorUsuarioTest4 {
 				e.printStackTrace();
 			}
 			
-			Set<String> nuevamente = ICO.listarOfertasLaboralesKeywords("Trabajo nocturno");
+//			Set<String> nuevamente = 
+			ICO.listarOfertasLaboralesKeywords("Trabajo nocturno");
 			// esto es para crear una postulacion de verdad
 			String nick113 = "LeonardoVinchi";
 			ICO.altaPostulacion("analista", nick113, "CV", "descripccion interesante",  "wwww.Linkedin.com/usuario",  LocalDate.of(2020,  12,  12));
 			
-			nuevamente =  ICO.listarPaquetes();
+//			nuevamente =  
+			ICO.listarPaquetes();
 			
-			nuevamente =  ICO.listarTipoDePublicaciones();
+//			nuevamente = 
+			ICO.listarTipoDePublicaciones();
 			
-			Set<DTOfertaExtendido> nuevoOfertaEX = ICO.listarOfertasLaboralesConfirmadas();
+//			Set<DTOfertaExtendido> nuevoOfertaEX = 
+			ICO.listarOfertasLaboralesConfirmadas();
 			
 			ICO.paqueteComprado("Paquete 1");
 			
-			DTOfertaExtendidoSinPConK nuevaExsinpconk = ICO.infoOfertaLaboralEmpresa("Google", "analista");
+//			DTOfertaExtendidoSinPConK nuevaExsinpconk = 
+			ICO.infoOfertaLaboralEmpresa("Google", "analista");
 			
 			String str1 = "MeEncantaLaMOZARELLA11111";
 			byte[] img33 = str1.getBytes();
@@ -129,9 +135,11 @@ public class ControladorUsuarioTest4 {
 			ICO.listarPostulantes();
 //			
 			
-			DTOfertaExtendido EXTRA = ICO.obtenerOfertaLaboral("analista");
+//			DTOfertaExtendido EXTRA = 
+			ICO.obtenerOfertaLaboral("analista");
 			
-			DTOfertaExtendidoSinPConK extremo = ICO.infoOfertaLaboralPostulante("Arnold", "analista");
+//			DTOfertaExtendidoSinPConK extremo = 
+			ICO.infoOfertaLaboralPostulante("Arnold", "analista");
 
 		
 

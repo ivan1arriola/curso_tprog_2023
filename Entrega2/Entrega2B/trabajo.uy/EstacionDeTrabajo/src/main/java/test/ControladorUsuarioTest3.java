@@ -16,7 +16,6 @@ import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 
-import java.util.Set;
 import java.util.Arrays;
 
 public class ControladorUsuarioTest3 {
@@ -49,8 +48,10 @@ public class ControladorUsuarioTest3 {
 			DTHora hora2 = new DTHora(1,   0);
 			DTHorario horario = new DTHorario(hora1,  hora2);
 			// ------------------------------------------
-			int num1 = hora1.getHora();
-			num1 = hora1.getMinutos();
+//			int num1 = 
+			hora1.getHora();
+//			num1 = 
+			hora1.getMinutos();
 			hora1.toString();
 			// ------------------------------------------
 			hora1 = horario.getDesde();
@@ -91,7 +92,8 @@ public class ControladorUsuarioTest3 {
 			OfEx.getImagen();
 			OfEx.getPaquete();
 			OfEx.toString();
-			Set<DTPostulacion> temp = (HashSet<DTPostulacion>) OfEx.getPostulaciones();
+//			Set<DTPostulacion> temp = (HashSet<DTPostulacion>) 
+			OfEx.getPostulaciones();
 
 			String nombre = "Asesor";
 			String descripcion = "Asesoramiento";
@@ -107,7 +109,6 @@ public class ControladorUsuarioTest3 {
 			HashSet<DTPostulacion> ColPost1 = new HashSet<DTPostulacion>();
 			ColPost1.add(post);
 			byte[] img1 = null;
-			String paquete1 = "paquete";
 			HashSet<String> pruebaKeyword = new HashSet<>(Arrays.asList(
 					"Trabajo nocturno",  
 					"horario vespertino",  
@@ -139,8 +140,10 @@ public class ControladorUsuarioTest3 {
 			OfEx1.getCosto();
 			OfEx1.getImagen();
 			OfEx1.toString();
-			Set<DTPostulacion> temp1 = OfEx1.getPostulaciones();
-			Set<String> temp2 = (HashSet<String>) OfEx1.getKeywords();
+//			Set<DTPostulacion> temp1 = 
+			OfEx1.getPostulaciones();
+//			Set<String> temp2 = (HashSet<String>) 
+			OfEx1.getKeywords();
 
 			// testear DATATYPES Oferta Extendidos
 			String nombre1 = "Asesor";
@@ -187,7 +190,8 @@ public class ControladorUsuarioTest3 {
 			OfEx11.getImagen();
 			OfEx11.toString();
 			OfEx11.getFechaAlta();
-			Set<String> temp22 = (HashSet<String>) OfEx11.getKeywords();
+//			Set<String> temp22 = (HashSet<String>) 
+			OfEx11.getKeywords();
 			
 			// DTCompraPaquete
 						String cualquiera = "nombvre";

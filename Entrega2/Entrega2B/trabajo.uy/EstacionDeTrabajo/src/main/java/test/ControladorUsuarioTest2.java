@@ -43,10 +43,11 @@ public class ControladorUsuarioTest2 {
 			// --------------- keywords ---------------
 
 			// Adding keywords to the system
-			boolean bool1 = ICO.altaKeyword("Trabajo nocturno");
-			boolean bool2 = ICO.altaKeyword("horario vespertino");
-			boolean bool3 = ICO.altaKeyword("full time");
-			boolean bool4 = ICO.altaKeyword("part time");
+			//boolean bool1 = 
+			ICO.altaKeyword("Trabajo nocturno");
+			ICO.altaKeyword("horario vespertino");
+			ICO.altaKeyword("full time");
+			ICO.altaKeyword("part time");
 
 			// Creating a set for testing
 			HashSet<String> pruebaKeyword = new HashSet<>(Arrays.asList(
@@ -164,8 +165,8 @@ public class ControladorUsuarioTest2 {
 			String str1 = "MeEncantaLaMOZARELLA11111";
 			byte[] img233 = str1.getBytes();
 			// ------------------------- tipo oferta ---------------------------
-			boolean booleano;
-			booleano = ICO.altaTipoPublicacionOL("Oferta normal",  "visibilidad normal",   1,   19,   100.0f,   LocalDate.now());
+//			boolean booleano;
+			ICO.altaTipoPublicacionOL("Oferta normal",  "visibilidad normal",   1,   19,   100.0f,   LocalDate.now());
 			DTTipoOferta tipoOfertaDT=null;
 			try {
 				tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
@@ -179,10 +180,10 @@ public class ControladorUsuarioTest2 {
 			tipoOfertaDT.getDuracion();
 			tipoOfertaDT.getExposicion();
 			tipoOfertaDT.getDescripcion();
-			booleano = ICO.altaTipoPublicacionOL("Oferta destacada",  "visibilidad destacada",   1,   19,   100.0f,   LocalDate.now());
-			booleano = ICO.altaTipoPublicacionOL("Oferta super destacada",  "visibilidad super destacada",   1,   19,   100.0f,   LocalDate.now());
-			
-			booleano = ICO.altaPaqueteOL("Paquete 1",  "un paquete basico",   1,   LocalDate.now(),   10.0f,   img233);	
+//			booleano = 
+			ICO.altaTipoPublicacionOL("Oferta destacada",  "visibilidad destacada",   1,   19,   100.0f,   LocalDate.now());
+			ICO.altaTipoPublicacionOL("Oferta super destacada",  "visibilidad super destacada",   1,   19,   100.0f,   LocalDate.now());
+			ICO.altaPaqueteOL("Paquete 1",  "un paquete basico",   1,   LocalDate.now(),   10.0f,   img233);	
 
 			// los paquetes empiezan vacios,   se les va agregando tipos de oferta
 
@@ -251,9 +252,11 @@ public class ControladorUsuarioTest2 {
 			temporal3.getNombre();
 			temporal3.getRemuneracion();
 			temporal3.toString();
-			Set<String> auxiliar = (HashSet<String>) ICO.listarOfertasLaboralesConfirmadas("Google");
+//			Set<String> auxiliar = (HashSet<String>) 
+			ICO.listarOfertasLaboralesConfirmadas("Google");
 			// obtener nombres de los postulantes
-			Set<String> nombres = (HashSet<String>) ICU.obtenerNicknamesPostulantes();
+//			Set<String> nombres = (HashSet<String>) 
+			ICU.obtenerNicknamesPostulantes();
 			
 			
 //			boolean existePostulacion(String nickname,   String nombre) {

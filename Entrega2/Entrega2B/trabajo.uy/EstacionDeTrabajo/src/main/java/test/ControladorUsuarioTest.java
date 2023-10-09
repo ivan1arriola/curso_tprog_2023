@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import main.java.logica.clases.Empresa;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTUsuario;
-import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.manejadores.UsuarioHandler;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
@@ -27,9 +26,8 @@ public class ControladorUsuarioTest {
 
 	@Test
 	void altaPostulanteTest() {
-	    Fabrica f = Fabrica.getInstance();
-	    ICtrlUsuario ICU = f.getICtrlUsuario();
-	    ICtrlOferta ICO = f.getICtrlOferta();
+	    Fabrica fabricaControlador = Fabrica.getInstance();
+	    ICtrlUsuario ICU = fabricaControlador.getICtrlUsuario();
 	  
 	    // ------------------- postulante sin imagen -------------------
 	    String nickname = "ASwatzenegger";
@@ -41,7 +39,8 @@ public class ControladorUsuarioTest {
 	    String nacionalidad = "Austriaco";
 	  
 	    try {
-	        boolean b = ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
+	        //boolean bandera = 
+	        ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
 	    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
@@ -85,7 +84,8 @@ public class ControladorUsuarioTest {
 	 String str = "MeEncantaPintar";
 	 byte[] img = str.getBytes();
 
-	 boolean b = ICU.altaPostulanteImagen(nickname,  password,  nombre,  apellido,  fechaNacimiento,  correo,  nacionalidad,  img);
+//	 boolean b = 
+	 ICU.altaPostulanteImagen(nickname,  password,  nombre,  apellido,  fechaNacimiento,  correo,  nacionalidad,  img);
 	 
 	// ------------------- datatypes usuario para postulante con imagen -------------------
 
@@ -121,13 +121,9 @@ public class ControladorUsuarioTest {
 	
   @Test
   void altaEmpresaTest() throws ExceptionUsuarioNickYCorreoRepetidos {
-		    Fabrica f = Fabrica.getInstance();
-		    ICtrlUsuario ICU = f.getICtrlUsuario();
+		    Fabrica fabricaControlador = Fabrica.getInstance();
+		    ICtrlUsuario ICU = fabricaControlador.getICtrlUsuario();
 		    //ICtrlOferta ICO = f.getICtrlOferta();
-		    
-		    // imagen
-		    String str2 = "hello";
-		    byte[] img2 = str2.getBytes();
 
 		    // ---------------- empresa sin url ni imagen ----------------
 		    String nickname = "Kreves";
@@ -138,7 +134,8 @@ public class ControladorUsuarioTest {
 		    String descripcion = "Vendemos armas.";
 
 		    try {
-		        boolean b = ICU.altaEmpresa(nickname,  password,  nombre,  apellido,  correo,  descripcion);
+		        // boolean b = 
+		        ICU.altaEmpresa(nickname,  password,  nombre,  apellido,  correo,  descripcion);
 		    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 		        e.printStackTrace();
 		    } catch (ExceptionUsuarioNickRepetido e) {
@@ -171,7 +168,8 @@ public class ControladorUsuarioTest {
 		    String url = "www.google.com";
 
 		    try {
-		        boolean b = ICU.altaEmpresaURL(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url);
+//		        boolean b = 
+		        ICU.altaEmpresaURL(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url);
 		    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 		        e.printStackTrace();
 		    } catch (ExceptionUsuarioNickRepetido e) {
@@ -259,7 +257,8 @@ public class ControladorUsuarioTest {
 		// imagen
 		String str4 = "hola que tal mi nombre es algo";
 		byte[] img4 = str4.getBytes();
-		boolean b2 = ICU.altaEmpresaURLyImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url,  img4);
+//		boolean b2 = 
+		ICU.altaEmpresaURLyImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url,  img4);
 
 		// ----------------- dataTypes empresa -----------------
 		// se obtiene con nickname,  notar que estoy probando DTUsuario
