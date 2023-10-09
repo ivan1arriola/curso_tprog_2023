@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import main.java.logica.clases.Empresa;
+import main.java.logica.clases.InfoCompra;
 import main.java.logica.clases.Keyword;
 import main.java.logica.clases.OfertaLaboral;
 import main.java.logica.clases.Paquete;
@@ -376,6 +377,18 @@ public class CtrlOferta implements ICtrlOferta{
 			return true;
 		//ya fue comprado
 			}
+	}
+
+	@Override
+	public Set<String> listarComprasPaquete(String nicknameEmpresa) {
+		Empresa empresa = (Empresa) UsuarioHandler.getInstance().buscarNick(nicknameEmpresa);
+		Set<InfoCompra> infoCompras = empresa.getInfoCompmras();
+		Set<String> nombresPaquetes =  new HashSet<String>();		
+		for(InfoCompra infoCompra : infoCompras) {
+			
+			nombresPaquetes.add(infoCompra.getPaquete().getNombre());
+		}
+		return nombresPaquetes;
 	}
 	
 	
