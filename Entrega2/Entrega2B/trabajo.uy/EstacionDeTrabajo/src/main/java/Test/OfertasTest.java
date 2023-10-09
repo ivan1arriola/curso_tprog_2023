@@ -233,7 +233,7 @@ public class OfertasTest {
 		assertEquals(dtof.getCiudad(), "Montevidoe");
 		
 		
-		ICO.altaPaqueteOL("Demasiado",  "una descripcion", 10,  LocalDate.of(1958, 10,  10),90, null);
+		ICO.altaPaqueteOL("Demasiado",  "una descripcion", 10,  LocalDate.of(1958, 10,  10), 90, null);
 		ICO.compraPaquetes("ANTEL", "Demasiado");
 		
 		assertTrue(ICO.paqueteComprado("Demasiado"));
