@@ -82,4 +82,8 @@ public interface ICtrlOferta {
 		public abstract boolean paqueteComprado(String pack);
 
 		//Necesaria para el caso de uso ""
+		
+		
+		// Operacion que para un nickname de empresa devuelve un set de String con los nombres de los paquetes comprados
+		public abstract Set<String> listarComprasPaquete(String nicknameEmpresa);
 }

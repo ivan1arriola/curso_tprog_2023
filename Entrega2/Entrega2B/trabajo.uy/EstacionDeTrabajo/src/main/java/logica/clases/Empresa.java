@@ -22,6 +22,10 @@ public class Empresa extends Usuario {
     private Set<OfertaLaboral> ofertasLaborales;
     private Set<InfoCompra> infoCompras;
     
+    public Set<InfoCompra> getInfoCompmras(){
+    	return this.infoCompras;
+    }
+    
     // constructor empresa con imagen y url 
     public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc,  String urlE) {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
