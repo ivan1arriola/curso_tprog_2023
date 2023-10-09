@@ -1,9 +1,7 @@
 package main.java.Test ; 
 
 
-import static org.junit.Assert.assertEquals ; 
-import static org.junit.Assert.assertFalse ; 
-import static org.junit.Assert.assertThrows ; 
+
 import java.time.LocalDate ; 
 import java.util.HashSet ; 
 import org.junit.jupiter.api.Test ; 
@@ -15,43 +13,41 @@ import main.java.logica.clases.Keyword ;
 import main.java.logica.clases.OfertaLaboral ; 
 import main.java.logica.clases.Paquete ; 
 import main.java.logica.clases.Postulacion ; 
-import main.java.logica.clases.Postulante ; 
+
 import main.java.logica.clases.TipoOferta ; 
 import main.java.logica.clases.Usuario ; 
 import main.java.logica.datatypes.DTCantTO ; 
-import main.java.logica.datatypes.DTCompraPaquetes ; 
-import main.java.logica.datatypes.DTEmpresa ; 
+
 import main.java.logica.datatypes.DTHora ; 
 import main.java.logica.datatypes.DTHorario ; 
 import main.java.logica.datatypes.DTOfertaExtendido ; 
-import main.java.logica.datatypes.DTOfertaExtendidoConKeywords ; 
+
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante ; 
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK ; 
 import main.java.logica.datatypes.DTPaquete ; 
-import main.java.logica.datatypes.DTPostulacion ; 
-import main.java.logica.datatypes.DTPostulante ; 
+
 import main.java.logica.datatypes.DTTipoOferta ; 
 import main.java.logica.datatypes.DTUsuario ; 
 import main.java.logica.enumerados.DepUY ; 
 import main.java.logica.enumerados.EstadoOL ; 
 import main.java.logica.interfaces.ICtrlOferta ; 
 import main.java.logica.interfaces.ICtrlUsuario ; 
-import main.java.logica.manejadores.KeywordHandler ; 
+
 import main.java.logica.manejadores.OfertaLaboralHandler ; 
 import main.java.logica.manejadores.PaqueteHandler ; 
 import main.java.logica.manejadores.TipoOfertaHandler ; 
 import main.java.logica.manejadores.UsuarioHandler ; 
-import main.java.excepciones.ExcepcionTipoOfertaNoExistente ; 
+
 import main.java.excepciones.ExceptionEmpresaInvalida ; 
 import main.java.excepciones.ExceptionUsuarioNoEncontrado ; 
 import main.java.logica.Fabrica ; 
 
 import java.util.List ; 
 import java.util.Map ; 
-import java.util.Set ; 
+
 import java.util.ArrayList ; 
 import java.util.Arrays ; 
-import java.util.HashMap ; 
+
 
 public class ControladorUsuarioTest5 {
 		
