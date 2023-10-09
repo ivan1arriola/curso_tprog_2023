@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
+import main.java.logica.datatypes.DTEmpresaConCompras;
 import java.util.Set;
 
 import java.io.IOException;
@@ -53,8 +54,13 @@ public class AltaOfertaLaboral extends HttpServlet {
 	
 	
 	private void cargarPaquetes(HttpServletRequest request, HttpServletResponse response, String nickname) {
-		Set<String> paquetes= null;
-		//TODO: falta codigo
+		DTEmpresaConCompras dtcp = (DTEmpresaConCompras) Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuarioEspecial(nickname, nickname);
+		Set<String> paquetes;
+		
+		for (DTEmpresaConCompras elem : dtcp) {
+			paquetes.add(elem)
+		}
+		
 		request.setAttribute("paquetes", paquetes);
 	}
 
