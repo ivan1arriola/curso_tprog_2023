@@ -18,13 +18,13 @@ public class Paquete {
     private float descuento;
     private int validez;
     private LocalDate fechaAlta;
-    private byte[] imagen;
+    private String imagen;
     // Relaciones
     private Set<OfertaPaquete> oferPaq;
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor
-    public Paquete(String nombre,   String descripcion,   int validez,   LocalDate fecha,   float descuento,  byte[] imagen) {
+    public Paquete(String nombre,   String descripcion,   int validez,   LocalDate fecha,   float descuento,  String imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaAlta = fecha;
@@ -58,7 +58,7 @@ public class Paquete {
     	return validez;
     }
     
-    public byte[] getImagen() {
+    public String getImagen() {
     	return imagen; 
     }
     

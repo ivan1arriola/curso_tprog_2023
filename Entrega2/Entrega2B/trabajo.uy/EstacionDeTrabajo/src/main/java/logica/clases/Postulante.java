@@ -19,7 +19,7 @@ public class Postulante extends Usuario{
     private Set<Postulacion> postulaciones;
 
     // constructor sin imagen
-    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  byte[] img) {
+    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  String img) {
         super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img); // super es para llamar al constructor de la clase padre
         this.fechaNac = fechaNac;
         this.nacionalidad = nacionalidad;
@@ -124,7 +124,7 @@ public class Postulante extends Usuario{
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contrasenia = getcontrasenia();
-            byte[] imagen = getImagen();
+            String imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
             Set<Postulacion> posts = getPostulaciones();
@@ -143,7 +143,7 @@ public class Postulante extends Usuario{
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contraseña = getcontrasenia();
-            byte[] imagen = getImagen();
+            String imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
             postul = new DTPostulante(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   imagen,   fechaNac,   nacionalidad);

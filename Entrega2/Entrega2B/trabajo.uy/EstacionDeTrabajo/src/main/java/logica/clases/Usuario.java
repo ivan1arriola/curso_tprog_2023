@@ -11,7 +11,7 @@ public abstract class Usuario {
     private String apellido;
     private String correoElectronico;
     private String contrasenia;
-    private byte[] imagen;
+    private String imagen;
 
     //Getters
     public String getNickname() {
@@ -34,7 +34,7 @@ public abstract class Usuario {
 		return contrasenia;
 	}
 	
-	public byte[] getImagen() { 
+	public String getImagen() { 
 		return imagen;
 	}
     
@@ -60,11 +60,11 @@ public abstract class Usuario {
     	this.contrasenia = contrasenia;
     }
     
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
     	this.imagen = imagen;
     }
 
-    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia,  byte[] imagen) {
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia,  String imagen) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido; 
