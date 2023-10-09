@@ -7,6 +7,8 @@
 		Set<String> keys = (Set<String>) request.getAttribute("keys");
 
 		Set<String> tipoPublicaciones = (Set<String>) request.getAttribute("tipoPublicaciones");
+		
+		Set<String> paquetes = (Set<String>) request.getAttribute("paquetes");
 
 
 
@@ -17,10 +19,7 @@
 
     <head>
         <jsp:include page="/WEB-INF/templates/head.jsp" />
-        
-        
         <title>Alta Oferta Laboral</title>
-        <!-- MDB -->
     </head>
 
     <body>
@@ -40,7 +39,7 @@
       <div class="mx-5">
         <h2 class="mb-4">Publicar Oferta Laboral</h2>
 
-        <form id="alta-oferta-laboral" class="row g-3" method="POST" action="AltaOfertaLaboral">
+        <form id="alta-oferta-laboral" class="row g-3 form-signin needs-validation" novalidate method="POST" action="AltaOfertaLaboral">
 
 
           <div class="col-12 row mb-2">
@@ -48,8 +47,8 @@
               <label for="listadoOfert" class="form-label">Listado de Tipo de Oferta</label>
             </div>
             <div class="col-8">
-              <select class="form-control" id="listadoOfertas" name="tipoOferta">
-                <option value="0">Seleccionar Tipo de Oferta</option>
+              <select class="form-control custom-select-validation" id="listadoOfertas" name="tipoOferta" required>
+                <option value="0" selected>Seleccionar Tipo de Oferta</option>
                 <%
                 if(keys != null && !keys.isEmpty()){  
                   	for(String tipo : tipoPublicaciones ){
@@ -60,6 +59,9 @@
                 <%	}
                } %>
               </select>
+              <div class="invalid-feedback">
+                Selecciona un elemento de la lista
+              </div>
             </div>
           </div>
 
@@ -68,7 +70,10 @@
               <label for="nombre" class="form-label">Nombre</label>
             </div>
             <div class="col-8">
-              <input type="text" class="form-control" id="nombre" placeholder="Nombre" />
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required/>
+              <div class="invalid-feedback">
+              No puede ser vacio
+            </div>
             </div>
           </div>
 
@@ -77,7 +82,10 @@
               <label for="descripcion" class="form-label">Descripción</label>
             </div>
             <div class="col-8">
-              <textarea class="form-control" id="descripcion" placeholder="Descripción" rows="5"></textarea>
+              <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" rows="5" required></textarea>
+            <div class="invalid-feedback">
+              No puede ser vacio
+            </div>
             </div>
           </div>
 
@@ -89,11 +97,17 @@
               <div class="d-flex">
                 <div class="me-2">
                   <label for="horaInicio">Hora de Comienzo:</label>
-                  <input type="time" id="horaInicio" name="horaInicio" />
+                  <input type="time" id="horaInicio" name="horaInicio" required/>
+                  <div class="invalid-feedback">
+              No puede ser vacio
+            </div>
                 </div>
                 <div>
                   <label for="horaFinal">Hora de Final:</label>
-                  <input type="time" id="horaFinal" name="horaFinal" />
+                  <input type="time" id="horaFinal" name="horaFinal" required />
+                  <div class="invalid-feedback">
+              No puede ser vacio
+            </div>
                 </div>
               </div>
             </div>
@@ -104,7 +118,10 @@
               <label for="remuneracion" class="form-label">Remuneracion</label>
             </div>
             <div class="col-8">
-              <input type="text" class="form-control" id="remuneracion" placeholder="Remuneracion" />
+              <input type="number" class="form-control" id="remuneracion" name="remuneracion" required placeholder="Remuneracion" />
+            	<div class="invalid-feedback">
+              No puede ser vacio
+            </div>
             </div>
           </div>
 
@@ -113,8 +130,8 @@
               <label for="listadoDepartamentos" class="form-label">Departamento</label>
             </div>
             <div class="col-8">
-              <select class="form-control" id="listadoDepartamentos">
-                <option value="0">Seleccione un departamento</option>
+              <select class="form-control custom-select-validation" id="listadoDepartamentos" name="departamento" required>
+                <option value="0" selected>Seleccione un departamento</option>
                 <option value="Artigas">Artigas</option>
                 <option value="Canelones">Canelones</option>
                 <option value="Cerro Largo">Cerro Largo</option>
@@ -135,6 +152,9 @@
                 <option value="Tacuarembó">Tacuarembó</option>
                 <option value="Treinta y Tres">Treinta y Tres</option>
               </select>
+              <div class="invalid-feedback">
+              Selecciona un departamento
+            </div>
             </div>
           </div>
 
@@ -143,32 +163,34 @@
               <label for="ciudad" class="form-label">Ciudad</label>
             </div>
             <div class="col-8">
-              <input type="text" class="form-control" id="ciudad" placeholder="Ciudad" />
+              <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad" required />
+              <div class="invalid-feedback">
+              No puede ser vacio
+            </div>
             </div>
           </div>
 
-          <div class="col-12 row mb-2">
-            <div class="col-4">
-              <label for="fechaAltad" class="form-label">Fecha de Alta</label>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control" id="fechaAlta" readonly disabled />
-            </div>
-          </div>
+
 
           <div class="col-12 row mb-2">
             <div class="col-4">
               <label for="listadoPaq" class="form-label">Pago</label>
             </div>
             <div class="col-8">
-              <select class="form-control" id="listadoPagos">
-                <option value="0">Seleccionar método de pago</option>
-                <option value="TP1">
-                  Sin paquete
+              <select class="form-control custom-select-validation" id="listadoPagos" name="formaPago" required>
+                <option value="0" selected>Seleccionar método de pago</option>
+                <option value="1" selected>Pagar Sin Paquete</option>
+              
+              <%
+                if(paquetes != null && !paquetes.isEmpty()){  
+                  	for(String paquete : paquetes ){
+                %>
+                <option value="<%= paquete %>">
+                  <%= paquete %>
                 </option>
-                <option value="TP2">
-                  Premium
-                </option>
+                <%	}
+               } %>
+              
               </select>
             </div>
           </div>
@@ -213,6 +235,7 @@
             <!-- Otros scripts aqui -->
             
    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   	<script src="<%= request.getContextPath() %>/js/altaOfertaLaboral.js"></script>
 
     
             

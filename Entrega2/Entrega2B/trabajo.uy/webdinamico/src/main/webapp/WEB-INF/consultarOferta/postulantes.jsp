@@ -20,15 +20,7 @@
     <div class="container">
         <%
             if ( postulantes.isEmpty()) {
-                if (tipoUsuario == TipoUsuario.Postulante) {
-        %>
-        <!-- Mensaje para Postulantes -->
-        <div class="alert alert-info">
-            <p> No te has postulado para esta oferta. </p>
-            <a href="<%= request.getContextPath() %>/crearpostulacion?id=<%= ofertaLaboral.getNombre() %>" class="btn btn-primary">Postular</a>
-        </div>
-        <%
-                } else if (tipoUsuario == TipoUsuario.Empresa) {
+                 if (tipoUsuario == TipoUsuario.Empresa) {
         %>
         <!-- Mensaje para Empresas -->
         <div class="alert alert-warning">
@@ -52,7 +44,7 @@
         <!-- Imagen del postulante -->
         <div class="d-flex align-items-center mt-2">
             <img src="<%= imagenBase64 %>" alt="<%= postulante.getNombre() %>" class="img-fluid" style="width: 100px; height: 100px">
-            <a href="<%= request.getContextPath() %>/consultarpostulacion?p=<%= postulante.getNickname() %>" target="_blank" class="ms-4">
+            <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= postulante.getNickname() %>" target="_blank" class="ms-4">
                 <%= postulante.getNickname() %>
             </a>
         </div>

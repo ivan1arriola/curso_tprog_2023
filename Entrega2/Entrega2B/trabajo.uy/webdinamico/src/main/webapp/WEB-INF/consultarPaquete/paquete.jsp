@@ -29,7 +29,7 @@
                             <div class="col-md-3">
                                 <img src="<%= request.getAttribute("imagenPaquete") %>" alt="Imagen 1" class="img-fluid mb-2" />
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md">
                                 <h2>Información del Paquete</h2>
                                 <p><b>Nombre:</b> <%= request.getAttribute("nombrePaquete") %></p>
                                 <p><b>Costo del Paquete:</b> <%= request.getAttribute("costoPaquete") %></p>
@@ -38,6 +38,12 @@
                                 <p><b>Descripción del Paquete:</b> <%= request.getAttribute("descripcionPaquete") %></p>
                                 <p><b>Fecha:</b> <%= request.getAttribute("fechaPaquete") %></p>
                             </div>
+                            
+                            
+                            <% if ( mostrarComprar){ %>
+                            <jsp:include page="./comprarPaquete.jsp" />
+                            <%} %>
+                         
                         </div>
                     </div>
                     <h2 class="mt-4">Tipos de publicación y sus cantidades</h2>

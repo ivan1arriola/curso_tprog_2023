@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import main.java.logica.clases.Empresa;
+import main.java.logica.clases.InfoCompra;
 import main.java.logica.clases.Keyword;
 import main.java.logica.clases.OfertaLaboral;
 import main.java.logica.clases.Paquete;
@@ -98,7 +99,7 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	// crear un paquete
-	public boolean altaPaqueteOL(String nombre,   String descripcion,   int validez,   LocalDate fechaA,   float descuento,   byte[] imagen) {
+	public boolean altaPaqueteOL(String nombre,   String descripcion,   int validez,   LocalDate fechaA,   float descuento,   String imagen) {
 		// Verificar si el argumento 'nombre' es vacío
 		if (nombre.isEmpty()) {
 			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -143,17 +144,17 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 	
-	public boolean compraPaquetes(String nickname_e,   String paq) {
+	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 		
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paquete = PaqueteH.buscar(paq);
 		
-		return empresa.compraPaquetes(paquete);
+		return empresa.compraPaquetes(paquete, fecha, valor);
 	}
 	
-	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   byte[] img,   String paquete) {
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   String img,   String paquete) {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paq = null;
 		if (paquete != null) {
@@ -265,7 +266,9 @@ public class CtrlOferta implements ICtrlOferta{
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		Map<String,  OfertaLaboral> ofertasLaborales = OLH.obtener();
 		for (Map.Entry<String,  OfertaLaboral> entry : ofertasLaborales.entrySet()) {
-            res.add(entry.getValue().obtenerDatosOferta());
+			if(entry.getValue().getEstado() == EstadoOL.Confirmada) {
+				res.add(entry.getValue().obtenerDatosOferta());
+			}	
         }
 		return res;
 	}
@@ -376,6 +379,18 @@ public class CtrlOferta implements ICtrlOferta{
 			return true;
 		//ya fue comprado
 			}
+	}
+
+	@Override
+	public Set<String> listarComprasPaquete(String nicknameEmpresa) {
+		Empresa empresa = (Empresa) UsuarioHandler.getInstance().buscarNick(nicknameEmpresa);
+		Set<InfoCompra> infoCompras = empresa.getInfoCompmras();
+		Set<String> nombresPaquetes =  new HashSet<String>();		
+		for(InfoCompra infoCompra : infoCompras) {
+			
+			nombresPaquetes.add(infoCompra.getPaquete().getNombre());
+		}
+		return nombresPaquetes;
 	}
 	
 	

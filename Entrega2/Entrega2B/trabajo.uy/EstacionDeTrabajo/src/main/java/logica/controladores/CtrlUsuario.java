@@ -192,7 +192,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 //		user.setApellido(apellido);
 //	}
 
-	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida{
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida{
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -341,7 +341,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 
-	public void ingresarDatosEditadosPostulanteImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   byte[] imagen,   LocalDate fechanac,   String nacionalidad) {
+	public void ingresarDatosEditadosPostulanteImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String imagen,   LocalDate fechanac,   String nacionalidad) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
 		postulante.setNombre(nombre);
@@ -387,7 +387,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		empresa.setDescripcion(descripcion);
 	}
 
-	public void ingresarDatosEditadosEmpresaURLImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String URL,   byte[] imagen,   String descripcion) {
+	public void ingresarDatosEditadosEmpresaURLImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String URL,   String imagen,   String descripcion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
@@ -399,7 +399,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		empresa.setDescripcion(descripcion);
 	}
 
-	public void ingresarDatosEditadosEmpresaImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   byte[] imagen,   String descripcion) {
+	public void ingresarDatosEditadosEmpresaImg(String nickname,   String nombre,   String apellido,   String correo,   String contraseña,   String imagen,   String descripcion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
 		empresa.setNombre(nombre);
@@ -425,7 +425,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	
-	public boolean altaEmpresaURLyImagen(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   String URL,   byte[] imagen) {
+	public boolean altaEmpresaURLyImagen(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   String URL,   String imagen) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
@@ -440,7 +440,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 	// alta postulante con imagen
-	public boolean altaPostulanteImagen(String nick,   String contraseña,   String nombre,   String apellido,   LocalDate fechanac,   String mail,   String nacionalidad,   byte[] imagen) { 
+	public boolean altaPostulanteImagen(String nick,   String contraseña,   String nombre,   String apellido,   LocalDate fechanac,   String mail,   String nacionalidad,   String imagen) { 
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
@@ -453,7 +453,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	// necesito otro constructor?
-	public boolean altaEmpresaImagen(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   byte[] imagen) {
+	public boolean altaEmpresaImagen(String nick,   String contraseña,   String nombre,   String apellido,   String mail,   String desc,   String imagen) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {

@@ -18,11 +18,11 @@ public class DTOfertaExtendido {
   private String ciudad;
   private EstadoOL estado;
   private Set<DTPostulacion> postulaciones;
-  private byte[] imagen; 
+  private String imagen; 
   private String paq;
 	
 	
-public DTOfertaExtendido(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  byte[] img,  String paquete) {
+public DTOfertaExtendido(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  String img,  String paquete) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -77,7 +77,7 @@ public Set<DTPostulacion> getPostulaciones() {
   return postulaciones;
 }
 	
-public byte[] getImagen() {
+public String getImagen() {
   return imagen;
 }
 	

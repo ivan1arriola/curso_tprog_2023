@@ -100,8 +100,7 @@ public class ControladorUsuarioTest2 {
 														DTverdaderopostulante1.getFechaNac(),   
 														DTverdaderopostulante1.getNacionalidad());	
 				
-			String str = "MeEncantaLaMOZARELLA";
-			byte[] img23 = str.getBytes();
+			String  img23 = "url";
 			
 			ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),   
 													DTverdaderopostulante1.getNombre(),   
@@ -162,8 +161,7 @@ public class ControladorUsuarioTest2 {
 			}
 			
 
-			String str1 = "MeEncantaLaMOZARELLA11111";
-			byte[] img233 = str1.getBytes();
+			String img233 = "url";
 			// ------------------------- tipo oferta ---------------------------
 //			boolean booleano;
 			ICO.altaTipoPublicacionOL("Oferta normal",  "visibilidad normal",   1,   19,   100.0f,   LocalDate.now());

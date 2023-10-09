@@ -6,7 +6,7 @@ import java.util.Set;
 public class DTEmpresaConCompras extends DTEmpresa {
 	private Set<DTCompraPaquetes> compraPaquetes;
 	 
-	public DTEmpresaConCompras(String nick,  String mail,  String apellido,  String nombre,  String contraseña,  byte[] img,  String desc,  String URL,  Set<DTOfertaExtendido> ols,  Set<DTCompraPaquetes> dtcp) {
+	public DTEmpresaConCompras(String nick,  String mail,  String apellido,  String nombre,  String contraseña,  String img,  String desc,  String URL,  Set<DTOfertaExtendido> ols,  Set<DTCompraPaquetes> dtcp) {
 		super(nick,  mail,  apellido,  nombre,  contraseña,  desc,  URL,  ols,  img);
 		compraPaquetes = dtcp;
 	}

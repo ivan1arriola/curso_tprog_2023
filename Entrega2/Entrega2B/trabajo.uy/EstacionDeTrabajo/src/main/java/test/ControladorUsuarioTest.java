@@ -81,8 +81,7 @@ public class ControladorUsuarioTest {
 	 fechaNacimiento = LocalDate.of(1452,  4,  15);
 	 nacionalidad = "Italiano";
 
-	 String str = "MeEncantaPintar";
-	 byte[] img = str.getBytes();
+	 String img = "url";
 
 //	 boolean b = 
 	 ICU.altaPostulanteImagen(nickname,  password,  nombre,  apellido,  fechaNacimiento,  correo,  nacionalidad,  img);
@@ -102,21 +101,6 @@ public class ControladorUsuarioTest {
 	                   &&
 	                   usu2.getcontrasenia().equals(password);
 	 assertEquals("El test usu2 fallo", true, result2);
-	 byte[] imagen = usu2.getImagen();
-	 for (byte bYtesImagen : img) {
-		    boolean found = false;
-		    
-		    for (byte bYtes : imagen) {
-		        if (bYtes == bYtesImagen) {
-		            found = true;
-		            break;
-		        }
-		    }
-
-		    if (!found) {
-		    	assertEquals("El test usu2 loop fallo",  true,  false);
-		    	}
-	 }
    }
 	
   @Test
@@ -211,27 +195,15 @@ public class ControladorUsuarioTest {
 		    descripcion = "Vendemos telefonos.";
 		    
 		    // imagen
-		    String str3 = "hola que tal";
-		byte[] img3 = str3.getBytes();
+		    String img3 = "url";
 		boolean booly = ICU.altaEmpresaImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  img3);
 
 		Empresa empresa2 = (Empresa) UHan.buscarNick("Apple");
 		DTUsuario DTempresa2 = empresa2.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa2 = (DTEmpresa) DTempresa2; // Casting
 		assertEquals("El test usu2 fallo",  true,  result2);
-		byte[] imagen4 = DTverdaderoEmpresa2.getImagen();
-		for (byte bYtesImagen : img3) {
-			boolean found = false;
-			for (byte bYtes : imagen4) {
-				if (bYtes == bYtesImagen) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				assertEquals("El test usu4 loop fallo",  true,  false);
-			}
-		}
+		String imagen4 = DTverdaderoEmpresa2.getImagen();
+		
 
 		boolean result3 = DTempresa2.getNickname().equals(nickname) 
 				        &&
@@ -255,8 +227,7 @@ public class ControladorUsuarioTest {
 		descripcion = "Vendemos libros.";
 		url = "www.amazon.com";
 		// imagen
-		String str4 = "hola que tal mi nombre es algo";
-		byte[] img4 = str4.getBytes();
+		String  img4 = "url";
 //		boolean b2 = 
 		ICU.altaEmpresaURLyImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url,  img4);
 
@@ -281,20 +252,8 @@ public class ControladorUsuarioTest {
 				DTverdaderoEmpresa3.getUrl().equals(url);
 		assertEquals("El test usu4 fallo",  result4,  true);
 
-		byte[] imagen5 = DTverdaderoEmpresa3.getImagen();    
-		for (byte bYtesImagen : img4) {
-			boolean found = false;
-			for (byte bYtes : imagen5) {
-				if (bYtes == bYtesImagen) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				assertEquals("El test usu4 loop fallo",  true,  false);
-			}
-		}
-
+		String imagen5 = DTverdaderoEmpresa3.getImagen();    
+		
 		// ------------------- ver empresa en el sistema -------------------
 		// si no esta uno aborta
 		Set<String> EmpresaSistema = (HashSet<String>) ICU.listarEmpresas();

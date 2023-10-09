@@ -46,29 +46,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             	
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos[7];
-
-	            // Crear una instancia de URL
-	            URL url = new URL(imageUrl);
-	            
-	            // Abrir una conexión a la URL
-	            InputStream inputStream = url.openStream();
-
-	            // Crear un flujo de bytes para almacenar la imagen
-	            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	            
-	            // Leer los datos de la imagen y escribirlos en el flujo de bytes
-	            byte[] buffer = new byte[1024];
-	            int bytesRead;
-	            while ((bytesRead = inputStream.read(buffer)) != -1) {
-	                byteArrayOutputStream.write(buffer,  0,  bytesRead);
-	            }
-
-	            // Obtener el arreglo de bytes de la imagen
-	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
-
-	            // Cerrar los flujos
-	            inputStream.close();
-	            byteArrayOutputStream.close();
             	
             	if (tipo.equals("P")) {
             		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Usuarios-Postulantes.csv");
@@ -84,7 +61,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                	        String dateString = campos1[1];
 	                	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	                	        LocalDate localDate = LocalDate.parse(dateString,  formatter);
-                	        	ICU.altaPostulanteImagen(campos[2], campos[6],  campos[3], campos[4], localDate, campos[5], campos1[2],  imageBytes);
+                	        	ICU.altaPostulanteImagen(campos[2], campos[6],  campos[3], campos[4], localDate, campos[5], campos1[2],  campos[7]);
 	                		}
 	                	}
             		}
@@ -100,14 +77,14 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                			
 	                			if (campos2.length == 2) {
 	                				try {
-	                					ICU.altaEmpresaImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1],  imageBytes);
+	                					ICU.altaEmpresaImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1],  campos[7]);
 	                				} catch (IllegalArgumentException e2) {
 	                					e2.printStackTrace();
 	                				}
 	                			} else {
 	                				
 	                				try {
-	                					ICU.altaEmpresaURLyImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1], campos2[2],  imageBytes);
+	                					ICU.altaEmpresaURLyImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1], campos2[2],  campos[7]);
 	                				} catch (IllegalArgumentException e3) {
 	                					e3.printStackTrace();
 	                				}
@@ -165,33 +142,11 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos13[7];
 	            
-	            // Crear una instancia de URL
-	            URL url = new URL(imageUrl);
-	            
-	            // Abrir una conexión a la URL
-	            InputStream inputStream = url.openStream();
-
-	            // Crear un flujo de bytes para almacenar la imagen
-	            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	            
-	            // Leer los datos de la imagen y escribirlos en el flujo de bytes
-	            byte[] buffer = new byte[1024];
-	            int bytesRead;
-	            while ((bytesRead = inputStream.read(buffer)) != -1) {
-	                byteArrayOutputStream.write(buffer,  0,  bytesRead);
-	            }
-
-	            // Obtener el arreglo de bytes de la imagen
-	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
-	            
-	            // Cerrar los flujos
-	            inputStream.close();
-	            byteArrayOutputStream.close();
         		
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         		LocalDate fecha = LocalDate.parse(campos13[5],  formatter);
         		
-        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), imageBytes);
+        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), campos13[7]);
         	}
         } catch (IOException e40) {
         	e40.printStackTrace();
@@ -209,29 +164,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos5[12];
-
-	            // Crear una instancia de URL
-	            URL url = new URL(imageUrl);
-	            
-	            // Abrir una conexión a la URL
-	            InputStream inputStream = url.openStream();
-
-	            // Crear un flujo de bytes para almacenar la imagen
-	            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	            
-	            // Leer los datos de la imagen y escribirlos en el flujo de bytes
-	            byte[] buffer = new byte[1024];
-	            int bytesRead;
-	            while ((bytesRead = inputStream.read(buffer)) != -1) {
-	                byteArrayOutputStream.write(buffer,  0,  bytesRead);
-	            }
-
-	            // Obtener el arreglo de bytes de la imagen
-	            byte[] imageBytes = byteArrayOutputStream.toByteArray();
-	            
-	            // Cerrar los flujos
-	            inputStream.close();
-	            byteArrayOutputStream.close();
         		
         		// Obtener hora
         		String horario = campos5[5];
@@ -421,7 +353,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
                 
         		try {
-        			ICU.altaOfertaLaboral(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  imageBytes,  paq);
+        			ICU.altaOfertaLaboral(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  campos5[12],  paq);
         		} catch (ExceptionUsuarioNoEncontrado eune) {
         			eune.printStackTrace();
         		} catch (ExceptionEmpresaInvalida eei) {
@@ -497,8 +429,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         }
         
         
-        try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/TiposPublicacionPaquetes.csv");
-         	     BufferedReader reader14 = new BufferedReader(new InputStreamReader(inputStream2))) {
+        try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/TiposPublicacionPaquetes.csv");
+         	     BufferedReader reader14 = new BufferedReader(new InputStreamReader(inputStream3))) {
         	String linea14;
         	reader14.readLine();
         	while ((linea14 = reader14.readLine()) != null) {
@@ -510,8 +442,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
         		// TipoPub
         		String TipoPub = null;
-        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
-               	     BufferedReader reader15 = new BufferedReader(new InputStreamReader(inputStream3))) {
+        		try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/TipoPublicacion.csv");
+               	     BufferedReader reader15 = new BufferedReader(new InputStreamReader(inputStream4))) {
                 	String linea15;
                 	reader15.readLine();
                 	while ((linea15 = reader15.readLine()) != null) {
@@ -525,8 +457,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		}
         		
         		
-        		try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
-        	       	     BufferedReader reader16 = new BufferedReader(new InputStreamReader(inputStream3))) {
+        		try (InputStream inputStream5 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+        	       	     BufferedReader reader16 = new BufferedReader(new InputStreamReader(inputStream5))) {
                 	String linea16;
                 	reader16.readLine();
                 	while ((linea16 = reader16.readLine()) != null) {
@@ -543,5 +475,51 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         } catch (IOException e41) {
         	e41.printStackTrace();
         }
+	
+        try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/PaquetesCompras.csv");
+        	     BufferedReader reader17 = new BufferedReader(new InputStreamReader(inputStream3))) {
+			   	String linea17;
+			   	reader17.readLine();
+			   	while ((linea17 = reader17.readLine()) != null) {
+			   		String[] campos14 = linea17.split(";");
+			   		String nickname_e = campos14[1];
+			   		String paq = campos14[2];
+			   		
+			   		try (InputStream inputStream4 = getClass().getResourceAsStream("/main/datos/Usuarios.csv");
+			  	       	     BufferedReader reader18 = new BufferedReader(new InputStreamReader(inputStream4))) {
+			               	String linea18;
+			               	reader18.readLine();
+			               	while ((linea18 = reader18.readLine()) != null) {
+			               		String[] campos18 = linea18.split(";");
+			               		if (campos18[0].equals(nickname_e)) {
+			               			nickname_e = campos18[2];
+			               		}
+			               	}
+				   		} catch (IOException e42) {
+				   			e42.printStackTrace();
+				   		}
+			   		
+			   		try (InputStream inputStream5 = getClass().getResourceAsStream("/main/datos/Paquetes.csv");
+			     	       	     BufferedReader reader19 = new BufferedReader(new InputStreamReader(inputStream5))) {
+			               	String linea19;
+			               	reader19.readLine();
+			               	while ((linea19 = reader19.readLine()) != null) {
+			               		String[] campos19 = linea19.split(";");
+			               		if (campos19[0].equals(paq)) {
+			               			paq = campos19[1];
+			               		}
+			               	}
+				   		} catch (IOException e42) {
+				   			e42.printStackTrace();
+				   		}
+			   		
+			   		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			   		LocalDate fecha = LocalDate.parse(campos14[3],  formatter);
+			   		
+			   		ICO.compraPaquetes(nickname_e,  paq, fecha, Integer.parseInt(campos14[4]));
+			   	}
+       	} catch (IOException e41) {
+			e41.printStackTrace();
 		}
+	}
 }

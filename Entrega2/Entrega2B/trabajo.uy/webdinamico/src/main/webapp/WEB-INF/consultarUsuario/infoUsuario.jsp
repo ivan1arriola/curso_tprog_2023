@@ -92,18 +92,27 @@ boolean editable = (boolean) request.getAttribute("editable");
 		          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
 		            aria-controls="ofertas-panel" aria-selected="false">Ofertas Laborales</a>
 		        </li>
+		        <li class="nav-item" role="presentation">
+		          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#paquete-panel" type="button" role="tab"
+		            aria-controls="paquete-panel" aria-selected="false">Paquete</a>
+		        </li>
 		        <%} %>
             </ul>
+            
+            <div class="tab-content" id="myTabsContent">
 
             <!-- Contenido de las pestañas -->
             <%if(editable){ %>
-            <jsp:include page="./tabPerfilEditable.jsp" />
+            	<jsp:include page="./tabPerfilEditable.jsp" />
             <%} else { %>
-              <jsp:include page="./tabPerfil.jsp" />
+              	<jsp:include page="./tabPerfil.jsp" />
              <%} %>  
             <%if (usuario instanceof DTEmpresa){ %>
-            <jsp:include page="./tabOfertasLaborales.jsp" />
+            	<jsp:include page="./tabOfertasLaborales.jsp" />
+            	<jsp:include page="./tabPaquetes.jsp" />
             <%} %>
+            
+          </div>
 
         </div>
     </main>

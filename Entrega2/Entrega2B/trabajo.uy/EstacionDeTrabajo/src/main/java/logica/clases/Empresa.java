@@ -22,22 +22,17 @@ public class Empresa extends Usuario {
     private Set<OfertaLaboral> ofertasLaborales;
     private Set<InfoCompra> infoCompras;
     
+    public Set<InfoCompra> getInfoCompmras(){
+    	return this.infoCompras;
+    }
+    
     // constructor empresa con imagen y url 
-    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc,  String urlE) {
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  String img,  String desc,  String urlE) {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
         infoCompras = new HashSet<>();
         url = urlE;
-    }
-
-    // constructor empresa con imagen sin url 
-    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc) {
-        super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
-        descripcion = desc;
-        ofertasLaborales = new HashSet<>();
-        infoCompras = new HashSet<>();
-        url = null;
     }
 
     // constructor empresa con url sin imagen 
@@ -91,20 +86,20 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq){
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq){
     	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
         ofertasLaborales.add(ofertaLab);
         return ofertaLab;
     }
 
     
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img) {
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) {
     	OfertaLaboral ofertaLab = new OfertaLaboral(keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img);
     	ofertasLaborales.add(ofertaLab);
     	return ofertaLab;
     }
     
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img,  Paquete paquete) {
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) {
     	OfertaLaboral ofertaLab = new OfertaLaboral(keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img,  paquete);
     	ofertasLaborales.add(ofertaLab);
     	return ofertaLab;	
@@ -118,7 +113,7 @@ public class Empresa extends Usuario {
         String contraseña = getcontrasenia();
         String descripcion = getDescripcion();
         String url = geturl();
-        byte[] imagen = getImagen();
+        String imagen = getImagen();
         			       
         Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
         
@@ -191,7 +186,7 @@ public class Empresa extends Usuario {
     	return url != null;
     }
     
-    public boolean compraPaquetes(Paquete paq) {
+    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) {
         for (InfoCompra ic : infoCompras) {
         	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
         		return false;
@@ -202,7 +197,7 @@ public class Empresa extends Usuario {
     	// int val = paq.getValidez();
     	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
     	
-    	InfoCompra infoComp = new InfoCompra(fechaA,  costo,  paq,  this,  ConjuntoS);
+    	InfoCompra infoComp = new InfoCompra(fecha,  valor,  paq,  this,  ConjuntoS);
     	infoCompras.add(infoComp);
     	return true;
     }
@@ -217,7 +212,7 @@ public class Empresa extends Usuario {
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contraseña = getcontrasenia();
-            byte[] imagen = getImagen(); 
+            String imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
             for (OfertaLaboral oferta : ofertasLaborales) {
@@ -232,7 +227,7 @@ public class Empresa extends Usuario {
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contraseña = getcontrasenia();
-            byte[] imagen = getImagen(); 
+            String imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
             for (OfertaLaboral oferta : ofertasLaborales) {
