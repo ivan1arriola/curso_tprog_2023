@@ -22,7 +22,6 @@ public class OfertaLaboralBean {
 	private EstadoOL estado;
 	private Set<DTUsuario> postulantes;
 	private String imagen; 
-	private String imagen; 
 	private String paq;
 	private DTPaquete paquete;
 	private Set<String> keywords;
@@ -121,10 +120,6 @@ public class OfertaLaboralBean {
     }
 
 
-
-    public byte[] getImagen() {
-        return imagen;
-    }
 
 
     public String getPaq() {

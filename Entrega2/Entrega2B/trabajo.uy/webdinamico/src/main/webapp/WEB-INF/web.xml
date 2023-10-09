@@ -154,4 +154,14 @@
     <servlet-name>AltaOfertaLaboral</servlet-name>
     <url-pattern>/AltaOfertaLaboral</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ComprarPaquete</display-name>
+    <servlet-name>ComprarPaquete</servlet-name>
+    <servlet-class>controller.ComprarPaquete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ComprarPaquete</servlet-name>
+    <url-pattern>/ComprarPaquete</url-pattern>
+  </servlet-mapping>
 </web-app>

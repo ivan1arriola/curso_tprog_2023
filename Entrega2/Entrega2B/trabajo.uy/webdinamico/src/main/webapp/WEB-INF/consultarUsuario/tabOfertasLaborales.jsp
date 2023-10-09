@@ -16,19 +16,16 @@
 <div class="tab-pane fade" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
     <%
     for (DTOfertaExtendido oferta : ofertasLaborales) {
-    	String imagenUrl = "";
-        if (oferta.getImagen() != null) {
-            String base64Image = new String(Base64.getEncoder().encode(oferta.getImagen()), "UTF-8");
-            imagenUrl = "data:image/jpeg;base64," + base64Image; // Asume que la imagen es en formato JPEG, ajusta según sea necesario
-        } else {
+    	String imagen = oferta.getImagen();
+        if (imagen== null) {
             // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
-            imagenUrl = request.getContextPath() +  "/imagenNoFound.png";
+            imagen = request.getContextPath() +  "/imagenNoFound.png";
         }
     %>
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="<%= imagenUrl %>" class="img-fluid rounded-start" alt="Imagen de oferta" />
+                <img src="<%= imagen %>" class="img-fluid rounded-start" alt="Imagen de oferta" />
             </div>
             <div class="col">
                 <div class="card-body">

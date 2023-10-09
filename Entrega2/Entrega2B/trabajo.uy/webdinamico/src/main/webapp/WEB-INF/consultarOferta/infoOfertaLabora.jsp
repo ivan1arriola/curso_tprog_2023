@@ -9,11 +9,9 @@
     // Obtener el objeto de usuario desde los atributos de la solicitud
     OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
     String imagen = ofertaLaboral.getImagen();
-    String imagenString;
-    if (imagen != null) {
-        imagenString = new String(Base64.getEncoder().encode(imagen));
-    } else {
-        imagenString = request.getContextPath() + "/imagenNoFound.png";
+  
+    if (imagen == null)  {
+    	imagen = request.getContextPath() + "/imagenNoFound.png";
     }
     
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
@@ -62,7 +60,7 @@
                             <div class="row align-items-center mt-2">
                                     
                                     <div class="col-6">
-                                        <img src="<%= imagenString %>" alt="Descripción de la imagen" class="img-fluid ofertaLaboral-img">
+                                        <img src="<%= imagen %>" alt="Descripción de la imagen" class="img-fluid ofertaLaboral-img">
                                     </div>
                                     <div class="col-6 text-center">
                                         <h2><%= ofertaLaboral.getNombre() %></h2>

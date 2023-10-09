@@ -41,16 +41,10 @@
                     <%
                     } else {
                         for (DTUsuario usuario : usuarios) {
-                        	String imagenBytes = usuario.getImagen();
-                        	String imagen;
+                        	String imagen = usuario.getImagen();
 
-                        	if (imagenBytes == null) {
+                        	if (imagen == null) {
                         	    imagen = request.getContextPath() + "/nopicture.png";
-                        	} else {
-                        	    // Convierte los bytes de la imagen en una cadena base64
-                        	    String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-                        	    // Crea una URL de datos base64
-                        	    imagen = "data:image/png;base64," + base64Image;
                         	}
                             %>
                             <div class="col-md-4">
