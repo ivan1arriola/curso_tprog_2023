@@ -191,7 +191,7 @@ public class OfertasTest {
 	@Test
 	void compraPaqTest() {
 		try {
-			boolean empresita = ICU.altaEmpresa("Empresario", "tupass", "Pepito", "Gomez", "yoquese@hotmail.com", "geniales");
+			ICU.altaEmpresa("Empresario", "tupass", "Pepito", "Gomez", "yoquese@hotmail.com", "geniales");
 		} catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        e.printStackTrace();
 	    } catch (ExceptionUsuarioNickRepetido e) {
