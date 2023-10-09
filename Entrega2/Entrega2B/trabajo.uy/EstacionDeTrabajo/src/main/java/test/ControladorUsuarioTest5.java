@@ -119,7 +119,7 @@ public class ControladorUsuarioTest5 {
 			// esto indica se compro,  notar que no hay caso de uso para comprar paquete
 			// todo esto no esta armado
 			// seria asi el orden
-			InfoCompraOferta ununuunu = new InfoCompraOferta(ofertaLaboralSalada, 3) ; 
+			new InfoCompraOferta(ofertaLaboralSalada, 3) ; 
 			DTCantTO nuevamente = new DTCantTO("Oferta salada", 3) ; 
 			HashSet<DTCantTO> hashSet = new HashSet<>() ; 
 	        hashSet.add(nuevamente) ; 
