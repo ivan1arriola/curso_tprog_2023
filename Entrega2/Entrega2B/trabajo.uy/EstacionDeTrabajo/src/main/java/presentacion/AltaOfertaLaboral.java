@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
