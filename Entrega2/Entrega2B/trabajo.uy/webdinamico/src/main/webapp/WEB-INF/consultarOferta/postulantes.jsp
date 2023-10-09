@@ -39,7 +39,7 @@
             } else {
                 // Si hay postulantes, muestra la lista de postulantes como lo hiciste anteriormente
                 for (DTUsuario postulante : postulantes) { 
-                    byte[] imagenBytes = postulante.getImagen();
+                    String imagenBytes = postulante.getImagen();
                     String imagenBase64 = "";
 
                     if (imagenBytes != null && imagenBytes.length > 0) {

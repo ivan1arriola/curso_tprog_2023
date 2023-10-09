@@ -7,7 +7,7 @@
 <%
     // Obtener el objeto de usuario desde los atributos de la solicitud
     OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
-    byte[] imagen = ofertaLaboral.getImagen();
+    String imagen = ofertaLaboral.getImagen();
     String imagenString;
     if (imagen != null) {
         imagenString = new String(Base64.getEncoder().encode(imagen));

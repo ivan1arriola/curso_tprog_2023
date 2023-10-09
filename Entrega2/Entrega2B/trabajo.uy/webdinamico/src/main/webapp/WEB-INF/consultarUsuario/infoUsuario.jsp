@@ -40,7 +40,7 @@ boolean editable = (boolean) request.getAttribute("editable");
                     <div class="col-4">
                         <%
                         // Mostrar la imagen del usuario si está disponible
-                        byte[] imagenUsuario = usuario.getImagen();
+                        String imagenUsuario = usuario.getImagen();
                         if (imagenUsuario != null) {
                             // Genera un nombre de archivo único para la imagen
                             String nombreArchivo = "imagen_usuario_" + usuario.getNickname() + ".png";
