@@ -24,34 +24,29 @@ import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.datatypes.DTOfertaExtendidoConKeywords;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.datatypes.DTPaquete;
-import main.java.logica.datatypes.DTPostulacion;
-import main.java.logica.datatypes.DTPostulante;
+
 import main.java.logica.datatypes.DTTipoOferta;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
-import main.java.logica.manejadores.KeywordHandler;
 import main.java.logica.manejadores.OfertaLaboralHandler;
 import main.java.logica.manejadores.PaqueteHandler;
 import main.java.logica.manejadores.TipoOfertaHandler;
 import main.java.logica.manejadores.UsuarioHandler;
-import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.logica.Fabrica;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+
 
 public class ControladorUsuarioTest5 {
 		

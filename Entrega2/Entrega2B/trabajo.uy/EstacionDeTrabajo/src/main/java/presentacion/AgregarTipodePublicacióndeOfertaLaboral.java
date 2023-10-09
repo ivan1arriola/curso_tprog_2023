@@ -7,7 +7,6 @@ import java.util.Collections;
 //import java.awt.*;
 
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 //import java.awt.EventQueue;
@@ -28,8 +27,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
-import main.java.logica.datatypes.DTCantTO;
-import main.java.logica.datatypes.DTPaquete;
+
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
