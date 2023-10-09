@@ -152,7 +152,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         		nombreE = (String) listaEmpresas.getSelectedItem();
         		try {
                     Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombreE);
-                    Iterator<String> iterator = ofertas_laborales.iterator();
+                    ofertas_laborales.iterator();
                     if (!ofertas_laborales.isEmpty()) {
                     	for (String it : ofertas_laborales) {
                     		listaOfertasLaborales.addItem(it);

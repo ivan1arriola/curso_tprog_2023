@@ -53,7 +53,7 @@ public class OfertasTest {
 	    String nacionalidad = "Ruso";
 	  
 	    try {
-	        boolean b = ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
+	        ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
 	    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        e.printStackTrace();
 	    } catch (ExceptionUsuarioNickRepetido e) {
@@ -104,7 +104,7 @@ public class OfertasTest {
 	    String nacionalidad = "Ruso";
 	  
 	    try {
-	        boolean b = ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
+	         ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
 	    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        e.printStackTrace();
 	    } catch (ExceptionUsuarioNickRepetido e) {
