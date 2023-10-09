@@ -309,7 +309,12 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoConKeywordsTit dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   getPaquete().getDTPaquete(),   nuevo);
+		DTOfertaExtendidoConKeywordsTit dtoe;
+		if(getPaquete() != null) {
+			dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   getPaquete().getDTPaquete(),   nuevo);
+		} else {
+			dtoe = new DTOfertaExtendidoConKeywordsTit(getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   null,   nuevo);
+		}
 		return dtoe;
 	} 
 
