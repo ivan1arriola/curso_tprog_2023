@@ -2,12 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
   <display-name>trabajo.uy</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   <servlet>
     <description>Genera la pagina de inicio</description>
@@ -38,16 +33,6 @@
   <servlet-mapping>
     <servlet-name>AltaUsuario</servlet-name>
     <url-pattern>/AltaUsuario</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description>Gestiona el alta de una oferta laboral</description>
-    <display-name>AltaOfertaLaboral</display-name>
-    <servlet-name>AltaOfertaLaboral</servlet-name>
-    <servlet-class>controller.AltaOfertaLaboral</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AltaOfertaLaboral</servlet-name>
-    <url-pattern>/AltaOfertaLaboral</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -158,5 +143,15 @@
   <servlet-mapping>
     <servlet-name>ModificarUsuario</servlet-name>
     <url-pattern>/ModificarUsuario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Da servicio al alta de oferta laboral</description>
+    <display-name>AltaOfertaLaboral</display-name>
+    <servlet-name>AltaOfertaLaboral</servlet-name>
+    <servlet-class>controller.AltaOfertaLaboral</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AltaOfertaLaboral</servlet-name>
+    <url-pattern>/AltaOfertaLaboral</url-pattern>
   </servlet-mapping>
 </web-app>

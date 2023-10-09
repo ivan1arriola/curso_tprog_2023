@@ -3,13 +3,11 @@
 <%@ page import="main.java.logica.datatypes.DTPostulante" %>
 <%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
-<<<<<<< HEAD
-=======
+
 <%@ page import="java.io.File" %>
 <%@ page import="java.io.FileOutputStream" %>
 <%@ page import="java.io.IOException" %>
 
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 <!DOCTYPE html>
 <html>
 
