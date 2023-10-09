@@ -148,7 +148,7 @@ public class Paquete {
             individual.add(actual.getDTCantTO());
         }
         
-        DTPaquete dtpaq = new DTPaquete(nombre,   costo,   descuento,   validez,   descripcion,   individual,   fechaAlta);
+        DTPaquete dtpaq = new DTPaquete(nombre,   costo,   descuento,   validez,   descripcion,   individual,   fechaAlta, imagen);
         return dtpaq;
     }
     

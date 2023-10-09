@@ -11,8 +11,9 @@ public class DTPaquete {
 	private String descripcion;
 	private Set<DTCantTO> tiposDePub;
 	private LocalDate fechaA;
+	private String imagen;
 	
-	public DTPaquete(String nomb,  float cost,  float descuento,  int valid,  String desc,  Set<DTCantTO> tdp,  LocalDate fechaAlta) {
+	public DTPaquete(String nomb,  float cost,  float descuento,  int valid,  String desc,  Set<DTCantTO> tdp,  LocalDate fechaAlta, String imagen) {
 		nombre = nomb;
 		costo = cost;
 		this.descuento = descuento;
@@ -20,7 +21,10 @@ public class DTPaquete {
 		descripcion = desc;
 		tiposDePub = tdp;
 		fechaA = fechaAlta;
+		this.imagen = imagen;
 	}
+	
+	
 
 	public String getNombre() {
 		return nombre;
@@ -48,6 +52,12 @@ public class DTPaquete {
 
 	public LocalDate getFechaAlta() {
 		return fechaA;
+	}
+
+
+
+	public String getImagen() {
+		return imagen;
 	}
 	
 }

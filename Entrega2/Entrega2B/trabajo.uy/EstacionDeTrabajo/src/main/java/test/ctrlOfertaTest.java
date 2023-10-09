@@ -193,8 +193,7 @@ public class ctrlOfertaTest {
         // Agregar una oferta utilizando la función altaTipoPublicacionOL
         //boolean resultadoAlta = ctrlOferta.altaTipoPublicacionOL(nombreOferta,  descripcion,  exposicion,  duracion,  costo,  fechaAlta);
         
-        String str1 = "MeEncantaLaMOZARELLA11111";
-		byte[] img233 = str1.getBytes();
+        String  img233 = "url";
 		
         
         boolean resultadoAlta = ctrlOferta.altaOfertaLaboral(empresaN,  

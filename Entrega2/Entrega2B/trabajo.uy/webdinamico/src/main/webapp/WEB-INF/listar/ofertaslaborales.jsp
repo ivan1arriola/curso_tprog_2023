@@ -47,14 +47,8 @@ DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofer
                 <%
                 } else {
                     for (DTOfertaExtendido oferta : ofertasLaborales) {
-                        String imagenUrl = "";
-                        if (oferta.getImagen() != null) {
-                            String base64Image = new String(Base64.getEncoder().encode(oferta.getImagen()), "UTF-8");
-                            imagenUrl = "data:image/jpeg;base64," + base64Image; // Asume que la imagen es en formato JPEG, ajusta según sea necesario
-                        } else {
-                            // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
-                            imagenUrl = request.getContextPath() +  "/imagenNoFound.png";
-                        }
+                        String imagenUrl = oferta.getImagen();
+                     
                         String nombre = oferta.getNombre();
                         String descripcion = oferta.getDescripcion();
                         String enlace = request.getContextPath() + "/consultarofertalaboral?o=" + oferta.getNombre();

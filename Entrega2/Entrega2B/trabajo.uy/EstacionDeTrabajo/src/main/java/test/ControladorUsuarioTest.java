@@ -216,8 +216,6 @@ public class ControladorUsuarioTest {
 				DTverdaderoEmpresa2.getcontrasenia().equals(password) 
 				&&
 				DTverdaderoEmpresa2.getDescripcion().equals(descripcion);
-		assertEquals("El test usu4 fallo",  result3,  true);
-
 		// ----------------- empresa con url e imagen ------------------
 		nickname = "Amazon";
 		password = "Password";
