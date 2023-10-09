@@ -11,8 +11,8 @@ import main.java.logica.interfaces.ICtrlOferta;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Set;
 
-import org.apache.jasper.tagplugins.jstl.core.Set;
 
 /**
  * Servlet implementation class ListarOfertasLaborales
@@ -64,8 +64,12 @@ public class ListarOfertasLaborales extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
+		
+		
         String consulta = request.getParameter("search");
         String keyword = request.getParameter("key");
 

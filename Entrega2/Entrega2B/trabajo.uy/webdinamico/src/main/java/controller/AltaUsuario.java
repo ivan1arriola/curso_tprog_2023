@@ -1,6 +1,7 @@
 package controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
  * Servlet implementation class AltaUsuario
  */
 @WebServlet("/altausuario")
+@MultipartConfig
 public class AltaUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -61,6 +63,8 @@ public class AltaUsuario extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String tipoUsuario = request.getParameter("tipo-usuario");
+        
+        
 
         String descripcionEmpresa = null;
         String sitioWebEmpresa = null;

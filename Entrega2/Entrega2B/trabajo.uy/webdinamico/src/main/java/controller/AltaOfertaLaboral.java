@@ -60,6 +60,7 @@ public class AltaOfertaLaboral extends HttpServlet {
 		DTEmpresaConCompras dtcp = (DTEmpresaConCompras) Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuarioEspecial(nickname, nickname);
 		Set<DTCompraPaquetes> compras = dtcp.getCompraPaquetes();
 		Set<String> paquetes = new HashSet<String>();
+
 		
 		for (DTCompraPaquetes elem : compras) {
 			paquetes.add(elem.getNombre());
@@ -71,6 +72,7 @@ public class AltaOfertaLaboral extends HttpServlet {
 	private void cargarKeywords(HttpServletRequest request, HttpServletResponse response) {
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
+		
 	}
 
 	private void cargarTipoOferta(HttpServletRequest request, HttpServletResponse response) {

@@ -42,7 +42,7 @@
         
         %>
 
-        <form class="form-signup needs-validation" novalidate action="altausuario" method="POST" >
+        <form class="form-signup needs-validation" novalidate action="altausuario" method="POST" enctype="multipart/form-data">
           <!-- Sección de Información Personal -->
           <section>
             <h2 class="h4">Información Personal</h2>
