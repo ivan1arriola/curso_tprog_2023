@@ -144,7 +144,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 	
-	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor); {
+	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 		
