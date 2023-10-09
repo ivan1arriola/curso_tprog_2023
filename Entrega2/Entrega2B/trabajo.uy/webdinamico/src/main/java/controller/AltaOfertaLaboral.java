@@ -58,7 +58,7 @@ public class AltaOfertaLaboral extends HttpServlet {
 	
 	
 	private void cargarPaquetes(HttpServletRequest request, HttpServletResponse response, String nickname) {
-		DTEmpresaConCompras dtcp = (DTEmpresaConCompras) Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuarioEspecial(nickname, nickname);
+		/*DTEmpresaConCompras dtcp = (DTEmpresaConCompras) Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuarioEspecial(nickname, nickname);
 		Set<DTCompraPaquetes> compras = dtcp.getCompraPaquetes();
 		Set<String> paquetes = new HashSet<String>();
 
@@ -67,7 +67,7 @@ public class AltaOfertaLaboral extends HttpServlet {
 			paquetes.add(elem.getNombre());
 		}
 		
-		request.setAttribute("paquetes", paquetes);
+		request.setAttribute("paquetes", paquetes);*/
 	}
 
 	private void cargarKeywords(HttpServletRequest request, HttpServletResponse response) {
@@ -84,7 +84,14 @@ public class AltaOfertaLaboral extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		 String[] selectedKeywords = request.getParameterValues("keywords[]"); // Este es un arreglo con las palabras clave seleccionadas
+	        
+	        // Ahora puedes procesar los datos como desees, por ejemplo, imprimirlos
+	        if (selectedKeywords != null) {
+	            for (String keyword : selectedKeywords) {
+	                System.out.println("Palabra clave seleccionada: " + keyword);
+	            }
+	        }
 	}
 
 }

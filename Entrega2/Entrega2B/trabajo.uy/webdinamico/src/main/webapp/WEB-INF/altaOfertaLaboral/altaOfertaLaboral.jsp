@@ -17,7 +17,10 @@
 
     <head>
         <jsp:include page="/WEB-INF/templates/head.jsp" />
+        
+        
         <title>Alta Oferta Laboral</title>
+        <!-- MDB -->
     </head>
 
     <body>
@@ -45,26 +48,15 @@
               <label for="listadoOfert" class="form-label">Listado de Tipo de Oferta</label>
             </div>
             <div class="col-8">
-              <select class="form-control" id="listadoOfertas">
-              
+              <select class="form-control" id="listadoOfertas" name="tipoOferta">
                 <option value="0">Seleccionar Tipo de Oferta</option>
-                
                 <%
-                
-                if(keys != null && !keys.isEmpty()){
-              	  
+                if(keys != null && !keys.isEmpty()){  
                   	for(String tipo : tipoPublicaciones ){
-                  		
-                
-                
-                
                 %>
                 <option value="<%= tipo %>">
                   <%= tipo %>
                 </option>
-               
-                
-                
                 <%	}
                } %>
               </select>
@@ -182,43 +174,31 @@
           </div>
 
           <div class="col-12 row mb-2">
-            <div class="col-4">
-              <label for="listadoKeywords" class="form-label">Keywords</label>
-            </div>
-            <div class="col-8">
-              <select id="keywordSelect" class="form-select">
-              
-              <%
-              if(keys != null && !keys.isEmpty()){
-            	  
-              	for(String key : keys ){
-              		
-              		
-              
-              %>
-              
-              
-                <option value="Tiempo completo"><%= key %></option>
-                
-                <%}
-              	} %>
-                
-              </select>
-              <a id="agregarKeyword" class="btn btn-primary mt-2">
-                Agregar Keyword
-              </a>
-              <div id="keywordsSeleccionadas" class="mt-2">
-                <!-- Aquí se mostrarán las keywords seleccionadas -->
-              </div>
-            </div>
-          </div>
-
+			    <div class="col-4">
+			        <label for="listadoKeywords" class="form-label">Keywords</label>
+			    </div>
+			    <div class="col-8">
+			        <div id="keywordSelect" class="form-check form-check-inline">
+			            <% if (keys != null && !keys.isEmpty()) {
+			                for (String key : keys) { %>
+			                <div>
+                        <label class="form-check-label" for="keyword_<%= key %>"><%= key %></label>
+                        <input type="checkbox" name="keywords[]" value="<%= key %>" class="form-check-input" id="keyword_<%= key %>">
+			                </div>
+			                <% }
+			            } %>
+			        </div>
+			    </div>
+			</div>
           <div class="col-12 row mb-2">
             <button type="submit" class="btn btn-primary">Aceptar</button>
           </div>
         </form>
       </div>
     </div>
+    
+    
+
             
 
                 
@@ -234,7 +214,7 @@
             
    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  	<script src="<%= request.getContextPath() %>/js/altaOfertaLaboral.js"></script>
+    
             
     </body>
 
