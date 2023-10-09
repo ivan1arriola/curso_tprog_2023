@@ -112,7 +112,15 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 	private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname) {
 		ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
 		
-		DTOfertaExtendidoSinPConK info = ctrl.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		
+		DTOfertaExtendidoSinPConK info;
+		try {
+			info = ctrl.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		} catch (Exception e) {
+			info = null;
+		}
+		
+		 
 		
 		DTPaquete paquete = null;
 		
