@@ -46,7 +46,7 @@ public class AceptarOferta extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 
         setTitle("Aceptar o Rechazar Oferta"); 
         setBounds(30,   30,   395,   259);
-        GridBagConstraints gbc = new GridBagConstraints();
+        //GridBagConstraints gbc = new GridBagConstraints();
       	
     	comboBoxEmpresa = new JComboBox<>(); 
     	comboBoxEmpresa.setBounds(156, 16, 209, 24);
