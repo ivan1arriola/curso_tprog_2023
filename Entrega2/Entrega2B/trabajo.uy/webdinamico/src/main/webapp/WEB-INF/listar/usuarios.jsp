@@ -41,7 +41,7 @@
                     <%
                     } else {
                         for (DTUsuario usuario : usuarios) {
-                        	byte[] imagenBytes = usuario.getImagen();
+                        	String imagenBytes = usuario.getImagen();
                         	String imagen;
 
                         	if (imagenBytes == null) {
