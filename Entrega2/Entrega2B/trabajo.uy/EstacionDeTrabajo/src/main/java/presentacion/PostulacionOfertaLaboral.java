@@ -189,9 +189,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 	
     
     
-    private void limpiarFormulario() {
-        infoOferta.setText("");
-    }
+//    private void limpiarFormulario() {
+//        infoOferta.setText("");
+//    }
 	
     public void actualizar() {
         comboBoxEmpresa.removeAllItems(); 
