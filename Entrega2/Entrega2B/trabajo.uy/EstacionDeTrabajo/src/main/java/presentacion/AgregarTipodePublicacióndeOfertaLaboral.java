@@ -1,12 +1,8 @@
 package main.java.presentacion;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 //import java.awt.*;
-
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +21,6 @@ import javax.swing.JOptionPane;
 //import javax.swing.JList;
 import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
 import main.java.logica.datatypes.DTCantTO;
@@ -53,7 +48,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         getContentPane().add(paquetesVisualizar);    
         listadoTipoPub = new JComboBox<String>();
         listadoTipoPub.setBounds(190,   63,   298,   24);
-        getContentPane().add(listadoTipoPub);
+        getContentPane().add(listadoTipoPub); 
 
         paquetesVisualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {

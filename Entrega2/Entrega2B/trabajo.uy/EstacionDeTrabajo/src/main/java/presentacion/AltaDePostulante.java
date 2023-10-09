@@ -243,13 +243,22 @@ public class AltaDePostulante extends JInternalFrame {
             	try {
 	        		boolean exito = icUsuario.altaPostulante(nicknameU,  contraseña,  nombreU,  apellidoU,  correoU,  fechaU,  nacionalidadU);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
-	        	} catch (ExceptionUsuarioNickRepetido|ExceptionUsuarioNickYCorreoRepetidos|ExceptionUsuarioCorreoRepetido e) {
-	        		JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Empresa",  JOptionPane.ERROR_MESSAGE);
-	            }
+	        		limpiarFormulario();
+	        		setVisible(false);
+            	} catch (ExceptionUsuarioNickRepetido evento) {
+	        		JOptionPane.showMessageDialog(this,  "El nickname ya se encuentra en el sistema.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
 
+	        		// JOptionPane.showMessageDialog(this,  e.getMessage(),  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
+	            } catch (ExceptionUsuarioCorreoRepetido evento1) {
+	        		JOptionPane.showMessageDialog(this,  "El correo ya se encuentra en el sistema.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
+
+	            } catch (ExceptionUsuarioNickYCorreoRepetidos evento2) {
+	        		JOptionPane.showMessageDialog(this,  "El nickname y el correo ya se encuentra en el sistema.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
+
+	            }
             // Limpio el internal frame antes de cerrar la ventana
-            limpiarFormulario();
-            setVisible(false);
+            
+            // setVisible(false);
         }
     }
 
