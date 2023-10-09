@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
+import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTUsuario;
 
 /**
@@ -36,6 +37,7 @@ public class consultaPostulacion extends HttpServlet {
 	protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
+		
 		HttpSession session = request.getSession(false);
 		String nickname = (String) session.getAttribute("nickname");
 		Fabrica fabrica = Fabrica.getInstance();
@@ -45,7 +47,12 @@ public class consultaPostulacion extends HttpServlet {
 		String nombreOferta = request.getParameter("id");
 		request.setAttribute("oferta", nombreOferta);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/crearPostulacion.jsp");
+		DTPostulacion dtp = Fabrica.getInstance().getICtrlOferta().obtenerDatosPostulacionW(nickname, nombreOferta);
+		request.setAttribute("CVRed", dtp.getcVitae());
+		request.setAttribute("CVMot", dtp.getMotivacion());
+		request.setAttribute("FechaPost", dtp.getFecha());
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultaPostulacion/consultaPostulacion.jsp");
         dispatcher.forward(request, response);
 	}
 
@@ -53,14 +60,7 @@ public class consultaPostulacion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String cvAbrev = request.getParameter("cvAbreviado");
-		String motiv = request.getParameter("motivacion");
-		HttpSession session = request.getSession(false);
-		String nickname = (String) session.getAttribute("nickname");
-		String nombreOferta = request.getParameter("nombreOferta");
-		Fabrica.getInstance().getICtrlOferta().altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, null, LocalDate.now());
-		response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
+		// SIN IMPLEMENTACIÓN. NO SE REQUIERE, SÓLO CONSULTA.
 	}
 
 }

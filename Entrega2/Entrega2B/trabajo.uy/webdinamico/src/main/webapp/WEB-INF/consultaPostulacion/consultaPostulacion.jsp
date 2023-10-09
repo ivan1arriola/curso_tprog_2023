@@ -24,12 +24,12 @@
         <div class="contenedor-hijo col-10">
           <h3>Postulación a Oferta Laboral</h3>
 
-          <p><b>Postulante:</b> <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= request.getAttribute("nickname") %>"></a> </p>
+          <p><b>Postulante:</b> <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= request.getAttribute("nickname") %>">request.getAttribute("postulante")</a> </p>
 
           <div class="label">
-            <p><b>CV reducido:</b> request.getAttribute("CVRed")</p>
-            <p><b>Motivación:</b> request.getAttribute("CVMot")</p>
-            <p><b>Fecha Postulación:</b> request.getAttribute("FechaPost")</p>
+            <p><b>CV reducido:</b> <%=request.getAttribute("CVRed")%></p>
+            <p><b>Motivación:</b> <%=request.getAttribute("CVMot")%></p>
+            <p><b>Fecha Postulación:</b> <%=request.getAttribute("FechaPost")%></p>
           </div>
         </div>
         <!-- Columna 2 -->

@@ -45,6 +45,8 @@ public class CrearPostulacion extends HttpServlet {
 		String nombreOferta = request.getParameter("id");
 		request.setAttribute("oferta", nombreOferta);
 		
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/crearPostulacion.jsp");
         dispatcher.forward(request, response);
 	}
