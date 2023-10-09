@@ -31,9 +31,9 @@ public class ControladorUsuarioTest4 {
 		// testear DATATYPES de oferta laboral
 		@Test
 		void testPARAUSUARIo(){
-			Fabrica f = Fabrica.getInstance();
-		    ICtrlUsuario ICU = f.getICtrlUsuario();
-		    ICtrlOferta ICO = f.getICtrlOferta();
+			Fabrica fabri = Fabrica.getInstance();
+		    ICtrlUsuario ICU = fabri.getICtrlUsuario();
+		    ICtrlOferta ICO = fabri.getICtrlOferta();
 			String nickname = "Google";
 			String nombre = "analista";
 			String descripcion = "Analista de sistemas";

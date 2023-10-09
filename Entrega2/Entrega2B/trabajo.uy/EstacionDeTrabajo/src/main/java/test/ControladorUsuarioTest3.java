@@ -3,6 +3,7 @@ package main.java.test;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import main.java.logica.datatypes.DTCompraPaquetes;
@@ -28,9 +29,9 @@ public class ControladorUsuarioTest3 {
 	        String nombrePostulante = "Juan";
 			LocalDate fechaPostulacion = LocalDate.of(2020,   12,   12);
 			String URLDocExtras = "www.google.com";
-			String CV = "CV";
+			String CVitae = "CV";
 			String motivacion = "motivacion";		
-			DTPostulacion post = new DTPostulacion(nombrePostulante,   fechaPostulacion,   URLDocExtras,   CV,   motivacion);
+			DTPostulacion post = new DTPostulacion(nombrePostulante,   fechaPostulacion,   URLDocExtras,   CVitae,   motivacion);
 			
 			// Getters
 			post.getPostulante();
@@ -61,7 +62,7 @@ public class ControladorUsuarioTest3 {
 			DepUY dep = DepUY.Montevideo;
 			String ciudad = "Montevideo";
 			EstadoOL estado = EstadoOL.Ingresada;
-			HashSet<DTPostulacion> ColPost = new HashSet<DTPostulacion>();
+			Set<DTPostulacion> ColPost = new HashSet<DTPostulacion>();
 			ColPost.add(post);
 			byte[] img = null;
 			String paquete = "paquete";
@@ -106,10 +107,10 @@ public class ControladorUsuarioTest3 {
 			DepUY dep1 = DepUY.Montevideo;
 			String ciudad1 = "Montevideo";
 			EstadoOL estado1 = EstadoOL.Ingresada;
-			HashSet<DTPostulacion> ColPost1 = new HashSet<DTPostulacion>();
+			Set<DTPostulacion> ColPost1 = new HashSet<DTPostulacion>();
 			ColPost1.add(post);
 			byte[] img1 = null;
-			HashSet<String> pruebaKeyword = new HashSet<>(Arrays.asList(
+			Set<String> pruebaKeyword = new HashSet<>(Arrays.asList(
 					"Trabajo nocturno",  
 					"horario vespertino",  
 					"full time",  
@@ -157,10 +158,10 @@ public class ControladorUsuarioTest3 {
 			DepUY dep11 = DepUY.Montevideo;
 			String ciudad11 = "Montevideo";
 			EstadoOL estado11 = EstadoOL.Ingresada;
-			HashSet<DTPostulacion> ColPost11 = new HashSet<DTPostulacion>();
+			Set<DTPostulacion> ColPost11 = new HashSet<DTPostulacion>();
 			ColPost11.add(post);
 			byte[] img11 = null;
-			HashSet<String> pruebaKeyword1 = new HashSet<>(Arrays.asList(
+			Set<String> pruebaKeyword1 = new HashSet<>(Arrays.asList(
 					"Trabajo nocturno",  
 					"horario vespertino",  
 					"full time",  

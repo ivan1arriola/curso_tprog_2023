@@ -27,12 +27,12 @@ public class ListarUsuarios extends HttpServlet {
         super();
     }
     
-    private HashSet<DTUsuario> getUsuarios(){
+    private Set<DTUsuario> getUsuarios(){
     	
     	ICtrlUsuario ctrl = Fabrica.getInstance().getICtrlUsuario();
     	
     	 Set<String> nicknames = ctrl.listarNicknamesUsuarios();
-         HashSet<DTUsuario> usuarios = new HashSet<DTUsuario>();
+         Set<DTUsuario> usuarios = new HashSet<DTUsuario>();
          
          for(String usuario : nicknames) {
          	usuarios.add(ctrl.obtenerDatosUsuario(usuario));
@@ -49,7 +49,7 @@ public class ListarUsuarios extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
-        HashSet<DTUsuario> ofertas = getUsuarios();
+        Set<DTUsuario> ofertas = getUsuarios();
 
         request.setAttribute("usuarios", ofertas);
 

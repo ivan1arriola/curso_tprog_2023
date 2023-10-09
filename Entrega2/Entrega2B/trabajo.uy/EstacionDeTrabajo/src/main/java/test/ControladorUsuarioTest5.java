@@ -4,6 +4,7 @@ package main.java.test ;
 
 import java.time.LocalDate ; 
 import java.util.HashSet ; 
+import java.util.Set ; 
 import org.junit.jupiter.api.Test ; 
 
 import main.java.logica.clases.Empresa ; 
@@ -53,9 +54,9 @@ public class ControladorUsuarioTest5 {
 		
 		@Test
 		void testPARAUSUARIo(){
-			Fabrica f = Fabrica.getInstance() ; 
-		    ICtrlUsuario ICU = f.getICtrlUsuario() ; 
-		    ICtrlOferta ICO = f.getICtrlOferta() ; 
+			Fabrica fabri = Fabrica.getInstance() ; 
+		    ICtrlUsuario ICU = fabri.getICtrlUsuario() ; 
+		    ICtrlOferta ICO = fabri.getICtrlOferta() ; 
 			
 		    // ---------------------------- creo Postulante ---------------------------- 
 			String nickname2 = "ReneDescartes" ; 
@@ -121,18 +122,18 @@ public class ControladorUsuarioTest5 {
 			// seria asi el orden
 			new InfoCompraOferta(ofertaLaboralSalada, 3) ; 
 			DTCantTO nuevamente = new DTCantTO("Oferta salada", 3) ; 
-			HashSet<DTCantTO> hashSet = new HashSet<>() ; 
+			Set<DTCantTO> hashSet = new HashSet<>() ; 
 	        hashSet.add(nuevamente) ; 
 			LocalDate fechaCompra = LocalDate.now() ; 
 			float costo = 10.0f ; 
 			// obtener paquete
-			PaqueteHandler PH = PaqueteHandler.getInstance() ; 
-			Map<String,   Paquete> mapaPaquete = PH.obtener() ; 
+			PaqueteHandler PHan = PaqueteHandler.getInstance() ; 
+			Map<String,   Paquete> mapaPaquete = PHan.obtener() ; 
 			keyToLookup = "Paquete 7" ; 
 			Paquete Pack = mapaPaquete.get(keyToLookup) ; 
 			// obtener empresa
-			UsuarioHandler UH = UsuarioHandler.getInstance() ; 
-			Map<String,   Usuario> mapaUsuario = UH.obtenerNick() ; 
+			UsuarioHandler UHan = UsuarioHandler.getInstance() ; 
+			Map<String,   Usuario> mapaUsuario = UHan.obtenerNick() ; 
 			keyToLookup = "The Clouds" ; 
 			Empresa empres = (Empresa) mapaUsuario.get(keyToLookup) ; 
 			InfoCompra nueva = new InfoCompra(fechaCompra,    costo,    Pack,    empres,   hashSet) ; 

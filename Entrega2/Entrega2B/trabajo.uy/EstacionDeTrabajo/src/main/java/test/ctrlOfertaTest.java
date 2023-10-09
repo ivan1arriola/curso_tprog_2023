@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 public class ctrlOfertaTest {
 
@@ -186,7 +187,7 @@ public class ctrlOfertaTest {
         float remun = 500;
         String ciu = "mdeo";
         DepUY depto = DepUY.Salto;
-        HashSet<String> keys =  new HashSet<>();
+        Set<String> keys =  new HashSet<>();
         
         
         // Agregar una oferta utilizando la función altaTipoPublicacionOL

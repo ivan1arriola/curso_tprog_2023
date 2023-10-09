@@ -180,9 +180,9 @@ public class ControladorUsuarioTest {
 
 		    // ----------------- dataTypes empresa -----------------
 		    // se obtiene con nickname,  notar que estoy probando DTUsuario
-		    UsuarioHandler UH = UsuarioHandler.getInstance();
-		    UH.buscarCorreo("Larry@hotmail.com");
-			Empresa empresa1 = (Empresa) UH.buscarNick("Google");
+		    UsuarioHandler UHan = UsuarioHandler.getInstance();
+		    UHan.buscarCorreo("Larry@hotmail.com");
+			Empresa empresa1 = (Empresa) UHan.buscarNick("Google");
 			// obtuve empresa,  ahora creo DTEmpresa
 			DTUsuario DTempresa1 = empresa1.obtenerDatosUsuario();
 			DTEmpresa DTverdaderoEmpresa1 = (DTEmpresa) DTempresa1; // Casting
@@ -213,9 +213,9 @@ public class ControladorUsuarioTest {
 		    // imagen
 		    String str3 = "hola que tal";
 		byte[] img3 = str3.getBytes();
-		boolean b = ICU.altaEmpresaImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  img3);
+		boolean booly = ICU.altaEmpresaImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  img3);
 
-		Empresa empresa2 = (Empresa) UH.buscarNick("Apple");
+		Empresa empresa2 = (Empresa) UHan.buscarNick("Apple");
 		DTUsuario DTempresa2 = empresa2.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa2 = (DTEmpresa) DTempresa2; // Casting
 		assertEquals("El test usu2 fallo",  true,  result2);
@@ -262,7 +262,7 @@ public class ControladorUsuarioTest {
 
 		// ----------------- dataTypes empresa -----------------
 		// se obtiene con nickname,  notar que estoy probando DTUsuario
-		Empresa empresa3 = (Empresa) UH.buscarNick("Amazon");
+		Empresa empresa3 = (Empresa) UHan.buscarNick("Amazon");
 		// obtuve empresa,  ahora creo DTEmpresa
 		DTUsuario DTempresa3 = empresa3.obtenerDatosUsuario();
 		DTEmpresa DTverdaderoEmpresa3 = (DTEmpresa) DTempresa3; // Casting
@@ -314,18 +314,18 @@ public class ControladorUsuarioTest {
 				assertEquals("El test usuarios en sistema fallo",  false,  true);
 			}
 		}
-		b = ICU.validarCredenciales("Bezo@porBezo.com",  "Password");
-		assertEquals("El test validarCredenciales fallo",  true,  b);
-		b = ICU.validarCredenciales("Larry@hotmail.com", "Pass");
-		if (b) {
-			assertEquals("El test validarCredenciales fallo",  true,  b);
+		booly = ICU.validarCredenciales("Bezo@porBezo.com",  "Password");
+		assertEquals("El test validarCredenciales fallo",  true,  booly);
+		booly = ICU.validarCredenciales("Larry@hotmail.com", "Pass");
+		if (booly) {
+			assertEquals("El test validarCredenciales fallo",  true,  booly);
 		}
 		nickname = "Amazon";
-		b = ICU.validarCredenciales(nickname,  "Password");
-		assertEquals("El test validarCredenciales fallo",  true,  b);
-		b = ICU.validarCredenciales(nickname, "Pass");
-		if (b) {
-			assertEquals("El test validarCredenciales fallo",  true,  b);
+		booly = ICU.validarCredenciales(nickname,  "Password");
+		assertEquals("El test validarCredenciales fallo",  true,  booly);
+		booly = ICU.validarCredenciales(nickname, "Pass");
+		if (booly) {
+			assertEquals("El test validarCredenciales fallo",  true,  booly);
 		}
 		
 	}

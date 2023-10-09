@@ -36,9 +36,9 @@ public class ControladorUsuarioTest2 {
 		// --------------- Testeo Keyowords ---------------
 		@Test
 		void keywordTest() {
-			Fabrica f = Fabrica.getInstance();
-			ICtrlUsuario ICU = f.getICtrlUsuario();
-			ICtrlOferta ICO = f.getICtrlOferta();
+			Fabrica fabri = Fabrica.getInstance();
+			ICtrlUsuario ICU = fabri.getICtrlUsuario();
+			ICtrlOferta ICO = fabri.getICtrlOferta();
 
 			// --------------- keywords ---------------
 
@@ -50,7 +50,7 @@ public class ControladorUsuarioTest2 {
 			ICO.altaKeyword("part time");
 
 			// Creating a set for testing
-			HashSet<String> pruebaKeyword = new HashSet<>(Arrays.asList(
+			Set<String> pruebaKeyword = new HashSet<>(Arrays.asList(
 				"Trabajo nocturno",  
 				"horario vespertino",  
 				"full time",  
@@ -77,8 +77,8 @@ public class ControladorUsuarioTest2 {
 			
 			}
 
-			UsuarioHandler UH = UsuarioHandler.getInstance();
-			Postulante postulante1 = (Postulante) UH.buscarNick("LeonardoVinchi");
+			UsuarioHandler UHan = UsuarioHandler.getInstance();
+			Postulante postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
 			// obtuve empresa,   ahora creo DTEmpresa
 			
 			ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),   
@@ -111,7 +111,7 @@ public class ControladorUsuarioTest2 {
 													img23,   
 													DTverdaderopostulante1.getFechaNac(),   
 													DTverdaderopostulante1.getNacionalidad());
-			postulante1 = (Postulante) UH.buscarNick("LeonardoVinchi");
+			postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
 			DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",  "ASwatzenegger");
 			DTPostulante DTverdaderopostulante12 = (DTPostulante) DTpostulante12; // Casting;
 
@@ -260,8 +260,8 @@ public class ControladorUsuarioTest2 {
 			
 			
 //			boolean existePostulacion(String nickname,   String nombre) {
-//				UsuarioHandler UH = UsuarioHandler.getInstance();
-//				Postulante p = (Postulante) UH.buscarNick(nickname);
+//				UsuarioHandler UHan = UsuarioHandler.getInstance();
+//				Postulante p = (Postulante) UHan.buscarNick(nickname);
 //				if (p != null) 
 //					return p.existePostulacion(nombre);
 //				else
