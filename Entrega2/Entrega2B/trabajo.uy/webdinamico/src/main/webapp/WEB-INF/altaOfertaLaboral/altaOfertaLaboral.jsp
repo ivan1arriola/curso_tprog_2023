@@ -48,26 +48,15 @@
               <label for="listadoOfert" class="form-label">Listado de Tipo de Oferta</label>
             </div>
             <div class="col-8">
-              <select class="form-control" id="listadoOfertas">
-              
+              <select class="form-control" id="listadoOfertas" name="tipoOferta">
                 <option value="0">Seleccionar Tipo de Oferta</option>
-                
                 <%
-                
-                if(keys != null && !keys.isEmpty()){
-              	  
+                if(keys != null && !keys.isEmpty()){  
                   	for(String tipo : tipoPublicaciones ){
-                  		
-                
-                
-                
                 %>
                 <option value="<%= tipo %>">
                   <%= tipo %>
                 </option>
-               
-                
-                
                 <%	}
                } %>
               </select>
