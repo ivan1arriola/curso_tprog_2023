@@ -241,7 +241,7 @@ public class AltaDePostulante extends JInternalFrame {
             	LocalDate fechaU = LocalDate.of(Integer.parseInt(anioU),  Integer.parseInt(mesU),  Integer.parseInt(diaU));
 	        	
             	try {
-	        		boolean exito = icUsuario.altaPostulante(nicknameU,  contraseña,  nombreU,  apellidoU,  correoU,  fechaU,  nacionalidadU);
+	        		icUsuario.altaPostulante(nicknameU,  contraseña,  nombreU,  apellidoU,  correoU,  fechaU,  nacionalidadU);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Alta de Postulante",  JOptionPane.INFORMATION_MESSAGE);
 	        		limpiarFormulario();
 	        		setVisible(false);
@@ -336,7 +336,7 @@ public class AltaDePostulante extends JInternalFrame {
         }
         
         try {
-            LocalDate fecha = LocalDate.of(Integer.parseInt(anioU),  Integer.parseInt(mesU),  Integer.parseInt(diaU));
+            LocalDate.of(Integer.parseInt(anioU),  Integer.parseInt(mesU),  Integer.parseInt(diaU));
         } catch (DateTimeException e) {
             JOptionPane.showMessageDialog(this,  "El día no es válido para el mes y año.",  "ERROR - Alta de Postulante",  JOptionPane.ERROR_MESSAGE);
             return false;

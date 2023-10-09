@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 public class ctrlOfertaTest {
 
@@ -169,7 +170,7 @@ public class ctrlOfertaTest {
         String empresaN = "Apple Com.";
     	ICtrlUsuario ICU = Fabrica.getInstance().getICtrlUsuario();
     	try {
-			boolean bool = ICU.altaEmpresa("Apple Com.",  "Steve",  "Jobs",  "stevejobs1@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
+			ICU.altaEmpresa("Apple Com.",  "Steve",  "Jobs",  "stevejobs1@hotmail.com",  "Apple Co.",  "Vendemos celulares caros pero buenos.");
 		} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
 				| ExceptionUsuarioNickRepetido e) {
 			// TODO Auto-generated catch block
@@ -186,7 +187,7 @@ public class ctrlOfertaTest {
         float remun = 500;
         String ciu = "mdeo";
         DepUY depto = DepUY.Salto;
-        HashSet<String> keys =  new HashSet<>();
+        Set<String> keys =  new HashSet<>();
         
         
         // Agregar una oferta utilizando la función altaTipoPublicacionOL

@@ -63,7 +63,7 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
 			public void actionPerformed(ActionEvent evento) {
 				
 				try {            		
-	                    Set<String> nicks =  icUsuario.listarNicknamesUsuarios();
+	                    icUsuario.listarNicknamesUsuarios();
 	                    
                 } catch (IllegalArgumentException ex) {
                     	System.err.println("Error al obtener los usuarios");

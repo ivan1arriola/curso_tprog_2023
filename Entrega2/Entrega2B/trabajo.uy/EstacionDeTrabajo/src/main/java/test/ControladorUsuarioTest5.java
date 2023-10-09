@@ -4,6 +4,7 @@ package main.java.test ;
 
 import java.time.LocalDate ; 
 import java.util.HashSet ; 
+import java.util.Set ; 
 import org.junit.jupiter.api.Test ; 
 
 import main.java.logica.clases.Empresa ; 
@@ -20,14 +21,14 @@ import main.java.logica.datatypes.DTCantTO ;
 
 import main.java.logica.datatypes.DTHora ; 
 import main.java.logica.datatypes.DTHorario ; 
-import main.java.logica.datatypes.DTOfertaExtendido ; 
+//import main.java.logica.datatypes.DTOfertaExtendido ; 
 
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante ; 
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK ; 
-import main.java.logica.datatypes.DTPaquete ; 
-
-import main.java.logica.datatypes.DTTipoOferta ; 
-import main.java.logica.datatypes.DTUsuario ; 
+//import main.java.logica.datatypes.DTPaquete ; 
+//
+//import main.java.logica.datatypes.DTTipoOferta ; 
+//import main.java.logica.datatypes.DTUsuario ; 
 import main.java.logica.enumerados.DepUY ; 
 import main.java.logica.enumerados.EstadoOL ; 
 import main.java.logica.interfaces.ICtrlOferta ; 
@@ -53,9 +54,9 @@ public class ControladorUsuarioTest5 {
 		
 		@Test
 		void testPARAUSUARIo(){
-			Fabrica f = Fabrica.getInstance() ; 
-		    ICtrlUsuario ICU = f.getICtrlUsuario() ; 
-		    ICtrlOferta ICO = f.getICtrlOferta() ; 
+			Fabrica fabri = Fabrica.getInstance() ; 
+		    ICtrlUsuario ICU = fabri.getICtrlUsuario() ; 
+		    ICtrlOferta ICO = fabri.getICtrlOferta() ; 
 			
 		    // ---------------------------- creo Postulante ---------------------------- 
 			String nickname2 = "ReneDescartes" ; 
@@ -83,7 +84,7 @@ public class ControladorUsuarioTest5 {
 			ICO.altaTipoPublicacionOL("Oferta dulce",   "visibilidad dulce",    199,    290,    102340.0f,    LocalDate.now()) ; 
 			ICO.altaTipoPublicacionOL("Oferta proteica",   "visibilidad proteica",    199,    1908,    1020340.0f,    LocalDate.now()) ; 	
 			TipoOfertaHandler TOH = TipoOfertaHandler.getInstance() ; 
-			TipoOferta NuevoTipoOferta = TOH.buscar("Oferta salada") ; 
+			TOH.buscar("Oferta salada") ; 
 			
 			// ---------------------------- creo Paquete ----------------------------
 			String str1 = "MeEncantaElQuesoSemiduro" ; 
@@ -119,20 +120,20 @@ public class ControladorUsuarioTest5 {
 			// esto indica se compro,  notar que no hay caso de uso para comprar paquete
 			// todo esto no esta armado
 			// seria asi el orden
-			InfoCompraOferta ununuunu = new InfoCompraOferta(ofertaLaboralSalada, 3) ; 
+			new InfoCompraOferta(ofertaLaboralSalada, 3) ; 
 			DTCantTO nuevamente = new DTCantTO("Oferta salada", 3) ; 
-			HashSet<DTCantTO> hashSet = new HashSet<>() ; 
+			Set<DTCantTO> hashSet = new HashSet<>() ; 
 	        hashSet.add(nuevamente) ; 
 			LocalDate fechaCompra = LocalDate.now() ; 
 			float costo = 10.0f ; 
 			// obtener paquete
-			PaqueteHandler PH = PaqueteHandler.getInstance() ; 
-			Map<String,   Paquete> mapaPaquete = PH.obtener() ; 
+			PaqueteHandler PHan = PaqueteHandler.getInstance() ; 
+			Map<String,   Paquete> mapaPaquete = PHan.obtener() ; 
 			keyToLookup = "Paquete 7" ; 
 			Paquete Pack = mapaPaquete.get(keyToLookup) ; 
 			// obtener empresa
-			UsuarioHandler UH = UsuarioHandler.getInstance() ; 
-			Map<String,   Usuario> mapaUsuario = UH.obtenerNick() ; 
+			UsuarioHandler UHan = UsuarioHandler.getInstance() ; 
+			Map<String,   Usuario> mapaUsuario = UHan.obtenerNick() ; 
 			keyToLookup = "The Clouds" ; 
 			Empresa empres = (Empresa) mapaUsuario.get(keyToLookup) ; 
 			InfoCompra nueva = new InfoCompra(fechaCompra,    costo,    Pack,    empres,   hashSet) ; 
@@ -165,12 +166,12 @@ public class ControladorUsuarioTest5 {
 			EstadoOL estadoNuevo6 = EstadoOL.Ingresada ; 
 			imagen2 = "MeEncantaPensar" ; 
 			float atrremuneracion = 1 ; 
-			byte[] img3 = imagen2.getBytes() ; 
+			imagen2.getBytes() ; 
 			DTHora horaSalada = new DTHora(8,  0) ; 
 			DTHora horaSalada2 = new DTHora(1,  0) ; 
 			DTHorario horarioSal = new DTHorario(horaSalada,  horaSalada2) ; 
 			// constructor sin paquete y sin imagen
-			OfertaLaboral nuevo000 = new OfertaLaboral(myList,   
+			new OfertaLaboral(myList,   
 													   atrtOferta,  
 													   atrnombre6, 
 													   atrdescripcion6, 
@@ -181,7 +182,7 @@ public class ControladorUsuarioTest5 {
 													   atrfechaAlta6, 
 													   estadoNuevo6) ; 
 //			// constructor sin imagen pero con paquete	
-			OfertaLaboral nuevo02 = new  OfertaLaboral(myList,   
+			new  OfertaLaboral(myList,   
 														atrtOferta,   
 														atrnombre6,   
 														atrdescripcion6, 
@@ -194,7 +195,7 @@ public class ControladorUsuarioTest5 {
 														Pack) ; 
 						
 			// constructor sin imagen ni paquete	
-			OfertaLaboral nuevo0w2 = new   OfertaLaboral(myList,   
+			new   OfertaLaboral(myList,   
 														 atrtOferta,   
 														 atrnombre6,   
 														 atrdescripcion6,    
@@ -239,15 +240,15 @@ public class ControladorUsuarioTest5 {
 			    // TODO Auto-generated catch block
 			    e.printStackTrace() ; 
 			}	
-			DTTipoOferta nuevoTO = ICO.tipoOferta(nombre22) ;  	
+			ICO.tipoOferta(nombre22) ;  	
 			// -----------------------------------------------------------
 			 DTOfertaExtendidoSinPConK nuevo = ICU.infoOfertaLaboralVisitante("pensador") ; 
 			 nuevo.getCosto() ; 
-			 DTOfertaExtendido nuevo1 = ICU.consultaOfertaLaboral("pensador") ; 
+			 ICU.consultaOfertaLaboral("pensador") ; 
 			 
-			 DTPaquete nuevo51 = ICU.obtenerDatosPaquete(paquete) ; 
+			 ICU.obtenerDatosPaquete(paquete) ; 
 			 
-			 DTUsuario nuevo555 = ICU.obtenerDatosUsuarioVisitantes(nickname22) ; 
+			 ICU.obtenerDatosUsuarioVisitantes(nickname22) ; 
 			 
 			// ------------------------------------------------------------------------------------------
 			 OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance() ; 

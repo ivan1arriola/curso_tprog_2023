@@ -28,14 +28,14 @@ public class OfertasTest {
 	private static ICtrlUsuario ICU;
 	private static ICtrlOferta ICO;
 	private static ICtrlCargaDeDatos ICC;
-	private static Fabrica f;
+	private static Fabrica fabri;
 	
 	@BeforeAll
 	static void setUp() {
-		f = Fabrica.getInstance();
-	    ICU = f.getICtrlUsuario();
-	    ICO = f.getICtrlOferta();
-	    ICC = f.getICtrlCargaDeDatos();
+		fabri = Fabrica.getInstance();
+	    ICU = fabri.getICtrlUsuario();
+	    ICO = fabri.getICtrlOferta();
+	    ICC = fabri.getICtrlCargaDeDatos();
         // Puedes realizar configuraciones adicionales aquí
     }
 
@@ -53,7 +53,7 @@ public class OfertasTest {
 	    String nacionalidad = "Ruso";
 	  
 	    try {
-	        boolean b = ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
+	        ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
 	    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        e.printStackTrace();
 	    } catch (ExceptionUsuarioNickRepetido e) {
@@ -104,7 +104,7 @@ public class OfertasTest {
 	    String nacionalidad = "Ruso";
 	  
 	    try {
-	        boolean b = ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
+	         ICU.altaPostulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad);
 	    } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        e.printStackTrace();
 	    } catch (ExceptionUsuarioNickRepetido e) {
@@ -130,9 +130,9 @@ public class OfertasTest {
 	
 	@Test
 	void altaPostulanteDescuInvalido() {
-	    Fabrica f = Fabrica.getInstance();
+	    Fabrica fabri = Fabrica.getInstance();
 	    
-	    ICtrlOferta ICO = f.getICtrlOferta();
+	    ICtrlOferta ICO = fabri.getICtrlOferta();
 	  
 	    		 
 		String offer = "Ejemploito";
@@ -177,9 +177,9 @@ public class OfertasTest {
 	
 	@Test
 	void keysTest() {
-	    Fabrica f = Fabrica.getInstance();
+	    Fabrica fabri = Fabrica.getInstance();
 	    
-	    ICtrlOferta ICO = f.getICtrlOferta();
+	    ICtrlOferta ICO = fabri.getICtrlOferta();
 	    boolean keys1 = ICO.altaKeyword("key1");
 	    assertTrue(keys1, "Alta key ok"); 
 	    
@@ -191,7 +191,7 @@ public class OfertasTest {
 	@Test
 	void compraPaqTest() {
 		try {
-			boolean empresita = ICU.altaEmpresa("Empresario", "tupass", "Pepito", "Gomez", "yoquese@hotmail.com", "geniales");
+			ICU.altaEmpresa("Empresario", "tupass", "Pepito", "Gomez", "yoquese@hotmail.com", "geniales");
 		} catch (ExceptionUsuarioNickYCorreoRepetidos e) {
 	        e.printStackTrace();
 	    } catch (ExceptionUsuarioNickRepetido e) {

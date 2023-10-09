@@ -217,7 +217,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
         comboBoxUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
             	
-            	Set<String> nicks = controlUsr.listarNicknamesUsuarios();
+            	controlUsr.listarNicknamesUsuarios();
 
                 String selectedUsuario = (String) comboBoxUsuarios.getSelectedItem();
                 

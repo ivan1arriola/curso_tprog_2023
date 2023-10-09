@@ -199,7 +199,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        int resCheck = checkFormulario();
 	        if (resCheck == 1) {
 	        	try {
-	        		boolean exito = icUsuario.altaEmpresa(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU);
+	        		icUsuario.altaEmpresa(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU);
 	                limpiarFormulario();
 	                setVisible(false);
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
@@ -211,7 +211,7 @@ public class AltaDeEmpresa extends JInternalFrame {
 	        	try {
 	                limpiarFormulario();
 	                setVisible(false);
-	        		boolean exito = icUsuario.altaEmpresaURL(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU,  urlU);  
+	        		icUsuario.altaEmpresaURL(nicknameU,  nombreU,  apellidoU,  correoelectronicoU,  contraseña,  descripcionU,  urlU);  
 	        		JOptionPane.showMessageDialog(this,  "El usuario se ha creado con éxito.",  "Registrar Usuario",  JOptionPane.INFORMATION_MESSAGE);
 	        		limpiarFormulario();
 	        		setVisible(false);

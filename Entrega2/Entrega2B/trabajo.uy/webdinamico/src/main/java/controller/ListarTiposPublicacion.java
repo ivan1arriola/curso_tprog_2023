@@ -29,10 +29,10 @@ public class ListarTiposPublicacion extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	private HashSet<DTTipoOferta> obtenerTipoOfertas(){
+	private Set<DTTipoOferta> obtenerTipoOfertas(){
 		ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
-		HashSet<String> lista =  (HashSet<String>) ctrl.listarTipoDePublicaciones();
-		HashSet<DTTipoOferta> tipoOfertas = new HashSet<DTTipoOferta>();
+		Set<String> lista =  (HashSet<String>) ctrl.listarTipoDePublicaciones();
+		Set<DTTipoOferta> tipoOfertas = new HashSet<DTTipoOferta>();
 		for (String nombreTipoOferta : lista) {
 			try {
 				tipoOfertas.add(ctrl.obtenerDatosTO(nombreTipoOferta));
