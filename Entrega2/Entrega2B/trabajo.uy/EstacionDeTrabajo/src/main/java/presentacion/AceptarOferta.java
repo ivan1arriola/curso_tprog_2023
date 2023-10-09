@@ -68,7 +68,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    
 	                    if (ofertasIngresadas.isEmpty()) {
 	
-	                        JOptionPane.showMessageDialog(AceptarOferta.this,   "No hay ofertas de esta empresa",   "Mensaje",   JOptionPane.INFORMATION_MESSAGE); 
+	                        JOptionPane.showMessageDialog(AceptarOferta.this,   "No hay ofertas en estado \"Ingresada\" de esta empresa",   "Mensaje",   JOptionPane.INFORMATION_MESSAGE); 
 	                    } 
 	                    else {
 	                    	

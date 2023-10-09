@@ -220,7 +220,6 @@ public class AltaTipoPublicaciónOfertaLaboral extends JInternalFrame {
         	        float costo = (float) costo1;
         		        			
     	            boolean res = ctrlOferta.altaTipoPublicacionOL(nombre,  descripcion,  expos,  duracion,  costo,  fechaConvertida);
-    	            System.out.print(res);
     	            if (res) {
     	                JOptionPane.showMessageDialog(null,  "Tipo de publicación de oferta laboral creado exitosamente.",  "Éxito",  JOptionPane.INFORMATION_MESSAGE);
     	                dispose();
