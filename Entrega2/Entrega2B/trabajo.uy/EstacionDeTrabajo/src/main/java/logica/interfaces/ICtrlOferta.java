@@ -25,7 +25,7 @@ public interface ICtrlOferta {
 		
 		public abstract boolean altaKeyword(String key);
 		
-		public abstract boolean compraPaquetes(String nickname_e,  String paq);
+		public abstract boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor);
 		
 		public abstract boolean 
 		altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
