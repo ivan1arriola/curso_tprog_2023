@@ -31,6 +31,15 @@
                 <div class="row">
                     <%
                     HashSet<DTUsuario> usuarios = (HashSet<DTUsuario>) request.getAttribute("usuarios");
+                    if (usuarios == null || usuarios.isEmpty()) {
+                        // Si ofertasLaborales es null o está vacío, muestra un mensaje
+                    %>
+                        <div class="alert alert-secondary" role="alert">
+    					        No hay usuarios dados de alta en este momento.
+    					</div>
+
+                    <%
+                    } else {
                         for (DTUsuario usuario : usuarios) {
                         	byte[] imagenBytes = usuario.getImagen();
                         	String imagen;
@@ -66,6 +75,7 @@
                             </div>
                             <%
                         }
+                    }
                     %>
                 </div>
             </div>

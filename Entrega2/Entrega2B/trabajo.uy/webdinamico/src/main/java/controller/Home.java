@@ -27,8 +27,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Realizar una redirección interna (forward) a la página JSP "home.jsp"
-        request.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(request, response);
+    	response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
     }
 
 

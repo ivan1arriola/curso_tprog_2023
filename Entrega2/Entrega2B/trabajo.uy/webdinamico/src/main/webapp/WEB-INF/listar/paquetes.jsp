@@ -28,6 +28,16 @@
             <div class="sin-bordes">
                 <%
                 	Set<DTPaquete> paquetes = (Set<DTPaquete>) request.getAttribute("paquetes");
+                
+                if (paquetes == null || paquetes.isEmpty()) {
+                    // Si ofertasLaborales es null o está vacío, muestra un mensaje
+                %>
+                    <div class="alert alert-secondary" role="alert">
+					        No hay paquetes disponibles en este momento.
+					</div>
+
+                <%
+                } else {
 
                     // Itera sobre la lista de paquetes y muestra cada paquete
                     for (DTPaquete paquete : paquetes) {
@@ -52,6 +62,7 @@
                 </jsp:include>
                 <%
                     }
+                }
                 %>
             </div>
         </div>

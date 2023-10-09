@@ -26,6 +26,15 @@
                 <div class="row">
                     <%
                         HashSet<DTTipoOferta> tiposOferta = (HashSet<DTTipoOferta>) request.getAttribute("tiposOferta");
+                    if (tiposOferta == null || tiposOferta.isEmpty()) {
+                        // Si ofertasLaborales es null o está vacío, muestra un mensaje
+                    %>
+                        <div class="alert alert-secondary" role="alert">
+    					        No hay tipos de publicacion de oferta laboral disponibles en este momento.
+    					</div>
+
+                    <%
+                    } else {
                         for (DTTipoOferta tipoOferta : tiposOferta) {
                     %>
                     <div class="col-md-6">
@@ -39,6 +48,7 @@
                     </div>
                     <%
                         }
+                    }
                     %>
                 </div>
             </div>
