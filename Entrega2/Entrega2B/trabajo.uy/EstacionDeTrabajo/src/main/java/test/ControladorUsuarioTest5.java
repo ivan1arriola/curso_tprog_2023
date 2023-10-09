@@ -20,14 +20,14 @@ import main.java.logica.datatypes.DTCantTO ;
 
 import main.java.logica.datatypes.DTHora ; 
 import main.java.logica.datatypes.DTHorario ; 
-import main.java.logica.datatypes.DTOfertaExtendido ; 
+//import main.java.logica.datatypes.DTOfertaExtendido ; 
 
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante ; 
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK ; 
-import main.java.logica.datatypes.DTPaquete ; 
-
-import main.java.logica.datatypes.DTTipoOferta ; 
-import main.java.logica.datatypes.DTUsuario ; 
+//import main.java.logica.datatypes.DTPaquete ; 
+//
+//import main.java.logica.datatypes.DTTipoOferta ; 
+//import main.java.logica.datatypes.DTUsuario ; 
 import main.java.logica.enumerados.DepUY ; 
 import main.java.logica.enumerados.EstadoOL ; 
 import main.java.logica.interfaces.ICtrlOferta ; 

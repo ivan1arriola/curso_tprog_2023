@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants; 
 import javax.swing.SwingConstants; 
 import java.awt.event.ActionListener; 
-import java.awt.GridBagConstraints; 
+//import java.awt.GridBagConstraints; 
 
 import java.awt.event.ActionEvent; 
 
