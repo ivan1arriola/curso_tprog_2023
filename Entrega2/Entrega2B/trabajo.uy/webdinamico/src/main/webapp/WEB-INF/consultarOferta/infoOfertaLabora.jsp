@@ -3,6 +3,7 @@
 <%@ page import="java.util.Base64" %>
 <%@ page import="auxiliar.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
+<%@ page import="main.java.logica.datatypes.DTUsuario" %>
 
 <%
     // Obtener el objeto de usuario desde los atributos de la solicitud
@@ -17,8 +18,15 @@
     
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
     
-    boolean mostrarContenido = (tipoUsuario == TipoUsuario.Empresa && ofertaLaboral.getMostrarPostulantesYPaquetes())|| 
-    		tipoUsuario == TipoUsuario.Postulante;
+    boolean mostrarContenido = (tipoUsuario == TipoUsuario.Empresa && ofertaLaboral.getMostrarPostulantesYPaquetes());
+    
+    
+   
+    Set<DTUsuario> postulantes = ofertaLaboral.getPostulantes();
+    boolean mostrarPostular = TipoUsuario.Postulante == tipoUsuario && postulantes.isEmpty();
+    
+ 
+
 %>
 
 <!DOCTYPE html>
@@ -49,7 +57,7 @@
                 
                 <div class="row">
 
-                    <div class="col-9 d-flex">
+                    <div class="col d-flex">
                         <div class="container" id="detalleOferta">
                             <div class="row align-items-center mt-2">
                                     
@@ -124,20 +132,38 @@
 							           } %>
 							    </ul>
 							</div>
+							
+							
+							<%if(mostrarPostular){ %>
+							<div class="m-auto mt-5">
+							    <a href="<%= request.getContextPath() %>/crearpostulacion?id=<%= ofertaLaboral.getNombre() %>" class="btn btn-primary btn-lg px-4 py-1" role="button">Postular a esta oferta</a>
+							</div>
+
+							
+							<%} else if( TipoUsuario.Postulante == tipoUsuario){  %>
+							<div class="m-auto mt-5">
+							    <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= ofertaLaboral.getNombre() %>" class="btn btn-primary btn-lg px-4 py-1" role="button">Ver postulación</a>
+							</div>
+							
+							<%} %>
 
                         </div>
                     </div>
                     
-                    <div class="col-3 text-center">
+                    
 
                         <% if (mostrarContenido) { %>
+                        <div class="col-3 text-center">
                                 
                             <jsp:include page="./postulantes.jsp" />
-                            <jsp:include page="./paquetes.jsp" />
                             
-                        <% } %>
+                            <% if(tipoUsuario== TipoUsuario.Empresa){ %>
+                            
+                            <jsp:include page="./paquetes.jsp" />
+                             </div>
+                        <%} } %>
                     
-                     </div>
+                    
                 </div>
             </div>
         </div>

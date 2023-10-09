@@ -98,6 +98,11 @@ public class AltaOfertaLaboral extends HttpServlet {
 		    String[] keywords = request.getParameterValues("keywords[]");
 		    Set<String> keywordsSet = new HashSet<>(Arrays.asList(keywords));
 		    
+		    
+		    if(formaPago.equals("1") || formaPago.equals("0")) {
+		    	formaPago = null;
+		    }
+		    
 		    float remuneracion = Float.parseFloat(request.getParameter("remuneracion"));
 		    
 		    

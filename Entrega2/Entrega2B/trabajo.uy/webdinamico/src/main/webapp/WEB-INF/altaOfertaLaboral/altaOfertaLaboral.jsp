@@ -170,14 +170,7 @@
             </div>
           </div>
 
-          <div class="col-12 row mb-2">
-            <div class="col-4">
-              <label for="fechaAltad" class="form-label">Fecha de Alta</label>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control" id="fechaAlta" name="fechaAlta" readonly disabled required />
-            </div>
-          </div>
+
 
           <div class="col-12 row mb-2">
             <div class="col-4">
@@ -186,6 +179,7 @@
             <div class="col-8">
               <select class="form-control custom-select-validation" id="listadoPagos" name="formaPago" required>
                 <option value="0" selected>Seleccionar método de pago</option>
+                <option value="1" selected>Pagar Sin Paquete</option>
               
               <%
                 if(paquetes != null && !paquetes.isEmpty()){  

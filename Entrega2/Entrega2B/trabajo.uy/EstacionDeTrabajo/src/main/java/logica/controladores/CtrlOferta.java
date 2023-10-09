@@ -266,7 +266,9 @@ public class CtrlOferta implements ICtrlOferta{
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		Map<String,  OfertaLaboral> ofertasLaborales = OLH.obtener();
 		for (Map.Entry<String,  OfertaLaboral> entry : ofertasLaborales.entrySet()) {
-            res.add(entry.getValue().obtenerDatosOferta());
+			if(entry.getValue().getEstado() == EstadoOL.Confirmada) {
+				res.add(entry.getValue().obtenerDatosOferta());
+			}	
         }
 		return res;
 	}

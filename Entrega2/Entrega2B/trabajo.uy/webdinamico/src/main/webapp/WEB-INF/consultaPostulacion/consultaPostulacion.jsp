@@ -4,7 +4,7 @@
 
     <head>
         <jsp:include page="/WEB-INF/templates/head.jsp" />
-        <title>[Nombre de la pagina]</title>
+        <title>Postulacion</title>
     </head>
 
     <body>
@@ -24,7 +24,7 @@
         <div class="contenedor-hijo col-10">
           <h3>Postulación a Oferta Laboral</h3>
 
-          <p><b>Postulante:</b> <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= request.getAttribute("nickname") %>">request.getAttribute("postulante")</a> </p>
+          <p><b>Postulante:</b> <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= request.getAttribute("nickname") %>"><%= request.getAttribute("postulante") %> </a> </p>
 
           <div class="label">
             <p><b>CV reducido:</b> <%=request.getAttribute("CVRed")%></p>
@@ -36,7 +36,7 @@
         <div class="contenedor-hijo-derecha col-2">
           <img src="https://tinyurl.com/4n2vpurk" alt="Imagen 1" class="img-fluid mb-2"
             style="width: 160px; height: 120px">
-          <p style="text-decoration: underline"><a href="<%= request.getContextPath() %>/consultarofertalaboral?o=<%= request.getAttribute("oferta") %>"></a> </p>
+          <p style="text-decoration: underline"><a href="<%= request.getContextPath() %>/consultarofertalaboral?o=<%= request.getAttribute("oferta") %>"> <%= request.getAttribute("oferta") %></a> </p>
 
         </div>
       </div>
