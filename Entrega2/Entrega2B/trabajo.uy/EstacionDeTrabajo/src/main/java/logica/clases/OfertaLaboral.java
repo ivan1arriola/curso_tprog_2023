@@ -27,7 +27,7 @@ public class OfertaLaboral {
 	private DepUY departamento;
 	private String ciudad;
 	private EstadoOL estado; 
-	private byte[] imagen; 
+	private String imagen; 
 	
 	// relaciones
 	private TipoOferta tOferta; 
@@ -37,7 +37,7 @@ public class OfertaLaboral {
 	
 
 	// constructor con paquete y imagen
-	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,  byte[] imagennueva,  Paquete paq) {
+	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,  String imagennueva,  Paquete paq) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -62,7 +62,7 @@ public class OfertaLaboral {
 	}
 
 	// constructor sin paquete y con imagen
-	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,  byte[] imagennueva) {
+	public OfertaLaboral(List<Keyword> atrkeywords,  TipoOferta atrtOferta,  String atrnombre,  String atrdescripcion,   String atrciudad,  DepUY atrdepartamento,  DTHorario atrhorario,  Float atrremuneracion,  LocalDate atrfechaAlta,  EstadoOL estadoNuevo,  String imagennueva) {
 		this.nombre = atrnombre;
 		this.descripcion = atrdescripcion;
 		this.ciudad = atrciudad;
@@ -186,7 +186,7 @@ public class OfertaLaboral {
 		return estado; 
 	}
 	
-	public byte[] getImagen()  {
+	public String getImagen()  {
 		return imagen;
 	}
 	
@@ -243,7 +243,7 @@ public class OfertaLaboral {
 		estado = estad; 
 	}
 	
-	public void setImagen(byte[] imagenNueva) {
+	public void setImagen(String imagenNueva) {
 		imagen = imagenNueva;
 	}
 	

@@ -16,11 +16,11 @@ public class DTOfertaExtendidoConKeywords {
   private String ciudad;
   private EstadoOL estado;
   private Set<DTPostulacion> postulaciones;
-  private byte[] imagen; 
+  private String imagen; 
   private Set<String> keywords;
 	
 	
-public DTOfertaExtendidoConKeywords(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  byte[] img,  Set<String> keys) {
+public DTOfertaExtendidoConKeywords(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  String img,  Set<String> keys) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -75,7 +75,7 @@ public Set<DTPostulacion> getPostulaciones() {
   return postulaciones;
 }
 	
-public byte[] getImagen() {
+public String getImagen() {
   return imagen;
 }
 	
