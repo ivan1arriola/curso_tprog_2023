@@ -28,6 +28,7 @@ import main.java.logica.interfaces.ICtrlUsuario;
 
 
 public class AceptarOferta extends JInternalFrame {
+	private static final long serialVersionUID = 1L;
 	private ICtrlOferta controlOferta; 
 	private ICtrlUsuario controlUsuario; 
 	private JComboBox<String> comboBoxEmpresa; 

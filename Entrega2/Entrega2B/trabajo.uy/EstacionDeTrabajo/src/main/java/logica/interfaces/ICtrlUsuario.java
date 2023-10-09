@@ -3,7 +3,6 @@ package main.java.logica.interfaces;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.List;
-import java.util.Set;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
