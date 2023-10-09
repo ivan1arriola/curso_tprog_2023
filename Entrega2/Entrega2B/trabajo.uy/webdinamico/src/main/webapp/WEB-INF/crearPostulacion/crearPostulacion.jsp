@@ -54,7 +54,7 @@
             <textarea class="form-control" name="motivacion" id="motivacion" rows="4" placeholder="Motivación"></textarea>
           </div>
 
-          <!-- Fecha de Postulación (automática) -->
+          <!-- Fecha de Postulación (automática) --> 
           <div class="mb-4">
             <label for="fechaPostulacion" class="form-label">Fecha de Postulación:</label>
             <input type="text" class="form-control" id="fechaPostulacion" readonly disabled />
