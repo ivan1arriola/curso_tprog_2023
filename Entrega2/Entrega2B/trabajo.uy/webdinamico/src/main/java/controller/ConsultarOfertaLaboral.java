@@ -62,6 +62,9 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
+    	
         String nombreOferta = request.getParameter("o");
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
 

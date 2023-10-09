@@ -9,10 +9,10 @@ public class InfoCompraOferta {
 	private Set<TipoOferta> tipoOfertas;
 	
 	public InfoCompraOferta(TipoOferta tipoOfer,  int canres) { 
-		this.cantRestante = canres;
+		cantRestante = canres;
 		Set<TipoOferta> tipoOfertasNuevo = new HashSet<>();
 		tipoOfertasNuevo.add(tipoOfer);
-		this.tipoOfertas = tipoOfertasNuevo;
+		tipoOfertas = tipoOfertasNuevo;
 	} //Constructor
 	
 	public int getCantres() {

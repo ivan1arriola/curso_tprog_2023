@@ -47,6 +47,8 @@ public class ListarUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
         HashSet<DTUsuario> ofertas = getUsuarios();
 
         request.setAttribute("usuarios", ofertas);

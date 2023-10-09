@@ -1,4 +1,4 @@
-package main.java.Test;
+package main.java.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import main.java.logica.Fabrica;

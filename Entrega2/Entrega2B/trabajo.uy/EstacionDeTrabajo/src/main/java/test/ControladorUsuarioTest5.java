@@ -1,4 +1,4 @@
-package main.java.Test ; 
+package main.java.test ; 
 
 
 
