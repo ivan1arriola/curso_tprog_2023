@@ -195,7 +195,7 @@ public class Empresa extends Usuario {
     	return url != null;
     }
     
-    public boolean compraPaquetes(Paquete paq) {
+    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) {
         for (InfoCompra ic : infoCompras) {
         	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
         		return false;
@@ -206,7 +206,7 @@ public class Empresa extends Usuario {
     	// int val = paq.getValidez();
     	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
     	
-    	InfoCompra infoComp = new InfoCompra(fechaA,  costo,  paq,  this,  ConjuntoS);
+    	InfoCompra infoComp = new InfoCompra(fecha,  valor,  paq,  this,  ConjuntoS);
     	infoCompras.add(infoComp);
     	return true;
     }

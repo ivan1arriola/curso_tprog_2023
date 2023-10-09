@@ -144,14 +144,14 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 	
-	public boolean compraPaquetes(String nickname_e,   String paq) {
+	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor); {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 		
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paquete = PaqueteH.buscar(paq);
 		
-		return empresa.compraPaquetes(paquete);
+		return empresa.compraPaquetes(paquete, fecha, valor);
 	}
 	
 	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   byte[] img,   String paquete) {
