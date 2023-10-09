@@ -52,7 +52,7 @@ import java.util.Arrays ;
 public class ControladorUsuarioTest5 {
 		
 		@Test
-		void TestPARAUSUARIo(){
+		void testPARAUSUARIo(){
 			Fabrica f = Fabrica.getInstance() ; 
 		    ICtrlUsuario ICU = f.getICtrlUsuario() ; 
 		    ICtrlOferta ICO = f.getICtrlOferta() ; 

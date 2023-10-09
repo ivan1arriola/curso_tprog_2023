@@ -35,7 +35,7 @@ public class ControladorUsuarioTest4 {
 
 		// testear DATATYPES de oferta laboral
 		@Test
-		void TestPARAUSUARIo(){
+		void testPARAUSUARIo(){
 			Fabrica f = Fabrica.getInstance();
 		    ICtrlUsuario ICU = f.getICtrlUsuario();
 		    ICtrlOferta ICO = f.getICtrlOferta();
