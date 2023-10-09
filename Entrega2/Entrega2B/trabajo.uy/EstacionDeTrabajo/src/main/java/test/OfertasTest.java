@@ -199,8 +199,8 @@ public class OfertasTest {
 	    } catch (ExceptionUsuarioCorreoRepetido e) {
 	        e.printStackTrace();
 	    }
-			
-		boolean comprado = ICO.compraPaquetes("Empresario", "EjemploOferta");
+		LocalDate atrfechaAlta6 = LocalDate.of(2020,  12,  12) ; 
+		boolean comprado = ICO.compraPaquetes("Empresario", "EjemploOferta", atrfechaAlta6, 0);
 		
 		assertTrue(comprado, "Compra ok");
 		 
@@ -236,7 +236,8 @@ public class OfertasTest {
 		
 		
 		ICO.altaPaqueteOL("Demasiado",  "una descripcion", 10,  LocalDate.of(1958, 10,  10), 90, null);
-		ICO.compraPaquetes("ANTEL", "Demasiado");
+		LocalDate atrfechaAlta6 = LocalDate.of(2023,  9,  2);
+		ICO.compraPaquetes("ANTEL", "Demasiado",atrfechaAlta6 , 0);
 		
 		assertTrue(ICO.paqueteComprado("Demasiado"));
 		

@@ -66,8 +66,7 @@ public class ControladorUsuarioTest5 {
 			String correo2 = "CogitoErgo@Zum.com" ; 
 			LocalDate fechaNacimiento2 = LocalDate.of(1596,   3,   31) ; 
 			String nacionalidad2 = "Frances" ; 
-			String imagen2 = "MeEncantaPensar" ; 
-			byte[] img2 = imagen2.getBytes() ; 
+			String img2 = "url";
 			ICU.altaPostulanteImagen(nickname2,   password2,   nombre2,   apellido2,   fechaNacimiento2,   correo2,   nacionalidad2,   img2) ; 
 			// ---------------------------- creo Empresa ----------------------------
 			String nickname = "The Clouds" ; 
@@ -76,8 +75,7 @@ public class ControladorUsuarioTest5 {
 			String apellido = "of Grece" ; 
 			String correo = "Socrates@gmail.com" ; 
 			String descripcion = "I know that I know nothing." ; 
-			String imagen ="made by Aristophanes" ; 
-			byte[] img = imagen.getBytes() ; 
+			String img = "url";
 			ICU.altaEmpresaImagen(nickname, password,   nombre,   apellido,  correo , descripcion,   img) ; 
 			// ---------------------------- creo TipoOferta ----------------------------
 			ICO.altaTipoPublicacionOL("Oferta salada",   "visibilidad salada",    199,    190,    102340.0f,    LocalDate.now()) ; 
@@ -87,8 +85,7 @@ public class ControladorUsuarioTest5 {
 			TOH.buscar("Oferta salada") ; 
 			
 			// ---------------------------- creo Paquete ----------------------------
-			String str1 = "MeEncantaElQuesoSemiduro" ; 
-			byte[] img33 = str1.getBytes() ; 
+			String img33 = "url" ; 
 			ICO.altaPaqueteOL("Paquete 7",   "un paquete espectacular,  con mucho queso",    1,    LocalDate.now(),    10.0f,    img33) ; 
 			// los paquetes empiezan vacios,    se les va agregando tipos de oferta
 			ICO.agregarTipoOfertaPaq("Paquete 7",    "Oferta salada",   20) ; 
@@ -164,9 +161,7 @@ public class ControladorUsuarioTest5 {
 			DepUY atrdepartamento6 = DepUY.Montevideo ; 
 			LocalDate atrfechaAlta6 = LocalDate.of(2020,  12,  12) ; 
 			EstadoOL estadoNuevo6 = EstadoOL.Ingresada ; 
-			imagen2 = "MeEncantaPensar" ; 
 			float atrremuneracion = 1 ; 
-			imagen2.getBytes() ; 
 			DTHora horaSalada = new DTHora(8,  0) ; 
 			DTHora horaSalada2 = new DTHora(1,  0) ; 
 			DTHorario horarioSal = new DTHorario(horaSalada,  horaSalada2) ; 
@@ -208,7 +203,7 @@ public class ControladorUsuarioTest5 {
 				
 			// --------------------- compro paquete,  ahora si ------------------------
 			String nickname22 = "The Clouds" ; 
-			ICO.compraPaquetes(nickname22, "Paquete 7") ; 		    
+			ICO.compraPaquetes(nickname22, "Paquete 7", atrfechaAlta6, 0) ; 		    
 			
 			// ---------------------------- Empresa Crea Trabajo ---------------------------- 
 			nickname22 = "The Clouds" ; 	

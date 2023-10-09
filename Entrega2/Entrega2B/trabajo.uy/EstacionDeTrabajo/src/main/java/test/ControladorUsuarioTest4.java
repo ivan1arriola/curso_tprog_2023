@@ -53,9 +53,8 @@ public class ControladorUsuarioTest4 {
 			));
 
 			EstadoOL estado = EstadoOL.Ingresada;
-			byte[] img = null;
+			String img = "url";
 			String paquete = "Paquete 1";
-
 			// public boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida{
 			try {
 			    ICU.altaOfertaLaboral(nickname,  "Oferta normal",  nombre,  descripcion,  horario,  remuneracion,  ciudad,  dep,  fechaA,  pruebaKeyword1,  estado,  img,  paquete);
@@ -121,8 +120,7 @@ public class ControladorUsuarioTest4 {
 //			DTOfertaExtendidoSinPConK nuevaExsinpconk = 
 			ICO.infoOfertaLaboralEmpresa("Google", "analista");
 			
-			String str1 = "MeEncantaLaMOZARELLA11111";
-			byte[] img33 = str1.getBytes();
+			String img33 = "url";
 			ICO.altaPaqueteOL("Paquete 2",   "un paquete bueno",    1,    LocalDate.now(),    10.0f,    img33);	
 
 			// los paquetes empiezan vacios,    se les va agregando tipos de oferta
