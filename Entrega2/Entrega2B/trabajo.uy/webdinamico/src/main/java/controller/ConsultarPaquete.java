@@ -7,12 +7,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTPaquete;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
+
+import enumeration.TipoUsuario;
 
 
 /**
@@ -38,13 +41,35 @@ public class ConsultarPaquete extends HttpServlet {
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
         String nombrePaquete = request.getParameter("p");
+        
+		HttpSession session = request.getSession(false);
+		TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
+		
+		if(tipo == TipoUsuario.Empresa) {
+			request.setAttribute("mostrarComprar", true);
+			
+			request.setAttribute("yaSeCompro", false);
+		} else {
+			request.setAttribute("mostrarComprar", false);
+		}
+		
+		
+		
+		
+		
+
+		
+		
+		
+        
+        
 
         try {
             DTPaquete paquete = obtenerPaquetePorNombre(nombrePaquete);
 
       
                 request.setAttribute("nombrePaquete", paquete.getNombre());
-                request.setAttribute("imagenPaquete", "https://shorturl.at/ceCD2");// TODO: Reemplaza con el atributo imagen de DTPaquete
+                request.setAttribute("imagenPaquete", paquete.getImagen());// TODO: Reemplaza con el atributo imagen de DTPaquete
                 request.setAttribute("costoPaquete", paquete.getCosto());
                 request.setAttribute("descuentoPaquete", paquete.getDescuento());
                 request.setAttribute("validezPaquete", paquete.getValidez() + " días");

@@ -8,7 +8,7 @@
 DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
 %>
 
-<div class="tab-content" id="myTabsContent">
+
     <!-- Tab de perfil -->
     <div class="tab-pane fade show active" id="perfil-panel" style="margin-top: 20px">
         <!-- Formulario de Modificación -->
@@ -70,7 +70,6 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
             </button>
         </div>
     </div>
-</div>
 <script src="<%= request.getContextPath() %>/js/modificarDatos.js"></script>
 
 

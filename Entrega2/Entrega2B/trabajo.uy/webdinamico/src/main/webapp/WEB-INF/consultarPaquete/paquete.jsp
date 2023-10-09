@@ -2,6 +2,8 @@
 <%@ page import="main.java.logica.datatypes.DTCantTO" %>
 <%@ page import="java.util.HashSet" %>
 
+<% %>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,9 +42,7 @@
                             </div>
                             
                             
-                            <% if ( mostrarComprar){ %>
-                            <jsp:include page="./comprarPaquete.jsp" />
-                            <%} %>
+               
                          
                         </div>
                     </div>
