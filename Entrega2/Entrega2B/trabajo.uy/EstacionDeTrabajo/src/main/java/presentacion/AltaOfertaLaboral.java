@@ -269,7 +269,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		opcionPaq = null;
 		
 		botonSinPaq.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eboton) {
 				comboPaquete.setEnabled(false);
 				opcionPaq = null;
 				comboPaquete.setSelectedIndex(-1);
@@ -283,7 +283,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
 		
 		botonConPaq.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eboton) {
 				comboPaquete.setEnabled(true);
 				//comboPaquete.setSelectedItem("Opción 1");
 				//seleccionar en combobox el paquete
@@ -293,7 +293,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		});
 		
 		comboPaquete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eboton) {
 				opcionPaq = (String) comboPaquete.getSelectedItem();
 			}
 		});
