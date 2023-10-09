@@ -1,7 +1,5 @@
 package main.java.presentacion;
 
-import main.java.excepciones.ExceptionEmpresaInvalida;
-import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
 import main.java.logica.datatypes.DTOfertaExtendido;
 
@@ -12,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-//import java.time.format.DateTimeFormatter;
 
 import java.util.List;
 import java.util.Set;
