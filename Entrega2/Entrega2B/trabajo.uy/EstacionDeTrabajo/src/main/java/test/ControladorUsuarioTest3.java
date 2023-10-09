@@ -64,7 +64,7 @@ public class ControladorUsuarioTest3 {
 			EstadoOL estado = EstadoOL.Ingresada;
 			Set<DTPostulacion> ColPost = new HashSet<DTPostulacion>();
 			ColPost.add(post);
-			byte[] img = null;
+			String img = "url";
 			String paquete = "paquete";
 			DTOfertaExtendido OfEx = new DTOfertaExtendido(nombreOL,   
 														   desripcion,  
@@ -109,7 +109,7 @@ public class ControladorUsuarioTest3 {
 			EstadoOL estado1 = EstadoOL.Ingresada;
 			Set<DTPostulacion> ColPost1 = new HashSet<DTPostulacion>();
 			ColPost1.add(post);
-			byte[] img1 = null;
+			String img1 = "url";
 			Set<String> pruebaKeyword = new HashSet<>(Arrays.asList(
 					"Trabajo nocturno",  
 					"horario vespertino",  
@@ -160,7 +160,7 @@ public class ControladorUsuarioTest3 {
 			EstadoOL estado11 = EstadoOL.Ingresada;
 			Set<DTPostulacion> ColPost11 = new HashSet<DTPostulacion>();
 			ColPost11.add(post);
-			byte[] img11 = null;
+			String img11 = "url";
 			Set<String> pruebaKeyword1 = new HashSet<>(Arrays.asList(
 					"Trabajo nocturno",  
 					"horario vespertino",  
