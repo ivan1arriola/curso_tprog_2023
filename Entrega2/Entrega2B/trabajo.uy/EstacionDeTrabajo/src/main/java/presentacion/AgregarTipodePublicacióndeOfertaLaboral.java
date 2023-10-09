@@ -58,40 +58,35 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         		
         		if (paquetesVisualizar.getSelectedIndex() != -1 && paquetesVisualizar.getSelectedIndex() != 0) {
         			
-        			// String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
+        			listadoTipoPub.removeAllItems();
+        			String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
         	        Set<String> publicaciones = ICO.listarTipoDePublicaciones();
-        	        //DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
-        	        //Set<DTCantTO> tiposAgregados = dtpaq.getTiposDePub();
-          	        //Set<String> tipoNoAgregado = new HashSet<>();
+        	        DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
+        	        Set<DTCantTO> publiAgregados = dtpaq.getTiposDePub();
+          	        Set<String> publiNoAgregados = new HashSet<>();
         	        
           	        List<String> publiSorted = new ArrayList<>(publicaciones);
                     Collections.sort(publiSorted,  String.CASE_INSENSITIVE_ORDER);
         		   
-                    listadoTipoPub.addItem("");
+                                      
                     for (String elem : publiSorted) {
-                    	listadoTipoPub.addItem(elem);
-                    }
+                    	boolean encontrado = false;
+                    	for (DTCantTO dtTipo : publiAgregados) {
+                    		if (elem.equals(dtTipo.getNombre())) {
+                    			encontrado = true;
+                    		}
+                    	}
+                    	if (!encontrado) {
+                    		publiNoAgregados.add(elem);
+                    	}
+                	}
                     
-        	        /*for (String publi : publicaciones) {
-        	            // Verificar si el tipo está contenido en tiposAgregados
-        	            boolean encontrado = false;
-        	            for (DTCantTO dtTipo : tiposAgregados) {
-        	                if (publi.equals(dtTipo.getNombre())) {
-        	                    encontrado = true;
-        	                    break;  // Terminar bucle si se encuentra una coincidencia
-        	                }
-        	            }
-
-        	            // Agregar al tipoNoAgregado si no está en tiposAgregados
-        	            if (!encontrado) {
-        	            	tipoNoAgregado.add(publi);
-        	            }
-        	        }
-        	        
-        	        listadoTipoPub.addItem("");
-        	        for (String element : tipoNoAgregado) {
+                    
+                    listadoTipoPub.addItem("");
+                    for (String element : publiNoAgregados) {
         	    		listadoTipoPub.addItem(element);
-        	    	}*/
+        	    	}
+ 
         
         		}
         		
