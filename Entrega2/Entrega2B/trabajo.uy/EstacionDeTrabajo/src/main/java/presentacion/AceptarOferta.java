@@ -33,7 +33,7 @@ public class AceptarOferta extends JInternalFrame {
 	private JComboBox<String> comboBoxEmpresa; 
 	private JComboBox<String> comboBoxOfertas; 
 	//private JTextArea infoOferta; 
-	private JTextArea ofertaDetalle; 
+	private JTextArea ofertaDetalle;  
     
 	
     public AceptarOferta(ICtrlOferta ICO,  ICtrlUsuario ICU) {
@@ -68,7 +68,7 @@ public class AceptarOferta extends JInternalFrame {
 	                    
 	                    if (ofertasIngresadas.isEmpty()) {
 	
-	                        JOptionPane.showMessageDialog(AceptarOferta.this,   "No hay ofertas de esta empresa",   "Mensaje",   JOptionPane.INFORMATION_MESSAGE); 
+	                        JOptionPane.showMessageDialog(AceptarOferta.this,   "No hay ofertas en estado \"Ingresada\" de esta empresa",   "Mensaje",   JOptionPane.INFORMATION_MESSAGE); 
 	                    } 
 	                    else {
 	                    	

@@ -1,12 +1,8 @@
 package main.java.presentacion;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 //import java.awt.*;
-
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,9 +21,9 @@ import javax.swing.JOptionPane;
 //import javax.swing.JList;
 import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
+
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -53,47 +49,42 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         getContentPane().add(paquetesVisualizar);    
         listadoTipoPub = new JComboBox<String>();
         listadoTipoPub.setBounds(190,   63,   298,   24);
-        getContentPane().add(listadoTipoPub);
+        getContentPane().add(listadoTipoPub); 
 
         paquetesVisualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		
         		if (paquetesVisualizar.getSelectedIndex() != -1 && paquetesVisualizar.getSelectedIndex() != 0) {
         			
-        			// String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
+        			listadoTipoPub.removeAllItems();
+        			String paqElegido =  (String) paquetesVisualizar.getSelectedItem();
         	        Set<String> publicaciones = ICO.listarTipoDePublicaciones();
-        	        //DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
-        	        //Set<DTCantTO> tiposAgregados = dtpaq.getTiposDePub();
-          	        //Set<String> tipoNoAgregado = new HashSet<>();
+        	        DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
+        	        Set<DTCantTO> publiAgregados = dtpaq.getTiposDePub();
+          	        Set<String> publiNoAgregados = new HashSet<>();
         	        
           	        List<String> publiSorted = new ArrayList<>(publicaciones);
                     Collections.sort(publiSorted,  String.CASE_INSENSITIVE_ORDER);
         		   
-                    listadoTipoPub.addItem("");
+                                      
                     for (String elem : publiSorted) {
-                    	listadoTipoPub.addItem(elem);
-                    }
+                    	boolean encontrado = false;
+                    	for (DTCantTO dtTipo : publiAgregados) {
+                    		if (elem.equals(dtTipo.getNombre())) {
+                    			encontrado = true;
+                    		}
+                    	}
+                    	if (!encontrado) {
+                    		publiNoAgregados.add(elem);
+                    	}
+                	}
                     
-        	        /*for (String publi : publicaciones) {
-        	            // Verificar si el tipo está contenido en tiposAgregados
-        	            boolean encontrado = false;
-        	            for (DTCantTO dtTipo : tiposAgregados) {
-        	                if (publi.equals(dtTipo.getNombre())) {
-        	                    encontrado = true;
-        	                    break;  // Terminar bucle si se encuentra una coincidencia
-        	                }
-        	            }
-
-        	            // Agregar al tipoNoAgregado si no está en tiposAgregados
-        	            if (!encontrado) {
-        	            	tipoNoAgregado.add(publi);
-        	            }
-        	        }
-        	        
-        	        listadoTipoPub.addItem("");
-        	        for (String element : tipoNoAgregado) {
+                    
+                    listadoTipoPub.addItem("");
+                    for (String element : publiNoAgregados) {
         	    		listadoTipoPub.addItem(element);
-        	    	}*/
+        	    	}
+ 
         
         		}
         		
