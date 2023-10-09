@@ -69,7 +69,6 @@ public class AltaOfertaLaboral extends HttpServlet {
 	private void cargarKeywords(HttpServletRequest request, HttpServletResponse response) {
 		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
 		request.setAttribute("keys", keys);
-		
 	}
 
 	private void cargarTipoOferta(HttpServletRequest request, HttpServletResponse response) {

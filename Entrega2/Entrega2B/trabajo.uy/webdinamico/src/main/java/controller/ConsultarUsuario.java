@@ -11,6 +11,7 @@ import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Servlet implementation class ConsultarUsuario
@@ -36,6 +37,8 @@ public class ConsultarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		request.setAttribute("keys", keys);
         String nickname = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
 
