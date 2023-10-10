@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import enumeration.TipoUsuario;
+
 /**
  * Servlet implementation class ConsultarUsuario
  */
@@ -61,6 +63,7 @@ public class ConsultarUsuario extends HttpServlet {
 		request.setAttribute("keys", keys);
         String nickname = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
+        TipoUsuario tipo = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
         
         
 
@@ -76,7 +79,7 @@ public class ConsultarUsuario extends HttpServlet {
                 request.setAttribute("usuario", usuario);
 
                 if (nickname.equals(nicknameUsuarioLogueado)) {
-                	cargarDTPaquete(request, response, nickname);
+                	if(TipoUsuario.Empresa == tipo) cargarDTPaquete(request, response, nickname);
                 	request.setAttribute("editable", true);
                 } else {
                 	request.setAttribute("editable", false);
