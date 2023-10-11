@@ -7,7 +7,7 @@
         String usuario = (String) session.getAttribute("nickname"); 
         if (usuario == null) usuario = "";
         %>
-        <li class="nav-item dropdown">
+        <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="<%= imagen %>" alt="<%= usuario %>" class="rounded-circle" style="width: 60px; height: 60px" />
                 <span class="ml-3 mb-0"> <%= usuario %> </span>
@@ -26,6 +26,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </div>
     </div>
 </div>
