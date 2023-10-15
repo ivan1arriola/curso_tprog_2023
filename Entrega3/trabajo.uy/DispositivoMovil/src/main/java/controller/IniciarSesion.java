@@ -6,8 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import main.java.logica.datatypes.DTEmpresa;
+import main.java.logica.datatypes.DTPostulante;
+import main.java.logica.datatypes.DTUsuario;
 
 import java.io.IOException;
+
+import enumeration.TipoUsuario;
 
 
 @WebServlet("/iniciarsesion")
@@ -36,5 +41,30 @@ public class IniciarSesion extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws Exception {
+        HttpSession session = request.getSession();
+        DTUsuario usuario = obtenerUsuario(identificador);
+        session.setAttribute("nickname", usuario.getNickname());
+
+        TipoUsuario tipo;
+
+        if (usuario instanceof DTPostulante) {
+            tipo = TipoUsuario.Postulante;
+        } else if (usuario instanceof DTEmpresa) {
+            tipo = TipoUsuario.Empresa;
+        } else {
+            throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
+        }
+
+        session.setAttribute("tipoUsuario", tipo);
+
+        String imagen = usuario.getImagen();
+        if (imagen != null) {
+            session.setAttribute("imagen", imagen);
+        }
+
+        response.sendRedirect(request.getContextPath() + "/home");
+    }
 
 }
