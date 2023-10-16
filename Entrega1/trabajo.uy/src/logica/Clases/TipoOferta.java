@@ -38,6 +38,11 @@ public class TipoOferta {
 	
     
 	public DTTipoOferta obtenerDT(){ //getDTTipoOferta
+		if (fechaAlta.isAfter(LocalDate.now())) { throw new IllegalArgumentException("Fecha de Alta no debe ser posterior a fecha actual") ;}
+		if (costo < 0 ) { throw new IllegalArgumentException("Costo debe ser mayor o igual a 0"); }
+		if (duracion<=0) { throw new IllegalArgumentException("Duración debe ser mayor o igual a 1 día"); }
+		if (duracion<0) { throw new IllegalArgumentException("Exposicion debe ser mayor o igual a 0"); }
+		
 		DTTipoOferta dtTO = new DTTipoOferta(nombre, fechaAlta, costo, duracion, exposicion,descripcion);
 		return dtTO;
 	}
