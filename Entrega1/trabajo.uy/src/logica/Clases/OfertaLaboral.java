@@ -127,9 +127,9 @@ public class OfertaLaboral {
 		return dtoe;
     }
 	
-	public void registrarPostulacion(Postulacion p) throws ExcepcionTipoOfertaNoVigente {
+	public void registrarPostulacion(Postulacion p) {
 		if(p.getFecha().isBefore(fecha_de_alta)) {
-			throw new ExcepcionTipoOfertaNoVigente("Oferta no vigente");
+			throw new IllegalArgumentException("Oferta no vigente");
 		} else {
 			postulaciones.add(p);
 		}
