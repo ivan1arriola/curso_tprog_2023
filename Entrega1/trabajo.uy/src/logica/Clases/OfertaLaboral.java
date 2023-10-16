@@ -2,6 +2,7 @@ package logica.Clases;
 import logica.Datatypes.DTHorario;
 import logica.Datatypes.DTOfertaExtendido;
 import logica.Datatypes.DTPostulacion;
+import logica.Enumerados.EstadoOL;
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class OfertaLaboral {
 	// asociado a
 	private TipoOferta tOferta;
 	private List<Keyword> keywords;
-	
+	private EstadoOL estado;
 
 	// constructor
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion,String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta) {
@@ -39,6 +40,8 @@ public class OfertaLaboral {
 		this.fecha_de_alta = atrfecha_de_alta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
+		this.estado = EstadoOL.Ingresada;
+		
 	}
 	 
 	public String getNombre() 					{ return nombre; 		}
@@ -52,6 +55,8 @@ public class OfertaLaboral {
 	public List<Postulacion> getPostulaciones() { return postulaciones; }
 	public TipoOferta getTipoOferta() 			{ return tOferta; 		}
 	public List<Keyword> getKeywords()			{ return keywords; 		}
+	public EstadoOL getEstado()					{ return estado; 		}
+
 	
 	public void setNombre(String nomb) 						{ nombre = nomb; 			}
 	public void setDescripcion(String Desc) 				{ descripcion = Desc; 		}
@@ -64,7 +69,7 @@ public class OfertaLaboral {
 	public void setPostulaciones(List<Postulacion> posts) 	{ postulaciones = posts; 	}
 	public void setTipoOferta(TipoOferta to) 				{ tOferta = to; 			}
 	public void setKeywords(List<Keyword> ks)				{ keywords = ks; 			}
-	
+	public void setEstado(EstadoOL eOL)						{ estado = eOL; 			}
 	
 	// -------------- funciones ---------------------
 	public DTOfertaExtendido obtenerDatosOferta(){
@@ -73,7 +78,7 @@ public class OfertaLaboral {
 			Postulacion elem = postulaciones.get(i);
 			posts.add(elem.getDTPostulacion());
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), posts);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(),getEstado() ,posts);
 		return dtoe;
     }
 	
