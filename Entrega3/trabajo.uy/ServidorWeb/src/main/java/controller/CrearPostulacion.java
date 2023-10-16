@@ -14,6 +14,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
+import utils.FabricaWeb;
 
 /**
  * Servlet implementation class CrearPostulacion
@@ -34,8 +35,8 @@ public class CrearPostulacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
 		HttpSession session = request.getSession(false);
 		String nickname = (String) session.getAttribute("nickname");
 		Fabrica fabrica = Fabrica.getInstance();

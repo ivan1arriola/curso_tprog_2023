@@ -10,52 +10,35 @@ import jakarta.servlet.http.HttpSession;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.logica.Fabrica;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-/**
- * Servlet implementation class AltaUsuario
- */
+import interfaces.ILogica;
+
 @WebServlet("/altausuario")
 @MultipartConfig
 public class AltaUsuario extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+	private ILogica logica;
+
     public AltaUsuario() {
         super();
-        // TODO Auto-generated constructor stub
+        logica = FabricaWeb.getInstance().getLogica();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // No crear una nueva sesión si no existe
+        HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("usuario") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
         } else {
             request.getRequestDispatcher("/WEB-INF/altaUsuario/altaUsuario.jsp").forward(request, response);
         }
     }
-    
-    private boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
-    	return Fabrica.getInstance().getICtrlUsuario().altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, null);
-	} 
-    
-    
-    public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-		return Fabrica.getInstance().getICtrlUsuario().altaPostulanteImagen(nick, contraseña, nombre, apellido, fecha_nac, mail, nacionalidad, null);
-	}
 
+   
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nickname = request.getParameter("nickname");
         String nombre = request.getParameter("nombre");
@@ -63,8 +46,6 @@ public class AltaUsuario extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String tipoUsuario = request.getParameter("tipo-usuario");
-        
-        
 
         String descripcionEmpresa = null;
         String sitioWebEmpresa = null;
@@ -74,20 +55,22 @@ public class AltaUsuario extends HttpServlet {
         try {
             boolean registroExitoso;
 
-            if ("empresa".equals(tipoUsuario)) {
+			if ("empresa".equals(tipoUsuario)) {
                 descripcionEmpresa = request.getParameter("descripcion");
                 sitioWebEmpresa = request.getParameter("sitio-web");
-                registroExitoso = altaEmpresaURL(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa);
+                logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa);
+                registroExitoso = true; // se romperia antes de llegar aqui si fuera false
             } else {
                 fechaNacimiento = request.getParameter("fecha-nacimiento");
                 nacionalidad = request.getParameter("nacionalidad");
-                registroExitoso = altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad);
+                logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad);
+                registroExitoso = true;
             }
 
             if (!registroExitoso) {
-                manejarExcepcion(request, response, "El nickname y/o correo electronico ya está registrado. Elija otro");
+                manejarExcepcion(request, response, "El nickname y/o correo electrónico ya está registrado. Elija otro");
             } else {
-            	response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "/home");
             }
         } catch (ExceptionUsuarioCorreoRepetido e) {
             manejarExcepcion(request, response, "El correo electrónico ya está registrado. Elija otro");
@@ -96,15 +79,10 @@ public class AltaUsuario extends HttpServlet {
         } catch (ExceptionUsuarioNickRepetido e) {
             manejarExcepcion(request, response, "El nickname ya está registrado. Elija otro");
         }
-    
-
     }
-    
+
     private void manejarExcepcion(HttpServletRequest request, HttpServletResponse response, String mensajeAlerta) throws ServletException, IOException {
         request.setAttribute("alert", mensajeAlerta);
         doGet(request, response);
     }
-
-
-
 }

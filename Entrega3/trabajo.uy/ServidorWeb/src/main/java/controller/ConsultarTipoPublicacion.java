@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTTipoOferta;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.util.Set;
@@ -31,9 +32,8 @@ public class ConsultarTipoPublicacion extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
         String nombre = request.getParameter("tp");
 
         try {

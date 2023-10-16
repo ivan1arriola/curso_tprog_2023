@@ -11,6 +11,7 @@ import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -59,8 +60,8 @@ public class ConsultarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
         String nickname = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
         TipoUsuario tipo = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");

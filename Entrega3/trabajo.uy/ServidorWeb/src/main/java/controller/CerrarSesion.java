@@ -27,7 +27,6 @@ public class CerrarSesion extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // No es necesario implementar el método doPost para cerrar sesión
         doGet(request, response);
     }
 }

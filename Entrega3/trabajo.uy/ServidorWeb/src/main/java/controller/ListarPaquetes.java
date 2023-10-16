@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.interfaces.ICtrlOferta;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -45,8 +46,8 @@ public class ListarPaquetes extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
         try {
             Set<DTPaquete> paquetes = obtenerPaquetes();
 

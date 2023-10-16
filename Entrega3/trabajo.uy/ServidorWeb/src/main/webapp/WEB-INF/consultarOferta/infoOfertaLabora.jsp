@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="auxiliar.OfertaLaboralBean" %>
+<%@ page import="javabeans.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
 <%@ page import="main.java.logica.datatypes.DTUsuario" %>
 

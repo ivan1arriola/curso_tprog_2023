@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTPaquete;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -39,11 +40,8 @@ public class ConsultarPaquete extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	
-    	
-    	
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
         String nombrePaquete = request.getParameter("p");
         request.setAttribute("mostrarComprar", false);
         

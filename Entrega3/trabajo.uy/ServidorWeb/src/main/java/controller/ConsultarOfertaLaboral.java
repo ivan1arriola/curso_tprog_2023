@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import javabeans.OfertaLaboralBean;
 import main.java.logica.Fabrica;
 //import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTOfertaExtendido;
@@ -18,7 +19,7 @@ import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
-import auxiliar.OfertaLaboralBean;
+import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 
 import java.io.IOException;
@@ -62,8 +63,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
     	
         String nombreOferta = request.getParameter("o");
         if (nombreOferta != null && !nombreOferta.isEmpty()) {

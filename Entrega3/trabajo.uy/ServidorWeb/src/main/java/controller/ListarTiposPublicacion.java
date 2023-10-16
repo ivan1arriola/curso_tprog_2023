@@ -9,6 +9,7 @@ import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTTipoOferta;
 import main.java.logica.interfaces.ICtrlOferta;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -49,8 +50,8 @@ public class ListarTiposPublicacion extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
 		request.setAttribute("tiposOferta", obtenerTipoOfertas());
 		request.getRequestDispatcher("/WEB-INF/listar/tipospublicacion.jsp").forward(request, response);
 	}

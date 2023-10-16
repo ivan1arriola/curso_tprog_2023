@@ -15,19 +15,13 @@ import main.java.logica.Fabrica;
 //import main.java.logica.enumerados.EstadoOL;
 //import main.java.logica.interfaces.ICtrlOferta;
 //import main.java.logica.interfaces.ICtrlUsuario;
+import utils.FabricaWeb;
 
 //import java.io.BufferedReader;
 //import java.io.ByteArrayOutputStream;
 //import java.io.FileReader;
 import java.io.IOException;
-//import java.io.InputStream;
-//import java.net.URL;
-//import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.HashSet;
-//import java.util.List;
+
 
 @WebServlet("/cargardatos")
 public class CargarDatos extends HttpServlet {
@@ -39,7 +33,7 @@ public class CargarDatos extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
+            FabricaWeb.getInstance().getLogica().cargarDatos();
             response.getWriter().append("Carga de datos exitosa");
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
         } catch (Exception e) {

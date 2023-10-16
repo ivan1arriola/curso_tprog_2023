@@ -6,9 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import main.java.logica.datatypes.DTEmpresa;
-import main.java.logica.datatypes.DTPostulante;
-import main.java.logica.datatypes.DTUsuario;
 
 import java.io.IOException;
 

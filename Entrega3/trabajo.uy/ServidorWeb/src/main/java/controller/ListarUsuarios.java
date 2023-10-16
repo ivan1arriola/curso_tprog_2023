@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlUsuario;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -47,8 +48,8 @@ public class ListarUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
-		request.setAttribute("keys", keys);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+
         Set<DTUsuario> ofertas = getUsuarios();
 
         request.setAttribute("usuarios", ofertas);

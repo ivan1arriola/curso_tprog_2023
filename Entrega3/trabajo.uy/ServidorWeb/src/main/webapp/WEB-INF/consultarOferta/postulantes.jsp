@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.Set" %>
-<%@ page import="auxiliar.OfertaLaboralBean" %>
+<%@ page import="javabeans.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
 <%@ page import="main.java.logica.datatypes.DTUsuario" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="auxiliar.OfertaLaboralBean" %>
+<%@ page import="javabeans.OfertaLaboralBean" %>
 
 <%
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario"); // Se supone que no se visualiza para Visitante
