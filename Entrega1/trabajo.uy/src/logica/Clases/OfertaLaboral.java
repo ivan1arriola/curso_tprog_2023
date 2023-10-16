@@ -2,6 +2,7 @@ package logica.Clases;
 import logica.Datatypes.DTHorario;
 import logica.Datatypes.DTOfertaExtendido;
 import logica.Datatypes.DTPostulacion;
+import logica.Enumerados.EstadoOL;
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,10 @@ import java.util.Set;
 import java.util.HashSet;
 
 import logica.Enumerados.DepUY;
+
+import excepciones.ExcepcionNombreInvalido;
+import excepciones.ExcepcionNumeroNegativo;
+import excepciones.ExcepcionTipoOfertaNoVigente;
 
 public class OfertaLaboral {
 	private String nombre;
@@ -24,7 +29,7 @@ public class OfertaLaboral {
 	// asociado a
 	private TipoOferta tOferta;
 	private List<Keyword> keywords;
-	
+	private EstadoOL estado;
 
 	// constructor
 	public OfertaLaboral(List<Keyword> atrkeywords,TipoOferta atrtOferta,String atrnombre,String atrdescripcion,String atrciudad,DepUY atrdepartamento,DTHorario atrhorario,Float atrremuneracion,LocalDate atrfecha_de_alta) {
@@ -39,6 +44,8 @@ public class OfertaLaboral {
 		this.fecha_de_alta = atrfecha_de_alta;
 		this.keywords = atrkeywords; // la lista de keywords
 		this.postulaciones = new ArrayList<>(); // originalmente vacio
+		this.estado = EstadoOL.Ingresada;
+		
 	}
 	 
 	public String getNombre() 					{ return nombre; 		}
@@ -52,20 +59,63 @@ public class OfertaLaboral {
 	public List<Postulacion> getPostulaciones() { return postulaciones; }
 	public TipoOferta getTipoOferta() 			{ return tOferta; 		}
 	public List<Keyword> getKeywords()			{ return keywords; 		}
+	public EstadoOL getEstado()					{ return estado; 		}
+
 	
-	public void setNombre(String nomb) 						{ nombre = nomb; 			}
+	public void setNombre(String nomb) 	throws ExcepcionNombreInvalido	{
+		if(!nomb.matches("^[\\p{L} ]+$")) {
+			throw new ExcepcionNombreInvalido("El nombre sólo debe contener letras");
+		}
+		else { nombre = nomb; 	}
+	}
+	
+	
 	public void setDescripcion(String Desc) 				{ descripcion = Desc; 		}
+	
 	public void setCiudad(String Ciud) 						{ ciudad = Ciud;			}
+	
 	public void setDepartamento(DepUY Departa) 				{ departamento = Departa; 	}
+	
 	public void setHorario(DTHorario Horar) 				{ horario = Horar; 			}
-	public void setRemuneracion(Float Remunera) 			{ remuneracion = Remunera;	}
+	
+	public void setRemuneracion(Float Remunera) throws ExcepcionNumeroNegativo	{ 
+		if(Remunera<0) {
+			throw new ExcepcionNumeroNegativo("Debe ingresar un valor mayor que 0");
+		} else {
+		
+		remuneracion = Remunera;	
+		}
+	}
+	
 	public void setFecha_de_alta(LocalDate fecha) 			{ fecha_de_alta = fecha; 	}
-	public void setCosto(float c)							{ costo = c; 				}
+	
+	public void setCosto(float cost)	throws ExcepcionNumeroNegativo		{ 
+		if(cost<0) {
+			throw new ExcepcionNumeroNegativo("Debe ingresar un valor mayor que 0");
+		} else {
+		costo = cost; 				
+		}
+	}
+	
 	public void setPostulaciones(List<Postulacion> posts) 	{ postulaciones = posts; 	}
-	public void setTipoOferta(TipoOferta to) 				{ tOferta = to; 			}
+	
+	public void setTipoOferta(TipoOferta to) throws ExcepcionTipoOfertaNoVigente	{
+		LocalDate altaTOferta = to.getFechaAlta();
+		LocalDate fechaActual = LocalDate.now();
+		
+		if (altaTOferta.isAfter(fechaActual)) {
+			throw new ExcepcionTipoOfertaNoVigente("Tipo de Oferta no vigente");
+		} else {
+			tOferta = to; 
+		}
+	}	
+	
+	
 	public void setKeywords(List<Keyword> ks)				{ keywords = ks; 			}
 	
+	public void setEstado(EstadoOL eOL)						{ estado = eOL; 			}
 	
+	 
 	// -------------- funciones ---------------------
 	public DTOfertaExtendido obtenerDatosOferta(){
 		Set<DTPostulacion> posts = new HashSet<>();
@@ -73,12 +123,16 @@ public class OfertaLaboral {
 			Postulacion elem = postulaciones.get(i);
 			posts.add(elem.getDTPostulacion());
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(), posts);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getNombre(),getDescripcion(),getFecha_de_alta(),getCosto(),getRemuneracion(),getHorario(),getDepartamento(), getCiudad(),getEstado() ,posts);
 		return dtoe;
     }
 	
 	public void registrarPostulacion(Postulacion p) {
-		postulaciones.add(p);
+		if(p.getFecha().isBefore(fecha_de_alta)) {
+			throw new IllegalArgumentException("Oferta no vigente");
+		} else {
+			postulaciones.add(p);
+		}
 	}
 	
 }
