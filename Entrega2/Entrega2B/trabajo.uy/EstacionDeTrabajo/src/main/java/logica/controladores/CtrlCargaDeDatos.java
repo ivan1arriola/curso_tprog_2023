@@ -15,12 +15,9 @@ import main.java.logica.interfaces.ICtrlCargaDeDatos;
 import main.java.logica.interfaces.ICtrlOferta; 
 import main.java.logica.interfaces.ICtrlUsuario; 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-
 // import java.io.IOException; NO SE USA (CHECKSTYLE)
 import java.time.LocalDate;
 

@@ -87,20 +87,20 @@ public class Empresa extends Usuario {
     }
 
     public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq){
-    	OfertaLaboral ofertaLab = new OfertaLaboral(atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
+    	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
         ofertasLaborales.add(ofertaLab);
         return ofertaLab;
     }
 
     
     public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) {
-    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img);
+    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img);
     	ofertasLaborales.add(ofertaLab);
     	return ofertaLab;
     }
     
     public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) {
-    	OfertaLaboral ofertaLab = new OfertaLaboral(keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img,  paquete);
+    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img,  paquete);
     	ofertasLaborales.add(ofertaLab);
     	return ofertaLab;	
     }

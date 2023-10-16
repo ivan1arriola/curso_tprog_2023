@@ -19,8 +19,9 @@ public class DTOfertaExtendidoSinPConK  {
 	private EstadoOL estado;
 	private String imagen;
 	private Set<String> keywords;
+	private String nicknameEmpresaPublicadora;
 	
-	public DTOfertaExtendidoSinPConK(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estado,  String img,  Set<String> keys) {
+	public DTOfertaExtendidoSinPConK( String nicknameEmpresa, String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estado,  String img,  Set<String> keys) {
 		// no es subclase de DTOfertaExtendido,  es una version sin postulaciones
 		nombre = nomb;
 		descripcion = desc;
@@ -33,6 +34,7 @@ public class DTOfertaExtendidoSinPConK  {
 		imagen = img;
 		this.estado = estado;
 		keywords = keys;
+		nicknameEmpresaPublicadora = nicknameEmpresa;
 	}
 	
 	public String getNombre() {
@@ -77,6 +79,10 @@ public class DTOfertaExtendidoSinPConK  {
 	
 	public Set<String> getKeywords() {
 		return keywords;
+	}
+
+	public String getNicknameEmpresaPublicadora() {
+		return nicknameEmpresaPublicadora;
 	}
 	
 	

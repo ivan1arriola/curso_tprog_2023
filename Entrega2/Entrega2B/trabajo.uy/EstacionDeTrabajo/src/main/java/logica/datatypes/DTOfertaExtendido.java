@@ -20,9 +20,10 @@ public class DTOfertaExtendido {
   private Set<DTPostulacion> postulaciones;
   private String imagen; 
   private String paq;
+  private String nicknameEmpresaPublicadora;
 	
 	
-public DTOfertaExtendido(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  String img,  String paquete) {
+public DTOfertaExtendido(String empresaPublicadora, String nomb,  String desc, LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL est,  Set<DTPostulacion> post,  String img,  String paquete) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -35,6 +36,7 @@ public DTOfertaExtendido(String nomb,  String desc,  LocalDate fechaA,  float co
   postulaciones = post;
   imagen = img;
   paq = paquete;
+  nicknameEmpresaPublicadora = empresaPublicadora;
 }
 	
 public String getNombre() {
@@ -96,6 +98,10 @@ public String toString() {
 
   return texto;
 }
+
+	public String getNicknameEmpresaPublicadora() {
+		return nicknameEmpresaPublicadora;
+	}
 	
 }
 //

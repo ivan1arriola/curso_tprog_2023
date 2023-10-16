@@ -66,7 +66,7 @@ public class ControladorUsuarioTest3 {
 			ColPost.add(post);
 			String img = "url";
 			String paquete = "paquete";
-			DTOfertaExtendido OfEx = new DTOfertaExtendido(nombreOL,   
+			DTOfertaExtendido OfEx = new DTOfertaExtendido(null, nombreOL,   
 														   desripcion,  
 														   fechaA,  
 														   costo,  
@@ -167,7 +167,7 @@ public class ControladorUsuarioTest3 {
 					"full time",  
 					"part time"
 				));
-			DTOfertaExtendidoSinPConK OfEx11 = new DTOfertaExtendidoSinPConK(nombre1,   
+			DTOfertaExtendidoSinPConK OfEx11 = new DTOfertaExtendidoSinPConK("empresa" , nombre1,   
 														   descripcion1,  
 														   fechaPostulacion1,  
 														   costo2,  

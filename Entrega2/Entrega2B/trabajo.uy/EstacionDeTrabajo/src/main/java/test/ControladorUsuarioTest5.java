@@ -166,7 +166,7 @@ public class ControladorUsuarioTest5 {
 			DTHora horaSalada2 = new DTHora(1,  0) ; 
 			DTHorario horarioSal = new DTHorario(horaSalada,  horaSalada2) ; 
 			// constructor sin paquete y sin imagen
-			new OfertaLaboral(myList,   
+			new OfertaLaboral(null, myList,   
 													   atrtOferta,  
 													   atrnombre6, 
 													   atrdescripcion6, 
@@ -177,7 +177,7 @@ public class ControladorUsuarioTest5 {
 													   atrfechaAlta6, 
 													   estadoNuevo6) ; 
 //			// constructor sin imagen pero con paquete	
-			new  OfertaLaboral(myList,   
+			new  OfertaLaboral(null, myList,   
 														atrtOferta,   
 														atrnombre6,   
 														atrdescripcion6, 
@@ -190,7 +190,7 @@ public class ControladorUsuarioTest5 {
 														Pack) ; 
 						
 			// constructor sin imagen ni paquete	
-			new   OfertaLaboral(myList,   
+			new   OfertaLaboral(null, myList,   
 														 atrtOferta,   
 														 atrnombre6,   
 														 atrdescripcion6,    
