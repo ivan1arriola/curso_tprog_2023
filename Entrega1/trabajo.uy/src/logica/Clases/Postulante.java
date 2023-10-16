@@ -17,9 +17,11 @@ public class Postulante extends Usuario{
 
     public Postulante(String nickname, String nombre, String apellido, String correo_electronico, LocalDate fecha_nac, String nacionalidad) {
         super(nickname, nombre, apellido, correo_electronico);
-        this.fecha_nac = fecha_nac;
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
+        
+        if (LocalDate.now().isBefore(fecha_nac)) {throw new IllegalArgumentException("Fecha de nacimiento debe ser posterior a fecha actual");}
+        else { this.fecha_nac = fecha_nac; }
     }
 
     public boolean esEmpresa() {
@@ -36,9 +38,14 @@ public class Postulante extends Usuario{
     /* + crearPostulacion (cv : String, motivacion: String, fecha : DTFecha) : Postulacion */
 
     public Postulacion crearPostulacion (String cv, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
-        Postulacion p = new Postulacion(this, cv, motivacion, fecha, URLDocExtras, OferLab);
+    	
+    	if (fecha.isBefore(OferLab.getFecha_de_alta())) { throw new IllegalArgumentException("Postulación debe ser posterior al Alta de Oferta");}
+    	else { 
+    		Postulacion p = new Postulacion(this, cv, motivacion, fecha, URLDocExtras, OferLab);
+    	
         postulaciones.add(p);
         return p;
+    	}
     }
 
     /* + existePostulacion(nombre : String) : Bool */
@@ -57,7 +64,11 @@ public class Postulante extends Usuario{
     }
 
     public void setFecha_nac(LocalDate fecha_nac) {
+    	if (fecha_nac.isAfter(LocalDate.now())) { throw new IllegalArgumentException("Fecha de nacimiento debe ser anterior a fecha actual"); 
+    	} else { 
         this.fecha_nac = fecha_nac;
+    	}
+        
     }
 
     public String getNacionalidad() {
