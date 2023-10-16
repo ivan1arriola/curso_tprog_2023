@@ -11,6 +11,10 @@ import java.util.HashSet;
 
 import logica.Enumerados.DepUY;
 
+import excepciones.ExcepcionNombreInvalido;
+import excepciones.ExcepcionNumeroNegativo;
+import excepciones.ExcepcionTipoOfertaNoVigente;
+
 public class OfertaLaboral {
 	private String nombre;
 	private String descripcion;
@@ -58,18 +62,59 @@ public class OfertaLaboral {
 	public EstadoOL getEstado()					{ return estado; 		}
 
 	
-	public void setNombre(String nomb) 						{ nombre = nomb; 			}
+	public void setNombre(String nomb) 	throws ExcepcionNombreInvalido	{
+		if(!nomb.matches("^[\\p{L} ]+$")) {
+			throw new ExcepcionNombreInvalido("El nombre sólo debe contener letras");
+		}
+		else { nombre = nomb; 	}
+	}
+	
+	
 	public void setDescripcion(String Desc) 				{ descripcion = Desc; 		}
+	
 	public void setCiudad(String Ciud) 						{ ciudad = Ciud;			}
+	
 	public void setDepartamento(DepUY Departa) 				{ departamento = Departa; 	}
+	
 	public void setHorario(DTHorario Horar) 				{ horario = Horar; 			}
-	public void setRemuneracion(Float Remunera) 			{ remuneracion = Remunera;	}
+	
+	public void setRemuneracion(Float Remunera) throws ExcepcionNumeroNegativo	{ 
+		if(Remunera<0) {
+			throw new ExcepcionNumeroNegativo("Debe ingresar un valor mayor que 0");
+		} else {
+		
+		remuneracion = Remunera;	
+		}
+	}
+	
 	public void setFecha_de_alta(LocalDate fecha) 			{ fecha_de_alta = fecha; 	}
-	public void setCosto(float c)							{ costo = c; 				}
+	
+	public void setCosto(float cost)	throws ExcepcionNumeroNegativo		{ 
+		if(cost<0) {
+			throw new ExcepcionNumeroNegativo("Debe ingresar un valor mayor que 0");
+		} else {
+		costo = cost; 				
+		}
+	}
+	
 	public void setPostulaciones(List<Postulacion> posts) 	{ postulaciones = posts; 	}
-	public void setTipoOferta(TipoOferta to) 				{ tOferta = to; 			}
+	
+	public void setTipoOferta(TipoOferta to) throws ExcepcionTipoOfertaNoVigente	{
+		LocalDate altaTOferta = to.getFechaAlta();
+		LocalDate fechaActual = LocalDate.now();
+		
+		if (altaTOferta.isAfter(fechaActual)) {
+			throw new ExcepcionTipoOfertaNoVigente("Tipo de Oferta no vigente");
+		} else {
+			tOferta = to; 
+		}
+	}	
+	
+	
 	public void setKeywords(List<Keyword> ks)				{ keywords = ks; 			}
+	
 	public void setEstado(EstadoOL eOL)						{ estado = eOL; 			}
+	
 	 
 	// -------------- funciones ---------------------
 	public DTOfertaExtendido obtenerDatosOferta(){
@@ -82,8 +127,12 @@ public class OfertaLaboral {
 		return dtoe;
     }
 	
-	public void registrarPostulacion(Postulacion p) {
-		postulaciones.add(p);
+	public void registrarPostulacion(Postulacion p) throws ExcepcionTipoOfertaNoVigente {
+		if(p.getFecha().isBefore(fecha_de_alta)) {
+			throw new ExcepcionTipoOfertaNoVigente("Oferta no vigente");
+		} else {
+			postulaciones.add(p);
+		}
 	}
 	
 }
