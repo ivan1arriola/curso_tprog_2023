@@ -70,7 +70,7 @@ public class OfertaLaboral {
 	public void setTipoOferta(TipoOferta to) 				{ tOferta = to; 			}
 	public void setKeywords(List<Keyword> ks)				{ keywords = ks; 			}
 	public void setEstado(EstadoOL eOL)						{ estado = eOL; 			}
-	
+	 
 	// -------------- funciones ---------------------
 	public DTOfertaExtendido obtenerDatosOferta(){
 		Set<DTPostulacion> posts = new HashSet<>();
