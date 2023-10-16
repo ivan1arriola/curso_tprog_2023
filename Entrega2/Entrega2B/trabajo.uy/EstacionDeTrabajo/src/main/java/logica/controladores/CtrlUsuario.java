@@ -499,4 +499,14 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return edito;
 	}
 
+	@Override
+	public Set<String> listarPostulacionesPostulante(String nickname) {
+	    UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+	    Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
+	    Set<String> postulaciones = postulante.listarPostulaciones(); 
+
+	    return postulaciones;
+	}
+
+
 }

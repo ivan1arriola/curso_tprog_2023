@@ -118,4 +118,7 @@ public interface ICtrlUsuario {
     
     public abstract boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion); // PRONTA
     
+    /** devuelve una lista de todos los nombres de las ofertas laborales a la cual Postulante nickname se postuló **/
+    public abstract Set<String> listarPostulacionesPostulante(String nickname);
+    
 }

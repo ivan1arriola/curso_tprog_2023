@@ -162,5 +162,13 @@ public class Postulante extends Usuario{
 
         return lista;
     }
+
+    public Set<String> listarPostulaciones() {
+        Set<String> postulacionesList = new HashSet<>();
+        for (Postulacion postulacion : postulaciones) {
+            postulacionesList.add(postulacion.obtenerNombreOfertaLaboral());
+        }
+        return postulacionesList;
+    }
  
 }
