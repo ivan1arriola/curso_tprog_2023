@@ -476,4 +476,8 @@ public class OfertaLaboral {
 	public void setEmpresaPublicadora(Empresa empresaPublicadora) {
 		this.empresaPublicadora = empresaPublicadora;
 	} 
+	
+	public boolean estaVencida() {
+		return tOferta.estaVencida();
+	}
 }

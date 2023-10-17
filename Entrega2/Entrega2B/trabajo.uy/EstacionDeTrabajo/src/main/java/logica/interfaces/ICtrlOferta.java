@@ -3,6 +3,12 @@ package main.java.logica.interfaces;
 import java.time.LocalDate;
 import java.util.Set;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
+import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.datatypes.DTHorario;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
@@ -21,17 +27,17 @@ public interface ICtrlOferta {
 		
 		public abstract boolean altaTipoPublicacionOL(String nomb,  String descripcion,  int expo,  int dur,  float costo,  LocalDate fechA);
 		
-		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  String img);
+		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  String img) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido;
 		
 		public abstract boolean altaKeyword(String key);
 		
-		public abstract boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor);
+		public abstract boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 		
 		public abstract boolean 
 		altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
 				String descripcion,  DTHorario horario,  float remun,  String ciu,  
 				DepUY dep,  LocalDate fechaA,  Set<String> keys,  
-				EstadoOL estado,  String img,  String paquete);
+				EstadoOL estado,  String img,  String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa;
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante,  String nombre_oferta);
 		
@@ -55,6 +61,8 @@ public interface ICtrlOferta {
 		
 		public abstract Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
 		
+		public abstract Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadasYNoVencidas();
+		
 		public abstract Set<String> listarOfertasLaboralesIngresadas(String nickname_e);
 		
 		public abstract Set<String> listarTodasLasOfertasLaborales(String nickname_e);
@@ -70,9 +78,11 @@ public interface ICtrlOferta {
 		public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
 		
 		public abstract void 
-		agregarTipoOfertaPaq(String paquete,  String TipoOferta,  int cantidad);
+		agregarTipoOfertaPaq(String paquete,  String TipoOferta,  int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 		
 		public abstract Set<String> listarPaquetes();
+		
+		public abstract Set<String> listarPaquetesNoVencidos();	
 		
 		public abstract DTPaquete obtenerDatosPaquete(String paq);
 		
@@ -92,4 +102,6 @@ public interface ICtrlOferta {
 		
 		// Operacion que para un nickname de empresa devuelve un set de String con los nombres de los paquetes comprados
 		public abstract Set<String> listarComprasPaquete(String nicknameEmpresa);
+		
+		public abstract boolean existeOfertaLaboral(String nombre_ofer);
 }

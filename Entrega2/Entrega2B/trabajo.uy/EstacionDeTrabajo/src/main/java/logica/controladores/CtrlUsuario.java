@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -192,7 +193,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 //		user.setApellido(apellido);
 //	}
 
-	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida{
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -508,5 +509,13 @@ public class CtrlUsuario implements ICtrlUsuario {
 	    return postulaciones;
 	}
 
-
+	public boolean existeUsuarioConNickname(String nickname) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		return UsuarioH.existeNick(nickname);
+	}
+	
+	public boolean existeUsuarioConEmail(String correo) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		return UsuarioH.existeCorreo(correo);
+	}
 }

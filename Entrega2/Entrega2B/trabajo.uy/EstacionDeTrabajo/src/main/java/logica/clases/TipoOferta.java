@@ -98,4 +98,9 @@ public class TipoOferta {
         DTTipoOferta dtTO = new DTTipoOferta(nombre,  fechaAlta,  costo,  duracion,  exposicion, descripcion);
         return dtTO;
     }
+    
+    public boolean estaVencida() {
+    	LocalDate fechaActual = LocalDate.now();
+    	return fechaAlta.plusDays(duracion).isBefore(fechaActual);
+    }
 }

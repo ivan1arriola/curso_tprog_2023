@@ -32,6 +32,12 @@ import main.java.logica.manejadores.PaqueteHandler;
 import main.java.logica.manejadores.TipoOfertaHandler;
 import main.java.logica.manejadores.UsuarioHandler;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
+import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import main.java.excepciones.ExceptionValidezNegativa;
 
 public class CtrlOferta implements ICtrlOferta{
 
@@ -99,7 +105,7 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	// crear un paquete
-	public boolean altaPaqueteOL(String nombre,   String descripcion,   int validez,   LocalDate fechaA,   float descuento,   String imagen) {
+	public boolean altaPaqueteOL(String nombre,   String descripcion,   int validez,   LocalDate fechaA,   float descuento,   String imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
 		// Verificar si el argumento 'nombre' es vacío
 		if (nombre.isEmpty()) {
 			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -144,7 +150,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 	
-	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) {
+	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 		
@@ -154,7 +160,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return empresa.compraPaquetes(paquete, fecha, valor);
 	}
 	
-	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   String img,   String paquete) {
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paq = null;
 		if (paquete != null) {
@@ -304,7 +310,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return oferLab.obtenerDatosOferta();
 	}
 	
-	public void agregarTipoOfertaPaq(String paq,   String TipoOfer,   int cantidad) {
+	public void agregarTipoOfertaPaq(String paq,   String TipoOfer,   int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paquete = PaqueteH.buscar(paq);
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
@@ -402,6 +408,35 @@ public class CtrlOferta implements ICtrlOferta{
 		return empresa.listarOfertasLaborales();
 	}
 	
-	
+	public Set<String> listarPaquetesNoVencidos(){
+		Set<String> res = new HashSet<>();
+		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
+		Map<String,   Paquete> paquetes = PaqueteH.obtener();
 		
+		for (Map.Entry<String,   Paquete> entry : paquetes.entrySet()) {
+			Paquete paq = entry.getValue();
+			if(!paq.estaVencido()) {
+				res.add(paq.getNombre());
+			}
+		}
+		
+		return res;
+	}
+	
+	public Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadasYNoVencidas() {
+		Set<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		Map<String,  OfertaLaboral> ofertasLaborales = OLH.obtener();
+		for (Map.Entry<String,  OfertaLaboral> entry : ofertasLaborales.entrySet()) {
+			if(entry.getValue().getEstado() == EstadoOL.Confirmada && !entry.getValue().estaVencida()) {
+				res.add(entry.getValue().obtenerDatosOferta());
+			}	
+        }
+		return res;
+	}
+	
+	public boolean existeOfertaLaboral(String nombre_ofer) {
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		return OLH.existe(nombre_ofer);
+	}
 }

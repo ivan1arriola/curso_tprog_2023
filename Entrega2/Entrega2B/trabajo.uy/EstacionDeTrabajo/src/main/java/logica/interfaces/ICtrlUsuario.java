@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Set;
 import java.util.List;
 import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -58,7 +59,7 @@ public interface ICtrlUsuario {
     public abstract boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
     		String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  
     		LocalDate FechaA,  List<String> keys,  EstadoOL estado,  String img,  String paquete) 
-    		throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida;
+    				throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa;
     
     public abstract Set<String> listarOfertasLaborales(String nickname_e) 
     		throws ExceptionEmpresaInvalida,  ExceptionUsuarioNoEncontrado;
@@ -120,5 +121,9 @@ public interface ICtrlUsuario {
     
     /** devuelve una lista de todos los nombres de las ofertas laborales a la cual Postulante nickname se postuló **/
     public abstract Set<String> listarPostulacionesPostulante(String nickname);
+    
+    public abstract boolean existeUsuarioConNickname(String nickname);
+    
+    public abstract boolean existeUsuarioConEmail(String correo);
     
 }
