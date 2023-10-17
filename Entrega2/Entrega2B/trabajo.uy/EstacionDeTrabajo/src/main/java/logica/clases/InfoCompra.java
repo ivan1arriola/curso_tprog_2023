@@ -82,7 +82,7 @@ public class InfoCompra {
     }
     
     public void setCosto(float costo) {
-    	this.costo = costo;
+    	this.costo = costo;descripcion)
     } 
     
     public void setICO(Set<InfoCompraOferta> ICO) {
@@ -93,5 +93,9 @@ public class InfoCompra {
     public DTCompraPaquetes obtenerDatosPaquete() {
         DTCompraPaquetes nuevacompra = new DTCompraPaquetes(paquete.getNombre(),   fechaCompra,   fechaVencimiento);
         return nuevacompra;
+    }
+    
+    public boolean estaVencido() {
+    	return fechaVencimiento.isBefore(LocalDate.now());
     }
 }

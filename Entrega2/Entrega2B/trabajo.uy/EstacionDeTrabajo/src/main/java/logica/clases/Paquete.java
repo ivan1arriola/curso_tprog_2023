@@ -194,9 +194,4 @@ public class Paquete {
         }
         return SetNuevo;
     }
-    
-    public boolean estaVencido() {
-    	LocalDate fechaActual = LocalDate.now();
-    	return fechaAlta.plusDays(validez).isBefore(fechaActual);
-    }
 }

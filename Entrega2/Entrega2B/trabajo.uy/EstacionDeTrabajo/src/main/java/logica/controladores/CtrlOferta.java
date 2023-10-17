@@ -38,6 +38,7 @@ import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
 import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionDuracionNegativa;
+import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionExpoNegativa;
 import main.java.excepciones.ExceptionFechaInvalida;
 import main.java.excepciones.ExceptionPaqueteNoVigente;
@@ -434,19 +435,16 @@ public class CtrlOferta implements ICtrlOferta{
 		return empresa.listarOfertasLaborales();
 	}
 	
-	public Set<String> listarPaquetesNoVencidos(){
-		Set<String> res = new HashSet<>();
-		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-		Map<String,   Paquete> paquetes = PaqueteH.obtener();
+	public Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida{
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UH.buscarNick(nickname_e);
 		
-		for (Map.Entry<String,   Paquete> entry : paquetes.entrySet()) {
-			Paquete paq = entry.getValue();
-			if(!paq.estaVencido()) {
-				res.add(paq.getNombre());
-			}
+		if(e != null) {
+			return e.listarPaquetesNoVencidos();
+		} else {
+			throw new ExceptionEmpresaInvalida("No existe una empresa con el nickname indicado.");
 		}
-		
-		return res;
+
 	}
 	
 	public Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadasYNoVencidas() {

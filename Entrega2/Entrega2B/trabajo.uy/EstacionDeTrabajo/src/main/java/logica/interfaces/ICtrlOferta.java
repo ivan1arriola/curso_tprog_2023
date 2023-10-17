@@ -7,6 +7,7 @@ import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
 import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.datatypes.DTHorario;
@@ -82,7 +83,7 @@ public interface ICtrlOferta {
 		
 		public abstract Set<String> listarPaquetes();
 		
-		public abstract Set<String> listarPaquetesNoVencidos();	
+		public abstract Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida;	
 		
 		public abstract DTPaquete obtenerDatosPaquete(String paq);
 		

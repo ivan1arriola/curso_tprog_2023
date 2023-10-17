@@ -268,4 +268,14 @@ public class Empresa extends Usuario {
         }
         return empre;
     }
+	
+	public Set<String> listarPaquetesNoVencidos() {
+		Set<String> res = new HashSet<String>();
+		for (InfoCompra infoCompra : infoCompras) {
+		    // Accede a cada elemento 'infoCompra' y realiza las operaciones necesarias
+		    if(!infoCompra.estaVencido()) {
+		    	res.add(infoCompra.obtenerDatosPaquete().getNombre());
+		    }
+
+	}
 }
