@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHorario;
@@ -86,23 +88,39 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq){
-    	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
-        ofertasLaborales.add(ofertaLab);
-        return ofertaLab;
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa{
+    	if(remun >= 0) {
+        	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
+            ofertasLaborales.add(ofertaLab);
+            return ofertaLab;
+    	}
+    	else {
+    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+    	}
+
     }
 
     
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) {
-    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img);
-    	ofertasLaborales.add(ofertaLab);
-    	return ofertaLab;
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa {
+    	if(remun >= 0) {
+	    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
+	    	ofertasLaborales.add(ofertaLab);
+	    	return ofertaLab;
+    	}
+    	else {
+    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+    	}
     }
     
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remu,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) {
-    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remu,  fechaA,  estado,  img,  paquete);
-    	ofertasLaborales.add(ofertaLab);
-    	return ofertaLab;	
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa {
+    	if(remun >= 0) {
+    		OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
+	    	ofertasLaborales.add(ofertaLab);
+	    	return ofertaLab;
+    	}
+    	else {
+    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+    	}
     }
     
     public DTUsuario obtenerDatosUsuario() { // obtenerDatosUsuario(): DTUsuario
@@ -186,20 +204,26 @@ public class Empresa extends Usuario {
     	return url != null;
     }
     
-    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) {
-        for (InfoCompra ic : infoCompras) {
-        	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
-        		return false;
-        	}
-        }
-    	float costo = paq.getCosto();
-    	LocalDate fechaA = paq.getfechaAlta();
-    	// int val = paq.getValidez();
-    	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
-    	
-    	InfoCompra infoComp = new InfoCompra(fecha,  valor,  paq,  this,  ConjuntoS);
-    	infoCompras.add(infoComp);
-    	return true;
+    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo {
+    	if(valor >= 0) {
+	        for (InfoCompra ic : infoCompras) {
+	        	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
+	        		return false;
+	        	}
+	        }
+	    	float costo = paq.getCosto();
+	    	LocalDate fechaA = paq.getfechaAlta();
+	    	// int val = paq.getValidez();
+	    	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
+	    	
+	    	InfoCompra infoComp = new InfoCompra(fecha,  valor,  paq,  this,  ConjuntoS);
+	    	infoCompras.add(infoComp);
+	    	return true;    		
+    	}
+    	else {
+    		throw new ExceptionCompraPaqueteConValorNegativo("El valor de la compra de un paquete no puede ser negativo.");
+    	}
+
     }
 
 	@Override
