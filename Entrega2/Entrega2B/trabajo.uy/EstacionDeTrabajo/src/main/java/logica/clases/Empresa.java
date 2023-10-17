@@ -103,6 +103,18 @@ public class Empresa extends Usuario {
     	}
 
     }
+    
+    public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+    	if(remun >= 0) {
+        	OfertaLaboral ofertaLab = new OfertaLaboral(true, this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
+            ofertasLaborales.add(ofertaLab);
+            return ofertaLab;
+    	}
+    	else {
+    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+    	}
+
+    }
 
     
     public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {

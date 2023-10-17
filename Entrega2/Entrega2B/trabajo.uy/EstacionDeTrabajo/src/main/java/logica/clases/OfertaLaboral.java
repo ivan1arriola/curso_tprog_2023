@@ -135,6 +135,96 @@ public class OfertaLaboral {
 		    this.keywords = atrkeywords; // la lista de keywords
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		}
+	
+	
+	
+	public OfertaLaboral(
+			boolean forzado,
+		    Empresa empresaPublicadora, 
+		    List<Keyword> atrkeywords, 
+		    TipoOferta atrtOferta, 
+		    String atrnombre, 
+		    String atrdescripcion, 
+		    String atrciudad, 
+		    DepUY atrdepartamento, 
+		    DTHorario atrhorario, 
+		    Float atrremuneracion, 
+		    LocalDate atrfechaAlta, 
+		    EstadoOL estadoNuevo, 
+		    String imagennueva, 
+		    Paquete paq
+		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+		
+		    this.nombre = atrnombre;
+		    this.descripcion = atrdescripcion;
+		    this.ciudad = atrciudad;
+		    this.departamento = atrdepartamento;
+		    this.horario = atrhorario;
+		    
+		    try {
+			    if (atrremuneracion <=0) { 
+			    	throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración debe ser mayor que 0");
+			    } else {
+			    	this.remuneracion = atrremuneracion; 
+			    }
+		    } catch (ExceptionRemuneracionOfertaLaboralNegativa exc) {
+		    	System.out.println(exc);
+		        throw exc;
+		    }
+		    
+		    this.tOferta = atrtOferta;
+		    this.estado = estadoNuevo;
+		    this.imagen = imagennueva;
+		    
+	
+		    
+
+		    
+		    this.paqueteAsoc = paq;
+		  
+		    
+		  
+		    this.empresaPublicadora = empresaPublicadora;
+
+		    if (this.paqueteAsoc != null) {
+		    	float costodadoPaq= 0;
+		    	float descuento = 0;
+		    	
+		    	try {
+			    	if (tOferta.getCosto()<=0) {
+			    		throw new ExceptionCostoPaqueteNoNegativo("El costo del paquete debe ser mayor que 0"); }
+			        costodadoPaq = tOferta.getCosto();
+			        
+			        if (paqueteAsoc.getDescuento()<0) { 
+			    		throw new ExceptionDescuentoInvalido("El descuento debe ser mayor o igual a 0"); }
+			    	
+			        descuento = paqueteAsoc.getDescuento();
+			  		  
+		    	} catch (ExceptionCostoPaqueteNoNegativo excCosto) {
+		    		System.err.println("Error: " + excCosto.getMessage());
+			    	throw excCosto;
+		    	} catch (ExceptionDescuentoInvalido excDesc) {
+		    		System.err.println("Error: " + excDesc.getMessage());
+		    		throw excDesc;
+		    	}
+		    	
+		    	
+		    	if (paqueteAsoc.getDescuento()==0) { 
+		    		this.costo = costodadoPaq;
+		    	} else {
+		        //this.costo = costodadoPaq - costodadoPaq * (1 / descuento);
+		    		this.costo =  costodadoPaq * (1 - descuento/100);
+		        
+		    	}
+		        
+		    } else {
+		        this.costo = tOferta.getCosto();
+		    }
+
+		    this.fechaAlta = atrfechaAlta;
+		    this.keywords = atrkeywords; // la lista de keywords
+		    this.postulaciones = new ArrayList<>(); // originalmente vacío
+		}
 
 		// Constructor sin imagen ni paquete
 		public OfertaLaboral(
@@ -443,6 +533,13 @@ public class OfertaLaboral {
 	    	throw exc;
 			
 		}
+	} // registra postulacion a la lista de postulaciones	
+	
+	public void registrarPostulacionForzado(Postulacion post) throws ExceptionFechaInvalida {
+			int dura = this.getTipoOferta().getDuracion();
+			LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
+			postulaciones.add(post);
+		
 	} // registra postulacion a la lista de postulaciones	
 
 	public DTOfertaExtendido obtenerDatosOferta(){

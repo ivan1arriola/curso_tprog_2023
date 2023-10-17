@@ -123,6 +123,17 @@ public class Postulante extends Usuario{
     	}
         
     }
+    
+    public Postulacion crearPostulacionForzado(String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) throws ExceptionValidezNegativa {
+    	
+	    	int dura = OferLab.getTipoOferta().getDuracion();
+			LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
+	        Postulacion postulacion = new Postulacion(this,   curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
+	        postulaciones.add(postulacion);
+	        return postulacion;
+    
+        
+    }
 
     public boolean existePostulacion(String nombre) {
         for (Postulacion postulacion : postulaciones) {
