@@ -7,6 +7,12 @@
 
 **grupo 34**
 
+## Tarea 3
+
+Correcciones de la tarea 2:
+https://docs.google.com/document/d/1vljbMSK0CAwpS5Q-Wd2h-UAGJXZIPw_VT_4cxfE5oAE/edit#heading=h.afnbqgdseyjf
+
+
 ## Tarea 2
 
 ### Registro de horas:
