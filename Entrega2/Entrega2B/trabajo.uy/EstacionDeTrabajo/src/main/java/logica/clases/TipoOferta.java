@@ -3,6 +3,9 @@ package main.java.logica.clases;
 import java.time.LocalDate;
 
 import main.java.logica.datatypes.DTTipoOferta;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
+import main.java.excepciones.ExceptionDuracionNegativa;
+import main.java.excepciones.ExceptionExpoNegativa;
 
 public class TipoOferta {
     // Atributos
@@ -14,24 +17,35 @@ public class TipoOferta {
     private String descripcion;
 
     // Constructor
-    public TipoOferta(String nombre,  LocalDate fechaAlta,  float costo,  int duracion,  int exposicion,  String descripcion) {
+    public TipoOferta(String nombre,  LocalDate fechaAlta,  float costo,  int duracion,  int exposicion,  String descripcion) throws ExceptionCostoPaqueteNoNegativo, ExceptionDuracionNegativa, ExceptionExpoNegativa{
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;
-        if (costo<0) {
-        	throw new IllegalArgumentException("El costo debe ser mayor o igual a 0");
+        try {
+	        if (costo<0) {
+	        	throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor o igual a 0");
+	        }
+	        this.costo = costo;
+	        
+	        if (duracion<=0) {
+	        	throw new ExceptionDuracionNegativa("La duración debe ser mayor que 0 días");
+	        }
+	        this.duracion = duracion;
+	        
+	        if (exposicion<=0) {
+	        	throw new ExceptionExpoNegativa("La exposición debe ser mayor que 0");
+	        }
+	        this.exposicion = exposicion;
+	        
+        } catch (ExceptionCostoPaqueteNoNegativo exc) {
+        	 System.err.println("Error en costo del paquete: " + exc.getMessage());
+        	 throw exc;
+        } catch (ExceptionDuracionNegativa exc) {
+        	System.err.println("Error en duración: " + exc.getMessage());
+       	 	throw exc;
+        } catch (ExceptionExpoNegativa exc) {
+        	System.err.println("Error en exposición: " + exc.getMessage());
+       	 	throw exc;
         }
-        this.costo = costo;
-        
-        if (duracion<=0) {
-        	throw new IllegalArgumentException("La duración debe ser mayor que 0 días");
-        }
-        
-        this.duracion = duracion;
-        
-        if (exposicion<=0) {
-        	throw new IllegalArgumentException("La exposición debe ser mayor que 0");
-        }
-        this.exposicion = exposicion;
         this.descripcion = descripcion;
     }
 
@@ -69,24 +83,41 @@ public class TipoOferta {
     	this.fechaAlta = fechaAlta;
     }
     
-    public void setCosto(float costo) {
-    	if (costo<0) {
-        	throw new IllegalArgumentException("El costo debe ser mayor o igual a 0");
+    public void setCosto(float costo) throws ExceptionCostoPaqueteNoNegativo  {
+    	try {
+	        if (costo<0) {
+	        	throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor o igual a 0");
+	        }
+	        this.costo = costo;
+        } catch (ExceptionCostoPaqueteNoNegativo exc) {
+        	 System.err.println("Error en costo del paquete: " + exc.getMessage());
+        	 throw exc;
         }
-        this.costo = costo;
     }
     
-    public void setDuracion(int duracion) {
-    	if (duracion<=0) {
-        	throw new IllegalArgumentException("La duración debe ser mayor que 0 días");
+    public void setDuracion(int duracion) throws ExceptionDuracionNegativa {
+    	try {
+	        if (duracion<=0) {
+	        	throw new ExceptionDuracionNegativa("La duración debe ser mayor que 0 días");
+	        }
+	        this.duracion = duracion;
+        } catch (ExceptionDuracionNegativa exc) {
+        	System.err.println("Error en duración: " + exc.getMessage());
+       	 	throw exc;
+        	
         }
-        
-        this.duracion = duracion;
     }
     
-    public void setExposicion(int exposicion) {
-    	if (exposicion<=0) {
-        	throw new IllegalArgumentException("La exposición debe ser mayor que 0");
+    public void setExposicion(int exposicion) throws ExceptionExpoNegativa {
+    	try {
+	        if (exposicion<=0) {
+	        	throw new ExceptionExpoNegativa("La exposición debe ser mayor que 0");
+	        }
+	        this.exposicion = exposicion;
+        } catch (ExceptionExpoNegativa exc) {
+        	System.err.println("Error en exposición: " + exc.getMessage());
+       	 	throw exc;
+        	
         }
     }
     
