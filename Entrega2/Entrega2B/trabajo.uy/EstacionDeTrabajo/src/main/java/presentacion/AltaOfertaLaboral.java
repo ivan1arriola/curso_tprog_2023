@@ -174,7 +174,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 if (selectedList.getSelectedIndex() != -1) {
                 	String key = (String) selectedList.getSelectedValue();
 	        		keywords.remove(key);
-                	transferirElemento(selectedList,  availableListModel,  selectedListModel);
+                	transferirElemento(selectedList,  availableListModel,  selectedListModel); 
 	                
                 }
             }
