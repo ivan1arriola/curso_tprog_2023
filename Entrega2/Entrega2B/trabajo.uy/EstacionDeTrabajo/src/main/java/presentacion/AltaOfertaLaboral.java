@@ -2,6 +2,7 @@ package main.java.presentacion;
 
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
@@ -411,7 +412,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	                				setVisible(false);
 	                				limpiarFormulario();
 	                			}
-	                	} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida e1) {
+	                	} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida| ExceptionRemuneracionOfertaLaboralNegativa e1) {
 	                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  e1.getMessage(),  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
 	                	}   
 	                		
