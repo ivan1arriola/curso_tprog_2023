@@ -24,10 +24,19 @@
 
         <div class="container col-9">
             <jsp:include page="/WEB-INF/templates/navbar.jsp" />
+            
+            <%  String keyword = request.getParameter("key"); %>
+            <% if(keyword != null) { %>
+            	
+            	<jsp:include page="/WEB-INF/templates/keywordFiltro.jsp" />
+           <%} %> 
+            
+            
 
             <div class="sin-bordes">
                 <%
                 	Set<OfertaLaboralBean> ofertasLaborales = (Set<OfertaLaboralBean>) request.getAttribute("ofertasLaborales");
+               
                 if (ofertasLaborales == null || ofertasLaborales.isEmpty()) {
                     // Si ofertasLaborales es null o está vacío, muestra un mensaje
                 %>
