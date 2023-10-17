@@ -371,15 +371,6 @@ public class OfertaLaboral {
 
 	public void registrarPostulacion(Postulacion post) {
 		
-		if (this.paqueteAsoc!=null) {
-			//verifica que si pertenece a un paquete la oferta esté vigente
-			LocalDate paqAlta = this.paqueteAsoc.getfechaAlta();
-			LocalDate fechaLimite = paqAlta.plusDays(this.paqueteAsoc.getValidez());
-			if (LocalDate.now().isAfter(fechaLimite)) {
-				throw new IllegalArgumentException("En la fecha seleccionada, el paquete no está vigente");
-			}
-		}
-		
 		int dura = this.getTipoOferta().getDuracion();
 		LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
 		if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
@@ -476,7 +467,7 @@ public class OfertaLaboral {
 
 		
 		return 	entregar;	
-		}
+	}
 
 	public Empresa getEmpresaPublicadora() {
 		return empresaPublicadora;
