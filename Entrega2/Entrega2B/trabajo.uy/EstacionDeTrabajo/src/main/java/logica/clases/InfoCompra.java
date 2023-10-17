@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTCompraPaquetes;
 import main.java.logica.manejadores.TipoOfertaHandler;
@@ -18,7 +19,7 @@ public class InfoCompra {
     private Set<InfoCompraOferta> infoCompraOfertas;
 
     // constructor
-    public InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS) {
+    public InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
         // atributos
         this.fechaCompra = fechaCompra;
         this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
