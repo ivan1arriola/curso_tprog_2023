@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.logica.datatypes.DTCantTO;
@@ -204,7 +205,7 @@ public class Empresa extends Usuario {
     	return url != null;
     }
     
-    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo {
+    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
     	if(valor >= 0) {
 	        for (InfoCompra ic : infoCompras) {
 	        	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
