@@ -237,7 +237,7 @@ public class OfertasTest {
 		
 		ICO.altaPaqueteOL("Demasiado",  "una descripcion", 10,  LocalDate.of(1958, 10,  10), 90, null);
 		LocalDate atrfechaAlta6 = LocalDate.of(2023,  9,  2);
-		ICO.compraPaquetes("ANTEL", "Demasiado",atrfechaAlta6 , 0);
+		ICO.compraPaquetes("ANTEL", "Demasiado", atrfechaAlta6 , 0);
 		
 		assertTrue(ICO.paqueteComprado("Demasiado"));
 		

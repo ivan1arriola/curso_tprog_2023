@@ -301,7 +301,7 @@ public class CtrlOferta implements ICtrlOferta{
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		Map<String,  OfertaLaboral> ofertasLaborales = OLH.obtener();
 		for (Map.Entry<String,  OfertaLaboral> entry : ofertasLaborales.entrySet()) {
-			if(entry.getValue().getEstado() == EstadoOL.Confirmada) {
+			if (entry.getValue().getEstado() == EstadoOL.Confirmada) {
 				res.add(entry.getValue().obtenerDatosOferta());
 			}	
         }
@@ -421,7 +421,7 @@ public class CtrlOferta implements ICtrlOferta{
 		Empresa empresa = (Empresa) UsuarioHandler.getInstance().buscarNick(nicknameEmpresa);
 		Set<InfoCompra> infoCompras = empresa.getInfoCompmras();
 		Set<String> nombresPaquetes =  new HashSet<String>();		
-		for(InfoCompra infoCompra : infoCompras) {
+		for (InfoCompra infoCompra : infoCompras) {
 			
 			nombresPaquetes.add(infoCompra.getPaquete().getNombre());
 		}
@@ -439,7 +439,7 @@ public class CtrlOferta implements ICtrlOferta{
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		Empresa e = (Empresa) UH.buscarNick(nickname_e);
 		
-		if(e != null) {
+		if (e != null) {
 			return e.listarPaquetesNoVencidos();
 		} else {
 			throw new ExceptionEmpresaInvalida("No existe una empresa con el nickname indicado.");
@@ -452,7 +452,7 @@ public class CtrlOferta implements ICtrlOferta{
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 		Map<String,  OfertaLaboral> ofertasLaborales = OLH.obtener();
 		for (Map.Entry<String,  OfertaLaboral> entry : ofertasLaborales.entrySet()) {
-			if(entry.getValue().getEstado() == EstadoOL.Confirmada && !entry.getValue().estaVencida()) {
+			if (entry.getValue().getEstado() == EstadoOL.Confirmada && !entry.getValue().estaVencida()) {
 				res.add(entry.getValue().obtenerDatosOferta());
 			}	
         }

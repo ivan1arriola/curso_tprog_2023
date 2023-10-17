@@ -93,7 +93,7 @@ public class Empresa extends Usuario {
     }
 
     public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
-    	if(remun >= 0) {
+    	if (remun >= 0) {
         	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
             ofertasLaborales.add(ofertaLab);
             return ofertaLab;
@@ -106,7 +106,7 @@ public class Empresa extends Usuario {
 
     
     public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
-    	if(remun >= 0) {
+    	if (remun >= 0) {
 	    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
 	    	ofertasLaborales.add(ofertaLab);
 	    	return ofertaLab;
@@ -117,7 +117,7 @@ public class Empresa extends Usuario {
     }
     
     public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
-    	if(remun >= 0) {
+    	if (remun >= 0) {
     		OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
 	    	ofertasLaborales.add(ofertaLab);
 	    	return ofertaLab;
@@ -209,7 +209,7 @@ public class Empresa extends Usuario {
     }
     
     public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
-    	if(valor >= 0) {
+    	if (valor >= 0) {
 	        for (InfoCompra ic : infoCompras) {
 	        	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
 	        		return false;
@@ -273,7 +273,7 @@ public class Empresa extends Usuario {
 		Set<String> res = new HashSet<String>();
 		for (InfoCompra infoCompra : infoCompras) {
 		    // Accede a cada elemento 'infoCompra' y realiza las operaciones necesarias
-		    if(!infoCompra.estaVencido()) {
+		    if (!infoCompra.estaVencido()) {
 		    	res.add(infoCompra.obtenerDatosPaquete().getNombre());
 		    }
 		}
