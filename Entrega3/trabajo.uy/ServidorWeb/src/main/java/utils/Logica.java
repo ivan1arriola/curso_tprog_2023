@@ -12,6 +12,9 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -117,6 +120,8 @@ public class Logica implements ILogica {
 	public Set<String> listarPaquetesDeEmpresa(String nickname) {
 		return ctrlOferta.listarComprasPaquete(nickname);
 	}
+	
+
 
 	@Override
 	public Set<String> listarTipoDePublicaciones() {
@@ -124,7 +129,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) {
         Fabrica.getInstance().getICtrlUsuario().altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, null);
     }
 	
@@ -138,13 +143,24 @@ public class Logica implements ILogica {
 	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,
 			float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, String img,
 			String paquete) {
-		ctrlOferta.altaOfertaLaboral(nickname_e, tipo, nombre, descripcion, horario, remun, ciu, dep, fechaA, keys, estado, img, paquete);
+		try {
+			ctrlOferta.altaOfertaLaboral(nickname_e, tipo, nombre, descripcion, horario, remun, ciu, dep, fechaA, keys, estado, img, paquete);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) {
-		ctrlOferta.compraPaquetes(nickname, paquete, now, valor);
+		try {
+			ctrlOferta.compraPaquetes(nickname, paquete, now, valor);
+		} catch (ExceptionCompraPaqueteConValorNegativo
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
