@@ -23,7 +23,7 @@ import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
-
+import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -111,13 +111,17 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                 				JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "El campo cantidad debe ser un número positivo.",   "ERROR - Agregar Tipo de Publicación de Oferta Labora",   JOptionPane.ERROR_MESSAGE);
                 			} else {
                                 ICO.agregarTipoOfertaPaq(op1, op2, valor);
-                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "Se ha vinculado el tipo de publicacion a la Oferta Laboral",   "Agregar Tipo de Publicación de Oferta Labora",   JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "Se ha vinculado el tipo de publicacion a la Oferta Laboral",   "Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.INFORMATION_MESSAGE);
                                 setVisible(false);		
                 			}
                 		}
-                	} catch (NumberFormatException ex) {
+                	} catch (NumberFormatException exc) {
+                		
                         JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "Ingrese por favor un número",   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
-                    }
+                    
+                	} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete exc) {
+                		JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "No hay disponibilidad de Tipo de Oferta en paquete seleccionado",   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
+                	}
     	        }
                 
         	}
