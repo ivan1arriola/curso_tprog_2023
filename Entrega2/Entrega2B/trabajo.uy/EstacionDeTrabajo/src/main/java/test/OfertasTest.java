@@ -8,11 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionValidezNegativa;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -84,7 +87,19 @@ public class OfertasTest {
 	LocalDate fecha = LocalDate.of(1990,  6,  24);
 	float descu = 10;
 	
-	 boolean boolPaquete = ICO.altaPaqueteOL(offer,  desc,   valido,  fecha, descu, null);
+	 //boolean boolPaquete = ICO.altaPaqueteOL(offer,  desc,   valido,  fecha, descu, null);
+	 
+	boolean boolPaquete=false;
+	 try {
+		 boolPaquete = ICO.altaPaqueteOL(offer,  desc,   valido,  fecha, descu, null);
+			} catch (ExceptionDescuentoInvalido exc) {
+				 exc.printStackTrace();
+			} catch (ExceptionValidezNegativa exc) {
+				 exc.printStackTrace();
+			}
+	 
+	 
+	 
 	 assertTrue(boolPaquete, "oferta ok");
 	 
 	assertThrows(IllegalArgumentException.class, () -> {
@@ -166,7 +181,16 @@ public class OfertasTest {
 	assertEquals("El argumento 'descripcion' no puede ser vacío.", exception.getMessage());
 	
 	
-	ICO.altaPaqueteOL(offer,  "algo", valido,  fecha, descu, null);
+	//ICO.altaPaqueteOL(offer,  "algo", valido,  fecha, descu, null);
+	
+	try {
+		ICO.altaPaqueteOL(offer,  "algo", valido,  fecha, descu, null);
+			} catch (ExceptionDescuentoInvalido exc) {
+				 exc.printStackTrace();
+			} catch (ExceptionValidezNegativa exc) {
+				 exc.printStackTrace();
+			}
+	
 	IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class, () -> {
 		ICO.altaPaqueteOL("Demasiado",  "una descripcion", valido,  fecha, descu, null); });
 
@@ -200,7 +224,18 @@ public class OfertasTest {
 	        e.printStackTrace();
 	    }
 		LocalDate atrfechaAlta6 = LocalDate.of(2020,  12,  12) ; 
-		boolean comprado = ICO.compraPaquetes("Empresario", "EjemploOferta", atrfechaAlta6, 0);
+		
+		
+		boolean comprado=false;
+		
+		try {
+			comprado = ICO.compraPaquetes("Empresario", "EjemploOferta", atrfechaAlta6, 0);
+		} catch (ExceptionCompraPaqueteConValorNegativo exc) {
+	        exc.printStackTrace();
+	    } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+	        exc.printStackTrace();
+	    }
+				
 		
 		assertTrue(comprado, "Compra ok");
 		 
@@ -235,9 +270,27 @@ public class OfertasTest {
 		assertEquals(dtof.getCiudad(), "Montevidoe");
 		
 		
+		try {
 		ICO.altaPaqueteOL("Demasiado",  "una descripcion", 10,  LocalDate.of(1958, 10,  10), 90, null);
+		} catch (ExceptionDescuentoInvalido exc) {
+			 exc.printStackTrace();
+		} catch (ExceptionValidezNegativa exc) {
+			 exc.printStackTrace();
+		}
+		
 		LocalDate atrfechaAlta6 = LocalDate.of(2023,  9,  2);
-		ICO.compraPaquetes("ANTEL", "Demasiado", atrfechaAlta6 , 0);
+		
+		
+		//ICO.compraPaquetes("ANTEL", "Demasiado", atrfechaAlta6 , 0);
+		
+		try {
+			ICO.compraPaquetes("ANTEL", "Demasiado", atrfechaAlta6 , 0);
+		} catch (ExceptionCompraPaqueteConValorNegativo exc) {
+			exc.printStackTrace();
+		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+			exc.printStackTrace();
+		}
+		
 		
 		assertTrue(ICO.paqueteComprado("Demasiado"));
 		
