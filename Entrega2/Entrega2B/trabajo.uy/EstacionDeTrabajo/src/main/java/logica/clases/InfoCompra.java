@@ -82,7 +82,7 @@ public class InfoCompra {
     }
     
     public void setCosto(float costo) {
-    	this.costo = costo;descripcion)
+    	this.costo = costo;
     } 
     
     public void setICO(Set<InfoCompraOferta> ICO) {
