@@ -8,7 +8,8 @@ import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.datatypes.DTPostulante;
 import main.java.logica.datatypes.DTPostulanteExtendido;
 import main.java.logica.datatypes.DTUsuario;
-
+import main.java.excepciones.ExceptionFechaInvalida;
+import main.java.excepciones.ExceptionValidezNegativa;
 
 public class Postulante extends Usuario{
     // atributos
@@ -18,27 +19,40 @@ public class Postulante extends Usuario{
     private Set<Postulacion> postulaciones;
 
     // constructor sin imagen
-    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  String img) {
-        super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img); // super es para llamar al constructor de la clase padre
+    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  String img) throws ExceptionFechaInvalida{
+    	
+    	super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img); // super es para llamar al constructor de la clase padre
+    	try {      
         if (fechaNac.isAfter(LocalDate.now())) {
         	this.fechaNac = fechaNac;
         } else {
-        	throw new IllegalArgumentException("La fecha de Nacimiento debe ser anterior a la actual");
+        	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
         }
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
+        } catch (ExceptionFechaInvalida e) {
+        	 System.out.println(e);  
+        	throw e;
+        }
     }
     
     // constructor con imagen
-    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad) {
+    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad) throws ExceptionFechaInvalida{
         super(nickname,   nombre,   apellido,   correo_electronico,   contrasena); // super es para llamar al constructor de la clase padre
+        
+        try { 
         if (fechaNac.isAfter(LocalDate.now())) {
         	this.fechaNac = fechaNac;
         } else {
-        	throw new IllegalArgumentException("La fecha de Nacimiento debe ser anterior a la actual");
+        	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
         }
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
+        } catch (ExceptionFechaInvalida e) {
+       	 System.out.println(e);  
+       	 throw e;
+     	
+       }
     }
 
 
@@ -57,12 +71,19 @@ public class Postulante extends Usuario{
     }
 
     // Setters
-    public void setFechaNac(LocalDate fechaNac) {
+    public void setFechaNac(LocalDate fechaNac) throws ExceptionFechaInvalida{
+    	
+    	try {
     	if (fechaNac.isAfter(LocalDate.now())) {
         	this.fechaNac = fechaNac;
         } else {
-        	throw new IllegalArgumentException("La fecha de Nacimiento debe ser anterior a la actual");
+        	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
         }
+    	} catch (ExceptionFechaInvalida e) {
+    		System.out.println(e); 
+    		throw e;
+    	}
+    	
     }
     
     public void setNacionalidad(String nacionalidad) {
@@ -84,17 +105,22 @@ public class Postulante extends Usuario{
         return postul;
     }
 
-    public Postulacion crearPostulacion(String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) {
+    public Postulacion crearPostulacion(String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) throws ExceptionValidezNegativa {
     	
-    	int dura = OferLab.getTipoOferta().getDuracion();
-		LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
-		if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
-			throw new IllegalArgumentException("Oferta no vigente");
-		}
-    	
-        Postulacion postulacion = new Postulacion(this,   curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
-        postulaciones.add(postulacion);
-        return postulacion;
+    	try {
+	    	int dura = OferLab.getTipoOferta().getDuracion();
+			LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
+			if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+				throw new ExceptionValidezNegativa("Oferta no vigente");
+			}
+	    	
+	        Postulacion postulacion = new Postulacion(this,   curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
+	        postulaciones.add(postulacion);
+	        return postulacion;
+    	} catch (ExceptionValidezNegativa e) {
+    		System.out.println(e);
+    		throw e;
+    	}
         
     }
 
