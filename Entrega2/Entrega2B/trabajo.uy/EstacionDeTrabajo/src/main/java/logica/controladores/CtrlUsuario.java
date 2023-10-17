@@ -6,12 +6,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionFechaInvalida;
+import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.clases.Empresa;
 import main.java.logica.clases.Keyword;
 import main.java.logica.clases.OfertaLaboral;
@@ -107,8 +113,16 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 		
 		if (!existeNick && !existeCorreo) {
-			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fechanac,   nacionalidad);
-			UsuarioH.agregar(postulante);
+			Postulante postulante;
+			try {
+				postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fechanac,   nacionalidad);
+				UsuarioH.agregar(postulante);
+			} catch (ExceptionFechaInvalida e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
 		}
 		
 		return !existeNick && !existeCorreo;
@@ -168,7 +182,13 @@ public class CtrlUsuario implements ICtrlUsuario {
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
 		if (postulante == null) { 
 			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
-		return postulante.crearPostulacion(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
+		try {
+			return postulante.crearPostulacion(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public Set<String> obtenerNicknamesPostulantes() {
@@ -224,8 +244,24 @@ public class CtrlUsuario implements ICtrlUsuario {
 						paq = null;
 					}
 					
-					OfertaLaboral oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo),   nombre,   descripcion,   horario,   remun,   ciu,   dep,   FechaA,   keywords,   estado,   img,   paq);
-					OLH.agregar(oferL);
+					OfertaLaboral oferL;
+					try {
+						oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo),   nombre,   descripcion,   horario,   remun,   ciu,   dep,   FechaA,   keywords,   estado,   img,   paq);
+						OLH.agregar(oferL);
+					} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExceptionPaqueteNoVigente e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExceptionCostoPaqueteNoNegativo e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExceptionDescuentoInvalido e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 				return !ofer;
 			}
@@ -350,7 +386,12 @@ public class CtrlUsuario implements ICtrlUsuario {
 		postulante.setCorreoElectronico(correo);
 		postulante.setContrasenia(contraseña); 
 		postulante.setImagen(imagen);
-		postulante.setFechaNac(fechanac);
+		try {
+			postulante.setFechaNac(fechanac);
+		} catch (ExceptionFechaInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		postulante.setNacionalidad(nacionalidad);
 	}
 
@@ -361,7 +402,12 @@ public class CtrlUsuario implements ICtrlUsuario {
 		postulante.setApellido(apellido);
 		postulante.setCorreoElectronico(correo);
 		postulante.setContrasenia(contraseña); 
-		postulante.setFechaNac(fechanac);
+		try {
+			postulante.setFechaNac(fechanac);
+		} catch (ExceptionFechaInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		postulante.setNacionalidad(nacionalidad);
 	}
 
@@ -445,8 +491,15 @@ public class CtrlUsuario implements ICtrlUsuario {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
 		if (!existe) {
-			Postulante postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fechanac,   nacionalidad,   imagen); // falta agregarle el parametro img
-			UsuarioH.agregar(postulante);
+			Postulante postulante;
+			try {
+				postulante = new Postulante(nick,   contraseña,   nombre,   apellido,   mail,   fechanac,   nacionalidad,   imagen);
+				UsuarioH.agregar(postulante);
+			} catch (ExceptionFechaInvalida e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // falta agregarle el parametro img
+			
 			return true;
 		}
 		else { 

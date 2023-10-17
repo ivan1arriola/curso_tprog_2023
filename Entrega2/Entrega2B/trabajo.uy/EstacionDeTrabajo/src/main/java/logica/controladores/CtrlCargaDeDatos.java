@@ -2,9 +2,17 @@ package main.java.logica.controladores;
 
 
 import java.time.format.DateTimeFormatter; 
-import java.util.List; 
-import main.java.excepciones.ExceptionEmpresaInvalida; 
-import main.java.excepciones.ExceptionUsuarioNoEncontrado; 
+import java.util.List;
+
+import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import main.java.excepciones.ExceptionUsuarioNoEncontrado;
+import main.java.excepciones.ExceptionValidezNegativa;
+
 import java.util.ArrayList; 
 import main.java.logica.Fabrica; 
 import main.java.logica.datatypes.DTHora; 
@@ -147,7 +155,16 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	}
         } catch (IOException e40) {
         	e40.printStackTrace();
-        }
+        } catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionDescuentoInvalido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/OfertasLaborales.csv");
        	     BufferedReader reader5 = new BufferedReader(new InputStreamReader(inputStream2))) {
@@ -355,7 +372,13 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         			eune.printStackTrace();
         		} catch (ExceptionEmpresaInvalida eei) {
         			eei.printStackTrace();
-        		}
+        		} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         } catch (IOException e9) {
         	e9.printStackTrace();
@@ -471,7 +494,13 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         	}
         } catch (IOException e41) {
         	e41.printStackTrace();
-        }
+        } catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
         try (InputStream inputStream3 = getClass().getResourceAsStream("/main/datos/PaquetesCompras.csv");
         	     BufferedReader reader17 = new BufferedReader(new InputStreamReader(inputStream3))) {
@@ -517,6 +546,15 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 			   	}
        	} catch (IOException e41) {
 			e41.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionCompraPaqueteConValorNegativo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

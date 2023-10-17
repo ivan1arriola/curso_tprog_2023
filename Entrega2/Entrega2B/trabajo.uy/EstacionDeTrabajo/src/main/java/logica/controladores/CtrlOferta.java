@@ -35,7 +35,12 @@ import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionDuracionNegativa;
+import main.java.excepciones.ExceptionExpoNegativa;
+import main.java.excepciones.ExceptionFechaInvalida;
+import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionValidezNegativa;
 
@@ -98,9 +103,17 @@ public class CtrlOferta implements ICtrlOferta{
 		if (existe) {
 			throw new IllegalArgumentException("Ya existe una oferta con ese nombre");
 		} else {
-			TipoOferta tipoOfer = new TipoOferta(nomb,   fechaA,   costo,   dur,   expo,   desc); 
-			TOH.agregar(tipoOfer);
-			return true;
+			TipoOferta tipoOfer;
+			try {
+				tipoOfer = new TipoOferta(nomb,   fechaA,   costo,   dur,   expo,   desc);
+				TOH.agregar(tipoOfer);
+				return true;
+			} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} 
+			
 		}
 	}
 
@@ -182,8 +195,16 @@ public class CtrlOferta implements ICtrlOferta{
 				}
 			}
 			
-			OfertaLaboral oferLab = empresa.altaOfertaLaboral(tipoOfer,   nombre,   descripcion,   horario,   remun,   ciu,   dep,   fechaA,   keywords,   estado,   img,   paq);
-			OLH.agregar(oferLab);
+			OfertaLaboral oferLab;
+			try {
+				oferLab = empresa.altaOfertaLaboral(tipoOfer,   nombre,   descripcion,   horario,   remun,   ciu,   dep,   fechaA,   keywords,   estado,   img,   paq);
+				OLH.agregar(oferLab);
+			} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
+					| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		return !ofer;
 	}
@@ -223,7 +244,12 @@ public class CtrlOferta implements ICtrlOferta{
 			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 			OfertaLaboral oferLab = OLH.buscar(nombre);
 			Postulacion postulacion = CtrllUser.crearPostulacion(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab);
-			oferLab.registrarPostulacion(postulacion);
+			try {
+				oferLab.registrarPostulacion(postulacion);
+			} catch (ExceptionFechaInvalida e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return !existe;
 	}

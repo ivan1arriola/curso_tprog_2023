@@ -8,6 +8,9 @@ import java.util.Set;
 
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
@@ -89,7 +92,7 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa{
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
     	if(remun >= 0) {
         	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
             ofertasLaborales.add(ofertaLab);
@@ -102,7 +105,7 @@ public class Empresa extends Usuario {
     }
 
     
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa {
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
     	if(remun >= 0) {
 	    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
 	    	ofertasLaborales.add(ofertaLab);
@@ -113,7 +116,7 @@ public class Empresa extends Usuario {
     	}
     }
     
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa {
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
     	if(remun >= 0) {
     		OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
 	    	ofertasLaborales.add(ofertaLab);
