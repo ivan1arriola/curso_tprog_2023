@@ -2,15 +2,16 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="javabeans.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
-<%@ page import="main.java.logica.datatypes.DTUsuario" %>
+<%@ page import="javabeans.UsuarioBean" %>
 <%@ page import="java.util.Base64" %>
 <%@ page import="javabeans.OfertaLaboralBean" %>
 
 <%
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario"); // Se supone que no se visualiza para Visitante
     OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
-    Set<DTUsuario> postulantes = ofertaLaboral.getPostulantes();
+    Set<UsuarioBean> postulantes = ofertaLaboral.getPostulantes();
 %>
+
 
 <div>
     <div class="mt-4" id="postulaciones">
@@ -30,7 +31,7 @@
                 }
             } else {
                 // Si hay postulantes, muestra la lista de postulantes como lo hiciste anteriormente
-                for (DTUsuario postulante : postulantes) { 
+                for (UsuarioBean postulante : postulantes) { 
                     String imagen = postulante.getImagen();
                    
 

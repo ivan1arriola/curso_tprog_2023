@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="javabeans.PaqueteBean" %>
 
-<% boolean yaSeCompro = (boolean) request.getAttribute("yaSeCompro"); %>
+<% boolean yaSeCompro = (boolean) request.getAttribute("yaSeCompro"); 
+PaqueteBean paquete = (PaqueteBean) request.getAttribute("paquete");
+%>
 
 <% if (!yaSeCompro) { %>
     <div class="col-3">
-        <a href="<%= request.getContextPath() %>/comprarpaquete?p=<%= request.getAttribute("nombrePaquete")%>" class="btn btn-primary" data-toggle="modal" data-target="#verificarCompraModal">
+        <a href="<%= request.getContextPath() %>/comprarpaquete?p=<%= paquete.getNombre()%>" class="btn btn-primary" data-toggle="modal" data-target="#verificarCompraModal">
             <i class="fas fa-shopping-cart"></i> Comprar
         </a>
     </div>

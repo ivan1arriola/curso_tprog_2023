@@ -150,6 +150,15 @@ public class Postulante extends Usuario{
         }
         return postul;
     }
+    
+    public Set<String> listarPostulaciones() {
+        Set<String> postulacionesList = new HashSet<>();
+        for (Postulacion postulacion : postulaciones) {
+            postulacionesList.add(postulacion.obtenerNombreOfertaLaboral());
+        }
+        return postulacionesList;
+    }
+
 
     public Set<String> listarOfertasLaborales(){
         Set<String> lista = new HashSet<String>();
@@ -162,5 +171,7 @@ public class Postulante extends Usuario{
 
         return lista;
     }
+
+	
  
 }

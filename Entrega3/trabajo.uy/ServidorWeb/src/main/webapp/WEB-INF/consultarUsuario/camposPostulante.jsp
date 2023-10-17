@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.java.logica.datatypes.DTPostulante" %>
+<%@ page import="javabeans.UsuarioBean" %>
 
 <%
-DTPostulante usuario = (DTPostulante) request.getAttribute("usuario");
+UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 %>
 
 <div class="form-group">

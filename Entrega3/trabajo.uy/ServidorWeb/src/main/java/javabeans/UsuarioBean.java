@@ -12,14 +12,18 @@ public class UsuarioBean {
     private String apellido;
     private String nombre;
     private String contrasenia;
-    //private String imagen;
+    private String imagen;
     private String descripcion;
     private String url;
     private LocalDate fechaNac;
     private String nacionalidad;
     private Set<OfertaLaboralBean> ofertasLaborales;
-    //private Set<DTPostulacion> postulaciones;
+    private Set<PostulacionBean> postulaciones;
     private TipoUsuario tipo;
+    
+    private Set<PaqueteBean> paquetes;
+    
+    private String error;
     
     
     public UsuarioBean() {
@@ -34,6 +38,9 @@ public class UsuarioBean {
         this.nacionalidad = null;
         this.ofertasLaborales = null;
         this.tipo = null;
+        this.paquetes = null;
+        
+        this.error = null;
     }
     
 	public String getNickname() {
@@ -102,6 +109,40 @@ public class UsuarioBean {
 	public void setOfertasLaborales(Set<OfertaLaboralBean> ofertasLaborales) {
 		this.ofertasLaborales = ofertasLaborales;
 	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public Set<PostulacionBean> getPostulaciones() {
+		return postulaciones;
+	}
+
+	public void setPostulaciones(Set<PostulacionBean> postulaciones) {
+		this.postulaciones = postulaciones;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public Set<PaqueteBean> getPaquetes() {
+		return paquetes;
+	}
+
+	public void setPaquetes(Set<PaqueteBean> paquetes) {
+		this.paquetes = paquetes;
+	}
+
+
     
     
 

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="main.java.logica.datatypes.DTCantTO" %>
-<%@ page import="java.util.HashSet" %>
+<%@ page import="javabeans.CantTipoPublicacionBean" %>
+<%@ page import="javabeans.PaqueteBean" %>
+<%@ page import="java.util.Set" %>
 
 <% 
 
- boolean mostrarComprar = (boolean) request.getAttribute("mostrarComprar");
+ 	boolean mostrarComprar = (boolean) request.getAttribute("mostrarComprar");
+	PaqueteBean paquete = (PaqueteBean) request.getAttribute("paquete");
 
 %>
 
@@ -13,7 +15,7 @@
 
 <head>
     <jsp:include page="/WEB-INF/templates/head.jsp" />
-    <title><%= (request.getAttribute("nombrePagina") != null && !((String) request.getAttribute("nombrePagina")).isEmpty()) ? request.getAttribute("nombrePagina") : "Paquete" %></title>
+	<title><%= paquete.getNombre() %></title>
 </head>
 
 <body>
@@ -33,16 +35,16 @@
                     <div id="results" class="mt-4">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="<%= request.getAttribute("imagenPaquete") %>" alt="Imagen 1" class="img-fluid mb-2" />
+                                <img src="<%= paquete.getImagen() %>" alt="Imagen 1" class="img-fluid mb-2" />
                             </div>
                             <div class="col-md">
                                 <h2>Información del Paquete</h2>
-                                <p><b>Nombre:</b> <%= request.getAttribute("nombrePaquete") %></p>
-                                <p><b>Costo del Paquete:</b> <%= request.getAttribute("costoPaquete") %></p>
-                                <p><b>Descuento del Paquete:</b> <%= request.getAttribute("descuentoPaquete") %></p>
-                                <p><b>Validez del Paquete:</b> <%= request.getAttribute("validezPaquete") %></p>
-                                <p><b>Descripción del Paquete:</b> <%= request.getAttribute("descripcionPaquete") %></p>
-                                <p><b>Fecha:</b> <%= request.getAttribute("fechaPaquete") %></p>
+                                <p><b>Nombre:</b> <%= paquete.getNombre() %></p>
+                                <p><b>Costo del Paquete:</b> <%= paquete.getCosto() %></p>
+                                <p><b>Descuento del Paquete:</b> <%= paquete.getDescuento() %></p>
+                                <p><b>Validez del Paquete:</b> <%= paquete.getValidez() %></p>
+                                <p><b>Descripción del Paquete:</b> <%= paquete.getDescripcion() %></p>
+                                <p><b>Fecha:</b> <%= paquete.getFechaAlta() %></p>
                             </div>
                             
                             
@@ -53,7 +55,7 @@
                         </div>
                     </div>
                     <h2 class="mt-4">Tipos de publicación y sus cantidades</h2>
-                    <% HashSet<DTCantTO> tiposDePublicacion = (HashSet<DTCantTO>) request.getAttribute("tiposDePublicacion"); %>
+                    <% Set<CantTipoPublicacionBean> tiposDePublicacion = paquete.getTiposDePub(); %>
 					<table class="table" id="tiposDePublicacion">
 					    <thead>
 					        <tr>
@@ -63,7 +65,7 @@
 					        </tr>
 					    </thead>
 					    <tbody>
-					        <% for (DTCantTO tipoDePublicacion : tiposDePublicacion) { %>
+					        <% for (CantTipoPublicacionBean tipoDePublicacion : tiposDePublicacion) { %>
 					            <tr>
 					                <td><%= tipoDePublicacion.getNombre() %></td>
 					                <td><%= tipoDePublicacion.getCantidad() %></td>

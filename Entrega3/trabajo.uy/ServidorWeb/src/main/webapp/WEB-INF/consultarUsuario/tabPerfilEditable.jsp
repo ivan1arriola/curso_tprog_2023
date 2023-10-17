@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
-<%@ page import="main.java.logica.datatypes.DTPostulante" %>
-<%@ page import="main.java.logica.datatypes.DTUsuario" %>
+<%@ page import="javabeans.UsuarioBean" %>
+<%@ page import="enumeration.TipoUsuario" %>
+
 
 <%
-DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
+UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 %>
 
 
@@ -33,7 +33,7 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
                     <div class="form-group">
                         <label for="correo">Correo electrónico:</label>
                         <input type="email" class="form-control" id="correo" name="correo" disabled
-                            value="<%= usuario.getcorreoElectronico() %>" readonly required />
+                            value="<%= usuario.getCorreoElectronico() %>" readonly required />
                     </div>
                     <!-- Sección de Contraseña -->
                     <section id="PasswordSection">
@@ -47,9 +47,9 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
                         </div>
                     </section>
                     <!-- Importar JSP de acuerdo al tipo de usuario -->
-                    <% if (usuario instanceof DTPostulante) { %>
+                    <% if (usuario.getTipo() == TipoUsuario.Postulante) { %>
                     <jsp:include page="./camposPostulante.jsp" />
-                    <% } else if (usuario instanceof DTEmpresa) { %>
+                    <% } else if (usuario.getTipo() == TipoUsuario.Empresa) { %>
                     <jsp:include page="./camposEmpresa.jsp" />
                     <% } %>
                     <div class="form-group mt-3">

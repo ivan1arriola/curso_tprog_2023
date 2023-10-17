@@ -44,6 +44,8 @@ public interface ICtrlOferta {
 		
 		public abstract Set<String> listarOfertasLaboralesKeywords(String keywords);
 		
+		
+		
 		public abstract boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion);
 		
 		public abstract DTPostulacion obtenerDatosPostulacionW(String nick,  String ofer);
@@ -54,6 +56,10 @@ public interface ICtrlOferta {
 		public abstract Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
 		
 		public abstract Set<String> listarOfertasLaboralesIngresadas(String nickname_e);
+		
+		public abstract Set<String> listarTodasLasOfertasLaborales(String nickname_e);
+		
+
 		
 		public abstract void rechazoOL(String nombre_oferta);
 		

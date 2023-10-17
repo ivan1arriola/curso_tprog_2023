@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Servlet implementation class ModificarUsuario
- */
+@WebServlet("/modificarusuario")
 public class ModificarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,12 +24,7 @@ public class ModificarUsuario extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-    
-
-    
+ 
     public static LocalDate convertirCadenaAFecha(String fechaEnCadena) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -154,12 +154,13 @@
           </section>
 
           <!-- Campos adicionales para Empresa -->
-          <div id="campos-empresa" style="display: none">
+          <div id="campos-empresa">
             <section>
               <h2 class="h4">Información de la Empresa</h2>
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="descripcion-empresa-input" name="descripcion"  placeholder=" " value="<%= descripcionEmpresa != null ? descripcionEmpresa : "" %>">
+				<textarea class="form-control" id="descripcion-empresa-input" name="descripcion" placeholder=" " style="height: 150px" value="<%= descripcionEmpresa != null ? descripcionEmpresa : "" %>"><%= descripcionEmpresa != null ? descripcionEmpresa : "" %></textarea>
+                
                 <label for="descripcion-empresa-input">Descripción de la Empresa *</label>
                 <div class="invalid-feedback">
                   Descripción de la Empresa es un atributo requerido
@@ -174,7 +175,7 @@
           </div>
 
           <!-- Campos adicionales para Postulante -->
-          <div id="campos-postulante" style="display: none">
+          <div id="campos-postulante">
             <section>
               <h2 class="h4">Información del Postulante</h2>
 

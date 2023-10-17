@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
-<%@ page import="main.java.logica.datatypes.DTPostulante" %>
-<%@ page import="main.java.logica.datatypes.DTUsuario" %>
+<%@ page import="javabeans.UsuarioBean" %>
+<%@ page import="enumeration.TipoUsuario" %>
+
 <%
-DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
+UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 %>
+
 
                 <!-- Tab de perfil -->
                 <div class="tab-pane fade show active" id="perfil-panel" style="margin-top: 20px">
@@ -25,16 +26,16 @@ DTUsuario usuario = (DTUsuario) request.getAttribute("usuario");
                                 <div class="form-group">
                                     <label for="correo">Correo electrónico:</label>
                                     <input type="email" class="form-control" id="correo" disabled
-                                        value="<%= usuario.getcorreoElectronico() %>" readonly required />
+                                        value="<%= usuario.getCorreoElectronico() %>" readonly required />
                                 </div>
                                 
-                                <%if (usuario instanceof DTPostulante) {  // Importar JSP de camposPostulante.jsp %>
+                                <%if (usuario.getTipo() == TipoUsuario.Postulante) {  // Importar JSP de camposPostulante.jsp %>
                                 
                                 <jsp:include page="./camposPostulante.jsp" />
                                 
                                 <% }%>
                                 
-                                <%if (usuario instanceof DTEmpresa) {  // Importar JSP de camposPostulante.jsp %>
+                                <%if (usuario.getTipo() == TipoUsuario.Empresa) {  // Importar JSP de camposPostulante.jsp %>
                                 
                                 <jsp:include page="./camposEmpresa.jsp" />
                                 

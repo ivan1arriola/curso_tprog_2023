@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
+<%@ page import="javabeans.UsuarioBean" %>
+
 
 <%
-DTEmpresa usuario = (DTEmpresa) request.getAttribute("usuario");
+UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 %>
+
 
 <div class="form-group">
     <label for="descripcion">Descripción:</label>

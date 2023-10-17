@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">${param.nombre}</h5>
                 <p class="card-text">${param.descripcion}</p>
-                <a href="${param.enlace}" class="card-link">Leer más</a>
+                <a href="${param.enlace}" class="card-link">Leer más</a>      
             </div>
         </div>
     </div>

@@ -37,7 +37,7 @@ const validarContraseña = () => {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-
+	mostrarCamposEspeciales();
     (() => {
         "use strict";
     

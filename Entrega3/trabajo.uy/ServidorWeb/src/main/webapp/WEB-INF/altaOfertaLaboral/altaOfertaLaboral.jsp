@@ -118,9 +118,9 @@
               <label for="remuneracion" class="form-label">Remuneracion</label>
             </div>
             <div class="col-8">
-              <input type="number" class="form-control" id="remuneracion" name="remuneracion" required placeholder="Remuneracion" />
+              <input type="number" class="form-control" id="remuneracion" name="remuneracion" required placeholder="Remuneracion" min=0 />
             	<div class="invalid-feedback">
-              No puede ser vacio
+              No puede ser vacio y debe ser mayor a 0
             </div>
             </div>
           </div>

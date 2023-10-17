@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import javabeans.OfertaLaboralBean;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import interfaces.ILogica;
+
 
 /**
  * Servlet implementation class ListarOfertasLaborales
@@ -21,44 +24,16 @@ import java.util.Set;
 @WebServlet("/ofertaslaborales")
 public class ListarOfertasLaborales extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ICtrlOferta ctrlOferta;
+	private ILogica logica;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ListarOfertasLaborales() {
         super();
-        this.ctrlOferta = Fabrica.getInstance().getICtrlOferta();
+        this.logica = FabricaWeb.getInstance().getLogica();
     }
     
-    private HashSet<DTOfertaExtendido> getOfertasLaborales() {
-        HashSet<DTOfertaExtendido> ofertas = (HashSet<DTOfertaExtendido>) ctrlOferta.listarOfertasLaboralesConfirmadas();
-        return ofertas;
-    }
-    
-    
-    
-    
-    private HashSet<DTOfertaExtendido> buscarPorInput(String consulta){
-    	HashSet<String> ofertas = (HashSet<String>) ctrlOferta.listarOfertasLaboralesConfirmadas(consulta);
-    	
-    	if(ofertas.isEmpty()) {
-    		return null;
-    	}
-    	
-    	HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
-    	
-    	for( String nombreOferta : ofertas) {
-    		DTOfertaExtendido dtOferta = ctrlOferta.obtenerOfertaLaboral(nombreOferta);
-    		dtOfertas.add(dtOferta);
-    	}
-    	
-    	
-		return dtOfertas;
-    	
-    	
-    }
-
 
 
 	/**
@@ -72,22 +47,22 @@ public class ListarOfertasLaborales extends HttpServlet {
         String consulta = request.getParameter("search");
         String keyword = request.getParameter("key");
 
-        HashSet<DTOfertaExtendido> ofertas = null;
+        Set<OfertaLaboralBean> ofertas = null;
 
         try {
         	if(keyword != null && !keyword.isEmpty()) {
-        		ofertas = buscarPorKeyword(keyword);
+        		ofertas = logica.buscarOfertasPorKeyword(keyword);
         		
         	} else if (consulta != null && !consulta.isEmpty()) {
-                ofertas = buscarPorInput(consulta);
+                ofertas = logica.buscarOfertasPorInput(consulta);
             } else {
-                ofertas = getOfertasLaborales();
+                ofertas = logica.listarDatosOfertas();
             }
         } catch (Exception e) {
             // Handle the exception and provide an error message
             e.printStackTrace(); // Log the exception for debugging
             // In case of an error, fall back to getOfertasLaborales()
-            ofertas = getOfertasLaborales();
+            ofertas = logica.listarDatosOfertas();
         }
 
         // Almacena las ofertas como un atributo en el objeto request
@@ -96,24 +71,6 @@ public class ListarOfertasLaborales extends HttpServlet {
         // Reenvía la solicitud al JSP
         request.getRequestDispatcher("/WEB-INF/listar/ofertaslaborales.jsp").forward(request, response);
     }
-
-	private HashSet<DTOfertaExtendido> buscarPorKeyword(String keyword) {
-		HashSet<String> ofertas = (HashSet<String>) ctrlOferta.listarOfertasLaboralesKeywords(keyword);
-		
-		if(ofertas.isEmpty()) {
-    		return null;
-    	}
-    	
-    	HashSet<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
-    	
-    	for( String nombreOferta : ofertas) {
-    		DTOfertaExtendido dtOferta = ctrlOferta.obtenerOfertaLaboral(nombreOferta);
-    		dtOfertas.add(dtOferta);
-    	}
-    	
-    	
-		return dtOfertas;
-	}
 
 
 }

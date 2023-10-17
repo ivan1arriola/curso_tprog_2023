@@ -1,13 +1,14 @@
 package controller;
 
-import jakarta.servlet.RequestDispatcher;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import javabeans.PaqueteBean;
+import jakarta.servlet.RequestDispatcher;
+
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTPaquete;
 import utils.FabricaWeb;
@@ -15,108 +16,48 @@ import utils.FabricaWeb;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
-
 import enumeration.TipoUsuario;
 
-
-/**
- * Servlet implementation class ConsultarPaquete
- */
 @WebServlet("/consultarpaquete")
 public class ConsultarPaquete extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ConsultarPaquete() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
-		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
-
+        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        
         String nombrePaquete = request.getParameter("p");
         request.setAttribute("mostrarComprar", false);
-        
-		HttpSession session = request.getSession(false);
-		if( session == null) {
-			
-		} else {
-			
-			
-			String nickname = (String) session.getAttribute("nickname");
-			if(nickname != null) {
-				
-				TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
-				Set<String> paquetes = Fabrica.getInstance().getICtrlOferta().listarComprasPaquete(nickname);
 
-				if(tipo == TipoUsuario.Empresa && !paquetes.contains(nombrePaquete)) {
-					
-					request.setAttribute("mostrarComprar", true);
-					request.setAttribute("yaSeCompro", false);
-					
-				} else if(tipo == TipoUsuario.Empresa ) {
-					
-					request.setAttribute("mostrarComprar", true);
-					request.setAttribute("yaSeCompro", true);	
-					
-				}
-				
-			}
-			
-			
-			
-			
-			
-			
-			
-		}
-		
-		
-		
-		
-		
-		
-		
+        HttpSession session = request.getSession(false);
 
-		
-		
-		
-		
-		
-		
-		
+        if (session != null) {
+            String nickname = (String) session.getAttribute("nickname");
+            if (nickname != null) {
+                TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
+                
 
-		
-		
-		
-        
-        
+                if (tipo == TipoUsuario.Empresa) {
+                	Set<String> paquetes = FabricaWeb.getInstance().getLogica().listarPaquetesDeEmpresa(nickname);
+                    if (!paquetes.contains(nombrePaquete)) {
+                        request.setAttribute("mostrarComprar", true);
+                        request.setAttribute("yaSeCompro", false);
+                    } else {
+                        request.setAttribute("mostrarComprar", true);
+                        request.setAttribute("yaSeCompro", true);
+                    }
+                }   
+            }
+        }
 
         try {
-            DTPaquete paquete = obtenerPaquetePorNombre(nombrePaquete);
+            PaqueteBean paquete = FabricaWeb.getInstance().getLogica().obtenerDatosPaquete(nombrePaquete);
 
-      
-                request.setAttribute("nombrePaquete", paquete.getNombre());
-                request.setAttribute("imagenPaquete", paquete.getImagen());// TODO: Reemplaza con el atributo imagen de DTPaquete
-                request.setAttribute("costoPaquete", paquete.getCosto());
-                request.setAttribute("descuentoPaquete", paquete.getDescuento());
-                request.setAttribute("validezPaquete", paquete.getValidez() + " días");
-                request.setAttribute("descripcionPaquete", paquete.getDescripcion());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                String fechaFormateada = paquete.getFechaAlta().format(formatter);
-
-                request.setAttribute("fechaPaquete", fechaFormateada);
-
-                request.setAttribute("tiposDePublicacion", paquete.getTiposDePub());
-            
+            request.setAttribute("paquete", paquete);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPaquete/paquete.jsp");
             dispatcher.forward(request, response);
@@ -131,13 +72,8 @@ public class ConsultarPaquete extends HttpServlet {
         }
     }
 
-
-    private DTPaquete obtenerPaquetePorNombre(String nombrePaquete) {
-    	return Fabrica.getInstance().getICtrlOferta().obtenerDatosPaquete(nombrePaquete);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }
+

@@ -118,4 +118,6 @@ public interface ICtrlUsuario {
     
     public abstract boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion); // PRONTA
     
+    /** Lista todas las postulaciones de un Postulante **/
+    public abstract Set<String> listarPostulacionesPostulante(String nickname);
 }

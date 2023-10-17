@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="main.java.logica.datatypes.DTOfertaExtendido" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="javabeans.OfertaLaboralBean" %>
 <%@ page import="java.util.Base64" %>
 
-
-<%
-// Obtener el objeto de usuario desde los atributos de la solicitud
-DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofertaLaboral");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +27,7 @@ DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofer
 
             <div class="sin-bordes">
                 <%
-                	HashSet<DTOfertaExtendido> ofertasLaborales = (HashSet<DTOfertaExtendido>) request.getAttribute("ofertasLaborales");
+                	Set<OfertaLaboralBean> ofertasLaborales = (Set<OfertaLaboralBean>) request.getAttribute("ofertasLaborales");
                 if (ofertasLaborales == null || ofertasLaborales.isEmpty()) {
                     // Si ofertasLaborales es null o está vacío, muestra un mensaje
                 %>
@@ -46,19 +41,30 @@ DTOfertaExtendido ofertaLaboral = (DTOfertaExtendido) request.getAttribute("ofer
 
                 <%
                 } else {
-                    for (DTOfertaExtendido oferta : ofertasLaborales) {
+                    for (OfertaLaboralBean oferta : ofertasLaborales) {
                         String imagenUrl = oferta.getImagen();
                      
                         String nombre = oferta.getNombre();
+                        String empresa = oferta.getNicknameEmpresa();
                         String descripcion = oferta.getDescripcion();
                         String enlace = request.getContextPath() + "/consultarofertalaboral?o=" + oferta.getNombre();
                 %>
-                <jsp:include page="/WEB-INF/templates/lista1.jsp">
-                    <jsp:param name="imagenUrl" value="<%= imagenUrl %>" />
-                    <jsp:param name="nombre" value="<%= nombre %>" />
-                    <jsp:param name="descripcion" value="<%= descripcion %>" />
-                    <jsp:param name="enlace" value="<%= enlace %>" />
-                </jsp:include>
+                <div class="card mb-3">
+				    <div class="row g-0">
+				        <div class="col-md-4">
+				            <img src="<%=imagenUrl%>" class="img-fluid rounded-start" alt="<%=nombre%>" />
+				        </div>
+				        <div class="col">
+				            <div class="card-body">
+				                <h5 class="card-title"><%=nombre%></h5>
+				                <h6 class="card-subtitle mb-2 text-muted"><%=empresa%></h6>
+				                <p class="card-text"><%=descripcion%></p>
+				                <a href="<%=enlace%>" class="card-link">Leer más</a>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+
                 <%
                     }
                 }

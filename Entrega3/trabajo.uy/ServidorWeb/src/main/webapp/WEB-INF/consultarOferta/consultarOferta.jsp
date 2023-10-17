@@ -3,7 +3,7 @@
 <%@ page import="java.util.Base64" %>
 <%@ page import="javabeans.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
-<%@ page import="main.java.logica.datatypes.DTUsuario" %>
+<%@ page import="javabeans.UsuarioBean" %>
 
 <%
     // Obtener el objeto de usuario desde los atributos de la solicitud
@@ -16,11 +16,11 @@
     
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
     
-    boolean mostrarContenido = (tipoUsuario == TipoUsuario.Empresa && ofertaLaboral.getMostrarPostulantesYPaquetes());
+    boolean mostrarContenido = (tipoUsuario == TipoUsuario.Empresa && ofertaLaboral.isMostrarPostulantes());
     
     
    
-    Set<DTUsuario> postulantes = ofertaLaboral.getPostulantes();
+    Set<UsuarioBean> postulantes = ofertaLaboral.getPostulantes();
     boolean mostrarPostular = TipoUsuario.Postulante == tipoUsuario && postulantes.isEmpty();
     
  
@@ -82,7 +82,7 @@
                                         </tr>
                                         <tr>
                                             <th>Remuneración:</th>
-                                            <td><%= ofertaLaboral.getRemuneracion() %> pesos uruguayos</td>
+                                            <td><%= ofertaLaboral.getRemuneracionString() %> pesos uruguayos</td>
                                         </tr>
                                         <tr>
                                             <th>Horario:</th>
@@ -98,11 +98,11 @@
                                         </tr>
                                         <tr>
                                             <th>Fecha de Alta:</th>
-                                            <td><%= ofertaLaboral.getFechaDeAlta() %></td>
+                                            <td><%= ofertaLaboral.getFechaDeAltaString() %></td>
                                         </tr>
                                         <tr>
                                             <th>Costo:</th>
-                                            <td><%= ofertaLaboral.getCosto() %></td>
+                                            <td><%= ofertaLaboral.getCostoString() %></td>
                                         </tr>
                                     </tbody>
                                 </table>

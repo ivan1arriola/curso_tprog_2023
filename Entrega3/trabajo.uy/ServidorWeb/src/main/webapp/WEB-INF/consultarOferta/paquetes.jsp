@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="javabeans.OfertaLaboralBean" %>
-<%@ page import="main.java.logica.datatypes.DTPaquete" %>
+<%@ page import="javabeans.PaqueteBean" %>
 
 <% OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
-	DTPaquete paquete = ofertaLaboral.getPaquete();
+	PaqueteBean paquete = ofertaLaboral.getPaquete();
 	if (paquete !=null){
 
 

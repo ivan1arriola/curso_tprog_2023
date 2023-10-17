@@ -6,11 +6,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTPaquete;
-import main.java.logica.datatypes.DTUsuario;
-import main.java.logica.interfaces.ICtrlOferta;
+import javabeans.OfertaLaboralBean;
+import javabeans.PaqueteBean;
+import javabeans.PostulacionBean;
+import javabeans.UsuarioBean;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -18,77 +17,53 @@ import java.util.HashSet;
 import java.util.Set;
 
 import enumeration.TipoUsuario;
+import interfaces.ILogica;
 
-/**
- * Servlet implementation class ConsultarUsuario
- */
 @WebServlet("/consultarusuario")
 public class ConsultarUsuario extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+    private ILogica logica;
+
     public ConsultarUsuario() {
         super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public DTUsuario obtenerDatosUsuario(String nick) throws UsuarioNoExisteException {
-      return Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuario(nick);
-    }
-    
-    public void cargarDTPaquete (HttpServletRequest request, HttpServletResponse response, String nickname) {
-    	
-    	ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
-    	Set<String> paquetes = ctrl.listarComprasPaquete(nickname);
-    	
-    	Set<DTPaquete> dtPaquetes = new HashSet<DTPaquete>(); 
-    	
-    	if(paquetes != null && !paquetes.isEmpty()) {
-    		for(String nombre : paquetes) {
-    			dtPaquetes.add(ctrl.obtenerDatosPaquete(nombre));
-    		}
-    		
-    	}
-
-		request.setAttribute("paquetes", dtPaquetes);
+        
+        logica = FabricaWeb.getInstance().getLogica();
     }
 
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
 
-        String nickname = request.getParameter("u");
+        String nicknameParametro = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
-        TipoUsuario tipo = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
-        
-        
+        TipoUsuario tipoUsuarioLogueado = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
 
-        if (nickname != null && !nickname.isEmpty()) {
+        ILogica logica = FabricaWeb.getInstance().getLogica();
+
+        if (nicknameParametro != null && !nicknameParametro.isEmpty()) {
             try {
-            	
-            	
-        		
-                DTUsuario usuario = obtenerDatosUsuario(nickname);
-                if (usuario == null) {
-                    throw new Exception("No se encontraron datos de usuario.");
+                UsuarioBean usuario = logica.obtenerDatosUsuario(nicknameParametro);
+
+                // valida que en efecto los datos de la session coinciden con los de la logica en caso de consultar su propio perfil
+                boolean consultaSuPerfil = validarConsultaUsuario(nicknameParametro, nicknameUsuarioLogueado, tipoUsuarioLogueado, usuario);
+
+                if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
+                    usuario = cargarPaquete(usuario, nicknameParametro);
+                    usuario = cargarOfertasLaborales(usuario, nicknameParametro, true );
                 }
+                if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) {
+                    usuario = cargarPostulaciones(usuario, nicknameParametro);
+                }
+                
+                if(!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
+                	usuario = cargarOfertasLaborales(usuario, nicknameParametro, false);
+                }
+
+                request.setAttribute("consultaSuPerfil", consultaSuPerfil);
                 request.setAttribute("usuario", usuario);
 
-                if (nickname.equals(nicknameUsuarioLogueado)) {
-                	if(TipoUsuario.Empresa == tipo) cargarDTPaquete(request, response, nickname);
-                	request.setAttribute("editable", true);
-                } else {
-                	request.setAttribute("editable", false);
-                }
-                    
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/infoUsuario.jsp");
-                    dispatcher.forward(request, response);
-                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/consultarUsuario.jsp");
+                dispatcher.forward(request, response);
+
             } catch (Exception e) {
                 String mensajeError = "Ocurrió un error al obtener los datos del usuario: " + e.getMessage();
                 request.setAttribute("mensajeError", mensajeError);
@@ -104,4 +79,79 @@ public class ConsultarUsuario extends HttpServlet {
     }
 
 
+
+	
+    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario, String nicknameParametro, boolean mostrarTodas) {
+        Set<String> nombresOfertas;
+        
+        if (!mostrarTodas) {
+            nombresOfertas = logica.listarOfertasConfirmadasDeEmpresa(nicknameParametro);
+        } else {
+            nombresOfertas = logica.listarOfertasLaboralesDeEmpresa(nicknameParametro);
+        }
+        
+        Set<OfertaLaboralBean> ofertasLaborales = new HashSet<OfertaLaboralBean>();
+        
+        if (nombresOfertas != null && !nombresOfertas.isEmpty()) {
+            for (String nombre : nombresOfertas) {
+                ofertasLaborales.add(logica.obtenerDatosOfertaLaboral(nombre));
+            }
+        }
+        
+        usuario.setOfertasLaborales(ofertasLaborales);
+        return usuario;
+    }
+
+
+	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) {
+		Set<String> nombreOfertasConPostulacion = logica.listarPostulacionesDePostulante(nicknameParametro);
+		Set<PostulacionBean> postulaciones = new HashSet<PostulacionBean>();
+		
+		if (nombreOfertasConPostulacion != null && !nombreOfertasConPostulacion.isEmpty()) {
+            for (String nombreOferta : nombreOfertasConPostulacion) {
+            	postulaciones.add(logica.obtenerDatosPostulacion(nombreOferta, nicknameParametro));
+            }
+        }
+		
+		usuario.setPostulaciones(postulaciones);
+		
+		return usuario;
+	}
+
+
+
+	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) {
+        Set<String> nombresPaquetes = logica.listarPaquetesDeEmpresa(nickname);  	
+        Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
+        if (nombresPaquetes != null && !nombresPaquetes.isEmpty()) {
+            for (String nombre : nombresPaquetes) {
+            	paquetes.add(logica.obtenerDatosPaquete(nombre));
+            }
+        }
+        usuario.setPaquetes(paquetes);
+        return usuario;
+    }
+    
+	
+    
+    
+    
+
+    private boolean validarConsultaUsuario(String nicknameParametro, String nicknameUsuarioLogueado, TipoUsuario tipoUsuarioLogueado, UsuarioBean usuario) throws Exception {
+        if (usuario.getError() != null) {
+            throw new Exception(usuario.getError());
+        }
+
+        boolean consultaSuPerfil = nicknameParametro.equals(nicknameUsuarioLogueado);
+
+        if (consultaSuPerfil && !nicknameParametro.equals(usuario.getNickname())) {
+            throw new Exception("El nickname en la lógica no coincide con el nickname de la sesión");
+        }
+
+        if (consultaSuPerfil && !usuario.getTipo().equals(tipoUsuarioLogueado)) {
+            throw new Exception("El tipo de usuario en la lógica no coincide con el tipo de usuario de la sesión");
+        }
+
+        return consultaSuPerfil;
+    }
 }

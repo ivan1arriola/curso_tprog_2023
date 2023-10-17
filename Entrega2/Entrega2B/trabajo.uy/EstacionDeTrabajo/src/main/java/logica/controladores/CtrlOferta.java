@@ -245,6 +245,8 @@ public class CtrlOferta implements ICtrlOferta{
 		return res;
 	}
 	
+
+	
 	public boolean modificarPostulacion(String nombre,   String nick,   String cvAbreviado,   String motivacion) {
 		CtrlUsuario CtrlUser = new CtrlUsuario();
 		return CtrlUser.modificarPostulacion(nombre,   nick,   cvAbreviado,   motivacion);
@@ -391,6 +393,13 @@ public class CtrlOferta implements ICtrlOferta{
 			nombresPaquetes.add(infoCompra.getPaquete().getNombre());
 		}
 		return nombresPaquetes;
+	}
+
+	@Override
+	public Set<String> listarTodasLasOfertasLaborales(String nickname_e) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
+		return empresa.listarOfertasLaborales();
 	}
 	
 	
