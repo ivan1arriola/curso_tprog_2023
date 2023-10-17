@@ -81,13 +81,16 @@ public class OfertaLaboral {
 		    this.imagen = imagennueva;
 		    
 	
-		    
+		     
 		    try {
-		    if (paq.getfechaAlta().plusDays(paq.getValidez()).isBefore(LocalDate.now())) {
-		    	throw new ExceptionPaqueteNoVigente("El paquete no se encuentra vigente");
-		    } else {
-		    this.paqueteAsoc = paq;
-		    } 
+		    	if (paq!=null) {
+				    if (paq.getfechaAlta().plusDays(paq.getValidez()).isBefore(LocalDate.now())) {
+				    	throw new ExceptionPaqueteNoVigente("El paquete no se encuentra vigente");
+				    } else {
+				    this.paqueteAsoc = paq;
+				    } 
+			    
+		    	}
 		    } catch (ExceptionPaqueteNoVigente exc) {
 		    	System.err.println("Error: " + exc.getMessage());
 		    	throw exc;

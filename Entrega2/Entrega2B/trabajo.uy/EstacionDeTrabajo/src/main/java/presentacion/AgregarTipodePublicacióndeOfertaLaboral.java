@@ -29,6 +29,7 @@ import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.interfaces.ICtrlUsuario;
 
+@SuppressWarnings("serial")
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     private JTextField cantidadMostrar;
     private ICtrlOferta ico;

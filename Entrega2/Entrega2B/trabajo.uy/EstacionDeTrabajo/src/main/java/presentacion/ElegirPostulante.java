@@ -33,7 +33,9 @@ import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
 
 //public class ElegirPostulante extends JInternalFrame {
+@SuppressWarnings("serial")
 public class ElegirPostulante extends JDialog {
+	
 
 	private ICtrlUsuario controlUsr;
 	private JLabel lblcvRed;
