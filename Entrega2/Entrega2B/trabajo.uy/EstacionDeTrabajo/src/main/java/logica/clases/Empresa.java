@@ -276,6 +276,8 @@ public class Empresa extends Usuario {
 		    if(!infoCompra.estaVencido()) {
 		    	res.add(infoCompra.obtenerDatosPaquete().getNombre());
 		    }
-
+		}
+		return res;
 	}
 }
+
