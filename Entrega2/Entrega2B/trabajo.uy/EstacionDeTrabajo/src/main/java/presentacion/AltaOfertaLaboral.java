@@ -163,7 +163,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 }
             }
         });
-        
+         
         JButton removeButton = new JButton("<Quitar");
         removeButton.setSize(114,  20);
         removeButton.setLocation(342,  400);
