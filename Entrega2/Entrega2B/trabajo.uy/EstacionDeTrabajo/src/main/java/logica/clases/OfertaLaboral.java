@@ -9,7 +9,12 @@ import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 import main.java.excepciones.ExceptionPaqueteNoVigente;
-
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionCiudadInvalida;
+import main.java.excepciones.ExceptionFechaInvalida;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +57,7 @@ public class OfertaLaboral {
 		    EstadoOL estadoNuevo,
 		    String imagennueva,
 		    Paquete paq
-		) {
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,ExceptionPaqueteNoVigente,ExceptionCostoPaqueteNoNegativo,ExceptionDescuentoInvalido{
 		
 		    this.nombre = atrnombre;
 		    this.descripcion = atrdescripcion;
@@ -60,10 +65,15 @@ public class OfertaLaboral {
 		    this.departamento = atrdepartamento;
 		    this.horario = atrhorario;
 		    
-		    if (atrremuneracion <=0) { 
-		    	throw new IllegalArgumentException("La remuneración debe ser mayor que 0");
-		    } else {
-		    	this.remuneracion = atrremuneracion; 
+		    try {
+			    if (atrremuneracion <=0) { 
+			    	throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración debe ser mayor que 0");
+			    } else {
+			    	this.remuneracion = atrremuneracion; 
+			    }
+		    } catch (ExceptionRemuneracionOfertaLaboralNegativa exc) {
+		    	System.out.println(exc);
+		        throw exc;
 		    }
 		    
 		    this.tOferta = atrtOferta;
@@ -78,8 +88,9 @@ public class OfertaLaboral {
 		    } else {
 		    this.paqueteAsoc = paq;
 		    } 
-		    } catch (ExceptionPaqueteNoVigente e) {
-		    	System.err.println("Error: " + e.getMessage());
+		    } catch (ExceptionPaqueteNoVigente exc) {
+		    	System.err.println("Error: " + exc.getMessage());
+		    	throw exc;
 		    }
 		    
 		  
@@ -87,21 +98,31 @@ public class OfertaLaboral {
 
 		    if (this.paqueteAsoc != null) {
 		    	
-		    	if (tOferta.getCosto()<=0) {
-		    		throw new IllegalArgumentException("El costo del paquete debe ser mayor que 0"); }
-		        float costodadoPaq = tOferta.getCosto();
+		    	try {
+			    	if (tOferta.getCosto()<=0) {
+			    		throw new ExceptionCostoPaqueteNoNegativo("El costo del paquete debe ser mayor que 0"); }
+			        float costodadoPaq = tOferta.getCosto();
+		    	} catch (ExceptionCostoPaqueteNoNegativo exc) {
+		    		System.err.println("Error: " + exc.getMessage());
+			    	throw exc;
+		    	}
 		    	
-		    	if (paqueteAsoc.getDescuento()<0) { 
-		    		throw new IllegalArgumentException("El descuento debe ser mayor o igual a 0"); }
-		    	
-		        float descuento = paqueteAsoc.getDescuento();
+		    	try {
+			    	if (paqueteAsoc.getDescuento()<0) { 
+			    		throw new ExceptionDescuentoInvalido("El descuento debe ser mayor o igual a 0"); }
+			    	
+			        float descuento = paqueteAsoc.getDescuento();
+		    	} catch (ExceptionDescuentoInvalido exc) {
+		    		System.err.println("Error: " + exc.getMessage());
+		    		throw exc;
+		    	}
 		    	
 		    	
 		    	if (paqueteAsoc.getDescuento()==0) { 
-		    		this.costo = tOferta.getCosto(); }
-		    	else {
+		    		this.costo = tOferta.getCosto();
+		    	} else {
 		        //this.costo = costodadoPaq - costodadoPaq * (1 / descuento);
-		    		this.costo = costodadoPaq * (1 - descuento/100);
+		    		this.costo =  tOferta.getCosto() * (1 - paqueteAsoc.getDescuento()/100);
 		        
 		    	}
 		        
@@ -127,7 +148,7 @@ public class OfertaLaboral {
 		    Float atrremuneracion,
 		    LocalDate atrfechaAlta,
 		    EstadoOL estadoNuevo
-		) {
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,ExceptionPaqueteNoVigente,ExceptionCostoPaqueteNoNegativo,ExceptionDescuentoInvalido {
 		    this(
 		        empresaPublicadora,
 		        atrkeywords,
@@ -159,7 +180,7 @@ public class OfertaLaboral {
 		    LocalDate atrfechaAlta,
 		    EstadoOL estadoNuevo,
 		    Paquete paq
-		) {
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,ExceptionPaqueteNoVigente,ExceptionCostoPaqueteNoNegativo,ExceptionDescuentoInvalido{
 		    this(
 		        empresaPublicadora,
 		        atrkeywords,
@@ -191,7 +212,7 @@ public class OfertaLaboral {
 		    LocalDate atrfechaAlta,
 		    EstadoOL estadoNuevo,
 		    String imagennueva
-		) {
+		)throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
 		    this(
 		        empresaPublicadora,
 		        atrkeywords,
@@ -276,11 +297,16 @@ public class OfertaLaboral {
 		descripcion = Desc;
 	}
 	
-	public void setCiudad(String Ciud) 	{
-		if (Ciud.matches("^[a-zA-Z][a-zA-Z\\s+]*$")) {
-		ciudad = Ciud;
-		} else {
-			throw new IllegalArgumentException("Ciudad incorrecta");
+	public void setCiudad(String Ciud) throws ExceptionCiudadInvalida	{
+		try {
+			if (Ciud.matches("^[a-zA-Z][a-zA-Z\\s+]*$")) {
+			ciudad = Ciud;
+			} else {
+				throw new ExceptionCiudadInvalida("Ciudad incorrecta");
+			}
+		} catch (ExceptionCiudadInvalida exc) {
+			System.err.println("Error: " + exc.getMessage());
+	    	throw exc;
 		}
 	}
 	
@@ -292,37 +318,56 @@ public class OfertaLaboral {
 		horario = Horar; 
 	}
 	
-	public void setRemuneracion(Float Remunera) {
-		if (Remunera<=0) {
-			throw new IllegalArgumentException("Remuneración debe ser mayor que 0");
-		} else {
-		remuneracion = Remunera;
+	public void setRemuneracion(Float Remunera) throws ExceptionRemuneracionOfertaLaboralNegativa{
+		try {
+			if (Remunera<=0) {
+				throw new ExceptionRemuneracionOfertaLaboralNegativa("Remuneración debe ser mayor que 0");
+			} else {
+			remuneracion = Remunera;
+		} 
+		}catch (ExceptionRemuneracionOfertaLaboralNegativa exc) {
+			System.err.println("Error: " + exc.getMessage());
+	    	throw exc;
 		}
 	}
+		
 	
-	public void setFechaAlta(LocalDate fecha) {
-		if (this.paqueteAsoc!=null) {
-			LocalDate paqAlta = this.paqueteAsoc.getfechaAlta();
-			LocalDate fechaLimite = paqAlta.plusDays(this.paqueteAsoc.getValidez());
-			if (LocalDate.now().isAfter(fechaLimite)) {
-				throw new IllegalArgumentException("En la fecha seleccionada, el paquete no está vigente");
+	
+	public void setFechaAlta(LocalDate fecha) throws ExceptionPaqueteNoVigente{
+		try {
+			if (this.paqueteAsoc!=null) {
+				LocalDate paqAlta = this.paqueteAsoc.getfechaAlta();
+				LocalDate fechaLimite = paqAlta.plusDays(this.paqueteAsoc.getValidez());
+				if (LocalDate.now().isAfter(fechaLimite)) {
+					throw new ExceptionPaqueteNoVigente("En la fecha seleccionada, el paquete no está vigente");
+				}
 			}
+			fechaAlta = fecha;
+		} catch (ExceptionPaqueteNoVigente exc) {
+			System.err.println("Error: " + exc.getMessage());
+	    	throw exc;
 		}
-		fechaAlta = fecha; 
 	}
 	
-	public void setCosto(float cost) {
+	public void setCosto(float cost) throws ExceptionCostoPaqueteNoNegativo{
+		try {
 		if (cost<=0) {
-			throw new IllegalArgumentException("El costo debe ser mayor que 0");
+			throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor que 0");
 		}
 		costo = cost;
+		} catch (ExceptionCostoPaqueteNoNegativo exc) {
+			System.err.println("Error: " + exc.getMessage());
+	    	throw exc;
+			
+		}
 	}
 	
 	public void setPostulaciones(List<Postulacion> posts) {
 		postulaciones = posts;
 	}
 	
-	public void setTipoOferta(TipoOferta tipoOfer) {
+	public void setTipoOferta(TipoOferta tipoOfer) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
+		try {
 		if (this.paqueteAsoc!=null) {
 			Set<OfertaPaquete> restantes = this.paqueteAsoc.getOfertaPaquete();
 			
@@ -331,7 +376,7 @@ public class OfertaLaboral {
 			    if (offer.getDTCantTO().getNombre().equals(tipoOfer.getNombre())) {
 			        int cantidadAsociada = offer.getDTCantTO().getCantidad();
 			        if ( cantidadAsociada == 0) { 
-			        	throw new IllegalArgumentException("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+			        	throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
 			        	}
 			    
 			    }
@@ -339,7 +384,11 @@ public class OfertaLaboral {
 				
 		}
 		
-		tOferta = tipoOfer;
+			tOferta = tipoOfer;
+		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+			System.err.println("Error: " + exc.getMessage());
+	    	throw exc;
+		}
 	}
 	
 	public void setKeywords(List<Keyword> keys) {
@@ -354,8 +403,9 @@ public class OfertaLaboral {
 		imagen = imagenNueva;
 	}
 	
-	public void setPaquete(Paquete paqueteA) {
+	public void setPaquete(Paquete paqueteA) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
 		
+			try {
 			Set<OfertaPaquete> restantes = paqueteA.getOfertaPaquete();
 			
 			for (OfertaPaquete offer : restantes) {
@@ -363,26 +413,35 @@ public class OfertaLaboral {
 			    if (offer.getDTCantTO().getNombre().equals(this.getTipoOferta().getNombre())) {
 			        int cantidadAsociada = offer.getDTCantTO().getCantidad();
 			        if ( cantidadAsociada == 0) { 
-			        	throw new IllegalArgumentException("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+			        	throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
 			        	}
 			    
 			    }
 			} //cierra for			
 				
-			paqueteAsoc = paqueteA;    
+			paqueteAsoc = paqueteA;
+			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+				System.err.println("Error: " + exc.getMessage());
+		    	throw exc;
+			}
 	}
 	
 	// -------------- funciones ---------------------
 
-	public void registrarPostulacion(Postulacion post) {
+	public void registrarPostulacion(Postulacion post) throws ExceptionFechaInvalida {
+		try {
+			int dura = this.getTipoOferta().getDuracion();
+			LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
+			if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+				throw new ExceptionFechaInvalida("Oferta no vigente");
+			}
 		
-		int dura = this.getTipoOferta().getDuracion();
-		LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
-		if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
-			throw new IllegalArgumentException("Oferta no vigente");
+			postulaciones.add(post);
+		} catch (ExceptionFechaInvalida exc) {
+			System.err.println("Error: " + exc.getMessage());
+	    	throw exc;
+			
 		}
-	
-		postulaciones.add(post);
 	} // registra postulacion a la lista de postulaciones	
 
 	public DTOfertaExtendido obtenerDatosOferta(){
