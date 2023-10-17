@@ -9,6 +9,7 @@ import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
 
+
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,22 +53,53 @@ public class OfertaLaboral {
 		    String imagennueva,
 		    Paquete paq
 		) {
+		
 		    this.nombre = atrnombre;
 		    this.descripcion = atrdescripcion;
 		    this.ciudad = atrciudad;
 		    this.departamento = atrdepartamento;
 		    this.horario = atrhorario;
-		    this.remuneracion = atrremuneracion;
+		    
+		    if (atrremuneracion <=0) { 
+		    	throw new IllegalArgumentException("La remuneración debe ser mayor que 0");
+		    } else {
+		    	this.remuneracion = atrremuneracion; 
+		    }
+		    
 		    this.tOferta = atrtOferta;
 		    this.estado = estadoNuevo;
 		    this.imagen = imagennueva;
+		    
+	
+		    if (paq.getfechaAlta().plusDays(paq.getValidez()).isBefore(LocalDate.now())) {
+		    	throw new IllegalArgumentException("El paquete no se encuentra vigente");
+		    } else {
 		    this.paqueteAsoc = paq;
+		    }
+		    
+		  
 		    this.empresaPublicadora = empresaPublicadora;
 
 		    if (this.paqueteAsoc != null) {
+		    	
+		    	if (tOferta.getCosto()<=0) {
+		    		throw new IllegalArgumentException("El costo del paquete debe ser mayor que 0"); }
 		        float costodadoPaq = tOferta.getCosto();
+		    	
+		    	if (paqueteAsoc.getDescuento()<0) { 
+		    		throw new IllegalArgumentException("El descuento debe ser mayor o igual a 0"); }
+		    	
 		        float descuento = paqueteAsoc.getDescuento();
-		        this.costo = costodadoPaq - costodadoPaq * (1 / descuento);
+		    	
+		    	
+		    	if (paqueteAsoc.getDescuento()==0) { 
+		    		this.costo = tOferta.getCosto(); }
+		    	else {
+		        //this.costo = costodadoPaq - costodadoPaq * (1 / descuento);
+		    		this.costo = costodadoPaq * (1 - descuento/100);
+		        
+		    	}
+		        
 		    } else {
 		        this.costo = tOferta.getCosto();
 		    }
@@ -240,7 +272,11 @@ public class OfertaLaboral {
 	}
 	
 	public void setCiudad(String Ciud) 	{
+		if (Ciud.matches("^[a-zA-Z][a-zA-Z\\s+]*$")) {
 		ciudad = Ciud;
+		} else {
+			throw new IllegalArgumentException("Ciudad incorrecta");
+		}
 	}
 	
 	public void setDepartamento(DepUY Departa) {
@@ -252,14 +288,28 @@ public class OfertaLaboral {
 	}
 	
 	public void setRemuneracion(Float Remunera) {
+		if (Remunera<=0) {
+			throw new IllegalArgumentException("Remuneración debe ser mayor que 0");
+		} else {
 		remuneracion = Remunera;
+		}
 	}
 	
 	public void setFechaAlta(LocalDate fecha) {
+		if (this.paqueteAsoc!=null) {
+			LocalDate paqAlta = this.paqueteAsoc.getfechaAlta();
+			LocalDate fechaLimite = paqAlta.plusDays(this.paqueteAsoc.getValidez());
+			if (LocalDate.now().isAfter(fechaLimite)) {
+				throw new IllegalArgumentException("En la fecha seleccionada, el paquete no está vigente");
+			}
+		}
 		fechaAlta = fecha; 
 	}
 	
 	public void setCosto(float cost) {
+		if (cost<=0) {
+			throw new IllegalArgumentException("El costo debe ser mayor que 0");
+		}
 		costo = cost;
 	}
 	
@@ -268,6 +318,22 @@ public class OfertaLaboral {
 	}
 	
 	public void setTipoOferta(TipoOferta tipoOfer) {
+		if (this.paqueteAsoc!=null) {
+			Set<OfertaPaquete> restantes = this.paqueteAsoc.getOfertaPaquete();
+			
+			for (OfertaPaquete offer : restantes) {
+
+			    if (offer.getDTCantTO().getNombre().equals(tipoOfer.getNombre())) {
+			        int cantidadAsociada = offer.getDTCantTO().getCantidad();
+			        if ( cantidadAsociada == 0) { 
+			        	throw new IllegalArgumentException("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+			        	}
+			    
+			    }
+			} //cierra for			
+				
+		}
+		
 		tOferta = tipoOfer;
 	}
 	
@@ -284,14 +350,44 @@ public class OfertaLaboral {
 	}
 	
 	public void setPaquete(Paquete paqueteA) {
-		paqueteAsoc = paqueteA;    
+		
+			Set<OfertaPaquete> restantes = paqueteA.getOfertaPaquete();
+			
+			for (OfertaPaquete offer : restantes) {
+
+			    if (offer.getDTCantTO().getNombre().equals(this.getTipoOferta().getNombre())) {
+			        int cantidadAsociada = offer.getDTCantTO().getCantidad();
+			        if ( cantidadAsociada == 0) { 
+			        	throw new IllegalArgumentException("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+			        	}
+			    
+			    }
+			} //cierra for			
+				
+			paqueteAsoc = paqueteA;    
 	}
 	
 	// -------------- funciones ---------------------
 
 	public void registrarPostulacion(Postulacion post) {
+		
+		if (this.paqueteAsoc!=null) {
+			//verifica que si pertenece a un paquete la oferta esté vigente
+			LocalDate paqAlta = this.paqueteAsoc.getfechaAlta();
+			LocalDate fechaLimite = paqAlta.plusDays(this.paqueteAsoc.getValidez());
+			if (LocalDate.now().isAfter(fechaLimite)) {
+				throw new IllegalArgumentException("En la fecha seleccionada, el paquete no está vigente");
+			}
+		}
+		
+		int dura = this.getTipoOferta().getDuracion();
+		LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
+		if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+			throw new IllegalArgumentException("Oferta no vigente");
+		}
+	
 		postulaciones.add(post);
-	} // registra una postulacion a la lista de postulaciones	
+	} // registra postulacion a la lista de postulaciones	
 
 	public DTOfertaExtendido obtenerDatosOferta(){
 		Set<DTPostulacion> posts = new HashSet<>();
@@ -346,7 +442,7 @@ public class OfertaLaboral {
 			nuevo.add(item.getNombre());
 		}
 		DTOfertaExtendidoConKeywordsTit dtoe;
-		if(getPaquete() != null) {
+		if (getPaquete() != null) {
 			dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(),  getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   getPaquete().getDTPaquete(),   nuevo);
 		} else {
 			dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(),  getDescripcion(),  getFechaAlta(),  getCosto(),  getRemuneracion(),  getHorario(),  getDepartamento(),  getCiudad(),  getEstado(),  getImagen(),  nuevo,   null,   nuevo);
