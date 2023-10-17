@@ -50,7 +50,7 @@
                         
             <div class="container">
                 <div class="row">
-                    <h1 class="text-center mt-3">Información Básica de la Oferta Laboral</h1>
+                    <h1 class="text-center mt-3"><%= ofertaLaboral.getNombre() %></h1>
                 </div>
                 
                 <div class="row">
@@ -58,15 +58,10 @@
                     <div class="col d-flex">
                         <div class="container" id="detalleOferta">
                             <div class="row align-items-center mt-2">
-                                    
-                                    <div class="col-6">
-                                        <img src="<%= imagen %>" alt="Descripción de la imagen" class="img-fluid ofertaLaboral-img">
-                                    </div>
-                                    <div class="col-6 text-center">
-                                        <h2><%= ofertaLaboral.getNombre() %></h2>
-                                    </div>
-                                    
-                            </div>
+							    <div class="col-6">
+							        <img src="<%= imagen %>" alt="Descripción de la imagen" class="img-fluid ofertaLaboral-img">
+							    </div>
+							</div>
                                    
                             
                             <div class="row align-items-center mt-2">
@@ -75,6 +70,10 @@
                                         <tr>
                                             <th>Nombre:</th>
                                             <td><%= ofertaLaboral.getNombre() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Empresa:</th>
+                                            <td><%= ofertaLaboral.getNicknameEmpresa() %></td>
                                         </tr>
                                         <tr>
                                             <th>Descripción:</th>
@@ -102,7 +101,7 @@
                                         </tr>
                                         <tr>
                                             <th>Costo:</th>
-                                            <td><%= ofertaLaboral.getCostoString() %></td>
+                                            <td><%= ofertaLaboral.getCostoString() %>  pesos uruguayos</td>
                                         </tr>
                                     </tbody>
                                 </table>

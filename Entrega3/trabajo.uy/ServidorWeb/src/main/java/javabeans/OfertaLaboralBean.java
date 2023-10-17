@@ -168,7 +168,7 @@ public class OfertaLaboralBean {
 	        return decimalFormat.format(remuneracion);
 	    }
 	 public String getFechaDeAltaString() {
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd / MM / uuuu"); // Define el formato deseado (dd / mm / aaaa)
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu"); // Define el formato deseado (dd / mm / aaaa)
 	        return fechaDeAlta.format(formatter);
 	    }
 
