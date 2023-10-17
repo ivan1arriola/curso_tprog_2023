@@ -17,8 +17,20 @@ public class TipoOferta {
     public TipoOferta(String nombre,  LocalDate fechaAlta,  float costo,  int duracion,  int exposicion,  String descripcion) {
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;
+        if (costo<0) {
+        	throw new IllegalArgumentException("El costo debe ser mayor o igual a 0");
+        }
         this.costo = costo;
+        
+        if (duracion<=0) {
+        	throw new IllegalArgumentException("La duración debe ser mayor que 0 días");
+        }
+        
         this.duracion = duracion;
+        
+        if (exposicion<=0) {
+        	throw new IllegalArgumentException("La exposición debe ser mayor que 0");
+        }
         this.exposicion = exposicion;
         this.descripcion = descripcion;
     }
@@ -58,15 +70,24 @@ public class TipoOferta {
     }
     
     public void setCosto(float costo) {
-    	this.costo = costo;
+    	if (costo<0) {
+        	throw new IllegalArgumentException("El costo debe ser mayor o igual a 0");
+        }
+        this.costo = costo;
     }
     
     public void setDuracion(int duracion) {
-    	this.duracion = duracion;
+    	if (duracion<=0) {
+        	throw new IllegalArgumentException("La duración debe ser mayor que 0 días");
+        }
+        
+        this.duracion = duracion;
     }
     
     public void setExposicion(int exposicion) {
-    	this.exposicion = exposicion;
+    	if (exposicion<=0) {
+        	throw new IllegalArgumentException("La exposición debe ser mayor que 0");
+        }
     }
     
     public void setDescripcion(String descripcion) 	{
