@@ -8,7 +8,7 @@ import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
 import main.java.logica.datatypes.DTPostulacion;
 import main.java.logica.enumerados.DepUY;
 import main.java.logica.enumerados.EstadoOL;
-
+import main.java.excepciones.ExceptionPaqueteNoVigente;
 
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
@@ -71,10 +71,15 @@ public class OfertaLaboral {
 		    this.imagen = imagennueva;
 		    
 	
+		    
+		    try {
 		    if (paq.getfechaAlta().plusDays(paq.getValidez()).isBefore(LocalDate.now())) {
-		    	throw new IllegalArgumentException("El paquete no se encuentra vigente");
+		    	throw new ExceptionPaqueteNoVigente("El paquete no se encuentra vigente");
 		    } else {
 		    this.paqueteAsoc = paq;
+		    } 
+		    } catch (ExceptionPaqueteNoVigente e) {
+		    	System.err.println("Error: " + e.getMessage());
 		    }
 		    
 		  
