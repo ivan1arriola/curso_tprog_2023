@@ -10,7 +10,6 @@ import main.java.logica.datatypes.DTPostulanteExtendido;
 import main.java.logica.datatypes.DTUsuario;
 
 
-
 public class Postulante extends Usuario{
     // atributos
     private LocalDate fechaNac;
@@ -21,7 +20,11 @@ public class Postulante extends Usuario{
     // constructor sin imagen
     public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  String img) {
         super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img); // super es para llamar al constructor de la clase padre
-        this.fechaNac = fechaNac;
+        if (fechaNac.isAfter(LocalDate.now())) {
+        	this.fechaNac = fechaNac;
+        } else {
+        	throw new IllegalArgumentException("La fecha de Nacimiento debe ser anterior a la actual");
+        }
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
     }
@@ -29,7 +32,11 @@ public class Postulante extends Usuario{
     // constructor con imagen
     public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad) {
         super(nickname,   nombre,   apellido,   correo_electronico,   contrasena); // super es para llamar al constructor de la clase padre
-        this.fechaNac = fechaNac;
+        if (fechaNac.isAfter(LocalDate.now())) {
+        	this.fechaNac = fechaNac;
+        } else {
+        	throw new IllegalArgumentException("La fecha de Nacimiento debe ser anterior a la actual");
+        }
         this.nacionalidad = nacionalidad;
         this.postulaciones = new HashSet<Postulacion>();
     }
@@ -51,7 +58,11 @@ public class Postulante extends Usuario{
 
     // Setters
     public void setFechaNac(LocalDate fechaNac) {
-    	this.fechaNac = fechaNac;
+    	if (fechaNac.isAfter(LocalDate.now())) {
+        	this.fechaNac = fechaNac;
+        } else {
+        	throw new IllegalArgumentException("La fecha de Nacimiento debe ser anterior a la actual");
+        }
     }
     
     public void setNacionalidad(String nacionalidad) {
@@ -74,9 +85,17 @@ public class Postulante extends Usuario{
     }
 
     public Postulacion crearPostulacion(String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) {
+    	
+    	int dura = OferLab.getTipoOferta().getDuracion();
+		LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
+		if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+			throw new IllegalArgumentException("Oferta no vigente");
+		}
+    	
         Postulacion postulacion = new Postulacion(this,   curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
         postulaciones.add(postulacion);
         return postulacion;
+        
     }
 
     public boolean existePostulacion(String nombre) {
