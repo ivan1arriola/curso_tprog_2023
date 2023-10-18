@@ -1,6 +1,7 @@
 package main.java.logica.clases;
 
 import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
@@ -15,6 +16,7 @@ import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionCiudadInvalida;
 import main.java.excepciones.ExceptionFechaInvalida;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +59,7 @@ public class OfertaLaboral {
 		    EstadoOL estadoNuevo, 
 		    String imagennueva, 
 		    Paquete paq
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
 		
 		    this.nombre = atrnombre;
 		    this.descripcion = atrdescripcion;
@@ -103,6 +105,7 @@ public class OfertaLaboral {
 		    	float costodadoPaq= 0;
 		    	float descuento = 0;
 		    	
+		    		    	
 		    	try {
 			    	if (tOferta.getCosto()<=0) {
 			    		throw new ExceptionCostoPaqueteNoNegativo("El costo del paquete debe ser mayor que 0"); }
@@ -112,6 +115,21 @@ public class OfertaLaboral {
 			    		throw new ExceptionDescuentoInvalido("El descuento debe ser mayor o igual a 0"); }
 			    	
 			        descuento = paqueteAsoc.getDescuento();
+			    			        
+			        Set<DTCantTO> restantes = this.paqueteAsoc.obtenerDTSCantTO();
+			    	
+			    	for (DTCantTO offer : restantes) {
+
+					    if (offer.getNombre().equals(this.tOferta.getNombre())) {
+					        int cantidadAsociada = offer.getCantidad();
+					        
+					        if ( cantidadAsociada == 0) { 
+					        	throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+					        	}
+								    }
+					} //cierra for
+			        
+			        
 			  		  
 		    	} catch (ExceptionCostoPaqueteNoNegativo excCosto) {
 		    		System.err.println("Error: " + excCosto.getMessage());
@@ -119,6 +137,9 @@ public class OfertaLaboral {
 		    	} catch (ExceptionDescuentoInvalido excDesc) {
 		    		System.err.println("Error: " + excDesc.getMessage());
 		    		throw excDesc;
+		    	} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCant) {
+		    		System.err.println("Error: " + excCant.getMessage());
+		    		throw excCant;
 		    	}
 		    	
 		    	
@@ -242,7 +263,7 @@ public class OfertaLaboral {
 		    Float atrremuneracion, 
 		    LocalDate atrfechaAlta, 
 		    EstadoOL estadoNuevo
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 		    this(
 		        empresaPublicadora, 
 		        atrkeywords, 
@@ -274,7 +295,7 @@ public class OfertaLaboral {
 		    LocalDate atrfechaAlta, 
 		    EstadoOL estadoNuevo, 
 		    Paquete paq
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
 		    this(
 		        empresaPublicadora, 
 		        atrkeywords, 
@@ -306,7 +327,7 @@ public class OfertaLaboral {
 		    LocalDate atrfechaAlta, 
 		    EstadoOL estadoNuevo, 
 		    String imagennueva
-		)throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido {
+		)throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 		    this(
 		        empresaPublicadora, 
 		        atrkeywords, 
@@ -539,8 +560,8 @@ public class OfertaLaboral {
 	} // registra postulacion a la lista de postulaciones	
 	
 	public void registrarPostulacionForzado(Postulacion post) throws ExceptionFechaInvalida {
-			int dura = this.getTipoOferta().getDuracion();
-			LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
+			//int dura = this.getTipoOferta().getDuracion();
+			//LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
 			postulaciones.add(post);
 		
 	} // registra postulacion a la lista de postulaciones	

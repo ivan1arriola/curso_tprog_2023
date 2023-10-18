@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionEmpresaInvalida;
@@ -213,7 +214,8 @@ public class CtrlUsuario implements ICtrlUsuario {
 //		user.setApellido(apellido);
 //	}
 
-	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida,
+	ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -233,7 +235,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 			
 			if (empresa != null) {
 				CtrlOferta CtrlOfer = new CtrlOferta();
-				boolean ofer = CtrlOfer .existeOferta(nombre);
+				boolean ofer = CtrlOfer.existeOferta(nombre);
 				if (!ofer) {
 					PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 					Paquete paq;
@@ -248,18 +250,21 @@ public class CtrlUsuario implements ICtrlUsuario {
 					try {
 						oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo),   nombre,   descripcion,   horario,   remun,   ciu,   dep,   FechaA,   keywords,   estado,   img,   paq);
 						OLH.agregar(oferL);
-					} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ExceptionPaqueteNoVigente e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ExceptionCostoPaqueteNoNegativo e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ExceptionDescuentoInvalido e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					} catch (ExceptionRemuneracionOfertaLaboralNegativa exc) {
+						
+						exc.printStackTrace();
+						throw exc;
+					} catch (ExceptionPaqueteNoVigente exc) {
+						
+						exc.printStackTrace();
+						throw exc;
+					} catch (ExceptionDescuentoInvalido exc) {
+						 
+						exc.printStackTrace();
+						throw exc;
+					}  catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+						exc.printStackTrace();
+						throw exc;
 					}
 					
 				}

@@ -92,14 +92,42 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
-    	if (remun >= 0) {
-        	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
-            ofertasLaborales.add(ofertaLab);
-            return ofertaLab;
-    	}
-    	else {
-    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
+    	try {
+	    	if (remun >= 0) {
+	        	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
+	            ofertasLaborales.add(ofertaLab);
+	            
+	            if(paq!=null) { //actualiza cantidad del tipo Oferta
+	            	Set<OfertaPaquete> restantes =paq.getOfertaPaquete();
+	               	
+			    	for (OfertaPaquete offer : restantes) {
+
+					    if (offer.getDTCantTO().getNombre().equals(tipoOferta.getNombre())) {
+					        int cantidadAsociada = offer.getDTCantTO().getCantidad();
+					        
+					        if ( cantidadAsociada >=1 ) { 
+					        	
+					        	cantidadAsociada = cantidadAsociada-1;
+					        	OfertaPaquete oferPaq = new OfertaPaquete(tipoOferta,  cantidadAsociada);
+					           	restantes.remove(offer);
+					        	restantes.add(oferPaq);
+					        }
+					 }
+				} //cierra for
+	            	
+	            	
+	            	
+	            }
+	            
+	            return ofertaLab;
+	    	}
+	    	else {
+	    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+	    	}
+    	} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+    		throw exc;
+    		
     	}
 
     }
@@ -112,31 +140,42 @@ public class Empresa extends Usuario {
     	}
     	else {
     		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
-    	}
+    	} 
 
     }
 
     
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+	   try {	
     	if (remun >= 0) {
-	    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
-	    	ofertasLaborales.add(ofertaLab);
-	    	return ofertaLab;
-    	}
-    	else {
-    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
-    	}
+		    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
+		    	ofertasLaborales.add(ofertaLab);
+		    	return ofertaLab;
+	    	}
+	    	else {
+	    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+	    	}
+    	
+	    } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+			throw exc;
+			
+		}
     }
     
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido,ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+	   try {	
     	if (remun >= 0) {
-    		OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
-	    	ofertasLaborales.add(ofertaLab);
-	    	return ofertaLab;
-    	}
-    	else {
-    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
-    	}
+	    		OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
+		    	ofertasLaborales.add(ofertaLab);
+		    	return ofertaLab;
+	    	}
+	    	else {
+	    		throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+	    	}
+    } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+		throw exc;
+		
+	}
     }
     
     public DTUsuario obtenerDatosUsuario() { // obtenerDatosUsuario(): DTUsuario
