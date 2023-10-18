@@ -118,16 +118,17 @@ public class OfertaLaboral {
 			    			        
 			        Set<DTCantTO> restantes = this.paqueteAsoc.obtenerDTSCantTO();
 			    	
+			    	int cantidadAsociada = 0;
 			    	for (DTCantTO offer : restantes) {
 
 					    if (offer.getNombre().equals(this.tOferta.getNombre())) {
-					        int cantidadAsociada = offer.getCantidad();
-					        
-					        if ( cantidadAsociada == 0) { 
-					        	throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
-					        	}
-								    }
+					        cantidadAsociada = offer.getCantidad();
+					        break;
+					    }
 					} //cierra for
+			    	if ( cantidadAsociada == 0) { 
+			        	throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+			        }
 			        
 			        
 			  		  
