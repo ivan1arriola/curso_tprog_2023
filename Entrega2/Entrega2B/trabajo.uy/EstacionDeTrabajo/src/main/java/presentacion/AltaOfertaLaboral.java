@@ -362,10 +362,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     case "Montevideo":
                     	departamento = DepUY.Montevideo;
                         break;
-                    case "CerroLargo":
+                    case "Cerro Largo":
                     	departamento = DepUY.CerroLargo;
                         break;
-                    case "TreintaYTres":
+                    case "Treinta y Tres":
                     	departamento = DepUY.TreintaYTres;
                         break;
                     case "Lavalleja":
@@ -485,7 +485,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         listadoDepartamentos.addItem("SanJosé");
         listadoDepartamentos.addItem("Soriano");
         listadoDepartamentos.addItem("Tacuarembo");
-        listadoDepartamentos.addItem("TreintaYTres");
+        listadoDepartamentos.addItem("Treinta y Tres");
 
        
         ciudad = new JTextField();
