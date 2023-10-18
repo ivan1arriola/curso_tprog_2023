@@ -184,22 +184,23 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
 		List<String> packSorted = new ArrayList<>(packs);
         Collections.sort(packSorted,  String.CASE_INSENSITIVE_ORDER);
         
-        paquetesVisualizar.addItem("");
-		for (String elem : packSorted) {
+        //paquetesVisualizar.addItem("");
+		
+        /*for (String elem : packSorted) {
 			
 			paquetesVisualizar.addItem(elem);
-		}
+		}*/
 
         	
     	//quedarse con los no comprados
-    	/*paquetesVisualizar.addItem("");
+    	paquetesVisualizar.addItem("");
     	for (String element1 : packSorted) {
     		
     		if (!ico.paqueteComprado(element1)) {
     		   	//si nadie lo compro queda disponible	
     			paquetesVisualizar.addItem(element1);
     		}
-    	}*/
+    	}
     	
     	
     	/*HashSet<String> tiposDePub = ico.listarTipoDePublicaciones();
