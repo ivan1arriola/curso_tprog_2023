@@ -33,7 +33,7 @@ public class OfertaLaboral {
 	private DepUY departamento;
 	private String ciudad;
 	private EstadoOL estado; 
-	private String imagen; 
+	private byte[] imagen; 
 	
 	// relaciones
 	private TipoOferta tOferta; 
@@ -55,7 +55,7 @@ public class OfertaLaboral {
 		    Float atrremuneracion, 
 		    LocalDate atrfechaAlta, 
 		    EstadoOL estadoNuevo, 
-		    String imagennueva, 
+		    byte[] imagennueva, 
 		    Paquete paq
 		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
 		
@@ -154,7 +154,7 @@ public class OfertaLaboral {
 		    Float atrremuneracion, 
 		    LocalDate atrfechaAlta, 
 		    EstadoOL estadoNuevo, 
-		    String imagennueva, 
+		    byte[] imagennueva, 
 		    Paquete paq
 		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
 		
@@ -305,7 +305,7 @@ public class OfertaLaboral {
 		    Float atrremuneracion, 
 		    LocalDate atrfechaAlta, 
 		    EstadoOL estadoNuevo, 
-		    String imagennueva
+		    byte[] imagennueva
 		)throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido {
 		    this(
 		        empresaPublicadora, 
@@ -374,7 +374,7 @@ public class OfertaLaboral {
 		return estado; 
 	}
 	
-	public String getImagen()  {
+	public byte[] getImagen()  {
 		return imagen;
 	}
 	
@@ -493,7 +493,7 @@ public class OfertaLaboral {
 		estado = estad; 
 	}
 	
-	public void setImagen(String imagenNueva) {
+	public void setImagen(byte[] imagenNueva) {
 		imagen = imagenNueva;
 	}
 	
@@ -539,8 +539,6 @@ public class OfertaLaboral {
 	} // registra postulacion a la lista de postulaciones	
 	
 	public void registrarPostulacionForzado(Postulacion post) throws ExceptionFechaInvalida {
-			int dura = this.getTipoOferta().getDuracion();
-			LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
 			postulaciones.add(post);
 		
 	} // registra postulacion a la lista de postulaciones	

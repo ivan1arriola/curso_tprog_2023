@@ -1,9 +1,6 @@
 package main.java.logica.clases;
 
 
-import java.util.HashSet;
-import java.util.Set;
-
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 
 public class InfoCompraOferta {

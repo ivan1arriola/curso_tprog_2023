@@ -83,7 +83,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 		return null;
 	}
 	
-	public boolean altaOfertaLaboralForzado(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
+	public boolean altaOfertaLaboralForzado(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();

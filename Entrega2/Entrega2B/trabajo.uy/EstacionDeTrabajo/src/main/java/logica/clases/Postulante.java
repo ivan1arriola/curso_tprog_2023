@@ -18,8 +18,8 @@ public class Postulante extends Usuario{
     // relaciones
     private Set<Postulacion> postulaciones;
 
-    // constructor sin imagen
-    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  String img) throws ExceptionFechaInvalida{
+    // constructor  con imagen
+    public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad,  byte[] img) throws ExceptionFechaInvalida{
     	
     	super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img); // super es para llamar al constructor de la clase padre
     	try {      
@@ -36,7 +36,7 @@ public class Postulante extends Usuario{
         }
     }
     
-    // constructor con imagen
+    // constructor  sin imagen
     public Postulante(String nickname,   String contrasena,   String nombre,   String apellido,   String correo_electronico,   LocalDate fechaNac,   String nacionalidad) throws ExceptionFechaInvalida{
         super(nickname,   nombre,   apellido,   correo_electronico,   contrasena); // super es para llamar al constructor de la clase padre
         
@@ -125,9 +125,6 @@ public class Postulante extends Usuario{
     }
     
     public Postulacion crearPostulacionForzado(String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) throws ExceptionValidezNegativa {
-    	
-	    	int dura = OferLab.getTipoOferta().getDuracion();
-			LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
 	        Postulacion postulacion = new Postulacion(this,   curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
 	        postulaciones.add(postulacion);
 	        return postulacion;
@@ -180,7 +177,7 @@ public class Postulante extends Usuario{
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contrasenia = getcontrasenia();
-            String imagen = getImagen();
+            byte[] imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
             Set<Postulacion> posts = getPostulaciones();
@@ -199,7 +196,7 @@ public class Postulante extends Usuario{
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contraseña = getcontrasenia();
-            String imagen = getImagen();
+            byte[] imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
             postul = new DTPostulante(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   imagen,   fechaNac,   nacionalidad);

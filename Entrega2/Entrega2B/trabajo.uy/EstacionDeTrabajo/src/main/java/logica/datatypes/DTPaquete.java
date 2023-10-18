@@ -11,9 +11,9 @@ public class DTPaquete {
 	private String descripcion;
 	private Set<DTCantTO> tiposDePub;
 	private LocalDate fechaA;
-	private String imagen;
+	private byte[]  imagen;
 	
-	public DTPaquete(String nomb,  float cost,  float descuento,  int valid,  String desc,  Set<DTCantTO> tdp,  LocalDate fechaAlta, String imagen) {
+	public DTPaquete(String nomb,  float cost,  float descuento,  int valid,  String desc,  Set<DTCantTO> tdp,  LocalDate fechaAlta, byte[]  imagen) {
 		nombre = nomb;
 		costo = cost;
 		this.descuento = descuento;
@@ -56,7 +56,7 @@ public class DTPaquete {
 
 
 
-	public String getImagen() {
+	public byte[]  getImagen() {
 		return imagen;
 	}
 	

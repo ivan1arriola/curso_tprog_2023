@@ -33,7 +33,7 @@ public class Empresa extends Usuario {
     }
     
     // constructor empresa con imagen y url 
-    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  String img,  String desc,  String urlE) {
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc,  String urlE) {
         super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         descripcion = desc;
         ofertasLaborales = new HashSet<>();
@@ -92,7 +92,7 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
     	if (remun >= 0) {
         	OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
             ofertasLaborales.add(ofertaLab);
@@ -104,7 +104,7 @@ public class Empresa extends Usuario {
 
     }
     
-    public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  String img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+    public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
     	if(remun >= 0) {
         	OfertaLaboral ofertaLab = new OfertaLaboral(true, this, atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado, img, paq);
             ofertasLaborales.add(ofertaLab);
@@ -117,7 +117,7 @@ public class Empresa extends Usuario {
     }
 
     
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
     	if (remun >= 0) {
 	    	OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
 	    	ofertasLaborales.add(ofertaLab);
@@ -128,7 +128,7 @@ public class Empresa extends Usuario {
     	}
     }
     
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  String img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
     	if (remun >= 0) {
     		OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
 	    	ofertasLaborales.add(ofertaLab);
@@ -147,7 +147,7 @@ public class Empresa extends Usuario {
         String contraseña = getcontrasenia();
         String descripcion = getDescripcion();
         String url = geturl();
-        String imagen = getImagen();
+        byte[] imagen = getImagen();
         			       
         Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
         
@@ -227,8 +227,6 @@ public class Empresa extends Usuario {
 	        		return false;
 	        	}
 	        }
-	    	float costo = paq.getCosto();
-	    	LocalDate fechaA = paq.getfechaAlta();
 	    	// int val = paq.getValidez();
 	    	Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
 	    	
@@ -252,7 +250,7 @@ public class Empresa extends Usuario {
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contraseña = getcontrasenia();
-            String imagen = getImagen(); 
+            byte[] imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
             for (OfertaLaboral oferta : ofertasLaborales) {
@@ -267,7 +265,7 @@ public class Empresa extends Usuario {
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
             String contraseña = getcontrasenia();
-            String imagen = getImagen(); 
+            byte[] imagen = getImagen(); 
             Set<DTOfertaExtendido> dtOfertas = new HashSet<DTOfertaExtendido>();
             
             for (OfertaLaboral oferta : ofertasLaborales) {

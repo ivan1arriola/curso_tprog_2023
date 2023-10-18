@@ -22,13 +22,13 @@ public class Paquete {
     private float descuento;
     private int validez;
     private LocalDate fechaAlta;
-    private String imagen;
+    private byte[] imagen;
     // Relaciones
     private Set<OfertaPaquete> oferPaq;
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor
-    public Paquete(String nombre,   String descripcion,   int validez,   LocalDate fecha,   float descuento,  String imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
+    public Paquete(String nombre,   String descripcion,   int validez,   LocalDate fecha,   float descuento,  byte[] imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
     	if (descuento >= 0 && descuento <= 100) {
             if (validez >= 0) {
             	this.nombre = nombre;
@@ -72,7 +72,7 @@ public class Paquete {
     	return validez;
     }
     
-    public String getImagen() {
+    public byte[] getImagen() {
     	return imagen; 
     }
     

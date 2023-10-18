@@ -28,7 +28,7 @@ public interface ICtrlOferta {
 		
 		public abstract boolean altaTipoPublicacionOL(String nomb,  String descripcion,  int expo,  int dur,  float costo,  LocalDate fechA);
 		
-		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  String img) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido;
+		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  byte[]  img) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido;
 		
 		public abstract boolean altaKeyword(String key);
 		
@@ -38,7 +38,7 @@ public interface ICtrlOferta {
 		altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
 				String descripcion,  DTHorario horario,  float remun,  String ciu,  
 				DepUY dep,  LocalDate fechaA,  Set<String> keys,  
-				EstadoOL estado,  String img,  String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa;
+				EstadoOL estado,  byte[]  img,  String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa;
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante,  String nombre_oferta);
 		

@@ -119,7 +119,7 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	// crear un paquete
-	public boolean altaPaqueteOL(String nombre,   String descripcion,   int validez,   LocalDate fechaA,   float descuento,   String imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
+	public boolean altaPaqueteOL(String nombre,   String descripcion,   int validez,   LocalDate fechaA,   float descuento,   byte[] imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
 		// Verificar si el argumento 'nombre' es vacío
 		if (nombre.isEmpty()) {
 			throw new IllegalArgumentException("El argumento 'nombre' no puede ser vacío.");
@@ -174,7 +174,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return empresa.compraPaquetes(paquete, fecha, valor);
 	}
 	
-	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   String img,   String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa {
+	public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate fechaA,   Set<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa {
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paq = null;
 		if (paquete != null) {
