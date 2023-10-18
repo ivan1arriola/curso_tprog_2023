@@ -45,7 +45,9 @@ import java.io.InputStreamReader;
 // import java.io.IOException; NO SE USA (CHECKSTYLE)
 import java.time.LocalDate;
 
-
+import java.io.ByteArrayOutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
@@ -165,7 +167,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             	String tipo = campos[1];
             	
 	            // URL de la imagen que deseas descargar
-	            String imageUrl = campos[7];
+//	            String imageUrl = campos[7];
             	
             	if (tipo.equals("P")) {
             		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Usuarios-Postulantes.csv");
@@ -261,12 +263,28 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos13[7];
+	            URL url = new URL(imageUrl);
+	            byte[] imagen;
+	            URLConnection connection = url.openConnection();
+	            // Set a user-agent to avoid HTTP 403 errors (some servers require it).
+	            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+	            
+	            try (InputStream in = connection.getInputStream(); 
+	                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+	                byte[] buffer = new byte[4096];
+	                int bytesRead;
+	                while ((bytesRead = in.read(buffer)) != -1) {
+	                    out.write(buffer, 0, bytesRead);
+	                }
+	                imagen = out.toByteArray();
+	            }
+	            
 	            
         		
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         		LocalDate fecha = LocalDate.parse(campos13[5],  formatter);
         		
-        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), campos13[7]);
+        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), imagen);
         	}
         } catch (IOException e40) {
         	e40.printStackTrace();
@@ -293,6 +311,23 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos5[12];
+	            URL url = new URL(imageUrl);
+	            byte[] imagen;
+	            URLConnection connection = url.openConnection();
+	            // Set a user-agent to avoid HTTP 403 errors (some servers require it).
+	            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+	            
+	            try (InputStream in = connection.getInputStream(); 
+	                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+	                byte[] buffer = new byte[4096];
+	                int bytesRead;
+	                while ((bytesRead = in.read(buffer)) != -1) {
+	                    out.write(buffer, 0, bytesRead);
+	                }
+	                imagen = out.toByteArray();
+	            }
+	            
+	            
         		
         		// Obtener hora
         		String horario = campos5[5];
@@ -480,8 +515,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	}
                 }
                 
+                
+                
         		try {
-        			altaOfertaLaboralForzado(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  campos5[12],  paq);
+        			altaOfertaLaboralForzado(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  imagen,  paq);
         		} catch (ExceptionUsuarioNoEncontrado eune) {
         			eune.printStackTrace();
         		} catch (ExceptionEmpresaInvalida eei) {
