@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import main.java.excepciones.ExcepcionKeywordVacia;
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
@@ -152,7 +153,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	
 	
 	
-	public void cargarDatos() {
+	public void cargarDatos() throws ExcepcionKeywordVacia {
 		Fabrica fabrica = Fabrica.getInstance();
 		ICtrlUsuario ICU = fabrica.getICtrlUsuario();
 		ICtrlOferta ICO = fabrica.getICtrlOferta();

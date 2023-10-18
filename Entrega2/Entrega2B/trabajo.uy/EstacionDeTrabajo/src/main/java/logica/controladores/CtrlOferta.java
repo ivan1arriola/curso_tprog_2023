@@ -31,6 +31,7 @@ import main.java.logica.manejadores.OfertaLaboralHandler;
 import main.java.logica.manejadores.PaqueteHandler;
 import main.java.logica.manejadores.TipoOfertaHandler;
 import main.java.logica.manejadores.UsuarioHandler;
+import main.java.excepciones.ExcepcionKeywordVacia;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
@@ -154,7 +155,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 
-	public boolean altaKeyword(String key) {
+	public boolean altaKeyword(String key) throws ExcepcionKeywordVacia {
 		KeywordHandler KeywordH = KeywordHandler.getInstance();
 		boolean existe = KeywordH.existe(key);
 		if (!existe) {

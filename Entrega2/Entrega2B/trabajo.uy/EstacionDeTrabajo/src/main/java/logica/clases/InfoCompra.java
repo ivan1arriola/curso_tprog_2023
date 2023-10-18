@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTCompraPaquetes;
 import main.java.logica.manejadores.TipoOfertaHandler;
@@ -19,21 +20,26 @@ public class InfoCompra {
     private Set<InfoCompraOferta> infoCompraOfertas;
 
     // constructor
-    public InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {
         // atributos
-        this.fechaCompra = fechaCompra;
-        this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
-        this.costo = costo;
-        // relaciones
-        this.empres = empres;
-        this.paquete = pack;
-        Set<InfoCompraOferta> infoCompraOfertas = new HashSet<>();
-        TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-        for (DTCantTO elemento : conjuntoS) {
-            TipoOferta tipoOfer = TOH.buscar(elemento.getNombre());
-            InfoCompraOferta ico = new InfoCompraOferta(tipoOfer,  elemento.getCantidad());
-            infoCompraOfertas.add(ico);
-        }
+    	if ( costo<0 ) {
+    		this.fechaCompra = fechaCompra;
+            this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
+            this.costo = costo;
+            // relaciones
+            this.empres = empres;
+            this.paquete = pack;
+            Set<InfoCompraOferta> infoCompraOfertas = new HashSet<>();
+            TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+            for (DTCantTO elemento : conjuntoS) {
+                TipoOferta tipoOfer = TOH.buscar(elemento.getNombre());
+                InfoCompraOferta ico = new InfoCompraOferta(tipoOfer,  elemento.getCantidad());
+                infoCompraOfertas.add(ico);
+            }
+    	} else {
+    		throw new ExceptionValidezNegativa("La validez debe ser un número no negativo.");
+    	}
+        
     }
 
     // Getters

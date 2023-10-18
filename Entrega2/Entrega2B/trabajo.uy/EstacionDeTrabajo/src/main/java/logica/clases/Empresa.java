@@ -40,6 +40,14 @@ public class Empresa extends Usuario {
         infoCompras = new HashSet<>();
         url = urlE;
     }
+    
+ // constructor empresa con imagen y sin url
+    public Empresa(String nickname,   String nombre,   String apellido,   String correo_electronico,   String contrasena,   byte[] img,   String desc) {
+        super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img);
+        descripcion = desc;
+        ofertasLaborales = new HashSet<>();
+        infoCompras = new HashSet<>();
+    }
 
     // constructor empresa con url sin imagen 
     public Empresa(String nickname,   String nombre,   String apellido,   String correo_electronico,   String contrasena,   String desc,   String urlE) {

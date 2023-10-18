@@ -2,6 +2,8 @@ package main.java.logica.interfaces;
 
 import java.time.LocalDate;
 import java.util.Set;
+
+import main.java.excepciones.ExcepcionKeywordVacia;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
@@ -30,7 +32,7 @@ public interface ICtrlOferta {
 		
 		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  byte[]  img) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido;
 		
-		public abstract boolean altaKeyword(String key);
+		public abstract boolean altaKeyword(String key) throws ExcepcionKeywordVacia;
 		
 		public abstract boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 		
