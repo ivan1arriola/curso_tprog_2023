@@ -3,7 +3,12 @@ package main.java.logica.interfaces;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.List;
+
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
+import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
@@ -58,8 +63,8 @@ public interface ICtrlUsuario {
     // altaOfertaLaboral tendria q estar en ICtrlOfertaLaboral
     public abstract boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
     		String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  
-    		LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[]  img,  String paquete) 
-    				throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa;
+    		LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) 
+    				throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
     
     public abstract Set<String> listarOfertasLaborales(String nickname_e) 
     		throws ExceptionEmpresaInvalida,  ExceptionUsuarioNoEncontrado;

@@ -1,8 +1,12 @@
 package main.java.presentacion;
 
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import main.java.excepciones.ExceptionPaqueteNoVigente;
+import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
@@ -358,10 +362,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     case "Montevideo":
                     	departamento = DepUY.Montevideo;
                         break;
-                    case "CerroLargo":
+                    case "Cerro Largo":
                     	departamento = DepUY.CerroLargo;
                         break;
-                    case "TreintaYTres":
+                    case "Treinta y Tres":
                     	departamento = DepUY.TreintaYTres;
                         break;
                     case "Lavalleja":
@@ -398,9 +402,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 
                 else {
                     
-                    try {                   	
-                    	
-                    	                    	
+                                  	                    	
                     	try {
                     		boolean noexiste = icUsuario.altaOfertaLaboral(empresa,  ofertaLab,  nomb,  desc,  horario,  remu,  ciu,  departamento,  LocalDate.now(),  keywords,  EstadoOL.Ingresada,  null,  opcionPaq);
 	                			if (!noexiste) {
@@ -414,11 +416,18 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	                			}
 	                	} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida| ExceptionRemuneracionOfertaLaboralNegativa e1) {
 	                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  e1.getMessage(),  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
-	                	}   
-	                		
-                    } catch (NumberFormatException e1) {
-                        JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La remuneración debe ser un número.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
-                    }
+	  	                		
+	                    } catch (NumberFormatException e1) {
+	                        JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "La remuneración debe ser un número.",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+	                    } catch (ExceptionPaqueteNoVigente exc) {
+	                    	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Paquete no vigente",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+	                    }  catch (ExceptionDescuentoInvalido exc) {
+	                    	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Descuento no válido",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+	                    }  catch (ExceptionCostoPaqueteNoNegativo exc) {
+	                    	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Costo no puede ser negativo",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+	                    } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
+	                    	JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  "Sin disponibilidad del Tipo Oferta en Paquete Seleccionado",  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
+	                    }
          
              	
                 }
@@ -476,7 +485,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         listadoDepartamentos.addItem("SanJosé");
         listadoDepartamentos.addItem("Soriano");
         listadoDepartamentos.addItem("Tacuarembo");
-        listadoDepartamentos.addItem("TreintaYTres");
+        listadoDepartamentos.addItem("Treinta y Tres");
 
        
         ciudad = new JTextField();

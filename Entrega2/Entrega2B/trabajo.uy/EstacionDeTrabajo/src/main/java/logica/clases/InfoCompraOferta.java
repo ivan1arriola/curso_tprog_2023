@@ -1,6 +1,9 @@
 package main.java.logica.clases;
 
 
+//import java.util.HashSet;
+//import java.util.Set;
+
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 
 public class InfoCompraOferta {
@@ -8,7 +11,7 @@ public class InfoCompraOferta {
 	private TipoOferta tipoOferta;
 	
 	public InfoCompraOferta(TipoOferta tipoOfer,  int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
-		if(canres >= 0) {
+		if (canres >= 0) {
 			cantRestante = canres;
 			tipoOferta = tipoOfer;
 		} else {
@@ -26,7 +29,7 @@ public class InfoCompraOferta {
 	}
 	
 	public void setCantres(int cantrest) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
-		if(cantrest >= 0) {
+		if (cantrest >= 0) {
 			cantRestante = cantrest;
 		} else {
 			throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("La cantidad restante de un tipo de oferta en un paquete no puede ser negativa.");

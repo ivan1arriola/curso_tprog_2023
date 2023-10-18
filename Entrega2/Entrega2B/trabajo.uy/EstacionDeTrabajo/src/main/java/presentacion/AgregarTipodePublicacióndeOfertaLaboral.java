@@ -184,8 +184,9 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
 		List<String> packSorted = new ArrayList<>(packs);
         Collections.sort(packSorted,  String.CASE_INSENSITIVE_ORDER);
         
-        /*paquetesVisualizar.addItem("");
-		for (String elem : packSorted) {
+        //paquetesVisualizar.addItem("");
+		
+        /*for (String elem : packSorted) {
 			
 			paquetesVisualizar.addItem(elem);
 		}*/

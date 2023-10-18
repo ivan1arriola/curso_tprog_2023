@@ -1,6 +1,7 @@
 package main.java.logica.clases;
 
 import main.java.logica.datatypes.DTHorario;
+import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTOfertaExtendido;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
 import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
@@ -15,6 +16,7 @@ import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionCiudadInvalida;
 import main.java.excepciones.ExceptionFechaInvalida;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+
 import java.time.LocalDate; // import logica.Datatypes.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,20 +46,20 @@ public class OfertaLaboral {
 	
 
 	public OfertaLaboral(
-		    Empresa empresaPublicadora, 
-		    List<Keyword> atrkeywords, 
-		    TipoOferta atrtOferta, 
-		    String atrnombre, 
-		    String atrdescripcion, 
-		    String atrciudad, 
-		    DepUY atrdepartamento, 
-		    DTHorario atrhorario, 
-		    Float atrremuneracion, 
-		    LocalDate atrfechaAlta, 
-		    EstadoOL estadoNuevo, 
-		    byte[] imagennueva, 
+		    Empresa empresaPublicadora,  
+		    List<Keyword> atrkeywords,  
+		    TipoOferta atrtOferta,  
+		    String atrnombre,  
+		    String atrdescripcion,  
+		    String atrciudad,  
+		    DepUY atrdepartamento,  
+		    DTHorario atrhorario,  
+		    Float atrremuneracion,  
+		    LocalDate atrfechaAlta,  
+		    EstadoOL estadoNuevo,  
+		    byte[] imagennueva,  
 		    Paquete paq
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
 		
 		    this.nombre = atrnombre;
 		    this.descripcion = atrdescripcion;
@@ -103,6 +105,7 @@ public class OfertaLaboral {
 		    	float costodadoPaq= 0;
 		    	float descuento = 0;
 		    	
+		    		    	
 		    	try {
 			    	if (tOferta.getCosto()<=0) {
 			    		throw new ExceptionCostoPaqueteNoNegativo("El costo del paquete debe ser mayor que 0"); }
@@ -110,8 +113,24 @@ public class OfertaLaboral {
 			        
 			        if (paqueteAsoc.getDescuento()<0) { 
 			    		throw new ExceptionDescuentoInvalido("El descuento debe ser mayor o igual a 0"); }
-			    	
+			    	 
 			        descuento = paqueteAsoc.getDescuento();
+			    			        
+			        Set<DTCantTO> restantes = this.paqueteAsoc.obtenerDTSCantTO();
+			    	
+			    	int cantidadAsociada = 0;
+			    	for (DTCantTO offer : restantes) {
+
+					    if (offer.getNombre().equals(this.tOferta.getNombre())) {
+					        cantidadAsociada = offer.getCantidad();
+					        break;
+					    }
+					} //cierra for
+			    	if ( cantidadAsociada == 0) { 
+			        	throw new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa("No hay disponibilidad del Tipo de Oferta seleccionado en el Paquete Elegido");
+			        }
+			        
+			        
 			  		  
 		    	} catch (ExceptionCostoPaqueteNoNegativo excCosto) {
 		    		System.err.println("Error: " + excCosto.getMessage());
@@ -119,6 +138,9 @@ public class OfertaLaboral {
 		    	} catch (ExceptionDescuentoInvalido excDesc) {
 		    		System.err.println("Error: " + excDesc.getMessage());
 		    		throw excDesc;
+		    	} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCant) {
+		    		System.err.println("Error: " + excCant.getMessage());
+		    		throw excCant;
 		    	}
 		    	
 		    	
@@ -142,21 +164,21 @@ public class OfertaLaboral {
 	
 	
 	public OfertaLaboral(
-			boolean forzado,
-		    Empresa empresaPublicadora, 
-		    List<Keyword> atrkeywords, 
-		    TipoOferta atrtOferta, 
-		    String atrnombre, 
-		    String atrdescripcion, 
-		    String atrciudad, 
-		    DepUY atrdepartamento, 
-		    DTHorario atrhorario, 
-		    Float atrremuneracion, 
-		    LocalDate atrfechaAlta, 
-		    EstadoOL estadoNuevo, 
-		    byte[] imagennueva, 
+			boolean forzado, 
+		    Empresa empresaPublicadora,  
+		    List<Keyword> atrkeywords,  
+		    TipoOferta atrtOferta,  
+		    String atrnombre,  
+		    String atrdescripcion,  
+		    String atrciudad,  
+		    DepUY atrdepartamento,  
+		    DTHorario atrhorario,  
+		    Float atrremuneracion,  
+		    LocalDate atrfechaAlta,  
+		    EstadoOL estadoNuevo,  
+		    byte[] imagennueva,  
 		    Paquete paq
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido{
 		
 		    this.nombre = atrnombre;
 		    this.descripcion = atrdescripcion;
@@ -231,95 +253,95 @@ public class OfertaLaboral {
 
 		// Constructor sin imagen ni paquete
 		public OfertaLaboral(
-		    Empresa empresaPublicadora, 
-		    List<Keyword> atrkeywords, 
-		    TipoOferta atrtOferta, 
-		    String atrnombre, 
-		    String atrdescripcion, 
-		    String atrciudad, 
-		    DepUY atrdepartamento, 
-		    DTHorario atrhorario, 
-		    Float atrremuneracion, 
-		    LocalDate atrfechaAlta, 
+		    Empresa empresaPublicadora,  
+		    List<Keyword> atrkeywords,  
+		    TipoOferta atrtOferta,  
+		    String atrnombre,  
+		    String atrdescripcion,  
+		    String atrciudad,  
+		    DepUY atrdepartamento,  
+		    DTHorario atrhorario,  
+		    Float atrremuneracion,  
+		    LocalDate atrfechaAlta,  
 		    EstadoOL estadoNuevo
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 		    this(
-		        empresaPublicadora, 
-		        atrkeywords, 
-		        atrtOferta, 
-		        atrnombre, 
-		        atrdescripcion, 
-		        atrciudad, 
-		        atrdepartamento, 
-		        atrhorario, 
-		        atrremuneracion, 
-		        atrfechaAlta, 
-		        estadoNuevo, 
-		        null,  // Imagen nula
+		        empresaPublicadora,  
+		        atrkeywords,  
+		        atrtOferta,  
+		        atrnombre,  
+		        atrdescripcion,  
+		        atrciudad,  
+		        atrdepartamento,  
+		        atrhorario,  
+		        atrremuneracion,  
+		        atrfechaAlta,  
+		        estadoNuevo,  
+		        null,   // Imagen nula
 		        null  // Paquete nulo
 		    );
 		}
 
 		// Constructor sin imagen pero con paquete
 		public OfertaLaboral(
-		    Empresa empresaPublicadora, 
-		    List<Keyword> atrkeywords, 
-		    TipoOferta atrtOferta, 
-		    String atrnombre, 
-		    String atrdescripcion, 
-		    String atrciudad, 
-		    DepUY atrdepartamento, 
-		    DTHorario atrhorario, 
-		    Float atrremuneracion, 
-		    LocalDate atrfechaAlta, 
-		    EstadoOL estadoNuevo, 
+		    Empresa empresaPublicadora,  
+		    List<Keyword> atrkeywords,  
+		    TipoOferta atrtOferta,  
+		    String atrnombre,  
+		    String atrdescripcion,  
+		    String atrciudad,  
+		    DepUY atrdepartamento,  
+		    DTHorario atrhorario,  
+		    Float atrremuneracion,  
+		    LocalDate atrfechaAlta,  
+		    EstadoOL estadoNuevo,  
 		    Paquete paq
-		) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido{
+		) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa{
 		    this(
-		        empresaPublicadora, 
-		        atrkeywords, 
-		        atrtOferta, 
-		        atrnombre, 
-		        atrdescripcion, 
-		        atrciudad, 
-		        atrdepartamento, 
-		        atrhorario, 
-		        atrremuneracion, 
-		        atrfechaAlta, 
-		        estadoNuevo, 
-		        null,   // Imagen nula
+		        empresaPublicadora,  
+		        atrkeywords,  
+		        atrtOferta,  
+		        atrnombre,  
+		        atrdescripcion,  
+		        atrciudad,  
+		        atrdepartamento,  
+		        atrhorario,  
+		        atrremuneracion,  
+		        atrfechaAlta,  
+		        estadoNuevo,  
+		        null,    // Imagen nula
 		        paq
 		    );
 		}
 
 		// Constructor sin paquete y con imagen
 		public OfertaLaboral(
-		    Empresa empresaPublicadora, 
-		    List<Keyword> atrkeywords, 
-		    TipoOferta atrtOferta, 
-		    String atrnombre, 
-		    String atrdescripcion, 
-		    String atrciudad, 
-		    DepUY atrdepartamento, 
-		    DTHorario atrhorario, 
-		    Float atrremuneracion, 
-		    LocalDate atrfechaAlta, 
-		    EstadoOL estadoNuevo, 
+		    Empresa empresaPublicadora,  
+		    List<Keyword> atrkeywords,  
+		    TipoOferta atrtOferta,  
+		    String atrnombre,  
+		    String atrdescripcion,  
+		    String atrciudad,  
+		    DepUY atrdepartamento,  
+		    DTHorario atrhorario,  
+		    Float atrremuneracion,  
+		    LocalDate atrfechaAlta,  
+		    EstadoOL estadoNuevo,  
 		    byte[] imagennueva
-		)throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido {
+		)throws ExceptionRemuneracionOfertaLaboralNegativa,   ExceptionPaqueteNoVigente,   ExceptionCostoPaqueteNoNegativo,   ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 		    this(
-		        empresaPublicadora, 
-		        atrkeywords, 
-		        atrtOferta, 
-		        atrnombre, 
-		        atrdescripcion, 
-		        atrciudad, 
-		        atrdepartamento, 
-		        atrhorario, 
-		        atrremuneracion, 
-		        atrfechaAlta, 
-		        estadoNuevo, 
-		        imagennueva, 
+		        empresaPublicadora,  
+		        atrkeywords,  
+		        atrtOferta,  
+		        atrnombre,  
+		        atrdescripcion,  
+		        atrciudad,  
+		        atrdepartamento,  
+		        atrhorario,  
+		        atrremuneracion,  
+		        atrfechaAlta,  
+		        estadoNuevo,  
+		        imagennueva,  
 		        null  // Paquete nulo
 		    );
 		}
@@ -433,7 +455,7 @@ public class OfertaLaboral {
 				LocalDate paqAlta = this.paqueteAsoc.getfechaAlta();
 				LocalDate fechaLimite = paqAlta.plusDays(this.paqueteAsoc.getValidez());
 				if (LocalDate.now().isAfter(fechaLimite)) {
-					throw new ExceptionPaqueteNoVigente("En la fecha seleccionada,  el paquete no está vigente");
+					throw new ExceptionPaqueteNoVigente("En la fecha seleccionada,   el paquete no está vigente");
 				}
 			}
 			fechaAlta = fecha;
@@ -539,6 +561,8 @@ public class OfertaLaboral {
 	} // registra postulacion a la lista de postulaciones	
 	
 	public void registrarPostulacionForzado(Postulacion post) throws ExceptionFechaInvalida {
+			//int dura = this.getTipoOferta().getDuracion();
+			//LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
 			postulaciones.add(post);
 		
 	} // registra postulacion a la lista de postulaciones	
@@ -556,7 +580,7 @@ public class OfertaLaboral {
 		if (paq != null) {
 			paq_nomb = paq.getNombre();
 		}
-		DTOfertaExtendido dtoe = new DTOfertaExtendido(getEmpresaPublicadora().getNickname(),  getNombre(),    getDescripcion(),    getFechaAlta(),    getCosto(),    getRemuneracion(),    getHorario(),    getDepartamento(),    getCiudad(),    getEstado(),    posts,    getImagen(),    paq_nomb);
+		DTOfertaExtendido dtoe = new DTOfertaExtendido(getEmpresaPublicadora().getNickname(),   getNombre(),     getDescripcion(),     getFechaAlta(),     getCosto(),     getRemuneracion(),     getHorario(),     getDepartamento(),     getCiudad(),     getEstado(),     posts,     getImagen(),     paq_nomb);
 		return dtoe;
 	}
 	
@@ -575,7 +599,7 @@ public class OfertaLaboral {
 		for (Keyword item : keys) {
 			nuevo.add(item.getNombre());
 		}
-		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getEmpresaPublicadora().getNickname(),  getNombre(),    getDescripcion(),    getFechaAlta(),    getCosto(),    getRemuneracion(),    getHorario(),    getDepartamento(),    getCiudad(),    getEstado(),    getImagen(),    nuevo);
+		DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getEmpresaPublicadora().getNickname(),   getNombre(),     getDescripcion(),     getFechaAlta(),     getCosto(),     getRemuneracion(),     getHorario(),     getDepartamento(),     getCiudad(),     getEstado(),     getImagen(),     nuevo);
 		return dtoe;
 	}
 	
@@ -597,9 +621,9 @@ public class OfertaLaboral {
 		}
 		DTOfertaExtendidoConKeywordsTit dtoe;
 		if (getPaquete() != null) {
-			dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(),   getNombre(),   getDescripcion(),   getFechaAlta(),   getCosto(),   getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   getImagen(),   nuevo,    getPaquete().getDTPaquete(),    nuevo);
+			dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(),    getNombre(),    getDescripcion(),    getFechaAlta(),    getCosto(),    getRemuneracion(),    getHorario(),    getDepartamento(),    getCiudad(),    getEstado(),    getImagen(),    nuevo,     getPaquete().getDTPaquete(),     nuevo);
 		} else {
-			dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(),  getNombre(),   getDescripcion(),   getFechaAlta(),   getCosto(),   getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   getImagen(),   nuevo,    null,    nuevo);
+			dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(),   getNombre(),    getDescripcion(),    getFechaAlta(),    getCosto(),    getRemuneracion(),    getHorario(),    getDepartamento(),    getCiudad(),    getEstado(),    getImagen(),    nuevo,     null,     nuevo);
 		}
 		return dtoe;
 	} 
@@ -626,7 +650,7 @@ public class OfertaLaboral {
 		for (int i = 0; i < keywords.size() && !salir; i++) {
 			keys.add(keywords.get(i).getNombre());
 		}
-		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getEmpresaPublicadora().getNickname(),  getNombre(),   getDescripcion(),   getFechaAlta(),   getCosto(),    getRemuneracion(),   getHorario(),   getDepartamento(),   getCiudad(),   getEstado(),   getImagen(),   keys,   dtPost);
+		DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getEmpresaPublicadora().getNickname(),   getNombre(),    getDescripcion(),    getFechaAlta(),    getCosto(),     getRemuneracion(),    getHorario(),    getDepartamento(),    getCiudad(),    getEstado(),    getImagen(),    keys,    dtPost);
 
 		
 		return 	entregar;	

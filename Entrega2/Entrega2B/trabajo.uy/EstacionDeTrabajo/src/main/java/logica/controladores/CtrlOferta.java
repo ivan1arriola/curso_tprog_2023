@@ -201,7 +201,7 @@ public class CtrlOferta implements ICtrlOferta{
 				oferLab = empresa.altaOfertaLaboral(tipoOfer,   nombre,   descripcion,   horario,   remun,   ciu,   dep,   fechaA,   keywords,   estado,   img,   paq);
 				OLH.agregar(oferLab);
 			} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
-					| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
+					| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido | ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -408,12 +408,14 @@ public class CtrlOferta implements ICtrlOferta{
 		PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 		Paquete paquet = PaqueteH.buscar(pack);
 
-		if (paquet.getInfoCompra()==null) {
-			return false; //nadie lo compro 
-		} else {
+		if (paquet.getInfoCompra().isEmpty()) {//nadie lo compro 
+
+			return false; 
+		} else {//ya fue comprado
+
 			return true;
-		//ya fue comprado
-			}
+
+		}
 	}
 
 	@Override
@@ -436,11 +438,11 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 	
 	public Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida{
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		UsuarioHandler uHan = UsuarioHandler.getInstance();
+		Empresa emp = (Empresa) uHan.buscarNick(nickname_e);
 		
-		if (e != null) {
-			return e.listarPaquetesNoVencidos();
+		if (emp != null) {
+			return emp.listarPaquetesNoVencidos();
 		} else {
 			throw new ExceptionEmpresaInvalida("No existe una empresa con el nickname indicado.");
 		}
