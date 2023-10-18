@@ -438,11 +438,11 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 	
 	public Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida{
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		Empresa e = (Empresa) UH.buscarNick(nickname_e);
+		UsuarioHandler uHan = UsuarioHandler.getInstance();
+		Empresa emp = (Empresa) uHan.buscarNick(nickname_e);
 		
-		if (e != null) {
-			return e.listarPaquetesNoVencidos();
+		if (emp != null) {
+			return emp.listarPaquetesNoVencidos();
 		} else {
 			throw new ExceptionEmpresaInvalida("No existe una empresa con el nickname indicado.");
 		}
