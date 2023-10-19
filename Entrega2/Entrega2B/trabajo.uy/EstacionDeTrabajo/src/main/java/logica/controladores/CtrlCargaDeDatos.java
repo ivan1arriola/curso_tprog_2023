@@ -3,25 +3,42 @@ package main.java.logica.controladores;
 
 import java.time.format.DateTimeFormatter; 
 import java.util.List;
+import java.util.Map;
 
+import main.java.excepciones.ExcepcionKeywordVacia;
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionEmpresaInvalida;
+import main.java.excepciones.ExceptionFechaInvalida;
+import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.excepciones.ExceptionValidezNegativa;
 
 import java.util.ArrayList; 
-import main.java.logica.Fabrica; 
+import main.java.logica.Fabrica;
+import main.java.logica.clases.Empresa;
+import main.java.logica.clases.Keyword;
+import main.java.logica.clases.OfertaLaboral;
+import main.java.logica.clases.Paquete;
+import main.java.logica.clases.Postulacion;
+import main.java.logica.clases.Postulante;
 import main.java.logica.datatypes.DTHora; 
 import main.java.logica.datatypes.DTHorario; 
 import main.java.logica.enumerados.DepUY; 
 import main.java.logica.enumerados.EstadoOL; 
 import main.java.logica.interfaces.ICtrlCargaDeDatos; 
 import main.java.logica.interfaces.ICtrlOferta; 
-import main.java.logica.interfaces.ICtrlUsuario; 
+import main.java.logica.interfaces.ICtrlUsuario;
+import main.java.logica.manejadores.KeywordHandler;
+import main.java.logica.manejadores.OfertaLaboralHandler;
+import main.java.logica.manejadores.PaqueteHandler;
+import main.java.logica.manejadores.TipoOfertaHandler;
+import main.java.logica.manejadores.UsuarioHandler;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,13 +46,114 @@ import java.io.InputStreamReader;
 // import java.io.IOException; NO SE USA (CHECKSTYLE)
 import java.time.LocalDate;
 
-
+import java.io.ByteArrayOutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
 	public CtrlCargaDeDatos() {}
 	
-	public void cargarDatos() {
+	public boolean altaPostulacionForzado(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha) {
+		CtrlUsuario CtrllUser = new CtrlUsuario();
+		boolean existe = CtrllUser.existePostulacion(nick,   nombre);
+		if (!existe) {
+			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+			OfertaLaboral oferLab = OLH.buscar(nombre);
+			Postulacion postulacion = crearPostulacionForzado(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab);
+			try {
+				oferLab.registrarPostulacionForzado(postulacion);
+			} catch (ExceptionFechaInvalida e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return !existe;
+	}
+	
+	public Postulacion crearPostulacionForzado(String nick,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String URLDocExtras,   OfertaLaboral OferLab) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		
+		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
+		if (postulante == null) { 
+			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
+		try {
+			return postulante.crearPostulacionForzado(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public boolean altaOfertaLaboralForzado(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,  List<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
+		List<Keyword> keywords = new ArrayList<>();
+		
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		KeywordHandler KeywordH = KeywordHandler.getInstance();
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		
+		Map<String,  Keyword> keyw = KeywordH.obtener();
+		for (Map.Entry<String,   Keyword> entry : keyw.entrySet()) {
+			if (keys.contains(entry.getKey())) {
+				keywords.add(entry.getValue());
+			}
+		}
+		
+		if (UsuarioH.existeNick(nickname_e)) {
+			Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
+			
+			if (empresa != null) {
+				CtrlOferta CtrlOfer = new CtrlOferta();
+				boolean ofer = CtrlOfer .existeOferta(nombre);
+				if (!ofer) {
+					PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
+					Paquete paq;
+					if (paquete != null) {
+						paq = PaqueteH.buscar(paquete);
+					}
+					else { 
+						paq = null;
+					}
+					
+					OfertaLaboral oferL;
+					try {
+						oferL = empresa.altaOfertaLaboralForzado(TOH.buscar(tipo),   nombre,   descripcion,   horario,   remun,   ciu,   dep,   FechaA,   keywords,   estado,   img,   paq);
+						OLH.agregar(oferL);
+					} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExceptionPaqueteNoVigente e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExceptionCostoPaqueteNoNegativo e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExceptionDescuentoInvalido e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				return !ofer;
+			}
+			else {
+				throw new ExceptionEmpresaInvalida("No existe una empresa con el nickname indicado.");
+			}
+		}
+		else {
+			throw new ExceptionUsuarioNoEncontrado("No existe un usuario con el nickname indicado.");
+		}
+
+		
+	}
+
+	
+	
+	
+	
+	public void cargarDatos() throws ExcepcionKeywordVacia {
 		Fabrica fabrica = Fabrica.getInstance();
 		ICtrlUsuario ICU = fabrica.getICtrlUsuario();
 		ICtrlOferta ICO = fabrica.getICtrlOferta();
@@ -50,7 +168,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             	String tipo = campos[1];
             	
 	            // URL de la imagen que deseas descargar
-	            String imageUrl = campos[7];
+//	            String imageUrl = campos[7];
             	
             	if (tipo.equals("P")) {
             		try (InputStream inputStream2 = getClass().getResourceAsStream("/main/datos/Usuarios-Postulantes.csv");
@@ -146,12 +264,28 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos13[7];
+	            URL url = new URL(imageUrl);
+	            byte[] imagen;
+	            URLConnection connection = url.openConnection();
+	            // Set a user-agent to avoid HTTP 403 errors (some servers require it).
+	            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+	            
+	            try (InputStream in = connection.getInputStream(); 
+	                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+	                byte[] buffer = new byte[4096];
+	                int bytesRead;
+	                while ((bytesRead = in.read(buffer)) != -1) {
+	                    out.write(buffer, 0, bytesRead);
+	                }
+	                imagen = out.toByteArray();
+	            }
+	            
 	            
         		
         		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         		LocalDate fecha = LocalDate.parse(campos13[5],  formatter);
         		
-        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), campos13[7]);
+        		ICO.altaPaqueteOL(campos13[1],  campos13[2],  Integer.parseInt(campos13[3].split(" ")[0]),  fecha,  Float.valueOf(campos13[4]), imagen);
         	}
         } catch (IOException e40) {
         	e40.printStackTrace();
@@ -178,6 +312,23 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		
 	            // URL de la imagen que deseas descargar
 	            String imageUrl = campos5[12];
+	            URL url = new URL(imageUrl);
+	            byte[] imagen;
+	            URLConnection connection = url.openConnection();
+	            // Set a user-agent to avoid HTTP 403 errors (some servers require it).
+	            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+	            
+	            try (InputStream in = connection.getInputStream(); 
+	                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+	                byte[] buffer = new byte[4096];
+	                int bytesRead;
+	                while ((bytesRead = in.read(buffer)) != -1) {
+	                    out.write(buffer, 0, bytesRead);
+	                }
+	                imagen = out.toByteArray();
+	            }
+	            
+	            
         		
         		// Obtener hora
         		String horario = campos5[5];
@@ -326,7 +477,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                         dep = DepUY.Maldonado;
                         break;
                     default:
-                        // System.out.println("Unknown department: " + input);
                         break;
                 }
                 
@@ -366,8 +516,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 	}
                 }
                 
+                
+                
         		try {
-        			ICU.altaOfertaLaboral(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  campos5[12],  paq);
+        			altaOfertaLaboralForzado(nickname_e,  tipodeP,  campos5[1],  campos5[2],  hor,  Float.valueOf(campos5[6]),  campos5[4],  dep,  fecha,  keys,  estado,  imagen,  paq);
         		} catch (ExceptionUsuarioNoEncontrado eune) {
         			eune.printStackTrace();
         		} catch (ExceptionEmpresaInvalida eei) {
@@ -439,7 +591,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         		LocalDate fecha = LocalDate.parse(campos10[4],  formatter);
         		
         		// No hay URLDocExtras,  por eso el "".
-        		if (!ICO.altaPostulacion(oferLab,  user,  campos10[2],  campos10[3],  "",  fecha)) {
+        		if (altaPostulacionForzado(oferLab,  user,  campos10[2],  campos10[3],  "",  fecha)) {
         			// EXCEPCIÓN.
         		}
         		

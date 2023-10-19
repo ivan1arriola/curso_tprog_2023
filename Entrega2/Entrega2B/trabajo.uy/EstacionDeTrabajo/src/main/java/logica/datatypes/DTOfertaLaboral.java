@@ -14,11 +14,11 @@ public class DTOfertaLaboral {
   private DTHorario horario;
   private DepUY departamento;
   private String ciudad;
-  private String imagen;
+  private byte[]  imagen;
   private EstadoOL estado;
 	
 	
-public DTOfertaLaboral(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estadoOL,  String imagenBytes) {
+public DTOfertaLaboral(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estadoOL,  byte[]  imagenBytes) {
   nombre = nomb;
   descripcion = desc;
   fechaDeAlta = fechaA;
@@ -64,7 +64,7 @@ public String getCiudad() {
   return ciudad;
 }
 	
-public String getImagen() {
+public byte[]  getImagen() {
   return imagen;
 }
 	

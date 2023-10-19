@@ -17,11 +17,11 @@ public class DTOfertaExtendidoSinPConK  {
 	private DepUY departamento;
 	private String ciudad;
 	private EstadoOL estado;
-	private String imagen;
+	private byte[]  imagen;
 	private Set<String> keywords;
 	private String nicknameEmpresaPublicadora;
 	
-	public DTOfertaExtendidoSinPConK( String nicknameEmpresa, String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estado,  String img,  Set<String> keys) {
+	public DTOfertaExtendidoSinPConK( String nicknameEmpresa, String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estado,  byte[]  img,  Set<String> keys) {
 		// no es subclase de DTOfertaExtendido,  es una version sin postulaciones
 		nombre = nomb;
 		descripcion = desc;
@@ -73,7 +73,7 @@ public class DTOfertaExtendidoSinPConK  {
 		return estado;
 	}
 	
-	public String getImagen() {
+	public byte[]  getImagen() {
 		return imagen;
 	}
 	

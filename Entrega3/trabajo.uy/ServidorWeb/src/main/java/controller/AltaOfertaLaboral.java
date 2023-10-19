@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import main.java.logica.datatypes.DTHora;
 import main.java.logica.datatypes.DTHorario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
 import utils.FabricaWeb;
+import enumeration.Departamento;
+import enumeration.EstadoOfertaLaboral;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 
@@ -76,10 +76,10 @@ public class AltaOfertaLaboral extends HttpServlet {
 
         float remuneracion = Float.parseFloat(request.getParameter("remuneracion"));
 
-        DepUY departamento = null;
+        Departamento departamento = null;
         if (departamentoStr != null && !departamentoStr.isEmpty()) {
             try {
-                departamento = DepUY.valueOf(departamentoStr);
+                departamento = Departamento.valueOf(departamentoStr);
             } catch (IllegalArgumentException e) {
             }
         }
@@ -90,7 +90,7 @@ public class AltaOfertaLaboral extends HttpServlet {
         try {
             logica.altaOfertaLaboral(
                 nickname, tipoOferta, nombre, descripcion, new DTHorario(obtenerDTHora(horaInicio), obtenerDTHora(horaFinal)),
-                remuneracion, ciudad, departamento, LocalDate.now(), keywordsSet, EstadoOL.Ingresada, null, formaPago
+                remuneracion, ciudad, departamento, LocalDate.now(), keywordsSet, EstadoOfertaLaboral.Ingresada, null, formaPago
             );
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
         } catch (Exception e) {

@@ -2,6 +2,8 @@ package main.java.logica.interfaces;
 
 import java.time.LocalDate;
 import java.util.Set;
+
+import main.java.excepciones.ExcepcionKeywordVacia;
 import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
@@ -28,9 +30,9 @@ public interface ICtrlOferta {
 		
 		public abstract boolean altaTipoPublicacionOL(String nomb,  String descripcion,  int expo,  int dur,  float costo,  LocalDate fechA);
 		
-		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  String img) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido;
+		public abstract boolean altaPaqueteOL(String nombre,  String descripcion,  int validez,  LocalDate fechaA,  float descuento,  byte[]  img) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido;
 		
-		public abstract boolean altaKeyword(String key);
+		public abstract boolean altaKeyword(String key) throws ExcepcionKeywordVacia;
 		
 		public abstract boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 		
@@ -38,7 +40,7 @@ public interface ICtrlOferta {
 		altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
 				String descripcion,  DTHorario horario,  float remun,  String ciu,  
 				DepUY dep,  LocalDate fechaA,  Set<String> keys,  
-				EstadoOL estado,  String img,  String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa;
+				EstadoOL estado,  byte[]  img,  String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa;
 		
 		public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante,  String nombre_oferta);
 		

@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane; 
 import java.awt.Font; 
 
+@SuppressWarnings("serial")
 public class AltaDeKeywords extends JInternalFrame {
 	private JTextField keywordIngresada; 
 

@@ -22,15 +22,15 @@ public class Paquete {
     private float descuento;
     private int validez;
     private LocalDate fechaAlta;
-    private String imagen;
+    private byte[] imagen;
     // Relaciones
     private Set<OfertaPaquete> oferPaq;
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor
-    public Paquete(String nombre,   String descripcion,   int validez,   LocalDate fecha,   float descuento,  String imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
-    	if(descuento >= 0 && descuento <= 100) {
-            if(validez >= 0) {
+    public Paquete(String nombre,   String descripcion,   int validez,   LocalDate fecha,   float descuento,  byte[] imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
+    	if (descuento >= 0 && descuento <= 100) {
+            if (validez >= 0) {
             	this.nombre = nombre;
             	this.descripcion = descripcion;
                 this.fechaAlta = fecha;
@@ -72,7 +72,7 @@ public class Paquete {
     	return validez;
     }
     
-    public String getImagen() {
+    public byte[] getImagen() {
     	return imagen; 
     }
     
@@ -98,7 +98,7 @@ public class Paquete {
     }
     
     public void setCosto(float costo) throws ExceptionCostoPaqueteNoNegativo 	{
-    	if(costo >= 0) {
+    	if (costo >= 0) {
     		this.costo = costo;
     	}
     	else {
@@ -107,7 +107,7 @@ public class Paquete {
     }
     
     public void setDescuento(float descuento) throws ExceptionDescuentoInvalido {
-    	if(descuento >= 0 && descuento <= 100) {
+    	if (descuento >= 0 && descuento <= 100) {
     		this.descuento = descuento; 
     	} else {
     		throw new ExceptionDescuentoInvalido("El descuento tiene que ser un número entre 0 y 100.");
@@ -116,7 +116,7 @@ public class Paquete {
     }
     
     public void setValidez(int validez) throws ExceptionValidezNegativa {
-    	if(validez >= 0) {
+    	if (validez >= 0) {
     		this.validez = validez;
     	} else throw new ExceptionValidezNegativa("La validez debe ser un número no negativo.");
     }
@@ -147,7 +147,7 @@ public class Paquete {
 
     // OPERACIONES
     public void crearOfertaPaquete(TipoOferta tipoO, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete {
-    	if(cantidad > 0) {
+    	if (cantidad > 0) {
             OfertaPaquete ofpaq = new OfertaPaquete(tipoO,   cantidad);
             Set<OfertaPaquete> OFERTASPAQUETES = this.getOfertaPaquete();
             OFERTASPAQUETES.add(ofpaq);

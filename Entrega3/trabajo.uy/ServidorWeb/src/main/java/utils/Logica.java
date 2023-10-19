@@ -1,10 +1,12 @@
 package utils;
 
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
+import enumeration.Departamento;
+import enumeration.EstadoOfertaLaboral;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 import javabeans.CantTipoPublicacionBean;
@@ -12,10 +14,13 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
+import main.java.excepciones.ExcepcionKeywordVacia;
+import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
+import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.excepciones.UsuarioNoExisteException;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
@@ -46,7 +51,12 @@ public class Logica implements ILogica {
 
 	@Override
 	public void cargarDatos() {
-		Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
+		try {
+			Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
+		} catch (ExcepcionKeywordVacia e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -117,6 +127,8 @@ public class Logica implements ILogica {
 	public Set<String> listarPaquetesDeEmpresa(String nickname) {
 		return ctrlOferta.listarComprasPaquete(nickname);
 	}
+	
+
 
 	@Override
 	public Set<String> listarTipoDePublicaciones() {
@@ -124,27 +136,40 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) {
         Fabrica.getInstance().getICtrlUsuario().altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, null);
     }
 	
 
 	@Override
 	public void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-        Fabrica.getInstance().getICtrlUsuario().altaPostulanteImagen(nick, contraseña, nombre, apellido, fecha_nac, mail, nacionalidad, null);
+        Fabrica.getInstance().getICtrlUsuario().altaPostulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
     }
 
 	@Override
 	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,
-			float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, String img,
+			float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado, String img,
 			String paquete) {
-		ctrlOferta.altaOfertaLaboral(nickname_e, tipo, nombre, descripcion, horario, remun, ciu, dep, fechaA, keys, estado, img, paquete);
+		try {
+			DepUY departamento = DepUY.values()[Departamento.valueOf(dep.toString()).ordinal()];
+			EstadoOL estadoOL = EstadoOL.valueOf(estado.toString());
+			ctrlOferta.altaOfertaLaboral(nickname_e, tipo, nombre, descripcion, horario, remun, ciu, departamento, fechaA, keys, estadoOL, null, paquete);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) {
-		ctrlOferta.compraPaquetes(nickname, paquete, now, valor);
+		try {
+			ctrlOferta.compraPaquetes(nickname, paquete, now, valor);
+		} catch (ExceptionCompraPaqueteConValorNegativo
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -156,7 +181,16 @@ public class Logica implements ILogica {
 		paqueteBean.setDescripcion(dtPaquete.getDescripcion());
 		paqueteBean.setDescuento(dtPaquete.getDescuento());
 		paqueteBean.setFechaAlta(dtPaquete.getFechaAlta());
-		paqueteBean.setImagen(dtPaquete.getImagen());
+		
+		byte[] imagenBytes = dtPaquete.getImagen();
+
+		// Convierte la imagen en un string base64
+		String imagenString = Base64.getEncoder().encodeToString(imagenBytes);
+
+		// Agrega el encabezado de la imagen
+		imagenString = "data:image/png;base64," + imagenString;
+		
+		paqueteBean.setImagen(imagenString);
 		paqueteBean.setNombre(dtPaquete.getNombre());
 		paqueteBean.setValidez(dtPaquete.getValidez());
 		
@@ -195,7 +229,17 @@ public class Logica implements ILogica {
         ofertaLaboral.setDepartamento(dtOferta.getDepartamento());
         ofertaLaboral.setFechaDeAlta(dtOferta.getFechaDeAlta());
         ofertaLaboral.setHorario(dtOferta.getHorario());
-        ofertaLaboral.setImagen(dtOferta.getImagen());
+        
+        byte[] imagenBytes = dtOferta.getImagen();
+
+		// Convierte la imagen en un string base64
+		String imagenString = Base64.getEncoder().encodeToString(imagenBytes);
+
+		// Agrega el encabezado de la imagen
+		imagenString = "data:image/png;base64," + imagenString;
+		
+		
+        ofertaLaboral.setImagen(imagenString);
         ofertaLaboral.setRemuneracion(dtOferta.getRemuneracion());
         ofertaLaboral.setEstado(dtOferta.getEstado());
         ofertaLaboral.setNicknameEmpresa(dtOferta.getNicknameEmpresaPublicadora());
