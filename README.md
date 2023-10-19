@@ -9,7 +9,23 @@
 
 ## Tarea 3
 
-Correcciones de la tarea 2:
+### Registro de horas:
+
+### Informe
+
+### Modelo de Dominio
+
+- https://drive.google.com/file/d/1C3vsr8-NwEU4rnE23exVJ2q3CvJFs_fC/view?usp=sharing
+
+### Diagramas de Secuencia del Sistema
+
+
+### Diagramas de Comunicación
+
+
+### DCD
+
+### Correcciones de la tarea 2:
 https://docs.google.com/document/d/1vljbMSK0CAwpS5Q-Wd2h-UAGJXZIPw_VT_4cxfE5oAE/edit#heading=h.afnbqgdseyjf
 
 
