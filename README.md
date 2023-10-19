@@ -12,13 +12,14 @@
 ### Registro de horas:
 
 ### Informe
+https://es.overleaf.com/4149825336gpwsqqvcfrzq
 
 ### Modelo de Dominio
 
 - https://drive.google.com/file/d/1C3vsr8-NwEU4rnE23exVJ2q3CvJFs_fC/view?usp=sharing
 
 ### Diagramas de Secuencia del Sistema
-
+- https://drive.google.com/file/d/1LMO8HSqCtbD8KwgY-wmlSRwuLrOjhTf_/view?usp=sharing
 
 ### Diagramas de Comunicación
 
