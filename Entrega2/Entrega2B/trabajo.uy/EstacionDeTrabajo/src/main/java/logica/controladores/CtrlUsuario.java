@@ -576,4 +576,5 @@ public class CtrlUsuario implements ICtrlUsuario {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		return UsuarioH.existeCorreo(correo);
 	}
+
 }

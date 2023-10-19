@@ -153,7 +153,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	
 	
 	
-	public void cargarDatos() throws ExcepcionKeywordVacia {
+	public void cargarDatos() throws ExcepcionKeywordVacia, ExceptionValidezNegativa {
 		Fabrica fabrica = Fabrica.getInstance();
 		ICtrlUsuario ICU = fabrica.getICtrlUsuario();
 		ICtrlOferta ICO = fabrica.getICtrlOferta();
@@ -184,7 +184,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                	        String dateString = campos1[1];
 	                	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	                	        LocalDate localDate = LocalDate.parse(dateString,  formatter);
-                	        	ICU.altaPostulanteImagen(campos[2], campos[6],  campos[3], campos[4], localDate, campos[5], campos1[2],  campos[7]);
+                	        	ICU.altaPostulanteImagen(campos[2], campos[6],  campos[3], campos[4], localDate, campos[5], campos1[2],  null); // el null debe ser la imagen
 	                		}
 	                	}
             		}
@@ -200,14 +200,14 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 	                			
 	                			if (campos2.length == 2) {
 	                				try {
-	                					ICU.altaEmpresaImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1],  campos[7]);
+	                					ICU.altaEmpresaImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1],  null); // el null debe ser la imagen
 	                				} catch (IllegalArgumentException e2) {
 	                					e2.printStackTrace();
 	                				}
 	                			} else {
 	                				
 	                				try {
-	                					ICU.altaEmpresaURLyImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1], campos2[2],  campos[7]);
+	                					ICU.altaEmpresaURLyImagen(campos[2], campos[6], campos[3], campos[4],  campos[5],  campos2[1], campos2[2],  null); // el null debe ser la imagen
 	                				} catch (IllegalArgumentException e3) {
 	                					e3.printStackTrace();
 	                				}

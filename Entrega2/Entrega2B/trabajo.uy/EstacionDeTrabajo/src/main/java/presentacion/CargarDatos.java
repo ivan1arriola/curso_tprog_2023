@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import main.java.excepciones.ExcepcionKeywordVacia;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlCargaDeDatos;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -45,7 +47,12 @@ public class CargarDatos extends JInternalFrame {
         JButton btnAceptar = new JButton("Aceptar");
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
-        		iCCDatos.cargarDatos();
+        		try {
+					iCCDatos.cargarDatos();
+				} catch (ExcepcionKeywordVacia | ExceptionValidezNegativa e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(CargarDatos.this,  "Se han cargado todos los datos pero " + e.getMessage(),  "Carga de Datos",  JOptionPane.ERROR);
+				}
                 
                 JOptionPane.showMessageDialog(CargarDatos.this,  "Se han cargado los datos exitosamente.",  "Carga de Datos",  JOptionPane.INFORMATION_MESSAGE);
                 

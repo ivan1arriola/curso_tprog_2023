@@ -17,16 +17,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-//import java.awt.Font;
-//import javax.swing.JList;
 import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-//import main.java.logica.Manejadores.PaqueteHandler;
-//import main.java.logica.Manejadores.TipoOfertaHandler;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTPaquete;
@@ -120,20 +112,10 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                                 setVisible(false);		
                 			}
                 		}
-                	} catch (NumberFormatException exc) {
+                	} catch (NumberFormatException | ExceptionCantidadPositivaDeTipoOfertaEnPaquete exc) {
                 		
                         JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "Ingrese por favor un número",   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
-<<<<<<< HEAD
-                    } catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
-						// TODO Auto-generated catch block
-                    	JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   e.getMessage(),   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
-					}
-=======
-                    
-                	} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete exc) {
-                		JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "No hay disponibilidad de Tipo de Oferta en paquete seleccionado",   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
                 	}
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
     	        }
                 
         	}

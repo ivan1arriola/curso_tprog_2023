@@ -12,6 +12,7 @@ import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionDescuentoInvalido;
 import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
 import main.java.logica.datatypes.DTHorario;
@@ -267,7 +268,7 @@ public class Empresa extends Usuario {
     	return url != null;
     }
     
-    public boolean compraPaquetes(Paquete paq,  LocalDate fecha,  int valor) throws ExceptionCompraPaqueteConValorNegativo,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public boolean compraPaquetes(Paquete paq,  LocalDate fecha,  int valor) throws ExceptionCompraPaqueteConValorNegativo,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {
     	if (valor >= 0) {
 	        for (InfoCompra ic : infoCompras) {
 	        	if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {

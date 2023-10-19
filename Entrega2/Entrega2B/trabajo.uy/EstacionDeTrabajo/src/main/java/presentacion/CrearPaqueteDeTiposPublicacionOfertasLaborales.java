@@ -177,15 +177,8 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
     	    		descripcion.setText("");
     	    		periodo.setValue(1);
     	    		descuento.setValue(1.0);
-    	    		
-
-<<<<<<< HEAD
     	        } catch (IllegalArgumentException | ExceptionValidezNegativa | ExceptionDescuentoInvalido ex) {
     	            JOptionPane.showMessageDialog(null,  "Ocurrió error: " + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
-=======
-    	        } catch (IllegalArgumentException|ExceptionValidezNegativa|ExceptionDescuentoInvalido ex) {
-    	            JOptionPane.showMessageDialog(null,  "Error: " + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
     	        }
         	}
         });

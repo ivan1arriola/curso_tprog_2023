@@ -5,11 +5,8 @@ import main.java.excepciones.ExceptionCostoPaqueteNoNegativo;
 import main.java.excepciones.ExceptionEmpresaInvalida;
 import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-<<<<<<< HEAD
-=======
 import main.java.excepciones.ExceptionPaqueteNoVigente;
 import main.java.excepciones.ExceptionDescuentoInvalido;
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 import main.java.logica.interfaces.ICtrlUsuario;
 import main.java.logica.interfaces.ICtrlOferta;
 import main.java.logica.Fabrica;
@@ -417,11 +414,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	                				setVisible(false);
 	                				limpiarFormulario();
 	                			}
-<<<<<<< HEAD
-	                	} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | ExceptionRemuneracionOfertaLaboralNegativa e1 ) {
-=======
 	                	} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida| ExceptionRemuneracionOfertaLaboralNegativa e1) {
->>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 	                			JOptionPane.showMessageDialog(AltaOfertaLaboral.this,  e1.getMessage(),  "ERROR - Alta Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
 	  	                		
 	                    } catch (NumberFormatException e1) {

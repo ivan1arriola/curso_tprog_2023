@@ -6,8 +6,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener; 
 import java.awt.event.ActionEvent; 
 
-import javax.swing.JTextField; 
+import javax.swing.JTextField;
 
+import main.java.excepciones.ExcepcionKeywordVacia;
 import main.java.logica.interfaces.ICtrlOferta; 
 import main.java.logica.interfaces.ICtrlUsuario; 
 
@@ -43,15 +44,21 @@ public class AltaDeKeywords extends JInternalFrame {
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evento) {
         		String text = keywordIngresada.getText(); 
-        		boolean notexist = ICO.altaKeyword(text); 
-        		if (notexist) {
-        			JOptionPane.showMessageDialog(AltaDeKeywords.this,   "La Keyword fue dada de alta exitosamente.",   "Alta de Keywords",   JOptionPane.INFORMATION_MESSAGE); 
-        			limpiarFormulario(); 
-        			setVisible(false); 
-        		} else {
-                	JOptionPane.showMessageDialog(AltaDeKeywords.this,   "Ingrese una keyword no existente.",   "ERROR - Alta de Keywords",   JOptionPane.ERROR_MESSAGE); 
-                }
-        		
+        		boolean notexist;
+				try {
+					notexist = ICO.altaKeyword(text);
+	        		if (notexist) {
+	        			JOptionPane.showMessageDialog(AltaDeKeywords.this,   "La Keyword fue dada de alta exitosamente.",   "Alta de Keywords",   JOptionPane.INFORMATION_MESSAGE); 
+	        			limpiarFormulario(); 
+	        			setVisible(false); 
+	        		} else {
+	                	JOptionPane.showMessageDialog(AltaDeKeywords.this,   "Ingrese una keyword no existente.",   "ERROR - Alta de Keywords",   JOptionPane.ERROR_MESSAGE); 
+	                }
+				} catch (ExcepcionKeywordVacia e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(AltaDeKeywords.this,   e.getMessage(),   "ERROR - Alta de Keywords",   JOptionPane.ERROR_MESSAGE); 
+				} 
+
         	}
         }); 
         btnAceptar.setBounds(63,   78,   117,   25); 
