@@ -24,6 +24,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 //import main.java.logica.Manejadores.PaqueteHandler;
 //import main.java.logica.Manejadores.TipoOfertaHandler;
 
+import main.java.excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTPaquete;
 import main.java.logica.interfaces.ICtrlOferta;
@@ -117,7 +118,10 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                 		}
                 	} catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   "Ingrese por favor un número",   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
-                    }
+                    } catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+						// TODO Auto-generated catch block
+                    	JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,   e.getMessage(),   "ERROR - Agregar Tipo de Publicación de Oferta Laboral",   JOptionPane.ERROR_MESSAGE);
+					}
     	        }
                 
         	}

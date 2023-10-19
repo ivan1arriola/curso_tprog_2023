@@ -19,6 +19,9 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+
+import main.java.excepciones.ExceptionDescuentoInvalido;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.Fabrica;
 import main.java.logica.interfaces.ICtrlOferta;
 
@@ -175,10 +178,9 @@ public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFra
     	    		descuento.setValue(1.0);
     	    		
 
-    	        } catch (IllegalArgumentException ex) {
+    	        } catch (IllegalArgumentException | ExceptionValidezNegativa | ExceptionDescuentoInvalido ex) {
     	            JOptionPane.showMessageDialog(null,  "Ocurrió error: " + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
     	        }
-        		
         	}
         });
         
