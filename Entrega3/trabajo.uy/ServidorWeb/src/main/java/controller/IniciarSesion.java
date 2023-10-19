@@ -6,13 +6,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTEmpresa;
-import main.java.logica.datatypes.DTPostulante;
-import main.java.logica.datatypes.DTUsuario;
+import javabeans.UsuarioBean;
+import utils.FabricaWeb;
 
 import java.io.IOException;
 import enumeration.TipoUsuario;
+import interfaces.ILogica;
 
 @WebServlet("/iniciarsesion")
 public class IniciarSesion extends HttpServlet {
@@ -24,7 +23,7 @@ public class IniciarSesion extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
+    	HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("nickname") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
         } else {
@@ -34,11 +33,12 @@ public class IniciarSesion extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	ILogica logica = FabricaWeb.getInstance().getLogica();
         String identificador = request.getParameter("identificador-input");
         String contraseña = request.getParameter("password-input");
         
         try {
-            boolean credencialesValidadas = validarCredenciales(identificador, contraseña);
+            boolean credencialesValidadas = logica.validarCredenciales(identificador, contraseña);
 
             if (credencialesValidadas) {
                 iniciarSesion(request, response, identificador);
@@ -55,30 +55,17 @@ public class IniciarSesion extends HttpServlet {
 
 
     
-    private boolean validarCredenciales(String identificador, String contraseña) {
-        return Fabrica.getInstance().getICtrlUsuario().validarCredenciales(identificador, contraseña);
-    }
 
-    private DTUsuario obtenerUsuario(String nickname) {
-        return Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuario(nickname);
-    }
     
 
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws Exception {
         HttpSession session = request.getSession();
-        DTUsuario usuario = obtenerUsuario(identificador);
+        ILogica logica = FabricaWeb.getInstance().getLogica();
+        UsuarioBean usuario = logica.obtenerDatosUsuario(identificador);
         session.setAttribute("nickname", usuario.getNickname());
 
-        TipoUsuario tipo;
-
-        if (usuario instanceof DTPostulante) {
-            tipo = TipoUsuario.Postulante;
-        } else if (usuario instanceof DTEmpresa) {
-            tipo = TipoUsuario.Empresa;
-        } else {
-            throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
-        }
-
+        TipoUsuario tipo = usuario.getTipo();
+        if (tipo == null) throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
         session.setAttribute("tipoUsuario", tipo);
 
         String imagen = usuario.getImagen();

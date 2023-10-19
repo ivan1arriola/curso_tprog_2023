@@ -1,9 +1,10 @@
 package interfaces;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
+import enumeration.Departamento;
+import enumeration.EstadoOfertaLaboral;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
@@ -12,9 +13,7 @@ import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import main.java.logica.datatypes.DTHorario;
-import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
+
 
 public interface ILogica {
 	
@@ -36,8 +35,8 @@ public interface ILogica {
 	
 	void altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
 			String descripcion,  DTHorario horario,  float remun,  String ciu,  
-			DepUY dep,  LocalDate fechaA,  Set<String> keys,  
-			EstadoOL estado,  String img,  String paquete);
+			Departamento dep,  LocalDate fechaA,  Set<String> keys,  
+			EstadoOfertaLaboral estado,  String img,  String paquete);
 	
 	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor);
 	
