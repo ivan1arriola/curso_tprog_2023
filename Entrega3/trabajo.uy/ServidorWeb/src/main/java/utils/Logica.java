@@ -21,6 +21,7 @@ import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
 import main.java.excepciones.ExceptionUsuarioNickRepetido;
 import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import main.java.excepciones.ExceptionValidezNegativa;
 import main.java.logica.Fabrica;
 import main.java.logica.datatypes.DTCantTO;
 import main.java.logica.datatypes.DTEmpresa;
@@ -56,14 +57,16 @@ public class Logica implements ILogica {
 		} catch (ExcepcionKeywordVacia e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
 
 	@Override
 	public boolean validarCredenciales(String identificador, String contraseña) {
-		// TODO Auto-generated method stub
-		return false;
+		return ctrlUsuario.validarCredenciales(identificador, contraseña);
 	}
 
 	@Override
@@ -76,8 +79,19 @@ public class Logica implements ILogica {
 	        usuario.setApellido(dtUsuario.getApellido());
 	        usuario.setContrasenia(dtUsuario.getcontrasenia());
 	        usuario.setCorreoElectronico(dtUsuario.getcorreoElectronico());
-	        usuario.setImagen(null);
 	        
+	       
+	        byte[] imagenBytes = dtUsuario.getImagen();
+			String imagenString;
+			if(imagenBytes != null) {
+				imagenString = Base64.getEncoder().encodeToString(imagenBytes);
+				imagenString = "data:image/png;base64," + imagenString;
+				usuario.setImagen(imagenString);
+			} else {
+				usuario.setImagen(null);
+			}
+			
+			
 	        if(dtUsuario instanceof DTEmpresa) {
 	        	DTEmpresa empresa = (DTEmpresa) dtUsuario;
 	        	usuario.setDescripcion(empresa.getDescripcion());
@@ -107,14 +121,19 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<UsuarioBean> listarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    	 Set<String> nicknames = listarNicknamesUsuario();
+         Set<UsuarioBean> usuarios = new HashSet<UsuarioBean>();
+         for(String usuario : nicknames) {
+         	usuarios.add(obtenerDatosUsuario(usuario));
+         } 	
+		return usuarios;
+    	
+    }
 
 	@Override
 	public Set<String> listarNicknamesUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+		return ctrlUsuario.listarNicknamesUsuarios();
+
 	}
 
 	@Override

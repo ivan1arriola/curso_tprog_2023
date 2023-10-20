@@ -156,13 +156,20 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 
 	public boolean altaKeyword(String key) throws ExcepcionKeywordVacia {
-		KeywordHandler KeywordH = KeywordHandler.getInstance();
-		boolean existe = KeywordH.existe(key);
-		if (!existe) {
-			Keyword KEY = new Keyword(key);
-			KeywordH.agregar(KEY);
-		}
-		return !existe;
+	    if (key == null || key.trim().isEmpty()) {
+	        throw new ExcepcionKeywordVacia("La palabra clave no puede estar vacía.");
+	    }
+
+	    KeywordHandler keywordHandler = KeywordHandler.getInstance();
+	    boolean existe = keywordHandler.existe(key);
+
+	    if (!existe) {
+	        Keyword keyword;
+	        keyword = new Keyword(key);
+	        keywordHandler.agregar(keyword);
+	    }
+
+	    return !existe;
 	}
 	
 	public boolean compraPaquetes(String nickname_e,  String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {

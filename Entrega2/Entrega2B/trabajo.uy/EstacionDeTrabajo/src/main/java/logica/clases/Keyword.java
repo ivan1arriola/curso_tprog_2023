@@ -6,12 +6,13 @@ public class Keyword {
 	
 	// constructor
 	public Keyword(String nomb) throws ExcepcionKeywordVacia {
-		if (nomb.isEmpty()) {
-			nombre = nomb;
-		} else {
-			throw new ExcepcionKeywordVacia("la keyword no puede ser vacia");
-		}
+	    if (!nomb.isEmpty()) {
+	        nombre = nomb;
+	    } else {
+	        throw new ExcepcionKeywordVacia("La palabra clave no puede ser vacía");
+	    }
 	}
+
 	
 	public String getNombre() {
 		return nombre;

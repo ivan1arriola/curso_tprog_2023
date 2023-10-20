@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="main.java.logica.datatypes.DTEmpresa" %>
-<%@ page import="main.java.logica.datatypes.DTPostulante" %>
-<%@ page import="main.java.logica.datatypes.DTUsuario" %>
-<%@ page import="java.util.Base64" %>
+
+<%@ page import="javabeans.UsuarioBean" %>
+<%@ page import="enumeration.TipoUsuario" %>
+<%@ page import="java.util.Set" %>
 
 
 <!DOCTYPE html>
@@ -30,7 +29,7 @@
             <div class="sin-bordes">
                 <div class="row">
                     <%
-                    HashSet<DTUsuario> usuarios = (HashSet<DTUsuario>) request.getAttribute("usuarios");
+                    Set<UsuarioBean> usuarios = (Set<UsuarioBean>) request.getAttribute("usuarios");
                     if (usuarios == null || usuarios.isEmpty()) {
                         // Si ofertasLaborales es null o está vacío, muestra un mensaje
                     %>
@@ -40,7 +39,7 @@
 
                     <%
                     } else {
-                        for (DTUsuario usuario : usuarios) {
+                        for (UsuarioBean usuario : usuarios) {
                         	String imagen = usuario.getImagen();
 
                         	if (imagen == null) {
@@ -56,9 +55,9 @@
                                         </h5>
                                         <p class="card-text">
                                         	<% 
-                                                if (usuario instanceof DTPostulante) {
+                                                if (usuario.getTipo()==TipoUsuario.Postulante) {
                                                     out.println("Postulante");
-                                                } else if (usuario instanceof DTEmpresa) {
+                                                } else if (usuario.getTipo()==TipoUsuario.Empresa) {
                                                     out.println("Empresa");
                                                 }
                                             %>

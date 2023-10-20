@@ -22,7 +22,7 @@ public class InfoCompra {
     // constructor
     public InfoCompra(LocalDate fechaCompra,   float costo,   Paquete pack,   Empresa empres,  Set<DTCantTO> conjuntoS) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {
         // atributos
-    	if ( costo<0 ) {
+    	if ( costo>=0 ) {
     		this.fechaCompra = fechaCompra;
             this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
             this.costo = costo;
