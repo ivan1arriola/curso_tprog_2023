@@ -5,8 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -42,6 +45,10 @@ import main.java.logica.manejadores.UsuarioHandler;
 
 public class Utils {
 	
+	private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
+    private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
+
+	
 	public Utils() {
 		
 	}
@@ -62,8 +69,41 @@ public class Utils {
 	    return new DTHorario(desde, hasta);
 	}
 	
+	public static String getDirectUrl(String shortUrl) {
+        try {
+            URL url = new URL(shortUrl);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+            // Configurar la solicitud
+            httpURLConnection.setInstanceFollowRedirects(false); // Deshabilitar redirecciones automáticas
+            httpURLConnection.setRequestMethod("GET");
+
+            // Realizar la solicitud
+            int responseCode = httpURLConnection.getResponseCode();
+
+            // Verificar si hay redirección
+            if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM) {
+                return httpURLConnection.getHeaderField("Location");
+            } else {
+                return shortUrl;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+	
+	private String cambiarURLAlternativo(String imageUrl) {
+        String nuevaURL = imageUrl.replace(PREFIX_ORIGINAL, PREFIX_NUEVO);
+        return nuevaURL;
+    }
+	
 	public byte[] descargarImagen(String imageUrl) throws IOException {
-	    URL url = new URL(imageUrl);
+		String link = getDirectUrl(imageUrl);
+		link = cambiarURLAlternativo(link);
+		
+		
+	    URL url = new URL(link);
 	    byte[] imagen;
 	    URLConnection connection = url.openConnection();
 	    connection.setRequestProperty("User-Agent", "Mozilla/5.0");

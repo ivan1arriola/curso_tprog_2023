@@ -105,6 +105,9 @@ public interface ILogica {
 	/** Lista las ofertas laborales confirmadas del sistema que tengan en el nombre el String consulta **/
 	Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta);
 
+	/** Lista los datos de los paquetes **/
+	Set<PaqueteBean> obtenerPaquetes();
+
 	
 
     

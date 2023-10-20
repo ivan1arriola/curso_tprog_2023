@@ -63,6 +63,14 @@ public class Logica implements ILogica {
 		}
 
 	}
+	
+	private String imagenAString(byte[] bytes) {
+        if (bytes != null) {
+            return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+        } else {
+            return null;
+        }
+    }
 
 	@Override
 	public boolean validarCredenciales(String identificador, String contraseña) {
@@ -79,18 +87,7 @@ public class Logica implements ILogica {
 	        usuario.setApellido(dtUsuario.getApellido());
 	        usuario.setContrasenia(dtUsuario.getcontrasenia());
 	        usuario.setCorreoElectronico(dtUsuario.getcorreoElectronico());
-	        
-	       
-	        byte[] imagenBytes = dtUsuario.getImagen();
-			String imagenString;
-			if(imagenBytes != null) {
-				imagenString = Base64.getEncoder().encodeToString(imagenBytes);
-				imagenString = "data:image/jpeg;base64," + imagenString;
-				usuario.setImagen(imagenString);
-			} else {
-				usuario.setImagen(null);
-			}
-			
+			usuario.setImagen(imagenAString(dtUsuario.getImagen()));
 			
 	        if(dtUsuario instanceof DTEmpresa) {
 	        	DTEmpresa empresa = (DTEmpresa) dtUsuario;
@@ -194,6 +191,8 @@ public class Logica implements ILogica {
 		}
 		
 	}
+	
+	
 
 	@Override
 	public PaqueteBean obtenerDatosPaquete(String paquete) {
@@ -204,15 +203,7 @@ public class Logica implements ILogica {
 		paqueteBean.setDescuento(dtPaquete.getDescuento());
 		paqueteBean.setFechaAlta(dtPaquete.getFechaAlta());
 		
-		byte[] imagenBytes = dtPaquete.getImagen();
-
-		// Convierte la imagen en un string base64
-		String imagenString = Base64.getEncoder().encodeToString(imagenBytes);
-
-		// Agrega el encabezado de la imagen
-		imagenString = "data:image/jpeg;base64," + imagenString;
-		
-		paqueteBean.setImagen(imagenString);
+		paqueteBean.setImagen(imagenAString(dtPaquete.getImagen()));
 		paqueteBean.setNombre(dtPaquete.getNombre());
 		paqueteBean.setValidez(dtPaquete.getValidez());
 		
@@ -251,21 +242,10 @@ public class Logica implements ILogica {
         ofertaLaboral.setDepartamento(dtOferta.getDepartamento());
         ofertaLaboral.setFechaDeAlta(dtOferta.getFechaDeAlta());
         ofertaLaboral.setHorario(dtOferta.getHorario());
-        
-        byte[] imagenBytes = dtOferta.getImagen();
-
-		// Convierte la imagen en un string base64
-		String imagenString = Base64.getEncoder().encodeToString(imagenBytes);
-
-		// Agrega el encabezado de la imagen
-		imagenString = "data:image/jpeg;base64," + imagenString;
-		
-		
-        ofertaLaboral.setImagen(imagenString);
+        ofertaLaboral.setImagen(imagenAString(dtOferta.getImagen()));
         ofertaLaboral.setRemuneracion(dtOferta.getRemuneracion());
         ofertaLaboral.setEstado(dtOferta.getEstado());
         ofertaLaboral.setNicknameEmpresa(dtOferta.getNicknameEmpresaPublicadora());
-        
         
         DTOfertaExtendidoSinPConK nuevoDatos = ctrlOferta.infoOfertaLaboralVisitante(nombreOferta);
         ofertaLaboral.setKeywords(nuevoDatos.getKeywords());
@@ -449,8 +429,16 @@ public class Logica implements ILogica {
 		return dtOfertas;	
 	}
 
-
-	
+	@Override
+	public Set<PaqueteBean> obtenerPaquetes() {
+        Set<String> lista = ctrlOferta.listarPaquetes();
+        
+        Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
+        for(String nombrePaquete : lista) {
+        	paquetes.add(obtenerDatosPaquete(nombrePaquete));
+        }
+		return paquetes;
+	}
 	
 
 }

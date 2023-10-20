@@ -5,14 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTPaquete;
-import main.java.logica.interfaces.ICtrlOferta;
+import javabeans.PaqueteBean;
 import utils.FabricaWeb;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
+
+import interfaces.ILogica;
 
 /**
  * Servlet implementation class ListarPaquetes
@@ -20,27 +19,18 @@ import java.util.Set;
 @WebServlet("/paquetes")
 public class ListarPaquetes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	ILogica logica;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ListarPaquetes() {
         super();
-        // TODO Auto-generated constructor stub
+        logica = FabricaWeb.getInstance().getLogica();
     }
     
-    public Set<DTPaquete> obtenerPaquetes() {
-    	ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
-    	
-        Set<String> lista = ctrl.listarPaquetes();
-        Set<DTPaquete> paquetes = new HashSet<DTPaquete>();
-        
-        for(String nombrePaquete : lista) {
-        	paquetes.add(ctrl.obtenerDatosPaquete(nombrePaquete));
-        }
-        
-        return paquetes;
-    }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,8 +39,7 @@ public class ListarPaquetes extends HttpServlet {
 		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
 
         try {
-            Set<DTPaquete> paquetes = obtenerPaquetes();
-
+            Set<PaqueteBean> paquetes = logica.obtenerPaquetes();
             request.setAttribute("paquetes", paquetes);
             request.getRequestDispatcher("/WEB-INF/listar/paquetes.jsp").forward(request, response);
         } catch (Exception e) {

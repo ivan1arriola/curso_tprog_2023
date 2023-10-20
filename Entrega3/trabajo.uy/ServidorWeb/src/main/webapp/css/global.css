@@ -21,7 +21,21 @@
 .card img {
   width: 100%;
   height: 200px;
-  object-fit: fit;
+  object-fit: cover; 
+}
+
+
+
+
+
+.card img.usuario {
+    width: 100%;
+}
+
+.card img.paquete {
+    width: 100%;
+  	height: 200px;
+    object-fit: cover; /* Mantén la relación de aspecto y ajusta el contenido */
 }
 
 html,

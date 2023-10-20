@@ -46,26 +46,23 @@
                         	    imagen = request.getContextPath() + "/nopicture.png";
                         	}
                             %>
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <img src="<%= imagen %>" class="card-img-top" alt="Perfil de <%= usuario.getNickname() %>" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= usuario.getNickname() %>"><%= usuario.getNickname() %></a>
-                                        </h5>
-                                        <p class="card-text">
-                                        	<% 
-                                                if (usuario.getTipo()==TipoUsuario.Postulante) {
-                                                    out.println("Postulante");
-                                                } else if (usuario.getTipo()==TipoUsuario.Empresa) {
-                                                    out.println("Empresa");
-                                                }
-                                            %>
-                                        </p>
-                                        
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="col-3">
+							    <div class="card mb-3 bg-light ">
+							        <img src="<%= imagen %>" class="card-img-top usuario" alt="Perfil de <%= usuario.getNickname() %>" />
+							        <div class="card-body text-center">
+							            <h5 class="card-title">
+							                <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= usuario.getNickname() %>"><%= usuario.getNickname() %></a>
+							            </h5>
+							            <p class="card-text mb-1">
+							                <%= usuario.getNombre() + " " + usuario.getApellido() %>
+							            </p>
+							            <p class="card-text mb-1 fw-bolder">
+							                <%= usuario.getTipo() %>
+							            </p>
+							        </div>
+							    </div>
+							</div>
+
                             <%
                         }
                     }

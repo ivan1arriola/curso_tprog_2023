@@ -5,8 +5,8 @@
 <%@ page import="javabeans.UsuarioBean" %>
 
 <!-- Tab de paquetes -->
-<div class="tab-pane fade" id="paquete-panel" role="tabpanel" aria-labelledby="paquete-tab">
-    <div class="card mb-3">
+<div class="tab-pane fade sin-bordes" id="paquete-panel" role="tabpanel" aria-labelledby="paquete-tab">
+
         <%
         UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
         Set<PaqueteBean> paquetes = usuario.getPaquetes();
@@ -26,15 +26,23 @@
                 String descripcion = paquete.getDescripcion();
                 String enlace = request.getContextPath() + "/consultarpaquete?p=" + paquete.getNombre();
         %>
-        <jsp:include page="/WEB-INF/templates/lista1.jsp">
-            <jsp:param name="imagen" value="<%= imagen %>" />
-            <jsp:param name="nombre" value="<%= nombre %>" />
-            <jsp:param name="descripcion" value="<%= descripcion %>" />
-            <jsp:param name="enlace" value="<%= enlace %>" />
-        </jsp:include>
+	        		<div class="card mb-3">
+					    <div class="row g-0">
+					        <div class="col-md-4">
+					            <img src="<%= imagen %>" class="img-fluid rounded-start paquete" alt="Imagen de <%= nombre %>" />
+					        </div>
+					        <div class="col">
+					            <div class="card-body">
+					                <h5 class="card-title"><%= nombre %></h5>
+					                <p class="card-text"><%= descripcion %></p>
+					                <a href="<%= enlace %>" class="card-link">Leer más</a>
+					            </div>
+					        </div>
+					    </div>
+					</div>
         <%
             }
         }
         %>
-    </div>
+  
 </div>

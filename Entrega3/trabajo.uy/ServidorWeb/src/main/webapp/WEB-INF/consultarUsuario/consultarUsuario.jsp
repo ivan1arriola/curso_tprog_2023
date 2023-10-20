@@ -30,17 +30,18 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
             <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
         </div>
 
-        <div class="container container col-9 p-4">
+        <div class="container col-9 p-4">
+        
             <div class="container">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <%
                         // Mostrar la imagen del usuario si está disponible
                         String imagenUsuario = usuario.getImagen();
                         if (imagenUsuario != null) {
                         %>
                             <img src="<%= imagenUsuario %>"
-                                alt="Imagen de Usuario" class="img-fluid mb-3 rounded-circle img-thumbnail perfil" />
+                                alt="Imagen de Usuario" class="img-fluid mb-3 perfil rounded" />
                         <%
                         } else {
                         %>
@@ -51,8 +52,9 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                         }
                         %>
                     </div>
-                    <div class="col-8">
-                        <h1><%= usuario.getNombre() %>  <%= usuario.getApellido() %></h1>
+                    <div class="col text-center">
+                    	<h1 class='fw-bold'><%= usuario.getNickname() %></h1>
+                        <h2><%= usuario.getNombre() + ' ' + usuario.getApellido() %></h2>
                         <h2><%= usuario.getCorreoElectronico() %> </h2>
                     </div>
                 </div>

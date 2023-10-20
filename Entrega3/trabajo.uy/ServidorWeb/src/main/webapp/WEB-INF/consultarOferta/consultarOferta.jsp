@@ -33,6 +33,38 @@
 <head>
     <jsp:include page="/WEB-INF/templates/head.jsp" />
     <title><%= ofertaLaboral.getNombre() %></title>
+    
+    <style type="text/css">
+    	.banner-container {
+		    background-image: url(<%= imagen %>);
+		    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+		    height: 300px; /* Altura del banner, ajusta según tus necesidades */
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+		
+		.banner-container.banner-dark {
+		    position: relative;
+		}
+		
+		.banner-container.banner-dark::before {
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.5); /* Ajusta el valor alpha (0.5) para controlar la opacidad */
+		}
+		
+		.banner-container h1 {
+		    position: relative; /* Para que el texto aparezca encima del fondo oscuro */
+		    z-index: 1; /* Asegura que el texto esté encima del fondo oscuro */
+		    font-size: 3.5em;
+		}
+    
+    </style>
 </head>
 
 <body>
@@ -49,19 +81,18 @@
             <!-- Contenido aquí -->
                         
             <div class="container">
-                <div class="row">
-                    <h1 class="text-center mt-3"><%= ofertaLaboral.getNombre() %></h1>
-                </div>
+                
+                
+                <div class="row banner-container banner-dark">
+    				<h1 class="text-center text-light fw-bolder"><%= ofertaLaboral.getNombre() %></h1>
+				</div>
+                
                 
                 <div class="row">
 
                     <div class="col d-flex">
                         <div class="container" id="detalleOferta">
-                            <div class="row align-items-center mt-2">
-							    <div class="col-6">
-							        <img src="<%= imagen %>" alt="Descripción de la imagen" class="img-fluid ofertaLaboral-img">
-							    </div>
-							</div>
+                           
                                    
                             
                             <div class="row align-items-center mt-2">
