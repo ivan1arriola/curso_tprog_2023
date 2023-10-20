@@ -85,7 +85,7 @@ public class Logica implements ILogica {
 			String imagenString;
 			if(imagenBytes != null) {
 				imagenString = Base64.getEncoder().encodeToString(imagenBytes);
-				imagenString = "data:image/png;base64," + imagenString;
+				imagenString = "data:image/jpeg;base64," + imagenString;
 				usuario.setImagen(imagenString);
 			} else {
 				usuario.setImagen(null);
@@ -188,6 +188,9 @@ public class Logica implements ILogica {
 				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
@@ -207,7 +210,7 @@ public class Logica implements ILogica {
 		String imagenString = Base64.getEncoder().encodeToString(imagenBytes);
 
 		// Agrega el encabezado de la imagen
-		imagenString = "data:image/png;base64," + imagenString;
+		imagenString = "data:image/jpeg;base64," + imagenString;
 		
 		paqueteBean.setImagen(imagenString);
 		paqueteBean.setNombre(dtPaquete.getNombre());
@@ -255,7 +258,7 @@ public class Logica implements ILogica {
 		String imagenString = Base64.getEncoder().encodeToString(imagenBytes);
 
 		// Agrega el encabezado de la imagen
-		imagenString = "data:image/png;base64," + imagenString;
+		imagenString = "data:image/jpeg;base64," + imagenString;
 		
 		
         ofertaLaboral.setImagen(imagenString);
