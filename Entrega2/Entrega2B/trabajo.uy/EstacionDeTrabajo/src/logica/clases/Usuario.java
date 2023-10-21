@@ -2,6 +2,7 @@ package logica.clases;
 
 import java.util.Set;
 
+import logica.Utils;
 import logica.datatypes.DTUsuario;
 
 public abstract class Usuario {
@@ -75,6 +76,8 @@ public abstract class Usuario {
         this.correoElectronico = correo_electronico;
         this.contrasenia = contrasenia;
         this.imagen = imagen;
+        
+        Utils.guardarImagen("Usuario", nickname , "jpg", imagen);
         
         System.out.println("Se ha creado un usuario. - " + nickname);
     }

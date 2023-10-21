@@ -2,14 +2,18 @@ package logica;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -47,11 +51,57 @@ public class Utils {
 	
 	private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
     private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
+    
 
 	
 	public Utils() {
-		
 	}
+	
+	public static String getUbicacionImagenes() {
+        // Aquí puedes leer la configuración específica del proyecto
+        // y obtener la ubicación de la carpeta "resources" de acuerdo con esa configuración.
+        // Por ejemplo, puedes leer una propiedad del sistema o un archivo de configuración.
+        // En este ejemplo, se usa una propiedad del sistema como ejemplo.
+        String ubicacion = System.getProperty("ubicacion_recursos");
+        
+        // Si la propiedad no está definida, utiliza una ubicación por defecto.
+        if (ubicacion == null) {
+            ubicacion = System.getProperty("user.dir") + "/resources";
+        }
+        
+        return ubicacion;
+    }
+	
+	public static String generateImageCode(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(input.getBytes());
+            byte[] digest = md.digest();
+            
+            // Convierte el hash en una representación hexadecimal
+            String code = String.format("%064x", new BigInteger(1, digest));
+            
+            return code;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+	
+	public static void guardarImagen(String subcarpeta, String nombreImagen, String tipoImagen, byte[] imagenBytes) {
+	    try {
+	        String ubicacion = getUbicacionImagenes() + "/" + subcarpeta + "/" + generateImageCode(nombreImagen) + "." +tipoImagen;
+	        FileOutputStream fileOutputStream = new FileOutputStream(ubicacion);
+	        fileOutputStream.write(imagenBytes);
+	        fileOutputStream.close();
+	        
+	        System.out.println("Imagen guardada exitosamente en " + ubicacion);
+	    } catch (IOException e) {
+	        System.err.println("Error al guardar la imagen: " + e.getMessage());
+	    }
+	}
+
+	
 	
 	public DTHorario obtenerHorario(String horarioStr) {
 	    String[] desdeHasta = horarioStr.split(" - ");

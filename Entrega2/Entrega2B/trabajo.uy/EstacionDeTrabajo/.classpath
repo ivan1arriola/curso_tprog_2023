@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry excluding="test/" kind="src" path="src"/>
-	<classpathentry kind="src" output="presentacionBin" path="presentacion"/>
 	<classpathentry kind="src" output="testBin" path="testSrc">
 		<attributes>
 			<attribute name="test" value="true"/>

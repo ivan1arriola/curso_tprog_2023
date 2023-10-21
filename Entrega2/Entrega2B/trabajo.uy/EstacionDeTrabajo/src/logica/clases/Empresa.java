@@ -33,39 +33,24 @@ public class Empresa extends Usuario {
     	return this.infoCompras;
     }
     
-    // constructor empresa con imagen y url 
-    public Empresa(String nickname,   String nombre,   String apellido,   String correo_electronico,   String contrasena,   byte[] img,   String desc,   String urlE) {
-        super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img);
-        descripcion = desc;
-        ofertasLaborales = new HashSet<>();
-        infoCompras = new HashSet<>();
-        url = urlE;
-    }
-    
- // constructor empresa con imagen y sin url
-    public Empresa(String nickname,   String nombre,   String apellido,   String correo_electronico,   String contrasena,   byte[] img,   String desc) {
-        super(nickname,   nombre,   apellido,   correo_electronico,   contrasena,   img);
-        descripcion = desc;
-        ofertasLaborales = new HashSet<>();
-        infoCompras = new HashSet<>();
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
+        super(nickname, nombre, apellido, correo_electronico, contrasena, img);
+        this.descripcion = desc;
+        this.url = urlE;
+        this.ofertasLaborales = new HashSet<OfertaLaboral>();
+        this.infoCompras = new HashSet<InfoCompra>(); 
     }
 
-    // constructor empresa con url sin imagen 
-    public Empresa(String nickname,   String nombre,   String apellido,   String correo_electronico,   String contrasena,   String desc,   String urlE) {
-        super(nickname,   nombre,   apellido,   correo_electronico,   contrasena);
-        descripcion = desc;
-        ofertasLaborales = new HashSet<>();
-        infoCompras = new HashSet<>();
-        url = urlE;
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc) {
+        this(nickname, nombre, apellido, correo_electronico, contrasena, null, desc, null);
     }
 
-    // constructor empresa sin imagen ni url 
-    public Empresa(String nickname,   String nombre,   String apellido,   String correo_electronico,   String contrasena,   String desc) {
-        super(nickname,   nombre,   apellido,   correo_electronico,   contrasena);
-        descripcion = desc;
-        ofertasLaborales = new HashSet<>();
-        infoCompras = new HashSet<>();
-        url = null;
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc) {
+        this(nickname, nombre, apellido, correo_electronico, contrasena, img, desc, null);
+    }
+
+    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc, String urlE) {
+        this(nickname, nombre, apellido, correo_electronico, contrasena, null, desc, urlE);
     }
 
     public String getDescripcion() {

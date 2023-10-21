@@ -12,6 +12,7 @@ import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import logica.Utils;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendido;
@@ -162,6 +163,7 @@ public class OfertaLaboral {
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		    
 			 System.out.println("Se ha creado una Oferta Laboral. - " + nombre);
+			 Utils.guardarImagen("OfertaLaboral", nombre ,"jpg", imagennueva);
 
 		}
 	
@@ -255,6 +257,7 @@ public class OfertaLaboral {
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		    
 		    System.out.println("Se ha creado una Oferta Laboral (forzado). - " + nombre);
+		    Utils.guardarImagen("OfertaLaboral", nombre, "jpg", imagennueva);
 		}
 
 		// Constructor sin imagen ni paquete
