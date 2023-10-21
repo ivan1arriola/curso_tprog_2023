@@ -9,10 +9,10 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
-import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
-import main.java.excepciones.ExceptionUsuarioNickRepetido;
-import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.logica.datatypes.DTHorario;
+import excepciones.ExceptionUsuarioCorreoRepetido;
+import excepciones.ExceptionUsuarioNickRepetido;
+import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import logica.datatypes.DTHorario;
 
 
 public interface ILogica {

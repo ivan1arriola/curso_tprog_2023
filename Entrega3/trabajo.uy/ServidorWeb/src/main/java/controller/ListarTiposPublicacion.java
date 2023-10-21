@@ -5,10 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.excepciones.ExcepcionTipoOfertaNoExistente;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTTipoOferta;
-import main.java.logica.interfaces.ICtrlOferta;
+import excepciones.ExcepcionTipoOfertaNoExistente;
+import logica.Fabrica;
+import logica.datatypes.DTTipoOferta;
+import logica.interfaces.ICtrlOferta;
 import utils.FabricaWeb;
 
 import java.io.IOException;

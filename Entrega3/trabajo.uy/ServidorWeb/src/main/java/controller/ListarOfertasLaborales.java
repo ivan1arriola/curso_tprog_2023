@@ -6,13 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import javabeans.OfertaLaboralBean;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.interfaces.ICtrlOferta;
 import utils.FabricaWeb;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
 
 import interfaces.ILogica;

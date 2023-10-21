@@ -5,7 +5,7 @@ import java.util.Set;
 import interfaces.IKeywordsLoader;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.logica.Fabrica;
+import logica.Fabrica;
 
 public class KeywordsLoader implements IKeywordsLoader{
 

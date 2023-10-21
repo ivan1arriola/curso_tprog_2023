@@ -8,9 +8,9 @@ import java.util.Set;
 
 import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
+import logica.datatypes.DTHorario;
+import logica.enumerados.DepUY;
+import logica.enumerados.EstadoOL;
 
 public class OfertaLaboralBean {
 	private String nombre;

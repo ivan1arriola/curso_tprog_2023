@@ -6,12 +6,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTTipoOferta;
+import logica.Fabrica;
+import logica.datatypes.DTTipoOferta;
 import utils.FabricaWeb;
 
 import java.io.IOException;
-import java.util.Set;
 
 /**
  * Servlet implementation class ConsultarTipoPublicacion

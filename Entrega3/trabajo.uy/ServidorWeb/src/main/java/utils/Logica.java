@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.HashSet;
@@ -48,7 +49,26 @@ public class Logica implements ILogica {
 		Fabrica fabrica = Fabrica.getInstance();
 		ctrlOferta = fabrica.getICtrlOferta();
 		ctrlUsuario = fabrica.getICtrlUsuario();
-	}
+		String ubicacion = System.getProperty("user.dir");
+		System.setProperty("ubicacion_recursos", ubicacion + "/resources");
+
+        // Crea las carpetas necesarias si no existen
+        crearDirectorio(ubicacion + "/resources/Usuario");
+        crearDirectorio(ubicacion + "/resources/OfertaLaboral");
+        crearDirectorio(ubicacion + "/resources/Paquete");
+    }
+
+    private void crearDirectorio(String rutaDirectorio) {
+        File directorio = new File(rutaDirectorio);
+
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado: " + rutaDirectorio);
+            } else {
+                System.err.println("No se pudo crear el directorio: " + rutaDirectorio);
+            }
+        }
+    }
 
 	@Override
 	public void cargarDatos() {
@@ -440,13 +460,7 @@ public class Logica implements ILogica {
 		return paquetes;
 	}
 
-	@Override
-	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion,
-			DTHorario horario, float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys,
-			EstadoOfertaLaboral estado, String img, String paquete) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 
 }

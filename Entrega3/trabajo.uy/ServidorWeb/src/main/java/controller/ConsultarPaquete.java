@@ -9,12 +9,9 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.PaqueteBean;
 import jakarta.servlet.RequestDispatcher;
 
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTPaquete;
 import utils.FabricaWeb;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import enumeration.TipoUsuario;
 
