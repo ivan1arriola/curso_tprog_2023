@@ -14,30 +14,30 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
-import main.java.excepciones.ExcepcionKeywordVacia;
-import main.java.excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
-import main.java.excepciones.ExceptionCompraPaqueteConValorNegativo;
-import main.java.excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-import main.java.excepciones.ExceptionUsuarioCorreoRepetido;
-import main.java.excepciones.ExceptionUsuarioNickRepetido;
-import main.java.excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import main.java.excepciones.ExceptionValidezNegativa;
-import main.java.logica.Fabrica;
-import main.java.logica.datatypes.DTCantTO;
-import main.java.logica.datatypes.DTEmpresa;
-import main.java.logica.datatypes.DTHorario;
-import main.java.logica.datatypes.DTOfertaExtendido;
-import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
-import main.java.logica.datatypes.DTOfertaExtendidoConKeywordsTit;
-import main.java.logica.datatypes.DTOfertaExtendidoSinPConK;
-import main.java.logica.datatypes.DTPaquete;
-import main.java.logica.datatypes.DTPostulacion;
-import main.java.logica.datatypes.DTPostulante;
-import main.java.logica.datatypes.DTUsuario;
-import main.java.logica.enumerados.DepUY;
-import main.java.logica.enumerados.EstadoOL;
-import main.java.logica.interfaces.ICtrlOferta;
-import main.java.logica.interfaces.ICtrlUsuario;
+import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCompraPaqueteConValorNegativo;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.ExceptionUsuarioCorreoRepetido;
+import excepciones.ExceptionUsuarioNickRepetido;
+import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.ExceptionValidezNegativa;
+import logica.Fabrica;
+import logica.datatypes.DTCantTO;
+import logica.datatypes.DTEmpresa;
+import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import logica.datatypes.DTOfertaExtendidoSinPConK;
+import logica.datatypes.DTPaquete;
+import logica.datatypes.DTPostulacion;
+import logica.datatypes.DTPostulante;
+import logica.datatypes.DTUsuario;
+import logica.enumerados.DepUY;
+import logica.enumerados.EstadoOL;
+import logica.interfaces.ICtrlOferta;
+import logica.interfaces.ICtrlUsuario;
 
 public class Logica implements ILogica {
 	
@@ -438,6 +438,14 @@ public class Logica implements ILogica {
         	paquetes.add(obtenerDatosPaquete(nombrePaquete));
         }
 		return paquetes;
+	}
+
+	@Override
+	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion,
+			DTHorario horario, float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys,
+			EstadoOfertaLaboral estado, String img, String paquete) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

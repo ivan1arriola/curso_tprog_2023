@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="main.java.logica.datatypes.DTTipoOferta" %>
+<%@ page import="logica.datatypes.DTTipoOferta" %>
 <%@ page import="java.util.HashSet" %>
 <!DOCTYPE html>
 <html>
