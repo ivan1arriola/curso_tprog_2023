@@ -22,7 +22,7 @@ https://es.overleaf.com/4149825336gpwsqqvcfrzq
 - https://drive.google.com/file/d/1LMO8HSqCtbD8KwgY-wmlSRwuLrOjhTf_/view?usp=sharing
 
 ### Diagramas de Comunicación
-
+- https://drive.google.com/file/d/1ZBKfY9ngWnogqydSk2QLHm_SCx2_qHrZ/view?usp=sharing
 
 ### DCD
 
