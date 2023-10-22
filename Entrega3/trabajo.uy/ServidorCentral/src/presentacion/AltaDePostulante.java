@@ -16,8 +16,8 @@ import javax.swing.SwingConstants;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import logica.Fabrica;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import javax.swing.JPasswordField;
 

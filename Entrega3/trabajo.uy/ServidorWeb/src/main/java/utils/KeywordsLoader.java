@@ -12,7 +12,7 @@ public class KeywordsLoader implements IKeywordsLoader{
 	@Override
 	public void cargarKeywords(HttpServletRequest request, HttpServletResponse response) {
 
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		Set<String> keys = FabricaWeb.getInstance().getLogica().listarKeywords();
 		request.setAttribute("keys", keys);
 		
 	}

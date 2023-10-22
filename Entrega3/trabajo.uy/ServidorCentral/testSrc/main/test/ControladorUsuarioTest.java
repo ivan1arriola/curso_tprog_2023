@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import logica.Fabrica;
 import logica.clases.Empresa;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.UsuarioHandler;
+import logica.utils.Fabrica;
 
 import java.util.Set;
 

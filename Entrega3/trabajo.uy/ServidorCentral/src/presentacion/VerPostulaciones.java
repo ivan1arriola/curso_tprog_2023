@@ -12,10 +12,10 @@ import java.awt.event.ActionEvent;
 //import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
-import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPostulacion;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import javax.swing.JLabel;
 //import java.awt.Font;

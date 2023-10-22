@@ -16,8 +16,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
+import logica.utils.Fabrica;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

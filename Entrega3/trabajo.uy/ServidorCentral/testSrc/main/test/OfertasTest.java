@@ -17,13 +17,13 @@ import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import excepciones.ExceptionValidezNegativa;
-import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import org.junit.jupiter.api.BeforeAll;
 import java.util.Set;

@@ -3,9 +3,11 @@ package logica.datatypes;
 import java.time.LocalDate;
 import java.util.Set;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaExtendidoConKeywords {
   private String nombre;
   private String descripcion;

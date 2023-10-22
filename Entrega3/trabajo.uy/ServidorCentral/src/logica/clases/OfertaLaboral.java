@@ -12,7 +12,6 @@ import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-import logica.Utils;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendido;
@@ -22,6 +21,7 @@ import logica.datatypes.DTOfertaExtendidoSinPConK;
 import logica.datatypes.DTPostulacion;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import logica.utils.ManejadorImagenes;
 
 import java.util.HashSet;
 
@@ -163,7 +163,7 @@ public class OfertaLaboral {
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		    
 			 System.out.println("Se ha creado una Oferta Laboral. - " + nombre);
-			 Utils.guardarImagen("OfertaLaboral", nombre ,"jpg", imagennueva);
+			 ManejadorImagenes.guardarImagenEnArchivo("OfertasLaborales", nombre ,"jpg", imagennueva);
 
 		}
 	
@@ -257,7 +257,7 @@ public class OfertaLaboral {
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		    
 		    System.out.println("Se ha creado una Oferta Laboral (forzado). - " + nombre);
-		    Utils.guardarImagen("OfertaLaboral", nombre, "jpg", imagennueva);
+		    ManejadorImagenes.guardarImagenEnArchivo("OfertasLaborales", nombre, "jpg", imagennueva);
 		}
 
 		// Constructor sin imagen ni paquete

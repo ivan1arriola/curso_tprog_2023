@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import enumeration.TipoUsuario;
+import utils.Convertidor;
+import webservice.UsuarioBeanServidor;
 
 public class UsuarioBean {
 	
@@ -140,6 +142,23 @@ public class UsuarioBean {
 
 	public void setPaquetes(Set<PaqueteBean> paquetes) {
 		this.paquetes = paquetes;
+	}
+
+	public static UsuarioBean fromUsuarioBeanServidor(UsuarioBeanServidor usuarioServidor) {
+		 UsuarioBean bean = new UsuarioBean();
+	        bean.setNickname(usuarioServidor.getNickname());
+	        bean.setCorreoElectronico(usuarioServidor.getCorreoElectronico());
+	        bean.setApellido(usuarioServidor.getApellido());
+	        bean.setNombre(usuarioServidor.getNombre());
+	        bean.setContrasenia(usuarioServidor.getContrasenia());
+	        bean.setImagen(usuarioServidor.getImagen());
+	        bean.setDescripcion(usuarioServidor.getDescripcion());
+	        bean.setUrl(usuarioServidor.getUrl());
+	        bean.setFechaNac(Convertidor.toLocalDate(usuarioServidor.getFechaNac()));
+	        bean.setNacionalidad(usuarioServidor.getNacionalidad());
+	        bean.setTipo(Convertidor.convertTipoUsuario(usuarioServidor.getTipo()));
+	        bean.setError(usuarioServidor.getError());
+		return bean;
 	}
 
 

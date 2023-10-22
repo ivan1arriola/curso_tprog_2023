@@ -7,8 +7,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import logica.Fabrica;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

@@ -6,7 +6,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="testBin" path="testSrc">
+	<classpathentry kind="src" output="target/test-classes" path="testSrc">
 		<attributes>
 			<attribute name="test" value="true"/>
 		</attributes>
@@ -19,20 +19,45 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib"/>
-	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/angus-activation.jar"/>
+	<classpathentry kind="lib" path="lib/angus-mail.jar"/>
+	<classpathentry kind="lib" path="lib/FastInfoset.jar"/>
+	<classpathentry kind="lib" path="lib/gmbal-api-only.jar"/>
+	<classpathentry kind="lib" path="lib/ha-api.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.activation-api.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.annotation-api.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.mail-api.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.xml.bind-api.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.xml.soap-api.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.xml.ws-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-core.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-jxc.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws-rt.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws-tools.jar"/>
+	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/management-api.jar"/>
+	<classpathentry kind="lib" path="lib/mimepull.jar"/>
+	<classpathentry kind="lib" path="lib/saaj-impl.jar"/>
+	<classpathentry kind="lib" path="lib/stax2-api.jar"/>
+	<classpathentry kind="lib" path="lib/stax-ex.jar"/>
+	<classpathentry kind="lib" path="lib/streambuffer.jar"/>
+	<classpathentry kind="lib" path="lib/woodstox-core.jar"/>
+	<classpathentry kind="lib" path="lib/miglayout15-swing.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

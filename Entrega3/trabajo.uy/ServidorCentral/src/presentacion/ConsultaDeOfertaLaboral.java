@@ -17,9 +17,9 @@ import javax.swing.JTextField;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
-import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import javax.swing.JComboBox;
 

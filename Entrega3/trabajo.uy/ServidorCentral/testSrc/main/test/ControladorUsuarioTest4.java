@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
-import logica.Fabrica;
 import logica.clases.OfertaLaboral;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
@@ -16,6 +15,7 @@ import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.OfertaLaboralHandler;
+import logica.utils.Fabrica;
 
 import java.util.List;
 import java.util.Map;

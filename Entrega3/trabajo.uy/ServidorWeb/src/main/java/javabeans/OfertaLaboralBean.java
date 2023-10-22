@@ -11,6 +11,9 @@ import enumeration.EstadoOfertaLaboral;
 import logica.datatypes.DTHorario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import utils.Convertidor;
+import webservice.OfertaLaboralBeanServidor;
+import webservice.UsuarioBeanServidor;
 
 public class OfertaLaboralBean {
 	private String nombre;
@@ -52,6 +55,9 @@ public class OfertaLaboralBean {
         this.mostrarPostulantes = false;
         this.mostrarPaquete = false;
     }
+	
+	
+
 	
 	public Departamento getDepartamento() {
 	    return departamento;
@@ -230,6 +236,63 @@ public class OfertaLaboralBean {
 	public void setNicknameEmpresa(String nicknameEmpresa) {
 		this.nicknameEmpresa = nicknameEmpresa;
 	}
+	
+	
+	
+	public static OfertaLaboralBean fromOfertaLaboralBeanServidor(OfertaLaboralBeanServidor servidor) {
+        OfertaLaboralBean bean = new OfertaLaboralBean();
+
+        bean.setNombre(servidor.getNombre());
+        bean.setDescripcion(servidor.getDescripcion());
+
+        // Convierte la fecha de alta de DateBean a LocalDate
+        if (servidor.getFechaDeAlta() != null) {
+            bean.setFechaDeAlta(Convertidor.toLocalDate(servidor.getFechaDeAlta()));
+        }
+
+        bean.setCosto(servidor.getCosto());
+        bean.setRemuneracion(servidor.getRemuneracion());
+        
+        
+        bean.setHorario(Convertidor.dtHorarioFromServidor(servidor.getHorario()));
+
+        // Convierte el departamento de DepUY a Departamento
+        if (servidor.getDepartamento() != null) {
+            bean.setDepartamento(Departamento.valueOf(servidor.getDepartamento().name()));
+        }
+
+        bean.setCiudad(servidor.getCiudad());
+
+        // Convierte el estado de EstadoOL a EstadoOfertaLaboral
+        if (servidor.getEstado() != null) {
+            bean.setEstado(EstadoOfertaLaboral.valueOf(servidor.getEstado().name()));
+        }
+
+        // Copia los postulantes
+        Set<UsuarioBean> postulantes = new HashSet<>();
+        for (UsuarioBeanServidor usuarioServidor : servidor.getPostulantes()) {
+            postulantes.add(UsuarioBean.fromUsuarioBeanServidor(usuarioServidor));
+        }
+        bean.setPostulantes(postulantes);
+
+        bean.setImagen(servidor.getImagen());
+        bean.setPaq(servidor.getPaq());
+
+        // Convierte el paquete de PaqueteBeanServidor a PaqueteBean
+        if (servidor.getPaquete() != null) {
+            bean.setPaquete(PaqueteBean.fromPaqueteBeanServidor(servidor.getPaquete()));
+        }
+
+        // Copia las keywords
+        Set<String> keywords = new HashSet<>(servidor.getKeywords());
+        bean.setKeywords(keywords);
+
+        bean.setNicknameEmpresa(servidor.getNicknameEmpresa());
+        bean.setMostrarPostulantes(servidor.isMostrarPostulantes());
+        bean.setMostrarPaquete(servidor.isMostrarPaquete());
+
+        return bean;
+    }
 
 
 

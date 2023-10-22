@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test ;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
-import logica.Fabrica;
 import logica.clases.Empresa;
 import logica.clases.InfoCompra;
 import logica.clases.InfoCompraOferta;
@@ -32,6 +31,7 @@ import logica.manejadores.OfertaLaboralHandler;
 import logica.manejadores.PaqueteHandler;
 import logica.manejadores.TipoOfertaHandler;
 import logica.manejadores.UsuarioHandler;
+import logica.utils.Fabrica;
 
 import java.util.List ; 
 import java.util.Map ; 

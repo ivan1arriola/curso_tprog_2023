@@ -1,5 +1,7 @@
 package javabeans;
 
+import webservice.CantTipoPublicacionBeanServidor;
+
 public class CantTipoPublicacionBean {
     private String nombre;
     private int cantidad;
@@ -24,5 +26,14 @@ public class CantTipoPublicacionBean {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+    
+    public static CantTipoPublicacionBean convertFromServidor(CantTipoPublicacionBeanServidor servidorBean) {
+        CantTipoPublicacionBean bean = new CantTipoPublicacionBean();
+        
+        bean.setNombre(servidorBean.getNombre());
+        bean.setCantidad(servidorBean.getCantidad());
+
+        return bean;
     }
 }

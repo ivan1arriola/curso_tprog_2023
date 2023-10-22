@@ -5,11 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import logica.Fabrica;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

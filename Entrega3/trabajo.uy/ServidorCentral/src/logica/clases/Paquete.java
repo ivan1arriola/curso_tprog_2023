@@ -7,10 +7,10 @@ import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionValidezNegativa;
-import logica.Utils;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTPaquete;
 import logica.manejadores.TipoOfertaHandler;
+import logica.utils.ManejadorImagenes;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -43,7 +43,7 @@ public class Paquete {
                 this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null,   despues se cambia 
                 
                 System.out.println("Se ha creado un paquete. - " + nombre);
-                Utils.guardarImagen("Paquete", nombre , "jpg", imagen);
+                ManejadorImagenes.guardarImagenEnArchivo("Paquetes", nombre , "jpg", imagen);
             } else {
             	throw new ExceptionValidezNegativa("La validez debe ser un número no negativo.");
             }

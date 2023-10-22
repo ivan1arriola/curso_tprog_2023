@@ -17,7 +17,6 @@ import logica.datatypes.DTHorario;
 
 public interface ILogica {
 	
-	void cargarDatos();
 	
 	/** Valida que las credenciales coincidan con un usuario en el sistema **/
 	boolean validarCredenciales(String identificador, String contraseña);

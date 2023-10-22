@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import logica.Fabrica;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.utils.Fabrica;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;

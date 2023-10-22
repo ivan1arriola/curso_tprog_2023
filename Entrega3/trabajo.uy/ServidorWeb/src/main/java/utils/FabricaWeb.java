@@ -2,6 +2,8 @@ package utils;
 
 import interfaces.IKeywordsLoader;
 import interfaces.ILogica;
+import webservice.ServidorCentral;
+import webservice.ServidorCentralService;
 
 public class FabricaWeb {
 
@@ -13,7 +15,12 @@ public class FabricaWeb {
     }
 
     public ILogica getLogica() {
-        return new Logica();
+        return (ILogica) new ConexionServidor();
+    }
+    
+    public ServidorCentral getServidor() {
+    	ServidorCentralService service = new ServidorCentralService();
+    	return service.getServidorCentralPort();
     }
 
     public IKeywordsLoader getKeywordsLoader() {

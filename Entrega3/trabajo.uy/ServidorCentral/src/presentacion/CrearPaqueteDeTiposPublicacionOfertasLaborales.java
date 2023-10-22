@@ -22,8 +22,8 @@ import javax.swing.SwingConstants;
 
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionValidezNegativa;
-import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
+import logica.utils.Fabrica;
 
 public class CrearPaqueteDeTiposPublicacionOfertasLaborales extends JInternalFrame {
 	

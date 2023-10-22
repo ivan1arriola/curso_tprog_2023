@@ -10,7 +10,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import excepciones.ExcepcionTipoOfertaNoExistente;
-import logica.Fabrica;
 import logica.clases.Postulante;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTHora;
@@ -25,6 +24,7 @@ import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.UsuarioHandler;
+import logica.utils.Fabrica;
 
 import java.util.Arrays;
 

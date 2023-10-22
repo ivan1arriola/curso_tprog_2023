@@ -3,6 +3,7 @@
 	<name>DispositivoMovil</name>
 	<comment></comment>
 	<projects>
+		<project>ServidorCentral</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
