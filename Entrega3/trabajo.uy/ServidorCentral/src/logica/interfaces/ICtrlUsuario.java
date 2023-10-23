@@ -55,7 +55,7 @@ public interface ICtrlUsuario {
     public abstract boolean existePostulacion(String nickname,  String nombre);
     
     public abstract Postulacion crearPostulacion(String nick,  String curriculumVitae,  String motivacion, 
-    		LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab);
+    		LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab, String video);
     
     public abstract Set<String> obtenerNicknamesPostulantes();
     

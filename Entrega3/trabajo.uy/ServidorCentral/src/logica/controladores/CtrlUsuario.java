@@ -178,14 +178,14 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 	}
 
-	public Postulacion crearPostulacion(String nick,    String curriculumVitae,    String motivacion,    LocalDate fecha,    String URLDocExtras,    OfertaLaboral OferLab) {
+	public Postulacion crearPostulacion(String nick,    String curriculumVitae,    String motivacion,    LocalDate fecha,    String URLDocExtras,    OfertaLaboral OferLab, String urlVideo) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
 		if (postulante == null) { 
 			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
 		try {
-			return postulante.crearPostulacion(curriculumVitae,    motivacion,    fecha,    URLDocExtras,    OferLab);
+			return postulante.crearPostulacion(curriculumVitae,    motivacion,    fecha,    URLDocExtras,    OferLab, urlVideo);
 		} catch (ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -207,13 +207,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return res;
 	}
 
-// no existe mas
-//	public void ingresarDatosEditados(String nickname,    String nombre,    String apellido) {
-//		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-//		Usuario user = UsuarioH.buscarNick(nickname);
-//		user.setNombre(nombre);
-//		user.setApellido(apellido);
-//	}
+
 
 	public boolean altaOfertaLaboral(String nickname_e,    String tipo,    String nombre,    String descripcion,    DTHorario horario,    float remun,    String ciu,    DepUY dep,    LocalDate FechaA,   List<String> keys,    EstadoOL estado,    byte[] img,    String paquete) throws ExceptionUsuarioNoEncontrado,    ExceptionEmpresaInvalida, 
 	ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {

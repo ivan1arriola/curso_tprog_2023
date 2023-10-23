@@ -14,16 +14,17 @@ public class Postulacion {
     // relaciones
     private OfertaLaboral oferLab;
     private Postulante postulante;
+    private String urlVideo;
 
     // constructor
-    public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String uRLDocExtras,   OfertaLaboral oferLab) {
+    public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String uRLDocExtras,   OfertaLaboral oferLab, String urlVid) {
         this.postulante = postulante;
         this.fecha = fecha;
         this.curriculumVitae = curriculumVitae;
         this.motivacion = motivacion;
         this.uRLDocExtras = uRLDocExtras;
         this.oferLab = oferLab;
-        
+        this.urlVideo = urlVid;
         System.out.println("Se ha creado una postulacion. - " + postulante.getNombre() + " - " + oferLab.getNombre());
     }
 
@@ -52,6 +53,10 @@ public class Postulacion {
     public Postulante getPostulante() {
     	return postulante;
     }
+    
+    public String getuRLVideo() {
+    	return urlVideo;
+    }
 
 
     // SETTERS
@@ -77,6 +82,10 @@ public class Postulacion {
     
     public void setPostulante(Postulante postulante) {
     	this.postulante = postulante; 
+    }
+    
+    public void seturlVideo(String vid) {
+    	this.urlVideo = vid;
     }
     
     // METODOS

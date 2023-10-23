@@ -253,11 +253,28 @@ public class CtrlOferta implements ICtrlOferta{
 		if (!existe) {
 			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 			OfertaLaboral oferLab = OLH.buscar(nombre);
-			Postulacion postulacion = CtrllUser.crearPostulacion(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab);
+			Postulacion postulacion = CtrllUser.crearPostulacion(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab, null);
 			try {
 				oferLab.registrarPostulacion(postulacion);
 			} catch (ExceptionFechaInvalida e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return !existe;
+	}
+	
+	
+	public boolean altaPostulacionVideo(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha, String urlVideo) {
+		CtrlUsuario CtrllUser = new CtrlUsuario();
+		boolean existe = CtrllUser.existePostulacion(nick,   nombre);
+		if (!existe) {
+			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+			OfertaLaboral oferLab = OLH.buscar(nombre);
+			Postulacion postulacion = CtrllUser.crearPostulacion(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab, urlVideo);
+			try {
+				oferLab.registrarPostulacion(postulacion);
+			} catch (ExceptionFechaInvalida e) {
 				e.printStackTrace();
 			}
 		}
