@@ -12,38 +12,59 @@
 	Set<UsuarioSinInfoSocialBean> seguidos = usuario.getSeguidos();
 %>
 
-<!-- Tab de Postulaciones -->
-<div class="tab-pane fade sin-bordes" id="postulaciones-panel" role="tabpanel" aria-labelledby="postulaciones-tab">
-    <%
-    if (seguidos.isEmpty()) {
+<!-- Tab de Seguidos -->
+<div class="tab-pane fade sin-bordes p-2" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
+
+<%
+    if(seguidos.isEmpty()){
+    	
+    	%>
+    	
+    	<div class="alert alert-secondary" role="alert">
+			El usuario no sigue a ningún otro usuario.
+		</div>
+
+    	<%
+    	
+    } else{
+    	
+   
     %>
-    <div class="alert alert-info" role="alert">
-        El usuario no sigue a ningún otro usuario.
-    </div>
+
     <%
-    } else {
-        for (UsuarioSinInfoSocialBean user : seguidos) {
+    for (UsuarioSinInfoSocialBean user : seguidos) {
+    	String imagen = user.getImagen();
+        if (imagen== null) {
+            // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
+            imagen = request.getContextPath() +  "/imagenNoFound.png";
+        }
+        
+        String nombre_completo = user.getNombre() + " " + user.getApellido();
+        String correo = user.getCorreoElectronico();
+        String enlace = request.getContextPath() + "/consultarusuario?o=" + user.getNickname();
     %>
     <div class="card mb-3">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-4">
-                    <h5 class="card-title"><%= user.getNombre() + " " + user.getApellido() %></h5>
-                </div>
-                <div class="col-4 text-center">
-                    <p class="card-text"><%= user.getDescripcion() %></p>
-                </div>
-                <div class="col-4 text-end">
-                    <a href="<%= request.getContextPath() %>/consultarusuario?id=<%= user.getNickname() %>"
-                        class="">
-                        Leer más
-                    </a>
-                </div>
-            </div>
+        <div class="row g-0">
+            		<div class="card mb-3">
+					    <div class="row g-0">
+					        <div class="col-md-4">
+					            <img src="<%=imagen%>" class="img-fluid rounded-start" alt="<%=nombre_completo%>" />
+					        </div>
+					        <div class="col">
+					            <div class="card-body">
+					                <h5 class="card-title"><%=nombre_completo%></h5>
+					                <p class="card-text"><%=correo%></p>
+					                <a href="<%=enlace%>" class="card-link">Leer más</a>      
+					            </div>
+					        </div>
+					    </div>
+					</div>
         </div>
     </div>
     <%
-        }
+    }
     }
     %>
+    
 </div>
+
