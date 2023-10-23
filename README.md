@@ -10,9 +10,10 @@
 ## Tarea 3
 
 ### Registro de horas:
+- https://docs.google.com/spreadsheets/d/1wJhPTh31mYmj0IF9E9dGdcg4sxZP49jFfUM-NN3Eq1w/edit?usp=sharing
 
 ### Informe
-https://es.overleaf.com/4149825336gpwsqqvcfrzq
+- https://es.overleaf.com/4149825336gpwsqqvcfrzq
 
 ### Modelo de Dominio
 
