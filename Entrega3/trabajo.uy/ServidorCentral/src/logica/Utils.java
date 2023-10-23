@@ -385,7 +385,7 @@ public class Utils {
 		if (postulante == null) { 
 			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
 		try {
-			return postulante.crearPostulacionForzado(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab);
+			return postulante.crearPostulacionForzado(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab, null);
 		} catch (ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

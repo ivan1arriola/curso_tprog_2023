@@ -49,8 +49,8 @@ public interface ILogica {
 	
 	Set<String> listarTipoDePublicaciones();
 	
-    void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
-    void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
+    void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagenBytes) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
+    void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
 
     /** Obtiene el PaqueteBean del paquete paquete **/
     PaqueteBean obtenerDatosPaquete(String paquete);
