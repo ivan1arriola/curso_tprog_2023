@@ -3,25 +3,21 @@ package logica.datatypes;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DTUsuario {
+public class DTUsuarioSinInfoSocial {
     private String nickname;
     private String correoElectronico;
     private String apellido;
     private String nombre;
     private String contrasenia;
     private byte[]  imagen;
-    private Set<DTUsuarioSinInfoSocial> seguidos;
-    private Set<DTUsuarioSinInfoSocial> seguidores;
 
-    public DTUsuario(String nickname,  String correoElectronico,  String apellido,  String nombre,  String contrasenia,  byte[]  img, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
+    public DTUsuarioSinInfoSocial(String nickname,  String correoElectronico,  String apellido,  String nombre,  String contrasenia,  byte[]  img) {
         this.nickname = nickname;
         this.correoElectronico = correoElectronico;
         this.apellido = apellido; 
         this.nombre = nombre;
         this.contrasenia = contrasenia;
         this.imagen = img;
-        this.seguidos = seguidos;
-        this.seguidores = seguidores;
     }
 
     @Override
@@ -51,14 +47,6 @@ public class DTUsuario {
     
     public byte[]  getImagen() {
     	return imagen;
-    }
-    
-    public Set<DTUsuarioSinInfoSocial>  getSeguidos() {
-    	return seguidos;
-    }
-    
-    public Set<DTUsuarioSinInfoSocial>  getSeguidores() {
-    	return seguidores;
     }
     
     

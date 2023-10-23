@@ -15,9 +15,12 @@ import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionValidezNegativa;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTEmpresa;
+import logica.datatypes.DTEmpresaConCompras;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTUsuario;
+import logica.datatypes.DTUsuarioSinInfoSocial;
+import logica.datatypes.DTCompraPaquetes;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
@@ -173,6 +176,20 @@ public class Empresa extends Usuario {
     }
     
     public DTUsuario obtenerDatosUsuario() { // obtenerDatosUsuario(): DTUsuario
+    	
+    	Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
+    	Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+    	
+    	for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdores.add(dt);
+    	}
+    	
+    	for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdos.add(dt);
+    	}
+    	
     	String nickname =  getNickname();
     	String nombre = getNombre();
         String apellido = getApellido();
@@ -189,7 +206,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);   
         }
         
-        return new DTEmpresa(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   descripcion,   url,   dtOfertas,   imagen);
+        return new DTEmpresa(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   descripcion,   url,   dtOfertas,   imagen, sdos, sdores);
         
     }
     
@@ -276,6 +293,20 @@ public class Empresa extends Usuario {
 	@Override
     // corregido,   se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,   String UsuarioQueSeHaceConsulta) {
+		
+    	Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
+    	Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+    	
+    	for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdores.add(dt);
+    	}
+    	
+    	for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdos.add(dt);
+    	}
+		
 		DTEmpresa empre;
 		if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();
@@ -291,7 +322,14 @@ public class Empresa extends Usuario {
                 dtOfertas.add(dtOferta);
                 // muestro toda oferta laboral 
             }
-            empre = new DTEmpresa(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   descripcion,   url,   dtOfertas,   imagen);   
+            
+            Set<DTCompraPaquetes> paquetesComp = new HashSet<DTCompraPaquetes>();
+            for (InfoCompra compra : infoCompras) {
+            	DTCompraPaquetes dtcp = new DTCompraPaquetes(compra.getPaquete().getNombre(),compra.getfCompra(), compra.getFechaVencimiento());
+                paquetesComp.add(dtcp);
+            }
+            
+            empre = new DTEmpresaConCompras(nickname,   correoElectronico,   apellido,   nombre,   contraseña,  imagen, descripcion,   url,   dtOfertas, paquetesComp,sdos, sdores);   
         } else {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -307,7 +345,7 @@ public class Empresa extends Usuario {
                     dtOfertas.add(dtOferta);   
                 }// si oferta laboral confirmada se muestra
             }
-            empre = new DTEmpresa(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   descripcion,   url,   dtOfertas,   imagen); 
+            empre = new DTEmpresa(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   descripcion,   url,   dtOfertas,   imagen, sdos, sdores); 
         }
         return empre;
     }

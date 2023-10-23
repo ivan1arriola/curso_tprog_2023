@@ -18,6 +18,7 @@ import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import excepciones.ExceptionValidezNegativa;
 import logica.clases.Empresa;
 import logica.clases.Keyword;
@@ -577,4 +578,25 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return UsuarioH.existeCorreo(correo);
 	}
 
+	public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
+		if(usuario != usuario_seguido) {
+			UsuarioHandler UH = UsuarioHandler.getInstance();
+			Usuario u = UH.buscarNick(usuario);
+			Usuario us = UH.buscarNick(usuario_seguido);
+			u.seguirUsuario(us);
+		} else {
+			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario se siga a si mismo.");
+		}
+	}
+	
+	public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo{
+		if(usuario != usuario_seguido) {
+			UsuarioHandler UH = UsuarioHandler.getInstance();
+			Usuario u = UH.buscarNick(usuario);
+			Usuario us = UH.buscarNick(usuario_seguido);
+			u.dejarDeSeguirUsuario(us);
+		} else {
+			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
+		}
+	}
 }
