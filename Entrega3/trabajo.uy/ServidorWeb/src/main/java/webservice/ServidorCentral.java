@@ -67,45 +67,16 @@ public interface ServidorCentral {
 
     /**
      * 
-     * @param nicknameParametro
-     * @param nombreOferta
-     * @return
-     *     returns webservice.DtPostulacion
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/obtenerDatosPostulacionRequest", output = "http://webservice/ServidorCentral/obtenerDatosPostulacionResponse")
-    public DtPostulacion obtenerDatosPostulacion(
-        @WebParam(name = "nicknameParametro", partName = "nicknameParametro")
-        String nicknameParametro,
-        @WebParam(name = "nombreOferta", partName = "nombreOferta")
-        String nombreOferta);
-
-    /**
-     * 
      * @param nickname
      * @return
      *     returns webservice.ListaBean
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesRequest", output = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesResponse")
-    public ListaBean listarTodasLasOfertasLaborales(
+    @Action(input = "http://webservice/ServidorCentral/listarPostulacionesPostulanteRequest", output = "http://webservice/ServidorCentral/listarPostulacionesPostulanteResponse")
+    public ListaBean listarPostulacionesPostulante(
         @WebParam(name = "nickname", partName = "nickname")
         String nickname);
-
-    /**
-     * 
-     * @param keyword
-     * @return
-     *     returns webservice.ListaBean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/listarOfertasLaboralesKeywordsRequest", output = "http://webservice/ServidorCentral/listarOfertasLaboralesKeywordsResponse")
-    public ListaBean listarOfertasLaboralesKeywords(
-        @WebParam(name = "keyword", partName = "keyword")
-        String keyword);
 
     /**
      * 
@@ -125,16 +96,42 @@ public interface ServidorCentral {
 
     /**
      * 
-     * @param paquete
+     * @param keyword
      * @return
-     *     returns webservice.PaqueteBeanServidor
+     *     returns webservice.ListaBean
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/obtenerDatosPaqueteRequest", output = "http://webservice/ServidorCentral/obtenerDatosPaqueteResponse")
-    public PaqueteBeanServidor obtenerDatosPaquete(
-        @WebParam(name = "paquete", partName = "paquete")
-        String paquete);
+    @Action(input = "http://webservice/ServidorCentral/listarOfertasLaboralesKeywordsRequest", output = "http://webservice/ServidorCentral/listarOfertasLaboralesKeywordsResponse")
+    public ListaBean listarOfertasLaboralesKeywords(
+        @WebParam(name = "keyword", partName = "keyword")
+        String keyword);
+
+    /**
+     * 
+     * @param nickname
+     * @return
+     *     returns webservice.UsuarioBeanServidor
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/obtenerDatosUsuarioRequest", output = "http://webservice/ServidorCentral/obtenerDatosUsuarioResponse")
+    public UsuarioBeanServidor obtenerDatosUsuario(
+        @WebParam(name = "nickname", partName = "nickname")
+        String nickname);
+
+    /**
+     * 
+     * @param nickname
+     * @return
+     *     returns webservice.ListaBean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesRequest", output = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesResponse")
+    public ListaBean listarTodasLasOfertasLaborales(
+        @WebParam(name = "nickname", partName = "nickname")
+        String nickname);
 
     /**
      * 
@@ -172,29 +169,32 @@ public interface ServidorCentral {
 
     /**
      * 
-     * @param nickname
+     * @param paquete
      * @return
-     *     returns webservice.ListaBean
+     *     returns webservice.PaqueteBeanServidor
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/listarPostulacionesPostulanteRequest", output = "http://webservice/ServidorCentral/listarPostulacionesPostulanteResponse")
-    public ListaBean listarPostulacionesPostulante(
-        @WebParam(name = "nickname", partName = "nickname")
-        String nickname);
+    @Action(input = "http://webservice/ServidorCentral/obtenerDatosPaqueteRequest", output = "http://webservice/ServidorCentral/obtenerDatosPaqueteResponse")
+    public PaqueteBeanServidor obtenerDatosPaquete(
+        @WebParam(name = "paquete", partName = "paquete")
+        String paquete);
 
     /**
      * 
-     * @param nickname
+     * @param nicknameParametro
+     * @param nombreOferta
      * @return
-     *     returns webservice.UsuarioBeanServidor
+     *     returns webservice.DtPostulacion
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/obtenerDatosUsuarioRequest", output = "http://webservice/ServidorCentral/obtenerDatosUsuarioResponse")
-    public UsuarioBeanServidor obtenerDatosUsuario(
-        @WebParam(name = "nickname", partName = "nickname")
-        String nickname);
+    @Action(input = "http://webservice/ServidorCentral/obtenerDatosPostulacionRequest", output = "http://webservice/ServidorCentral/obtenerDatosPostulacionResponse")
+    public DtPostulacion obtenerDatosPostulacion(
+        @WebParam(name = "nicknameParametro", partName = "nicknameParametro")
+        String nicknameParametro,
+        @WebParam(name = "nombreOferta", partName = "nombreOferta")
+        String nombreOferta);
 
     /**
      * 
@@ -274,6 +274,50 @@ public interface ServidorCentral {
 
     /**
      * 
+     * @param tipo
+     * @return
+     *     returns webservice.TipoPublicacionBeanServidor
+     * @throws ExcepcionTipoOfertaNoExistente_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/obtenerDatosTipoPublicacionRequest", output = "http://webservice/ServidorCentral/obtenerDatosTipoPublicacionResponse", fault = {
+        @FaultAction(className = ExcepcionTipoOfertaNoExistente_Exception.class, value = "http://webservice/ServidorCentral/obtenerDatosTipoPublicacion/Fault/ExcepcionTipoOfertaNoExistente")
+    })
+    public TipoPublicacionBeanServidor obtenerDatosTipoPublicacion(
+        @WebParam(name = "tipo", partName = "tipo")
+        String tipo)
+        throws ExcepcionTipoOfertaNoExistente_Exception
+    ;
+
+    /**
+     * 
+     * @param nickname
+     * @return
+     *     returns webservice.ListaBean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/listarOfertasConfirmadasDeEmpresaRequest", output = "http://webservice/ServidorCentral/listarOfertasConfirmadasDeEmpresaResponse")
+    public ListaBean listarOfertasConfirmadasDeEmpresa(
+        @WebParam(name = "nickname", partName = "nickname")
+        String nickname);
+
+    /**
+     * 
+     * @param nombreOferta
+     * @return
+     *     returns webservice.DtOfertaExtendido
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/obtenerOfertaLaboralExtendidaRequest", output = "http://webservice/ServidorCentral/obtenerOfertaLaboralExtendidaResponse")
+    public DtOfertaExtendido obtenerOfertaLaboralExtendida(
+        @WebParam(name = "nombreOferta", partName = "nombreOferta")
+        String nombreOferta);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns webservice.OfertaLaboralBeanServidor
@@ -293,67 +337,10 @@ public interface ServidorCentral {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/listarOfertasConfirmadasDeEmpresaRequest", output = "http://webservice/ServidorCentral/listarOfertasConfirmadasDeEmpresaResponse")
-    public ListaBean listarOfertasConfirmadasDeEmpresa(
-        @WebParam(name = "nickname", partName = "nickname")
-        String nickname);
-
-    /**
-     * 
-     * @param nickname
-     * @return
-     *     returns webservice.ListaBean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
     @Action(input = "http://webservice/ServidorCentral/listarPaquetesDeEmpresaRequest", output = "http://webservice/ServidorCentral/listarPaquetesDeEmpresaResponse")
     public ListaBean listarPaquetesDeEmpresa(
         @WebParam(name = "nickname", partName = "nickname")
         String nickname);
-
-    /**
-     * 
-     * @param nombreOferta
-     * @return
-     *     returns webservice.DtOfertaExtendido
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/obtenerOfertaLaboralExtendidaRequest", output = "http://webservice/ServidorCentral/obtenerOfertaLaboralExtendidaResponse")
-    public DtOfertaExtendido obtenerOfertaLaboralExtendida(
-        @WebParam(name = "nombreOferta", partName = "nombreOferta")
-        String nombreOferta);
-
-    /**
-     * 
-     * @param tipo
-     * @return
-     *     returns webservice.TipoPublicacionBeanServidor
-     * @throws ExcepcionTipoOfertaNoExistente_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/obtenerDatosTipoPublicacionRequest", output = "http://webservice/ServidorCentral/obtenerDatosTipoPublicacionResponse", fault = {
-        @FaultAction(className = ExcepcionTipoOfertaNoExistente_Exception.class, value = "http://webservice/ServidorCentral/obtenerDatosTipoPublicacion/Fault/ExcepcionTipoOfertaNoExistente")
-    })
-    public TipoPublicacionBeanServidor obtenerDatosTipoPublicacion(
-        @WebParam(name = "tipo", partName = "tipo")
-        String tipo)
-        throws ExcepcionTipoOfertaNoExistente_Exception
-    ;
-
-    /**
-     * 
-     * @param nombreOferta
-     * @return
-     *     returns webservice.DtOfertaExtendidoSinPConK
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/obtenerInformacionOfertaLaboralVisitanteRequest", output = "http://webservice/ServidorCentral/obtenerInformacionOfertaLaboralVisitanteResponse")
-    public DtOfertaExtendidoSinPConK obtenerInformacionOfertaLaboralVisitante(
-        @WebParam(name = "nombreOferta", partName = "nombreOferta")
-        String nombreOferta);
 
     /**
      * 
@@ -373,16 +360,6 @@ public interface ServidorCentral {
 
     /**
      * 
-     * @return
-     *     returns webservice.ListaBean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesConfirmadasRequest", output = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesConfirmadasResponse")
-    public ListaBean listarTodasLasOfertasLaboralesConfirmadas();
-
-    /**
-     * 
      * @param nombreOferta
      * @param postulanteNickname
      * @return
@@ -399,6 +376,16 @@ public interface ServidorCentral {
 
     /**
      * 
+     * @return
+     *     returns webservice.ListaBean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesConfirmadasRequest", output = "http://webservice/ServidorCentral/listarTodasLasOfertasLaboralesConfirmadasResponse")
+    public ListaBean listarTodasLasOfertasLaboralesConfirmadas();
+
+    /**
+     * 
      * @param consulta
      * @return
      *     returns webservice.ListaBean
@@ -409,5 +396,18 @@ public interface ServidorCentral {
     public ListaBean listarOfertasLaboralesConfirmadasConsulta(
         @WebParam(name = "consulta", partName = "consulta")
         String consulta);
+
+    /**
+     * 
+     * @param nombreOferta
+     * @return
+     *     returns webservice.DtOfertaExtendidoSinPConK
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservice/ServidorCentral/obtenerInformacionOfertaLaboralVisitanteRequest", output = "http://webservice/ServidorCentral/obtenerInformacionOfertaLaboralVisitanteResponse")
+    public DtOfertaExtendidoSinPConK obtenerInformacionOfertaLaboralVisitante(
+        @WebParam(name = "nombreOferta", partName = "nombreOferta")
+        String nombreOferta);
 
 }

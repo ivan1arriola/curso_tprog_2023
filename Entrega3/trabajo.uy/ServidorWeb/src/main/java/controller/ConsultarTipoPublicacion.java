@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.Fabrica;
-import logica.datatypes.DTTipoOferta;
+
 import utils.FabricaWeb;
+import webservice.TipoPublicacionBeanServidor;
 
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ public class ConsultarTipoPublicacion extends HttpServlet {
 
         try {
             if (nombre != null && !nombre.isEmpty()) {
-                DTTipoOferta tipoPublicacion = Fabrica.getInstance().getICtrlOferta().obtenerDatosTO(nombre);
+                TipoPublicacionBeanServidor tipoPublicacion = FabricaWeb.getInstance().getLogica().obtenerDatosTipoPublicacion(nombre);
                 if (tipoPublicacion == null) throw new Exception("Tipo Oferta inexistente");
                 
                 request.setAttribute("nombrePagina", tipoPublicacion.getNombre());

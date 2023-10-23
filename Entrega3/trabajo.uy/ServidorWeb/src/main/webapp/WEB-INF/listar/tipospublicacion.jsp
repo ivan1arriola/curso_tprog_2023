@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="logica.datatypes.DTTipoOferta" %>
+<%@ page import="webservice.TipoPublicacionBeanServidor" %>
 <%@ page import="java.util.HashSet" %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@
             <div class="sin-bordes">
                 <div class="row">
                     <%
-                        HashSet<DTTipoOferta> tiposOferta = (HashSet<DTTipoOferta>) request.getAttribute("tiposOferta");
+                        HashSet<TipoPublicacionBeanServidor> tiposOferta = (HashSet<TipoPublicacionBeanServidor>) request.getAttribute("tiposOferta");
                     if (tiposOferta == null || tiposOferta.isEmpty()) {
                         // Si ofertasLaborales es null o está vacío, muestra un mensaje
                     %>
@@ -35,7 +35,7 @@
 
                     <%
                     } else {
-                        for (DTTipoOferta tipoOferta : tiposOferta) {
+                        for (TipoPublicacionBeanServidor tipoOferta : tiposOferta) {
                     %>
                     <div class="col-md-6">
                         <div class="card mb-3">
