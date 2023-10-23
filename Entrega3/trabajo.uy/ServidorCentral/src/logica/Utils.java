@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -53,9 +52,6 @@ public class Utils {
     private static final String DEFAULT_UBICACION = System.getProperty("user.home") + File.separator + ".trabajoUy";
     
     private static final String CONFIG_FOLDER = System.getProperty("user.home") + File.separator + ".trabajoUy";
-    private static final String CONFIG_FILE = CONFIG_FOLDER + File.separator + ".properties";
-    
-
     public static String getUbicacionImagenes() {
         return DEFAULT_UBICACION;
     }
@@ -161,19 +157,20 @@ public class Utils {
 	}
 	
 	public void readCSV(String filePath, Consumer<String[]> rowProcessor) {
-	    filePath = CONFIG_FOLDER + File.separator + filePath;
-	    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-	        reader.readLine(); // Leer y descartar la primera línea (cabecera) si es necesario
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	            String[] fields = line.split(";");
-	            rowProcessor.accept(fields); // Procesar la fila utilizando la interfaz funcional
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-
+        try (
+        		InputStream inputStream2 = this.getClass().getResourceAsStream(filePath);
+	       	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream2))
+        		) {
+            reader.readLine(); // Leer y descartar la primera línea (cabecera) si es necesario
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(";");
+                rowProcessor.accept(fields); // Procesar la fila utilizando la interfaz funcional
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	public EstadoOL obtenerEstadoDesdeString(String nombreEstado) {
         switch (nombreEstado) {
@@ -373,7 +370,7 @@ public class Utils {
 		if (postulante == null) { 
 			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
 		try {
-			return postulante.crearPostulacionForzado(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab, null);
+			return postulante.crearPostulacionForzado(curriculumVitae,   motivacion,   fecha,   URLDocExtras,   OferLab, URLDocExtras);
 		} catch (ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
