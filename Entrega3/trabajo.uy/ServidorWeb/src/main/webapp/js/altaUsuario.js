@@ -36,8 +36,27 @@ const validarContraseña = () => {
     }
 }
 
+const validarTamanioImagen = () => {
+  const maxFileSizeKB = 250;
+  const maxFileSizeBytes = maxFileSizeKB * 1024;
+
+  const fileInput = document.getElementById('image-input'); // Asegúrate de obtener el elemento por su ID
+  const imageFile = fileInput.files[0];
+
+  if (imageFile) {
+    if (imageFile.size > maxFileSizeBytes) {
+      fileInput.setCustomValidity('El archivo es demasiado grande. El tamaño máximo permitido es 250 KB.');
+    } else {
+      fileInput.setCustomValidity('');
+    }
+  }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
 	mostrarCamposEspeciales();
+	
     (() => {
         "use strict";
     
@@ -45,9 +64,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const forms = document.querySelectorAll(".needs-validation");
         const password = document.getElementById("password-input");
         const passwordConfirm = document.getElementById("confirm-password-input");
+        const fileInput = document.getElementById('image-input');
     
         passwordConfirm.addEventListener("input", validarContraseña);
         password.addEventListener("input", validarContraseña);
+        fileInput.addEventListener("input", validarTamanioImagen);
     
         // Loop over them and prevent submission
         Array.from(forms).forEach((form) => {

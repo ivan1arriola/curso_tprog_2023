@@ -171,15 +171,36 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) {
-        Fabrica.getInstance().getICtrlUsuario().altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, null);
-    }
+	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagenBytes) {
+	    ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
+	    if (URL == null) {
+            URL = ""; // Reemplazar URL nula con una cadena vacía
+        }
+	    try {
+	        if (imagenBytes == null) {
+	            ctrlUsuario.altaEmpresaURL(nick, contraseña, nombre, apellido, mail, desc, URL);
+	        } else {
+	            ctrlUsuario.altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, imagenBytes);
+	        }
+	    } catch (Exception e) {
+	       
+	    }
+	}
 	
 
 	@Override
-	public void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-        Fabrica.getInstance().getICtrlUsuario().altaPostulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
-    }
+	public void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+        
+	    try {
+	        if (imagenBytes == null) {
+	            ctrlUsuario.altaPostulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
+	        } else {
+	            ctrlUsuario.altaPostulanteImagen(nick, contraseña, nombre, apellido, fecha_nac, mail, nacionalidad, imagenBytes);
+	        }
+	    } catch (Exception e) {
+	       
+	    }    
+	}
 
 	@Override
 	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,

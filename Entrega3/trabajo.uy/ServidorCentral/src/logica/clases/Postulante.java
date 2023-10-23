@@ -43,7 +43,7 @@ public class Postulante extends Usuario{
         super(nickname,    nombre,    apellido,    correo_electronico,    contrasena); // super es para llamar al constructor de la clase padre
         
         try { 
-        if (fechaNac.isAfter(LocalDate.now())) {
+        if (fechaNac.isBefore(LocalDate.now())) {
         	this.fechaNac = fechaNac;
         } else {
         	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");

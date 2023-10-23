@@ -7,14 +7,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import utils.FabricaWeb;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
-
 import interfaces.ILogica;
 
 @WebServlet("/altausuario")
@@ -36,6 +37,25 @@ public class AltaUsuario extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/altaUsuario/altaUsuario.jsp").forward(request, response);
         }
     }
+    
+    private byte[] procesarImagen(Part imagenPart) throws IOException {
+        if (imagenPart == null) {
+            return null;
+        }
+
+        try (InputStream input = imagenPart.getInputStream()) {
+            byte[] imagenBytes = input.readAllBytes();
+            if (imagenBytes.length == 0) {
+                return null;
+            }
+            return imagenBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 
    
 
@@ -46,6 +66,13 @@ public class AltaUsuario extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String tipoUsuario = request.getParameter("tipo-usuario");
+        
+        
+        Part imagenPart = request.getPart("imagen");
+        
+        byte[] imagenBytes  = procesarImagen(imagenPart);
+        
+        
 
         String descripcionEmpresa = null;
         String sitioWebEmpresa = null;
@@ -58,12 +85,12 @@ public class AltaUsuario extends HttpServlet {
 			if ("empresa".equals(tipoUsuario)) {
                 descripcionEmpresa = request.getParameter("descripcion");
                 sitioWebEmpresa = request.getParameter("sitio-web");
-                logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa);
-                registroExitoso = true; // se romperia antes de llegar aqui si fuera false
+                logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
+                registroExitoso = true; 
             } else {
                 fechaNacimiento = request.getParameter("fecha-nacimiento");
                 nacionalidad = request.getParameter("nacionalidad");
-                logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad);
+                logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad, imagenBytes);
                 registroExitoso = true;
             }
 
