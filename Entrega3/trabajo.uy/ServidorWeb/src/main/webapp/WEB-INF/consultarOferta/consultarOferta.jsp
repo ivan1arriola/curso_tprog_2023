@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="javabeans.OfertaLaboralBean" %>
-<%@ page import="webservice.TipoUsuario" %>
+<%@ page import="enumeration.TipoUsuario" %>
 <%@ page import="javabeans.UsuarioBean" %>
 
 <%
@@ -12,9 +12,9 @@
     	imagen = request.getContextPath() + "/imagenNoFound.png";
     }
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-    boolean mostrarContenido = (tipoUsuario == TipoUsuario.EMPRESA && ofertaLaboral.isMostrarPostulantes());
+    boolean mostrarContenido = (tipoUsuario == TipoUsuario.Empresa && ofertaLaboral.isMostrarPostulantes());
     Set<UsuarioBean> postulantes = ofertaLaboral.getPostulantes();
-    boolean mostrarPostular = TipoUsuario.POSTULANTE == tipoUsuario && postulantes.isEmpty();
+    boolean mostrarPostular = TipoUsuario.Postulante == tipoUsuario && postulantes.isEmpty();
     
 %>
 
@@ -69,7 +69,7 @@
                                 
                             <jsp:include page="./postulantes.jsp" />
                             
-                            <% if(tipoUsuario== TipoUsuario.EMPRESA){ %>
+                            <% if(tipoUsuario== TipoUsuario.Empresa){ %>
                             
                             <jsp:include page="./paquetes.jsp" />
                              </div>

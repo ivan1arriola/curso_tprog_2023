@@ -5,11 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import interfaces.ILogica;
-
+import excepciones.ExcepcionTipoOfertaNoExistente;
+import logica.Fabrica;
+import logica.datatypes.DTTipoOferta;
+import logica.interfaces.ICtrlOferta;
 import utils.FabricaWeb;
-import webservice.TipoPublicacionBeanServidor;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -30,12 +30,18 @@ public class ListarTiposPublicacion extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	private Set<TipoPublicacionBeanServidor> obtenerTipoOfertas(){
-		ILogica ctrl = FabricaWeb.getInstance().getLogica();
+	private Set<DTTipoOferta> obtenerTipoOfertas(){
+		ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
 		Set<String> lista =  (HashSet<String>) ctrl.listarTipoDePublicaciones();
-		Set<TipoPublicacionBeanServidor> tipoOfertas = new HashSet<TipoPublicacionBeanServidor>();
+		Set<DTTipoOferta> tipoOfertas = new HashSet<DTTipoOferta>();
 		for (String nombreTipoOferta : lista) {
-			tipoOfertas.add(ctrl.obtenerDatosTipoPublicacion(nombreTipoOferta));
+			try {
+				tipoOfertas.add(ctrl.obtenerDatosTO(nombreTipoOferta));
+			} catch (ExcepcionTipoOfertaNoExistente e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 		return tipoOfertas;

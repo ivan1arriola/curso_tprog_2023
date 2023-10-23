@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="webservice.TipoPublicacionBeanServidor" %>
+<%@ page import="logica.datatypes.DTTipoOferta" %>
 
     <%
     	String nombrePagina = (String) request.getAttribute("nombrePagina");
     	if (nombrePagina == null) nombrePagina = "Tipo de Publicacion de Oferta Laboral";
     	
-    	TipoPublicacionBeanServidor tipo = (TipoPublicacionBeanServidor) request.getAttribute("tipoPublicacion");
-    	int dia = tipo.getFechaAlta().getDia();
-    	int mes = tipo.getFechaAlta().getMes();
-    	int anio = tipo.getFechaAlta().getAnio();
+    	DTTipoOferta tipo = (DTTipoOferta) request.getAttribute("tipoPublicacion");
+    	
     
     %>
 
@@ -88,7 +86,7 @@
               <span class="fw-bold">Fecha de alta:</span>
             </div>
             <div class="col">
-              <span id="fechaAlta"><%= String.format("%02d/%02d/%04d", dia, mes, anio) %></span>
+              <span id="fechaAlta"><%= tipo.getFechaAlta() %></span>
             </div>
           </div>
         </div>

@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.UsuarioBean;
 import utils.FabricaWeb;
-import webservice.TipoUsuario;
 
 import java.io.IOException;
+import enumeration.TipoUsuario;
 import interfaces.ILogica;
 
 @WebServlet("/iniciarsesion")

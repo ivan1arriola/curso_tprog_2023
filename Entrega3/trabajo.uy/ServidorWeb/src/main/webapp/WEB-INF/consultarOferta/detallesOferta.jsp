@@ -2,7 +2,7 @@
 
 <%@ page import="java.util.Set" %>    
 <%@ page import="javabeans.OfertaLaboralBean" %>
-<%@ page import="webservice.TipoUsuario" %>
+<%@ page import="enumeration.TipoUsuario" %>
 <%@ page import="javabeans.UsuarioBean" %>
 
 <%

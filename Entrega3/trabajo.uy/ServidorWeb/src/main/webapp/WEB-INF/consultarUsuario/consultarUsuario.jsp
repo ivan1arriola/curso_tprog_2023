@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="javabeans.UsuarioBean" %>
-<%@ page import="webservice.TipoUsuario" %>
+<%@ page import="enumeration.TipoUsuario" %>
 
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.io.File" %>
@@ -66,7 +66,7 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                     <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#perfil-panel" type="button"
                         role="tab" aria-controls="perfil-panel">Perfil</a>
                 </li>
-                <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.EMPRESA) { %>
+                <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
                             aria-controls="ofertas-panel">Ofertas Laborales</a>
@@ -77,13 +77,13 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                     </li>
                 <%} %>
                 
-                <%if (!consultaSuPerfil && usuario.getTipo() == TipoUsuario.EMPRESA) { %>
+                <%if (!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
                             aria-controls="ofertas-panel">Ofertas Laborales</a>
                     </li>
                 <%} %>
-                <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.POSTULANTE) { %>
+                <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) { %>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#postulaciones-panel" type="button" role="tab"
                             aria-controls="postulaciones-panel">Postulaciones</a>
@@ -94,11 +94,11 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 		    <div class="tab-content" id="myTabsContent">
 			    <!-- Contenido de las pestañas -->
 			    <% if (consultaSuPerfil) { %>
-			        <% if (usuario.getTipo() == TipoUsuario.EMPRESA) { %>
+			        <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
 			            <jsp:include page="./tabPerfilEditable.jsp" />
 			            <jsp:include page="./tabOfertasLaborales.jsp" />
 			            <jsp:include page="./tabPaquetes.jsp" />
-			        <% } else if (usuario.getTipo() == TipoUsuario.POSTULANTE) { %>
+			        <% } else if (usuario.getTipo() == TipoUsuario.Postulante) { %>
 			            <jsp:include page="./tabPerfilEditable.jsp" />
 			            <jsp:include page="./tabPostulaciones.jsp" />
 			        <% } else { %>
@@ -106,7 +106,7 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 			        <% } %>
 			    <% } else { %>
 			        <jsp:include page="./tabPerfil.jsp" />
-			        <% if (usuario.getTipo() == TipoUsuario.EMPRESA) { %>
+			        <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
 			            <jsp:include page="./tabOfertasLaborales.jsp" />
 			            <jsp:include page="./tabPaquetes.jsp" />
 			        <% } %>

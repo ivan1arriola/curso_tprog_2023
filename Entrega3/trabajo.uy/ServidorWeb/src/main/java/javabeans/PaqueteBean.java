@@ -1,13 +1,6 @@
 package javabeans;
 
-import java.util.HashSet;
 import java.util.Set;
-
-import utils.Convertidor;
-import webservice.CantTipoPublicacionBeanServidor;
-import webservice.DateBean;
-import webservice.PaqueteBeanServidor;
-
 import java.time.LocalDate;
 
 public class PaqueteBean {
@@ -95,36 +88,4 @@ public class PaqueteBean {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-    
-    public static PaqueteBean convertFromServidor(PaqueteBeanServidor servidorBean) {
-        PaqueteBean paqueteBean = new PaqueteBean();
-        
-        paqueteBean.setNombre(servidorBean.getNombre());
-        paqueteBean.setCosto(servidorBean.getCosto());
-        paqueteBean.setDescuento(servidorBean.getDescuento());
-        paqueteBean.setValidez(servidorBean.getValidez());
-        paqueteBean.setDescripcion(servidorBean.getDescripcion());
-        paqueteBean.setImagen(servidorBean.getImagen());
-
-        // Convierte la lista de tiposDePub
-        Set<CantTipoPublicacionBean> tiposDePub = new HashSet<>();
-        if (servidorBean.getTiposDePub() != null) {
-            for (CantTipoPublicacionBeanServidor tipo : servidorBean.getTiposDePub()) {
-                tiposDePub.add(CantTipoPublicacionBean.convertFromServidor(tipo));
-            }
-        }
-        paqueteBean.setTiposDePub(tiposDePub);
-
-        // Convierte la fechaA
-        if (servidorBean.getFechaA() != null) {
-            paqueteBean.setFechaAlta( Convertidor.toLocalDate(servidorBean.getFechaA()));
-        }
-
-        return paqueteBean;
-    }
-
-	public static PaqueteBean fromPaqueteBeanServidor(PaqueteBeanServidor paquete) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

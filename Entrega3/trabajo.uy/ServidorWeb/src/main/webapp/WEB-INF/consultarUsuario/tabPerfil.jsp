@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="javabeans.UsuarioBean" %>
-<%@ page import="webservice.TipoUsuario" %>
+<%@ page import="enumeration.TipoUsuario" %>
 
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
@@ -29,13 +29,13 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                                         value="<%= usuario.getCorreoElectronico() %>" readonly required />
                                 </div>
                                 
-                                <%if (usuario.getTipo() == TipoUsuario.POSTULANTE) {  // Importar JSP de camposPostulante.jsp %>
+                                <%if (usuario.getTipo() == TipoUsuario.Postulante) {  // Importar JSP de camposPostulante.jsp %>
                                 
                                 <jsp:include page="./camposPostulante.jsp" />
                                 
                                 <% }%>
                                 
-                                <%if (usuario.getTipo() == TipoUsuario.EMPRESA) {  // Importar JSP de camposPostulante.jsp %>
+                                <%if (usuario.getTipo() == TipoUsuario.Empresa) {  // Importar JSP de camposPostulante.jsp %>
                                 
                                 <jsp:include page="./camposEmpresa.jsp" />
                                 

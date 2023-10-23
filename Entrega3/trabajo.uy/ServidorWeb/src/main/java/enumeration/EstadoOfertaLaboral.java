@@ -1,9 +1,9 @@
 package enumeration;
 
 public enum EstadoOfertaLaboral {
-	INGRESADA("bg-primary"),
-	CONFIRMADA("bg-success"),
-	RECHAZADA("bg-danger");
+	Ingresada("bg-primary"),
+	Confirmada("bg-success"),
+	Rechazada("bg-danger");
 
 	private String cssClass;
 

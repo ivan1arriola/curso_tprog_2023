@@ -3,6 +3,7 @@ package interfaces;
 import java.time.LocalDate;
 import java.util.Set;
 
+import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
@@ -12,12 +13,11 @@ import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import logica.datatypes.DTHorario;
-import webservice.DepUY;
-import webservice.TipoPublicacionBeanServidor;
 
 
 public interface ILogica {
 	
+	void cargarDatos();
 	
 	/** Valida que las credenciales coincidan con un usuario en el sistema **/
 	boolean validarCredenciales(String identificador, String contraseña);
@@ -31,12 +31,11 @@ public interface ILogica {
 	Set<String> listarNicknamesUsuario();
 	
 	
-	TipoPublicacionBeanServidor obtenerDatosTipoPublicacion(String nombre);
 	
 	
 	void altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
 			String descripcion,  DTHorario horario,  float remun,  String ciu,  
-			DepUY dep,  LocalDate fechaA,  Set<String> keys,  
+			Departamento dep,  LocalDate fechaA,  Set<String> keys,  
 			EstadoOfertaLaboral estado,  String img,  String paquete);
 	
 	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor);

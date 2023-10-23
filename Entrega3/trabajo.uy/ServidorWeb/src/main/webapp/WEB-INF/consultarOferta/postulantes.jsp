@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.Set" %>
 <%@ page import="javabeans.OfertaLaboralBean" %>
-<%@ page import="webservice.TipoUsuario" %>
+<%@ page import="enumeration.TipoUsuario" %>
 <%@ page import="javabeans.UsuarioBean" %>
 <%@ page import="java.util.Base64" %>
 <%@ page import="javabeans.OfertaLaboralBean" %>
@@ -21,7 +21,7 @@
     <div class="container">
         <%
             if ( postulantes.isEmpty()) {
-                 if (tipoUsuario == TipoUsuario.EMPRESA) {
+                 if (tipoUsuario == TipoUsuario.Empresa) {
         %>
         <!-- Mensaje para Empresas -->
         <div class="alert alert-warning">

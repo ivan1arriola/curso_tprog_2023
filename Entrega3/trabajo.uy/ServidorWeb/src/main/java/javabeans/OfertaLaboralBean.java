@@ -6,13 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
+import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
 import logica.datatypes.DTHorario;
+import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
-import utils.Convertidor;
-import webservice.DepUY;
-import webservice.OfertaLaboralBeanServidor;
-import webservice.UsuarioBeanServidor;
 
 public class OfertaLaboralBean {
 	private String nombre;
@@ -21,7 +19,7 @@ public class OfertaLaboralBean {
 	private float costo;
 	private float remuneracion;
 	private DTHorario horario;
-	private DepUY departamento;
+	private Departamento departamento;
 	private String ciudad;
 	private EstadoOfertaLaboral estado;
 	private Set<UsuarioBean> postulantes;
@@ -43,7 +41,7 @@ public class OfertaLaboralBean {
         this.costo = 0.0f;
         this.remuneracion = 0.0f;
         this.horario = null;
-        this.setDepartamento(null);
+        this.departamento = null;
         this.ciudad = null;
         this.estado = null;
         this.setImagen(null);
@@ -55,14 +53,23 @@ public class OfertaLaboralBean {
         this.mostrarPaquete = false;
     }
 	
-	
-
-
+	public Departamento getDepartamento() {
+	    return departamento;
+	}
 
 	public EstadoOfertaLaboral getEstado() {
 	    return estado;
 	}
 	
+	 // Setter para departamento con enumeración Departamento
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    // Setter para departamento con enumeración DepUY (compatible)
+    public void setDepartamento(DepUY depUY) {
+        this.departamento = Departamento.valueOf(depUY.name());
+    }
 
     // Setter para estado con enumeración EstadoOfertaLaboral
     public void setEstado(EstadoOfertaLaboral estado) {
@@ -222,79 +229,6 @@ public class OfertaLaboralBean {
 
 	public void setNicknameEmpresa(String nicknameEmpresa) {
 		this.nicknameEmpresa = nicknameEmpresa;
-	}
-	
-	
-	
-	public static OfertaLaboralBean fromOfertaLaboralBeanServidor(OfertaLaboralBeanServidor servidor) {
-        OfertaLaboralBean bean = new OfertaLaboralBean();
-
-        bean.setNombre(servidor.getNombre());
-        bean.setDescripcion(servidor.getDescripcion());
-
-        // Convierte la fecha de alta de DateBean a LocalDate
-        if (servidor.getFechaDeAlta() != null) {
-            bean.setFechaDeAlta(Convertidor.toLocalDate(servidor.getFechaDeAlta()));
-        }
-
-        bean.setCosto(servidor.getCosto());
-        bean.setRemuneracion(servidor.getRemuneracion());
-        
-        
-        bean.setHorario(Convertidor.dtHorarioFromServidor(servidor.getHorario()));
-
-        // Convierte el departamento de DepUY a Departamento
-        if (servidor.getDepartamento() != null) {
-            bean.setDepartamento(servidor.getDepartamento());
-        }
-
-        bean.setCiudad(servidor.getCiudad());
-
-        // Convierte el estado de EstadoOL a EstadoOfertaLaboral
-        if (servidor.getEstado() != null) {
-            bean.setEstado(EstadoOfertaLaboral.valueOf(servidor.getEstado().name()));
-        }
-
-        // Copia los postulantes
-        Set<UsuarioBean> postulantes = new HashSet<>();
-        for (UsuarioBeanServidor usuarioServidor : servidor.getPostulantes()) {
-            postulantes.add(UsuarioBean.fromUsuarioBeanServidor(usuarioServidor));
-        }
-        bean.setPostulantes(postulantes);
-
-        bean.setImagen(servidor.getImagen());
-        bean.setPaq(servidor.getPaq());
-
-        // Convierte el paquete de PaqueteBeanServidor a PaqueteBean
-        if (servidor.getPaquete() != null) {
-            bean.setPaquete(PaqueteBean.fromPaqueteBeanServidor(servidor.getPaquete()));
-        }
-
-        // Copia las keywords
-        Set<String> keywords = new HashSet<>(servidor.getKeywords());
-        bean.setKeywords(keywords);
-
-        bean.setNicknameEmpresa(servidor.getNicknameEmpresa());
-        bean.setMostrarPostulantes(servidor.isMostrarPostulantes());
-        bean.setMostrarPaquete(servidor.isMostrarPaquete());
-
-        return bean;
-    }
-
-
-
-
-
-	public DepUY getDepartamento() {
-		return departamento;
-	}
-
-
-
-
-
-	public void setDepartamento(DepUY departamento) {
-		this.departamento = departamento;
 	}
 
 

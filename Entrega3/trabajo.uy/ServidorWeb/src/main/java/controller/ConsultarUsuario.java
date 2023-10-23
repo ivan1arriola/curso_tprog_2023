@@ -11,12 +11,12 @@ import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import utils.FabricaWeb;
-import webservice.TipoUsuario;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import enumeration.TipoUsuario;
 import interfaces.ILogica;
 
 @WebServlet("/consultarusuario")
@@ -37,7 +37,7 @@ public class ConsultarUsuario extends HttpServlet {
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
         TipoUsuario tipoUsuarioLogueado = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
 
-        //ILogica logica = FabricaWeb.getInstance().getLogica();
+        ILogica logica = FabricaWeb.getInstance().getLogica();
 
         if (nicknameParametro != null && !nicknameParametro.isEmpty()) {
             try {
@@ -46,15 +46,15 @@ public class ConsultarUsuario extends HttpServlet {
                 // valida que en efecto los datos de la session coinciden con los de la logica en caso de consultar su propio perfil
                 boolean consultaSuPerfil = validarConsultaUsuario(nicknameParametro, nicknameUsuarioLogueado, tipoUsuarioLogueado, usuario);
 
-                if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.EMPRESA) {
+                if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
                     usuario = cargarPaquete(usuario, nicknameParametro);
                     usuario = cargarOfertasLaborales(usuario, nicknameParametro, true );
                 }
-                if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.POSTULANTE) {
+                if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) {
                     usuario = cargarPostulaciones(usuario, nicknameParametro);
                 }
                 
-                if(!consultaSuPerfil && usuario.getTipo() == TipoUsuario.EMPRESA) {
+                if(!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
                 	usuario = cargarOfertasLaborales(usuario, nicknameParametro, false);
                 }
 

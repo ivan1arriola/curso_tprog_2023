@@ -9,9 +9,9 @@ import jakarta.servlet.http.HttpSession;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
 import utils.FabricaWeb;
-import webservice.DepUY;
-import webservice.TipoUsuario;
+import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
+import enumeration.TipoUsuario;
 import interfaces.ILogica;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class AltaOfertaLaboral extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
         } else {
             TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
-            if (tipo == null || tipo == TipoUsuario.POSTULANTE || tipo == TipoUsuario.VISITANTE) {
+            if (tipo == null || tipo == TipoUsuario.Postulante || tipo == TipoUsuario.Visitante) {
                 response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
             } else {
                 String nickname = (String) session.getAttribute("nickname");
@@ -76,10 +76,10 @@ public class AltaOfertaLaboral extends HttpServlet {
 
         float remuneracion = Float.parseFloat(request.getParameter("remuneracion"));
 
-        DepUY departamento = null;
+        Departamento departamento = null;
         if (departamentoStr != null && !departamentoStr.isEmpty()) {
             try {
-                departamento = DepUY.valueOf(departamentoStr);
+                departamento = Departamento.valueOf(departamentoStr);
             } catch (IllegalArgumentException e) {
             }
         }
@@ -90,7 +90,7 @@ public class AltaOfertaLaboral extends HttpServlet {
         try {
             logica.altaOfertaLaboral(
                 nickname, tipoOferta, nombre, descripcion, new DTHorario(obtenerDTHora(horaInicio), obtenerDTHora(horaFinal)),
-                remuneracion, ciudad, departamento, LocalDate.now(), keywordsSet, EstadoOfertaLaboral.INGRESADA, null, formaPago
+                remuneracion, ciudad, departamento, LocalDate.now(), keywordsSet, EstadoOfertaLaboral.Ingresada, null, formaPago
             );
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
         } catch (Exception e) {

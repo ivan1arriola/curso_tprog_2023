@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import utils.FabricaWeb;
-import webservice.TipoUsuario;
+import enumeration.TipoUsuario;
 import interfaces.ILogica;
 import java.io.IOException;
 
@@ -39,16 +39,16 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             try {
                 if (nickname == null) nickname = "";
                 if (tipoUsuario == null) {
-                    tipoUsuario = TipoUsuario.VISITANTE;
+                    tipoUsuario = TipoUsuario.Visitante;
                 }
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
 
-                if (tipoUsuario == TipoUsuario.EMPRESA) {
+                if (tipoUsuario == TipoUsuario.Empresa) {
                     ofertaBean = cargarDatosEmpresa(ofertaBean, nombreOferta, nickname);
                 }
 
-                if (tipoUsuario == TipoUsuario.POSTULANTE) {
+                if (tipoUsuario == TipoUsuario.Postulante) {
                     ofertaBean = cargarDatosPostulante(ofertaBean, nombreOferta, nickname);
                 }
 
