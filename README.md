@@ -1,13 +1,14 @@
-# integrantes
+# Grupo 34 de Taller Programacion
+Integrantes:
 - Iván Andrés Arriola Turné
 - Luciano Dario Capretti Pino
 - Matías Ernesto Montaño Cobas
 - Mathías Rodríguez Castro
 - Nicole Ronit Rosenstock Cukrowicz
-
-**grupo 34**
-
 ## Tarea 3
+
+### Reparto de tareas
+- https://docs.google.com/spreadsheets/d/1qZyLDa2huPWdnkLSsEG9VSBYwYoir6YvsJw0UnizM2s/edit?usp=sharing
 
 ### Registro de horas:
 - https://docs.google.com/spreadsheets/d/1wJhPTh31mYmj0IF9E9dGdcg4sxZP49jFfUM-NN3Eq1w/edit?usp=sharing
@@ -29,7 +30,7 @@
 - https://drive.google.com/file/d/1ZuuzEVHg7DgnLPWb4b8OIgJ_ig0i_b7E/view?usp=sharing
 
 ### Correcciones de la tarea 2:
-https://docs.google.com/document/d/1vljbMSK0CAwpS5Q-Wd2h-UAGJXZIPw_VT_4cxfE5oAE/edit#heading=h.afnbqgdseyjf
+- https://docs.google.com/document/d/1vljbMSK0CAwpS5Q-Wd2h-UAGJXZIPw_VT_4cxfE5oAE/edit#heading=h.afnbqgdseyjf
 
 
 ## Tarea 2
