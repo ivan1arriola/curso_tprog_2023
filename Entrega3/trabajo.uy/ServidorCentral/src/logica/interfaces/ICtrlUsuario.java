@@ -13,6 +13,7 @@ import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import logica.clases.OfertaLaboral;
 import logica.clases.Postulacion;
 import logica.datatypes.DTHorario;
@@ -131,5 +132,9 @@ public interface ICtrlUsuario {
     public abstract boolean existeUsuarioConNickname(String nickname);
     
     public abstract boolean existeUsuarioConEmail(String correo);
+    
+    public abstract void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo;
+    
+    public abstract void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo;
     
 }

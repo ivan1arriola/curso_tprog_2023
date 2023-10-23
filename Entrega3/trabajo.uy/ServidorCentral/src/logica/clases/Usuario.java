@@ -2,6 +2,7 @@ package logica.clases;
 
 import java.util.Set;
 
+import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import logica.Utils;
 import logica.datatypes.DTUsuario;
 
@@ -13,6 +14,8 @@ public abstract class Usuario {
     private String correoElectronico;
     private String contrasenia;
     private byte[] imagen;
+    private Set<Usuario> seguidores;
+    private Set<Usuario> seguidos;
 
     //Getters
     public String getNickname() {
@@ -102,5 +105,30 @@ public abstract class Usuario {
     public String toString() {
         return nickname + " - " + nombre + " " + apellido;
     }
+
+	public Set<Usuario> getSeguidores() {
+		return seguidores;
+	}
+
+	public void setSeguidores(Set<Usuario> seguidores) {
+		this.seguidores = seguidores;
+	}
+
+	public Set<Usuario> getSeguidos() {
+		return seguidos;
+	}
+
+	public void setSeguidos(Set<Usuario> seguidos) {
+		this.seguidos = seguidos;
+	}
+
+	public void seguirUsuario(Usuario usuario_seguido) {
+		seguidos.add(usuario_seguido);
+	}
+	
+	public void dejarDeSeguirUsuario(Usuario usuario_seguido) {
+		seguidos.remove(usuario_seguido);
+	}
+	
     
 }

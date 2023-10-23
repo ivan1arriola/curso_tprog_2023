@@ -2,6 +2,7 @@ package logica.clases;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import excepciones.ExceptionFechaInvalida;
@@ -10,6 +11,7 @@ import logica.datatypes.DTPostulacion;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTPostulanteExtendido;
 import logica.datatypes.DTUsuario;
+import logica.datatypes.DTUsuarioSinInfoSocial;
 
 public class Postulante extends Usuario{
     // atributos
@@ -101,7 +103,21 @@ public class Postulante extends Usuario{
 
     public DTUsuario obtenerDatosUsuario() {
         // hacer un DTPostulante
-        DTPostulante postul = new DTPostulante(this.getNickname(),   this.getcorreoElectronico(),   this.getApellido(),   this.getNombre(),   this.getcontrasenia(),   this.getImagen(),   fechaNac,   nacionalidad);
+    	
+    	Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
+    	Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+    	
+    	for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdores.add(dt);
+    	}
+    	
+    	for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdos.add(dt);
+    	}
+    	
+        DTPostulante postul = new DTPostulante(this.getNickname(),   this.getcorreoElectronico(),   this.getApellido(),   this.getNombre(),   this.getcontrasenia(),   this.getImagen(),   fechaNac,   nacionalidad, sdos, sdores);
         return postul;
     }
 
@@ -171,6 +187,20 @@ public class Postulante extends Usuario{
     // corregido,   se pasan mas parametros para la ejecucion
     public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,  String UsuarioQueSeHaceConsulta) {
     	DTPostulante postul;
+    	
+    	Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
+    	Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+    	
+    	for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdores.add(dt);
+    	}
+    	
+    	for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext();) {
+			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),iterator.next().getcorreoElectronico(),iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+			sdos.add(dt);
+    	}
+    	
     	if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -189,7 +219,7 @@ public class Postulante extends Usuario{
                 postsDT.add(paux);
             }
         
-            postul = new DTPostulanteExtendido(nickname,    correoElectronico,    apellido,    nombre,    contrasenia,    imagen,    fechaNac,    nacionalidad,   postsDT);
+            postul = new DTPostulanteExtendido(nickname,    correoElectronico,    apellido,    nombre,    contrasenia,    imagen,    fechaNac,    nacionalidad,   postsDT, sdos, sdores);
             } else {
             String nickname =  getNickname();
             String nombre = getNombre();
@@ -199,7 +229,7 @@ public class Postulante extends Usuario{
             byte[] imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
-            postul = new DTPostulante(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   imagen,   fechaNac,   nacionalidad);
+            postul = new DTPostulante(nickname,   correoElectronico,   apellido,   nombre,   contraseña,   imagen,   fechaNac,   nacionalidad, sdos, sdores);
         }
         return postul;
     }
