@@ -67,7 +67,7 @@ public class Logica implements ILogica {
             } else {
                 System.err.println("No se pudo crear el directorio: " + rutaDirectorio);
             }
-        }
+        } 
     }
 
 	@Override
