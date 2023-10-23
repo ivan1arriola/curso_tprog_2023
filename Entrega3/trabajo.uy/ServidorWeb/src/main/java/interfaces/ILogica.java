@@ -108,6 +108,8 @@ public interface ILogica {
 	/** Lista los datos de los paquetes **/
 	Set<PaqueteBean> obtenerPaquetes();
 
+	OfertaLaboralBean DatosOferta(String nombre_oferta);
+
 	
 
     

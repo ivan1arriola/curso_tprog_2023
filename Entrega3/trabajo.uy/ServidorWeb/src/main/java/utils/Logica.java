@@ -25,6 +25,7 @@ import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import excepciones.ExceptionValidezNegativa;
 import logica.Fabrica;
+import logica.clases.OfertaLaboral;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTHorario;
@@ -40,6 +41,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.manejadores.OfertaLaboralHandler;
 import logica.datatypes.DTUsuarioSinInfoSocial;
 
 public class Logica implements ILogica {
@@ -455,6 +457,25 @@ public class Logica implements ILogica {
 			ofertasLaborales.add(this.obtenerDatosOfertaLaboral(dtoferta.getNombre()));
 		}
 		return ofertasLaborales;
+	}
+	
+	@Override
+	public OfertaLaboralBean DatosOferta(String nombre_oferta) {
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OfertaLaboral ol = OLH.buscar(nombre_oferta);
+		DTOfertaExtendido ofertaLaboral = ol.obtenerDatosOferta();
+		OfertaLaboralBean olb = new OfertaLaboralBean();
+		olb.setNombre(ofertaLaboral.getNombre());
+		olb.setDescripcion(ofertaLaboral.getDescripcion());
+		olb.setFechaDeAlta(ofertaLaboral.getFechaDeAlta());
+		olb.setCosto(ofertaLaboral.getCosto());
+		olb.setRemuneracion(ofertaLaboral.getRemuneracion());
+		olb.setHorario(ofertaLaboral.getHorario());
+		olb.setDepartamento(ofertaLaboral.getDepartamento());
+		olb.setCiudad(ofertaLaboral.getCiudad());
+		olb.setEstado(ofertaLaboral.getEstado());
+		olb.setNicknameEmpresa(ofertaLaboral.getNicknameEmpresaPublicadora());
+		return olb;
 	}
 
 	@Override
