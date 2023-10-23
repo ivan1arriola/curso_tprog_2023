@@ -247,13 +247,13 @@ public class CtrlOferta implements ICtrlOferta{
 		return auxiliar;
 	}
 	
-	public boolean altaPostulacion(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha) {
+	public boolean altaPostulacion(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha, String video) {
 		CtrlUsuario CtrllUser = new CtrlUsuario();
 		boolean existe = CtrllUser.existePostulacion(nick,   nombre);
 		if (!existe) {
 			OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 			OfertaLaboral oferLab = OLH.buscar(nombre);
-			Postulacion postulacion = CtrllUser.crearPostulacion(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab, null);
+			Postulacion postulacion = CtrllUser.crearPostulacion(nick,   curriculumVitae,   motivacion,   fecha,   URLDocE,   oferLab, video);
 			try {
 				oferLab.registrarPostulacion(postulacion);
 			} catch (ExceptionFechaInvalida e) {
@@ -265,7 +265,7 @@ public class CtrlOferta implements ICtrlOferta{
 	}
 	
 	  
-	public boolean altaPostulacionVideo(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha, String urlVideo) {
+	/*public boolean altaPostulacionVideo(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha, String urlVideo) {
 		CtrlUsuario CtrllUser = new CtrlUsuario();
 		boolean existe = CtrllUser.existePostulacion(nick,   nombre);
 		if (!existe) {
@@ -279,7 +279,7 @@ public class CtrlOferta implements ICtrlOferta{
 			}
 		}
 		return !existe;
-	}
+	}*/
 	
 	public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta){
 		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
