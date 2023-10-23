@@ -81,7 +81,6 @@ public class Logica implements ILogica {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 	
 	private String imagenAString(byte[] bytes) {
