@@ -58,19 +58,16 @@ public class Utils {
 
 	
 	public static String generateImageCode(String input) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(input.getBytes());
-            byte[] digest = messageDigest.digest();
-            
-            // Convierte el hash en una representación hexadecimal
-            String code = String.format("%064x", new BigInteger(1, digest));
-            
-            return code;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
+		// Reemplaza caracteres no válidos con guiones bajos (_)
+		String sanitizedInput = input.replaceAll("[^a-zA-Z0-9.-]", "_");
+
+		// Limita la longitud del nombre de archivo a un valor razonable
+		int maxFileNameLength = 255; // Establece la longitud máxima deseada
+		if (sanitizedInput.length() > maxFileNameLength) {
+			sanitizedInput = sanitizedInput.substring(0, maxFileNameLength);
+		}
+
+		return sanitizedInput;
     }
 	
 	public static void guardarImagen(String subcarpeta, String nombreImagen, String tipoImagen, byte[] imagenBytes) {

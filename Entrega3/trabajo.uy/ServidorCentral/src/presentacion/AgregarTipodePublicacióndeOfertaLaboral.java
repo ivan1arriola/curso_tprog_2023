@@ -1,30 +1,16 @@
 package presentacion;
 
-import java.util.ArrayList;
-import java.util.Collections;
-//import java.awt.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-//import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-//import java.util.HashSet;
-import java.awt.event.ActionEvent;
-//import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTPaquete;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
