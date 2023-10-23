@@ -264,7 +264,7 @@ public class CtrlOferta implements ICtrlOferta{
 		return !existe;
 	}
 	
-	
+	  
 	public boolean altaPostulacionVideo(String nombre,   String nick,   String curriculumVitae,   String motivacion,   String URLDocE,   LocalDate fecha, String urlVideo) {
 		CtrlUsuario CtrllUser = new CtrlUsuario();
 		boolean existe = CtrllUser.existePostulacion(nick,   nombre);
