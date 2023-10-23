@@ -573,22 +573,22 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
-		if(usuario != usuario_seguido) {
-			UsuarioHandler UH = UsuarioHandler.getInstance();
-			Usuario u = UH.buscarNick(usuario);
-			Usuario us = UH.buscarNick(usuario_seguido);
-			u.seguirUsuario(us);
+		if (usuario != usuario_seguido) {
+			UsuarioHandler UHan = UsuarioHandler.getInstance();
+			Usuario usr1 = UHan.buscarNick(usuario);
+			Usuario usr2 = UHan.buscarNick(usuario_seguido);
+			usr1.seguirUsuario(usr2);
 		} else {
 			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario se siga a si mismo.");
 		}
 	}
 	
 	public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo{
-		if(usuario != usuario_seguido) {
-			UsuarioHandler UH = UsuarioHandler.getInstance();
-			Usuario u = UH.buscarNick(usuario);
-			Usuario us = UH.buscarNick(usuario_seguido);
-			u.dejarDeSeguirUsuario(us);
+		if (usuario != usuario_seguido) {
+			UsuarioHandler UHan = UsuarioHandler.getInstance();
+			Usuario usr = UHan.buscarNick(usuario);
+			Usuario usrseg = UHan.buscarNick(usuario_seguido);
+			usr.dejarDeSeguirUsuario(usrseg);
 		} else {
 			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
 		}
