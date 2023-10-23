@@ -1,8 +1,8 @@
 package logica.clases;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
-import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import logica.Utils;
 import logica.datatypes.DTUsuario;
 
@@ -79,6 +79,10 @@ public abstract class Usuario {
         this.correoElectronico = correo_electronico;
         this.contrasenia = contrasenia;
         this.imagen = imagen;
+        
+        this.seguidores = new LinkedHashSet<Usuario>();
+        this.seguidos = new LinkedHashSet<Usuario>();
+        
         
         Utils.guardarImagen("Usuarios", nickname , "jpg", imagen);
         
