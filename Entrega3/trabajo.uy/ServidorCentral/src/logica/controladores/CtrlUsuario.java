@@ -178,14 +178,14 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 	}
 
-	public Postulacion crearPostulacion(String nick,    String curriculumVitae,    String motivacion,    LocalDate fecha,    String URLDocExtras,    OfertaLaboral OferLab) {
+	public Postulacion crearPostulacion(String nick,    String curriculumVitae,    String motivacion,    LocalDate fecha,    String URLDocExtras,    OfertaLaboral OferLab, String urlVideo) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
 		if (postulante == null) { 
 			throw new IllegalArgumentException("Usuario " + nick + " no existe"); }
 		try {
-			return postulante.crearPostulacion(curriculumVitae,    motivacion,    fecha,    URLDocExtras,    OferLab);
+			return postulante.crearPostulacion(curriculumVitae,    motivacion,    fecha,    URLDocExtras,    OferLab, urlVideo);
 		} catch (ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -207,13 +207,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 		return res;
 	}
 
-// no existe mas
-//	public void ingresarDatosEditados(String nickname,    String nombre,    String apellido) {
-//		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-//		Usuario user = UsuarioH.buscarNick(nickname);
-//		user.setNombre(nombre);
-//		user.setApellido(apellido);
-//	}
+
 
 	public boolean altaOfertaLaboral(String nickname_e,    String tipo,    String nombre,    String descripcion,    DTHorario horario,    float remun,    String ciu,    DepUY dep,    LocalDate FechaA,   List<String> keys,    EstadoOL estado,    byte[] img,    String paquete) throws ExceptionUsuarioNoEncontrado,    ExceptionEmpresaInvalida, 
 	ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
@@ -579,24 +573,32 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
-		if(usuario != usuario_seguido) {
-			UsuarioHandler UH = UsuarioHandler.getInstance();
-			Usuario u = UH.buscarNick(usuario);
-			Usuario us = UH.buscarNick(usuario_seguido);
-			u.seguirUsuario(us);
+		if (usuario != usuario_seguido) {
+			UsuarioHandler UHan = UsuarioHandler.getInstance();
+			Usuario usr1 = UHan.buscarNick(usuario);
+			Usuario usr2 = UHan.buscarNick(usuario_seguido);
+			usr1.seguirUsuario(usr2);
 		} else {
 			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario se siga a si mismo.");
 		}
 	}
 	
 	public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo{
-		if(usuario != usuario_seguido) {
-			UsuarioHandler UH = UsuarioHandler.getInstance();
-			Usuario u = UH.buscarNick(usuario);
-			Usuario us = UH.buscarNick(usuario_seguido);
-			u.dejarDeSeguirUsuario(us);
+		if (usuario != usuario_seguido) {
+			UsuarioHandler UHan = UsuarioHandler.getInstance();
+			Usuario usr = UHan.buscarNick(usuario);
+			Usuario usrseg = UHan.buscarNick(usuario_seguido);
+			usr.dejarDeSeguirUsuario(usrseg);
 		} else {
 			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
 		}
 	}
+	
+	/*public DTPostulacion obtenerDatosPostulacionVideo(String postulanteNick,    String ofer) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante user = (Postulante) UsuarioH.buscarNick(postulanteNick);
+		DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulanteNick,    ofer);
+		return datosPostu;
+	}*/ // sirve la misma que sin video
+	
 }

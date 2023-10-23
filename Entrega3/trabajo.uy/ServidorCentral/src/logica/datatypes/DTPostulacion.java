@@ -8,14 +8,16 @@ public class DTPostulacion {
 	private String uRLDocExtras;
 	private String cVitae;
 	private String motivacion;
+	private String urlVideo;
 
 	public 
-	DTPostulacion(String nomb_p,  LocalDate fecha,  String URLDE,  String cVitae,  String motivacion) {
+	DTPostulacion(String nomb_p,  LocalDate fecha,  String URLDE,  String cVitae,  String motivacion, String urlVid) {
 		nombrePostulante = nomb_p;
 		this.fecha = fecha;
 		uRLDocExtras = URLDE;
 		this.cVitae = cVitae;
 		this.motivacion = motivacion;
+		urlVideo = urlVid;
 	}
 	
 	public String getPostulante() {
@@ -28,6 +30,10 @@ public class DTPostulacion {
     
     public String getuRLDocExtras() {
     	return uRLDocExtras;
+    }
+    
+    public String geturlVideo() {
+    	return urlVideo;
     }
     
     public String getcVitae() {
