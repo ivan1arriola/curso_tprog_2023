@@ -85,7 +85,7 @@ public class UsuarioBean {
 	public Set<UsuarioSinInfoSocialBean> getSeguidos() {
 		return seguidos;
 	}
-	
+	ofertalaboral
 	public Set<UsuarioSinInfoSocialBean> getSeguidores() {
 		return seguidores;
 	}
