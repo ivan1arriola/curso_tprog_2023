@@ -19,13 +19,13 @@ import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import logica.Fabrica;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.utils.Fabrica;
 
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -329,7 +329,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     	departamento = DepUY.Salto;
                         break;
                     case "Paysandú":
-                    	departamento = DepUY.Paysandu;
+                    	departamento = DepUY.Paysandú;
                         break;
                     case "RioNegro":
                     	departamento = DepUY.RioNegro;
@@ -356,7 +356,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     	departamento = DepUY.Florida;
                         break;
                     case "SanJosé":
-                    	departamento = DepUY.SanJose;
+                    	departamento = DepUY.SanJosé;
                         break;
                     case "Canelones":
                     	departamento = DepUY.Canelones;

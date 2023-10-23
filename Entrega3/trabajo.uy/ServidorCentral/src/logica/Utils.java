@@ -1,14 +1,19 @@
-package logica.utils;
+package logica;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -44,14 +49,61 @@ import logica.manejadores.UsuarioHandler;
 
 public class Utils {
 	
-
+	private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
+    private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
+    
 
 	
 	public Utils() {
 	}
 	
+	public static String getUbicacionImagenes() {
+        // Aquí puedes leer la configuración específica del proyecto
+        // y obtener la ubicación de la carpeta "resources" de acuerdo con esa configuración.
+        // Por ejemplo, puedes leer una propiedad del sistema o un archivo de configuración.
+        // En este ejemplo, se usa una propiedad del sistema como ejemplo.
+        String ubicacion = System.getProperty("ubicacion_recursos");
+        
+        // Si la propiedad no está definida, utiliza una ubicación por defecto.
+        if (ubicacion == null) {
+            ubicacion = System.getProperty("user.dir") + "/resources";
+        }
+        
+        return ubicacion;
+    }
 	
-	public static DTHorario obtenerHorario(String horarioStr) {
+	public static String generateImageCode(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(input.getBytes());
+            byte[] digest = md.digest();
+            
+            // Convierte el hash en una representación hexadecimal
+            String code = String.format("%064x", new BigInteger(1, digest));
+            
+            return code;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+	
+	public static void guardarImagen(String subcarpeta, String nombreImagen, String tipoImagen, byte[] imagenBytes) {
+	    try {
+	        String ubicacion = getUbicacionImagenes() + "/" + subcarpeta + "/" + generateImageCode(nombreImagen) + "." +tipoImagen;
+	        FileOutputStream fileOutputStream = new FileOutputStream(ubicacion);
+	        fileOutputStream.write(imagenBytes);
+	        fileOutputStream.close();
+	        
+	        System.out.println("Imagen guardada exitosamente en " + ubicacion);
+	    } catch (IOException e) {
+	        System.err.println("Error al guardar la imagen: " + e.getMessage());
+	    }
+	}
+
+	
+	
+	public DTHorario obtenerHorario(String horarioStr) {
 	    String[] desdeHasta = horarioStr.split(" - ");
 	    String[] horaDesde = desdeHasta[0].split(":");
 	    String[] horaHasta = desdeHasta[1].split(":");
@@ -67,16 +119,57 @@ public class Utils {
 	    return new DTHorario(desde, hasta);
 	}
 	
-	/**
-	 * @deprecated Use {@link ManejadorImagenes#getDirectUrl(String)} instead
-	 */
 	public static String getDirectUrl(String shortUrl) {
-		return ManejadorImagenes.getDirectUrl(shortUrl);
+        try {
+            URL url = new URL(shortUrl);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+            // Configurar la solicitud
+            httpURLConnection.setInstanceFollowRedirects(false); // Deshabilitar redirecciones automáticas
+            httpURLConnection.setRequestMethod("GET");
+
+            // Realizar la solicitud
+            int responseCode = httpURLConnection.getResponseCode();
+
+            // Verificar si hay redirección
+            if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM) {
+                return httpURLConnection.getHeaderField("Location");
+            } else {
+                return shortUrl;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+	
+	private String cambiarURLAlternativo(String imageUrl) {
+        String nuevaURL = imageUrl.replace(PREFIX_ORIGINAL, PREFIX_NUEVO);
+        return nuevaURL;
+    }
+	
+	public byte[] descargarImagen(String imageUrl) throws IOException {
+		String link = getDirectUrl(imageUrl);
+		link = cambiarURLAlternativo(link);
+		
+		
+	    URL url = new URL(link);
+	    byte[] imagen;
+	    URLConnection connection = url.openConnection();
+	    connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+	    try (InputStream in = connection.getInputStream(); 
+	         ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+	        byte[] buffer = new byte[4096];
+	        int bytesRead;
+	        while ((bytesRead = in.read(buffer)) != -1) {
+	            out.write(buffer, 0, bytesRead);
+	        }
+	        imagen = out.toByteArray();
+	    }
+	    
+	    return imagen;
 	}
-	
-	
-	
-	
 	
 	public void readCSV(String filePath, Consumer<String[]> rowProcessor) {
         try (
@@ -94,7 +187,7 @@ public class Utils {
         }
     }
 	
-	public static EstadoOL obtenerEstadoDesdeString(String nombreEstado) {
+	public EstadoOL obtenerEstadoDesdeString(String nombreEstado) {
         switch (nombreEstado) {
             case "Confirmada":
                 return EstadoOL.Confirmada;
@@ -107,19 +200,19 @@ public class Utils {
         }
     }
 	
-	public static LocalDate obtenerFechaDesdeString(String fechaStr, String formato) {
+	public LocalDate obtenerFechaDesdeString(String fechaStr, String formato) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
         return LocalDate.parse(fechaStr, formatter);
     }
 	
-	public static DepUY obtenerDepUYDesdeNombre(String nombreDepartamento) {
+	public DepUY obtenerDepUYDesdeNombre(String nombreDepartamento) {
 	    switch (nombreDepartamento) {
 	        case "Artigas":
 	            return DepUY.Artigas;
 	        case "Salto":
 	            return DepUY.Salto;
 	        case "Paysandú":
-	            return DepUY.Paysandu;
+	            return DepUY.Paysandú;
 	        case "Rionegro":
 	            return DepUY.RioNegro;
 	        case "Soriano":
@@ -137,7 +230,7 @@ public class Utils {
 	        case "Florida":
 	            return DepUY.Florida;
 	        case "Sanjosé":
-	            return DepUY.SanJose;
+	            return DepUY.SanJosé;
 	        case "Canelones":
 	            return DepUY.Canelones;
 	        case "Montevideo":
@@ -211,7 +304,7 @@ public class Utils {
 	    return paquete[0]; // Devuelve el paquete encontrado
 	}
 
-	public static boolean altaOfertaLaboralForzado(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
+	public boolean altaOfertaLaboralForzado(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa{
 		List<Keyword> keywords = new ArrayList<>();
 		
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -285,7 +378,7 @@ public class Utils {
 	}
 
 
-	public static Postulacion crearPostulacionForzado(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+	public Postulacion crearPostulacionForzado(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		
 		Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
@@ -300,7 +393,7 @@ public class Utils {
 		return null;
 	}
 
-	public static boolean altaPostulacionForzado(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha) {
+	public boolean altaPostulacionForzado(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha) {
 		CtrlUsuario CtrllUser = new CtrlUsuario();
 		boolean existe = CtrllUser.existePostulacion(nick,   nombre);
 		if (!existe) {

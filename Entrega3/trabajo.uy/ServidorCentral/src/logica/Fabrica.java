@@ -1,4 +1,4 @@
-package logica.utils;
+package logica;
 
 import logica.controladores.CtrlCargaDeDatos;
 import logica.controladores.CtrlOferta;

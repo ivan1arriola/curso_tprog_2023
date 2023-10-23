@@ -4,11 +4,9 @@ import java.time.LocalDate;
 
 import java.util.Set;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
-@XmlAccessorType(XmlAccessType.FIELD)
+
 public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
 	private Set<String> postulaciones;
 	private DTPaquete paq;

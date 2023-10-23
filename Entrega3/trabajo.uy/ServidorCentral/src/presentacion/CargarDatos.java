@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
 
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionValidezNegativa;
+import logica.Fabrica;
 import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.utils.Fabrica;
 
 public class CargarDatos extends JInternalFrame {
 

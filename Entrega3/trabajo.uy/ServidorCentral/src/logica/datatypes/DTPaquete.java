@@ -2,10 +2,7 @@ package logica.datatypes;
 
 import java.time.LocalDate;
 import java.util.Set;
-
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-@XmlAccessorType(XmlAccessType.FIELD)
+	
 public class DTPaquete {
 	private String nombre;
 	private float costo;

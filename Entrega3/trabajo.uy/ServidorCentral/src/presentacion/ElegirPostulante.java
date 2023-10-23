@@ -319,9 +319,9 @@ public class ElegirPostulante extends JDialog {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this,  "El usuario indicado ya se encuentra postulado a la oferta indicada.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 	cbEmpresa.setEnabled(true);
                 	cbOferta.setEnabled(true);
-                }  else if (motiva.getText().trim().isEmpty()) {
+                }  else if (motiva.getText().isBlank()) {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this,  "No ha escrito la motivación.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
-                } else if (cvred.getText().trim().isEmpty()) {
+                } else if (cvred.getText().isBlank()) {
                 	JOptionPane.showMessageDialog(ElegirPostulante.this,  "No ha escrito el CV reducido.",  "ERROR - Elegir postulante",  JOptionPane.ERROR_MESSAGE);
                 } else if (currentDate.isAfter(fechaResultado)) {
                 	

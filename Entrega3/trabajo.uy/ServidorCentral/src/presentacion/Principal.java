@@ -8,10 +8,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.utils.Fabrica;
-import webservice.ServidorCentral;
 
 public class Principal {
     private JFrame frmGestionDeUsuarios;
@@ -35,8 +34,6 @@ public class Principal {
                 try {
                     Principal window = new Principal();
                     window.frmGestionDeUsuarios.setVisible(true);
-                    ServidorCentral servicios = new ServidorCentral();
-                    servicios.publicar();
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }

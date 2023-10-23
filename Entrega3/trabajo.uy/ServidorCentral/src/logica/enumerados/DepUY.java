@@ -1,5 +1,5 @@
 package logica.enumerados;
 
 public enum DepUY {
-	Artigas,  Salto,  Paysandu,  RioNegro,  Soriano,  Colonia,  Rivera,  Tacuarembo,  Durazno,  Flores,  Florida,  SanJose,  Canelones,  Montevideo,  CerroLargo,  TreintaYTres,  Lavalleja,  Rocha,  Maldonado
+	Artigas,  Salto,  Paysandú,  RioNegro,  Soriano,  Colonia,  Rivera,  Tacuarembo,  Durazno,  Flores,  Florida,  SanJosé,  Canelones,  Montevideo,  CerroLargo,  TreintaYTres,  Lavalleja,  Rocha,  Maldonado
 }

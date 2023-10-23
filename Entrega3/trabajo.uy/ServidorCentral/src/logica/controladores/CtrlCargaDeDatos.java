@@ -1,19 +1,19 @@
 package logica.controladores;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.List;
 
 import excepciones.*;
+import logica.Fabrica;
+import logica.Utils;
 import logica.datatypes.DTHorario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.utils.Fabrica;
-import logica.utils.ManejadorImagenes;
-import logica.utils.Utils;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
@@ -59,10 +59,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
             if (user.equals(user1)) {
                 String dateString = postulantesCSV[1];
-                LocalDate localDate = Utils.obtenerFechaDesdeString(dateString, "d/M/yyyy");
+                LocalDate localDate = utils.obtenerFechaDesdeString(dateString, "d/M/yyyy");
                 byte[] imagen = null;
 				try {
-					imagen = ManejadorImagenes.descargarImagen(usuariosCSV[7], usuariosCSV[2]);
+					imagen = utils.descargarImagen(usuariosCSV[7]);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -78,7 +78,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             String user2 = empresasCSV[0];
             byte[] imagen = null;
             try {
-            	imagen = ManejadorImagenes.descargarImagen(usuariosCSV[7], usuariosCSV[2]);
+            	imagen = utils.descargarImagen(usuariosCSV[7]);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -101,7 +101,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
     // Cargar Tipo de Publicación
     private void cargarTipoPublicacion() {
         utils.readCSV("/datos/TipoPublicacion.csv", tipoPublicacionCSV -> {
-            LocalDate fechaLocal = Utils.obtenerFechaDesdeString(tipoPublicacionCSV[6], "d/M/yyyy");
+            LocalDate fechaLocal = utils.obtenerFechaDesdeString(tipoPublicacionCSV[6], "d/M/yyyy");
             ctrlOferta.altaTipoPublicacionOL(tipoPublicacionCSV[1], tipoPublicacionCSV[2], Integer.parseInt(tipoPublicacionCSV[3]), Integer.parseInt(tipoPublicacionCSV[4]), Float.valueOf(tipoPublicacionCSV[5]), fechaLocal);
         });
     }
@@ -121,8 +121,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
     private void cargarPaquetes() {
         utils.readCSV("/datos/Paquetes.csv", paquetesCSV -> {
             try {
-                byte[] imagen = ManejadorImagenes.descargarImagen(paquetesCSV[7], paquetesCSV[1]);
-                LocalDate fecha = Utils.obtenerFechaDesdeString(paquetesCSV[5], "d/M/yyyy");
+                byte[] imagen = utils.descargarImagen(paquetesCSV[7]);
+                LocalDate fecha = utils.obtenerFechaDesdeString(paquetesCSV[5], "d/M/yyyy");
                 ctrlOferta.altaPaqueteOL(paquetesCSV[1], paquetesCSV[2], Integer.parseInt(paquetesCSV[3].split(" ")[0]), fecha, Float.valueOf(paquetesCSV[4]), imagen);
             } catch (IOException | NumberFormatException | ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
                 e.printStackTrace();
@@ -136,20 +136,20 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             String imageUrl = ofertaLaboralCSV[12];
             byte[] imagen;
             try {
-                imagen = ManejadorImagenes.descargarImagen(imageUrl, ofertaLaboralCSV[1]);
+                imagen = utils.descargarImagen(imageUrl);
             } catch (IOException e) {
                 e.printStackTrace();
                 imagen = null;
             }
 
-            DTHorario horario = Utils.obtenerHorario(ofertaLaboralCSV[5]);
-            LocalDate fecha = Utils.obtenerFechaDesdeString(ofertaLaboralCSV[9], "d/M/yyyy");
+            DTHorario horario = utils.obtenerHorario(ofertaLaboralCSV[5]);
+            LocalDate fecha = utils.obtenerFechaDesdeString(ofertaLaboralCSV[9], "d/M/yyyy");
             String nickname_empresa = utils.buscarNicknameEnUsuarioCSV(ofertaLaboralCSV[7]);
             String tipodePublicacion = utils.buscarTipoPublicacion(ofertaLaboralCSV[8]);
             List<String> keys = utils.buscarPalabrasClave(ofertaLaboralCSV[0]);
 
-            DepUY dep = Utils.obtenerDepUYDesdeNombre(ofertaLaboralCSV[3]);
-            EstadoOL estado = Utils.obtenerEstadoDesdeString(ofertaLaboralCSV[10]);
+            DepUY dep = utils.obtenerDepUYDesdeNombre(ofertaLaboralCSV[3]);
+            EstadoOL estado = utils.obtenerEstadoDesdeString(ofertaLaboralCSV[10]);
             String paq = ofertaLaboralCSV[11];
 
             if (ofertaLaboralCSV[11].equals("Sin paquete")) {
@@ -159,7 +159,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             }
 
             try {
-                Utils.altaOfertaLaboralForzado(nickname_empresa, tipodePublicacion, ofertaLaboralCSV[1], ofertaLaboralCSV[2], horario, Float.valueOf(ofertaLaboralCSV[6]), ofertaLaboralCSV[4], dep, fecha, keys, estado, imagen, paq);
+                utils.altaOfertaLaboralForzado(nickname_empresa, tipodePublicacion, ofertaLaboralCSV[1], ofertaLaboralCSV[2], horario, Float.valueOf(ofertaLaboralCSV[6]), ofertaLaboralCSV[4], dep, fecha, keys, estado, imagen, paq);
             } catch (ExceptionUsuarioNoEncontrado eune) {
                 eune.printStackTrace();
             } catch (ExceptionEmpresaInvalida eei) {
@@ -204,7 +204,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 paq = paqueteEncontrado;
             }
 
-            LocalDate fecha = Utils.obtenerFechaDesdeString(camposCompras[3], "d/M/yyyy");
+            LocalDate fecha = utils.obtenerFechaDesdeString(camposCompras[3], "d/M/yyyy");
 
             try {
                 ctrlOferta.compraPaquetes(nickname_e, paq, fecha, Integer.parseInt(camposCompras[4]));
@@ -222,10 +222,10 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
             // Obtener la fecha
             String fechaStr = camposPostulaciones[4];
-            LocalDate fecha = Utils.obtenerFechaDesdeString(fechaStr, "d/M/yyyy");
+            LocalDate fecha = utils.obtenerFechaDesdeString(fechaStr, "d/M/yyyy");
 
             // No hay URLDocExtras, por eso el ""
-            if (Utils.altaPostulacionForzado(ofertaLaboral, usuario, camposPostulaciones[2], camposPostulaciones[3], "", fecha)) {
+            if (utils.altaPostulacionForzado(ofertaLaboral, usuario, camposPostulaciones[2], camposPostulaciones[3], "", fecha)) {
                 // EXCEPCIÓN
             }
         });

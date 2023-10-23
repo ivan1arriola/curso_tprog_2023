@@ -4,9 +4,6 @@ import java.time.LocalDate;
 
 import java.util.Set;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-@XmlAccessorType(XmlAccessType.FIELD)
 public class DTPostulanteExtendido extends DTPostulante {
 
 	private Set<DTPostulacion> postulaciones;

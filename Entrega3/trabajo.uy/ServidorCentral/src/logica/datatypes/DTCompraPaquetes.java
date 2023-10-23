@@ -4,10 +4,6 @@ import java.time.LocalDate;
 // import java.util.ArrayList; NO SE USA (CHECKSTYLE)
 // import java.util.Set; NO SE USA (CHECKSTYLE)
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-
-@XmlAccessorType(XmlAccessType.FIELD)
 public class DTCompraPaquetes {
 	
 	private String nombre;
