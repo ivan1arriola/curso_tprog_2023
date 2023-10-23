@@ -80,7 +80,7 @@ public abstract class Usuario {
         this.contrasenia = contrasenia;
         this.imagen = imagen;
         
-        Utils.guardarImagen("Usuario", nickname , "jpg", imagen);
+        Utils.guardarImagen("Usuarios", nickname , "jpg", imagen);
         
         System.out.println("Se ha creado un usuario. - " + nickname);
     }
