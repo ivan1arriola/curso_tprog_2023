@@ -6,6 +6,7 @@ import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
+import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionCompraPaqueteConValorNegativo;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
@@ -22,6 +23,7 @@ import javabeans.DateBean;
 import javabeans.ListaBean;
 import javabeans.OfertaLaboralBeanServidor;
 import javabeans.PaqueteBeanServidor;
+import javabeans.TipoPublicacionBeanServidor;
 import javabeans.UsuarioBeanServidor;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTEmpresa;
@@ -32,6 +34,7 @@ import logica.datatypes.DTOfertaExtendidoSinPConK;
 import logica.datatypes.DTPaquete;
 import logica.datatypes.DTPostulacion;
 import logica.datatypes.DTPostulante;
+import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
@@ -220,37 +223,60 @@ public class ServidorCentral {
       
     }
 
+    
+    @WebMethod
+    public TipoPublicacionBeanServidor obtenerDatosTipoPublicacion(
+        @WebParam(name = "tipo") String tipo
+    ) throws ExcepcionTipoOfertaNoExistente {
+		
+		DTTipoOferta dtOferta = ctrlOferta.obtenerDatosTO(tipo);
+		TipoPublicacionBeanServidor bean = new TipoPublicacionBeanServidor();
+		
+		bean.setNombre(dtOferta.getNombre());
+        bean.setFechaAlta(fromLocalDate(dtOferta.getFechaAlta()));
+        bean.setCosto(dtOferta.getCosto());
+        bean.setDuracion(dtOferta.getDuracion());
+        bean.setExposicion(dtOferta.getExposicion());
+        bean.setDescripcion(dtOferta.getDescripcion());
+    	
+		return bean;
+    }
 
     @WebMethod
     public PaqueteBeanServidor obtenerDatosPaquete(
         @WebParam(name = "paquete") String paquete
     ) {
+    	try {
+    		
     	
-    	DTPaquete dtPaquete = ctrlUsuario.obtenerDatosPaquete(paquete);
-		PaqueteBeanServidor paqueteBean = new PaqueteBeanServidor();
-		paqueteBean.setCosto(dtPaquete.getCosto());
-		paqueteBean.setDescripcion(dtPaquete.getDescripcion());
-		paqueteBean.setDescuento(dtPaquete.getDescuento());
-		paqueteBean.setFechaA(fromLocalDate( dtPaquete.getFechaAlta()));
-		
-		paqueteBean.setImagen(imagenAString(dtPaquete.getImagen()));
-		paqueteBean.setNombre(dtPaquete.getNombre());
-		paqueteBean.setValidez(dtPaquete.getValidez());
-		
-		ArrayList<CantTipoPublicacionBeanServidor> cantidades = new ArrayList<CantTipoPublicacionBeanServidor>();
-		
-		ArrayList<DTCantTO> dtCantidades = new ArrayList<>(dtPaquete.getTiposDePub());
-		
-		for( DTCantTO cant : dtCantidades) {
-			CantTipoPublicacionBeanServidor cantidadBean = new CantTipoPublicacionBeanServidor();
-			cantidadBean.setCantidad(cant.getCantidad());
-			cantidadBean.setNombre(cant.getNombre());
-			cantidades.add(cantidadBean);
-		}
-		
-		paqueteBean.setTiposDePub(cantidades);
-
-		return paqueteBean;
+	    	DTPaquete dtPaquete = ctrlUsuario.obtenerDatosPaquete(paquete);
+			PaqueteBeanServidor paqueteBean = new PaqueteBeanServidor();
+			paqueteBean.setCosto(dtPaquete.getCosto());
+			paqueteBean.setDescripcion(dtPaquete.getDescripcion());
+			paqueteBean.setDescuento(dtPaquete.getDescuento());
+			paqueteBean.setFechaA(fromLocalDate( dtPaquete.getFechaAlta()));
+			
+			paqueteBean.setImagen(imagenAString(dtPaquete.getImagen()));
+			paqueteBean.setNombre(dtPaquete.getNombre());
+			paqueteBean.setValidez(dtPaquete.getValidez());
+			
+			ArrayList<CantTipoPublicacionBeanServidor> cantidades = new ArrayList<CantTipoPublicacionBeanServidor>();
+			
+			ArrayList<DTCantTO> dtCantidades = new ArrayList<>(dtPaquete.getTiposDePub());
+			
+			for( DTCantTO cant : dtCantidades) {
+				CantTipoPublicacionBeanServidor cantidadBean = new CantTipoPublicacionBeanServidor();
+				cantidadBean.setCantidad(cant.getCantidad());
+				cantidadBean.setNombre(cant.getNombre());
+				cantidades.add(cantidadBean);
+			}
+			
+			paqueteBean.setTiposDePub(cantidades);
+	
+			return paqueteBean;
+    	} catch (Exception e) {
+    		return new PaqueteBeanServidor();
+    	}
     }
 
     @WebMethod

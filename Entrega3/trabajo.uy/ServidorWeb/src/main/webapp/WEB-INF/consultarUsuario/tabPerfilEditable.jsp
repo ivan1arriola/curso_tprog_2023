@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="javabeans.UsuarioBean" %>
-<%@ page import="enumeration.TipoUsuario" %>
+<%@ page import="webservice.TipoUsuario" %>
 
 
 <%
@@ -47,9 +47,9 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                         </div>
                     </section>
                     <!-- Importar JSP de acuerdo al tipo de usuario -->
-                    <% if (usuario.getTipo() == TipoUsuario.Postulante) { %>
+                    <% if (usuario.getTipo() == TipoUsuario.POSTULANTE) { %>
                     <jsp:include page="./camposPostulante.jsp" />
-                    <% } else if (usuario.getTipo() == TipoUsuario.Empresa) { %>
+                    <% } else if (usuario.getTipo() == TipoUsuario.EMPRESA) { %>
                     <jsp:include page="./camposEmpresa.jsp" />
                     <% } %>
                     <div class="form-group mt-3">

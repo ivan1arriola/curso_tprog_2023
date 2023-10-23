@@ -6,12 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
 import logica.datatypes.DTHorario;
-import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import utils.Convertidor;
+import webservice.DepUY;
 import webservice.OfertaLaboralBeanServidor;
 import webservice.UsuarioBeanServidor;
 
@@ -22,7 +21,7 @@ public class OfertaLaboralBean {
 	private float costo;
 	private float remuneracion;
 	private DTHorario horario;
-	private Departamento departamento;
+	private DepUY departamento;
 	private String ciudad;
 	private EstadoOfertaLaboral estado;
 	private Set<UsuarioBean> postulantes;
@@ -44,7 +43,7 @@ public class OfertaLaboralBean {
         this.costo = 0.0f;
         this.remuneracion = 0.0f;
         this.horario = null;
-        this.departamento = null;
+        this.setDepartamento(null);
         this.ciudad = null;
         this.estado = null;
         this.setImagen(null);
@@ -58,24 +57,12 @@ public class OfertaLaboralBean {
 	
 	
 
-	
-	public Departamento getDepartamento() {
-	    return departamento;
-	}
+
 
 	public EstadoOfertaLaboral getEstado() {
 	    return estado;
 	}
 	
-	 // Setter para departamento con enumeración Departamento
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
-    // Setter para departamento con enumeración DepUY (compatible)
-    public void setDepartamento(DepUY depUY) {
-        this.departamento = Departamento.valueOf(depUY.name());
-    }
 
     // Setter para estado con enumeración EstadoOfertaLaboral
     public void setEstado(EstadoOfertaLaboral estado) {
@@ -258,7 +245,7 @@ public class OfertaLaboralBean {
 
         // Convierte el departamento de DepUY a Departamento
         if (servidor.getDepartamento() != null) {
-            bean.setDepartamento(Departamento.valueOf(servidor.getDepartamento().name()));
+            bean.setDepartamento(servidor.getDepartamento());
         }
 
         bean.setCiudad(servidor.getCiudad());
@@ -293,6 +280,22 @@ public class OfertaLaboralBean {
 
         return bean;
     }
+
+
+
+
+
+	public DepUY getDepartamento() {
+		return departamento;
+	}
+
+
+
+
+
+	public void setDepartamento(DepUY departamento) {
+		this.departamento = departamento;
+	}
 
 
 

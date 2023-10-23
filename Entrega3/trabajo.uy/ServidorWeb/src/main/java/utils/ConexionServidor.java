@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
@@ -17,6 +16,7 @@ import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import logica.datatypes.DTHorario;
+import webservice.DepUY;
 import webservice.DtOfertaExtendido;
 import webservice.DtOfertaExtendidoSinPConK;
 import webservice.DtPostulacion;
@@ -120,7 +120,7 @@ public class ConexionServidor implements ILogica {
     }
 
 	public void altaOfertaLaboral1(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,
-			float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado, String img,
+			float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado, String img,
 			String paquete) {
 		/*try {
 			DepUY departamento = DepUY.values()[Departamento.valueOf(dep.toString()).ordinal()];
@@ -297,13 +297,12 @@ public class ConexionServidor implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> listarDatosOfertas() {
-		return null;
-		/*Set<DTOfertaExtendido> dtOfertas = servidor.listarOfertasLaboralesConfirmadas();
+		Set<DtOfertaExtendido> dtOfertas = new HashSet<>(servidor.listarTodasLasOfertasLaboralesConfirmadas().getOfertasExtendido());
 		Set<OfertaLaboralBean> ofertasLaborales = new HashSet<OfertaLaboralBean>();
-		for (DTOfertaExtendido dtoferta: dtOfertas) {
+		for (DtOfertaExtendido dtoferta: dtOfertas) {
 			ofertasLaborales.add(this.obtenerDatosOfertaLaboral(dtoferta.getNombre()));
 		}
-		return ofertasLaborales; */
+		return ofertasLaborales; 
 	}
 
 	@Override
@@ -356,13 +355,6 @@ public class ConexionServidor implements ILogica {
 	}
 
 
-	@Override
-	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,
-			float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado,
-			String img, String paquete) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 
@@ -375,6 +367,16 @@ public class ConexionServidor implements ILogica {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+
+
+	@Override
+	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,
+			float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado,
+			String img, String paquete) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

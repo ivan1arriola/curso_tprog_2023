@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
-<%@ page import="enumeration.TipoUsuario" %>
+<%@ page import="webservice.TipoUsuario" %>
 <%@ page import="java.util.Set" %>
 <% 
     Set<String> keys = (Set<String>) request.getAttribute("keys");
@@ -8,7 +8,7 @@
     if (session != null && session.getAttribute("nickname") != null) { 
         TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
         String nickname = (String) session.getAttribute("nickname");
-        if (tipo == null) tipo = TipoUsuario.Visitante;
+        if (tipo == null) tipo = TipoUsuario.VISITANTE;
 %>
     <div class="card mb-4 mi-perfil">
         <div class="card-header">
@@ -19,12 +19,12 @@
                 <li class="list-group-item list-group-item-action border-0 py-1">
                     <a href="<%= request.getContextPath() %>/consultarusuario?u=<%=nickname %>" class="list-group-item list-group-item-action border-0 py-1">Mi Perfil</a>
                 </li>
-                <% if (tipo == TipoUsuario.Empresa) { %>
+                <% if (tipo == TipoUsuario.EMPRESA) { %>
                 <li class="list-group-item list-group-item-action border-0 py-1">
                     <a href="<%= request.getContextPath() %>/altaofertalaboral" class="list-group-item list-group-item-action border-0 py-1">Alta Oferta Laboral</a>
                 </li>
                 <% } %>
-                <% if (tipo == TipoUsuario.Postulante) { %>
+                <% if (tipo == TipoUsuario.POSTULANTE) { %>
                 <li class="list-group-item list-group-item-action border-0 py-1">
                     <a href="<%= request.getContextPath() %>/ofertaslaborales" class="list-group-item list-group-item-action border-0 py-1">Postular a Oferta Laboral</a>
                 </li>

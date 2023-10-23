@@ -3,8 +3,8 @@ package javabeans;
 import java.time.LocalDate;
 import java.util.Set;
 
-import enumeration.TipoUsuario;
 import utils.Convertidor;
+import webservice.TipoUsuario;
 import webservice.UsuarioBeanServidor;
 
 public class UsuarioBean {
@@ -156,7 +156,7 @@ public class UsuarioBean {
 	        bean.setUrl(usuarioServidor.getUrl());
 	        bean.setFechaNac(Convertidor.toLocalDate(usuarioServidor.getFechaNac()));
 	        bean.setNacionalidad(usuarioServidor.getNacionalidad());
-	        bean.setTipo(Convertidor.convertTipoUsuario(usuarioServidor.getTipo()));
+	        bean.setTipo(usuarioServidor.getTipo());
 	        bean.setError(usuarioServidor.getError());
 		return bean;
 	}

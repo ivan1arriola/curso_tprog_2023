@@ -1,12 +1,7 @@
 package javabeans;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 import logica.datatypes.DTHorario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;

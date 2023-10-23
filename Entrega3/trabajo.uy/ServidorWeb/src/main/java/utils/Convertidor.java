@@ -6,15 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import enumeration.TipoUsuario;
-import javabeans.UsuarioBean;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
 import webservice.DateBean;
 import webservice.DtHora;
 import webservice.DtHorario;
 import webservice.ListaBean;
-import webservice.UsuarioBeanServidor;
 
 public class Convertidor {
 	
@@ -49,18 +46,7 @@ public class Convertidor {
 		}
 
 
-	    public static TipoUsuario convertTipoUsuario(webservice.TipoUsuario tipoServidor) {
-	        switch (tipoServidor) {
-	            case VISITANTE:
-	                return TipoUsuario.Visitante;
-	            case EMPRESA:
-	                return TipoUsuario.Empresa;
-	            case POSTULANTE:
-	                return TipoUsuario.Postulante;
-	            default:
-	                return TipoUsuario.Visitante; // Valor por defecto
-	        }
-	    }
+	
 	    
 	    
 	    public static LocalDate toLocalDate(DateBean dateBean) {

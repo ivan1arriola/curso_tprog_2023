@@ -10,10 +10,10 @@ import javabeans.PaqueteBean;
 import jakarta.servlet.RequestDispatcher;
 
 import utils.FabricaWeb;
+import webservice.TipoUsuario;
 
 import java.io.IOException;
 import java.util.Set;
-import enumeration.TipoUsuario;
 
 @WebServlet("/consultarpaquete")
 public class ConsultarPaquete extends HttpServlet {
@@ -38,7 +38,7 @@ public class ConsultarPaquete extends HttpServlet {
                 TipoUsuario tipo = (TipoUsuario) session.getAttribute("tipoUsuario");
                 
 
-                if (tipo == TipoUsuario.Empresa) {
+                if (tipo == TipoUsuario.EMPRESA) {
                 	Set<String> paquetes = FabricaWeb.getInstance().getLogica().listarPaquetesDeEmpresa(nickname);
                     if (!paquetes.contains(nombrePaquete)) {
                         request.setAttribute("mostrarComprar", true);
