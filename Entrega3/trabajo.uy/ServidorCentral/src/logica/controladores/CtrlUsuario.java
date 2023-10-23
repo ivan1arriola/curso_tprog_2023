@@ -593,4 +593,12 @@ public class CtrlUsuario implements ICtrlUsuario {
 			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
 		}
 	}
+	
+	/*public DTPostulacion obtenerDatosPostulacionVideo(String postulanteNick,    String ofer) {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Postulante user = (Postulante) UsuarioH.buscarNick(postulanteNick);
+		DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulanteNick,    ofer);
+		return datosPostu;
+	}*/ // sirve la misma que sin video
+	
 }
