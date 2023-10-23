@@ -20,12 +20,14 @@ import logica.datatypes.DTHorario;
 import webservice.DtOfertaExtendido;
 import webservice.DtOfertaExtendidoSinPConK;
 import webservice.DtPostulacion;
+import webservice.ExcepcionTipoOfertaNoExistente_Exception;
 import webservice.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception;
 import webservice.ExceptionCompraPaqueteConValorNegativo_Exception;
 import webservice.ExceptionValidezNegativa_Exception;
 import webservice.ListaBean;
 import webservice.OfertaLaboralBeanServidor;
 import webservice.ServidorCentral;
+import webservice.TipoPublicacionBeanServidor;
 import webservice.UsuarioBeanServidor;
 
 public class ConexionServidor implements ILogica {
@@ -306,7 +308,7 @@ public class ConexionServidor implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword) {
-		Set<String> ofertas = (Set<String>) servidor.listarOfertasLaboralesKeywords(keyword);
+		Set<String> ofertas = Convertidor.obtenerListaString( servidor.listarOfertasLaboralesKeywords(keyword));
 		
 		if(ofertas.isEmpty()) {
     		return null;
@@ -325,7 +327,7 @@ public class ConexionServidor implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) {
-		Set<String> ofertas = (Set<String>) servidor.listarOfertasLaboralesConfirmadasConsulta(consulta);
+		Set<String> ofertas =Convertidor.obtenerListaString( servidor.listarOfertasLaboralesConfirmadasConsulta(consulta));
     	
     	if(ofertas.isEmpty()) {
     		return null;
@@ -360,6 +362,19 @@ public class ConexionServidor implements ILogica {
 			String img, String paquete) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public TipoPublicacionBeanServidor obtenerDatosTipoPublicacion(String nombre) {
+		try {
+			return servidor.obtenerDatosTipoPublicacion(nombre);
+		} catch (ExcepcionTipoOfertaNoExistente_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	

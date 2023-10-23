@@ -24,6 +24,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://webservice/", "ExcepcionTipoOfertaNoExistente");
     private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://webservice/", "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
     private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://webservice/", "ExceptionCompraPaqueteConValorNegativo");
     private final static QName _ExceptionRemuneracionOfertaLaboralNegativa_QNAME = new QName("http://webservice/", "ExceptionRemuneracionOfertaLaboralNegativa");
@@ -34,6 +35,16 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ExcepcionTipoOfertaNoExistente }
+     * 
+     * @return
+     *     the new instance of {@link ExcepcionTipoOfertaNoExistente }
+     */
+    public ExcepcionTipoOfertaNoExistente createExcepcionTipoOfertaNoExistente() {
+        return new ExcepcionTipoOfertaNoExistente();
     }
 
     /**
@@ -214,6 +225,29 @@ public class ObjectFactory {
      */
     public HashSet createHashSet() {
         return new HashSet();
+    }
+
+    /**
+     * Create an instance of {@link TipoPublicacionBeanServidor }
+     * 
+     * @return
+     *     the new instance of {@link TipoPublicacionBeanServidor }
+     */
+    public TipoPublicacionBeanServidor createTipoPublicacionBeanServidor() {
+        return new TipoPublicacionBeanServidor();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExcepcionTipoOfertaNoExistente }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExcepcionTipoOfertaNoExistente }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://webservice/", name = "ExcepcionTipoOfertaNoExistente")
+    public JAXBElement<ExcepcionTipoOfertaNoExistente> createExcepcionTipoOfertaNoExistente(ExcepcionTipoOfertaNoExistente value) {
+        return new JAXBElement<>(_ExcepcionTipoOfertaNoExistente_QNAME, ExcepcionTipoOfertaNoExistente.class, null, value);
     }
 
     /**

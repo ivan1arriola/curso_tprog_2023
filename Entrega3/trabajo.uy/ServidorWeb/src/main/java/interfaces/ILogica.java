@@ -13,6 +13,7 @@ import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import logica.datatypes.DTHorario;
+import webservice.TipoPublicacionBeanServidor;
 
 
 public interface ILogica {
@@ -30,6 +31,7 @@ public interface ILogica {
 	Set<String> listarNicknamesUsuario();
 	
 	
+	TipoPublicacionBeanServidor obtenerDatosTipoPublicacion(String nombre);
 	
 	
 	void altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
