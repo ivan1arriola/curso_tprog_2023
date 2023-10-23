@@ -90,7 +90,7 @@ public class Postulacion {
     
     // METODOS
     public DTPostulacion obtenerDT() {
-        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion);
+        DTPostulacion dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, urlVideo);
         return dtpostu;
     } 
 
