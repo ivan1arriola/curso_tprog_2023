@@ -89,6 +89,14 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                             aria-controls="postulaciones-panel">Postulaciones</a>
                     </li>
                 <%} %>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidos-panel" type="button" role="tab"
+                            aria-controls="seguidos-panel">Seguidos</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidores-panel" type="button" role="tab"
+                            aria-controls="seguidores-panel">Seguidos</a>
+                    </li>
             </ul>
 
 		    <div class="tab-content" id="myTabsContent">
@@ -103,6 +111,8 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 			            <jsp:include page="./tabPostulaciones.jsp" />
 			        <% } else { %>
 			            <jsp:include page="./tabPerfilEditable.jsp" />
+			            <jsp:include page="./tabSeguidos.jsp" />
+			            <jsp:include page="./tabSeguidores.jsp" />
 			        <% } %>
 			    <% } else { %>
 			        <jsp:include page="./tabPerfil.jsp" />

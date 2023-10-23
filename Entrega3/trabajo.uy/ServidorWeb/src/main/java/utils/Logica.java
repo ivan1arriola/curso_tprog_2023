@@ -15,6 +15,7 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
+import javabeans.UsuarioSinInfoSocialBean;
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionCompraPaqueteConValorNegativo;
@@ -39,6 +40,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.datatypes.DTUsuarioSinInfoSocial;
 
 public class Logica implements ILogica {
 	
@@ -107,6 +109,31 @@ public class Logica implements ILogica {
 	        usuario.setContrasenia(dtUsuario.getcontrasenia());
 	        usuario.setCorreoElectronico(dtUsuario.getcorreoElectronico());
 			usuario.setImagen(imagenAString(dtUsuario.getImagen()));
+			Set<DTUsuarioSinInfoSocial> S1 = dtUsuario.getSeguidores();
+			Set<DTUsuarioSinInfoSocial> S2 = dtUsuario.getSeguidores();
+			Set<UsuarioSinInfoSocialBean> seguidores = new HashSet<>();
+			Set<UsuarioSinInfoSocialBean> seguidos = new HashSet<>();
+			
+			for (DTUsuarioSinInfoSocial elem : S1) {
+				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
+				u1.setNickname(elem.getNickname());
+				u1.setApellido(elem.getApellido());
+				u1.setContrasenia(elem.getcontrasenia());
+				u1.setCorreoElectronico(elem.getcorreoElectronico());
+				seguidores.add(u1);
+			}
+			
+			for (DTUsuarioSinInfoSocial elem : S2) {
+				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
+				u1.setNickname(elem.getNickname());
+				u1.setApellido(elem.getApellido());
+				u1.setContrasenia(elem.getcontrasenia());
+				u1.setCorreoElectronico(elem.getcorreoElectronico());
+				seguidos.add(u1);
+			}
+			
+			usuario.setSeguidores(seguidores);
+			usuario.setSeguidos(seguidos);
 			
 	        if(dtUsuario instanceof DTEmpresa) {
 	        	DTEmpresa empresa = (DTEmpresa) dtUsuario;
