@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import enumeration.TipoUsuario;
+import logica.datatypes.DTUsuarioSinInfoSocial;
 
 public class UsuarioBean {
 	
@@ -20,6 +21,8 @@ public class UsuarioBean {
     private Set<OfertaLaboralBean> ofertasLaborales;
     private Set<PostulacionBean> postulaciones;
     private TipoUsuario tipo;
+    private Set<UsuarioSinInfoSocialBean> seguidos;
+    private Set<UsuarioSinInfoSocialBean> seguidores;
     
     private Set<PaqueteBean> paquetes;
     
@@ -41,6 +44,8 @@ public class UsuarioBean {
         this.paquetes = null;
         
         this.error = null;
+        this.seguidos = null;
+        this.seguidores = null;
     }
     
 	public String getNickname() {
@@ -76,6 +81,23 @@ public class UsuarioBean {
 	public String getDescripcion() {
 		return descripcion;
 	}
+	
+	public Set<UsuarioSinInfoSocialBean> getSeguidos() {
+		return seguidos;
+	}
+	
+	public Set<UsuarioSinInfoSocialBean> getSeguidores() {
+		return seguidores;
+	}
+	
+	public void setSeguidos(Set<UsuarioSinInfoSocialBean> seguidos) {
+		this.seguidos = seguidos;
+	}
+	
+	public void setSeguidores(Set<UsuarioSinInfoSocialBean> seguidores) {
+		this.seguidores = seguidores;
+	}
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
