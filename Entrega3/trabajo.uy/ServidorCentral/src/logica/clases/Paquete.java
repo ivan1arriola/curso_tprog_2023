@@ -43,7 +43,7 @@ public class Paquete {
                 this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null,   despues se cambia 
                 
                 System.out.println("Se ha creado un paquete. - " + nombre);
-                Utils.guardarImagen("Paquete", nombre , "jpg", imagen);
+                Utils.guardarImagen("Paquetes", nombre , "jpg", imagen);
             } else {
             	throw new ExceptionValidezNegativa("La validez debe ser un número no negativo.");
             }

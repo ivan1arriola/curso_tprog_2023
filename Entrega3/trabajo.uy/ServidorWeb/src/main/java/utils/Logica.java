@@ -51,8 +51,7 @@ public class Logica implements ILogica {
 		Fabrica fabrica = Fabrica.getInstance();
 		ctrlOferta = fabrica.getICtrlOferta();
 		ctrlUsuario = fabrica.getICtrlUsuario();
-		String ubicacion = System.getProperty("user.dir");
-		System.setProperty("ubicacion_recursos", ubicacion + "/resources");
+		String ubicacion = System.getProperty("user.home");
 
         // Crea las carpetas necesarias si no existen
         crearDirectorio(ubicacion + "/resources/Usuario");

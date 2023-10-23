@@ -2,7 +2,9 @@ package logica;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,8 +12,6 @@ import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionEmpresaInvalida;
@@ -51,32 +50,22 @@ public class Utils {
 	
 	private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
     private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
+    private static final String DEFAULT_UBICACION = System.getProperty("user.home") + File.separator + ".trabajoUy";
+    
+    private static final String CONFIG_FOLDER = System.getProperty("user.home") + File.separator + ".trabajoUy";
+    private static final String CONFIG_FILE = CONFIG_FOLDER + File.separator + ".properties";
     
 
-	
-	public Utils() {
-	}
-	
-	public static String getUbicacionImagenes() {
-        // Aquí puedes leer la configuración específica del proyecto
-        // y obtener la ubicación de la carpeta "resources" de acuerdo con esa configuración.
-        // Por ejemplo, puedes leer una propiedad del sistema o un archivo de configuración.
-        // En este ejemplo, se usa una propiedad del sistema como ejemplo.
-        String ubicacion = System.getProperty("ubicacion_recursos");
-        
-        // Si la propiedad no está definida, utiliza una ubicación por defecto.
-        if (ubicacion == null) {
-            ubicacion = System.getProperty("user.dir") + "/resources";
-        }
-        
-        return ubicacion;
+    public static String getUbicacionImagenes() {
+        return DEFAULT_UBICACION;
     }
+
 	
 	public static String generateImageCode(String input) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(input.getBytes());
-            byte[] digest = md.digest();
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(input.getBytes());
+            byte[] digest = messageDigest.digest();
             
             // Convierte el hash en una representación hexadecimal
             String code = String.format("%064x", new BigInteger(1, digest));
@@ -172,20 +161,19 @@ public class Utils {
 	}
 	
 	public void readCSV(String filePath, Consumer<String[]> rowProcessor) {
-        try (
-        		InputStream inputStream2 = this.getClass().getResourceAsStream(filePath);
-	       	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream2))
-        		) {
-            reader.readLine(); // Leer y descartar la primera línea (cabecera) si es necesario
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(";");
-                rowProcessor.accept(fields); // Procesar la fila utilizando la interfaz funcional
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	    filePath = CONFIG_FOLDER + File.separator + filePath;
+	    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+	        reader.readLine(); // Leer y descartar la primera línea (cabecera) si es necesario
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            String[] fields = line.split(";");
+	            rowProcessor.accept(fields); // Procesar la fila utilizando la interfaz funcional
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 	
 	public EstadoOL obtenerEstadoDesdeString(String nombreEstado) {
         switch (nombreEstado) {

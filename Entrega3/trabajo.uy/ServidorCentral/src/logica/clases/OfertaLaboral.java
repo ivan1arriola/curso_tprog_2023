@@ -163,7 +163,7 @@ public class OfertaLaboral {
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		    
 			 System.out.println("Se ha creado una Oferta Laboral. - " + nombre);
-			 Utils.guardarImagen("OfertaLaboral", nombre ,"jpg", imagennueva);
+			 Utils.guardarImagen("OfertasLaborales", nombre ,"jpg", imagennueva);
 
 		}
 	
@@ -257,7 +257,7 @@ public class OfertaLaboral {
 		    this.postulaciones = new ArrayList<>(); // originalmente vacío
 		    
 		    System.out.println("Se ha creado una Oferta Laboral (forzado). - " + nombre);
-		    Utils.guardarImagen("OfertaLaboral", nombre, "jpg", imagennueva);
+		    Utils.guardarImagen("OfertasLaborales", nombre, "jpg", imagennueva);
 		}
 
 		// Constructor sin imagen ni paquete
