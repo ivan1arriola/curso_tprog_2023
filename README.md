@@ -5,6 +5,7 @@ Integrantes:
 - Matías Ernesto Montaño Cobas
 - Mathías Rodríguez Castro
 - Nicole Ronit Rosenstock Cukrowicz
+
 ## Tarea 3
 
 ### Reparto de tareas
@@ -113,3 +114,5 @@ https://docs.google.com/document/d/1RF7xmRB7oFwleeKkUtYMrhuQrN_db474iIE0wKfCoF4/
 - https://docs.google.com/spreadsheets/d/1SlmFMgoiv_Om7I2jOS2n_41dSOtOoqQDYFXIBckN944/edit?usp=sharing
 
 
+
+---
