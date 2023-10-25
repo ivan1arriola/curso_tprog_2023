@@ -91,11 +91,11 @@ public class Postulacion {
     // METODOS
     public DTPostulacion obtenerDT() {
     	DTPostulacion dtpostu;
-    	if (urlVideo!=null) {
+    	//if (urlVideo!=null) {
     		dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, urlVideo);
-    	} else {
+    	/*} else {
     		dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, "Sin Video disponible");
-    	}
+    	}*/
         return dtpostu;
     } 
 
