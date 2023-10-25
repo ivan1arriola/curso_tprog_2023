@@ -332,7 +332,8 @@ public class ElegirPostulante extends JDialog {
                 else {
                     //String esEmpresa = (String) cbEmpresa.getSelectedItem();
                     String curriculumVitae = cvred.getText();
-                    ico.altaPostulacion(esOferta,  espostulante,  curriculumVitae,  motiva.getText(),  textField1.getText(),  currentDate);
+                    String video = "";
+                    ico.altaPostulacion(esOferta,  espostulante,  curriculumVitae,  motiva.getText(),  textField1.getText(),  currentDate, video);
                     JOptionPane.showMessageDialog(btnCrear,  "Postulación creada exitosamente",  "Éxito",  JOptionPane.INFORMATION_MESSAGE);
                     setVisible(false);
                 }

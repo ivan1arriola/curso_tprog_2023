@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -60,6 +61,23 @@ public class DTUsuario {
     public Set<DTUsuarioSinInfoSocial>  getSeguidores() {
     	return seguidores;
     }
-    
-    
+
+    public DTUsuarioCompleto getDTUsuarioCompleto() {
+        ArrayList<DTUsuarioSinInfoSocial> seguidosList = new ArrayList<>(this.seguidos);
+        ArrayList<DTUsuarioSinInfoSocial> seguidoresList = new ArrayList<>(this.seguidores);
+
+        return new DTUsuarioCompleto(
+                this.nickname,
+                this.correoElectronico,
+                this.apellido,
+                this.nombre,
+                this.contrasenia,
+                this.imagen,
+                seguidosList,
+                seguidoresList
+        );
+    }
+
+
+
 }

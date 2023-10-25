@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.servidor.Servidor;
 
 public class Principal {
     private JFrame frmGestionDeUsuarios;
@@ -34,6 +35,7 @@ public class Principal {
                 try {
                     Principal window = new Principal();
                     window.frmGestionDeUsuarios.setVisible(true);
+                    (new Servidor()).publicar();
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
