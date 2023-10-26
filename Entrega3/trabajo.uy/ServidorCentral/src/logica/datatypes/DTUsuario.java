@@ -1,9 +1,15 @@
 package logica.datatypes;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import logica.servidor.adapter.SetAdapter;
+
+@XmlSeeAlso({DTPostulante.class, DTEmpresa.class})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTUsuario {
     private String nickname;
     private String correoElectronico;
@@ -11,7 +17,11 @@ public class DTUsuario {
     private String nombre;
     private String contrasenia;
     private byte[]  imagen;
+    
+    @XmlJavaTypeAdapter(SetAdapter.class)
     private Set<DTUsuarioSinInfoSocial> seguidos;
+    
+    @XmlJavaTypeAdapter(SetAdapter.class)
     private Set<DTUsuarioSinInfoSocial> seguidores;
 
     public DTUsuario(String nickname,  String correoElectronico,  String apellido,  String nombre,  String contrasenia,  byte[]  img, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
@@ -54,6 +64,7 @@ public class DTUsuario {
     	return imagen;
     }
     
+    
     public Set<DTUsuarioSinInfoSocial>  getSeguidos() {
     	return seguidos;
     }
@@ -62,21 +73,6 @@ public class DTUsuario {
     	return seguidores;
     }
 
-    public DTUsuarioCompleto getDTUsuarioCompleto() {
-        ArrayList<DTUsuarioSinInfoSocial> seguidosList = new ArrayList<>(this.seguidos);
-        ArrayList<DTUsuarioSinInfoSocial> seguidoresList = new ArrayList<>(this.seguidores);
-
-        return new DTUsuarioCompleto(
-                this.nickname,
-                this.correoElectronico,
-                this.apellido,
-                this.nombre,
-                this.contrasenia,
-                this.imagen,
-                seguidosList,
-                seguidoresList
-        );
-    }
 
 
 

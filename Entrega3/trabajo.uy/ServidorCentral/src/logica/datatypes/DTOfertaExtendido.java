@@ -3,8 +3,11 @@ package logica.datatypes;
 import java.time.LocalDate;
 import java.util.Set;
 
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import logica.servidor.adapter.LocalDateAdapter;
+import logica.servidor.adapter.SetAdapter;
 
 
 public class DTOfertaExtendido {
@@ -46,7 +49,8 @@ public String getNombre() {
 public String getDescripcion() {
   return descripcion;
 }
-	
+
+@XmlJavaTypeAdapter(LocalDateAdapter.class)
 public LocalDate getFechaDeAlta() {
   return fechaDeAlta;
 }
@@ -74,7 +78,8 @@ public String getCiudad() {
 public EstadoOL getEstado() {
   return estado; 
 }
-	
+
+@XmlJavaTypeAdapter(SetAdapter.class)
 public Set<DTPostulacion> getPostulaciones() {
   return postulaciones;
 }

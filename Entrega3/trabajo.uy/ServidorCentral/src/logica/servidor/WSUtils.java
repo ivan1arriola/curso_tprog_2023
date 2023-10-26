@@ -1,22 +1,24 @@
 package logica.servidor;
 
-import logica.servidor.bean.DateBean;
-import logica.servidor.bean.DTLista;
+import logica.servidor.bean.WrapperLista;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Set;
 
 public class WSUtils {
 
-    public static DTLista envolverLista(ArrayList<String> strings) {
-        DTLista listaBean = new DTLista();
+    public static WrapperLista envolverLista(ArrayList<String> strings) {
+        WrapperLista listaBean = new WrapperLista();
         listaBean.setListaString(strings);
         return listaBean;
     }
+    
+    public static int obtenerPuerto() {
+    	return 9128;
+    }
 
-    public static DTLista envolverLista(Set<String> strings) {
+    public static WrapperLista envolverLista(Set<String> strings) {
         return envolverLista(new ArrayList<>(strings));
     }
 
@@ -28,7 +30,5 @@ public class WSUtils {
         }
     }
 
-    public static DateBean toDateBean(LocalDate fechaNac) {
-        return new DateBean(fechaNac);
-    }
+    
 }

@@ -1,8 +1,5 @@
 package logica.datatypes;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class DTUsuarioSinInfoSocial {
     private String nickname;
     private String correoElectronico;

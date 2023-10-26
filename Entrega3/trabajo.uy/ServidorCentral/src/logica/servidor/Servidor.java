@@ -13,7 +13,7 @@ import logica.Fabrica;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.servidor.bean.DTLista;
+import logica.servidor.bean.WrapperLista;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -29,7 +29,7 @@ public class Servidor {
 
     @WebMethod(exclude = true)
     public void publicar(){
-        String address = "http://localhost:9128/webservices";
+        String address = "http://localhost:"+ WSUtils.obtenerPuerto() + "/webservices";
         endpoint = Endpoint.publish(address, this);
         System.out.println("Se publico el servicio en " + address);
         System.out.println("WSDL : " + address + "?wsdl" );
@@ -55,17 +55,17 @@ public class Servidor {
         return ctrlUsuario.obtenerDatosUsuario(nickname);
     }
     @WebMethod
-    public DTLista listarNicknamesUsuarios() {
+    public WrapperLista listarNicknamesUsuarios() {
         return WSUtils.envolverLista(ctrlUsuario.listarNicknamesUsuarios());
     }
 
     @WebMethod
-    public DTLista listarComprasPaquete(String nickname) {
+    public WrapperLista listarComprasPaquete(String nickname) {
         return WSUtils.envolverLista(ctrlOferta.listarComprasPaquete(nickname));
     }
 
     @WebMethod
-    public DTLista listarTipoDePublicaciones() {
+    public WrapperLista listarTipoDePublicaciones() {
         return WSUtils.envolverLista(ctrlOferta.listarTipoDePublicaciones());
     }
 
