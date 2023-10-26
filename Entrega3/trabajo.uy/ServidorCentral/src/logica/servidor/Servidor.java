@@ -1,6 +1,8 @@
 package logica.servidor;
 
 
+import java.time.LocalDate;
+
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionValidezNegativa;
 import jakarta.jws.WebMethod;
@@ -68,7 +70,16 @@ public class Servidor {
     public WrapperLista listarTipoDePublicaciones() {
         return WSUtils.envolverLista(ctrlOferta.listarTipoDePublicaciones());
     }
+    
+    @WebMethod
+    public void ingresarDatosEditadosPostulanteImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  LocalDate fechanac,  String nacionalidad) {
+    	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, contraseña, imagen, fechanac, nacionalidad);
+    }
 
-
+    @WebMethod
+    public void ingresarDatosEditadosPostulante(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  LocalDate fechanac,  String nacionalidad) {
+    	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosPostulante(nickname, nombre, apellido, correo, contraseña, fechanac, nacionalidad);
+    }
+    
 
 }
