@@ -83,8 +83,8 @@ public abstract class Usuario {
         this.seguidores = new LinkedHashSet<Usuario>();
         this.seguidos = new LinkedHashSet<Usuario>();
         
-        
-        Utils.guardarImagen("Usuarios", nickname , "jpg", imagen);
+        if(imagen != null)
+        	Utils.guardarImagen("Usuarios", nickname , "jpg", imagen);
         
         System.out.println("Se ha creado un usuario. - " + nickname);
     }
