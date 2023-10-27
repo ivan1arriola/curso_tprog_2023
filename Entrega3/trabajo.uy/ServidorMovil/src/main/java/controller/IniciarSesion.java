@@ -50,13 +50,15 @@ public class IniciarSesion extends HttpServlet {
                 request.setAttribute("mensajeError", "Inicio de sesión fallido. Verifique sus credenciales.");
                 request.setAttribute("identificador", identificador);
                 request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
+                doGet(request, response);
             }
         } catch (Exception e) {
             request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión.");
             request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
+            doGet(request, response);
         }
 
-        doGet(request, response);
+        
 	}
 
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws Exception {
