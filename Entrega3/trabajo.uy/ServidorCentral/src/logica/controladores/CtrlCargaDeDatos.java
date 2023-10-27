@@ -41,7 +41,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Usuarios
     private void cargarUsuarios() {
-        utils.readCSV("/datos/Usuarios.csv", usuariosCSV -> {
+        utils.readCSV("Usuarios.csv", usuariosCSV -> {
             String user = usuariosCSV[0];
             String tipo = usuariosCSV[1];
 
@@ -54,7 +54,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
     }
 
     private void cargarUsuarioPostulante(String user, String[] usuariosCSV) {
-        utils.readCSV("/datos/Usuarios-Postulantes.csv", postulantesCSV -> {
+        utils.readCSV("Usuarios-Postulantes.csv", postulantesCSV -> {
             String user1 = postulantesCSV[0];
 
             if (user.equals(user1)) {
@@ -74,7 +74,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
     }
 
     private void cargarUsuarioEmpresa(String user, String[] usuariosCSV) {
-        utils.readCSV("/datos/Usuarios-Empresas.csv", empresasCSV -> {
+        utils.readCSV("Usuarios-Empresas.csv", empresasCSV -> {
             String user2 = empresasCSV[0];
             byte[] imagen = null;
             try {
@@ -100,7 +100,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Tipo de Publicación
     private void cargarTipoPublicacion() {
-        utils.readCSV("/datos/TipoPublicacion.csv", tipoPublicacionCSV -> {
+        utils.readCSV("TipoPublicacion.csv", tipoPublicacionCSV -> {
             LocalDate fechaLocal = utils.obtenerFechaDesdeString(tipoPublicacionCSV[6], "d/M/yyyy");
             ctrlOferta.altaTipoPublicacionOL(tipoPublicacionCSV[1], tipoPublicacionCSV[2], Integer.parseInt(tipoPublicacionCSV[3]), Integer.parseInt(tipoPublicacionCSV[4]), Float.valueOf(tipoPublicacionCSV[5]), fechaLocal);
         });
@@ -108,7 +108,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Palabras Clave
     private void cargarKeywords() {
-        utils.readCSV("/datos/Keywords.csv", keywordsCSV -> {
+        utils.readCSV("Keywords.csv", keywordsCSV -> {
             try {
                 ctrlOferta.altaKeyword(keywordsCSV[1]);
             } catch (Exception e) {
@@ -119,7 +119,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Paquetes
     private void cargarPaquetes() {
-        utils.readCSV("/datos/Paquetes.csv", paquetesCSV -> {
+        utils.readCSV("Paquetes.csv", paquetesCSV -> {
             try {
                 byte[] imagen = utils.descargarImagen(paquetesCSV[7]);
                 LocalDate fecha = utils.obtenerFechaDesdeString(paquetesCSV[5], "d/M/yyyy");
@@ -132,7 +132,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Ofertas Laborales
     private void cargarOfertasLaborales() {
-        utils.readCSV("/datos/OfertasLaborales.csv", ofertaLaboralCSV -> {
+        utils.readCSV("OfertasLaborales.csv", ofertaLaboralCSV -> {
             String imageUrl = ofertaLaboralCSV[12];
             byte[] imagen;
             try {
@@ -174,7 +174,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Tipos de Publicación en Paquetes
     private void cargarTiposPublicacionPaquetes() {
-        utils.readCSV("/datos/TiposPublicacionPaquetes.csv", camposTiposPublicacion -> {
+        utils.readCSV("TiposPublicacionPaquetes.csv", camposTiposPublicacion -> {
             String paquete = utils.buscarPaquete(camposTiposPublicacion[1].substring(1));
             String tipoPublicacion = utils.buscarTipoPublicacion(camposTiposPublicacion[2].substring(1));
             int cantidad = Integer.parseInt(camposTiposPublicacion[3].substring(1));
@@ -188,7 +188,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Compras de Paquetes
     private void cargarPaquetesCompras() {
-        utils.readCSV("/datos/PaquetesCompras.csv", camposCompras -> {
+        utils.readCSV("PaquetesCompras.csv", camposCompras -> {
             String nickname_e = camposCompras[1];
             String paq = camposCompras[2];
 
@@ -216,7 +216,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
     // Cargar Postulaciones
     public void cargarPostulaciones() {
-        utils.readCSV("/datos/Postulaciones.csv", camposPostulaciones -> {
+        utils.readCSV("Postulaciones.csv", camposPostulaciones -> {
             String usuario = utils.buscarNicknameEnUsuarioCSV(camposPostulaciones[1]);
             String ofertaLaboral = utils.buscarOfertaLaboral(camposPostulaciones[5]);
 
