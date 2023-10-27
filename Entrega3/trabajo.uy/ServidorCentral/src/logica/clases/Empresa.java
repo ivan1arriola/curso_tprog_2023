@@ -13,6 +13,9 @@ import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionValidezNegativa;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTEmpresaConCompras;
@@ -26,12 +29,16 @@ import logica.datatypes.DTCompraPaquetes;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
-
+@Entity
 public class Empresa extends Usuario {
 
     private String descripcion;
     private String url;
+    @OneToMany(mappedBy = "empresa")
+    @JoinColumn(name = "empresa_id")
     private Set<OfertaLaboral> ofertasLaborales;
+
+    @OneToMany(mappedBy = "empresa") 
     private Set<InfoCompra> infoCompras;
     
     public Set<InfoCompra> getInfoCompmras(){

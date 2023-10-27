@@ -7,17 +7,22 @@ import java.util.Set;
 
 import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionValidezNegativa;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import logica.datatypes.DTPostulacion;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTPostulanteExtendido;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTUsuarioSinInfoSocial;
 
-public class Postulante extends Usuario{
-    // atributos
+@Entity
+public class Postulante extends Usuario {
     private LocalDate fechaNac;
     private String nacionalidad;
-    // relaciones
+    // foreign key
+    @OneToMany(mappedBy = "postulante")
+    @JoinColumn(name = "postulante_id")
     private Set<Postulacion> postulaciones;
 
     // constructor  con imagen

@@ -2,10 +2,18 @@ package logica.clases;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import logica.datatypes.DTPostulacion;
 
-
+@Entity
 public class Postulacion {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id; 
+	// -----------
     // atributos
     private LocalDate fecha;
     private String curriculumVitae;

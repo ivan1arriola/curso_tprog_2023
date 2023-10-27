@@ -5,9 +5,18 @@ import java.time.LocalDate;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDuracionNegativa;
 import excepciones.ExceptionExpoNegativa;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import logica.datatypes.DTTipoOferta;
 
+@Entity
 public class TipoOferta {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id; 
+	// -----------
     // Atributos
     private String nombre;
     private LocalDate fechaAlta;

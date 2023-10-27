@@ -116,5 +116,10 @@
 	    <artifactId>hsqldb</artifactId>
 	    <version>2.5.1</version>
 	</dependency>
-    </dependencies>
+        <dependency>
+        	<groupId>trabajoUy</groupId>
+        	<artifactId>ServidorWeb</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+  </dependencies>
 </project>

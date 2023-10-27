@@ -1,20 +1,47 @@
 package logica.clases;
 
+import java.util.Base64;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 import logica.Utils;
 import logica.datatypes.DTUsuario;
 
+// declaro entidad
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
-	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id; 
+	// -----------
 	private String nickname;
     private String nombre;
     private String apellido;
     private String correoElectronico;
     private String contrasenia;
-    private byte[] imagen;
-    private Set<Usuario> seguidores;
+    private String imagen;
+    // relaciones
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_seguidores",
+        joinColumns = @JoinColumn(name = "seguido_id"),
+        inverseJoinColumns = @JoinColumn(name = "seguidores")
+    )
+    private Set<Usuario> seguidores = new HashSet<>();
+
+    // Define the @ManyToMany relationship for seguidos (followed users)
+    @ManyToMany(mappedBy = "seguidores") // Refers to the seguidores property in the Usuario class
     private Set<Usuario> seguidos;
 
     //Getters
@@ -39,7 +66,8 @@ public abstract class Usuario {
 	}
 	
 	public byte[] getImagen() { 
-		return imagen;
+		byte[] base64DecodedBytes = Base64.getDecoder().decode(imagen);
+		return base64DecodedBytes;
 	}
     
 
@@ -65,7 +93,11 @@ public abstract class Usuario {
     }
     
     public void setImagen(byte[] imagen) {
-    	this.imagen = imagen;
+		byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
+	    // Convert the byte array to a Base64 string
+	    String base64EncodedString = new String(base64EncodedBytes);
+    	
+    	this.imagen = base64EncodedString;
     }
 
     public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia) {
@@ -78,8 +110,7 @@ public abstract class Usuario {
         this.apellido = apellido;
         this.correoElectronico = correo_electronico;
         this.contrasenia = contrasenia;
-        this.imagen = imagen;
-        
+        this.setImagen(imagen);
         this.seguidores = new LinkedHashSet<Usuario>();
         this.seguidos = new LinkedHashSet<Usuario>();
         
