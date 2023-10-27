@@ -29,6 +29,7 @@ import logica.clases.Postulante;
 import logica.clases.Usuario;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendido;
+import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
 import logica.datatypes.DTOfertaExtendidoSinPConK;
 import logica.datatypes.DTPaquete;
 import logica.datatypes.DTPostulacion;
@@ -542,14 +543,14 @@ public class CtrlUsuario implements ICtrlUsuario {
 	public Set<String> listarOfertasLaboralesConfirmadas(String nickname_e) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
-		Set<String> OLConfirmadas = empresa.listarOfertasLaboralesConfirmadas(); // falta implementar la operacion
+		Set<String> OLConfirmadas = empresa.listarOfertasLaboralesConfirmadas();
 		return OLConfirmadas;
 	}
 
 	public boolean modificarPostulacion(String nombre,    String nick,    String cvAbreviado,    String motivacion) {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 		Postulante postulante= (Postulante) UsuarioH.buscarNick(nick);
-		boolean edito = postulante.editarPostulacion(nombre,    cvAbreviado,    motivacion); // falta operacion
+		boolean edito = postulante.editarPostulacion(nombre,    cvAbreviado,    motivacion); 
 		return edito;
 	}
 
@@ -593,12 +594,32 @@ public class CtrlUsuario implements ICtrlUsuario {
 			throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
 		}
 	}
+
 	
-	/*public DTPostulacion obtenerDatosPostulacionVideo(String postulanteNick,    String ofer) {
-		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Postulante user = (Postulante) UsuarioH.buscarNick(postulanteNick);
-		DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulanteNick,    ofer);
-		return datosPostu;
-	}*/ // sirve la misma que sin video
+	public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nickname_empresa ,String nombre_oferta){
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
+		return empresa.ObtenerPostulacionesOfertaLaboral(nombre_oferta);
+	}
 	
+	
+	public void establecerPosicion(String nickname_empresa,String nombre_oferta,String nickPostulante,Integer posicion) {
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
+		empresa.establecerPosicion(nombre_oferta,nickPostulante,posicion);
+	}
+	
+	public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(String nickname_empresa){
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
+		Set<DTOfertaExtendidoConKeywordsTit> auxiliar = empresa.listarOfertasLaboralesNoVigentesConfirmadas();
+		return auxiliar;
+	}
+	
+	public void finalizarOfertaLaboral(String nickname_empresa,String nombre_oferta) {
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
+		empresa.finalizarOfertaLaboral(nombre_oferta);
+	}
 }
+

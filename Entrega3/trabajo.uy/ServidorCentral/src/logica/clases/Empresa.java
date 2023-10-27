@@ -18,6 +18,8 @@ import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTEmpresaConCompras;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendido;
+import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import logica.datatypes.DTPostulacion;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTUsuarioSinInfoSocial;
 import logica.datatypes.DTCompraPaquetes;
@@ -66,6 +68,10 @@ public class Empresa extends Usuario {
 
     public String geturl() {
         return url;
+    }
+    
+    public Set<OfertaLaboral> getofertasLaborales() {
+    	return ofertasLaborales;
     }
 
     public void seturl(String urlE) {
@@ -360,5 +366,65 @@ public class Empresa extends Usuario {
 		}
 		return res;
 	}
+	
+	// ============================================================
+	
+	public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral(String nombre_oferta_laboral){
+		Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+		OfertaLaboral auxiliar = null;
+		for ( OfertaLaboral OLe : OFEmpresa ) {
+			if ( nombre_oferta_laboral.equals(OLe.getNombre()) ) {
+				auxiliar = OLe;
+				break;
+			}
+		}
+		Set<DTPostulacion> stringSet = auxiliar.ObtenerPostulacionesOfertaLaboral();
+		return stringSet;
+	}
+	
+	public void establecerPosicion(String nombre_oferta,String nickPostulante,Integer posicion){
+		Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+		OfertaLaboral auxiliar = null;
+		for ( OfertaLaboral OLe : OFEmpresa ) {
+			if ( nombre_oferta.equals(OLe.getNombre()) ) {
+				auxiliar = OLe;
+				break;
+			}
+		}
+		auxiliar.establecerPosicion(nickPostulante,posicion);
+	}
+	
+	public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(){
+		Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+		
+		EstadoOL estado = EstadoOL.Confirmada;
+		
+		Set<DTOfertaExtendidoConKeywordsTit> stringSet = new HashSet<>();
+		DTOfertaExtendidoConKeywordsTit nuevo;
+		
+		for ( OfertaLaboral OLe : OFEmpresa ) {
+			if (estado.equals(OLe.getEstado()) && OLe.estaVencida()) {
+				nuevo = OLe.infoOfertaLaboralPropietario();
+				stringSet.add(nuevo);
+			}
+		}
+		
+		return stringSet;
+	}
+	
+	public void finalizarOfertaLaboral(String nombre_oferta) {
+		Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+		
+		EstadoOL estado = EstadoOL.Finalizada;
+		
+		for ( OfertaLaboral OLe : OFEmpresa ) {
+			if ( nombre_oferta.equals(OLe.getNombre()) ) {
+				OLe.setEstado(estado);
+				break;
+			}
+		}
+		
+	}
+	
 }
 

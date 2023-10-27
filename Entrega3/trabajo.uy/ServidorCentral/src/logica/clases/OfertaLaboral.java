@@ -644,6 +644,21 @@ public class OfertaLaboral {
 		}
 		return null; // FALTA ENCONTRAR EL DCOM
 	}
+	
+	// ----------------------------------------------------
+	
+	public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral(){
+		List<Postulacion> lista = getPostulaciones();
+		Set<DTPostulacion> stringSet = new HashSet<>();
+		for (Postulacion item : lista) {
+				DTPostulacion post = item.obtenerDT();
+				stringSet.add(post);
+		}
+		return stringSet;
+	}
+	
+	// ----------------------------------------------------
+	
 
 	public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante) {
 		int indicebuscado = 0;
@@ -675,5 +690,19 @@ public class OfertaLaboral {
 	
 	public boolean estaVencida() {
 		return tOferta.estaVencida();
+	}
+	
+	// ===============================================================
+	public void establecerPosicion(String nickPostulante,Integer posicion){
+		List<Postulacion> postulaciones = getPostulaciones();
+		Postulacion postulacionActual = null;
+		for (int i = 0; i < postulaciones.size(); i++) {
+			Postulacion pos = postulaciones.get(i);
+			if (nickPostulante.equals(pos.obtenerNicknamePostulante()) ) {
+				postulacionActual = pos;
+				break;
+			}
+		}
+		postulacionActual.setClasificacion(posicion);
 	}
 }
