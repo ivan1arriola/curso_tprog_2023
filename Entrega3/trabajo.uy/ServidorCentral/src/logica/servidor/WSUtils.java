@@ -13,9 +13,9 @@ public class WSUtils {
         listaBean.setListaString(strings);
         return listaBean;
     }
-    
+
     public static int obtenerPuerto() {
-    	return 9128;
+        return 9128;
     }
 
     public static WrapperLista envolverLista(Set<String> strings) {
@@ -30,5 +30,5 @@ public class WSUtils {
         }
     }
 
-    
+
 }

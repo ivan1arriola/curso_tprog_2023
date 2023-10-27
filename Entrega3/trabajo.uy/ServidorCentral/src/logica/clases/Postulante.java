@@ -1,19 +1,15 @@
 package logica.clases;
 
+import excepciones.ExceptionFechaInvalida;
+import excepciones.ExceptionValidezNegativa;
+import logica.datatypes.*;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import excepciones.ExceptionFechaInvalida;
-import excepciones.ExceptionValidezNegativa;
-import logica.datatypes.DTPostulacion;
-import logica.datatypes.DTPostulante;
-import logica.datatypes.DTPostulanteExtendido;
-import logica.datatypes.DTUsuario;
-import logica.datatypes.DTUsuarioSinInfoSocial;
-
-public class Postulante extends Usuario{
+public class Postulante extends Usuario {
     // atributos
     private LocalDate fechaNac;
     private String nacionalidad;
@@ -21,79 +17,78 @@ public class Postulante extends Usuario{
     private Set<Postulacion> postulaciones;
 
     // constructor  con imagen
-    public Postulante(String nickname,    String contrasena,    String nombre,    String apellido,    String correo_electronico,    LocalDate fechaNac,    String nacionalidad,   byte[] img) throws ExceptionFechaInvalida{
-    	
-    	super(nickname,    nombre,    apellido,    correo_electronico,    contrasena,    img); // super es para llamar al constructor de la clase padre
-    	try {      
-        if (LocalDate.now().isAfter(fechaNac)) {
-        	this.fechaNac = fechaNac;
-        } else {
-        	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
-        }
-        this.nacionalidad = nacionalidad;
-        this.postulaciones = new HashSet<Postulacion>();
+    public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fechaNac, String nacionalidad, byte[] img) throws ExceptionFechaInvalida {
+
+        super(nickname, nombre, apellido, correo_electronico, contrasena, img); // super es para llamar al constructor de la clase padre
+        try {
+            if (LocalDate.now().isAfter(fechaNac)) {
+                this.fechaNac = fechaNac;
+            } else {
+                throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
+            }
+            this.nacionalidad = nacionalidad;
+            this.postulaciones = new HashSet<Postulacion>();
         } catch (ExceptionFechaInvalida e) {
-        	 System.out.println(e);  
-        	throw e;
+            System.out.println(e);
+            throw e;
         }
-    }
-    
-    // constructor  sin imagen
-    public Postulante(String nickname,    String contrasena,    String nombre,    String apellido,    String correo_electronico,    LocalDate fechaNac,    String nacionalidad) throws ExceptionFechaInvalida{
-        super(nickname,    nombre,    apellido,    correo_electronico,    contrasena); // super es para llamar al constructor de la clase padre
-        
-        try { 
-        if (fechaNac.isBefore(LocalDate.now())) {
-        	this.fechaNac = fechaNac;
-        } else {
-        	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
-        }
-        this.nacionalidad = nacionalidad;
-        this.postulaciones = new HashSet<Postulacion>();
-        } catch (ExceptionFechaInvalida e) {
-       	 System.out.println(e);  
-       	 throw e;
-     	
-       }
     }
 
+    // constructor  sin imagen
+    public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fechaNac, String nacionalidad) throws ExceptionFechaInvalida {
+        super(nickname, nombre, apellido, correo_electronico, contrasena); // super es para llamar al constructor de la clase padre
+
+        try {
+            if (fechaNac.isBefore(LocalDate.now())) {
+                this.fechaNac = fechaNac;
+            } else {
+                throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
+            }
+            this.nacionalidad = nacionalidad;
+            this.postulaciones = new HashSet<Postulacion>();
+        } catch (ExceptionFechaInvalida e) {
+            System.out.println(e);
+            throw e;
+
+        }
+    }
 
 
     // Getters
-    public LocalDate getFechaNac() { 
-    	return fechaNac;
-    }
-    
-    public Set<Postulacion> getPostulaciones() {
-    	return postulaciones;
-    }
-    
-    public String getNacionalidad() {
-    	return nacionalidad;
+    public LocalDate getFechaNac() {
+        return fechaNac;
     }
 
     // Setters
-    public void setFechaNac(LocalDate fechaNac) throws ExceptionFechaInvalida{
-    	
-    	try {
-    	if (fechaNac.isAfter(LocalDate.now())) {
-        	this.fechaNac = fechaNac;
-        } else {
-        	throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
+    public void setFechaNac(LocalDate fechaNac) throws ExceptionFechaInvalida {
+
+        try {
+            if (fechaNac.isAfter(LocalDate.now())) {
+                this.fechaNac = fechaNac;
+            } else {
+                throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
+            }
+        } catch (ExceptionFechaInvalida e) {
+            System.out.println(e);
+            throw e;
         }
-    	} catch (ExceptionFechaInvalida e) {
-    		System.out.println(e); 
-    		throw e;
-    	}
-    	
+
     }
-    
+
+    public Set<Postulacion> getPostulaciones() {
+        return postulaciones;
+    }
+
+    public void setPostulaciones(Set<Postulacion> postulaciones) {
+        this.postulaciones = postulaciones;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
     public void setNacionalidad(String nacionalidad) {
-    	this.nacionalidad = nacionalidad; 
-    }
-    
-    public void setPostulaciones(Set<Postulacion> postulaciones) { 
-    	this.postulaciones = postulaciones; 
+        this.nacionalidad = nacionalidad;
     }
 
     // Metodos
@@ -103,49 +98,49 @@ public class Postulante extends Usuario{
 
     public DTUsuario obtenerDatosUsuario() {
         // hacer un DTPostulante
-    	
-    	Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
-    	Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
-    	
-    	for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext();) {
-			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(),  iterator.next().getNombre(),  iterator.next().getcontrasenia(),  iterator.next().getImagen());
-			sdores.add(dt);
-    	}
-    	
-    	for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext();) {
-			DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(),  iterator.next().getNombre(),  iterator.next().getcontrasenia(),  iterator.next().getImagen());
-			sdos.add(dt);
-    	}
-    	
-        DTPostulante postul = new DTPostulante(this.getNickname(),    this.getcorreoElectronico(),    this.getApellido(),    this.getNombre(),    this.getcontrasenia(),    this.getImagen(),    fechaNac,    nacionalidad,  sdos,  sdores);
+
+        Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
+        Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+
+        for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext(); ) {
+            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+            sdores.add(dt);
+        }
+
+        for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext(); ) {
+            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+            sdos.add(dt);
+        }
+
+        DTPostulante postul = new DTPostulante(this.getNickname(), this.getcorreoElectronico(), this.getApellido(), this.getNombre(), this.getcontrasenia(), this.getImagen(), fechaNac, nacionalidad, sdos, sdores);
         return postul;
     }
 
-    public Postulacion crearPostulacion(String curriculumVitae,    String motivacion,    LocalDate fecha,    String URLDocExtras,    OfertaLaboral OferLab,  String urlVideo) throws ExceptionValidezNegativa {
-    	
-    	try {
-	    	int dura = OferLab.getTipoOferta().getDuracion();
-			LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
-			if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
-				throw new ExceptionValidezNegativa("Oferta no vigente");
-			}
-	    	
-	        Postulacion postulacion = new Postulacion(this,    curriculumVitae,    motivacion,    fecha,    URLDocExtras,    OferLab,  urlVideo);
-	        postulaciones.add(postulacion);
-	        return postulacion;
-    	} catch (ExceptionValidezNegativa e) {
-    		System.out.println(e);
-    		throw e;
-    	}
-        
+    public Postulacion crearPostulacion(String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab, String urlVideo) throws ExceptionValidezNegativa {
+
+        try {
+            int dura = OferLab.getTipoOferta().getDuracion();
+            LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
+            if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+                throw new ExceptionValidezNegativa("Oferta no vigente");
+            }
+
+            Postulacion postulacion = new Postulacion(this, curriculumVitae, motivacion, fecha, URLDocExtras, OferLab, urlVideo);
+            postulaciones.add(postulacion);
+            return postulacion;
+        } catch (ExceptionValidezNegativa e) {
+            System.out.println(e);
+            throw e;
+        }
+
     }
-    
-    public Postulacion crearPostulacionForzado(String curriculumVitae,    String motivacion,    LocalDate fecha,    String URLDocExtras,    OfertaLaboral OferLab,  String vid) throws ExceptionValidezNegativa {
-	        Postulacion postulacion = new Postulacion(this,    curriculumVitae,    motivacion,    fecha,    URLDocExtras,    OferLab, vid);
-	        postulaciones.add(postulacion);
-	        return postulacion;
-    
-        
+
+    public Postulacion crearPostulacionForzado(String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab, String vid) throws ExceptionValidezNegativa {
+        Postulacion postulacion = new Postulacion(this, curriculumVitae, motivacion, fecha, URLDocExtras, OferLab, vid);
+        postulaciones.add(postulacion);
+        return postulacion;
+
+
     }
 
     public boolean existePostulacion(String nombre) {
@@ -158,19 +153,19 @@ public class Postulante extends Usuario{
         return false;
     }
 
-    public boolean editarPostulacion(String nombre,   String  cvAbreviado,   String motivacion) {
+    public boolean editarPostulacion(String nombre, String cvAbreviado, String motivacion) {
         for (Postulacion postulacion : postulaciones) {
             String nombreOferta = postulacion.obtenerNombreOfertaLaboral();
             if (nombreOferta.equals(nombre)) {
                 postulacion.setCV(cvAbreviado);
                 postulacion.setMotivacion(motivacion);
-                return true; 
+                return true;
             }
         }
-        return false; 
+        return false;
     }
 
-    public DTPostulacion obtenerDatosPostulacion(String postulante_nick,   String ofer) {
+    public DTPostulacion obtenerDatosPostulacion(String postulante_nick, String ofer) {
         // obtener para este postulante la postulacion si trabaja en la oferta
         // si no existe retorno NULL
         DTPostulacion respuesta = null;
@@ -185,24 +180,24 @@ public class Postulante extends Usuario{
     }
 
     // corregido,    se pasan mas parametros para la ejecucion
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,   String UsuarioQueSeHaceConsulta) {
-    	DTPostulante postul;
-    	
-    	Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
-    	Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
-    	
-    	for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext();) {
-			DTUsuarioSinInfoSocial dtuser = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),  iterator.next().getcorreoElectronico(),  iterator.next().getApellido(),  iterator.next().getNombre(),  iterator.next().getcontrasenia(),  iterator.next().getImagen());
-			sdores.add(dtuser);
-    	}
-    	
-    	for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext();) {
-			DTUsuarioSinInfoSocial dtuser = new DTUsuarioSinInfoSocial(iterator.next().getNickname(),  iterator.next().getcorreoElectronico(),  iterator.next().getApellido(),  iterator.next().getNombre(),  iterator.next().getcontrasenia(),  iterator.next().getImagen());
-			sdos.add(dtuser);
-    	}
-    	
-    	if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
-            String nickname =  getNickname();
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta) {
+        DTPostulante postul;
+
+        Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
+        Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+
+        for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext(); ) {
+            DTUsuarioSinInfoSocial dtuser = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+            sdores.add(dtuser);
+        }
+
+        for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext(); ) {
+            DTUsuarioSinInfoSocial dtuser = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+            sdos.add(dtuser);
+        }
+
+        if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
+            String nickname = getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
@@ -211,17 +206,17 @@ public class Postulante extends Usuario{
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
             Set<Postulacion> posts = getPostulaciones();
-            
+
             Set<DTPostulacion> postsDT = new HashSet<DTPostulacion>();
 
             for (Postulacion post : posts) {
                 DTPostulacion paux = post.obtenerDT();
                 postsDT.add(paux);
             }
-        
-            postul = new DTPostulanteExtendido(nickname,     correoElectronico,     apellido,     nombre,     contrasenia,     imagen,     fechaNac,     nacionalidad,    postsDT,  sdos,  sdores);
-            } else {
-            String nickname =  getNickname();
+
+            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre, contrasenia, imagen, fechaNac, nacionalidad, postsDT, sdos, sdores);
+        } else {
+            String nickname = getNickname();
             String nombre = getNombre();
             String apellido = getApellido();
             String correoElectronico = getcorreoElectronico();
@@ -229,16 +224,16 @@ public class Postulante extends Usuario{
             byte[] imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
-            postul = new DTPostulante(nickname,    correoElectronico,    apellido,    nombre,    contraseña,    imagen,    fechaNac,    nacionalidad,  sdos,  sdores);
+            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre, contraseña, imagen, fechaNac, nacionalidad, sdos, sdores);
         }
         return postul;
     }
 
-    public Set<String> listarOfertasLaborales(){
+    public Set<String> listarOfertasLaborales() {
         Set<String> lista = new HashSet<String>();
-        
-        if (postulaciones!=null) {
-            for (Postulacion p : postulaciones){
+
+        if (postulaciones != null) {
+            for (Postulacion p : postulaciones) {
                 lista.add(p.obtenerNombreOfertaLaboral());
             }
         }
@@ -253,5 +248,5 @@ public class Postulante extends Usuario{
         }
         return postulacionesList;
     }
- 
+
 }

@@ -2,18 +2,18 @@
 <pmd version="6.0">
     <rule ref="rulesets/java/quickstart.xml">
         <!-- Regla: AbstractClassWithoutAbstractMethod -->
-        <exclude name="AbstractClassWithoutAbstractMethod" />
-        
+        <exclude name="AbstractClassWithoutAbstractMethod"/>
+
         <!-- Regla: LooseCoupling -->
-        <exclude name="LooseCoupling" />
-        
+        <exclude name="LooseCoupling"/>
+
         <!-- Regla: PackageCase -->
-        <exclude name="PackageCase" />
-        
+        <exclude name="PackageCase"/>
+
         <!-- Regla: ShortVariable -->
-        <exclude name="ShortVariable" />
-        
+        <exclude name="ShortVariable"/>
+
         <!-- Regla: UnusedPrivateField -->
-        <exclude name="UnusedPrivateField" />
+        <exclude name="UnusedPrivateField"/>
     </rule>
 </pmd>

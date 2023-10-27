@@ -1,8 +1,8 @@
 package logica.clases;
 
-import java.time.LocalDate;
-
 import logica.datatypes.DTPostulacion;
+
+import java.time.LocalDate;
 
 
 public class Postulacion {
@@ -19,7 +19,7 @@ public class Postulacion {
     private Integer Clasificacion;
 
     // constructor
-    public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String uRLDocExtras,   OfertaLaboral oferLab, String urlVid) {
+    public Postulacion(Postulante postulante, String curriculumVitae, String motivacion, LocalDate fecha, String uRLDocExtras, OfertaLaboral oferLab, String urlVid) {
         this.postulante = postulante;
         this.fecha = fecha;
         this.curriculumVitae = curriculumVitae;
@@ -32,100 +32,98 @@ public class Postulacion {
     }
 
 
-	// GETTERS
+    // GETTERS
     public Integer getClasificacion() {
-    	return Clasificacion;
+        return Clasificacion;
     }
-    
-    
-    public LocalDate getFecha() { 
-    	return fecha;
-    }
-    
-    public String getCV() {
-    	return curriculumVitae;
-    }
-    
-    public String getMotivacion() {
-    	return motivacion;
-    }
-    
-    public String getuRLDocExtras() {
-    	return uRLDocExtras;
-    }
-    
-    public OfertaLaboral getOfertaLaboral()	{
-    	return oferLab;
-    }
-    
-    public Postulante getPostulante() {
-    	return postulante;
-    }
-    
-    public String getuRLVideo() {
-    	return urlVideo;
-    }
-
 
     // SETTERS
     public void setClasificacion(Integer posicion) {
-    	this.Clasificacion = posicion;
+        this.Clasificacion = posicion;
     }
-    
-    public void setFecha(LocalDate fecha) { 
-    	this.fecha = fecha;
-    } 
-    
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getCV() {
+        return curriculumVitae;
+    }
+
     public void setCV(String curriculumVitae) {
-    	this.curriculumVitae = curriculumVitae;
-    }	
-     
+        this.curriculumVitae = curriculumVitae;
+    }
+
+    public String getMotivacion() {
+        return motivacion;
+    }
+
     public void setMotivacion(String motivacion) {
-    	this.motivacion = motivacion;
+        this.motivacion = motivacion;
     }
-     
+
+    public String getuRLDocExtras() {
+        return uRLDocExtras;
+    }
+
     public void setuRLDocExtras(String uRLDocExtras) {
-    	this.uRLDocExtras = uRLDocExtras;
+        this.uRLDocExtras = uRLDocExtras;
     }
-    
-    public void setOfertaLaboral(OfertaLaboral oferLab)	{
-    	this.oferLab = oferLab; 
+
+    public OfertaLaboral getOfertaLaboral() {
+        return oferLab;
     }
-    
+
+    public void setOfertaLaboral(OfertaLaboral oferLab) {
+        this.oferLab = oferLab;
+    }
+
+    public Postulante getPostulante() {
+        return postulante;
+    }
+
     public void setPostulante(Postulante postulante) {
-    	this.postulante = postulante; 
+        this.postulante = postulante;
     }
-    
+
+    public String getuRLVideo() {
+        return urlVideo;
+    }
+
     public void seturlVideo(String vid) {
-    	this.urlVideo = vid;
+        this.urlVideo = vid;
     }
-    
+
     // METODOS
     public DTPostulacion obtenerDT() {
-    	DTPostulacion dtpostu;
-    	//if (urlVideo!=null) {
-    		dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, urlVideo);
+        DTPostulacion dtpostu;
+        //if (urlVideo!=null) {
+        dtpostu = new DTPostulacion(postulante.getNickname(), fecha, uRLDocExtras, curriculumVitae, motivacion, urlVideo);
     	/*} else {
     		dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, "Sin Video disponible");
     	}*/
         return dtpostu;
-    } 
-
-    public String obtenerNombreOfertaLaboral() { 
-    	return oferLab.getNombre();
     }
 
-    public void editarPostulacion(String cvAbreviado,  String motivacion) {
+    public String obtenerNombreOfertaLaboral() {
+        return oferLab.getNombre();
+    }
+
+    public void editarPostulacion(String cvAbreviado, String motivacion) {
         this.curriculumVitae = cvAbreviado;
         this.motivacion = motivacion;
     }
 
     // dentro caso uso postulacion a oferta laboral
-    public Boolean esPostulacion(String nombre){
+    public Boolean esPostulacion(String nombre) {
         return oferLab.getNombre().equals(nombre); // retorna true si el nombre de la oferta es igual al nombre que se le pasa por parametro
     }
 
-    public String obtenerNicknamePostulante() { 
-    	return postulante.getNickname();
+    public String obtenerNicknamePostulante() {
+        return postulante.getNickname();
     }
 }

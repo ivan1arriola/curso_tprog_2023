@@ -1,13 +1,14 @@
 package logica.datatypes;
 
-import java.time.LocalDate;
-import java.util.Set;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.servidor.adapter.LocalDateAdapter;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 public class DTPostulante extends DTUsuario {
-    
+
     private LocalDate fechanac;
     private String nacionalidad;
 

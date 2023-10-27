@@ -12,7 +12,7 @@ public class Fabrica {
     private static Fabrica instancia;
 
     private Fabrica() {
-    	
+
     }
 
     public static Fabrica getInstance() {
@@ -27,10 +27,10 @@ public class Fabrica {
     }
 
     public ICtrlOferta getICtrlOferta() {
-    	return new CtrlOferta();
+        return new CtrlOferta();
     }
-    
+
     public CtrlCargaDeDatos getICtrlCargaDeDatos() {
-    	return new CtrlCargaDeDatos();
+        return new CtrlCargaDeDatos();
     }
 }

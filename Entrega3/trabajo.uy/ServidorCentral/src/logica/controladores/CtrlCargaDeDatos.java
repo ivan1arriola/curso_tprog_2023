@@ -1,10 +1,5 @@
 package logica.controladores;
 
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.util.List;
-
 import excepciones.*;
 import logica.Fabrica;
 import logica.Utils;
@@ -14,6 +9,10 @@ import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
@@ -61,12 +60,12 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 String dateString = postulantesCSV[1];
                 LocalDate localDate = utils.obtenerFechaDesdeString(dateString, "d/M/yyyy");
                 byte[] imagen = null;
-				try {
-					imagen = utils.descargarImagen(usuariosCSV[7]);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                try {
+                    imagen = utils.descargarImagen(usuariosCSV[7]);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 
                 ctrlUsuario.altaPostulanteImagen(usuariosCSV[2], usuariosCSV[6], usuariosCSV[3], usuariosCSV[4], localDate, usuariosCSV[5], postulantesCSV[2], imagen);
             }
@@ -78,11 +77,11 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             String user2 = empresasCSV[0];
             byte[] imagen = null;
             try {
-            	imagen = utils.descargarImagen(usuariosCSV[7]);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                imagen = utils.descargarImagen(usuariosCSV[7]);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
             if (user.equals(user2)) {
                 try {
