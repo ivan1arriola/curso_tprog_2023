@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+
+import datos.CSVLoader;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionEmpresaInvalida;
@@ -155,8 +157,9 @@ public class Utils {
 	
 	public void readCSV(String filePath, Consumer<String[]> rowProcessor) {
         try (
-        		InputStream inputStream2 = this.getClass().getResourceAsStream(filePath);
-	       	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream2))
+        		InputStream inputStream = CSVLoader.getInputStream(filePath);
+        		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+	       	    BufferedReader reader = new BufferedReader(inputStreamReader)
         		) {
             reader.readLine(); // Leer y descartar la primera línea (cabecera) si es necesario
             String line;

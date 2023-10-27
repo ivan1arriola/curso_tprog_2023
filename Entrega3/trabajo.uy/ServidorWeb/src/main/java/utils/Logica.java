@@ -42,18 +42,26 @@ import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.OfertaLaboralHandler;
+import logica.servidor.ExcepcionKeywordVacia_Exception;
+import logica.servidor.ExceptionValidezNegativa_Exception;
+import logica.servidor.Servidor;
+import logica.servidor.ServidorService;
 import logica.datatypes.DTUsuarioSinInfoSocial;
 
 public class Logica implements ILogica {
 	
 	ICtrlOferta ctrlOferta;
 	ICtrlUsuario ctrlUsuario;
+	Servidor servidor;
 	
 	public Logica(){
 		Fabrica fabrica = Fabrica.getInstance();
 		ctrlOferta = fabrica.getICtrlOferta();
 		ctrlUsuario = fabrica.getICtrlUsuario();
 		String ubicacion = System.getProperty("user.home");
+		
+		ServidorService service = new ServidorService();
+		servidor = service.getServidorPort();
 
         // Crea las carpetas necesarias si no existen
         crearDirectorio(ubicacion + "/resources/Usuario");
@@ -76,11 +84,11 @@ public class Logica implements ILogica {
 	@Override
 	public void cargarDatos() {
 		try {
-			Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
-		} catch (ExcepcionKeywordVacia e) {
+			servidor.cargarDatos();
+		} catch (ExcepcionKeywordVacia_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ExceptionValidezNegativa e) {
+		} catch (ExceptionValidezNegativa_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
