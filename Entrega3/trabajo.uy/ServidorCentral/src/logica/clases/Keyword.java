@@ -1,9 +1,10 @@
 package logica.clases;
 import excepciones.ExcepcionKeywordVacia;
 
+@Entity
 public class Keyword {
-	private String nombre;
-	
+    @Id
+    private String nombre;
 	// constructor
 	public Keyword(String nomb) throws ExcepcionKeywordVacia {
 	    if (!nomb.isEmpty()) {
