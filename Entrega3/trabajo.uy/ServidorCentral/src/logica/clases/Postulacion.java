@@ -15,6 +15,8 @@ public class Postulacion {
     private OfertaLaboral oferLab;
     private Postulante postulante;
     private String urlVideo;
+    // evaluacion empresa
+    private Integer Clasificacion;
 
     // constructor
     public Postulacion(Postulante postulante,   String curriculumVitae,   String motivacion,   LocalDate fecha,   String uRLDocExtras,   OfertaLaboral oferLab, String urlVid) {
@@ -25,11 +27,17 @@ public class Postulacion {
         this.uRLDocExtras = uRLDocExtras;
         this.oferLab = oferLab;
         this.urlVideo = urlVid;
+        this.Clasificacion = 0; // no ha sido clasificado
         System.out.println("Se ha creado una postulacion. - " + postulante.getNombre() + " - " + oferLab.getNombre());
     }
 
 
 	// GETTERS
+    public Integer getClasificacion() {
+    	return Clasificacion;
+    }
+    
+    
     public LocalDate getFecha() { 
     	return fecha;
     }
@@ -60,6 +68,10 @@ public class Postulacion {
 
 
     // SETTERS
+    public void setClasificacion(Integer posicion) {
+    	this.Clasificacion = posicion;
+    }
+    
     public void setFecha(LocalDate fecha) { 
     	this.fecha = fecha;
     } 
