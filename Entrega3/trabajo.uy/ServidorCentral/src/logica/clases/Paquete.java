@@ -4,6 +4,10 @@ import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionValidezNegativa;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import logica.Utils;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTPaquete;
@@ -14,7 +18,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+@Entity
 public class Paquete {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id; 
+	// -----------
     // Atributos
     private String nombre;
     private String descripcion;
