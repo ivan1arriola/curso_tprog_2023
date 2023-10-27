@@ -20,10 +20,10 @@ import java.util.Set;
 
 @Entity
 public class Paquete {
-	@Id 
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id; 
-	// -----------
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    // -----------
     // Atributos
     private String nombre;
     private String descripcion;
