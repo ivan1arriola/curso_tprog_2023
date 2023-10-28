@@ -1,9 +1,10 @@
 package logica.servidor.bean;
-import java.util.ArrayList;
 
-import logica.datatypes.DTOfertaExtendido;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import logica.datatypes.DTOfertaExtendido;
+
+import java.util.ArrayList;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)

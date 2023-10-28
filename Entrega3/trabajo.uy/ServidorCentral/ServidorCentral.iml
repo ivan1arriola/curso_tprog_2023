@@ -5,4 +5,9 @@
       <sourceFolder url="file://$MODULE_DIR$/testSrc" isTestSource="true" />
     </content>
   </component>
+  <component name="FacetManager">
+    <facet type="webservices" name="WebServices">
+      <configuration ws.engine="Glassfish / JAX-WS 2.2 RI / Metro 1.X / JWSDP 2.2" />
+    </facet>
+  </component>
 </module>
