@@ -1,11 +1,13 @@
 package logica.datatypes;
 
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.servidor.adapter.SetAdapter;
 
 import java.util.Set;
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTEmpresa extends DTUsuario {
 
     private String descripcion;

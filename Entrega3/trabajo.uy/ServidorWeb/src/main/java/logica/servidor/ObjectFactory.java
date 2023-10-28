@@ -25,6 +25,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 public class ObjectFactory {
 
     private final static QName _ExcepcionKeywordVacia_QNAME = new QName("http://servidor.logica/", "ExcepcionKeywordVacia");
+    private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
 
     /**
@@ -45,6 +46,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExceptionUsuarioSeSigueASiMismo }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionUsuarioSeSigueASiMismo }
+     */
+    public ExceptionUsuarioSeSigueASiMismo createExceptionUsuarioSeSigueASiMismo() {
+        return new ExceptionUsuarioSeSigueASiMismo();
+    }
+
+    /**
      * Create an instance of {@link ExceptionValidezNegativa }
      * 
      * @return
@@ -52,6 +63,16 @@ public class ObjectFactory {
      */
     public ExceptionValidezNegativa createExceptionValidezNegativa() {
         return new ExceptionValidezNegativa();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     * @return
+     *     the new instance of {@link LocalDate }
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
@@ -82,16 +103,6 @@ public class ObjectFactory {
      */
     public DtPostulante createDtPostulante() {
         return new DtPostulante();
-    }
-
-    /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
     }
 
     /**
@@ -135,6 +146,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExcepcionKeywordVacia")
     public JAXBElement<ExcepcionKeywordVacia> createExcepcionKeywordVacia(ExcepcionKeywordVacia value) {
         return new JAXBElement<>(_ExcepcionKeywordVacia_QNAME, ExcepcionKeywordVacia.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioSeSigueASiMismo }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioSeSigueASiMismo }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioSeSigueASiMismo")
+    public JAXBElement<ExceptionUsuarioSeSigueASiMismo> createExceptionUsuarioSeSigueASiMismo(ExceptionUsuarioSeSigueASiMismo value) {
+        return new JAXBElement<>(_ExceptionUsuarioSeSigueASiMismo_QNAME, ExceptionUsuarioSeSigueASiMismo.class, null, value);
     }
 
     /**

@@ -9,7 +9,7 @@ import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.UsuarioHandler;
-import logica.utils.Fabrica;
+import logica.Fabrica;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -83,7 +83,7 @@ public class ControladorUsuarioTest {
         String img = "url";
 
 //	 boolean b = 
-        ICU.altaPostulanteImagen(nickname, password, nombre, apellido, fechaNacimiento, correo, nacionalidad, img);
+        ICU.altaPostulanteImagen(nickname, password, nombre, apellido, fechaNacimiento, correo, nacionalidad, img.getBytes());
 
         // ------------------- datatypes usuario para postulante con imagen -------------------
 

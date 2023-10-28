@@ -1,6 +1,6 @@
 package logica;
 
-import datos.CSVLoader;
+import logica.CSVLoader;
 import excepciones.*;
 import logica.clases.*;
 import logica.controladores.CtrlOferta;
@@ -215,7 +215,7 @@ public class Utils {
 
     public String buscarNicknameEnUsuarioCSV(String codigoUsuario) {
         final String[] nickname = {null}; // Variable para almacenar el nickname encontrado
-        readCSV("/datos/Usuarios.csv", usuariosCSV -> {
+        readCSV("//Usuarios.csv", usuariosCSV -> {
             if (usuariosCSV[0].equals(codigoUsuario)) {
                 nickname[0] = usuariosCSV[2];
             }
@@ -225,7 +225,7 @@ public class Utils {
 
     public String buscarTipoPublicacion(String codigoOfertaLaboral) {
         final String[] tipoPublicacion = {null}; // Variable para almacenar el tipo de publicación encontrado
-        readCSV("/datos/TipoPublicacion.csv", tipoPublicacionCSV -> {
+        readCSV("//TipoPublicacion.csv", tipoPublicacionCSV -> {
             if (tipoPublicacionCSV[0].equals(codigoOfertaLaboral)) {
                 tipoPublicacion[0] = tipoPublicacionCSV[1];
             }
@@ -235,13 +235,13 @@ public class Utils {
 
     public List<String> buscarPalabrasClave(String codigoOfertaLaboral) {
         final List<String> keys = new ArrayList<>(); // Lista para almacenar las palabras clave encontradas
-        readCSV("/datos/OfertasLaboralesKeywords.csv", ofertasLaboralesKeywordsCSV -> {
+        readCSV("//OfertasLaboralesKeywords.csv", ofertasLaboralesKeywordsCSV -> {
             if (ofertasLaboralesKeywordsCSV[0].equals(codigoOfertaLaboral)) {
                 String keyss = ofertasLaboralesKeywordsCSV[1];
                 String[] kss = keyss.split(",  ");
                 for (int i = 0; i < kss.length; i++) {
                     final String keyword = kss[i];
-                    readCSV("/datos/Keywords.csv", campos9 -> {
+                    readCSV("//Keywords.csv", campos9 -> {
                         if (keyword.equals(campos9[0])) {
                             keys.add(campos9[1]);
                         }
@@ -254,7 +254,7 @@ public class Utils {
 
     public String buscarPaquete(String paq) {
         final String[] paquete = {null}; // Variable para almacenar el paquete encontrado
-        readCSV("/datos/Paquetes.csv", campos15 -> {
+        readCSV("//Paquetes.csv", campos15 -> {
             if (paq.equals(campos15[0])) {
                 paquete[0] = campos15[1];
             }
@@ -324,7 +324,7 @@ public class Utils {
 
     public String buscarOfertaLaboral(String codigoOfertaLaboral) {
         final String[] ofertaLaboral = {null}; // Variable para almacenar la oferta laboral encontrada
-        readCSV("/datos/OfertasLaborales.csv", camposOfertasLaborales -> {
+        readCSV("//OfertasLaborales.csv", camposOfertasLaborales -> {
             if (camposOfertasLaborales[0].equals(codigoOfertaLaboral)) {
                 ofertaLaboral[0] = camposOfertasLaborales[1];
             }

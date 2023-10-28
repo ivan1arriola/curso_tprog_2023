@@ -36,6 +36,8 @@ public abstract class Usuario {
     @ManyToMany(mappedBy = "seguidores") // Refers to the seguidores property in the Usuario class
     private Set<Usuario> seguidos;
 
+
+
     public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia) {
         this(nickname, nombre, apellido, correo_electronico, contrasenia, null);
     }
@@ -103,9 +105,8 @@ public abstract class Usuario {
     public void setImagen(byte[] imagen) {
         byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
         // Convert the byte array to a Base64 string
-        String base64EncodedString = new String(base64EncodedBytes);
 
-        this.imagen = base64EncodedString;
+        this.imagen = new String(base64EncodedBytes);
     }
 
     public void setCorreoElectronico(String correoElectronico) {

@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.datatypes.DTHora;
+import logica.datatypes.tTHora;
 import logica.datatypes.DTHorario;
 import utils.FabricaWeb;
 import enumeration.Departamento;

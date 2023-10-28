@@ -1,17 +1,23 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import logica.servidor.adapter.DTHorarioAdapter;
+import logica.servidor.adapter.SetAdapter;
 
 import java.time.LocalDate;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaLaboral {
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeAlta;
     private float costo;
     private float remuneracion;
+    @XmlJavaTypeAdapter(DTHorarioAdapter.class)
     private DTHorario horario;
     private DepUY departamento;
     private String ciudad;

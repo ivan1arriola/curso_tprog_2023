@@ -7,7 +7,7 @@ import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.utils.Fabrica;
+import logica.Fabrica;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

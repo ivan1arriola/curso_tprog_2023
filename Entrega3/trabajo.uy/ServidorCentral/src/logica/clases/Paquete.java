@@ -12,6 +12,7 @@ import logica.manejadores.TipoOfertaHandler;
 
 
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -138,8 +139,13 @@ public class Paquete {
     }
 
     public byte[] getImagen() {
-        return imagen;
+        if(this.imagen != null)
+            return Base64.getDecoder().decode(imagen);
+        byte[] imagenNull = null;
+        return imagenNull;
     }
+
+
 
     public Set<OfertaPaquete> getOfertaPaquete() {
         return oferPaq;
