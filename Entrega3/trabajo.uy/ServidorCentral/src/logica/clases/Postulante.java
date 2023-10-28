@@ -128,7 +128,7 @@ public class Postulante extends Usuario {
         try {
             int dura = OferLab.getTipoOferta().getDuracion();
             LocalDate altaOferta = OferLab.getTipoOferta().getFechaAlta();
-            if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+            if (altaOferta.plusDays(dura).isAfter(LocalDate.now())) {
                 throw new ExceptionValidezNegativa("Oferta no vigente");
             }
 

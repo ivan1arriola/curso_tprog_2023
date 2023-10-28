@@ -562,7 +562,7 @@ public class OfertaLaboral {
         try {
             int dura = this.getTipoOferta().getDuracion();
             LocalDate altaOferta = this.getTipoOferta().getFechaAlta();
-            if (altaOferta.plusDays(dura).isBefore(LocalDate.now())) {
+            if (altaOferta.plusDays(dura).isAfter(LocalDate.now())) {
                 throw new ExceptionFechaInvalida("Oferta no vigente");
             }
 
