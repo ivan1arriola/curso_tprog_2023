@@ -56,6 +56,11 @@ public abstract class Usuario {
         System.out.println("Se ha creado un usuario. - " + nickname);
     }
 
+    // constructor vacio para serializacion
+    public Usuario() {
+
+    }
+
     //Getters
     public String getNickname() {
         return nickname;

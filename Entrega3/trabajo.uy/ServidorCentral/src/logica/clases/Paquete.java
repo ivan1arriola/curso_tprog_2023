@@ -4,14 +4,12 @@ import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionValidezNegativa;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import logica.Utils;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTPaquete;
 import logica.manejadores.TipoOfertaHandler;
+
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -31,9 +29,14 @@ public class Paquete {
     private float descuento;
     private int validez;
     private LocalDate fechaAlta;
-    private byte[] imagen;
-    // Relaciones
+
+    private String imagen;
+
+    // @Transient // Lo ignora
+    @OneToMany
+    @JoinColumn(name = "OfertaPaquete_id") // Specify the foreign key column name
     private Set<OfertaPaquete> oferPaq;
+    @Transient
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor
@@ -45,7 +48,7 @@ public class Paquete {
                 this.fechaAlta = fecha;
                 this.descuento = descuento;
                 this.validez = validez;
-                this.imagen = imagen;
+                this.setImagen(imagen);
                 this.oferPaq = new HashSet<OfertaPaquete>();
                 costo = 0;
                 this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null,   despues se cambia 
@@ -60,6 +63,13 @@ public class Paquete {
             throw new ExceptionDescuentoInvalido("El descuento tiene que ser un número entre 0 y 100.");
         }
 
+
+    }
+
+    public Paquete() {
+
+        this.oferPaq = new HashSet<OfertaPaquete>();
+        this.infCompraAsociada = new HashSet<InfoCompra>();
 
     }
 
@@ -102,6 +112,17 @@ public class Paquete {
             this.descuento = descuento;
         } else {
             throw new ExceptionDescuentoInvalido("El descuento tiene que ser un número entre 0 y 100.");
+        }
+
+    }
+
+    public void setImagen(byte[] imagenBytes){
+        if(imagenBytes == null) this.imagen = null;
+        else {
+            byte[] base64EncodedBytes = Base64.getEncoder().encode(imagenBytes);
+            // Convert the byte array to a Base64 string
+
+            this.imagen = new String(base64EncodedBytes);
         }
 
     }
@@ -188,8 +209,7 @@ public class Paquete {
             individual.add(actual.getDTCantTO());
         }
 
-        DTPaquete dtpaq = new DTPaquete(nombre, costo, descuento, validez, descripcion, individual, fechaAlta, imagen);
-        return dtpaq;
+        return new DTPaquete(nombre, costo, descuento, validez, descripcion, individual, fechaAlta, getImagen());
     }
 
     public Set<DTCantTO> obtenerDTSCantTO() {

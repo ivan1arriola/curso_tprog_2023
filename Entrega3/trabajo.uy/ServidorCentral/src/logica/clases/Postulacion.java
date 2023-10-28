@@ -39,6 +39,10 @@ public class Postulacion {
         System.out.println("Se ha creado una postulacion. - " + postulante.getNombre() + " - " + oferLab.getNombre());
     }
 
+    public Postulacion() {
+
+    }
+
 
     // GETTERS
     public Integer getClasificacion() {

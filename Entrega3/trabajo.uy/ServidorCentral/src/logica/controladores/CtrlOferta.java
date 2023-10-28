@@ -145,6 +145,8 @@ public class CtrlOferta implements ICtrlOferta {
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paquete = PaqueteH.buscar(paq);
 
+        PaqueteH.actualizarPaquete(paquete);
+
         return empresa.compraPaquetes(paquete, fecha, valor);
     }
 
@@ -332,6 +334,7 @@ public class CtrlOferta implements ICtrlOferta {
         TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
         TipoOferta tipoO = TOH.buscar(TipoOfer);
         paquete.crearOfertaPaquete(tipoO, cantidad);
+        PaqueteH.actualizarPaquete(paquete);
     }
 
     public Set<String> listarPaquetes() {

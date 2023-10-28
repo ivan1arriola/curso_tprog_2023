@@ -46,6 +46,10 @@ public class Empresa extends Usuario {
         this(nickname, nombre, apellido, correo_electronico, contrasena, null, desc, urlE);
     }
 
+    public Empresa() {
+
+    }
+
     public Set<InfoCompra> getInfoCompmras() {
         return this.infoCompras;
     }

@@ -58,6 +58,10 @@ public class Postulante extends Usuario {
         }
     }
 
+    public Postulante() {
+
+    }
+
 
     // Getters
     public LocalDate getFechaNac() {

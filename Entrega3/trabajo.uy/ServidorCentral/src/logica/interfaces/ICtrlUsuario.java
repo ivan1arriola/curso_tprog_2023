@@ -1,6 +1,7 @@
 package logica.interfaces;
 
 import excepciones.*;
+import jakarta.persistence.EntityManager;
 import logica.clases.OfertaLaboral;
 import logica.clases.Postulacion;
 import logica.datatypes.*;

@@ -49,6 +49,7 @@ public class Utils {
     }
 
     public static void guardarImagen(String subcarpeta, String nombreImagen, String tipoImagen, byte[] imagenBytes) {
+        if(imagenBytes==null) return;
         try {
             String ubicacion = getUbicacionImagenes() + "/" + subcarpeta + "/" + generateImageCode(nombreImagen) + "." + tipoImagen;
             FileOutputStream fileOutputStream = new FileOutputStream(ubicacion);

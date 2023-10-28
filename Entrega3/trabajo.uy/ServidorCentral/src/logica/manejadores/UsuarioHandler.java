@@ -1,5 +1,6 @@
 package logica.manejadores;
 
+import jakarta.persistence.EntityManager;
 import logica.clases.Usuario;
 
 import java.util.HashMap;
@@ -12,6 +13,7 @@ public class UsuarioHandler {
     private static UsuarioHandler instancia;
     private Map<String, Usuario> nickUsuariosMap;
     private Map<String, Usuario> correoUsuariosMap;
+    private static EntityManager database;
 
     private UsuarioHandler() {
         nickUsuariosMap = new HashMap<String, Usuario>();
@@ -55,5 +57,10 @@ public class UsuarioHandler {
 
     public Map<String, Usuario> obtenerCorreo() {
         return correoUsuariosMap;
+    }
+
+    public static void setBaseDatos(EntityManager em) {
+
+        database = em;
     }
 }
