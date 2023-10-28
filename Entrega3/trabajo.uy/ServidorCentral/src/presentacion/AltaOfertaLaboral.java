@@ -305,7 +305,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                         departamento = DepUY.Salto;
                         break;
                     case "Paysandú":
-                        departamento = DepUY.Paysandú;
+                        departamento = DepUY.Paysandu;
                         break;
                     case "RioNegro":
                         departamento = DepUY.RioNegro;
@@ -332,7 +332,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                         departamento = DepUY.Florida;
                         break;
                     case "SanJosé":
-                        departamento = DepUY.SanJosé;
+                        departamento = DepUY.SanJose;
                         break;
                     case "Canelones":
                         departamento = DepUY.Canelones;

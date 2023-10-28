@@ -6,8 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.datatypes.tTHora;
-import logica.datatypes.DTHorario;
 import utils.FabricaWeb;
 import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
@@ -99,23 +97,5 @@ public class AltaOfertaLaboral extends HttpServlet {
         }
     }
 
-    private DTHora obtenerDTHora(String horaStr) {
-        DTHora dtHora = null;
 
-        String[] partes = horaStr.split(":");
-
-        if (partes.length == 2) {
-            try {
-                int hora = Integer.parseInt(partes[0]);
-                int minutos = Integer.parseInt(partes[1]);
-                dtHora = new DTHora(hora, minutos);
-            } catch (NumberFormatException e) {
-                System.err.println("Error al convertir la hora y los minutos.");
-            }
-        } else {
-            System.err.println("Formato de hora no válido.");
-        }
-
-        return dtHora;
-    }
 }

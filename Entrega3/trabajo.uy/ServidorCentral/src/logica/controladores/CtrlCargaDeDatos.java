@@ -159,14 +159,9 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
             try {
                 utils.altaOfertaLaboralForzado(nickname_empresa, tipodePublicacion, ofertaLaboralCSV[1], ofertaLaboralCSV[2], horario, Float.valueOf(ofertaLaboralCSV[6]), ofertaLaboralCSV[4], dep, fecha, keys, estado, imagen, paq);
-            } catch (ExceptionUsuarioNoEncontrado eune) {
+            } catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | NumberFormatException |
+                     ExceptionRemuneracionOfertaLaboralNegativa eune) {
                 eune.printStackTrace();
-            } catch (ExceptionEmpresaInvalida eei) {
-                eei.printStackTrace();
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            } catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
-                e.printStackTrace();
             }
         });
     }

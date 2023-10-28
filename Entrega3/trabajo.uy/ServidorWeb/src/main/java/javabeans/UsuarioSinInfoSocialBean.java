@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import enumeration.TipoUsuario;
-import logica.datatypes.DTUsuarioSinInfoSocial;
 
 public class UsuarioSinInfoSocialBean {
 	

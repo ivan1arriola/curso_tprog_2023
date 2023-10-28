@@ -8,9 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import excepciones.ExceptionUsuarioCorreoRepetido;
-import excepciones.ExceptionUsuarioNickRepetido;
-import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import utils.FabricaWeb;
 
 import java.io.IOException;

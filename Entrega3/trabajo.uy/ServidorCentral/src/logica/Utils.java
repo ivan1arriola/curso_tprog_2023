@@ -1,6 +1,5 @@
 package logica;
 
-import logica.CSVLoader;
 import excepciones.*;
 import logica.clases.*;
 import logica.controladores.CtrlOferta;
@@ -172,7 +171,7 @@ public class Utils {
             case "Salto":
                 return DepUY.Salto;
             case "Paysandú":
-                return DepUY.Paysandú;
+                return DepUY.Paysandu;
             case "Rionegro":
                 return DepUY.RioNegro;
             case "Soriano":
@@ -190,7 +189,7 @@ public class Utils {
             case "Florida":
                 return DepUY.Florida;
             case "Sanjosé":
-                return DepUY.SanJosé;
+                return DepUY.SanJose;
             case "Canelones":
                 return DepUY.Canelones;
             case "Montevideo":

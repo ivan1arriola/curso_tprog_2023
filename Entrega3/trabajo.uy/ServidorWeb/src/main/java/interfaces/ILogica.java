@@ -9,10 +9,6 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
-import excepciones.ExceptionUsuarioCorreoRepetido;
-import excepciones.ExceptionUsuarioNickRepetido;
-import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import logica.datatypes.DTHorario;
 
 
 public interface ILogica {
@@ -34,7 +30,7 @@ public interface ILogica {
 	
 	
 	void altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
-			String descripcion,  DTHorario horario,  float remun,  String ciu,  
+			String descripcion,  String horario,  float remun,  String ciu,
 			Departamento dep,  LocalDate fechaA,  Set<String> keys,  
 			EstadoOfertaLaboral estado,  String img,  String paquete);
 	
@@ -49,8 +45,8 @@ public interface ILogica {
 	
 	Set<String> listarTipoDePublicaciones();
 	
-    void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagenBytes) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
-    void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
+    //void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagenBytes) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
+    //void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
 
     /** Obtiene el PaqueteBean del paquete paquete **/
     PaqueteBean obtenerDatosPaquete(String paquete);

@@ -8,9 +8,8 @@ import java.util.Set;
 
 import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
-import logica.datatypes.DTHorario;
-import logica.enumerados.DepUY;
-import logica.enumerados.EstadoOL;
+import logica.servidor.DepUY;
+import logica.servidor.EstadoOL;
 
 public class OfertaLaboralBean {
 	private String nombre;
@@ -18,7 +17,7 @@ public class OfertaLaboralBean {
 	private LocalDate fechaDeAlta;
 	private float costo;
 	private float remuneracion;
-	private DTHorario horario;
+	private String horario;
 	private Departamento departamento;
 	private String ciudad;
 	private EstadoOfertaLaboral estado;
@@ -121,11 +120,11 @@ public class OfertaLaboralBean {
         this.remuneracion = remuneracion;
     }
 
-    public DTHorario getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(DTHorario horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
 

@@ -2,9 +2,7 @@ package utils;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.Base64;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
@@ -16,48 +14,14 @@ import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
-import excepciones.ExcepcionKeywordVacia;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
-import excepciones.ExceptionCompraPaqueteConValorNegativo;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-import excepciones.ExceptionUsuarioCorreoRepetido;
-import excepciones.ExceptionUsuarioNickRepetido;
-import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import excepciones.ExceptionValidezNegativa;
-import logica.Fabrica;
-import logica.clases.OfertaLaboral;
-import logica.datatypes.DTCantTO;
-import logica.datatypes.DTEmpresa;
-import logica.datatypes.DTHorario;
-import logica.datatypes.DTOfertaExtendido;
-import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
-import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
-import logica.datatypes.DTOfertaExtendidoSinPConK;
-import logica.datatypes.DTPaquete;
-import logica.datatypes.DTPostulacion;
-import logica.datatypes.DTPostulante;
-import logica.datatypes.DTUsuario;
-import logica.enumerados.DepUY;
-import logica.enumerados.EstadoOL;
-import logica.interfaces.ICtrlOferta;
-import logica.interfaces.ICtrlUsuario;
-import logica.manejadores.OfertaLaboralHandler;
-import logica.servidor.ExcepcionKeywordVacia_Exception;
-import logica.servidor.ExceptionValidezNegativa_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
-import logica.datatypes.DTUsuarioSinInfoSocial;
+
+import logica.servidor.*;
 
 public class Logica implements ILogica {
-	
-	ICtrlOferta ctrlOferta;
-	ICtrlUsuario ctrlUsuario;
+
 	Servidor servidor;
 	
 	public Logica(){
-		Fabrica fabrica = Fabrica.getInstance();
-		ctrlOferta = fabrica.getICtrlOferta();
-		ctrlUsuario = fabrica.getICtrlUsuario();
 		String ubicacion = System.getProperty("user.home");
 		
 		ServidorService service = new ServidorService();
@@ -80,6 +44,24 @@ public class Logica implements ILogica {
             }
         } 
     }
+
+	private Set<DTTipoOferta> obtenerTipoOfertas(){
+		ICtrlOferta ctrl = Fabrica.getInstance().getICtrlOferta();
+		Set<String> lista =  (HashSet<String>) ctrl.listarTipoDePublicaciones();
+		Set<DTTipoOferta> tipoOfertas = new HashSet<DTTipoOferta>();
+		for (String nombreTipoOferta : lista) {
+			try {
+				tipoOfertas.add(ctrl.obtenerDatosTO(nombreTipoOferta));
+			} catch (ExcepcionTipoOfertaNoExistente e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return tipoOfertas;
+
+	}
 
 	@Override
 	public void cargarDatos() {
@@ -104,26 +86,26 @@ public class Logica implements ILogica {
 
 	@Override
 	public boolean validarCredenciales(String identificador, String contraseña) {
-		return ctrlUsuario.validarCredenciales(identificador, contraseña);
+		return servidor.validarCredenciales(identificador, contraseña);
 	}
 
 	@Override
 	public UsuarioBean obtenerDatosUsuario(String nickname) {
 	    UsuarioBean usuario = new UsuarioBean();
 	    try {
-	        DTUsuario dtUsuario = Fabrica.getInstance().getICtrlUsuario().obtenerDatosUsuario(nickname);
+	        DtUsuario dtUsuario = servidor.obtenerDatosUsuario(nickname);
 	        usuario.setNickname(dtUsuario.getNickname());
 	        usuario.setNombre(dtUsuario.getNombre());
 	        usuario.setApellido(dtUsuario.getApellido());
-	        usuario.setContrasenia(dtUsuario.getcontrasenia());
-	        usuario.setCorreoElectronico(dtUsuario.getcorreoElectronico());
+	        usuario.setContrasenia(dtUsuario.getContrasenia());
+	        usuario.setCorreoElectronico(dtUsuario.getCorreoElectronico());
 			usuario.setImagen(imagenAString(dtUsuario.getImagen()));
-			Set<DTUsuarioSinInfoSocial> S1 = dtUsuario.getSeguidores();
-			Set<DTUsuarioSinInfoSocial> S2 = dtUsuario.getSeguidores();
+			//Set<DtUsuarioSinInfoSocial> S1 = dtUsuario.getSeguidores();
+			//Set<DTUsuarioSinInfoSocial> S2 = dtUsuario.getSeguidores();
 			Set<UsuarioSinInfoSocialBean> seguidores = new HashSet<>();
 			Set<UsuarioSinInfoSocialBean> seguidos = new HashSet<>();
 			
-			for (DTUsuarioSinInfoSocial elem : S1) {
+			/*for (DTUsuarioSinInfoSocial elem : S1) {
 				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
 				u1.setNickname(elem.getNickname());
 				u1.setApellido(elem.getApellido());
@@ -139,22 +121,22 @@ public class Logica implements ILogica {
 				u1.setContrasenia(elem.getcontrasenia());
 				u1.setCorreoElectronico(elem.getcorreoElectronico());
 				seguidos.add(u1);
-			}
+			}*/
 			
 			usuario.setSeguidores(seguidores);
 			usuario.setSeguidos(seguidos);
 			
-	        if(dtUsuario instanceof DTEmpresa) {
-	        	DTEmpresa empresa = (DTEmpresa) dtUsuario;
-	        	usuario.setDescripcion(empresa.getDescripcion());
+	        if(dtUsuario instanceof DtEmpresa empresa) {
+				usuario.setDescripcion(empresa.getDescripcion());
 	        	usuario.setUrl(empresa.getUrl());
 	        	usuario.setTipo(TipoUsuario.Empresa);
-	        } else {
-	        	DTPostulante postulante = (DTPostulante) dtUsuario;
-	        	usuario.setFechaNac(postulante.getFechaNac());
+	        } else if(dtUsuario instanceof DtPostulante postulante){
+	        	usuario.setFechaNac(LocalDate.parse(postulante.getFechaNac()));
 	        	usuario.setNacionalidad(postulante.getNacionalidad());
 	        	usuario.setTipo(TipoUsuario.Postulante);
-	        }
+	        } else {
+				throw new IllegalArgumentException("El usuario no es ni empresa ni postulante");
+			}
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        usuario.setError("Se produjo un error al obtener los datos del usuario");
@@ -184,9 +166,10 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<String> listarNicknamesUsuario() {
-		return ctrlUsuario.listarNicknamesUsuarios();
-
+		List<String> nicknames = (List<String>) servidor.listarNicknamesUsuarios().getListaString();
+		return new TreeSet<>(nicknames);
 	}
+
 
 	@Override
 	public Set<String> listarKeywords() {
@@ -196,67 +179,45 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<String> listarPaquetesDeEmpresa(String nickname) {
-		return ctrlOferta.listarComprasPaquete(nickname);
+		List<String> listaPaquetes = servidor.listarComprasPaquete(nickname).getListaString();
+		// Crear un TreeSet a partir de la lista para obtener un Set ordenado.
+		return new TreeSet<>(listaPaquetes);
 	}
-	
+
+
 
 
 	@Override
 	public Set<String> listarTipoDePublicaciones() {
-		return ctrlOferta.listarTipoDePublicaciones();
+		List<String> listaTipoPublicaciones = servidor.listarTipoDePublicaciones().getListaString();
+		// Crear un TreeSet a partir de la lista para obtener un Set ordenado.
+		return new TreeSet<>(listaTipoPublicaciones);
 	}
+
 
 	@Override
 	public void altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagenBytes) {
-	    ICtrlUsuario ctrlUsuario = Fabrica.getInstance().getICtrlUsuario();
-	    if (URL == null) {
+	  /*  if (URL == null) {
             URL = ""; // Reemplazar URL nula con una cadena vacía
         }
 	    try {
 	        if (imagenBytes == null) {
-	            ctrlUsuario.altaEmpresaURL(nick, contraseña, nombre, apellido, mail, desc, URL);
+	            servidor.altaEmpresaURL(nick, contraseña, nombre, apellido, mail, desc, URL);
 	        } else {
-	            ctrlUsuario.altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, imagenBytes);
+	            servidor.altaEmpresaURLyImagen(nick, contraseña, nombre, apellido, mail, desc, URL, imagenBytes);
 	        }
 	    } catch (Exception e) {
 	       
-	    }
+	    }*/
 	}
 	
 
-	@Override
-	public void altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fecha_nac, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
-        
-	    try {
-	        if (imagenBytes == null) {
-	            ctrlUsuario.altaPostulante(nick, contraseña, nombre, apellido, mail, fecha_nac, nacionalidad);
-	        } else {
-	            ctrlUsuario.altaPostulanteImagen(nick, contraseña, nombre, apellido, fecha_nac, mail, nacionalidad, imagenBytes);
-	        }
-	    } catch (Exception e) {
-	       
-	    }    
-	}
 
-	@Override
-	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario,
-			float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado, String img,
-			String paquete) {
-		try {
-			DepUY departamento = DepUY.values()[Departamento.valueOf(dep.toString()).ordinal()];
-			EstadoOL estadoOL = EstadoOL.valueOf(estado.toString());
-			ctrlOferta.altaOfertaLaboral(nickname_e, tipo, nombre, descripcion, horario, remun, ciu, departamento, fechaA, keys, estadoOL, null, paquete);
-		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 
 	@Override
 	public void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) {
-		try {
-			ctrlOferta.compraPaquetes(nickname, paquete, now, valor);
+		/*try {
+			servidor.compraPaquetes(nickname, paquete, now, valor);
 		} catch (ExceptionCompraPaqueteConValorNegativo
 				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
@@ -264,7 +225,7 @@ public class Logica implements ILogica {
 		} catch (ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 	
@@ -272,20 +233,20 @@ public class Logica implements ILogica {
 
 	@Override
 	public PaqueteBean obtenerDatosPaquete(String paquete) {
-		DTPaquete dtPaquete = ctrlOferta.obtenerDatosPaquete(paquete);
+		/*DtPaquete DtPaquete = servidor.obtenerDatosPaquete(paquete);
 		PaqueteBean paqueteBean = new PaqueteBean();
-		paqueteBean.setCosto(dtPaquete.getCosto());
-		paqueteBean.setDescripcion(dtPaquete.getDescripcion());
-		paqueteBean.setDescuento(dtPaquete.getDescuento());
-		paqueteBean.setFechaAlta(dtPaquete.getFechaAlta());
+		paqueteBean.setCosto(DtPaquete.getCosto());
+		paqueteBean.setDescripcion(DtPaquete.getDescripcion());
+		paqueteBean.setDescuento(DtPaquete.getDescuento());
+		paqueteBean.setFechaAlta(DtPaquete.getFechaAlta());
 		
-		paqueteBean.setImagen(imagenAString(dtPaquete.getImagen()));
-		paqueteBean.setNombre(dtPaquete.getNombre());
-		paqueteBean.setValidez(dtPaquete.getValidez());
+		paqueteBean.setImagen(imagenAString(DtPaquete.getImagen()));
+		paqueteBean.setNombre(DtPaquete.getNombre());
+		paqueteBean.setValidez(DtPaquete.getValidez());
 		
 		Set<CantTipoPublicacionBean> cantidades = new HashSet<CantTipoPublicacionBean>();
 		
-		Set<DTCantTO> dtCantidades = dtPaquete.getTiposDePub();
+		Set<DTCantTO> dtCantidades = DtPaquete.getTiposDePub();
 		
 		for( DTCantTO cant : dtCantidades) {
 			CantTipoPublicacionBean cantidadBean = new CantTipoPublicacionBean();
@@ -298,18 +259,19 @@ public class Logica implements ILogica {
 		
 		paqueteBean.setTiposDePub(cantidades);
 
-		return paqueteBean;
+		return paqueteBean;*/
+		return new PaqueteBean();
 	}
 
 	@Override
 	public Set<String> listarOfertasConfirmadasDeEmpresa(String nicknameParametro) {
-		return ctrlOferta.listarOfertasLaboralesConfirmadas(nicknameParametro);
+		return servidor.listarOfertasLaboralesConfirmadas(nicknameParametro);
 	}
 
 	@Override
 	public OfertaLaboralBean obtenerDatosOfertaLaboral(String nombreOferta) {
 		OfertaLaboralBean ofertaLaboral = new OfertaLaboralBean();
-		DTOfertaExtendido dtOferta = ctrlOferta.obtenerOfertaLaboral(nombreOferta);
+		DtOfertaExtendido dtOferta = servidor.obtenerOfertaLaboral(nombreOferta);
 		
 		ofertaLaboral.setNombre(dtOferta.getNombre());
         ofertaLaboral.setDescripcion(dtOferta.getDescripcion());
@@ -323,7 +285,7 @@ public class Logica implements ILogica {
         ofertaLaboral.setEstado(dtOferta.getEstado());
         ofertaLaboral.setNicknameEmpresa(dtOferta.getNicknameEmpresaPublicadora());
         
-        DTOfertaExtendidoSinPConK nuevoDatos = ctrlOferta.infoOfertaLaboralVisitante(nombreOferta);
+        DTOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralVisitante(nombreOferta);
         ofertaLaboral.setKeywords(nuevoDatos.getKeywords());
 
         return ofertaLaboral;
@@ -331,20 +293,22 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<String> listarOfertasLaboralesDeEmpresa(String nicknameParametro) {
-		Set<String> todasLasOfertas = ctrlOferta.listarTodasLasOfertasLaborales(nicknameParametro);
+		Set<String> todasLasOfertas = servidor.listarTodasLasOfertasLaborales(nicknameParametro);
 		return todasLasOfertas;
 	}
 
 	@Override
 	public Set<String> listarPostulacionesDePostulante(String nicknameParametro) {
-		
-		return ctrlUsuario.listarPostulacionesPostulante(nicknameParametro);
+		List<String> listaPostulaciones = servidor.listarPostulacionesPostulante(nicknameParametro).getListaString();
+		// Crear un TreeSet a partir de la lista para obtener un Set ordenado.
+		return new TreeSet<>(listaPostulaciones);
 	}
+
 
 	@Override
 	public PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) {
 		PostulacionBean postulacion = new PostulacionBean();
-		DTPostulacion dtPostulacion = ctrlUsuario.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
+		DTPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
 		
 		postulacion.setCVitae(dtPostulacion.getcVitae());
 		postulacion.setFecha(dtPostulacion.getFecha());
@@ -369,7 +333,7 @@ public class Logica implements ILogica {
 	        throw new Exception("ofertaBean no tiene nombre");
 	    }
 		
-		DTOfertaExtendidoSinPConK info = ctrlOferta.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		DTOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
 	
 		Set<String> nicknamesDePostulantes = null;
 		
@@ -406,15 +370,15 @@ public class Logica implements ILogica {
 	    }
 
 	    // Obtener información de la oferta laboral de la empresa
-	    DTOfertaExtendidoSinPConK info = ctrlOferta.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+	    DTOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
 
-	    DTPaquete dtPaquete = null;
+	    DtPaquete DtPaquete = null;
 
 	    if (info instanceof DTOfertaExtendidoConKeywordsTit) {
 	        // La oferta contiene un paquete
 	        ofertaBean.setMostrarPaquete(true);
 	        DTOfertaExtendidoConKeywordsTit masData = (DTOfertaExtendidoConKeywordsTit) info;
-	        dtPaquete = masData.getPaquete();
+	        DtPaquete = masData.getPaquete();
 	    } else {
 	        // La oferta no contiene un paquete, se establece mostrarPaquete a falso y se retorna la oferta sin cambios
 	        ofertaBean.setMostrarPaquete(false);
@@ -422,7 +386,7 @@ public class Logica implements ILogica {
 	    }
 
 	    // Obtener datos del paquete
-	    PaqueteBean paquete = this.obtenerDatosPaquete(dtPaquete.getNombre());
+	    PaqueteBean paquete = this.obtenerDatosPaquete(DtPaquete.getNombre());
 
 	    ofertaBean.setPaquete(paquete);
 	    return ofertaBean;
@@ -438,7 +402,7 @@ public class Logica implements ILogica {
 	    }
 
 	    // Obtener nuevos datos de la oferta para el postulante
-	    DTOfertaExtendidoSinPConK nuevoDatos = ctrlOferta.infoOfertaLaboralPostulante(postulanteNickname, nombreOferta);
+	    DTOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralPostulante(postulanteNickname, nombreOferta);
 	    Set<UsuarioBean> postulantes = new HashSet<UsuarioBean>();
 
 	    if (nuevoDatos instanceof DTOfertaExtendidoConKeywordsPostulante) {
@@ -459,7 +423,7 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> listarDatosOfertas() {
-		Set<DTOfertaExtendido> dtOfertas = ctrlOferta.listarOfertasLaboralesConfirmadas();
+		Set<DTOfertaExtendido> dtOfertas = servidor.listarOfertasLaboralesConfirmadas();
 		Set<OfertaLaboralBean> ofertasLaborales = new HashSet<OfertaLaboralBean>();
 		for (DTOfertaExtendido dtoferta: dtOfertas) {
 			ofertasLaborales.add(this.obtenerDatosOfertaLaboral(dtoferta.getNombre()));
@@ -488,7 +452,7 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword) {
-		Set<String> ofertas = (HashSet<String>) ctrlOferta.listarOfertasLaboralesKeywords(keyword);
+		Set<String> ofertas = (HashSet<String>) servidor.listarOfertasLaboralesKeywords(keyword);
 		
 		if(ofertas.isEmpty()) {
     		return null;
@@ -507,7 +471,7 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) {
-		Set<String> ofertas = (HashSet<String>) ctrlOferta.listarOfertasLaboralesConfirmadas(consulta);
+		Set<String> ofertas = (HashSet<String>) servidor.listarOfertasLaboralesConfirmadas(consulta);
     	
     	if(ofertas.isEmpty()) {
     		return null;
@@ -526,7 +490,7 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<PaqueteBean> obtenerPaquetes() {
-        Set<String> lista = ctrlOferta.listarPaquetes();
+        Set<String> lista = servidor.listarPaquetes();
         
         Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
         for(String nombrePaquete : lista) {

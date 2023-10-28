@@ -12,8 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
-import logica.Fabrica;
-import logica.datatypes.DTUsuario;
 import utils.FabricaWeb;
 
 /**
