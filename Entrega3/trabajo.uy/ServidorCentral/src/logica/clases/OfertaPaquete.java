@@ -12,8 +12,8 @@ public class OfertaPaquete {
     private int cantidad;
 
 //    @Transient
-@OneToOne
-@JoinColumn(name = "tipoOferta_id")
+    @OneToOne
+    @JoinColumn(name = "tipoOferta_id")
     private TipoOferta tOferta; // Relación muchos a uno con TipoOferta
 
     public OfertaPaquete(TipoOferta ofer, int cant) {
