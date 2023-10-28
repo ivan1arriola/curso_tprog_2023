@@ -31,6 +31,7 @@ public class Paquete {
     private int validez;
     private LocalDate fechaAlta;
 
+    @Lob
     private String imagen;
 
     // @Transient // Lo ignora
@@ -118,7 +119,8 @@ public class Paquete {
     }
 
     public void setImagen(byte[] imagenBytes){
-        if(imagenBytes == null) this.imagen = null;
+        if(imagenBytes == null)
+            this.imagen = null;
         else {
             byte[] base64EncodedBytes = Base64.getEncoder().encode(imagenBytes);
             // Convert the byte array to a Base64 string
