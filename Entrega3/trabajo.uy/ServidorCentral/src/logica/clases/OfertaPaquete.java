@@ -7,12 +7,13 @@ import logica.datatypes.DTCantTO;
 public class OfertaPaquete {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "OfertaPaquete_id")
     private int id; // Se agrega un campo id como clave primaria
 
     private int cantidad;
 
-    @Transient
+//    @Transient
+@OneToOne
+@JoinColumn(name = "tipoOferta_id")
     private TipoOferta tOferta; // Relación muchos a uno con TipoOferta
 
     public OfertaPaquete(TipoOferta ofer, int cant) {
@@ -26,7 +27,8 @@ public class OfertaPaquete {
     }
 
     public DTCantTO getDTCantTO() {
-        return new DTCantTO(tOferta.getNombre(), cantidad);
+        DTCantTO respuesta = new DTCantTO(tOferta.getNombre(), this.cantidad);
+        return respuesta;
     }
 
 } 
