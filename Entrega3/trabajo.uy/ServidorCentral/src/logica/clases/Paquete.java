@@ -38,7 +38,7 @@ public class Paquete {
     @OneToMany
     @JoinColumn(name = "OfertaPaquete_id") // Specify the foreign key column name
     private Set<OfertaPaquete> oferPaq;
-    @Transient
+    @OneToMany(mappedBy = "Paquete")
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor

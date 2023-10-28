@@ -25,10 +25,10 @@ public class InfoCompra {
     @ManyToOne
     private Paquete paquete; // Relación muchos a uno con Paquete
 
-    @ManyToOne
+    @Transient
     private Empresa empresa; // Relación muchos a uno con Empresa
 
-    @OneToMany(mappedBy = "infoCompra")
+    @Transient
     private Set<InfoCompraOferta> infoCompraOfertas; // Relación uno a muchos con InfoCompraOferta
 
     // constructor

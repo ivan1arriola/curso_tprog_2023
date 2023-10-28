@@ -10,6 +10,7 @@
 		<class>logica.clases.TipoOferta</class>
 		<class>logica.clases.Paquete</class>
 		<class>logica.clases.OfertaPaquete</class>
+		<class>logica.clases.InfoCompra</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver"
 				value="org.hsqldb.jdbcDriver" />
