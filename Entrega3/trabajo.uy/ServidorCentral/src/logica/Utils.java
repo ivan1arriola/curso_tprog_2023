@@ -17,6 +17,7 @@ import java.net.URLConnection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -33,6 +34,191 @@ public class Utils {
         return DEFAULT_UBICACION;
     }
 
+    Map<String, String[]> usuarioCSV = new HashMap<>();
+    Map<String, String[]> empresaCSV = new HashMap<>();
+    Map<String, String[]> postulanteCSV = new HashMap<>();
+    Map<String, String[]> keywordsCSV = new HashMap<>();
+    Map<String, String[]> ofertasLaboralesCSV = new HashMap<>();
+    Map<String, String[]> ofertasLaboralesKeyCSV = new HashMap<>();
+    Map<String, String[]> paquetesCSV = new HashMap<>();
+    Map<String, String[]> paquetesCompraCSV = new HashMap<>();
+    Map<String, String[]> postulacionesCSV = new HashMap<>();
+    Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
+    Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
+
+
+    public Map<String, String[]> getUsuarioCSV() {
+        return usuarioCSV;
+    }
+
+    public void setUsuarioCSV(Map<String, String[]> usuarioCSV) {
+        this.usuarioCSV = usuarioCSV;
+    }
+
+    public Map<String, String[]> getEmpresaCSV() {
+        return empresaCSV;
+    }
+
+    public void setEmpresaCSV(Map<String, String[]> empresaCSV) {
+        this.empresaCSV = empresaCSV;
+    }
+
+    public Map<String, String[]> getPostulanteCSV() {
+        return postulanteCSV;
+    }
+
+    public void setPostulanteCSV(Map<String, String[]> postulanteCSV) {
+        this.postulanteCSV = postulanteCSV;
+    }
+
+    public Map<String, String[]> getKeywordsCSV() {
+        return keywordsCSV;
+    }
+
+    public void setKeywordsCSV(Map<String, String[]> keywordsCSV) {
+        this.keywordsCSV = keywordsCSV;
+    }
+
+    public Map<String, String[]> getOfertasLaboralesCSV() {
+        return ofertasLaboralesCSV;
+    }
+
+    public void setOfertasLaboralesCSV(Map<String, String[]> ofertasLaboralesCSV) {
+        this.ofertasLaboralesCSV = ofertasLaboralesCSV;
+    }
+
+    public Map<String, String[]> getOfertasLaboralesKeyCSV() {
+        return ofertasLaboralesKeyCSV;
+    }
+
+    public void setOfertasLaboralesKeyCSV(Map<String, String[]> ofertasLaboralesKeyCSV) {
+        this.ofertasLaboralesKeyCSV = ofertasLaboralesKeyCSV;
+    }
+
+    public Map<String, String[]> getPaquetesCSV() {
+        return paquetesCSV;
+    }
+
+    public void setPaquetesCSV(Map<String, String[]> paquetesCSV) {
+        this.paquetesCSV = paquetesCSV;
+    }
+
+    public Map<String, String[]> getPaquetesCompraCSV() {
+        return paquetesCompraCSV;
+    }
+
+    public void setPaquetesCompraCSV(Map<String, String[]> paquetesCompraCSV) {
+        this.paquetesCompraCSV = paquetesCompraCSV;
+    }
+
+    public Map<String, String[]> getPostulacionesCSV() {
+        return postulacionesCSV;
+    }
+
+    public void setPostulacionesCSV(Map<String, String[]> postulacionesCSV) {
+        this.postulacionesCSV = postulacionesCSV;
+    }
+
+    public Map<String, String[]> getTipoPublicacionCSV() {
+        return tipoPublicacionCSV;
+    }
+
+    public void setTipoPublicacionCSV(Map<String, String[]> tipoPublicacionCSV) {
+        this.tipoPublicacionCSV = tipoPublicacionCSV;
+    }
+
+    public Map<String, String[]> getTipoPubPaquetesCSV() {
+        return tipoPubPaquetesCSV;
+    }
+
+    public void setTipoPubPaquetesCSV(Map<String, String[]> tipoPubPaquetesCSV) {
+        this.tipoPubPaquetesCSV = tipoPubPaquetesCSV;
+    }
+
+
+
+    public Utils() {
+        cargarSetsConCSV();
+    }
+
+    private void cargarSetsConCSV() {
+        usuarioCSV = cargarCSV("Usuarios.csv");
+        empresaCSV = cargarCSV("Usuarios-Empresas.csv");
+        postulanteCSV = cargarCSV("Usuarios-Postulantes.csv");
+        keywordsCSV = cargarCSV("Keywords.csv");
+        ofertasLaboralesCSV = cargarCSV("OfertasLaborales.csv");
+        ofertasLaboralesKeyCSV = cargarCSV("OfertasLaboralesKeywords.csv");
+        paquetesCSV = cargarCSV("Paquetes.csv");
+        paquetesCompraCSV = cargarCSV("PaquetesCompras.csv");
+        postulacionesCSV = cargarCSV("Postulaciones.csv");
+        tipoPublicacionCSV = cargarCSV("TipoPublicacion.csv");
+        tipoPubPaquetesCSV = cargarCSV("TiposPublicacionPaquetes.csv");
+
+    }
+
+    public String[] obtenerUsuario(String clave) {
+        return usuarioCSV.get(clave);
+    }
+
+    // Obtener empresa por clave (nombre de empresa)
+    public String[] obtenerEmpresa(String clave) {
+        return empresaCSV.get(clave);
+    }
+
+    // Obtener postulante por clave (nombre de postulante)
+    public String[] obtenerPostulante(String clave) {
+        return postulanteCSV.get(clave);
+    }
+
+    // Obtener datos de keywords por clave
+    public String[] obtenerKeyword(String clave) {
+        return keywordsCSV.get(clave);
+    }
+
+    // Obtener datos de ofertas laborales por clave (nombre de la oferta)
+    public String[] obtenerOfertaLaboral(String clave) {
+        return ofertasLaboralesCSV.get(clave);
+    }
+
+    // Obtener datos de ofertas laborales por clave (nombre de la oferta)
+    public String[] obtenerOfertaLaboralKey(String clave) {
+        return ofertasLaboralesKeyCSV.get(clave);
+    }
+
+    // Obtener datos de paquetes por clave
+    public String[] obtenerPaquete(String clave) {
+        return paquetesCSV.get(clave);
+    }
+
+    // Obtener datos de paquetes de compra por clave
+    public String[] obtenerPaqueteCompra(String clave) {
+        return paquetesCompraCSV.get(clave);
+    }
+
+    // Obtener datos de postulaciones por clave
+    public String[] obtenerPostulacion(String clave) {
+        return postulacionesCSV.get(clave);
+    }
+
+    // Obtener datos de tipo de publicación por clave
+    public String[] obtenerTipoPublicacion(String clave) {
+        return tipoPublicacionCSV.get(clave);
+    }
+
+    // Obtener datos de tipo de publicación de paquetes por clave
+    public String[] obtenerTipoPublicacionPaquete(String clave) {
+        return tipoPubPaquetesCSV.get(clave);
+    }
+
+    private Map<String, String[]> cargarCSV(String fileName) {
+        Map<String, String[]> data = new HashMap<>();
+        this.readCSV(fileName, stringsCSV -> {
+            if (stringsCSV.length > 0) {
+                data.put(stringsCSV[0], stringsCSV);
+            }
+        });
+        return data;
+    }
 
     public static String generateImageCode(String input) {
         // Reemplaza caracteres no válidos con guiones bajos (_)
@@ -213,53 +399,56 @@ public class Utils {
 
 
     public String buscarNicknameEnUsuarioCSV(String codigoUsuario) {
-        final String[] nickname = {null}; // Variable para almacenar el nickname encontrado
-        readCSV("//Usuarios.csv", usuariosCSV -> {
-            if (usuariosCSV[0].equals(codigoUsuario)) {
-                nickname[0] = usuariosCSV[2];
-            }
-        });
-        return nickname[0]; // Devuelve el nickname encontrado
+        String[] usuarioData = usuarioCSV.get(codigoUsuario);
+        if (usuarioData != null && usuarioData.length > 2) {
+            return usuarioData[2]; // Devuelve el nickname si se encuentra
+        } else {
+            return null; // Devuelve null si no se encuentra el usuario o el nickname
+        }
     }
+
 
     public String buscarTipoPublicacion(String codigoOfertaLaboral) {
-        final String[] tipoPublicacion = {null}; // Variable para almacenar el tipo de publicación encontrado
-        readCSV("//TipoPublicacion.csv", tipoPublicacionCSV -> {
-            if (tipoPublicacionCSV[0].equals(codigoOfertaLaboral)) {
-                tipoPublicacion[0] = tipoPublicacionCSV[1];
-            }
-        });
-        return tipoPublicacion[0]; // Devuelve el tipo de publicación encontrado
+        String[] tipoPublicacionData = tipoPublicacionCSV.get(codigoOfertaLaboral);
+        if (tipoPublicacionData != null && tipoPublicacionData.length > 0) {
+            return tipoPublicacionData[1]; // Devuelve el tipo de publicación si se encuentra
+        } else {
+            return null; // Devuelve null si no se encuentra el tipo de publicación
+        }
     }
 
+
     public List<String> buscarPalabrasClave(String codigoOfertaLaboral) {
-        final List<String> keys = new ArrayList<>(); // Lista para almacenar las palabras clave encontradas
-        readCSV("//OfertasLaboralesKeywords.csv", ofertasLaboralesKeywordsCSV -> {
-            if (ofertasLaboralesKeywordsCSV[0].equals(codigoOfertaLaboral)) {
-                String keyss = ofertasLaboralesKeywordsCSV[1];
-                String[] kss = keyss.split(",  ");
-                for (int i = 0; i < kss.length; i++) {
-                    final String keyword = kss[i];
-                    readCSV("//Keywords.csv", campos9 -> {
-                        if (keyword.equals(campos9[0])) {
-                            keys.add(campos9[1]);
-                        }
-                    });
+        List<String> keys = new ArrayList<>(); // Lista para almacenar las palabras clave encontradas
+
+        String[] ofertasLaboralesKeywordsCSV = ofertasLaboralesKeyCSV.get(codigoOfertaLaboral);
+
+        if (ofertasLaboralesKeywordsCSV != null && ofertasLaboralesKeywordsCSV.length > 1) {
+            String keywordsString = ofertasLaboralesKeywordsCSV[1];
+            String[] keywordCodes = keywordsString.split(", ");
+
+            for (String keywordCode : keywordCodes) {
+                String[] keywordData = keywordsCSV.get(keywordCode);
+                if (keywordData != null && keywordData.length > 0) {
+                    keys.add(keywordData[1]);
                 }
             }
-        });
+        }
+
         return keys; // Devuelve la lista de palabras clave encontradas
     }
 
+
+
     public String buscarPaquete(String paq) {
-        final String[] paquete = {null}; // Variable para almacenar el paquete encontrado
-        readCSV("//Paquetes.csv", campos15 -> {
-            if (paq.equals(campos15[0])) {
-                paquete[0] = campos15[1];
-            }
-        });
-        return paquete[0]; // Devuelve el paquete encontrado
+        String[] paqueteData = paquetesCSV.get(paq);
+        if (paqueteData != null && paqueteData.length > 0) {
+            return paqueteData[1]; // Devuelve el paquete encontrado
+        } else {
+            return null; // Devuelve null si el paquete no se encuentra
+        }
     }
+
 
     public boolean altaOfertaLaboralForzado(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa {
         List<Keyword> keywords = new ArrayList<>();
@@ -322,14 +511,14 @@ public class Utils {
     }
 
     public String buscarOfertaLaboral(String codigoOfertaLaboral) {
-        final String[] ofertaLaboral = {null}; // Variable para almacenar la oferta laboral encontrada
-        readCSV("//OfertasLaborales.csv", camposOfertasLaborales -> {
-            if (camposOfertasLaborales[0].equals(codigoOfertaLaboral)) {
-                ofertaLaboral[0] = camposOfertasLaborales[1];
-            }
-        });
-        return ofertaLaboral[0]; // Devuelve la oferta laboral encontrada
+        String[] ofertaLaboralData = ofertasLaboralesCSV.get(codigoOfertaLaboral);
+        if (ofertaLaboralData != null && ofertaLaboralData.length > 0) {
+            return ofertaLaboralData[1]; // Devuelve la oferta laboral encontrada
+        } else {
+            return null; // Devuelve null si la oferta laboral no se encuentra
+        }
     }
+
 
 
     public Postulacion crearPostulacionForzado(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {

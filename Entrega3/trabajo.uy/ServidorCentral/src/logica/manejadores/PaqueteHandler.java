@@ -39,9 +39,9 @@ public class PaqueteHandler {
     public void agregar(Paquete paquete) {
         if (paquete != null) {
             paq.put(paquete.getNombre(), paquete); // Agregar a la colección en memoria
-            database.getTransaction().begin();
-            database.persist(paquete); // Agregar a la base de datos
-            database.getTransaction().commit();
+          //  database.getTransaction().begin();
+           // database.persist(paquete); // Agregar a la base de datos
+           // database.getTransaction().commit();
         }
     }
 
