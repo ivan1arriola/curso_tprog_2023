@@ -1,8 +1,10 @@
 package main.test;
 
 
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionValidezNegativa;
 import logica.clases.*;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
@@ -13,7 +15,7 @@ import logica.manejadores.OfertaLaboralHandler;
 import logica.manejadores.PaqueteHandler;
 import logica.manejadores.TipoOfertaHandler;
 import logica.manejadores.UsuarioHandler;
-import logica.utils.Fabrica;
+import logica.Fabrica;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -23,7 +25,7 @@ import java.util.*;
 public class ControladorUsuarioTest5 {
 
     @Test
-    void testPARAUSUARIo() {
+    void testPARAUSUARIo() throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {
         Fabrica fabri = Fabrica.getInstance();
         ICtrlUsuario ICU = fabri.getICtrlUsuario();
         ICtrlOferta ICO = fabri.getICtrlOferta();

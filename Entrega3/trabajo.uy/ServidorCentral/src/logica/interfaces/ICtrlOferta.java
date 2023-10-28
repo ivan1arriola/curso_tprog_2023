@@ -1,6 +1,7 @@
 package logica.interfaces;
 
 import excepciones.*;
+import jakarta.persistence.EntityManager;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
@@ -90,4 +91,6 @@ public interface ICtrlOferta {
     public abstract Set<String> listarComprasPaquete(String nicknameEmpresa);
 
     public abstract boolean existeOfertaLaboral(String nombre_ofer);
+
+
 }

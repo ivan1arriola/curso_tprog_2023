@@ -53,5 +53,41 @@
       <version>3.1.1</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+    <groupId>jakarta.xml.bind</groupId>
+    <artifactId>jakarta.xml.bind-api</artifactId>
+    <version>4.0.1</version>
+  </dependency>
+  <dependency>
+    <groupId>jakarta.jws</groupId>
+    <artifactId>jakarta.jws-api</artifactId>
+    <version>3.0.0</version>
+  </dependency>
+  <dependency>
+    <groupId>jakarta.xml.ws</groupId>
+    <artifactId>jakarta.xml.ws-api</artifactId>
+    <version>4.0.1</version>
+  </dependency>
+  <dependency>
+    <groupId>com.jgoodies</groupId>
+    <artifactId>jgoodies-forms</artifactId>
+    <version>1.9.0</version>
+  </dependency>
+  <dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>6.0.0</version>
+    <scope>provided</scope>
+  </dependency>
+  <dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-core</artifactId>
+    <version>4.0.4</version>
+  </dependency>
+  <dependency>
+    <groupId>com.sun.xml.ws</groupId>
+    <artifactId>jaxws-rt</artifactId>
+    <version>4.0.2</version>
+  </dependency>
   </dependencies>
 </project>

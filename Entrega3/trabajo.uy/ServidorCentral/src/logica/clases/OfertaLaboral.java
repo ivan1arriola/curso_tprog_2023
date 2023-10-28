@@ -1,10 +1,16 @@
 package logica.clases;
 
 import excepciones.*;
+import jakarta.persistence.Convert;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import logica.Utils;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import logica.persistencia.DTHorarioConverter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 
+@Entity
 public class OfertaLaboral {
     // atributos
     private String nombre;
@@ -20,6 +27,7 @@ public class OfertaLaboral {
     private LocalDate fechaAlta;
     private Float costo; // atributo calculado
     private Float remuneracion;
+    @Convert(converter = DTHorarioConverter.class)
     private DTHorario horario;
     private DepUY departamento;
     private String ciudad;
@@ -27,10 +35,17 @@ public class OfertaLaboral {
     private byte[] imagen;
 
     // relaciones
+
+    @OneToOne
     private TipoOferta tOferta;
+
+    @OneToMany
     private List<Keyword> keywords;
+    @OneToOne
     private Paquete paqueteAsoc;
+    @OneToMany
     private List<Postulacion> postulaciones;
+    @OneToOne
     private Empresa empresaPublicadora;
 
 
@@ -337,6 +352,10 @@ public class OfertaLaboral {
                 imagennueva,
                 null  // Paquete nulo
         );
+    }
+
+    public OfertaLaboral() {
+        
     }
 
 

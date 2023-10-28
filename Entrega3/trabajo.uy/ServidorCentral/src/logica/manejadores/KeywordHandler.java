@@ -11,8 +11,7 @@ import java.util.Map;
 public class KeywordHandler {
     private static KeywordHandler instancia = null;
     private Map<String, Keyword> keys;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
+    private static EntityManager database = null;
 
     private KeywordHandler() {
         keys = new HashMap<String, Keyword>();
@@ -30,48 +29,24 @@ public class KeywordHandler {
         if (key == null) {
             throw new IllegalArgumentException("La keyword a agregar no puede ser vacía");
         }
-        try {
-            emf = Persistence.createEntityManagerFactory("TrabajoUy");
-            em = emf.createEntityManager();
-            EntityTransaction tx = em.getTransaction();
+
+            EntityTransaction tx = database.getTransaction();
             tx.begin();
-            em.persist(key);
+            database.persist(key);
             tx.commit();
             keys.put(key.getNombre(), key);
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-            if (emf != null) {
-                emf.close();
-            }
-            em = null;
-            emf = null;
-        }
+
     }
 
     private void cargarKeywordsDesdeBaseDeDatos() {
-        try {
-            emf = Persistence.createEntityManagerFactory("TrabajoUy");
-            em = emf.createEntityManager();
-
             // Realizar una consulta JPA para obtener todos los registros de la entidad Keyword
-            TypedQuery<Keyword> query = em.createQuery("SELECT k FROM Keyword k", Keyword.class);
+            TypedQuery<Keyword> query = database.createQuery("SELECT k FROM Keyword k", Keyword.class);
             List<Keyword> keywordList = query.getResultList();
 
             for (Keyword keyword : keywordList) {
                 keys.put(keyword.getNombre(), keyword);
             }
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-            if (emf != null) {
-                emf.close();
-            }
-            em = null;
-            emf = null;
-        }
+
     }
 
 
@@ -81,5 +56,9 @@ public class KeywordHandler {
 
     public Map<String, Keyword> obtener() {
         return keys;
+    }
+
+    public static void setBaseDatos(EntityManager em) {
+        database = em;
     }
 }

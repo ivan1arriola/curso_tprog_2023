@@ -11,7 +11,7 @@ import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.OfertaLaboralHandler;
-import logica.utils.Fabrica;
+import logica.Fabrica;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

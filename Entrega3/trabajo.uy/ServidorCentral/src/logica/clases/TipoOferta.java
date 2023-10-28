@@ -60,6 +60,10 @@ public class TipoOferta {
         System.out.println("Se ha creado un tipo de oferta. - " + nombre);
     }
 
+    public TipoOferta() {
+
+    }
+
     // GETTERS
     public String getNombre() {
         return nombre;

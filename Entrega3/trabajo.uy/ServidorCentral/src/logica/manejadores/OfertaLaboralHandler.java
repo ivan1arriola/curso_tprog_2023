@@ -1,6 +1,7 @@
 package logica.manejadores;
 
 
+import jakarta.persistence.EntityManager;
 import logica.clases.OfertaLaboral;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 public class OfertaLaboralHandler {
     private static OfertaLaboralHandler OLHandler = null;
     private Map<String, OfertaLaboral> ofertasLaborales;
+    private static EntityManager database;
     ;
 
     private OfertaLaboralHandler() {
@@ -43,4 +45,7 @@ public class OfertaLaboralHandler {
         return ofertasLaborales.get(nombre);
     }
 
+    public static void setBaseDatos(EntityManager em) {
+        database = em;
+    }
 }

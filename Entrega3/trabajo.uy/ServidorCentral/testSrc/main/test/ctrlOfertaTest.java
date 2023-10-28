@@ -9,7 +9,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.utils.Fabrica;
+import logica.Fabrica;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,15 @@
 package logica.datatypes;
 
-import java.time.LocalDate;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import logica.servidor.adapter.LocalDateAdapter;
 
+import java.time.LocalDate;
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTPostulacion {
     private String nombrePostulante;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fecha;
     private String uRLDocExtras;
     private String cVitae;

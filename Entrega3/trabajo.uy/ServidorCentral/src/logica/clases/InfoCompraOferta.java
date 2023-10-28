@@ -2,10 +2,18 @@ package logica.clases;
 
 
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import jakarta.persistence.*;
 
+@Entity
 public class InfoCompraOferta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Se agrega un campo id como clave primaria
+
     private int cantRestante;
-    private TipoOferta tipoOferta;
+
+    @ManyToOne
+    private TipoOferta tipoOferta; // Relación muchos a uno con TipoOferta
 
     public InfoCompraOferta(TipoOferta tipoOfer, int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
         if (canres >= 0) {
@@ -17,6 +25,10 @@ public class InfoCompraOferta {
         }
 
     } //Constructor
+
+    public InfoCompraOferta() {
+
+    }
 
     public int getCantres() {
         return cantRestante;

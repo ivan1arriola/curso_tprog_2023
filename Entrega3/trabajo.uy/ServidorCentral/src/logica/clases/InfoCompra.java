@@ -2,6 +2,7 @@ package logica.clases;
 
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionValidezNegativa;
+import jakarta.persistence.*;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTCompraPaquetes;
 import logica.manejadores.TipoOfertaHandler;
@@ -11,13 +12,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 
+@Entity
 public class InfoCompra {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Se agrega un campo id como clave primaria
+
     private LocalDate fechaCompra;
-    private LocalDate fechaVencimiento; // fechaCompra + paq.Validez
+    private LocalDate fechaVencimiento;
     private float costo;
-    private Paquete paquete;
-    private Empresa empres;
-    private Set<InfoCompraOferta> infoCompraOfertas;
+
+    @ManyToOne
+    private Paquete paquete; // Relación muchos a uno con Paquete
+
+    @ManyToOne
+    private Empresa empresa; // Relación muchos a uno con Empresa
+
+    @OneToMany(mappedBy = "infoCompra")
+    private Set<InfoCompraOferta> infoCompraOfertas; // Relación uno a muchos con InfoCompraOferta
 
     // constructor
     public InfoCompra(LocalDate fechaCompra, float costo, Paquete pack, Empresa empres, Set<DTCantTO> conjuntoS) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {
@@ -27,7 +39,7 @@ public class InfoCompra {
             this.fechaVencimiento = this.fechaCompra.plusDays(pack.getValidez()); // fechaCompra + paq.Validez
             this.costo = costo;
             // relaciones
-            this.empres = empres;
+            this.empresa = empres;
             this.paquete = pack;
             Set<InfoCompraOferta> infoCompraOfertas = new HashSet<>();
             TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
@@ -41,6 +53,10 @@ public class InfoCompra {
         } else {
             throw new ExceptionValidezNegativa("La validez debe ser un número no negativo.");
         }
+
+    }
+
+    public InfoCompra() {
 
     }
 
@@ -72,12 +88,12 @@ public class InfoCompra {
     }
 
     public Empresa getEmpresa() {
-        return empres;
+        return empresa;
 
     }
 
     public void setEmpresa(Empresa empres) {
-        this.empres = empres;
+        this.empresa = empres;
     }
 
     public float getCosto() {

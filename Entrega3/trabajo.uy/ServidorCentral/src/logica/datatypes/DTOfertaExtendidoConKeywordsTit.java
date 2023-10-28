@@ -1,12 +1,17 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import logica.servidor.adapter.SetAdapter;
 
 import java.time.LocalDate;
 import java.util.Set;
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
+    @XmlJavaTypeAdapter(SetAdapter.class)
     private Set<String> postulaciones;
     private DTPaquete paq;
 

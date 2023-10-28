@@ -7,6 +7,9 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>logica.clases.Keyword</class>
+		<class>logica.clases.TipoOferta</class>
+		<class>logica.clases.Paquete</class>
+		<class>logica.clases.OfertaPaquete</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver"
 				value="org.hsqldb.jdbcDriver" />

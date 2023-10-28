@@ -1,8 +1,12 @@
 package presentacion;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.manejadores.*;
 import logica.servidor.Servidor;
 
 import javax.swing.*;
@@ -27,16 +31,51 @@ public class Principal {
     private AltaDeKeywords altaDeKeywordsInternalFrame;
     private AceptarOferta aceptarOfertaInternalFrame;
 
+    EntityManagerFactory emf = null;
+    EntityManager em = null;
+
+    private void empezarConexion() {
+        emf = Persistence.createEntityManagerFactory("TrabajoUy");
+        em = emf.createEntityManager();
+    }
+    private void cerrarConexion() {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+        if (emf != null && emf.isOpen()) {
+            emf.close();
+        }
+
+        em = null;
+        emf = null;
+    }
+
     /**
      * Create the application.
      */
     public Principal() {
         initialize();
 
+
+
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         ICtrlUsuario ICU = fabrica.getICtrlUsuario();
         ICtrlOferta ICO = fabrica.getICtrlOferta();
+
+
+        // Base de Datos
+        empezarConexion();
+        KeywordHandler.setBaseDatos(em);
+        OfertaLaboralHandler.setBaseDatos(em);
+        PaqueteHandler.setBaseDatos(em);
+        TipoOfertaHandler.setBaseDatos(em);
+        UsuarioHandler.setBaseDatos(em);
+
+
+
+
+
 
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma,  no es necesario crear y destruir objetos lo que enlentece la ejecución.
