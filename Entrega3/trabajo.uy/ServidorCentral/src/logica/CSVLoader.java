@@ -1,4 +1,4 @@
-package datos;
+package logica;
 
 import java.io.InputStream;
 
