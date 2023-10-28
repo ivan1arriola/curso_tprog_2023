@@ -12,6 +12,7 @@ import java.util.Set;
 // declaro entidad
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "Tipo_Usuario", discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +23,10 @@ public abstract class Usuario {
     private String apellido;
     private String correoElectronico;
     private String contrasenia;
+    @Lob
     private String imagen;
     // relaciones
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "usuario_seguidores",
             joinColumns = @JoinColumn(name = "seguido_id"),

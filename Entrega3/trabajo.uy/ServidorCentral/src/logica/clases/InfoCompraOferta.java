@@ -12,7 +12,7 @@ public class InfoCompraOferta {
 
     private int cantRestante;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TipoOferta tipoOferta; // Relación muchos a uno con TipoOferta
 
     public InfoCompraOferta(TipoOferta tipoOfer, int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {

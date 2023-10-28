@@ -1,9 +1,11 @@
 package logica.manejadores;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import logica.clases.Usuario;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //import main.java.excepciones.ExceptionUsuarioNoEncontrado;
@@ -11,13 +13,9 @@ import java.util.Map;
 public class UsuarioHandler {
 
     private static UsuarioHandler instancia;
-    private Map<String, Usuario> nickUsuariosMap;
-    private Map<String, Usuario> correoUsuariosMap;
     private static EntityManager database;
 
     private UsuarioHandler() {
-        nickUsuariosMap = new HashMap<String, Usuario>();
-        correoUsuariosMap = new HashMap<String, Usuario>();
     }
 
     public static UsuarioHandler getInstance() {
@@ -28,35 +26,97 @@ public class UsuarioHandler {
     }
 
     public boolean existeNick(String nombre) {
-        return nickUsuariosMap.containsKey(nombre);
+        try {
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.nickname = :nombre", Long.class);
+            query.setParameter("nombre", nombre);
+            Long count = query.getSingleResult();
+            return count > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean existeCorreo(String mail) {
-        return correoUsuariosMap.containsKey(mail);
+        try {
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.correoElectronico = :mail", Long.class);
+            query.setParameter("mail", mail);
+            Long count = query.getSingleResult();
+            return count > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
+
     public void agregar(Usuario usuario) {
-        nickUsuariosMap.put(usuario.getNickname(), usuario);
-        correoUsuariosMap.put(usuario.getcorreoElectronico(), usuario);
+        try {
+            database.getTransaction().begin();
+            database.persist(usuario);
+            database.getTransaction().commit();
+        } catch (Exception e) {
+            if (database.getTransaction() != null && database.getTransaction().isActive()) {
+                database.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     public Usuario buscarNick(String nombre) {
-        return nickUsuariosMap.get(nombre);
+        try {
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nombre", Usuario.class);
+            query.setParameter("nombre", nombre);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Devuelve null si no se encuentra el usuario
+        }
     }
 
     public Usuario buscarCorreo(String mail) {
-        if (!correoUsuariosMap.containsKey(mail)) {
-            throw new IllegalArgumentException("Usuario no encontrado");
+        try {
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.correoElectronico = :mail", Usuario.class);
+            query.setParameter("mail", mail);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Devuelve null si no se encuentra el usuario
         }
-        return correoUsuariosMap.get(mail);
     }
 
     public Map<String, Usuario> obtenerNick() {
-        return nickUsuariosMap;
+        try {
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u", Usuario.class);
+            List<Usuario> usuarios = query.getResultList();
+
+            Map<String, Usuario> nickUsuariosMap = new HashMap<>();
+            for (Usuario usuario : usuarios) {
+                nickUsuariosMap.put(usuario.getNickname(), usuario);
+            }
+
+            return nickUsuariosMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Devuelve null en caso de error
+        }
     }
 
     public Map<String, Usuario> obtenerCorreo() {
-        return correoUsuariosMap;
+        try {
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u", Usuario.class);
+            List<Usuario> usuarios = query.getResultList();
+
+            Map<String, Usuario> correoUsuariosMap = new HashMap<>();
+            for (Usuario usuario : usuarios) {
+                correoUsuariosMap.put(usuario.getcorreoElectronico(), usuario);
+            }
+
+            return correoUsuariosMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Devuelve null en caso de error
+        }
     }
 
     public static void setBaseDatos(EntityManager em) {

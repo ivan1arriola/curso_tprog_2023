@@ -2,9 +2,7 @@ package logica.clases;
 
 import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionValidezNegativa;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import logica.datatypes.*;
 
 import java.time.LocalDate;
@@ -13,15 +11,15 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Entity
+@DiscriminatorValue("P")
 public class Postulante extends Usuario {
     private LocalDate fechaNac;
     private String nacionalidad;
     // foreign key
-    @OneToMany(mappedBy = "postulante")
-    @JoinColumn(name = "postulante_id")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "postulante")
     private Set<Postulacion> postulaciones;
 
-    // constructor  con imagen
+    // constructor con imagen
     public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fechaNac, String nacionalidad, byte[] img) throws ExceptionFechaInvalida {
 
         super(nickname, nombre, apellido, correo_electronico, contrasena, img); // super es para llamar al constructor de la clase padre

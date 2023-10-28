@@ -36,18 +36,18 @@ public class OfertaLaboral {
 
     // relaciones
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     private TipoOferta tOferta;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.PERSIST)
     private List<Keyword> keywords;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     private Paquete paqueteAsoc;
-    @OneToMany(mappedBy = "oferLab")
+    @OneToMany(mappedBy = "oferLab", cascade = CascadeType.PERSIST)
     private List<Postulacion> postulaciones;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "empresa_id")
     private Empresa empresaPublicadora;
 

@@ -22,14 +22,14 @@ public class InfoCompra {
     private LocalDate fechaVencimiento;
     private float costo;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "paquete_id")
     private Paquete paquete;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Empresa empresa; // Relación muchos a uno con Empresa
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<InfoCompraOferta> infoCompraOfertas; // Relación uno a muchos con InfoCompraOferta
 
     // constructor

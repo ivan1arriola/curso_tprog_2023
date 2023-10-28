@@ -12,7 +12,7 @@ public class OfertaPaquete {
     private int cantidad;
 
 //    @Transient
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "tipoOferta_id")
     private TipoOferta tOferta; // Relación muchos a uno con TipoOferta
 

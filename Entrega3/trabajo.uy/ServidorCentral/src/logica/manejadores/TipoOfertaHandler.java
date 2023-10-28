@@ -1,40 +1,20 @@
 package logica.manejadores;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import logica.clases.TipoOferta;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 public class TipoOfertaHandler {
     private static TipoOfertaHandler tOfertaHandler = null;
-    private Map<String, TipoOferta> tipoOfertas;
-
-    private EntityManagerFactory emf = null;
-    private static EntityManager database =  null;
-
+    private static EntityManager database;
 
     private TipoOfertaHandler() {
-        tipoOfertas = new HashMap<>();
-        cargarTipoOfertas();
-    } //Constructor privado,  inicializa colección de ofertas
-
-
-
-    private void cargarTipoOfertas() {
-        database.getTransaction().begin();
-        List<TipoOferta> tipoOfertaList = database.createQuery("SELECT t FROM TipoOferta t", TipoOferta.class).getResultList();
-        database.getTransaction().commit();
-
-        for (TipoOferta tipoOferta : tipoOfertaList) {
-            tipoOfertas.put(tipoOferta.getNombre(), tipoOferta);
-        }
-
     }
-
 
     public static TipoOfertaHandler getInstance() {
         if (tOfertaHandler == null) {
@@ -44,24 +24,63 @@ public class TipoOfertaHandler {
     }
 
     public boolean existe(String nombre) {
-        return tipoOfertas.containsKey(nombre);
-    }
+        try {
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(t) FROM TipoOferta t WHERE t.nombre = :nombre", Long.class);
+            query.setParameter("nombre", nombre);
+            Long count = query.getSingleResult();
 
-    public void agregar(TipoOferta tipoOferta) {
-        if (tipoOferta != null) {
-            tipoOfertas.put(tipoOferta.getNombre(), tipoOferta); // Agregar a la colección en memoria
-            database.getTransaction().begin();
-            database.persist(tipoOferta); // Agregar a la base de datos
-            database.getTransaction().commit();
+            return count > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
+    public void agregar(TipoOferta tipoOferta) {
+        EntityTransaction transaction = database.getTransaction();
+        try {
+            if(!database.getTransaction().isActive()) {
+                database.getTransaction().begin();
+            }
+            database.persist(tipoOferta);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 
     public TipoOferta buscar(String nombre) {
-        return tipoOfertas.get(nombre);
+        try {
+            TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t WHERE t.nombre = :nombre", TipoOferta.class);
+            query.setParameter("nombre", nombre);
+            List<TipoOferta> resultados = query.getResultList();
+
+            if (!resultados.isEmpty()) {
+                return resultados.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public Map<String, TipoOferta> obtener() {
+        Map<String, TipoOferta> tipoOfertas = new HashMap<>();
+        try {
+            TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t", TipoOferta.class);
+            List<TipoOferta> resultados = query.getResultList();
+
+            for (TipoOferta tipoOferta : resultados) {
+                tipoOfertas.put(tipoOferta.getNombre(), tipoOferta);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return tipoOfertas;
     }
 

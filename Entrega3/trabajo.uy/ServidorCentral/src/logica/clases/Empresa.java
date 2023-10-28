@@ -1,9 +1,7 @@
 package logica.clases;
 
 import excepciones.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
@@ -15,14 +13,16 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@DiscriminatorValue("E")
 public class Empresa extends Usuario {
 
+    @Lob
     private String descripcion;
     private String url;
-    @OneToMany(mappedBy = "empresaPublicadora")
+    @OneToMany(mappedBy = "empresaPublicadora", cascade = CascadeType.PERSIST)
     private Set<OfertaLaboral> ofertasLaborales;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.PERSIST)
     private Set<InfoCompra> infoCompras;
 
     public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {

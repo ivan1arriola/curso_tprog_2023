@@ -34,9 +34,9 @@ public class Paquete {
     @Lob
     private String imagen;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<OfertaPaquete> oferPaq;
-    @OneToMany(mappedBy = "paquete")
+    @OneToMany(mappedBy = "paquete", cascade = CascadeType.PERSIST)
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor

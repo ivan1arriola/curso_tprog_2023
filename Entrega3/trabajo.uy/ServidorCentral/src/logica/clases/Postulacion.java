@@ -18,13 +18,16 @@ public class Postulacion {
     private String uRLDocExtras;
     // relaciones
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ofertaLaboral_id")
     private OfertaLaboral oferLab;
+
+    @ManyToOne (cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "postulante_id")
     private Postulante postulante;
     private String urlVideo;
     // evaluacion empresa
-    private Integer Clasificacion;
+    private int Clasificacion;
 
     // constructor
     public Postulacion(Postulante postulante, String curriculumVitae, String motivacion, LocalDate fecha, String uRLDocExtras, OfertaLaboral oferLab, String urlVid) {

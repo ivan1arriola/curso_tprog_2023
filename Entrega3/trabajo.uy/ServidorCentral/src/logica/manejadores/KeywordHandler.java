@@ -13,7 +13,7 @@ public class KeywordHandler {
     private static EntityManager database = null;
 
     private KeywordHandler() {
-    } // obtener instancia con getInstance()
+    }
 
     public static KeywordHandler getInstance() {
         if (instancia == null) {
@@ -27,7 +27,9 @@ public class KeywordHandler {
             throw new IllegalArgumentException("La keyword a agregar no puede ser vacía");
         }
             EntityTransaction tx = database.getTransaction();
-            tx.begin();
+            if(!database.getTransaction().isActive()) {
+                database.getTransaction().begin();
+            }
             database.persist(key);
             tx.commit();
     }
