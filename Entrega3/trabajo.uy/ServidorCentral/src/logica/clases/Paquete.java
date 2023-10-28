@@ -34,11 +34,9 @@ public class Paquete {
     @Lob
     private String imagen;
 
-    // @Transient // Lo ignora
     @OneToMany
-    @JoinColumn(name = "OfertaPaquete_id") // Specify the foreign key column name
     private Set<OfertaPaquete> oferPaq;
-    @Transient
+    @OneToMany(mappedBy = "paquete")
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor

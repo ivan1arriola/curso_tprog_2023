@@ -23,12 +23,13 @@ public class InfoCompra {
     private float costo;
 
     @ManyToOne
-    private Paquete paquete; // Relación muchos a uno con Paquete
+    @JoinColumn(name = "paquete_id")
+    private Paquete paquete;
 
     @ManyToOne
     private Empresa empresa; // Relación muchos a uno con Empresa
 
-    @OneToMany(mappedBy = "infoCompra")
+    @OneToMany
     private Set<InfoCompraOferta> infoCompraOfertas; // Relación uno a muchos con InfoCompraOferta
 
     // constructor

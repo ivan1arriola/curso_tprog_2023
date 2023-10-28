@@ -1,9 +1,6 @@
 package logica.clases;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import logica.datatypes.DTPostulacion;
 
 import java.time.LocalDate;
@@ -20,6 +17,9 @@ public class Postulacion {
     private String motivacion;
     private String uRLDocExtras;
     // relaciones
+
+    @ManyToOne
+    @JoinColumn(name = "ofertaLaboral_id")
     private OfertaLaboral oferLab;
     private Postulante postulante;
     private String urlVideo;

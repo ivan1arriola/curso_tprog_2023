@@ -19,8 +19,7 @@ public class Empresa extends Usuario {
 
     private String descripcion;
     private String url;
-    @OneToMany(mappedBy = "empresa")
-    @JoinColumn(name = "empresa_id")
+    @OneToMany(mappedBy = "empresaPublicadora")
     private Set<OfertaLaboral> ofertasLaborales;
 
     @OneToMany(mappedBy = "empresa")

@@ -1,16 +1,13 @@
 package logica.clases;
 
 import excepciones.*;
-import jakarta.persistence.Convert;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import logica.Utils;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
-import logica.persistencia.DTHorarioConverter;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,14 +18,17 @@ import java.util.Set;
 
 @Entity
 public class OfertaLaboral {
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     // atributos
     private String nombre;
     private String descripcion;
     private LocalDate fechaAlta;
     private Float costo; // atributo calculado
     private Float remuneracion;
-    @Convert(converter = DTHorarioConverter.class)
-    private DTHorario horario;
+
+    private String horario;
     private DepUY departamento;
     private String ciudad;
     private EstadoOL estado;
@@ -36,17 +36,21 @@ public class OfertaLaboral {
 
     // relaciones
 
-    @OneToOne
+    @ManyToOne
     private TipoOferta tOferta;
 
     @OneToMany
     private List<Keyword> keywords;
-    @OneToOne
+    @ManyToOne
     private Paquete paqueteAsoc;
-    @OneToMany
+    @OneToMany(mappedBy = "oferLab")
     private List<Postulacion> postulaciones;
-    @OneToOne
+
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
     private Empresa empresaPublicadora;
+
 
 
     public OfertaLaboral(
@@ -69,7 +73,7 @@ public class OfertaLaboral {
         this.descripcion = atrdescripcion;
         this.ciudad = atrciudad;
         this.departamento = atrdepartamento;
-        this.horario = atrhorario;
+        this.setHorario(atrhorario);
 
         try {
             if (atrremuneracion <= 0) {
@@ -191,7 +195,7 @@ public class OfertaLaboral {
         this.descripcion = atrdescripcion;
         this.ciudad = atrciudad;
         this.departamento = atrdepartamento;
-        this.horario = atrhorario;
+        this.setHorario(atrhorario);
 
         try {
             if (atrremuneracion <= 0) {
@@ -257,6 +261,10 @@ public class OfertaLaboral {
 
         System.out.println("Se ha creado una Oferta Laboral (forzado). - " + nombre);
         Utils.guardarImagen("OfertasLaborales", nombre, "jpg", imagennueva);
+    }
+
+    private void setHorario(DTHorario atrhorario) {
+        this.horario = atrhorario.toString();
     }
 
     // Constructor sin imagen ni paquete
@@ -403,11 +411,7 @@ public class OfertaLaboral {
     }
 
     public DTHorario getHorario() {
-        return horario;
-    }
-
-    public void setHorario(DTHorario Horar) {
-        horario = Horar;
+        return new DTHorario(horario);
     }
 
     public Float getRemuneracion() {
@@ -705,5 +709,13 @@ public class OfertaLaboral {
             }
         }
         postulacionActual.setClasificacion(posicion);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
