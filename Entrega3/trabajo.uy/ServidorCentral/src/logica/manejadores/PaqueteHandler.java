@@ -9,13 +9,10 @@ import java.util.Map;
 
 public class PaqueteHandler {
     private static PaqueteHandler instancia = null;
-    private Map<String, Paquete> paq;
 
     private static EntityManager database = null;
 
     private PaqueteHandler() {
-        paq = new HashMap<String, Paquete>();
-        cargarPaquetes();
     }
 
     public static PaqueteHandler getInstance() {
@@ -25,51 +22,78 @@ public class PaqueteHandler {
         return instancia;
     }
 
-    public boolean existe(String nombre) {
-        return paq.containsKey(nombre);
-    }
-
-    public Paquete buscar(String nombre) {
-        if (!paq.containsKey(nombre)) {
-            throw new IllegalArgumentException("Paquete no encontrado");
-        }
-        return paq.get(nombre);
-    }
-
-    public void agregar(Paquete paquete) {
-        if (paquete != null) {
-            paq.put(paquete.getNombre(), paquete); // Agregar a la colección en memoria
-          //  database.getTransaction().begin();
-           // database.persist(paquete); // Agregar a la base de datos
-           // database.getTransaction().commit();
-        }
-    }
-
     public Map<String, Paquete> obtener() {
-        return paq;
-    }
+        if (database == null) {
+            throw new IllegalStateException("EntityManager no configurado.");
+        }
 
-
-    private void cargarPaquetes() {
         database.getTransaction().begin();
         List<Paquete> paqueteList = database.createQuery("SELECT p FROM Paquete p", Paquete.class).getResultList();
         database.getTransaction().commit();
 
+        Map<String, Paquete> paquetes = new HashMap<>();
         for (Paquete paquete : paqueteList) {
-            paq.put(paquete.getNombre(), paquete);
+            paquetes.put(paquete.getNombre(), paquete);
         }
 
+        return paquetes;
     }
 
-    public void actualizarPaquete(Paquete paquete){
-        database.getTransaction().begin();
-        Paquete paqueteActualizado = database.merge(paquete);
-        database.getTransaction().commit();
-        paq.put(paqueteActualizado.getNombre(), paqueteActualizado);
-    }
 
+
+
+    //-------------------------
 
     public static void setBaseDatos(EntityManager em) {
         database = em;
     }
+
+    public  boolean existe(String nombre) {
+        if (database == null) {
+            throw new IllegalStateException("EntityManager no configurado.");
+        }
+
+        database.getTransaction().begin();
+        boolean existe = database.createQuery("SELECT COUNT(p) FROM Paquete p WHERE p.nombre = :nombre", Long.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult() > 0;
+        database.getTransaction().commit();
+
+        return existe;
+    }
+
+    public Paquete buscar(String nombre) {
+        if (database == null) {
+            throw new IllegalStateException("EntityManager no configurado.");
+        }
+
+        database.getTransaction().begin();
+        Paquete paquete = database.createQuery("SELECT p FROM Paquete p WHERE p.nombre = :nombre", Paquete.class)
+                .setParameter("nombre", nombre)
+                .getSingleResult();
+        database.getTransaction().commit();
+
+        return paquete;
+    }
+
+    public void agregar(Paquete paquete) {
+        if (database == null) {
+            throw new IllegalStateException("EntityManager no configurado.");
+        }
+
+        database.getTransaction().begin();
+        database.persist(paquete);
+        database.getTransaction().commit();
+    }
+
+    public void actualizarPaquete(Paquete paquete) {
+        if (database == null) {
+            throw new IllegalStateException("EntityManager no configurado.");
+        }
+
+        database.getTransaction().begin();
+        database.merge(paquete);
+
+    }
+
 }
