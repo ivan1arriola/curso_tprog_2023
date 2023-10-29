@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <th>Horario:</th>
-                    <td><%= ofertaLaboral.getHorario().getDesde() + " a " +  ofertaLaboral.getHorario().getHasta()%></td>
+                    <td><%= ofertaLaboral.getHorario()%></td>
                 </tr>
                 <tr>
                     <th>Departamento:</th>

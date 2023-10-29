@@ -356,12 +356,12 @@ public class Logica implements ILogica {
 	    // Obtener información de la oferta laboral de la empresa
 	    DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
 
-	    DtPaquete DtPaquete = null;
+	    DtPaquete dtPaquete = null;
 
 	    if (info instanceof DtOfertaExtendidoConKeywordsTit masData) {
 	        // La oferta contiene un paquete
 	        ofertaBean.setMostrarPaquete(true);
-	        DtPaquete = masData.getPaq();
+	        dtPaquete = masData.getPaq();
 	    } else {
 	        // La oferta no contiene un paquete, se establece mostrarPaquete a falso y se retorna la oferta sin cambios
 	        ofertaBean.setMostrarPaquete(false);
@@ -369,9 +369,12 @@ public class Logica implements ILogica {
 	    }
 
 	    // Obtener datos del paquete
-	    PaqueteBean paquete = this.obtenerDatosPaquete(DtPaquete.getNombre());
+		if(dtPaquete != null ) {
+			PaqueteBean paquete = this.obtenerDatosPaquete(dtPaquete.getNombre());
+			ofertaBean.setPaquete(paquete);
+		}
 
-	    ofertaBean.setPaquete(paquete);
+
 	    return ofertaBean;
 	}
 

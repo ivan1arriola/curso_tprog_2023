@@ -22,9 +22,7 @@ public class ListarPaquetes extends HttpServlet {
 	
 	ILogica logica;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ListarPaquetes() {
         super();
         logica = FabricaWeb.getLogica();
@@ -32,11 +30,9 @@ public class ListarPaquetes extends HttpServlet {
     
     
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         try {
             Set<PaqueteBean> paquetes = logica.obtenerPaquetes();
