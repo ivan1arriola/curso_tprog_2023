@@ -1,11 +1,13 @@
 package controller;
 
+import interfaces.ILogica;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.FabricaWeb;
 
 
 import java.io.IOException;
@@ -47,14 +49,16 @@ public class ModificarUsuario extends HttpServlet {
         String nacionalidad = request.getParameter("nacionalidad");
         String descripcion = request.getParameter("descripcion");
         String link = request.getParameter("link");
+
+        ILogica logica = FabricaWeb.getLogica();
         
         try {
-	        if(fechanacimiento != null) {
+	        if(fechanacimiento != null && descripcion == null) {
 	        	// es postulante
 	        	LocalDate fecha = convertirCadenaAFecha(fechanacimiento);
-	        //	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, null, fecha, nacionalidad);
-	        } else {
-	        //	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, link, null, descripcion);
+	        	logica.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, null, fecha, nacionalidad);
+	        } else if(fechanacimiento == null && descripcion != null) {
+                logica.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, link, null, descripcion);
 	        }
 	        response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nickname);
         } catch (Exception e) {

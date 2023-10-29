@@ -23,7 +23,7 @@ public class AltaUsuario extends HttpServlet {
 
     public AltaUsuario() {
         super();
-        logica = FabricaWeb.getInstance().getLogica();
+        logica = FabricaWeb.getLogica();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,12 +82,12 @@ public class AltaUsuario extends HttpServlet {
 			if ("empresa".equals(tipoUsuario)) {
                 descripcionEmpresa = request.getParameter("descripcion");
                 sitioWebEmpresa = request.getParameter("sitio-web");
-               // logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
+                logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
                 registroExitoso = true; 
             } else {
                 fechaNacimiento = request.getParameter("fecha-nacimiento");
                 nacionalidad = request.getParameter("nacionalidad");
-                //logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad, imagenBytes);
+                logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad, imagenBytes);
                 registroExitoso = true;
             }
 

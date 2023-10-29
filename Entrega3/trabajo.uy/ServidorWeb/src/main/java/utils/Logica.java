@@ -55,13 +55,47 @@ public class Logica implements ILogica {
 	}
 
 	@Override
+	public void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception {
+
+		if (sitioWebEmpresa == null) {
+			sitioWebEmpresa = ""; // Reemplazar URL nula con una cadena vacía
+		}
+
+		if (imagenBytes == null) {
+			servidor.altaEmpresaURL(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa);
+		} else {
+			servidor.altaEmpresaURLyImagen(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
+		}
+
+
+	}
+
+	@Override
+	public void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception {
+		if (imagenBytes == null) {
+			servidor.altaPostulante(nickname, password, nombre, apellido, parse.toString(), email, nacionalidad);
+		} else {
+			servidor.altaPostulanteImagen(nickname, password, nombre, apellido, parse.toString(), email, nacionalidad, imagenBytes);
+		}
+
+	}
+
+	@Override
+	public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad) {
+
+	}
+
+	@Override
+	public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String link, byte[] imagen, String descripcion) {
+
+	}
+
+
+	@Override
 	public void cargarDatos() {
 		try {
 			servidor.cargarDatos();
-		} catch (ExcepcionKeywordVacia_Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionValidezNegativa_Exception e) {
+		} catch (ExcepcionKeywordVacia_Exception | ExceptionValidezNegativa_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

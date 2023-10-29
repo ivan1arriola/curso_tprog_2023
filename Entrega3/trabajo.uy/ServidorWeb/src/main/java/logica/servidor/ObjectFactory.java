@@ -26,8 +26,12 @@ public class ObjectFactory {
 
     private final static QName _ExcepcionKeywordVacia_QNAME = new QName("http://servidor.logica/", "ExcepcionKeywordVacia");
     private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
+    private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
+    private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
+    private final static QName _ExceptionUsuarioNickYCorreoRepetidos_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickYCorreoRepetidos");
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
+    private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/", "TipoUsuarioNoValido");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: logica.servidor
@@ -57,6 +61,36 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExceptionUsuarioCorreoRepetido }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionUsuarioCorreoRepetido }
+     */
+    public ExceptionUsuarioCorreoRepetido createExceptionUsuarioCorreoRepetido() {
+        return new ExceptionUsuarioCorreoRepetido();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionUsuarioNickRepetido }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionUsuarioNickRepetido }
+     */
+    public ExceptionUsuarioNickRepetido createExceptionUsuarioNickRepetido() {
+        return new ExceptionUsuarioNickRepetido();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionUsuarioNickYCorreoRepetidos }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionUsuarioNickYCorreoRepetidos }
+     */
+    public ExceptionUsuarioNickYCorreoRepetidos createExceptionUsuarioNickYCorreoRepetidos() {
+        return new ExceptionUsuarioNickYCorreoRepetidos();
+    }
+
+    /**
      * Create an instance of {@link ExceptionUsuarioSeSigueASiMismo }
      * 
      * @return
@@ -74,6 +108,16 @@ public class ObjectFactory {
      */
     public ExceptionValidezNegativa createExceptionValidezNegativa() {
         return new ExceptionValidezNegativa();
+    }
+
+    /**
+     * Create an instance of {@link TipoUsuarioNoValido }
+     * 
+     * @return
+     *     the new instance of {@link TipoUsuarioNoValido }
+     */
+    public TipoUsuarioNoValido createTipoUsuarioNoValido() {
+        return new TipoUsuarioNoValido();
     }
 
     /**
@@ -114,6 +158,46 @@ public class ObjectFactory {
      */
     public ArrayList createArrayList() {
         return new ArrayList();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuario }
+     * 
+     * @return
+     *     the new instance of {@link DtUsuario }
+     */
+    public DtUsuario createDtUsuario() {
+        return new DtUsuario();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuarioSinInfoSocial }
+     * 
+     * @return
+     *     the new instance of {@link DtUsuarioSinInfoSocial }
+     */
+    public DtUsuarioSinInfoSocial createDtUsuarioSinInfoSocial() {
+        return new DtUsuarioSinInfoSocial();
+    }
+
+    /**
+     * Create an instance of {@link DtPostulante }
+     * 
+     * @return
+     *     the new instance of {@link DtPostulante }
+     */
+    public DtPostulante createDtPostulante() {
+        return new DtPostulante();
+    }
+
+    /**
+     * Create an instance of {@link DtEmpresa }
+     * 
+     * @return
+     *     the new instance of {@link DtEmpresa }
+     */
+    public DtEmpresa createDtEmpresa() {
+        return new DtEmpresa();
     }
 
     /**
@@ -177,46 +261,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtUsuario }
-     * 
-     * @return
-     *     the new instance of {@link DtUsuario }
-     */
-    public DtUsuario createDtUsuario() {
-        return new DtUsuario();
-    }
-
-    /**
-     * Create an instance of {@link DtUsuarioSinInfoSocial }
-     * 
-     * @return
-     *     the new instance of {@link DtUsuarioSinInfoSocial }
-     */
-    public DtUsuarioSinInfoSocial createDtUsuarioSinInfoSocial() {
-        return new DtUsuarioSinInfoSocial();
-    }
-
-    /**
-     * Create an instance of {@link DtPostulante }
-     * 
-     * @return
-     *     the new instance of {@link DtPostulante }
-     */
-    public DtPostulante createDtPostulante() {
-        return new DtPostulante();
-    }
-
-    /**
-     * Create an instance of {@link DtEmpresa }
-     * 
-     * @return
-     *     the new instance of {@link DtEmpresa }
-     */
-    public DtEmpresa createDtEmpresa() {
-        return new DtEmpresa();
-    }
-
-    /**
      * Create an instance of {@link DtTipoOferta }
      * 
      * @return
@@ -253,6 +297,45 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioCorreoRepetido }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioCorreoRepetido }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioCorreoRepetido")
+    public JAXBElement<ExceptionUsuarioCorreoRepetido> createExceptionUsuarioCorreoRepetido(ExceptionUsuarioCorreoRepetido value) {
+        return new JAXBElement<>(_ExceptionUsuarioCorreoRepetido_QNAME, ExceptionUsuarioCorreoRepetido.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNickRepetido }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNickRepetido }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNickRepetido")
+    public JAXBElement<ExceptionUsuarioNickRepetido> createExceptionUsuarioNickRepetido(ExceptionUsuarioNickRepetido value) {
+        return new JAXBElement<>(_ExceptionUsuarioNickRepetido_QNAME, ExceptionUsuarioNickRepetido.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNickYCorreoRepetidos }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNickYCorreoRepetidos }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNickYCorreoRepetidos")
+    public JAXBElement<ExceptionUsuarioNickYCorreoRepetidos> createExceptionUsuarioNickYCorreoRepetidos(ExceptionUsuarioNickYCorreoRepetidos value) {
+        return new JAXBElement<>(_ExceptionUsuarioNickYCorreoRepetidos_QNAME, ExceptionUsuarioNickYCorreoRepetidos.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioSeSigueASiMismo }{@code >}
      * 
      * @param value
@@ -276,6 +359,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionValidezNegativa")
     public JAXBElement<ExceptionValidezNegativa> createExceptionValidezNegativa(ExceptionValidezNegativa value) {
         return new JAXBElement<>(_ExceptionValidezNegativa_QNAME, ExceptionValidezNegativa.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TipoUsuarioNoValido }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link TipoUsuarioNoValido }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "TipoUsuarioNoValido")
+    public JAXBElement<TipoUsuarioNoValido> createTipoUsuarioNoValido(TipoUsuarioNoValido value) {
+        return new JAXBElement<>(_TipoUsuarioNoValido_QNAME, TipoUsuarioNoValido.class, null, value);
     }
 
 }
