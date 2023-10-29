@@ -82,12 +82,12 @@ public class AltaUsuario extends HttpServlet {
 			if ("empresa".equals(tipoUsuario)) {
                 descripcionEmpresa = request.getParameter("descripcion");
                 sitioWebEmpresa = request.getParameter("sitio-web");
-                logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
+               // logica.altaEmpresa(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
                 registroExitoso = true; 
             } else {
                 fechaNacimiento = request.getParameter("fecha-nacimiento");
                 nacionalidad = request.getParameter("nacionalidad");
-                logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad, imagenBytes);
+                //logica.altaPostulante(nickname, password, nombre, apellido, email, LocalDate.parse(fechaNacimiento), nacionalidad, imagenBytes);
                 registroExitoso = true;
             }
 
@@ -96,12 +96,8 @@ public class AltaUsuario extends HttpServlet {
             } else {
                 response.sendRedirect(request.getContextPath() + "/home");
             }
-        } catch (ExceptionUsuarioCorreoRepetido e) {
+        } catch (Exception e) {
             manejarExcepcion(request, response, "El correo electrónico ya está registrado. Elija otro");
-        } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
-            manejarExcepcion(request, response, "El nick y el correo electrónico ya están registrados. Elija otros");
-        } catch (ExceptionUsuarioNickRepetido e) {
-            manejarExcepcion(request, response, "El nickname ya está registrado. Elija otro");
         }
     }
 

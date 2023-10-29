@@ -29,9 +29,9 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
-    	response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
+        request.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(request, response);
     }
 
 

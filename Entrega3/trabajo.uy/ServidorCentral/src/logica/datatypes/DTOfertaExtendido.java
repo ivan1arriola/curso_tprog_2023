@@ -7,7 +7,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.servidor.adapter.DTHorarioAdapter;
 import logica.servidor.adapter.LocalDateAdapter;
-import logica.servidor.adapter.SetAdapter;
+import logica.servidor.adapter.SetDTPostulacionAdapter;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -15,6 +15,7 @@ import java.util.Set;
 public class DTOfertaExtendido {
     private String nombre;
     private String descripcion;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaDeAlta;
     private float costo;
     private float remuneracion;
@@ -23,7 +24,7 @@ public class DTOfertaExtendido {
     private DepUY departamento;
     private String ciudad;
     private EstadoOL estado;
-    @XmlJavaTypeAdapter(SetAdapter.class)
+    @XmlJavaTypeAdapter(SetDTPostulacionAdapter.class)
     private Set<DTPostulacion> postulaciones;
     private byte[] imagen;
     private String paq;

@@ -11,7 +11,7 @@ import enumeration.EstadoOfertaLaboral;
 import logica.servidor.DepUY;
 import logica.servidor.EstadoOL;
 
-public class OfertaLaboralBean {
+public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 	private String nombre;
 	private String descripcion;
 	private LocalDate fechaDeAlta;
@@ -66,20 +66,104 @@ public class OfertaLaboralBean {
     }
 
     // Setter para departamento con enumeración DepUY (compatible)
-    public void setDepartamento(DepUY depUY) {
-        this.departamento = Departamento.valueOf(depUY.name());
-    }
+	public void setDepartamento(DepUY depUY) {
+		Departamento departamento = null;
 
-    // Setter para estado con enumeración EstadoOfertaLaboral
+		switch (depUY) {
+			case ARTIGAS:
+				departamento = Departamento.Artigas;
+				break;
+			case SALTO:
+				departamento = Departamento.Salto;
+				break;
+			case PAYSANDU:
+				departamento = Departamento.Paysandú;
+				break;
+			case RIO_NEGRO:
+				departamento = Departamento.RioNegro;
+				break;
+			case SORIANO:
+				departamento = Departamento.Soriano;
+				break;
+			case COLONIA:
+				departamento = Departamento.Colonia;
+				break;
+			case RIVERA:
+				departamento = Departamento.Rivera;
+				break;
+			case TACUAREMBO:
+				departamento = Departamento.Tacuarembo;
+				break;
+			case DURAZNO:
+				departamento = Departamento.Durazno;
+				break;
+			case FLORES:
+				departamento = Departamento.Flores;
+				break;
+			case FLORIDA:
+				departamento = Departamento.Florida;
+				break;
+			case SAN_JOSE:
+				departamento = Departamento.SanJosé;
+				break;
+			case CANELONES:
+				departamento = Departamento.Canelones;
+				break;
+			case MONTEVIDEO:
+				departamento = Departamento.Montevideo;
+				break;
+			case CERRO_LARGO:
+				departamento = Departamento.CerroLargo;
+				break;
+			case TREINTA_Y_TRES:
+				departamento = Departamento.TreintaYTres;
+				break;
+			case LAVALLEJA:
+				departamento = Departamento.Lavalleja;
+				break;
+			case ROCHA:
+				departamento = Departamento.Rocha;
+				break;
+			case MALDONADO:
+				departamento = Departamento.Maldonado;
+				break;
+			default:
+				// Manejar un caso predeterminado si es necesario
+				break;
+		}
+
+		this.departamento = departamento;
+	}
+
+
+	// Setter para estado con enumeración EstadoOfertaLaboral
     public void setEstado(EstadoOfertaLaboral estado) {
         this.estado = estado;
     }
 
     // Setter para estado con enumeración EstadoOL (compatible)
-    public void setEstado(EstadoOL estadoOL) {
-        this.estado = EstadoOfertaLaboral.valueOf(estadoOL.name());
-    }
-	
+	public void setEstado(EstadoOL estadoOL) {
+		EstadoOfertaLaboral estado = null;
+
+		switch (estadoOL) {
+			case INGRESADA:
+				estado = EstadoOfertaLaboral.Ingresada;
+				break;
+			case CONFIRMADA:
+				estado = EstadoOfertaLaboral.Confirmada;
+				break;
+			case RECHAZADA:
+				estado = EstadoOfertaLaboral.Rechazada;
+				break;
+			case FINALIZADA:
+				// Puedes manejar este caso si es necesario
+				break;
+		}
+
+		this.estado = estado;
+	}
+
+
 	public String getNombre() {
         return nombre;
     }
@@ -233,4 +317,8 @@ public class OfertaLaboralBean {
 
 
 
+	@Override
+	public int compareTo(OfertaLaboralBean otraOferta) {
+		return this.nombre.compareTo(otraOferta.getNombre());
+	}
 }

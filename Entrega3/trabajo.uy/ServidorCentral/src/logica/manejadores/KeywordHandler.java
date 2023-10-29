@@ -6,6 +6,7 @@ import logica.clases.Keyword;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class KeywordHandler {
@@ -54,7 +55,7 @@ public class KeywordHandler {
         TypedQuery<Keyword> query = database.createQuery("SELECT k FROM Keyword k", Keyword.class);
         List<Keyword> keywordList = query.getResultList();
 
-        Map<String, Keyword> keywordMap = new HashMap<>();
+        Map<String, Keyword> keywordMap = new TreeMap<>();
         for (Keyword keyword : keywordList) {
             keywordMap.put(keyword.getNombre(), keyword);
         }

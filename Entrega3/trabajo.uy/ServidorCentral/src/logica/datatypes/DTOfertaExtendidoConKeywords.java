@@ -6,7 +6,8 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.servidor.adapter.LocalDateAdapter;
-import logica.servidor.adapter.SetAdapter;
+import logica.servidor.adapter.SetDTPostulacionAdapter;
+import logica.servidor.adapter.SetStringAdapter;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -21,8 +22,10 @@ public class DTOfertaExtendidoConKeywords {
     private DepUY departamento;
     private String ciudad;
     private EstadoOL estado;
+    @XmlJavaTypeAdapter(SetDTPostulacionAdapter.class)
     private Set<DTPostulacion> postulaciones;
     private byte[] imagen;
+    @XmlJavaTypeAdapter(SetStringAdapter.class)
     private Set<String> keywords;
 
 
@@ -78,7 +81,6 @@ public class DTOfertaExtendidoConKeywords {
         return estado;
     }
 
-    @XmlJavaTypeAdapter(SetAdapter.class)
     public Set<DTPostulacion> getPostulaciones() {
         return postulaciones;
     }

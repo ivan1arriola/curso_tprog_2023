@@ -2,15 +2,19 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.servidor.adapter.DTHorarioAdapter;
 import logica.servidor.adapter.LocalDateAdapter;
-import logica.servidor.adapter.SetAdapter;
+import logica.servidor.adapter.SetStringAdapter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
+@XmlSeeAlso({DTOfertaExtendidoConKeywordsPostulante.class, DTOfertaExtendidoConKeywordsTit.class})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaExtendidoSinPConK {
     private String nombre;
@@ -25,9 +29,13 @@ public class DTOfertaExtendidoSinPConK {
     private String ciudad;
     private EstadoOL estado;
     private byte[] imagen;
-    @XmlJavaTypeAdapter(SetAdapter.class)
-    private Set<String> keywords;
+
+    private ArrayList<String> keywords;
     private String nicknameEmpresaPublicadora;
+
+    public DTOfertaExtendidoSinPConK(){
+
+    }
 
     public DTOfertaExtendidoSinPConK(String nicknameEmpresa, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estado, byte[] img, Set<String> keys) {
         // no es subclase de DTOfertaExtendido,  es una version sin postulaciones
@@ -41,7 +49,7 @@ public class DTOfertaExtendidoSinPConK {
         ciudad = ciu;
         imagen = img;
         this.estado = estado;
-        keywords = keys;
+        keywords = new ArrayList<>(keys);
         nicknameEmpresaPublicadora = nicknameEmpresa;
     }
 
@@ -86,7 +94,7 @@ public class DTOfertaExtendidoSinPConK {
     }
 
     public Set<String> getKeywords() {
-        return keywords;
+        return new HashSet<>(keywords);
     }
 
     public String getNicknameEmpresaPublicadora() {

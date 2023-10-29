@@ -6,6 +6,7 @@ import logica.clases.Paquete;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class PaqueteHandler {
     private static PaqueteHandler instancia = null;
@@ -33,7 +34,7 @@ public class PaqueteHandler {
         List<Paquete> paqueteList = database.createQuery("SELECT p FROM Paquete p", Paquete.class).getResultList();
         database.getTransaction().commit();
 
-        Map<String, Paquete> paquetes = new HashMap<>();
+        Map<String, Paquete> paquetes = new TreeMap<>();
         for (Paquete paquete : paqueteList) {
             paquetes.put(paquete.getNombre(), paquete);
         }

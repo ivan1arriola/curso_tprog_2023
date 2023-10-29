@@ -3,7 +3,7 @@ package javabeans;
 import java.util.Set;
 import java.time.LocalDate;
 
-public class PaqueteBean {
+public class PaqueteBean implements Comparable<PaqueteBean> {
     private String nombre;
     private float costo;
     private float descuento;
@@ -87,5 +87,10 @@ public class PaqueteBean {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    @Override
+    public int compareTo(PaqueteBean otroBean) {
+        return this.nombre.compareTo(otroBean.getNombre());
     }
 }

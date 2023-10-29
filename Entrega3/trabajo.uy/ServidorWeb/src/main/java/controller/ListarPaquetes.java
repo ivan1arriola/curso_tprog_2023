@@ -27,7 +27,7 @@ public class ListarPaquetes extends HttpServlet {
      */
     public ListarPaquetes() {
         super();
-        logica = FabricaWeb.getInstance().getLogica();
+        logica = FabricaWeb.getLogica();
     }
     
     

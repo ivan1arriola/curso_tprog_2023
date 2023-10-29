@@ -34,7 +34,7 @@ public class CrearPostulacion extends HttpServlet {
 	 */
 	protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
-
+/*
 		HttpSession session = request.getSession(false);
 		String nickname = (String) session.getAttribute("nickname");
 		Fabrica fabrica = Fabrica.getInstance();
@@ -44,7 +44,7 @@ public class CrearPostulacion extends HttpServlet {
 		String nombreOferta = request.getParameter("id");
 		request.setAttribute("oferta", nombreOferta);
 		
-		
+		*/
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/crearPostulacion.jsp");
         dispatcher.forward(request, response);
@@ -60,7 +60,7 @@ public class CrearPostulacion extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String nickname = (String) session.getAttribute("nickname");
 		String nombreOferta = request.getParameter("nombreOferta");
-		Fabrica.getInstance().getICtrlOferta().altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, null, LocalDate.now());
+		//Fabrica.getInstance().getICtrlOferta().altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, null, LocalDate.now());
 		response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
 	}
 

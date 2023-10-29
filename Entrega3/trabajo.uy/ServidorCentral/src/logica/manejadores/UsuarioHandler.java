@@ -7,6 +7,7 @@ import logica.clases.Usuario;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 //import main.java.excepciones.ExceptionUsuarioNoEncontrado;
 
@@ -90,7 +91,7 @@ public class UsuarioHandler {
             TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u", Usuario.class);
             List<Usuario> usuarios = query.getResultList();
 
-            Map<String, Usuario> nickUsuariosMap = new HashMap<>();
+            Map<String, Usuario> nickUsuariosMap = new TreeMap<>();
             for (Usuario usuario : usuarios) {
                 nickUsuariosMap.put(usuario.getNickname(), usuario);
             }
@@ -107,7 +108,7 @@ public class UsuarioHandler {
             TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u", Usuario.class);
             List<Usuario> usuarios = query.getResultList();
 
-            Map<String, Usuario> correoUsuariosMap = new HashMap<>();
+            Map<String, Usuario> correoUsuariosMap = new TreeMap<>();
             for (Usuario usuario : usuarios) {
                 correoUsuariosMap.put(usuario.getcorreoElectronico(), usuario);
             }

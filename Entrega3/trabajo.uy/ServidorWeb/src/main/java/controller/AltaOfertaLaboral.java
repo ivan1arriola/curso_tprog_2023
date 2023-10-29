@@ -86,10 +86,10 @@ public class AltaOfertaLaboral extends HttpServlet {
         String nickname = (String) session.getAttribute("nickname");
 
         try {
-            logica.altaOfertaLaboral(
+           /* logica.altaOfertaLaboral(
                 nickname, tipoOferta, nombre, descripcion, new DTHorario(obtenerDTHora(horaInicio), obtenerDTHora(horaFinal)),
                 remuneracion, ciudad, departamento, LocalDate.now(), keywordsSet, EstadoOfertaLaboral.Ingresada, null, formaPago
-            );
+            );*/
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
         } catch (Exception e) {
             e.printStackTrace();

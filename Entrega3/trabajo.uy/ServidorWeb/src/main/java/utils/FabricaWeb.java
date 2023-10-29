@@ -12,11 +12,11 @@ public class FabricaWeb {
         return new FabricaWeb();    
     }
 
-    public ILogica getLogica() {
+    public static ILogica getLogica() {
         return new Logica();
     }
 
-    public IKeywordsLoader getKeywordsLoader() {
+    public static IKeywordsLoader getKeywordsLoader() {
         return new KeywordsLoader(); 
     }
 }

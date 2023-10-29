@@ -3,9 +3,8 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import logica.servidor.adapter.SetAdapter;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @XmlSeeAlso({DTPostulante.class, DTEmpresa.class})
@@ -18,11 +17,9 @@ public class DTUsuario {
     private String contrasenia;
     private byte[] imagen;
 
-    @XmlJavaTypeAdapter(SetAdapter.class)
-    private Set<DTUsuarioSinInfoSocial> seguidos;
+    private ArrayList<DTUsuarioSinInfoSocial> seguidos;
 
-    @XmlJavaTypeAdapter(SetAdapter.class)
-    private Set<DTUsuarioSinInfoSocial> seguidores;
+    private ArrayList<DTUsuarioSinInfoSocial> seguidores;
 
     public DTUsuario(String nickname, String correoElectronico, String apellido, String nombre, String contrasenia, byte[] img, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
         this.nickname = nickname;
@@ -31,8 +28,8 @@ public class DTUsuario {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
         this.imagen = img;
-        this.seguidos = seguidos;
-        this.seguidores = seguidores;
+        this.seguidos = new ArrayList<>(seguidos);
+        this.seguidores = new ArrayList<>(seguidores);
     }
 
     @Override
@@ -65,11 +62,11 @@ public class DTUsuario {
     }
 
 
-    public Set<DTUsuarioSinInfoSocial> getSeguidos() {
+    public ArrayList<DTUsuarioSinInfoSocial> getSeguidos() {
         return seguidos;
     }
 
-    public Set<DTUsuarioSinInfoSocial> getSeguidores() {
+    public ArrayList<DTUsuarioSinInfoSocial> getSeguidores() {
         return seguidores;
     }
 

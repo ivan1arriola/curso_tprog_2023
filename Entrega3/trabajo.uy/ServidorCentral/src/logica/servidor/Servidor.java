@@ -2,6 +2,7 @@ package logica.servidor;
 
 
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import excepciones.ExceptionValidezNegativa;
 import jakarta.jws.WebMethod;
@@ -11,7 +12,7 @@ import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
 import logica.Fabrica;
-import logica.datatypes.DTUsuario;
+import logica.datatypes.*;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.servidor.bean.WrapperLista;
@@ -33,7 +34,7 @@ public class Servidor {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String address = "http://localhost:" + WSUtils.obtenerPuerto() + "/webservices";
+        String address = "http://" + WSUtils.obtenerIp() + ":" + WSUtils.obtenerPuerto() + "/webservices";
         endpoint = Endpoint.publish(address, this);
         System.out.println("Se publico el servicio en " + address);
         System.out.println("WSDL : " + address + "?wsdl");
@@ -61,9 +62,65 @@ public class Servidor {
     }
 
     @WebMethod
+    public DTTipoOferta obtenerDatosTO(String nickname) throws ExcepcionTipoOfertaNoExistente {
+        return ctrlOferta.obtenerDatosTO(nickname);
+    }
+    @WebMethod
+    public WrapperLista listarOfertasLaboralesConfirmadas(String nicknameParametro) {
+        return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesConfirmadas(nicknameParametro));
+    }
+    @WebMethod
     public WrapperLista listarNicknamesUsuarios() {
         return WSUtils.envolverLista(ctrlUsuario.listarNicknamesUsuarios());
     }
+
+    @WebMethod
+    public WrapperLista listarOfertasLaboralesKeywords(String keyword) {
+        return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesKeywords(keyword));
+    }
+
+    @WebMethod
+    public WrapperLista listarPaquetes() {
+        return WSUtils.envolverLista(ctrlOferta.listarPaquetes());
+    }
+
+    @WebMethod
+    public WrapperLista listarTodasLasOfertasLaborales(String nicknameParametro) {
+        return WSUtils.envolverLista(ctrlOferta.listarTodasLasOfertasLaborales(nicknameParametro));
+    }
+    @WebMethod
+    public DTPostulacion obtenerDatosPostulacionW(String nicknameParametro, String nombreOferta){
+        return ctrlUsuario.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
+    }
+
+    @WebMethod
+    public DTOfertaExtendido obtenerOfertaLaboral(String nombreOferta) {
+        return ctrlOferta.obtenerOfertaLaboral(nombreOferta);
+    }
+
+    @WebMethod
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String empresaNickname, String nombreOferta) {
+        return ctrlOferta.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+    }
+
+    @WebMethod
+    public WrapperLista obtenerDTOfertasLaboralesConfirmadas() {
+        return WSUtils.envolverDTOfertaExtendido(ctrlOferta.listarOfertasLaboralesConfirmadas());
+    }
+
+    @WebMethod
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String postulanteNickname, String nombreOferta) {
+        return ctrlOferta.infoOfertaLaboralPostulante(postulanteNickname, nombreOferta);
+    }
+
+    @WebMethod
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombreOferta) {
+        return ctrlOferta.infoOfertaLaboralVisitante(nombreOferta);
+    }
+
+
+
+
 
     @WebMethod
     public WrapperLista listarComprasPaquete(String nickname) {
@@ -73,6 +130,15 @@ public class Servidor {
     @WebMethod
     public WrapperLista listarTipoDePublicaciones() {
         return WSUtils.envolverLista(ctrlOferta.listarTipoDePublicaciones());
+    }
+
+    @WebMethod
+    public WrapperLista listarKeywords() {
+        return WSUtils.envolverLista(ctrlOferta.listarKeywords());
+    }
+
+    public DTPaquete obtenerDatosPaquete(String nombrePaquete){
+        return ctrlOferta.obtenerDatosPaquete(nombrePaquete);
     }
 
     @WebMethod

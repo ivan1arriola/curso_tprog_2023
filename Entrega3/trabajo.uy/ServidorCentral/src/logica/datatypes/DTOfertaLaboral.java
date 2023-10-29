@@ -6,7 +6,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.servidor.adapter.DTHorarioAdapter;
-import logica.servidor.adapter.SetAdapter;
+import logica.servidor.adapter.LocalDateAdapter;
 
 import java.time.LocalDate;
 
@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class DTOfertaLaboral {
     private String nombre;
     private String descripcion;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaDeAlta;
     private float costo;
     private float remuneracion;

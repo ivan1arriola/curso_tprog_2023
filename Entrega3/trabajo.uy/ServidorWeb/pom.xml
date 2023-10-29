@@ -89,5 +89,10 @@
     <artifactId>jaxws-rt</artifactId>
     <version>4.0.2</version>
   </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina</artifactId>
+      <version>10.1.12</version>
+    </dependency>
   </dependencies>
 </project>

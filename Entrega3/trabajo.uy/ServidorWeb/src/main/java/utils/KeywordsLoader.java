@@ -5,14 +5,14 @@ import java.util.Set;
 import interfaces.IKeywordsLoader;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.Fabrica;
+
 
 public class KeywordsLoader implements IKeywordsLoader{
 
 	@Override
 	public void cargarKeywords(HttpServletRequest request, HttpServletResponse response) {
 
-		Set<String> keys = Fabrica.getInstance().getICtrlOferta().listarKeywords();
+		Set<String> keys = FabricaWeb.getLogica().listarKeywords();
 		request.setAttribute("keys", keys);
 		
 	}

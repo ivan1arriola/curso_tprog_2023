@@ -9,6 +9,7 @@ import logica.clases.OfertaLaboral;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class OfertaLaboralHandler {
@@ -46,7 +47,7 @@ public class OfertaLaboralHandler {
     }
 
     public Map<String, OfertaLaboral> obtener() {
-        Map<String, OfertaLaboral> ofertasLaborales = new HashMap<>();
+        Map<String, OfertaLaboral> ofertasLaborales = new TreeMap<>();
         try {
             TypedQuery<OfertaLaboral> query = database.createQuery("SELECT o FROM OfertaLaboral o", OfertaLaboral.class);
             List<OfertaLaboral> resultados = query.getResultList();

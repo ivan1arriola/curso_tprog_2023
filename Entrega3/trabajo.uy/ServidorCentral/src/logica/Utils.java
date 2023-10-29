@@ -34,6 +34,18 @@ public class Utils {
         return DEFAULT_UBICACION;
     }
 
+    private static void crearDirectorio(String rutaDirectorio) {
+        File directorio = new File(rutaDirectorio);
+
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado: " + rutaDirectorio);
+            } else {
+                System.err.println("No se pudo crear el directorio: " + rutaDirectorio);
+            }
+        }
+    }
+
     Map<String, String[]> usuarioCSV = new HashMap<>();
     Map<String, String[]> empresaCSV = new HashMap<>();
     Map<String, String[]> postulanteCSV = new HashMap<>();

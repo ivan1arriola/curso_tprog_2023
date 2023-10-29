@@ -9,6 +9,8 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
+import logica.servidor.DtTipoOferta;
+import logica.servidor.ExcepcionTipoOfertaNoExistente_Exception;
 
 
 public interface ILogica {
@@ -106,9 +108,8 @@ public interface ILogica {
 
 	OfertaLaboralBean DatosOferta(String nombre_oferta);
 
-	
 
-    
+	Set<DtTipoOferta> obtenerTipoOfertas();
 
-
+	DtTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente_Exception;
 }

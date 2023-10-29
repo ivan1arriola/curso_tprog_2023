@@ -5,7 +5,7 @@ import java.util.Set;
 
 import enumeration.TipoUsuario;
 
-public class UsuarioBean {
+public class UsuarioBean implements Comparable<UsuarioBean> {
 	
 	private String nickname;
     private String correoElectronico;
@@ -164,7 +164,8 @@ public class UsuarioBean {
 	}
 
 
-    
-    
-
+	@Override
+	public int compareTo(UsuarioBean otroBean) {
+		return this.nombre.compareTo(otroBean.getNombre());
+	}
 }

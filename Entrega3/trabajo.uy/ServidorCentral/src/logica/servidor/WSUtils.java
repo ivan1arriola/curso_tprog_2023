@@ -1,5 +1,6 @@
 package logica.servidor;
 
+import logica.datatypes.DTOfertaExtendido;
 import logica.servidor.bean.WrapperLista;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public class WSUtils {
         return 9128;
     }
 
+    public static String obtenerIp(){
+        return "localhost";
+    }
+
     public static WrapperLista envolverLista(Set<String> strings) {
         return envolverLista(new ArrayList<>(strings));
     }
@@ -31,4 +36,9 @@ public class WSUtils {
     }
 
 
+    public static WrapperLista envolverDTOfertaExtendido(Set<DTOfertaExtendido> dtOfertaExtendidos) {
+        WrapperLista listaBean = new WrapperLista();
+        listaBean.setOfertasExtendido(new ArrayList<>(dtOfertaExtendidos));
+        return listaBean;
+    }
 }

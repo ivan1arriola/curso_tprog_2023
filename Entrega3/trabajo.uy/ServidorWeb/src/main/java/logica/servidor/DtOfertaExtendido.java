@@ -19,7 +19,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       <sequence>
  *         <element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="fechaDeAlta" type="{http://servidor.logica/}localDate" minOccurs="0"/>
+ *         <element name="fechaDeAlta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="remuneracion" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="horario" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -58,7 +58,7 @@ public class DtOfertaExtendido {
 
     protected String nombre;
     protected String descripcion;
-    protected LocalDate fechaDeAlta;
+    protected String fechaDeAlta;
     protected float costo;
     protected float remuneracion;
     protected String horario;
@@ -125,10 +125,10 @@ public class DtOfertaExtendido {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaDeAlta() {
+    public String getFechaDeAlta() {
         return fechaDeAlta;
     }
 
@@ -137,10 +137,10 @@ public class DtOfertaExtendido {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaDeAlta(LocalDate value) {
+    public void setFechaDeAlta(String value) {
         this.fechaDeAlta = value;
     }
 

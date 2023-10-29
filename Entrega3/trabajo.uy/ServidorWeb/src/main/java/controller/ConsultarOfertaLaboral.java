@@ -20,7 +20,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
     public ConsultarOfertaLaboral() {
         super();
-        logica = FabricaWeb.getInstance().getLogica();
+        logica = FabricaWeb.getLogica();
     }
 
     private OfertaLaboralBean cargarDatosIniciales(String nombreOferta) {
@@ -28,7 +28,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         String nombreOferta = request.getParameter("o");
         if (nombreOferta != null && !nombreOferta.isEmpty()) {

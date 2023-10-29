@@ -1,6 +1,6 @@
 package javabeans;
 
-public class CantTipoPublicacionBean {
+public class CantTipoPublicacionBean implements Comparable<CantTipoPublicacionBean> {
     private String nombre;
     private int cantidad;
 
@@ -24,5 +24,10 @@ public class CantTipoPublicacionBean {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    @Override
+    public int compareTo(CantTipoPublicacionBean otroBean) {
+        return this.nombre.compareTo(otroBean.getNombre());
     }
 }

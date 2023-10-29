@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.Fabrica;
+
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -52,9 +52,9 @@ public class ModificarUsuario extends HttpServlet {
 	        if(fechanacimiento != null) {
 	        	// es postulante
 	        	LocalDate fecha = convertirCadenaAFecha(fechanacimiento);
-	        	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, null, fecha, nacionalidad);
+	        //	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, null, fecha, nacionalidad);
 	        } else {
-	        	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, link, null, descripcion);
+	        //	Fabrica.getInstance().getICtrlUsuario().ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, link, null, descripcion);
 	        }
 	        response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nickname);
         } catch (Exception e) {

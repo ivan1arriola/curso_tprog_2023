@@ -19,21 +19,21 @@ public class ConsultaPostulacion extends HttpServlet {
     }
 
     protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
-        Fabrica fabrica = Fabrica.getInstance();
-        DTUsuario usuario = fabrica.getICtrlUsuario().obtenerDatosUsuario(nickname);
-        String postulante = usuario.getNombre() + " " + usuario.getApellido();
-        request.setAttribute("postulante", postulante);
+      /*  //Fabrica fabrica = Fabrica.getInstance();
+       // DTUsuario usuario = fabrica.getICtrlUsuario().obtenerDatosUsuario(nickname);
+        //String postulante = usuario.getNombre() + " " + usuario.getApellido();
+    //    request.setAttribute("postulante", postulante);
         String nombreOferta = request.getParameter("id");
         request.setAttribute("oferta", nombreOferta);
 
-        DTPostulacion dtp = Fabrica.getInstance().getICtrlOferta().obtenerDatosPostulacionW(nickname, nombreOferta);
-        request.setAttribute("CVRed", dtp.getcVitae());
+    //    DTPostulacion dtp = Fabrica.getInstance().getICtrlOferta().obtenerDatosPostulacionW(nickname, nombreOferta);
+     //   request.setAttribute("CVRed", dtp.getcVitae());
         request.setAttribute("CVMot", dtp.getMotivacion());
-        request.setAttribute("FechaPost", dtp.getFecha());
+        request.setAttribute("FechaPost", dtp.getFecha());*/
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultaPostulacion/consultaPostulacion.jsp");
         dispatcher.forward(request, response);

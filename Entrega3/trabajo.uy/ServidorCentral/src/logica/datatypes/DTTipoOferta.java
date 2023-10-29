@@ -2,11 +2,15 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import logica.servidor.adapter.LocalDateAdapter;
+import logica.servidor.adapter.SetDTCantTOAdapter;
 
 import java.time.LocalDate;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTTipoOferta {
     private String nombre;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaAlta;
     private float costo;
     private int duracion;

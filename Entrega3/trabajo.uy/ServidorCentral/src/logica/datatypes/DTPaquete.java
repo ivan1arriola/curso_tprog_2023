@@ -2,8 +2,14 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import logica.servidor.adapter.LocalDateAdapter;
+import logica.servidor.adapter.SetDTCantTOAdapter;
+import logica.servidor.adapter.SetDTPostulacionAdapter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTPaquete {
@@ -12,7 +18,8 @@ public class DTPaquete {
     private float descuento;
     private int validez;
     private String descripcion;
-    private Set<DTCantTO> tiposDePub;
+    private ArrayList<DTCantTO> tiposDePub;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaA;
     private byte[] imagen;
 
@@ -22,7 +29,7 @@ public class DTPaquete {
         this.descuento = descuento;
         validez = valid;
         descripcion = desc;
-        tiposDePub = tdp;
+        tiposDePub = new ArrayList<>(tdp) ;
         fechaA = fechaAlta;
         this.imagen = imagen;
     }
@@ -49,7 +56,7 @@ public class DTPaquete {
     }
 
     public Set<DTCantTO> getTiposDePub() {
-        return tiposDePub;
+        return new HashSet<>(tiposDePub);
     }
 
     public LocalDate getFechaAlta() {

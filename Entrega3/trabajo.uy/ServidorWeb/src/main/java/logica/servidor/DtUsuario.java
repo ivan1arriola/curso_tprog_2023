@@ -1,8 +1,11 @@
 
 package logica.servidor;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -23,8 +26,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="contrasenia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
- *         <element name="seguidos" type="{http://servidor.logica/}arrayList" minOccurs="0"/>
- *         <element name="seguidores" type="{http://servidor.logica/}arrayList" minOccurs="0"/>
+ *         <element name="seguidos" type="{http://servidor.logica/}dtUsuarioSinInfoSocial" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="seguidores" type="{http://servidor.logica/}dtUsuarioSinInfoSocial" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -56,8 +59,10 @@ public class DtUsuario {
     protected String nombre;
     protected String contrasenia;
     protected byte[] imagen;
-    protected ArrayList seguidos;
-    protected ArrayList seguidores;
+    @XmlElement(nillable = true)
+    protected List<DtUsuarioSinInfoSocial> seguidos;
+    @XmlElement(nillable = true)
+    protected List<DtUsuarioSinInfoSocial> seguidores;
 
     /**
      * Obtiene el valor de la propiedad nickname.
@@ -202,51 +207,65 @@ public class DtUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad seguidos.
+     * Gets the value of the seguidos property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the seguidos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSeguidos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtUsuarioSinInfoSocial }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link ArrayList }
-     *     
+     *     The value of the seguidos property.
      */
-    public ArrayList getSeguidos() {
-        return seguidos;
+    public List<DtUsuarioSinInfoSocial> getSeguidos() {
+        if (seguidos == null) {
+            seguidos = new ArrayList<>();
+        }
+        return this.seguidos;
     }
 
     /**
-     * Define el valor de la propiedad seguidos.
+     * Gets the value of the seguidores property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayList }
-     *     
-     */
-    public void setSeguidos(ArrayList value) {
-        this.seguidos = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad seguidores.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the seguidores property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSeguidores().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtUsuarioSinInfoSocial }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link ArrayList }
-     *     
+     *     The value of the seguidores property.
      */
-    public ArrayList getSeguidores() {
-        return seguidores;
-    }
-
-    /**
-     * Define el valor de la propiedad seguidores.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayList }
-     *     
-     */
-    public void setSeguidores(ArrayList value) {
-        this.seguidores = value;
+    public List<DtUsuarioSinInfoSocial> getSeguidores() {
+        if (seguidores == null) {
+            seguidores = new ArrayList<>();
+        }
+        return this.seguidores;
     }
 
 }

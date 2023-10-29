@@ -8,6 +8,7 @@ import logica.clases.TipoOferta;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.TreeMap;
 
 public class TipoOfertaHandler {
     private static TipoOfertaHandler tOfertaHandler = null;
@@ -69,7 +70,7 @@ public class TipoOfertaHandler {
     }
 
     public Map<String, TipoOferta> obtener() {
-        Map<String, TipoOferta> tipoOfertas = new HashMap<>();
+        Map<String, TipoOferta> tipoOfertas = new TreeMap<>();
         try {
             TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t", TipoOferta.class);
             List<TipoOferta> resultados = query.getResultList();

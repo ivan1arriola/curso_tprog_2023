@@ -4,7 +4,7 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import logica.servidor.adapter.SetAdapter;
+import logica.servidor.adapter.SetDTOfertaExtendidoAdapter;
 
 import java.util.Set;
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -13,7 +13,7 @@ public class DTEmpresa extends DTUsuario {
     private String descripcion;
     private String url;
 
-    @XmlJavaTypeAdapter(SetAdapter.class)
+    @XmlJavaTypeAdapter(SetDTOfertaExtendidoAdapter.class)
     private Set<DTOfertaExtendido> ofertasLaborales;
 
 

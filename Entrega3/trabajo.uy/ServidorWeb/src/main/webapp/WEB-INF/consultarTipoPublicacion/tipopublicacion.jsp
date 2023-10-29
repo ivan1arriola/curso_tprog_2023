@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="logica.datatypes.DTTipoOferta" %>
+<%@ page import="logica.servidor.DtTipoOferta" %>
 
     <%
     	String nombrePagina = (String) request.getAttribute("nombrePagina");
     	if (nombrePagina == null) nombrePagina = "Tipo de Publicacion de Oferta Laboral";
-    	
-    	DTTipoOferta tipo = (DTTipoOferta) request.getAttribute("tipoPublicacion");
+
+        DtTipoOferta tipo = (DtTipoOferta) request.getAttribute("tipoPublicacion");
     	
     
     %>

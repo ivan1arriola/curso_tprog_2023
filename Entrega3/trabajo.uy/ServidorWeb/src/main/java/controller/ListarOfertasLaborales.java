@@ -36,7 +36,7 @@ public class ListarOfertasLaborales extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
 		
 		
@@ -55,9 +55,7 @@ public class ListarOfertasLaborales extends HttpServlet {
                 ofertas = logica.listarDatosOfertas();
             }
         } catch (Exception e) {
-            // Handle the exception and provide an error message
-            e.printStackTrace(); // Log the exception for debugging
-            // In case of an error, fall back to getOfertasLaborales()
+            e.printStackTrace();
             ofertas = logica.listarDatosOfertas();
         }
 
