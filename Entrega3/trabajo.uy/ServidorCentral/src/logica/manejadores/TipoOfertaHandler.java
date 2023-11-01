@@ -5,7 +5,6 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import logica.clases.TipoOferta;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.TreeMap;

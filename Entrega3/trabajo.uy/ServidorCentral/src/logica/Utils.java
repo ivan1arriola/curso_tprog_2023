@@ -245,19 +245,7 @@ public class Utils {
         return sanitizedInput;
     }
 
-    public static void guardarImagen(String subcarpeta, String nombreImagen, String tipoImagen, byte[] imagenBytes) {
-        if(imagenBytes==null) return;
-        try {
-            String ubicacion = getUbicacionImagenes() + "/" + subcarpeta + "/" + generateImageCode(nombreImagen) + "." + tipoImagen;
-            FileOutputStream fileOutputStream = new FileOutputStream(ubicacion);
-            fileOutputStream.write(imagenBytes);
-            fileOutputStream.close();
 
-            System.out.println("Imagen guardada exitosamente en " + ubicacion);
-        } catch (IOException e) {
-            System.err.println("Error al guardar la imagen: " + e.getMessage());
-        }
-    }
 
     public static String getDirectUrl(String shortUrl) {
         try {
@@ -370,7 +358,7 @@ public class Utils {
                 return DepUY.Salto;
             case "Paysandú":
                 return DepUY.Paysandu;
-            case "Rionegro":
+            case "Río Negro":
                 return DepUY.RioNegro;
             case "Soriano":
                 return DepUY.Soriano;

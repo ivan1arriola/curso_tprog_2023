@@ -3,7 +3,6 @@ package logica.manejadores;
 import jakarta.persistence.EntityManager;
 import logica.clases.Paquete;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;

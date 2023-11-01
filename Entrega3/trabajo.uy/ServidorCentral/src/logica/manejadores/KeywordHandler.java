@@ -3,7 +3,6 @@ package logica.manejadores;
 import jakarta.persistence.*;
 import logica.clases.Keyword;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,9 +12,12 @@ public class KeywordHandler {
     private static KeywordHandler instancia = null;
     private static EntityManager database = null;
 
+
+    // constructor vacio
     private KeywordHandler() {
     }
 
+    // singleton, para el keyword handler
     public static KeywordHandler getInstance() {
         if (instancia == null) {
             instancia = new KeywordHandler();
@@ -23,15 +25,20 @@ public class KeywordHandler {
         return instancia;
     }
 
+
+    // agregar a la base de datos
     public void agregar(Keyword key) {
         if (key == null) {
             throw new IllegalArgumentException("La keyword a agregar no puede ser vacía");
         }
+            // obtengo instancia de la base de datos
             EntityTransaction tx = database.getTransaction();
             if(!database.getTransaction().isActive()) {
                 database.getTransaction().begin();
             }
+            // esto es lo que hace gardar la keyword
             database.persist(key);
+            // tengo que hacer commit despues
             tx.commit();
     }
 

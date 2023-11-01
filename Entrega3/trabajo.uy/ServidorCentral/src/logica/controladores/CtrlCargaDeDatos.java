@@ -194,6 +194,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 String tipodePublicacion = utils.buscarTipoPublicacion(ofertaLaboralData[8]);
                 List<String> keys = utils.buscarPalabrasClave(ofertaLaboralId);
 
+                // controlar caso rio negro
                 DepUY dep = utils.obtenerDepUYDesdeNombre(ofertaLaboralData[3]);
                 EstadoOL estado = utils.obtenerEstadoDesdeString(ofertaLaboralData[10]);
                 String paq = ofertaLaboralData[11];

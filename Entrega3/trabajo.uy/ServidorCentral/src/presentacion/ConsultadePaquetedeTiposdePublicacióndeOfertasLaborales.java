@@ -243,6 +243,9 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
     public void actualizar() {
         Set<String> paquetes = ico.listarPaquetes();
 
+        // remover todos los items, asi evito duplicados
+        listadoPaquetes.removeAllItems();
+        // agrego items
         for (String element1 : paquetes) {
             listadoPaquetes.addItem(element1);
         }

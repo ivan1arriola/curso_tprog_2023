@@ -169,7 +169,6 @@ public class OfertaLaboral {
         this.postulaciones = new ArrayList<>(); // originalmente vacío
 
         System.out.println("Se ha creado una Oferta Laboral. - " + nombre);
-        Utils.guardarImagen("OfertasLaborales", nombre, "jpg", imagennueva);
 
     }
 
@@ -260,7 +259,6 @@ public class OfertaLaboral {
         this.postulaciones = new ArrayList<>(); // originalmente vacío
 
         System.out.println("Se ha creado una Oferta Laboral (forzado). - " + nombre);
-        Utils.guardarImagen("OfertasLaborales", nombre, "jpg", imagennueva);
     }
 
     private void setHorario(DTHorario atrhorario) {
