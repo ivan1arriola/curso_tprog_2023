@@ -31,23 +31,23 @@ public class Principal {
     private AltaDeKeywords altaDeKeywordsInternalFrame;
     private AceptarOferta aceptarOfertaInternalFrame;
 
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
+    EntityManagerFactory entityManagerFactory = null;
+    EntityManager entityManager = null;
 
     private void empezarConexion() {
-        emf = Persistence.createEntityManagerFactory("TrabajoUy");
-        em = emf.createEntityManager();
+        entityManagerFactory = Persistence.createEntityManagerFactory("TrabajoUy");
+        entityManager = entityManagerFactory.createEntityManager();
     }
     private void cerrarConexion() {
-        if (em != null && em.isOpen()) {
-            em.close();
+        if (entityManager != null && entityManager.isOpen()) {
+            entityManager.close();
         }
-        if (emf != null && emf.isOpen()) {
-            emf.close();
+        if (entityManagerFactory != null && entityManagerFactory.isOpen()) {
+            entityManagerFactory.close();
         }
 
-        em = null;
-        emf = null;
+        entityManager = null;
+        entityManagerFactory = null;
     }
 
     /**
@@ -66,11 +66,11 @@ public class Principal {
 
         // Base de Datos
         empezarConexion();
-        KeywordHandler.setBaseDatos(em);
-        OfertaLaboralHandler.setBaseDatos(em);
-        PaqueteHandler.setBaseDatos(em);
-        TipoOfertaHandler.setBaseDatos(em);
-        UsuarioHandler.setBaseDatos(em);
+        KeywordHandler.setBaseDatos(entityManager);
+        OfertaLaboralHandler.setBaseDatos(entityManager);
+        PaqueteHandler.setBaseDatos(entityManager);
+        TipoOfertaHandler.setBaseDatos(entityManager);
+        UsuarioHandler.setBaseDatos(entityManager);
 
 
 

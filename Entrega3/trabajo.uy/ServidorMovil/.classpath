@@ -12,11 +12,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-10.1.12">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -67,5 +62,8 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/stax-ex.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/streambuffer.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/woodstox-core.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-10.1.12"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

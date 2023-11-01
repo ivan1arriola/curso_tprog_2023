@@ -6,6 +6,7 @@
     <persistence-unit name="TrabajoUy"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		
 		<class>logica.clases.Keyword</class>
 		<class>logica.clases.TipoOferta</class>
 		<class>logica.clases.Paquete</class>
@@ -30,5 +31,6 @@
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 		</properties>
+		
 	</persistence-unit>
 </persistence>

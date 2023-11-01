@@ -19,10 +19,12 @@ import java.util.Set;
 public class DTOfertaExtendidoSinPConK {
     private String nombre;
     private String descripcion;
+    
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaAlta;
     private float costo;
     private float remuneracion;
+    
     @XmlJavaTypeAdapter(DTHorarioAdapter.class)
     private DTHorario horario;
     private DepUY departamento;
