@@ -118,8 +118,10 @@ public class Empresa extends Usuario {
                 }
 
                 return ofertaLab;
-            } else {
+            } else if (remun<0){
                 throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración de la oferta laboral es negativa.");
+            } else {
+            	throw new NumberFormatException("La remuneración debe ser un número");
             }
         } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
             throw exc;

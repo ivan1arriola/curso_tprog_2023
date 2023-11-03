@@ -363,7 +363,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
                 String nomb = nombre.getText();
                 String ciu = ciudad.getText();
                 String desc = descripcion.getText();
-                Float remu = Float.parseFloat(remuneracion.getText());
+                String remuString = remuneracion.getText();
+                //Float remu = Float.parseFloat(remuneracion.getText());
 
                 if (nomb.isEmpty() || ciu.isEmpty() || desc.isEmpty() || remuneracion.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "No pueden existir campos vacíos.", "ERROR - Alta de Oferta", JOptionPane.ERROR_MESSAGE);
@@ -371,8 +372,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
                     JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "El nombre indicado se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                 } else if (!ciu.matches("^[\\p{L} ]+$")) {
                     JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La ciudad indicada se compone de carácteres que no son letras.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                } else if (remu <= 0) {
-                    JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "La remuneración debe ser un número positivo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                 } else if (!botonConPaq.isSelected() && !botonSinPaq.isSelected()) {
                     JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Debe seleccionar si la oferta corresponde a un paquete o no.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 
@@ -380,6 +379,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
 
                     try {
+                    	Float remu = Float.parseFloat(remuneracion.getText());
+                    	
+                    	
                         boolean noexiste = icUsuario.altaOfertaLaboral(empresa, ofertaLab, nomb, desc, horario, remu, ciu, departamento, LocalDate.now(), keywords, EstadoOL.Ingresada, null, opcionPaq);
                         if (!noexiste) {
                             JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Ya existe una oferta laboral con el nombre indicado.", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
@@ -404,7 +406,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Costo no puede ser negativo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Sin disponibilidad del Tipo Oferta en Paquete Seleccionado", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                    }
+                    } 
 
 
                 }

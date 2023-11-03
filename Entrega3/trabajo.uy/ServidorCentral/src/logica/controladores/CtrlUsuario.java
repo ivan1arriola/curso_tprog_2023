@@ -221,6 +221,8 @@ public class CtrlUsuario implements ICtrlUsuario {
                     } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
                         exc.printStackTrace();
                         throw exc;
+                    } catch (NumberFormatException exc) {
+                    	throw exc;
                     }
 
                 }
