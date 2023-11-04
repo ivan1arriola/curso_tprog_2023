@@ -46,6 +46,7 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h4 class="card-title"><%= oferta.getNombre()  %></h4>
+                    <h5 class="card-subtitle mb-2 text-muted">Empresa: <%= oferta.getNicknameEmpresaPublicadora()  %></h5>
                     <p class="card-text">
                       <%= oferta.getDescripcion() %>
                     </p>

@@ -42,7 +42,7 @@
         
         %>
 
-        <form class="form-signup needs-validation" novalidate action="altausuario" method="POST" enctype="multipart/form-data">
+        <form class="form-signup needs-validation" novalidate  action="altausuario" method="POST" enctype="multipart/form-data">
           <!-- Sección de Información Personal -->
           <section>
             <h2 class="h4">Información Personal</h2>
@@ -54,7 +54,7 @@
 
 
             <!-- Input de Nickname -->
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-3" id="div-nombre">
               <input type="text" class="form-control" id="nickname-input" name="nickname" placeholder=" " required value="<%= nickname != null ? nickname : "" %>"> 
               <label for="nickname-input">Nickname *</label>
               <div class="invalid-feedback">
@@ -65,17 +65,17 @@
             <div class="row">
               <div class="col">
                 <!-- Input de Nombre -->
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-3 needs-validation-field" id="div-nombre-input">
                   <input type="text" class="form-control" id="nombre-input"  name="nombre" placeholder=" " required value="<%= nombre != null ? nombre : "" %>">
                   <label for="nombre-input">Nombre *</label>
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback" id="nombre-invalid-feedback">
                     Nombre es un atributo requerido
                   </div>
                 </div>
               </div>
               <div class="col">
                 <!-- Input de Apellido -->
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-3 needs-validation-field">
                   <input type="text" class="form-control" id="apellido-input" name="apellido"  placeholder=" " required value="<%= apellido != null ? apellido : "" %>">
                   <label for="apellido-input">Apellido *</label>
                   <div class="invalid-feedback">
@@ -94,7 +94,7 @@
 
               <div class="col">
                 <!-- Input de Contraseña -->
-                <div class="form-floating mb-3 ">
+                <div class="form-floating mb-3 needs-validation-field">
                   <input type="password" class="form-control" id="password-input" name="password" placeholder=" " required>
                   <label for="password-input">Contraseña *</label>
                   <div class="invalid-feedback">
@@ -105,7 +105,7 @@
 
               <div class="col">
                 <!-- Input de Confirmar Contraseña -->
-                <div class="form-floating mb-3 ">
+                <div class="form-floating mb-3 needs-validation-field">
                   <input type="password" class="form-control" id="confirm-password-input" name="confirm-password"  placeholder=" ">
                   <label for="confirm-password-input">Confirmar Contraseña *</label>
                   <div class="invalid-feedback">
@@ -123,7 +123,7 @@
             <h2 class="h4">Correo Electrónico</h2>
 
             <!-- Input de Correo Electrónico -->
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-3 needs-validation-field">
               <input type="email" class="form-control" id="email-input" placeholder=" " name="email" required value="<%= email != null ? email : "" %>">
               <label for="email-input">Correo Electrónico *</label>
               <div class="invalid-feedback">
@@ -133,11 +133,11 @@
           </section>
 
           <!-- Sección de Tipo de Usuario -->
-          <section>
+          <section class="needs-validation-field">
             <h2 class="h4">Tipo de Usuario</h2>
 
             <!-- Radio buttons para el tipo de usuario -->
-            <div class="form-check">
+            <div class="form-check ">
 			    <input class="form-check-input" type="radio" name="tipo-usuario" id="empresa-radio" value="empresa"
 			        onchange="mostrarCamposEspeciales()" required <%= ("empresa".equals(tipoUsuario)) ? "checked" : "" %>>
 			    <label class="form-check-label" for="empresa-radio">Empresa</label>
@@ -158,7 +158,7 @@
             <section>
               <h2 class="h4">Información de la Empresa</h2>
 
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3 needs-validation-field">
 				<textarea class="form-control" id="descripcion-empresa-input" name="descripcion" placeholder=" " style="height: 150px" value="<%= descripcionEmpresa != null ? descripcionEmpresa : "" %>"><%= descripcionEmpresa != null ? descripcionEmpresa : "" %></textarea>
                 
                 <label for="descripcion-empresa-input">Descripción de la Empresa *</label>
@@ -167,7 +167,7 @@
                 </div>
               </div>
 
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3 needs-validation-field">
                 <input type="url" class="form-control" id="sitio-web-input" name="sitio-web"  placeholder=" " value="<%= sitioWebEmpresa != null ? sitioWebEmpresa : "" %>">
                 <label for="sitio-web-input">Sitio Web de la Empresa</label>
               </div>
@@ -179,7 +179,7 @@
             <section>
               <h2 class="h4">Información del Postulante</h2>
 
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3 needs-validation-field">
                 <input type="date" class="form-control" id="fecha-nacimiento-input" name="fecha-nacimiento"  required value="<%= fechaNacimiento != null ? fechaNacimiento : "" %>">
                 <label for="fecha-nacimiento-input">Fecha de Nacimiento *</label>
                 <div class="invalid-feedback">
@@ -187,7 +187,7 @@
                 </div>
               </div>
 
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3 needs-validation-field">
                 <input type="text" class="form-control" id="nacionalidad-input" name="nacionalidad" placeholder=" " value="<%= nacionalidad != null ? nacionalidad : "" %>">
                 <label for="nacionalidad-input">Nacionalidad *</label>
                 <div class="invalid-feedback">
@@ -201,7 +201,7 @@
           <section>
             <h2 class="h4">Imagen de Perfil</h2>
 
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 needs-validation-field">
 			  <label for="image-input">Subir una imagen de perfil (max 250 KB)</label>
 			  <input type="file" class="form-control" id="image-input" name="imagen" accept=".jpg" />
 			  <div class="invalid-feedback">

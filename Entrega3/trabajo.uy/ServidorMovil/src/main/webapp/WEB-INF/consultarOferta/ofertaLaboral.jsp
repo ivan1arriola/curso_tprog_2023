@@ -51,7 +51,7 @@
                                 <tr>
                                     <th>Empresa:</th>
                                     <td>
-                                        HAY QUE AGREGAR EMPRESA
+                                        <%= oferta.getNicknameEmpresaPublicadora() %>
                                     </td>
                                 </tr>
                                 <tr>
