@@ -11,6 +11,8 @@ public class PostulacionBean {
     private String motivacion;
 	private String nombreOfertaLaboral;
 
+    private String video;
+
     public PostulacionBean() {
         this.setNicknamePostulante(null);
         this.nombreOfertaLaboral = null;
@@ -18,9 +20,32 @@ public class PostulacionBean {
         this.uRLDocExtras = null;
         this.cVitae = null;
         this.motivacion = null;
+        this.video = null;
     }
 
+    public String getuRLDocExtras() {
+        return uRLDocExtras;
+    }
 
+    public void setuRLDocExtras(String uRLDocExtras) {
+        this.uRLDocExtras = uRLDocExtras;
+    }
+
+    public String getcVitae() {
+        return cVitae;
+    }
+
+    public void setcVitae(String cVitae) {
+        this.cVitae = cVitae;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
 
     public LocalDate getFecha() {
         return fecha;
