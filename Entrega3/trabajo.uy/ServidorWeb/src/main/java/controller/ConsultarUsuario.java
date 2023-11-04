@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import enumeration.EstadoOfertaLaboral;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 
@@ -109,7 +110,17 @@ public class ConsultarUsuario extends HttpServlet {
 		
 		if (nombreOfertasConPostulacion != null && !nombreOfertasConPostulacion.isEmpty()) {
             for (String nombreOferta : nombreOfertasConPostulacion) {
-            	postulaciones.add(logica.obtenerDatosPostulacion(nombreOferta, nicknameParametro));
+            	PostulacionBean inc = logica.obtenerDatosPostulacion(nombreOferta, nicknameParametro);
+            	EstadoOfertaLaboral EOL = logica.obtenerDatosOfertaLaboral(inc.getNombreOfertaLaboral()).getEstado();
+            	if(EOL == EstadoOfertaLaboral.Confirmada ) {
+            		inc.setEstado("Vigente");
+            	}
+            	else if(EOL == EstadoOfertaLaboral.Finalizada) {
+            		inc.setEstado("Finalizada");
+            	}
+            	
+            	postulaciones.add(inc);
+            	
             }
         }
 		

@@ -10,6 +10,7 @@ public class PostulacionBean {
     private String cVitae;
     private String motivacion;
 	private String nombreOfertaLaboral;
+	private String estado;
 
     public PostulacionBean() {
         this.setNicknamePostulante(null);
@@ -77,5 +78,17 @@ public class PostulacionBean {
 
 	public void setNicknamePostulante(String nicknamePostulante) {
 		this.nicknamePostulante = nicknamePostulante;
+	}
+
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 }
