@@ -27,7 +27,8 @@ public class ListarOfertasLaborales extends HttpServlet {
      */
     public ListarOfertasLaborales() {
         super();
-        this.logica = FabricaWeb.getInstance().getLogica();
+        FabricaWeb.getInstance();
+		this.logica = FabricaWeb.getLogica();
     }
     
 

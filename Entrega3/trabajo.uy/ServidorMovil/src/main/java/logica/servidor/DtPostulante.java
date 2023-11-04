@@ -16,7 +16,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <extension base="{http://servidor.logica/}dtUsuario">
  *       <sequence>
- *         <element name="fechanac" type="{http://servidor.logica/}localDate" minOccurs="0"/>
+ *         <element name="fechanac" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nacionalidad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaNac" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
@@ -37,7 +37,7 @@ public class DtPostulante
     extends DtUsuario
 {
 
-    protected LocalDate fechanac;
+    protected String fechanac;
     protected String nacionalidad;
     protected String fechaNac;
 
@@ -46,10 +46,10 @@ public class DtPostulante
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechanac() {
+    public String getFechanac() {
         return fechanac;
     }
 
@@ -58,10 +58,10 @@ public class DtPostulante
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechanac(LocalDate value) {
+    public void setFechanac(String value) {
         this.fechanac = value;
     }
 

@@ -1,34 +1,37 @@
 
 package logica.servidor;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlSchemaType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtOfertaExtendido complex type.
+ * <p>Clase Java para dtOfertaExtendidoSinPConK complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtOfertaExtendido">
+ * <complexType name="dtOfertaExtendidoSinPConK">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="fechaDeAlta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaAlta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="remuneracion" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="horario" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="departamento" type="{http://servidor.logica/}depUY" minOccurs="0"/>
  *         <element name="ciudad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="estado" type="{http://servidor.logica/}estadoOL" minOccurs="0"/>
- *         <element name="postulaciones" type="{http://servidor.logica/}arrayList" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
- *         <element name="paq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="keywords" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="nicknameEmpresaPublicadora" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
@@ -39,26 +42,29 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtOfertaExtendido", propOrder = {
+@XmlType(name = "dtOfertaExtendidoSinPConK", propOrder = {
     "nombre",
     "descripcion",
-    "fechaDeAlta",
+    "fechaAlta",
     "costo",
     "remuneracion",
     "horario",
     "departamento",
     "ciudad",
     "estado",
-    "postulaciones",
     "imagen",
-    "paq",
+    "keywords",
     "nicknameEmpresaPublicadora"
 })
-public class DtOfertaExtendido {
+@XmlSeeAlso({
+    DtOfertaExtendidoConKeywordsPostulante.class,
+    DtOfertaExtendidoConKeywordsTit.class
+})
+public class DtOfertaExtendidoSinPConK {
 
     protected String nombre;
     protected String descripcion;
-    protected String fechaDeAlta;
+    protected String fechaAlta;
     protected float costo;
     protected float remuneracion;
     protected String horario;
@@ -67,9 +73,9 @@ public class DtOfertaExtendido {
     protected String ciudad;
     @XmlSchemaType(name = "string")
     protected EstadoOL estado;
-    protected ArrayList postulaciones;
     protected byte[] imagen;
-    protected String paq;
+    @XmlElement(nillable = true)
+    protected List<String> keywords;
     protected String nicknameEmpresaPublicadora;
 
     /**
@@ -121,27 +127,27 @@ public class DtOfertaExtendido {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaDeAlta.
+     * Obtiene el valor de la propiedad fechaAlta.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFechaDeAlta() {
-        return fechaDeAlta;
+    public String getFechaAlta() {
+        return fechaAlta;
     }
 
     /**
-     * Define el valor de la propiedad fechaDeAlta.
+     * Define el valor de la propiedad fechaAlta.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFechaDeAlta(String value) {
-        this.fechaDeAlta = value;
+    public void setFechaAlta(String value) {
+        this.fechaAlta = value;
     }
 
     /**
@@ -273,30 +279,6 @@ public class DtOfertaExtendido {
     }
 
     /**
-     * Obtiene el valor de la propiedad postulaciones.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayList }
-     *     
-     */
-    public ArrayList getPostulaciones() {
-        return postulaciones;
-    }
-
-    /**
-     * Define el valor de la propiedad postulaciones.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayList }
-     *     
-     */
-    public void setPostulaciones(ArrayList value) {
-        this.postulaciones = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad imagen.
      * 
      * @return
@@ -319,27 +301,34 @@ public class DtOfertaExtendido {
     }
 
     /**
-     * Obtiene el valor de la propiedad paq.
+     * Gets the value of the keywords property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the keywords property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getKeywords().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *     The value of the keywords property.
      */
-    public String getPaq() {
-        return paq;
-    }
-
-    /**
-     * Define el valor de la propiedad paq.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPaq(String value) {
-        this.paq = value;
+    public List<String> getKeywords() {
+        if (keywords == null) {
+            keywords = new ArrayList<>();
+        }
+        return this.keywords;
     }
 
     /**

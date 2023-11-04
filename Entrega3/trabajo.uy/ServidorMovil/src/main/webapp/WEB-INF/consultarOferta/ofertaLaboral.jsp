@@ -1,64 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="logica.servidor.DtOfertaExtendido" %>
+<%@ page import="java.util.Base64" %>
+<%
+	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
+
+	byte[] imagenBytes = oferta.getImagen();
+	String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
+	
+	
+%>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>trabajo.uy</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="./../style.css"> <!-- Agrega tu archivo CSS personalizado -->
-
-    <style type="text/css">
+  <jsp:include page="/WEB-INF/template/head.jsp" />
+  <title>trabajo.uy</title>
+  <style type="text/css">
     	.banner-container {
-		    background-image: url("https://tinyurl.com/4n2vpurk");
+		    background-image: url("<%=imagen%>");
 		}
-    </style>
+  </style>
 </head>
 
 <body>
-    <header id="navbar">
-        <nav class="navbar ">
-            <div class="container-fluid justify-content-between">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<header>
+  <jsp:include page="/WEB-INF/template/navbar.jsp" />
+</header>
 
+<main>
 
-
-                <div class="d-flex">
-                    <h1 class="text-primary m-0 fw-bold">trabajo</h1>
-                    <h1 class="text-secondary m-0">.uy</h1>
-                </div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <img src="https://tinyurl.com/4n2vpurk"
-                        alt="..." class="rounded-circle" width="60" height="60">
-                    <span>Nickname</span>
-                </div>
-
-                <div class="collapse navbar-collapse order-lg-3" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" href="/ofertasLaborales.html">Ver Ofertas Laborales</a>
-                        <a class="nav-link" href="#">Ver Postulaciones</a>
-                        <a class="nav-link" href="#">Salir</a>
-                    </div>
-                </div>
-
-            </div>
-        </nav>
-    </header>
-
-    <main>
+	
 
         <div class="container container col-12">
 
             <div class="container p-3">
 
                     <div class="row banner-container banner-dark">
-                        <h1 class="text-center text-light fw-bolder">A. de Marketing Digital</h1>
+                        <h1 class="text-center text-light fw-bolder"><%= oferta.getNombre() %></h1>
                     </div>
 
                     <div class="row align-items-center mt-2">
@@ -66,42 +46,41 @@
                             <tbody>
                                 <tr>
                                     <th>Nombre:</th>
-                                    <td>A. de Marketing Digital</td>
+                                    <td><%= oferta.getNombre() %></td>
                                 </tr>
                                 <tr>
                                     <th>Empresa:</th>
                                     <td>
-                                        NickNameEmpresa
+                                        HAY QUE AGREGAR EMPRESA
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Descripción:</th>
-                                    <td>Unete a nuestro
-                                        equipo de marketing y trabaja en estrategias digitales innovadoras.</td>
+                                    <td><%= oferta.getDescripcion() %></td>
                                 </tr>
                                 <tr>
                                     <th>Remuneración:</th>
-                                    <td>80000 pesos uruguayos</td>
+                                    <td><%= oferta.getRemuneracion() %> pesos uruguayos</td>
                                 </tr>
                                 <tr>
                                     <th>Horario:</th>
-                                    <td>10:00 - 19:00</td>
+                                    <td><%= oferta.getHorario()%></td>
                                 </tr>
                                 <tr>
                                     <th>Departamento:</th>
-                                    <td>Flores</td>
+                                    <td><%= oferta.getDepartamento() %>
                                 </tr>
                                 <tr>
                                     <th>Ciudad:</th>
-                                    <td>Flores</td>
+                                    <td><%= oferta.getCiudad() %></td>
                                 </tr>
                                 <tr>
                                     <th>Fecha de Alta:</th>
-                                    <td>15/08/23</td>
+                                    <td><%= oferta.getFechaDeAlta() %> </td>
                                 </tr>
                                 <tr>
                                     <th>Costo:</th>
-                                    <td>4000 pesos uruguayos</td>
+                                    <td><%= oferta.getCosto() %> pesos uruguayos</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -147,19 +126,11 @@
         </div>
 
 
-
-
-
-
-
-
-
-
     </main>
-    <!-- Scripts-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-</body>
 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+
+</body>
 </html>

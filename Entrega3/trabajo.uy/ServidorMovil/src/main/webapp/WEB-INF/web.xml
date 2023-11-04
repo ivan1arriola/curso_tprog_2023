@@ -19,4 +19,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ListarOfertasLaborales</display-name>
+    <servlet-name>ListarOfertasLaborales</servlet-name>
+    <servlet-class>controller.ListarOfertasLaborales</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarOfertasLaborales</servlet-name>
+    <url-pattern>/ListarOfertasLaborales</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarOfertaLaboral</display-name>
+    <servlet-name>ConsultarOfertaLaboral</servlet-name>
+    <servlet-class>controller.ConsultarOfertaLaboral</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarOfertaLaboral</servlet-name>
+    <url-pattern>/ConsultarOfertaLaboral</url-pattern>
+  </servlet-mapping>
 </web-app>
