@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Test set: main.test.ctrlOfertaTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.205 s <<< FAILURE! -- in main.test.ctrlOfertaTest
+main.test.ctrlOfertaTest.darDeAltaTipoPublicacionFallaNombreExistente -- Time elapsed: 0.027 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.getTransaction()" because "logica.manejadores.TipoOfertaHandler.database" is null
+	at logica.manejadores.TipoOfertaHandler.agregar(TipoOfertaHandler.java:40)
+	at logica.controladores.CtrlOferta.altaTipoPublicacionOL(CtrlOferta.java:78)
+	at main.test.ctrlOfertaTest.darDeAltaTipoPublicacionFallaNombreExistente(ctrlOfertaTest.java:146)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+main.test.ctrlOfertaTest.darDeAltaTipoPublicacionExitoso -- Time elapsed: 0.027 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.getTransaction()" because "logica.manejadores.TipoOfertaHandler.database" is null
+	at logica.manejadores.TipoOfertaHandler.agregar(TipoOfertaHandler.java:40)
+	at logica.controladores.CtrlOferta.altaTipoPublicacionOL(CtrlOferta.java:78)
+	at main.test.ctrlOfertaTest.darDeAltaTipoPublicacionExitoso(ctrlOfertaTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+main.test.ctrlOfertaTest.existeOfertaExistente -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problem: 
+	The method altaOfertaLaboral(String, String, String, String, DTHorario, float, String, DepUY, LocalDate, Set<String>, EstadoOL, byte[], String) in the type ICtrlOferta is not applicable for the arguments (String, String, String, String, DTHorario, float, String, DepUY, LocalDate, Set<String>, EstadoOL, String, null)
+
+	at main.test.ctrlOfertaTest.existeOfertaExistente(ctrlOfertaTest.java:195)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

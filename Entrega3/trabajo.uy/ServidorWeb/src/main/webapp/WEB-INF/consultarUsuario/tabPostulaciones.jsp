@@ -23,26 +23,56 @@
     <%
     } else {
         for (PostulacionBean postulacion : postulaciones) {
-    %>
-    <div class="card mb-3">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-4">
-                    <h5 class="card-title"><%= postulacion.getNombreOfertaLaboral() %></h5>
-                </div>
-                <div class="col-4 text-center">
-                    <p class="card-text"><%= postulacion.getFechaString() %></p>
-                </div>
-                <div class="col-4 text-end">
-                    <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= postulacion.getNombreOfertaLaboral() %>"
-                        class="">
-                        Leer más
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <%
+        	if(postulacion.getEstado() == "Vigente"){
+      		  %>
+    		  <div class="card mb-3">
+    		      <div class="card-body">
+    		          <div class="row">
+    		              <div class="col-3">
+    		                  <h5 class="card-title"><%= postulacion.getNombreOfertaLaboral() %></h5>
+    		              </div>
+    		              <div class="col-3 text-center">
+    		                  <p class="card-text"><%= postulacion.getFechaString() %></p>
+    		              </div>
+    		              <div class="col-3 text-center">
+    		                  <p class="card-text"><%= postulacion.getEstado() %></p>
+    		              </div>
+    		              <div class="col-3 text-end">
+    		                  <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= postulacion.getNombreOfertaLaboral() %>"
+    		                      class="">
+    		                      Leer más
+    		                  </a>
+    		              </div>
+    		          </div>
+    		      </div>
+    		  </div>
+    		  <%        		
+        	} else {
+        		  %>
+        		  <div class="card mb-3">
+        		      <div class="card-body">
+        		          <div class="row">
+        		              <div class="col-3">
+        		                  <h5 class="card-title"><%= postulacion.getNombreOfertaLaboral() %></h5>
+        		              </div>
+        		              <div class="col-3 text-center">
+        		                  <p class="card-text"><%= postulacion.getFechaString() %></p>
+        		              </div>
+        		              <div class="col-3 text-center">
+        		                  <p class="card-text"><%= postulacion.getEstado() %></p>
+								  <a href="">Descargar PDF</a>
+        		              </div>
+        		              <div class="col-3 text-end">
+        		                  <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= postulacion.getNombreOfertaLaboral() %>"
+        		                      class="">
+        		                      Leer más
+        		                  </a>
+        		              </div>
+        		          </div>
+        		      </div>
+        		  </div>
+        		  <%   
+        	}
         }
     }
     %>

@@ -95,7 +95,7 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidores-panel" type="button" role="tab"
-                            aria-controls="seguidores-panel">Seguidos</a>
+                            aria-controls="seguidores-panel">Seguidores</a>
                     </li>
             </ul>
 

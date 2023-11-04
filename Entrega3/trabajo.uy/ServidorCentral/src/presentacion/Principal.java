@@ -26,7 +26,7 @@ public class Principal {
     private AltaTipoPublicaciónOfertaLaboral altaDeTipoDePublicacionDeOfertaLaboralInternalFrame;
     private CrearPaqueteDeTiposPublicacionOfertasLaborales crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame;
     private AgregarTipodePublicacióndeOfertaLaboral agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame;
-    ;
+    
     private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame;
     private AltaDeKeywords altaDeKeywordsInternalFrame;
     private AceptarOferta aceptarOfertaInternalFrame;

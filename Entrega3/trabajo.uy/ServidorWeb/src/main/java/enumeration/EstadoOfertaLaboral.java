@@ -1,17 +1,18 @@
 package enumeration;
 
 public enum EstadoOfertaLaboral {
-	Ingresada("bg-primary"),
-	Confirmada("bg-success"),
-	Rechazada("bg-danger");
+    Ingresada("bg-primary"),
+    Confirmada("bg-success"),
+    Rechazada("bg-danger"),
+    Finalizada("bg-info");    // Otra nueva constante
 
-	private String cssClass;
+    private String cssClass;
 
-	EstadoOfertaLaboral(String cssClass) {
-		this.cssClass = cssClass;
-	}
+    EstadoOfertaLaboral(String cssClass) {
+        this.cssClass = cssClass;
+    }
 
-	public String getCssClass() {
-		return cssClass;
-	}
+    public String getCssClass() {
+        return cssClass;
+    }
 }
