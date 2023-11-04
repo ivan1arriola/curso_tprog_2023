@@ -1,91 +1,154 @@
-const mostrarCamposEspeciales = () => {
-  const empresaRadio = document.getElementById("empresa-radio");
-  const postulanteRadio = document.getElementById("postulante-radio");
-  const camposEmpresa = document.getElementById("campos-empresa");
-  const camposPostulante = document.getElementById("campos-postulante");
+const empresaRadio = document.getElementById("empresa-radio");
+const postulanteRadio = document.getElementById("postulante-radio");
+const camposEmpresa = document.getElementById("campos-empresa");
+const camposPostulante = document.getElementById("campos-postulante");
+const fechaNacimientoInput = document.getElementById("fecha-nacimiento-input");
+const nacionalidadInput = document.getElementById("nacionalidad-input");
+const descripcionEmpresaInput = document.getElementById("descripcion-empresa-input");
+const passwordInput = document.getElementById("password-input");
+const confirmPasswordInput = document.getElementById("confirm-password-input");
+const maxFileSizeKB = 250;
+const maxFileSizeBytes = maxFileSizeKB * 1024;
+const imageInput = document.getElementById('image-input');
+const nombreInput = document.getElementById("nombre-input"); // Debes declarar nombreInput
 
+const validarNombre = () => {
+  console.log("validarNombre ejecutando");
+  const nombre = document.getElementById("nombre-input");
+  const divNombre = document.getElementById("div-nombre-input");
+  const nombreInvalidFeedback = document.getElementById("nombre-invalid-feedback");
+
+  // Validar que el nombre no esté vacío
+  if (nombre.value === "") {
+    nombre.setCustomValidity("El nombre no puede estar vacío");
+    nombreInvalidFeedback.innerText = "El nombre no puede estar vacío";
+  } else {
+    nombre.setCustomValidity("");
+    // Validar que el nombre no tenga números
+    if (/\d/.test(nombre.value)) {
+      nombre.setCustomValidity("El nombre no puede contener números");
+      nombreInvalidFeedback.innerText = "El nombre no puede contener números";
+    } else {
+      nombre.setCustomValidity("");
+    }
+
+    // Validar que el nombre no tenga caracteres especiales
+    if (/[!@#$%^&*(),.?":{}|<>]/g.test(nombre.value)) {
+      nombre.setCustomValidity("El nombre no puede contener caracteres especiales");
+      nombreInvalidFeedback.innerText = "El nombre no puede contener caracteres especiales";
+    } else {
+      nombre.setCustomValidity("");
+    }
+
+    // Validar que el nombre no tenga espacios
+    if (/\s/.test(nombre.value)) {
+      nombre.setCustomValidity("El nombre no puede contener espacios");
+      nombreInvalidFeedback.innerText = "El nombre no puede contener espacios";
+    } else {
+      nombre.setCustomValidity("");
+    }
+
+    // Validar que el nombre no tenga más de 20 caracteres
+    if (nombre.value.length > 20) {
+      nombre.setCustomValidity("El nombre no puede contener más de 20 caracteres");
+      nombreInvalidFeedback.innerText = "El nombre no puede contener más de 20 caracteres";
+    } else {
+      nombre.setCustomValidity("");
+    }
+  }
+
+  
+
+  divNombre.classList.add("was-validated");
+}
+
+const mostrarCamposEspeciales = () => {
   if (empresaRadio.checked) {
     camposEmpresa.style.display = "block";
     camposPostulante.style.display = "none";
-    document.getElementById("fecha-nacimiento-input").required = false;
-    document.getElementById("nacionalidad-input").required = false;
-    document.getElementById("descripcion-empresa-input").required = true;
+    fechaNacimientoInput.required = false;
+    nacionalidadInput.required = false;
+    descripcionEmpresaInput.required = true;
   } else if (postulanteRadio.checked) {
     camposEmpresa.style.display = "none";
     camposPostulante.style.display = "block";
-    document.getElementById("fecha-nacimiento-input").required = true;
-    document.getElementById("nacionalidad-input").required = true;
-    document.getElementById("descripcion-empresa-input").required = false;
+    fechaNacimientoInput.required = true;
+    nacionalidadInput.required = true;
+    descripcionEmpresaInput.required = false;
   } else {
     camposEmpresa.style.display = "none";
     camposPostulante.style.display = "none";
-    document.getElementById("fecha-nacimiento-input").required = true;
-    document.getElementById("nacionalidad-input").required = true;
-    document.getElementById("descripcion-empresa-input").required = true;
+    fechaNacimientoInput.required = true;
+    nacionalidadInput.required = true;
+    descripcionEmpresaInput.required = true;
   }
 }
 
 const validarContraseña = () => {
-    const password = document.getElementById("password-input");
-    const passwordConfirm = document.getElementById("confirm-password-input");
-
-    if (password.value !== passwordConfirm.value) {
-        passwordConfirm.setCustomValidity("Las contraseñas no coinciden");
-    } else {
-        passwordConfirm.setCustomValidity("");
-    }
+  if (passwordInput.value !== confirmPasswordInput.value) {
+    confirmPasswordInput.setCustomValidity("Las contraseñas no coinciden");
+  } else {
+    confirmPasswordInput.setCustomValidity("");
+  }
 }
 
-const validarTamanioImagen = () => {
-  const maxFileSizeKB = 250;
-  const maxFileSizeBytes = maxFileSizeKB * 1024;
-
-  const fileInput = document.getElementById('image-input'); // Asegúrate de obtener el elemento por su ID
-  const imageFile = fileInput.files[0];
+const validarTamañoImagen = () => {
+  const imageFile = imageInput.files[0];
 
   if (imageFile) {
     if (imageFile.size > maxFileSizeBytes) {
-      fileInput.setCustomValidity('El archivo es demasiado grande. El tamaño máximo permitido es 250 KB.');
+      imageInput.setCustomValidity('El archivo es demasiado grande. El tamaño máximo permitido es 250 KB.');
     } else {
-      fileInput.setCustomValidity('');
+      imageInput.setCustomValidity('');
     }
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+  mostrarCamposEspeciales();
+  validarNombre();
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
 
-document.addEventListener("DOMContentLoaded", function() {
-	mostrarCamposEspeciales();
-	
-    (() => {
-        "use strict";
-    
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll(".needs-validation");
-        const password = document.getElementById("password-input");
-        const passwordConfirm = document.getElementById("confirm-password-input");
-        const fileInput = document.getElementById('image-input');
-    
-        passwordConfirm.addEventListener("input", validarContraseña);
-        password.addEventListener("input", validarContraseña);
-        fileInput.addEventListener("input", validarTamanioImagen);
-    
-        // Loop over them and prevent submission
-        Array.from(forms).forEach((form) => {
-            form.addEventListener(
-                "submit",
-                (event) => {
-                    if (!form.checkValidity() ) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-    
-                    // Agrega la clase CSS de Bootstrap para mostrar los estilos de validación
-                    form.classList.add("was-validated");
-                },
-                false
-            );
-        });
-    })();
-   
+  confirmPasswordInput.addEventListener("input", validarContraseña);
+  passwordInput.addEventListener("input", validarContraseña);
+  imageInput.addEventListener("input", validarTamañoImagen);
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        // Agrega la clase CSS de Bootstrap para mostrar los estilos de validación
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
 });
+
+const validacionCampos = () => {
+  const campos = document.querySelectorAll(".needs-validation-field");
+  Array.from(campos).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        // Agrega la clase CSS de Bootstrap para mostrar los estilos de validación
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+}
