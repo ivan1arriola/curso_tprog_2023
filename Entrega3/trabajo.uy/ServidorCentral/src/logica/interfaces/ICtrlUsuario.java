@@ -114,7 +114,7 @@ public interface ICtrlUsuario {
 
     public abstract boolean existeUsuarioConEmail(String correo);
 
-    public abstract void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo;
+    public abstract void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado;
 
     public abstract void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo;
 

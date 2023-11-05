@@ -191,7 +191,8 @@ public class ConsultarUsuario extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nicknameParametro = (String) request.getParameter("nick");
+    	RequestDispatcher dispatcher;
+    	String nicknameParametro = (String) request.getParameter("nick");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
         
         ServidorService SS = new ServidorService();
@@ -203,7 +204,7 @@ public class ConsultarUsuario extends HttpServlet {
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
 	            request.setAttribute("mensajeError", mensajeError);
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
 	            dispatcher.forward(request, response);
 			}
         } else if (request.getParameter("btnDejarDeSeguir") != null) {
@@ -212,7 +213,7 @@ public class ConsultarUsuario extends HttpServlet {
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
 	            request.setAttribute("mensajeError", mensajeError);
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
 	            dispatcher.forward(request, response);
 			}
         }

@@ -258,7 +258,7 @@ public class Servidor {
     }
 
     @WebMethod
-    public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
+    public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {
         ctrlUsuario.seguirUsuario(usuario, usuario_seguido);
     }
 
