@@ -25,7 +25,7 @@
     <jsp:include page="/WEB-INF/templates/head.jsp" />
     <title><%= ofertaLaboral.getNombre() %></title>
     
-    <style type="text/css">
+    <style >
     	.banner-container {
 		    background-image: url(<%= imagen %>);
 		}

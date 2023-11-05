@@ -10,11 +10,21 @@
     OfertaLaboralBean oferta = (OfertaLaboralBean) request.getAttribute("oferta");
     String nombre = (String) request.getAttribute("postulante");
     String linkAUsuario = request.getContextPath() + "/consultarusuario?u=" + postulacion.getNicknamePostulante();
+    String linkAOferta = request.getContextPath() + "/consultarofertalaboral?o=" + oferta.getNombre();
+    String imagen = oferta.getImagen();
+    if (imagen == null)  {
+        imagen = request.getContextPath() + "/imagenNoFound.png";
+    }
 %>
 
 <head>
     <jsp:include page="/WEB-INF/templates/head.jsp" />
     <title>Postulación</title>
+    <style >
+        .banner-container {
+            background-image: url(<%= imagen %>);
+        }
+    </style>
 </head>
 
 <body>
@@ -28,23 +38,67 @@
     </div>
 
     <div class="container col-9">
-        <div class="d-flex">
-            <div class="contenedor-hijo col-10">
-                <h3>Postulación a Oferta Laboral</h3>
 
-                <p><b>Postulante:</b> <a href="<%= linkAUsuario %>"><%= nombre %></a></p>
+        <div class="row">
+            <div class="container col">
+                <div class="row banner-container banner-dark">
+                    <h1 class="text-center text-light fw-bolder">Postulacion de <%=nombre%> a <%=oferta.getNombre()%></h1>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <td><b>Postulante:</b></td>
+                            <td><a href="<%= linkAUsuario %>"><%= nombre %></a></td>
+                        </tr>
 
-                <div class="label">
-                    <p><b>CV reducido:</b> <%=postulacion.getCVitae()%></p>
-                    <p><b>Motivación:</b> <%=postulacion.getMotivacion()%></p>
-                    <p><b>Fecha Postulación:</b> <%=postulacion.getFechaString()%></p>
+                        <tr>
+                            <td><b>Oferta Laboral</b></td>
+                            <td> <a href="<%= linkAOferta %>"> <%= oferta.getNombre() %></a> </td>
+                        </tr>
+                        <tr>
+                            <td><b>CV reducido:</b></td>
+                            <td><%=postulacion.getCVitae()%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Motivación:</b></td>
+                            <td><%=postulacion.getMotivacion()%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Fecha Postulación:</b></td>
+                            <td><%=postulacion.getFechaString()%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Video Postulacion:</b></td>
+                            <td>
+                        <% if(postulacion.getVideo() != null){ %>
+
+
+
+                                <iframe
+                                        width="100%"
+                                        height="395"
+                                        src="<%=postulacion.getVideo()%>"
+                                        title="Video Postulacion"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen>
+                                </iframe>
+
+
+                        <% } else { %>
+                                <div class="alert alert-warning" role="alert">
+                                    No se ha subido un video.
+                                </div>
+
+                        <% }%>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div class="contenedor-hijo-derecha col-2">
-                <img src="<%= oferta.getImagen()%>" alt="Imagen de <%= oferta.getNombre()%>" class="img-fluid mb-2" style="width: 160px; height: 120px">
-                <p style="text-decoration: underline"><a href="<%= request.getContextPath() %>/consultarofertalaboral?o=<%= oferta.getNombre() %>"> <%= oferta.getNombre() %></a></p>
-            </div>
+
+
         </div>
+
     </div>
 </main>
 
