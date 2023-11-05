@@ -1,56 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <!DOCTYPE html>
-    <html>
+<%@ page import="javabeans.PostulacionBean" %>
+<%@ page import="javabeans.OfertaLaboralBean" %>
 
-    <head>
-        <jsp:include page="/WEB-INF/templates/head.jsp" />
-        <title>Postulacion</title>
-    </head>
+<!DOCTYPE html>
+<html>
 
-    <body>
-        <header>
-            <jsp:include page="/WEB-INF/templates/header.jsp" />
-        </header>
+<%
+    PostulacionBean postulacion = (PostulacionBean) request.getAttribute("postulacion");
+    OfertaLaboralBean oferta = (OfertaLaboralBean) request.getAttribute("oferta");
+    String nombre = (String) request.getAttribute("postulante");
+    String linkAUsuario = request.getContextPath() + "/consultarusuario?u=" + postulacion.getNicknamePostulante();
+    String linkAOferta = request.getContextPath() + "/consultarofertalaboral?o=" + oferta.getNombre();
+    String imagen = oferta.getImagen();
+    if (imagen == null)  {
+        imagen = request.getContextPath() + "/imagenNoFound.png";
+    }
+%>
 
-        <main class="container-fluid d-flex">
-            <div class="container col-3">
-            	<jsp:include page="/WEB-INF/templates/sidebar.jsp" />
+<head>
+    <jsp:include page="/WEB-INF/templates/head.jsp" />
+    <title>Postulación</title>
+    <style >
+        .banner-container {
+            background-image: url(<%= imagen %>);
+        }
+    </style>
+</head>
 
+<body>
+<header>
+    <jsp:include page="/WEB-INF/templates/header.jsp" />
+</header>
+
+<main class="container-fluid d-flex">
+    <div class="container col-3">
+        <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
+    </div>
+
+    <div class="container col-9">
+
+        <div class="row">
+            <div class="container col">
+                <div class="row banner-container banner-dark">
+                    <h1 class="text-center text-light fw-bolder">Postulacion de <%=nombre%> a <%=oferta.getNombre()%></h1>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <td><b>Postulante:</b></td>
+                            <td><a href="<%= linkAUsuario %>"><%= nombre %></a></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Oferta Laboral</b></td>
+                            <td> <a href="<%= linkAOferta %>"> <%= oferta.getNombre() %></a> </td>
+                        </tr>
+                        <tr>
+                            <td><b>CV reducido:</b></td>
+                            <td><%=postulacion.getCVitae()%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Motivación:</b></td>
+                            <td><%=postulacion.getMotivacion()%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Fecha Postulación:</b></td>
+                            <td><%=postulacion.getFechaString()%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Video Postulacion:</b></td>
+                            <td>
+                        <% if(postulacion.getVideo() != null){ %>
+
+
+
+                                <iframe
+                                        width="100%"
+                                        height="395"
+                                        src="<%=postulacion.getVideo()%>"
+                                        title="Video Postulacion"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen>
+                                </iframe>
+
+
+                        <% } else { %>
+                                <div class="alert alert-warning" role="alert">
+                                    No se ha subido un video.
+                                </div>
+
+                        <% }%>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
-            <div class="container col-9">
-      <!-- Agregar contenido nuevo aquí -->
-      <div class="d-flex">
-        <div class="contenedor-hijo col-10">
-          <h3>Postulación a Oferta Laboral</h3>
-
-          <p><b>Postulante:</b> <a href="<%= request.getContextPath() %>/consultarusuario?u=<%= request.getAttribute("nickname") %>"><%= request.getAttribute("postulante") %> </a> </p>
-
-          <div class="label">
-            <p><b>CV reducido:</b> <%=request.getAttribute("CVRed")%></p>
-            <p><b>Motivación:</b> <%=request.getAttribute("CVMot")%></p>
-            <p><b>Fecha Postulación:</b> <%=request.getAttribute("FechaPost")%></p>
-          </div>
-        </div>
-        <!-- Columna 2 -->
-        <div class="contenedor-hijo-derecha col-2">
-          <img src="https://tinyurl.com/4n2vpurk" alt="Imagen 1" class="img-fluid mb-2"
-            style="width: 160px; height: 120px">
-          <p style="text-decoration: underline"><a href="<%= request.getContextPath() %>/consultarofertalaboral?o=<%= request.getAttribute("oferta") %>"> <%= request.getAttribute("oferta") %></a> </p>
 
         </div>
-      </div>
 
-      <!-- Hasta aqui-->
+    </div>
+</main>
 
-            </div>
-        </main>
-
-         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
-            
-            <!-- Otros scripts aqui -->
-    </body>
-
-    </html>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

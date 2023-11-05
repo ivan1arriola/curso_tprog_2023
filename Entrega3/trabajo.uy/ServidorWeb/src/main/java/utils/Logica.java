@@ -90,6 +90,23 @@ public class Logica implements ILogica {
 
 	}
 
+	@Override
+	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) {
+		PostulacionBean postulacion = new PostulacionBean();
+
+		DtPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
+
+		postulacion.setNicknamePostulante(dtPostulacion.getNombrePostulante());
+		postulacion.setFecha(LocalDate.parse(dtPostulacion.getFecha()));
+		postulacion.setCVitae(dtPostulacion.getCVitae());
+		postulacion.setMotivacion(dtPostulacion.getMotivacion());
+		postulacion.setNombreOfertaLaboral(nombreOferta);
+		postulacion.setURLDocExtras(dtPostulacion.getURLDocExtras());
+		postulacion.setVideo(dtPostulacion.getUrlVideo());
+
+		return postulacion;
+	}
+
 
 	@Override
 	public void cargarDatos() {

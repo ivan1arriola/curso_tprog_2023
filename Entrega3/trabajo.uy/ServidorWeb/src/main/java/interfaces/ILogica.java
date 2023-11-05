@@ -117,4 +117,6 @@ public interface ILogica {
 	void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad);
 
 	void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String link, byte[] imagen, String descripcion);
+
+	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta);
 }
