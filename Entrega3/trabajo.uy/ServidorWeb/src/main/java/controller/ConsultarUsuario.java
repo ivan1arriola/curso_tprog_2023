@@ -43,8 +43,9 @@ public class ConsultarUsuario extends HttpServlet {
         String nicknameParametro = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
         TipoUsuario tipoUsuarioLogueado = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
-
         request.setAttribute("tipoU", tipoUsuarioLogueado);
+        request.setAttribute("usuarioConsultado", nicknameParametro);
+   
         
         ILogica logica = FabricaWeb.getInstance().getLogica();
 
@@ -190,8 +191,9 @@ public class ConsultarUsuario extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nicknameParametro = request.getParameter("u");
+        String nicknameParametro = (String) request.getParameter("nick");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
+        
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
         
@@ -214,5 +216,5 @@ public class ConsultarUsuario extends HttpServlet {
 	            dispatcher.forward(request, response);
 			}
         }
-    }
+    }	
 }

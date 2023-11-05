@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="main.test.ctrlOfertaTest" time="0.205" tests="10" errors="3" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="main.test.ctrlOfertaTest" time="0.212" tests="10" errors="3" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="UY"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/surefire/surefirebooter-20231104180339382_3.jar /home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/surefire 2023-11-04T18-03-36_125-jvmRun1 surefire-20231104180339382_1tmp surefire_0-20231104180339382_2tmp"/>
+    <property name="sun.java.command" value="/home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/surefire/surefirebooter-20231105014234354_3.jar /home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/surefire 2023-11-05T01-42-34_096-jvmRun1 surefire-20231105014234354_1tmp surefire_0-20231105014234354_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/test-classes:/home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/classes:/home/oem/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.1/jakarta.xml.bind-api-4.0.1.jar:/home/oem/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.2/jakarta.activation-api-2.1.2.jar:/home/oem/.m2/repository/jakarta/jws/jakarta.jws-api/3.0.0/jakarta.jws-api-3.0.0.jar:/home/oem/.m2/repository/jakarta/xml/ws/jakarta.xml.ws-api/4.0.1/jakarta.xml.ws-api-4.0.1.jar:/home/oem/.m2/repository/jakarta/xml/soap/jakarta.xml.soap-api/3.0.1/jakarta.xml.soap-api-3.0.1.jar:/home/oem/.m2/repository/com/jgoodies/jgoodies-forms/1.9.0/jgoodies-forms-1.9.0.jar:/home/oem/.m2/repository/com/jgoodies/jgoodies-common/1.8.1/jgoodies-common-1.8.1.jar:/home/oem/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar:/home/oem/.m2/repository/com/sun/xml/bind/jaxb-core/4.0.4/jaxb-core-4.0.4.jar:/home/oem/.m2/repository/org/eclipse/angus/angus-activation/2.0.1/angus-activation-2.0.1.jar:/home/oem/.m2/repository/com/sun/xml/ws/jaxws-rt/4.0.2/jaxws-rt-4.0.2.jar:/home/oem/.m2/repository/com/sun/xml/bind/jaxb-impl/4.0.4/jaxb-impl-4.0.4.jar:/home/oem/.m2/repository/org/glassfish/ha/ha-api/3.1.13/ha-api-3.1.13.jar:/home/oem/.m2/repository/org/glassfish/external/management-api/3.2.3/management-api-3.2.3.jar:/home/oem/.m2/repository/org/glassfish/gmbal/gmbal-api-only/4.0.3/gmbal-api-only-4.0.3.jar:/home/oem/.m2/repository/org/jvnet/staxex/stax-ex/2.1.0/stax-ex-2.1.0.jar:/home/oem/.m2/repository/com/sun/xml/stream/buffer/streambuffer/2.1.0/streambuffer-2.1.0.jar:/home/oem/.m2/repository/org/jvnet/mimepull/mimepull/1.10.0/mimepull-1.10.0.jar:/home/oem/.m2/repository/com/sun/xml/fastinfoset/FastInfoset/2.1.0/FastInfoset-2.1.0.jar:/home/oem/.m2/repository/jakarta/mail/jakarta.mail-api/2.1.2/jakarta.mail-api-2.1.2.jar:/home/oem/.m2/repository/org/eclipse/angus/angus-mail/2.0.2/angus-mail-2.0.2.jar:/home/oem/.m2/repository/com/sun/xml/messaging/saaj/saaj-impl/3.0.3/saaj-impl-3.0.3.jar:/home/oem/.m2/repository/com/fasterxml/woodstox/woodstox-core/6.5.1/woodstox-core-6.5.1.jar:/home/oem/.m2/repository/org/codehaus/woodstox/stax2-api/4.2.2/stax2-api-4.2.2.jar:/home/oem/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/oem/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/oem/.m2/repository/org/eclipse/persistence/eclipselink/4.0.2/eclipselink-4.0.2.jar:/home/oem/.m2/repository/com/sun/xml/bind/jaxb-xjc/4.0.3/jaxb-xjc-4.0.3.jar:/home/oem/.m2/repository/org/hsqldb/hsqldb/2.5.1/hsqldb-2.5.1.jar:/home/oem/.m2/repository/org/junit/platform/junit-platform-suite-api/1.10.0/junit-platform-suite-api-1.10.0.jar:/home/oem/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/home/oem/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/oem/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/oem/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/oem/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/home/oem/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/home/oem/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/oem/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/home/oem/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/home/oem/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/surefire/surefirebooter-20231104180339382_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/oem/Desktop/Tarea 3 - TPROG/tpgr34/Entrega3/trabajo.uy/ServidorCentral/target/surefire/surefirebooter-20231105014234354_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.8.1+1-Ubuntu-0ubuntu122.04"/>
     <property name="user.name" value="oem"/>
@@ -52,7 +52,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testExisteOfertaNoExistente" classname="main.test.ctrlOfertaTest" time="0.016">
+  <testcase name="testExisteOfertaNoExistente" classname="main.test.ctrlOfertaTest" time="0.018">
     <system-err><![CDATA[java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.createQuery(String, java.lang.Class)" because "logica.manejadores.OfertaLaboralHandler.database" is null
 	at logica.manejadores.OfertaLaboralHandler.existe(OfertaLaboralHandler.java:67)
 	at logica.controladores.CtrlOferta.existeOferta(CtrlOferta.java:38)
@@ -130,7 +130,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></system-err>
   </testcase>
-  <testcase name="darDeAltaTipoPublicacionFallaNombreExistente" classname="main.test.ctrlOfertaTest" time="0.027">
+  <testcase name="darDeAltaTipoPublicacionFallaNombreExistente" classname="main.test.ctrlOfertaTest" time="0.014">
     <error message="Cannot invoke &quot;jakarta.persistence.EntityManager.getTransaction()&quot; because &quot;logica.manejadores.TipoOfertaHandler.database&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.getTransaction()" because "logica.manejadores.TipoOfertaHandler.database" is null
 	at logica.manejadores.TipoOfertaHandler.agregar(TipoOfertaHandler.java:40)
 	at logica.controladores.CtrlOferta.altaTipoPublicacionOL(CtrlOferta.java:78)
@@ -218,7 +218,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></system-err>
   </testcase>
-  <testcase name="darDeAltaTipoPublicacionExitoso" classname="main.test.ctrlOfertaTest" time="0.027">
+  <testcase name="darDeAltaTipoPublicacionExitoso" classname="main.test.ctrlOfertaTest" time="0.057">
     <error message="Cannot invoke &quot;jakarta.persistence.EntityManager.getTransaction()&quot; because &quot;logica.manejadores.TipoOfertaHandler.database&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.getTransaction()" because "logica.manejadores.TipoOfertaHandler.database" is null
 	at logica.manejadores.TipoOfertaHandler.agregar(TipoOfertaHandler.java:40)
 	at logica.controladores.CtrlOferta.altaTipoPublicacionOL(CtrlOferta.java:78)
@@ -306,9 +306,9 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></system-err>
   </testcase>
-  <testcase name="darDeAltaTipoPublicacionFallaExposicionInvalida" classname="main.test.ctrlOfertaTest" time="0.032"/>
-  <testcase name="darDeAltaTipoPublicacionFallaDuracionInvalida" classname="main.test.ctrlOfertaTest" time="0.012"/>
-  <testcase name="existeOfertaExistente" classname="main.test.ctrlOfertaTest" time="0.007">
+  <testcase name="darDeAltaTipoPublicacionFallaExposicionInvalida" classname="main.test.ctrlOfertaTest" time="0.007"/>
+  <testcase name="darDeAltaTipoPublicacionFallaDuracionInvalida" classname="main.test.ctrlOfertaTest" time="0.022"/>
+  <testcase name="existeOfertaExistente" classname="main.test.ctrlOfertaTest" time="0.008">
     <error message="Unresolved compilation problem: &#10;	The method altaOfertaLaboral(String, String, String, String, DTHorario, float, String, DepUY, LocalDate, Set&lt;String&gt;, EstadoOL, byte[], String) in the type ICtrlOferta is not applicable for the arguments (String, String, String, String, DTHorario, float, String, DepUY, LocalDate, Set&lt;String&gt;, EstadoOL, String, null)&#10;" type="java.lang.Error"><![CDATA[java.lang.Error: 
 Unresolved compilation problem: 
 	The method altaOfertaLaboral(String, String, String, String, DTHorario, float, String, DepUY, LocalDate, Set<String>, EstadoOL, byte[], String) in the type ICtrlOferta is not applicable for the arguments (String, String, String, String, DTHorario, float, String, DepUY, LocalDate, Set<String>, EstadoOL, String, null)
@@ -319,8 +319,8 @@ Unresolved compilation problem:
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ]]></error>
   </testcase>
-  <testcase name="darDeAltaTipoPublicacionFallaFechaAltaNula" classname="main.test.ctrlOfertaTest" time="0.007"/>
-  <testcase name="darDeAltaTipoPublicacionFallaDescripcionVacia" classname="main.test.ctrlOfertaTest" time="0.005"/>
+  <testcase name="darDeAltaTipoPublicacionFallaFechaAltaNula" classname="main.test.ctrlOfertaTest" time="0.01"/>
+  <testcase name="darDeAltaTipoPublicacionFallaDescripcionVacia" classname="main.test.ctrlOfertaTest" time="0.015"/>
   <testcase name="darDeAltaTipoPublicacionFallaCostoNegativo" classname="main.test.ctrlOfertaTest" time="0.005"/>
-  <testcase name="darDeAltaTipoPublicacionFallaNombreVacio" classname="main.test.ctrlOfertaTest" time="0.003"/>
+  <testcase name="darDeAltaTipoPublicacionFallaNombreVacio" classname="main.test.ctrlOfertaTest" time="0.004"/>
 </testsuite>
