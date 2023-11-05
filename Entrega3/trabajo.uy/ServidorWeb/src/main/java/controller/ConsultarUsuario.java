@@ -31,12 +31,11 @@ public class ConsultarUsuario extends HttpServlet {
 
     public ConsultarUsuario() {
         super();
-        
-        logica = FabricaWeb.getInstance().getLogica();
+        logica = FabricaWeb.getLogica();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         String nicknameParametro = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
@@ -44,8 +43,6 @@ public class ConsultarUsuario extends HttpServlet {
         request.setAttribute("tipoU", tipoUsuarioLogueado);
         request.setAttribute("usuarioConsultado", nicknameParametro);
    
-        
-        ILogica logica = FabricaWeb.getInstance().getLogica();
 
         if (nicknameParametro != null && !nicknameParametro.isEmpty()) {
             try {

@@ -114,6 +114,16 @@ public class Logica implements ILogica {
 		servidor.altaPostulacion(nombreOferta, nickname,curriculumAbreviado, motivacion, url, fecha.toString(), video   );
 	}
 
+	@Override
+	public boolean nicknameDisponible(String nickname) {
+		return !servidor.existeUsuarioConNickname(nickname);
+	}
+
+	@Override
+	public boolean emailDisponible(String email) {
+		return !servidor.existeUsuarioConEmail(email);
+	}
+
 
 	@Override
 	public void cargarDatos() {

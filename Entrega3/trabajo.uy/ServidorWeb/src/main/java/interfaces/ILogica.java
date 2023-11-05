@@ -137,4 +137,7 @@ public interface ILogica {
 	void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception;
 
 
+    boolean nicknameDisponible(String nickname);
+
+	boolean emailDisponible (String email);
 }
