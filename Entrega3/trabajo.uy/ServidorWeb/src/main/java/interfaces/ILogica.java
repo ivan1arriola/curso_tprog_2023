@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import enumeration.Departamento;
@@ -70,25 +71,13 @@ public interface ILogica {
 	//OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname);
 
 	
-	/**
-	 * Carga los datos de los Postulantes a la oferta en un OfertaLaboralBean existente.
-	 *
-	 * @param ofertaBean      El objeto OfertaLaboralBean al que se le cargan los datos.
-	 * @param empresaNickname El nickname de la empresa dueña de la oferta laboral
-	 * @throws Exception 
-	 */
-	OfertaLaboralBean cargarPostulantes(OfertaLaboralBean ofertaBean, String empresaNickname) throws Exception;
 
-	/**
-	 * Carga los datos del paquete utilizado para pagar la Oferta Laboral en un OfertaLaboralBean existente,
-	 * en caso de existir.
-	 *
-	 * @param ofertaBean      El objeto OfertaLaboralBean al que se le cargan los datos.
-	 * @param empresaNickname El nickname de la empresa.
-	 * @throws Exception 
-	 */
-	OfertaLaboralBean cargarPaquete(OfertaLaboralBean ofertaBean, String empresaNickname) throws Exception;
-	
+	List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNIckname);
+
+
+
+	PaqueteBean obtenerPaqueteDeOferta(String nombreOferta, String empresaNickname) throws Exception;
+
 	OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean, String postulanteNickname) throws Exception;
 
 	/** Lista las ofertas laborales confirmadas del sistema **/

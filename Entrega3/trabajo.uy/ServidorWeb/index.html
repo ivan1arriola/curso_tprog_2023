@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+
+<ul id="sortable">
+  <li>Elemento 1</li>
+  <li>Elemento 2</li>
+  <li>Elemento 3</li>
+  <li>Elemento 4</li>
+</ul>
+
+<form id="form">
+  <input type="hidden" name="orden" id="orden">
+  <input type="submit" value="Enviar Orden">
+</form>
+
+<script>
+$(document).ready(function() {
+  $("#sortable").sortable({
+    update: function(event, ui) {
+      var order = $("#sortable").sortable("toArray");
+      $("#orden").val(order);
+    }
+  });
+  $("#sortable").disableSelection();
+});
+</script>
+
+</body>
+</html>

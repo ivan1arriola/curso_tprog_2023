@@ -4,7 +4,7 @@ public enum EstadoOfertaLaboral {
     Ingresada("bg-primary"),
     Confirmada("bg-success"),
     Rechazada("bg-danger"),
-    Finalizada("bg-info");    // Otra nueva constante
+    Finalizada("bg-secondary");
 
     private String cssClass;
 
