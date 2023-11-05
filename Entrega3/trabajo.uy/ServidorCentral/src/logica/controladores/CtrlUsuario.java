@@ -581,7 +581,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 	@Override
-	public ArrayList<String> obtenerSeguidoresUsuario(String nickname) {
+	public ArrayList<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		ArrayList<String> res = new ArrayList<>();
 		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidores();
@@ -592,7 +592,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	@Override
-	public ArrayList<String> obtenerSeguidosUsuario(String nickname) {
+	public ArrayList<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		ArrayList<String> res = new ArrayList<>();
 		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidos();

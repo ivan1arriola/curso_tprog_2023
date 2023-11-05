@@ -119,8 +119,8 @@ public interface ICtrlUsuario {
 
     public abstract void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado;
 
-    public abstract ArrayList<String> obtenerSeguidoresUsuario(String nickname);
+    public abstract ArrayList<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
     
-    public abstract ArrayList<String> obtenerSeguidosUsuario(String nickname);
+    public abstract ArrayList<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
     
 }
