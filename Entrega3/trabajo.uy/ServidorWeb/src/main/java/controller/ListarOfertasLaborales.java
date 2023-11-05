@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import javabeans.OfertaLaboralBean;
+import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -57,7 +58,11 @@ public class ListarOfertasLaborales extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ofertas = logica.listarDatosOfertas();
+            try {
+                ofertas = logica.listarDatosOfertas();
+            } catch (OfertaLaboralNoEncontrada_Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
         // Almacena las ofertas como un atributo en el objeto request

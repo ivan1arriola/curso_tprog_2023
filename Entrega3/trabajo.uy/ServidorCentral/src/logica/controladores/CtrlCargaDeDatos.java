@@ -284,7 +284,13 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             LocalDate fecha = utils.obtenerFechaDesdeString(fechaStr, "d/M/yyyy");
 
             // No hay URLDocExtras, por eso el ""
-            utils.altaPostulacionForzado(ofertaLaboral, usuario, postulacionData[2], postulacionData[3], "", fecha);// Manejar la excepción aquí si es necesario
+            try {
+                utils.altaPostulacionForzado(ofertaLaboral, usuario, postulacionData[2], postulacionData[3], "", fecha);// Manejar la excepción aquí si es necesario
+            } catch (OfertaLaboralNoEncontrada e) {
+                throw new RuntimeException(e);
+            } catch (ExceptionUsuarioNoEncontrado e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

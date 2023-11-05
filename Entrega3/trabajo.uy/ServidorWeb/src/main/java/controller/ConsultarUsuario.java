@@ -11,9 +11,7 @@ import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
-import logica.servidor.ExceptionUsuarioSeSigueASiMismo_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
+import logica.servidor.*;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -106,7 +104,7 @@ public class ConsultarUsuario extends HttpServlet {
         }
     }
 	
-    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario, String nicknameParametro, boolean mostrarTodas) {
+    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario, String nicknameParametro, boolean mostrarTodas) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
         Set<String> nombresOfertas;
         
         if (!mostrarTodas) {
@@ -128,7 +126,7 @@ public class ConsultarUsuario extends HttpServlet {
     }
 
 
-	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) {
+	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
 		Set<String> nombreOfertasConPostulacion = logica.listarPostulacionesDePostulante(nicknameParametro);
 		Set<PostulacionBean> postulaciones = new HashSet<PostulacionBean>();
 		
@@ -155,7 +153,7 @@ public class ConsultarUsuario extends HttpServlet {
 
 
 
-	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) {
+	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
         Set<String> nombresPaquetes = logica.listarPaquetesDeEmpresa(nickname);  	
         Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
         if (nombresPaquetes != null && !nombresPaquetes.isEmpty()) {
@@ -206,7 +204,9 @@ public class ConsultarUsuario extends HttpServlet {
 	            request.setAttribute("mensajeError", mensajeError);
 	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
 	            dispatcher.forward(request, response);
-			}
+			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
+                throw new RuntimeException(e);
+            }
         } else if (request.getParameter("btnDejarDeSeguir") != null) {
             try {
 				servidor.dejarDeseguirUsuario(nicknameUsuarioLogueado,nicknameParametro);
@@ -215,7 +215,9 @@ public class ConsultarUsuario extends HttpServlet {
 	            request.setAttribute("mensajeError", mensajeError);
 	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
 	            dispatcher.forward(request, response);
-			}
+			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }	
 }

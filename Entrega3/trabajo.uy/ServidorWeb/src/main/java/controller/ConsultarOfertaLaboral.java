@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.UsuarioBean;
+import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import trabajoUy.logica.clases.Paquete;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
@@ -28,7 +29,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
-    private OfertaLaboralBean cargarDatosIniciales(String nombreOferta) {
+    private OfertaLaboralBean cargarDatosIniciales(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
         return logica.obtenerDatosOfertaLaboral(nombreOferta);
     }
 

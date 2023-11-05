@@ -3,6 +3,7 @@ package presentacion;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTUsuario;
@@ -212,7 +213,12 @@ public class ConsultaDeUsuario extends JInternalFrame {
 
                 if (comboBoxUsuarios.getSelectedIndex() != -1 && comboBoxUsuarios.getSelectedIndex() != 0) {
 
-                    DTUsuario dtusr = controlUsr.obtenerDatosUsuario(selectedUsuario);
+                    DTUsuario dtusr = null;
+                    try {
+                        dtusr = controlUsr.obtenerDatosUsuario(selectedUsuario);
+                    } catch (ExceptionUsuarioNoEncontrado e) {
+                        throw new RuntimeException(e);
+                    }
                     String tipo;
                     if (dtusr instanceof DTEmpresa) {
                         tipo = "Empresa";
@@ -322,6 +328,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
                     } catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
+                    } catch (OfertaLaboralNoEncontrada e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }

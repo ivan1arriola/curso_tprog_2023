@@ -57,7 +57,7 @@ const validarNombre = () => {
     }
   }
 
-  
+
 
   divNombre.classList.add("was-validated");
 }
@@ -107,7 +107,6 @@ const validarTamañoImagen = () => {
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
   mostrarCamposEspeciales();
-  validarNombre();
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll(".needs-validation");
@@ -115,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmPasswordInput.addEventListener("input", validarContraseña);
   passwordInput.addEventListener("input", validarContraseña);
   imageInput.addEventListener("input", validarTamañoImagen);
+  nombreInput.addEventListener("input", validarNombre);
 
   // Loop over them and prevent submission
   Array.from(forms).forEach((form) => {
@@ -134,21 +134,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const validacionCampos = () => {
-  const campos = document.querySelectorAll(".needs-validation-field");
-  Array.from(campos).forEach((form) => {
-    form.addEventListener(
-      "submit",
-      (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
 
-        // Agrega la clase CSS de Bootstrap para mostrar los estilos de validación
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-}

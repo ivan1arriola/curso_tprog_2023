@@ -1,5 +1,7 @@
 package presentacion;
 
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPostulacion;
 import logica.datatypes.DTPostulante;
@@ -29,7 +31,7 @@ public class ConsultarOfertas extends JDialog {
     private LocalDate fecha;
     private String fechaFormat;
 
-    public ConsultarOfertas(Set<String> offerDetailsUnsort, ICtrlOferta icoInstance, ICtrlUsuario icuInstance, String usuario) {
+    public ConsultarOfertas(Set<String> offerDetailsUnsort, ICtrlOferta icoInstance, ICtrlUsuario icuInstance, String usuario) throws OfertaLaboralNoEncontrada {
 
         ico = icoInstance;
         icu = icuInstance;
@@ -99,9 +101,19 @@ public class ConsultarOfertas extends JDialog {
 
                 String selectedOferta = (String) comboBox.getSelectedItem();
 
-                DTOfertaExtendido dtOfer = ico.obtenerOfertaLaboral(selectedOferta);
+                DTOfertaExtendido dtOfer = null;
+                try {
+                    dtOfer = ico.obtenerOfertaLaboral(selectedOferta);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
+                }
 
-                DTUsuario usr = icu.obtenerDatosUsuario(usuario);
+                DTUsuario usr = null;
+                try {
+                    usr = icu.obtenerDatosUsuario(usuario);
+                } catch (ExceptionUsuarioNoEncontrado e) {
+                    throw new RuntimeException(e);
+                }
 
                 if (usr instanceof DTPostulante) {
                     postulaciones = dtOfer.getPostulaciones();

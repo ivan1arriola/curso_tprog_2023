@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import utils.FabricaWeb;
 import enumeration.Departamento;
 import enumeration.EstadoOfertaLaboral;
@@ -40,13 +41,17 @@ public class AltaOfertaLaboral extends HttpServlet {
             } else {
                 String nickname = (String) session.getAttribute("nickname");
                 cargarTipoOferta(request, response);
-                cargarPaquetes(request, response, nickname);
+                try {
+                    cargarPaquetes(request, response, nickname);
+                } catch (ExceptionUsuarioNoEncontrado_Exception e) {
+                    throw new RuntimeException(e);
+                }
                 request.getRequestDispatcher("/WEB-INF/altaOfertaLaboral/altaOfertaLaboral.jsp").forward(request, response);
             }
         }
     }
 
-    private void cargarPaquetes(HttpServletRequest request, HttpServletResponse response, String nickname) {
+    private void cargarPaquetes(HttpServletRequest request, HttpServletResponse response, String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
         Set<String> paquetes = logica.listarPaquetesDeEmpresa(nickname);
         request.setAttribute("paquetes", paquetes);
     }

@@ -32,6 +32,7 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioNoEncontrado_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNoEncontrado");
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
+    private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
     private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/", "TipoUsuarioNoValido");
 
     /**
@@ -119,6 +120,16 @@ public class ObjectFactory {
      */
     public ExceptionValidezNegativa createExceptionValidezNegativa() {
         return new ExceptionValidezNegativa();
+    }
+
+    /**
+     * Create an instance of {@link OfertaLaboralNoEncontrada }
+     * 
+     * @return
+     *     the new instance of {@link OfertaLaboralNoEncontrada }
+     */
+    public OfertaLaboralNoEncontrada createOfertaLaboralNoEncontrada() {
+        return new OfertaLaboralNoEncontrada();
     }
 
     /**
@@ -383,6 +394,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionValidezNegativa")
     public JAXBElement<ExceptionValidezNegativa> createExceptionValidezNegativa(ExceptionValidezNegativa value) {
         return new JAXBElement<>(_ExceptionValidezNegativa_QNAME, ExceptionValidezNegativa.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoEncontrada }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoEncontrada }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "OfertaLaboralNoEncontrada")
+    public JAXBElement<OfertaLaboralNoEncontrada> createOfertaLaboralNoEncontrada(OfertaLaboralNoEncontrada value) {
+        return new JAXBElement<>(_OfertaLaboralNoEncontrada_QNAME, OfertaLaboralNoEncontrada.class, null, value);
     }
 
     /**

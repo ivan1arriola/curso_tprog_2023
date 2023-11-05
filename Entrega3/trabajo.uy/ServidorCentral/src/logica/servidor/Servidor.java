@@ -49,12 +49,12 @@ public class Servidor {
     }
 
     @WebMethod
-    public boolean validarCredenciales(String identificador, String contrasenia) {
+    public boolean validarCredenciales(String identificador, String contrasenia) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.validarCredenciales(identificador, contrasenia);
     }
 
     @WebMethod
-    public DTUsuario obtenerDatosUsuario(String nickname) {
+    public DTUsuario obtenerDatosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.obtenerDatosUsuario(nickname);
     }
 
@@ -63,7 +63,7 @@ public class Servidor {
         return ctrlOferta.obtenerDatosTO(nickname);
     }
     @WebMethod
-    public WrapperLista listarOfertasLaboralesConfirmadas(String nicknameParametro) {
+    public WrapperLista listarOfertasLaboralesConfirmadas(String nicknameParametro) throws ExceptionUsuarioNoEncontrado {
         return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesConfirmadas(nicknameParametro));
     }
     @WebMethod
@@ -82,21 +82,21 @@ public class Servidor {
     }
 
     @WebMethod
-    public WrapperLista listarTodasLasOfertasLaborales(String nicknameParametro) {
+    public WrapperLista listarTodasLasOfertasLaborales(String nicknameParametro) throws ExceptionUsuarioNoEncontrado {
         return WSUtils.envolverLista(ctrlOferta.listarTodasLasOfertasLaborales(nicknameParametro));
     }
     @WebMethod
-    public DTPostulacion obtenerDatosPostulacionW(String nicknameParametro, String nombreOferta){
+    public DTPostulacion obtenerDatosPostulacionW(String nicknameParametro, String nombreOferta) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
     }
 
     @WebMethod
-    public DTOfertaExtendido obtenerOfertaLaboral(String nombreOferta) {
+    public DTOfertaExtendido obtenerOfertaLaboral(String nombreOferta) throws OfertaLaboralNoEncontrada {
         return ctrlOferta.obtenerOfertaLaboral(nombreOferta);
     }
 
     @WebMethod
-    public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String empresaNickname, String nombreOferta) {
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String empresaNickname, String nombreOferta) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
         return ctrlOferta.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
     }
 
@@ -106,13 +106,19 @@ public class Servidor {
     }
 
     @WebMethod
-    public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String postulanteNickname, String nombreOferta) {
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String postulanteNickname, String nombreOferta) throws OfertaLaboralNoEncontrada {
         return ctrlOferta.infoOfertaLaboralPostulante(postulanteNickname, nombreOferta);
     }
 
     @WebMethod
-    public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombreOferta) {
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombreOferta) throws OfertaLaboralNoEncontrada {
         return ctrlOferta.infoOfertaLaboralVisitante(nombreOferta);
+    }
+
+    @WebMethod
+    public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, String fechaString, String video) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
+        LocalDate fecha = LocalDate.parse(fechaString);
+        ctrlOferta.altaPostulacion(nombreOferta, nickname, curriculumAbreviado, motivacion, url, fecha, video);
     }
 
 
@@ -120,7 +126,7 @@ public class Servidor {
 
 
     @WebMethod
-    public WrapperLista listarComprasPaquete(String nickname) {
+    public WrapperLista listarComprasPaquete(String nickname) throws ExceptionUsuarioNoEncontrado {
         return WSUtils.envolverLista(ctrlOferta.listarComprasPaquete(nickname));
     }
 
@@ -139,22 +145,22 @@ public class Servidor {
     }
 
     @WebMethod
-    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fechanac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNoEncontrado {
         ctrlUsuario.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, imagen, fechanac, nacionalidad);
     }
 
     @WebMethod
-    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String password, LocalDate fechanac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String password, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNoEncontrado {
         ctrlUsuario.ingresarDatosEditadosPostulante(nickname, nombre, apellido, correo, password, fechanac, nacionalidad);
     }
 
     @WebMethod
-    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String password, String URL, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String password, String URL, String descripcion) throws ExceptionUsuarioNoEncontrado {
         ctrlUsuario.ingresarDatosEditadosEmpresaURL(nickname, nombre, apellido, correo, password, URL, descripcion);
     }
 
     @WebMethod
-    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String password, String descripcion) {
+    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String password, String descripcion) throws ExceptionUsuarioNoEncontrado {
         ctrlUsuario.ingresarDatosEditadosEmpresa(nickname, nombre, apellido, correo, password, descripcion);
     }
 
@@ -166,22 +172,22 @@ public class Servidor {
 
 
     @WebMethod
-    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String URL, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String URL, byte[] imagen, String descripcion) throws ExceptionUsuarioNoEncontrado {
         ctrlUsuario.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, URL, imagen, descripcion);
     }
 
     @WebMethod
-    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, String descripcion) throws ExceptionUsuarioNoEncontrado {
         ctrlUsuario.ingresarDatosEditadosEmpresaImg(nickname, nombre, apellido, correo, password, imagen, descripcion);
     }
 
     @WebMethod
-    public boolean tieneURL(String nickname) {
+    public boolean tieneURL(String nickname) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.tieneURL(nickname);
     }
 
     @WebMethod
-    public boolean hayPostulacionW(String postulante_nick, String ofer) {
+    public boolean hayPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.hayPostulacionW(postulante_nick, ofer);
     }
 
@@ -210,11 +216,11 @@ public class Servidor {
     }
 
     @WebMethod
-    public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) {
+    public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
     }
     @WebMethod
-    public void modificarDatosUsuario(DTUsuario usuario) throws TipoUsuarioNoValido {
+    public void modificarDatosUsuario(DTUsuario usuario) throws TipoUsuarioNoValido, ExceptionUsuarioNoEncontrado {
         if(usuario instanceof DTEmpresa empresa){
             ctrlUsuario.ingresarDatosEditadosEmpresaURLImg(
                     empresa.getNickname(),
@@ -243,7 +249,7 @@ public class Servidor {
     }
 
     @WebMethod
-    public WrapperLista listarPostulacionesPostulante(String nickname) {
+    public WrapperLista listarPostulacionesPostulante(String nickname) throws ExceptionUsuarioNoEncontrado {
         return WSUtils.envolverLista(ctrlUsuario.listarPostulacionesPostulante(nickname));
     }
 
@@ -263,7 +269,7 @@ public class Servidor {
     }
 
     @WebMethod
-    public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
+    public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {
         ctrlUsuario.dejarDeseguirUsuario(usuario, usuario_seguido);
     }
 

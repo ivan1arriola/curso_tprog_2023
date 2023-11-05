@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
+import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
+import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import utils.FabricaWeb;
 
 @WebServlet("/consultapostulacion")
@@ -35,11 +37,21 @@ public class ConsultaPostulacion extends HttpServlet {
         request.setAttribute("postulante", nombrePostulante);
 
         String nombreOferta = request.getParameter("id");
-        PostulacionBean postulacion = logica.obtenerDatosPostulacionW(nickname, nombreOferta);
+        PostulacionBean postulacion = null;
+        try {
+            postulacion = logica.obtenerDatosPostulacionW(nickname, nombreOferta);
+        } catch (ExceptionUsuarioNoEncontrado_Exception e) {
+            throw new RuntimeException(e);
+        }
 
         request.setAttribute("postulacion",postulacion);
 
-        OfertaLaboralBean ofertaLaboral = logica.obtenerDatosOfertaLaboral(nombreOferta);
+        OfertaLaboralBean ofertaLaboral = null;
+        try {
+            ofertaLaboral = logica.obtenerDatosOfertaLaboral(nombreOferta);
+        } catch (OfertaLaboralNoEncontrada_Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("oferta", ofertaLaboral);
 
 

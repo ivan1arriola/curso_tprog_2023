@@ -14,85 +14,110 @@ import logica.servidor.*;
 
 
 public interface ILogica {
-	
+
 	void cargarDatos();
-	
-	/** Valida que las credenciales coincidan con un usuario en el sistema **/
-	boolean validarCredenciales(String identificador, String contraseña);
-		
-	/** Devuelve los datos basicos del usuario. En caso de error devuelve un bean vacio con un mensaje de error**/
+
+	/**
+	 * Valida que las credenciales coincidan con un usuario en el sistema
+	 **/
+	boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado_Exception;
+
+	/**
+	 * Devuelve los datos basicos del usuario. En caso de error devuelve un bean vacio con un mensaje de error
+	 **/
 	UsuarioBean obtenerDatosUsuario(String nickname);
-	
-	
+
+
 	void modificarDatosUsuario(String nickname, UsuarioBean usuario);
+
 	Set<UsuarioBean> listarUsuarios();
+
 	Set<String> listarNicknamesUsuario();
-	
-	
-	
-	
-	void altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  
-			String descripcion,  String horario,  float remun,  String ciu,
-			Departamento dep,  LocalDate fechaA,  Set<String> keys,  
-			EstadoOfertaLaboral estado,  String img,  String paquete);
-	
+
+
+	void altaOfertaLaboral(String nickname_e, String tipo, String nombre,
+						   String descripcion, String horario, float remun, String ciu,
+						   Departamento dep, LocalDate fechaA, Set<String> keys,
+						   EstadoOfertaLaboral estado, String img, String paquete);
+
 	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor);
-	
-	
-	
+
+
 	Set<String> listarKeywords();
-	
-	/** Lista los nombres de los paquetes comprados por la empresa nickname **/
-	Set<String> listarPaquetesDeEmpresa(String nickname);
-	
+
+	/**
+	 * Lista los nombres de los paquetes comprados por la empresa nickname
+	 **/
+	Set<String> listarPaquetesDeEmpresa(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
+
 	Set<String> listarTipoDePublicaciones();
-	
 
-    /** Obtiene el PaqueteBean del paquete paquete **/
-    PaqueteBean obtenerDatosPaquete(String paquete);
 
-    /** Lista las ofertas confirmadas de la empresa nicknameParametro **/
-	Set<String> listarOfertasConfirmadasDeEmpresa(String nicknameParametro);
+	/**
+	 * Obtiene el PaqueteBean del paquete paquete
+	 **/
+	PaqueteBean obtenerDatosPaquete(String paquete);
 
-	/** Obtiene el OfertaLaboralBean de la oferta laboral nombre **/
-	OfertaLaboralBean obtenerDatosOfertaLaboral(String nombre);
+	/**
+	 * Lista las ofertas confirmadas de la empresa nicknameParametro
+	 **/
+	Set<String> listarOfertasConfirmadasDeEmpresa(String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception;
 
-	/** Lista todas las ofertas laborales de la empresa nicknameParametro **/
-	Set<String> listarOfertasLaboralesDeEmpresa(String nicknameParametro);
+	/**
+	 * Obtiene el OfertaLaboralBean de la oferta laboral nombre
+	 **/
+	OfertaLaboralBean obtenerDatosOfertaLaboral(String nombre) throws OfertaLaboralNoEncontrada_Exception;
 
-	/** Lista todas las ofertas laborales a las cual postulante se postuló **/
-	Set<String> listarPostulacionesDePostulante(String nicknameParametro);
+	/**
+	 * Lista todas las ofertas laborales de la empresa nicknameParametro
+	 **/
+	Set<String> listarOfertasLaboralesDeEmpresa(String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception;
 
-	/** Obtiene los datos de la postulacion de nicknameParametro a la oferta nombreOferta **/
-	PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro);
-	
-	/** A un OfertaLaboralBean ya existente le carga los datos de los Postulantes a la oferta y 
-	 * de el paquete utilizado para pagar la Oferta Laboral en caso de existir **/
+	/**
+	 * Lista todas las ofertas laborales a las cual postulante se postuló
+	 **/
+	Set<String> listarPostulacionesDePostulante(String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception;
+
+	/**
+	 * Obtiene los datos de la postulacion de nicknameParametro a la oferta nombreOferta
+	 **/
+	PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception;
+
+	/**
+	 * A un OfertaLaboralBean ya existente le carga los datos de los Postulantes a la oferta y
+	 * de el paquete utilizado para pagar la Oferta Laboral en caso de existir
+	 **/
 	//OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname);
 
-	
 
-	List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNIckname);
-
+	List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNIckname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
 
 
 	PaqueteBean obtenerPaqueteDeOferta(String nombreOferta, String empresaNickname) throws Exception;
 
 	OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean, String postulanteNickname) throws Exception;
 
-	/** Lista las ofertas laborales confirmadas del sistema **/
-	Set<OfertaLaboralBean> listarDatosOfertas();
+	/**
+	 * Lista las ofertas laborales confirmadas del sistema
+	 **/
+	Set<OfertaLaboralBean> listarDatosOfertas() throws OfertaLaboralNoEncontrada_Exception;
 
-	/** Lista las ofertas laborales confirmadas del sistema que tengan la keyword **/
-	Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword);
-	
-	/** Lista las ofertas laborales confirmadas del sistema que tengan en el nombre el String consulta **/
-	Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta);
+	/**
+	 * Lista las ofertas laborales confirmadas del sistema que tengan la keyword
+	 **/
+	Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword) throws OfertaLaboralNoEncontrada_Exception;
 
-	/** Lista los datos de los paquetes **/
+	/**
+	 * Lista las ofertas laborales confirmadas del sistema que tengan en el nombre el String consulta
+	 **/
+	Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
+
+	/**
+	 * Lista los datos de los paquetes
+	 **/
 	Set<PaqueteBean> obtenerPaquetes();
 
-	OfertaLaboralBean DatosOferta(String nombre_oferta);
+	OfertaLaboralBean DatosOferta(String nombre_oferta) throws OfertaLaboralNoEncontrada_Exception;
 
 
 	Set<DtTipoOferta> obtenerTipoOfertas();
@@ -107,5 +132,9 @@ public interface ILogica {
 
 	void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String link, byte[] imagen, String descripcion);
 
-	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta);
+	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception;
+
+	void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception;
+
+
 }

@@ -1,6 +1,7 @@
 package logica.manejadores;
 
 
+import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
@@ -76,8 +77,8 @@ public class OfertaLaboralHandler {
     }
 
 
-    public OfertaLaboral buscar(String nombre) {
-        try {
+    public OfertaLaboral buscar(String nombre) throws OfertaLaboralNoEncontrada {
+
             TypedQuery<OfertaLaboral> query = database.createQuery("SELECT o FROM OfertaLaboral o WHERE o.nombre = :nombre", OfertaLaboral.class);
             query.setParameter("nombre", nombre);
             List<OfertaLaboral> resultados = query.getResultList();
@@ -85,12 +86,7 @@ public class OfertaLaboralHandler {
             if (!resultados.isEmpty()) {
                 // Devuelve la primera oferta laboral encontrada con ese nombre.
                 return resultados.get(0);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null; // Devuelve null si no se encontró ninguna oferta laboral con ese nombre.
+            } else throw new OfertaLaboralNoEncontrada("No se encontro la oferta laboral");
     }
 
     public void actualizar(OfertaLaboral ofertaActualizada) {

@@ -1,6 +1,8 @@
 package logica.manejadores;
 
+import excepciones.ExceptionUsuarioNoEncontrado;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import logica.clases.Usuario;
 
@@ -64,16 +66,16 @@ public class UsuarioHandler {
         }
     }
 
-    public Usuario buscarNick(String nombre) {
+    public Usuario buscarNick(String nombre) throws ExceptionUsuarioNoEncontrado {
         try {
             TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nombre", Usuario.class);
             query.setParameter("nombre", nombre);
             return query.getSingleResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null; // Devuelve null si no se encuentra el usuario
+        } catch (NoResultException e) {
+            throw new ExceptionUsuarioNoEncontrado("Usuario no encontrado para el nombre: " + nombre);
         }
     }
+
 
     public Usuario buscarCorreo(String mail) {
         try {

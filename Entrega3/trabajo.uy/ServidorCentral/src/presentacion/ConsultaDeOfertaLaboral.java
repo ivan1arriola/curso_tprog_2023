@@ -3,6 +3,7 @@ package presentacion;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
 import logica.interfaces.ICtrlUsuario;
@@ -91,7 +92,12 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                 if (selectedUsuario1 != null) {
                     selectedUsuario = selectedUsuario1;
                 }
-                DTOfertaExtendido infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
+                DTOfertaExtendido infoConsOf = null;
+                try {
+                    infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
+                }
                 tfNombre.setText(infoConsOf.getNombre());
                 tfDescripcion.setText(infoConsOf.getDescripcion());
 
@@ -117,7 +123,12 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                     tfPaquete.setText(paq);
                 }
 
-                Set<String> keywords = icUsuario.listarKeywords(selectedUsuario1);
+                Set<String> keywords = null;
+                try {
+                    keywords = icUsuario.listarKeywords(selectedUsuario1);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
+                }
 
                 tAKey.setText("");
                 Iterator<String> iterator = keywords.iterator();
@@ -242,7 +253,11 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
         btnVerPostulaciones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
-                verPostulacionesJInternalFrame.actualizar(selectedUsuario);
+                try {
+                    verPostulacionesJInternalFrame.actualizar(selectedUsuario);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
+                }
                 verPostulacionesJInternalFrame.setVisible(true);
 
             }

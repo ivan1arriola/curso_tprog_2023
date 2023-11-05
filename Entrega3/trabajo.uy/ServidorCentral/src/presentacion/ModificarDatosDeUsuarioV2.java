@@ -1,5 +1,6 @@
 package presentacion;
 
+import excepciones.ExceptionUsuarioNoEncontrado;
 import logica.Fabrica;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTPostulante;
@@ -78,12 +79,21 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
             public void actionPerformed(ActionEvent evento) {
 
                 String selectedUsuario = (String) listarUsuarios.getSelectedItem(); // agarro el usuario
-                DTUsuario dtus = icUsuario.obtenerDatosUsuario(selectedUsuario); // obtengo los datos
+                DTUsuario dtus = null; // obtengo los datos
+                try {
+                    dtus = icUsuario.obtenerDatosUsuario(selectedUsuario);
+                } catch (ExceptionUsuarioNoEncontrado e) {
+                    throw new RuntimeException(e);
+                }
 
                 // El combobox no esta vacio y el usuario es un POSTULANTE
                 if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0 && !(dtus instanceof DTEmpresa)) {
                     DTPostulante dtpostu = (DTPostulante) dtus;
-                    mDUPost = new ModificarDatosDeUsuarioPostulante(icUsuario, dtpostu);
+                    try {
+                        mDUPost = new ModificarDatosDeUsuarioPostulante(icUsuario, dtpostu);
+                    } catch (ExceptionUsuarioNoEncontrado e) {
+                        throw new RuntimeException(e);
+                    }
                     gui.getContentPane().add(mDUPost);
                     setVisible(false);
                     mDUPost.setVisible(true);
@@ -93,7 +103,11 @@ public class ModificarDatosDeUsuarioV2 extends JInternalFrame {
                 // El combobox no esta vacio y el usuario es una EMPRESA
                 else if (listarUsuarios.getSelectedIndex() != -1 && listarUsuarios.getSelectedIndex() != 0 && dtus instanceof DTEmpresa) {
                     DTEmpresa dtempre = (DTEmpresa) dtus;
-                    mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icUsuario, dtempre);
+                    try {
+                        mDUEmpresa = new ModificarDatosDeUsuarioEmpresa(icUsuario, dtempre);
+                    } catch (ExceptionUsuarioNoEncontrado e) {
+                        throw new RuntimeException(e);
+                    }
                     gui.getContentPane().add(mDUEmpresa);
                     setVisible(false);
                     mDUEmpresa.setVisible(true);
