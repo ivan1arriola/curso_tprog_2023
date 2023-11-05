@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
     private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
     private final static QName _ExceptionUsuarioNickYCorreoRepetidos_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickYCorreoRepetidos");
+    private final static QName _ExceptionUsuarioNoEncontrado_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNoEncontrado");
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
     private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/", "TipoUsuarioNoValido");
@@ -88,6 +89,16 @@ public class ObjectFactory {
      */
     public ExceptionUsuarioNickYCorreoRepetidos createExceptionUsuarioNickYCorreoRepetidos() {
         return new ExceptionUsuarioNickYCorreoRepetidos();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionUsuarioNoEncontrado }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionUsuarioNoEncontrado }
+     */
+    public ExceptionUsuarioNoEncontrado createExceptionUsuarioNoEncontrado() {
+        return new ExceptionUsuarioNoEncontrado();
     }
 
     /**
@@ -333,6 +344,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNickYCorreoRepetidos")
     public JAXBElement<ExceptionUsuarioNickYCorreoRepetidos> createExceptionUsuarioNickYCorreoRepetidos(ExceptionUsuarioNickYCorreoRepetidos value) {
         return new JAXBElement<>(_ExceptionUsuarioNickYCorreoRepetidos_QNAME, ExceptionUsuarioNickYCorreoRepetidos.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNoEncontrado }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNoEncontrado }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNoEncontrado")
+    public JAXBElement<ExceptionUsuarioNoEncontrado> createExceptionUsuarioNoEncontrado(ExceptionUsuarioNoEncontrado value) {
+        return new JAXBElement<>(_ExceptionUsuarioNoEncontrado_QNAME, ExceptionUsuarioNoEncontrado.class, null, value);
     }
 
     /**
