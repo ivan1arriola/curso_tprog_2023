@@ -5,6 +5,9 @@
 
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
+boolean seguir = (boolean) request.getAttribute("seguir");
+boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
+TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
 %>
 
 
@@ -41,6 +44,22 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                                 
                                 <% }%>
                                 
+								<form action="ConsultarUsuario" method="post">
+								    <!-- ... otros campos del formulario ... -->
+								
+								    <% if(!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
+								        if (seguir) { %>
+								            <button class="btn btn-primary mt-2" name="btnSeguir" type="submit">
+								                Seguir
+								            </button>
+								        <% } else { %>
+								            <button class="btn btn-primary mt-2" name="btnDejarDeSeguir" type="submit">
+								                Dejar de seguir
+								            </button>
+								        <% }
+								    } %>
+								</form>
+
                                 
                             </div>
                         </div>
