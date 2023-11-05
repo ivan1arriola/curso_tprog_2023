@@ -455,4 +455,28 @@ public class CtrlOferta implements ICtrlOferta {
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
         return OLH.existe(nombre_ofer);
     }
+    
+    
+    public void marcarFavorita(String nick_postulante, String nomb_oferta) {
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Postulante postu = (Postulante) UH.buscarNick(nick_postulante);
+    	
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboral ofer = OLH.buscar(nomb_oferta);
+        
+        postu.marcarFavorita(ofer);
+        ofer.marcadaFav();
+    }
+    
+    public void desmarcarFavorita(String nick_postulante, String nomb_oferta) {
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Postulante postu = (Postulante) UH.buscarNick(nick_postulante);
+    	
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboral ofer = OLH.buscar(nomb_oferta);
+
+        postu.desmarcarFavorita(ofer);
+        ofer.desmarcadaFav();
+    }
+    
 }

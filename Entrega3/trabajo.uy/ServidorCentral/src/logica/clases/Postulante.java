@@ -18,6 +18,7 @@ public class Postulante extends Usuario {
     // foreign key
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "postulante")
     private Set<Postulacion> postulaciones;
+    private Set<OfertaLaboral> ofertasFavoritas;
 
     // constructor con imagen
     public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fechaNac, String nacionalidad, byte[] img) throws ExceptionFechaInvalida {
@@ -254,6 +255,15 @@ public class Postulante extends Usuario {
             postulacionesList.add(postulacion.obtenerNombreOfertaLaboral());
         }
         return postulacionesList;
+    }
+    
+    
+    public void marcarFavorita(OfertaLaboral ofer) {
+    	ofertasFavoritas.add(ofer);
+    }
+    
+    public void desmarcarFavorita(OfertaLaboral ofer) {
+    	ofertasFavoritas.remove(ofer);
     }
 
 }
