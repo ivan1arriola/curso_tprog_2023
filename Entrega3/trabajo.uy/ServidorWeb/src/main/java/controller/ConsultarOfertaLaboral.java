@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.UsuarioBean;
-import trabajoUy.logica.clases.Paquete;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;

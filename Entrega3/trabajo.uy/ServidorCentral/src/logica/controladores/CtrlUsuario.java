@@ -582,5 +582,27 @@ public class CtrlUsuario implements ICtrlUsuario {
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
         empresa.finalizarOfertaLaboral(nombre_oferta);
     }
+
+	@Override
+	public ArrayList<String> obtenerSeguidoresUsuario(String nickname) {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		ArrayList<String> res = new ArrayList<>();
+		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidores();
+		for (Usuario usuario : seg) {
+			res.add(usuario.getNickname());
+		}
+		return res;
+	}
+
+	@Override
+	public ArrayList<String> obtenerSeguidosUsuario(String nickname) {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		ArrayList<String> res = new ArrayList<>();
+		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidos();
+		for (Usuario usuario : seg) {
+			res.add(usuario.getNickname());
+		}
+		return res;
+	}
 }
 

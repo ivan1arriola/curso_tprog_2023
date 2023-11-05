@@ -9,6 +9,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -118,4 +119,8 @@ public interface ICtrlUsuario {
 
     public abstract void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo;
 
+    public abstract ArrayList<String> obtenerSeguidoresUsuario(String nickname);
+    
+    public abstract ArrayList<String> obtenerSeguidosUsuario(String nickname);
+    
 }

@@ -202,7 +202,7 @@ public class Logica implements ILogica {
          Set<UsuarioBean> usuarios = new TreeSet<>();
          for(String usuario : nicknames) {
          	usuarios.add(obtenerDatosUsuario(usuario));
-         } 	
+         }
 		return usuarios;
     	
     }
