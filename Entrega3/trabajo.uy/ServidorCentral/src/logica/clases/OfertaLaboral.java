@@ -10,10 +10,7 @@ import logica.enumerados.EstadoOL;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -32,7 +29,8 @@ public class OfertaLaboral {
     private DepUY departamento;
     private String ciudad;
     private EstadoOL estado;
-    private byte[] imagen;
+    @Lob
+    private String imagen;
 
     // relaciones
 
@@ -45,8 +43,6 @@ public class OfertaLaboral {
     private Paquete paqueteAsoc;
     @OneToMany(mappedBy = "oferLab", cascade = CascadeType.PERSIST)
     private List<Postulacion> postulaciones;
-
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "empresa_id")
     private Empresa empresaPublicadora;
@@ -88,7 +84,8 @@ public class OfertaLaboral {
 
         this.tOferta = atrtOferta;
         this.estado = estadoNuevo;
-        this.imagen = imagennueva;
+        this.setImagen(imagennueva);
+
 
 
         try {
@@ -209,7 +206,7 @@ public class OfertaLaboral {
 
         this.tOferta = atrtOferta;
         this.estado = estadoNuevo;
-        this.imagen = imagennueva;
+        this.setImagen(imagennueva);
 
 
         this.paqueteAsoc = paq;
@@ -520,11 +517,15 @@ public class OfertaLaboral {
     }
 
     public byte[] getImagen() {
-        return imagen;
+        byte[] base64DecodedBytes = Base64.getDecoder().decode(imagen);
+        return base64DecodedBytes;
     }
 
-    public void setImagen(byte[] imagenNueva) {
-        imagen = imagenNueva;
+    public void setImagen(byte[] imagen) {
+        byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
+        // Convert the byte array to a Base64 string
+
+        this.imagen = new String(base64EncodedBytes);
     }
 
     public Paquete getPaquete() {
