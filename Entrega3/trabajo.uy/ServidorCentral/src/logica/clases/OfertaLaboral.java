@@ -628,15 +628,15 @@ public class OfertaLaboral {
 
     public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario() {
         List<Keyword> keys = getKeywords();
-        Set<String> nuevo = new HashSet<>();
-        for (Keyword item : keys) {
-            nuevo.add(item.getNombre());
+        Set<String> nicknamesPostulantes = new TreeSet<>();
+        for (Postulacion item : postulaciones) {
+            nicknamesPostulantes.add(item.obtenerNicknamePostulante());
         }
         DTOfertaExtendidoConKeywordsTit dtoe;
         if (getPaquete() != null) {
-            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo, getPaquete().getDTPaquete(), nuevo);
+            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, getPaquete().getDTPaquete(), nicknamesPostulantes);
         } else {
-            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo, null, nuevo);
+            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, null, nicknamesPostulantes);
         }
         return dtoe;
     }

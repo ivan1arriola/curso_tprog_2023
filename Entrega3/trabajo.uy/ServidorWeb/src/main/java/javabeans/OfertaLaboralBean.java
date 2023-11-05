@@ -27,10 +27,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 	private PaqueteBean paquete;
 	private Set<String> keywords;
 	private String nicknameEmpresa;
-	
-	
-	private boolean mostrarPostulantes;
-	private boolean mostrarPaquete;
+
 
 	
 	public OfertaLaboralBean() {
@@ -48,8 +45,6 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
         this.setPaquete(null);
         this.keywords = new HashSet<String>();
         this.setPostulantes(new HashSet<UsuarioBean>());
-        this.mostrarPostulantes = false;
-        this.mostrarPaquete = false;
     }
 	
 	public Departamento getDepartamento() {
@@ -269,21 +264,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 		this.imagen = imagen;
 	}
 
-	public boolean isMostrarPostulantes() {
-		return mostrarPostulantes;
-	}
 
-	public void setMostrarPostulantes(boolean mostrarPostulantes) {
-		this.mostrarPostulantes = mostrarPostulantes;
-	}
-
-	public boolean isMostrarPaquete() {
-		return mostrarPaquete;
-	}
-
-	public void setMostrarPaquete(boolean mostrarPaquete) {
-		this.mostrarPaquete = mostrarPaquete;
-	}
 
 	public PaqueteBean getPaquete() {
 		return paquete;

@@ -1,6 +1,5 @@
 package utils;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.ArrayList;
@@ -29,6 +28,8 @@ public class Logica implements ILogica {
 		servidor = service.getServidorPort();
 		
     }
+
+
 
     
 
@@ -267,20 +268,22 @@ public class Logica implements ILogica {
 
 	@Override
 	public PaqueteBean obtenerDatosPaquete(String paquete) {
-		DtPaquete DtPaquete = servidor.obtenerDatosPaquete(paquete);
+		DtPaquete dtPaquete = servidor.obtenerDatosPaquete(paquete);
+		if(dtPaquete == null)
+			return null;
 		PaqueteBean paqueteBean = new PaqueteBean();
-		paqueteBean.setCosto(DtPaquete.getCosto());
-		paqueteBean.setDescripcion(DtPaquete.getDescripcion());
-		paqueteBean.setDescuento(DtPaquete.getDescuento());
-		paqueteBean.setFechaAlta(LocalDate.parse(DtPaquete.getFechaA()));
+		paqueteBean.setCosto(dtPaquete.getCosto());
+		paqueteBean.setDescripcion(dtPaquete.getDescripcion());
+		paqueteBean.setDescuento(dtPaquete.getDescuento());
+		paqueteBean.setFechaAlta(LocalDate.parse(dtPaquete.getFechaA()));
 		
-		paqueteBean.setImagen(imagenAString(DtPaquete.getImagen()));
-		paqueteBean.setNombre(DtPaquete.getNombre());
-		paqueteBean.setValidez(DtPaquete.getValidez());
+		paqueteBean.setImagen(imagenAString(dtPaquete.getImagen()));
+		paqueteBean.setNombre(dtPaquete.getNombre());
+		paqueteBean.setValidez(dtPaquete.getValidez());
 		
 		Set<CantTipoPublicacionBean> cantidades = new TreeSet<CantTipoPublicacionBean>();
 		
-		List<DtCantTO> DtCantidades = DtPaquete.getTiposDePub();
+		List<DtCantTO> DtCantidades = dtPaquete.getTiposDePub();
 		
 		for( DtCantTO cant : DtCantidades) {
 			CantTipoPublicacionBean cantidadBean = new CantTipoPublicacionBean();
@@ -357,76 +360,49 @@ public class Logica implements ILogica {
 		return postulacion;
 	}
 
-	
-	
-
 	@Override
-	public OfertaLaboralBean cargarPostulantes(OfertaLaboralBean ofertaBean, String empresaNickname) throws Exception {
-		
-		// Verificar si el nombre de la oferta es nulo
-	    String nombreOferta = ofertaBean.getNombre();
-	    if (nombreOferta == null) {
-	        throw new Exception("ofertaBean no tiene nombre");
-	    }
-		
+	public List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNickname){
 		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
-	
-		Set<String> nicknamesDePostulantes = null;
-		
+		List<UsuarioBean> postulantes = new ArrayList<>();
 		if ( info instanceof DtOfertaExtendidoConKeywordsTit masData) {
-			ofertaBean.setMostrarPostulantes(true);
-			nicknamesDePostulantes = (Set<String>) masData.getPostulaciones();
-		} else {
-			ofertaBean.setMostrarPostulantes(false);
-			return ofertaBean;
+			List<String> nicknamesDePostulantes = masData.getPostulaciones();
+			for(String nickPostulante : nicknamesDePostulantes){
+				postulantes.add(this.obtenerDatosUsuario(nickPostulante));
+
+			}
 		}
-		
-		
-		
-		Set<UsuarioBean> postulantes = new TreeSet<UsuarioBean>();
-		
-		for(String nickname : nicknamesDePostulantes ) {
-			postulantes.add(this.obtenerDatosUsuario(nickname));	
-		}
-		
-		ofertaBean.setPostulantes(postulantes);
-		return ofertaBean;
+
+		return postulantes;
 	}
+	
+	
+
+
 
 	
 	
 	
 	@Override
-	public OfertaLaboralBean cargarPaquete(OfertaLaboralBean ofertaBean, String empresaNickname) throws Exception {
-	    // Verificar si el nombre de la oferta es nulo
-	    String nombreOferta = ofertaBean.getNombre();
+	public PaqueteBean obtenerPaqueteDeOferta(String nombreOferta, String empresaNickname) throws Exception {
+
 	    if (nombreOferta == null) {
-	        throw new Exception("ofertaBean no tiene nombre");
+	        throw new Exception("Oferta no tiene nombre");
 	    }
 
-	    // Obtener información de la oferta laboral de la empresa
-	    DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		PaqueteBean paquete = null;
 
-	    DtPaquete dtPaquete = null;
+		// Obtener información de la oferta laboral de la empresa
+		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
 
 	    if (info instanceof DtOfertaExtendidoConKeywordsTit masData) {
 	        // La oferta contiene un paquete
-	        ofertaBean.setMostrarPaquete(true);
-	        dtPaquete = masData.getPaq();
-	    } else {
-	        // La oferta no contiene un paquete, se establece mostrarPaquete a falso y se retorna la oferta sin cambios
-	        ofertaBean.setMostrarPaquete(false);
-	        return ofertaBean;
+			DtPaquete dtPaquete = masData.getPaq();
+			if(dtPaquete == null) return null;
+			paquete = obtenerDatosPaquete(dtPaquete.getNombre());
+
 	    }
 
-	    // Obtener datos del paquete
-		if(dtPaquete != null ) {
-			PaqueteBean paquete = this.obtenerDatosPaquete(dtPaquete.getNombre());
-			ofertaBean.setPaquete(paquete);
-		}
-
-
-	    return ofertaBean;
+	    return paquete;
 	}
 
 	@Override
