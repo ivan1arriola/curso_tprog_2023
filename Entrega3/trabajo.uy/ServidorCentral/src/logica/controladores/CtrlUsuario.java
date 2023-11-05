@@ -534,12 +534,11 @@ public class CtrlUsuario implements ICtrlUsuario {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr1 = UHan.buscarNick(usuario);
             Usuario usr2 = UHan.buscarNick(usuario_seguido);
-            System.out.println(usr1.getNickname());
-            System.out.println(usr2.getNickname());
             if(usr1 == null || usr2 == null) {
             	throw new ExceptionUsuarioNoEncontrado("El usuario no se ha encontrado.");
             }
             usr1.seguirUsuario(usr2);
+            usr2.loSigue(usr1);
         } else {
             throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario se siga a si mismo.");
         }
@@ -551,6 +550,7 @@ public class CtrlUsuario implements ICtrlUsuario {
             Usuario usr = UHan.buscarNick(usuario);
             Usuario usrseg = UHan.buscarNick(usuario_seguido);
             usr.dejarDeSeguirUsuario(usrseg);
+            usrseg.noLoSigue(usr);
         } else {
             throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
         }

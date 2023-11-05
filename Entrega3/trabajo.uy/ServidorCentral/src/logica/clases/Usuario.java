@@ -160,6 +160,13 @@ public abstract class Usuario {
     public void dejarDeSeguirUsuario(Usuario usuario_seguido) {
         seguidos.remove(usuario_seguido);
     }
+    
+    public void loSigue(Usuario usr1) {
+    	seguidores.add(usr1);
+    }
 
+    public void noLoSigue(Usuario usr1) {
+    	seguidores.remove(usr1);
+    }
 
 }
