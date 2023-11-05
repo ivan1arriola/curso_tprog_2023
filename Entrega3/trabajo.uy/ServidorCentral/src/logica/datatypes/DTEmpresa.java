@@ -22,7 +22,7 @@ public class DTEmpresa extends DTUsuario {
         this.descripcion = descripcion;
         this.url = url;
         this.ofertasLaborales = dtOfertas;
-    }
+    }  
 
 
     public Set<DTOfertaExtendido> getOfertasLaborales() {

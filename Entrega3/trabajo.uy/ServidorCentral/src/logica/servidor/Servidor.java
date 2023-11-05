@@ -12,9 +12,11 @@ import logica.Fabrica;
 import logica.datatypes.*;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.manejadores.UsuarioHandler;
 import logica.servidor.bean.WrapperLista;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -56,6 +58,16 @@ public class Servidor {
     @WebMethod
     public DTUsuario obtenerDatosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
         return ctrlUsuario.obtenerDatosUsuario(nickname);
+    }
+    
+    @WebMethod
+    public WrapperLista obtenerSeguidoresUsuario(String nickname) {
+        return WSUtils.envolverLista(ctrlUsuario.obtenerSeguidoresUsuario(nickname));
+    }
+    
+    @WebMethod
+    public WrapperLista obtenerSeguidosUsuario(String nickname) {
+        return WSUtils.envolverLista(ctrlUsuario.obtenerSeguidosUsuario(nickname));
     }
 
     @WebMethod
