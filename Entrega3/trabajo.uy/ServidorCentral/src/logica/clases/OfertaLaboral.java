@@ -720,7 +720,7 @@ public class OfertaLaboral {
         postulacionActual.setClasificacion(posicion);
     }
     
-    public Boolean TienePosicion(String nickPostulante, Integer posicion) {
+    public Boolean TienePosicion(String nickPostulante) {
         List<Postulacion> postulaciones = getPostulaciones();
         Postulacion postulacionActual = null;
         for (int i = 0; i < postulaciones.size(); i++) {

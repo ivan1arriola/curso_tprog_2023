@@ -99,6 +99,6 @@ public interface ICtrlOferta {
 
     void establecerPosicion(String nombre_oferta, String nombreEmpresa, String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado;
 
-	Boolean HayOrden(String nombre_oferta, String nombreEmpresa, String nickPostulante, Integer posicion)
+	Boolean HayOrden(String nombre_oferta, String nombreEmpresa, String nickPostulante)
 			throws ExceptionUsuarioNoEncontrado;
 }
