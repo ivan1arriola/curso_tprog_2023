@@ -71,6 +71,7 @@ public class DtOfertaExtendido {
     protected byte[] imagen;
     protected String paq;
     protected String nicknameEmpresaPublicadora;
+    protected Integer cantFavs;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -365,5 +366,13 @@ public class DtOfertaExtendido {
     public void setNicknameEmpresaPublicadora(String value) {
         this.nicknameEmpresaPublicadora = value;
     }
+    
+	public Integer getCantFavs() {
+		return cantFavs;
+	}
+
+	public void setCantFavs(Integer cantFavs) {
+		this.cantFavs = cantFavs;
+	}
 
 }

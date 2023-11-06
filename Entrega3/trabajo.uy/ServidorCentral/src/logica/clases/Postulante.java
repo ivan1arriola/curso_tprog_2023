@@ -109,7 +109,8 @@ public class Postulante extends Usuario {
 
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
-        
+        Set<DTOfertaExtendido> ofer_favs = new HashSet<DTOfertaExtendido>();
+
         for (Usuario elemento : getSeguidores()) {
         	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdores.add(dt);
@@ -119,8 +120,13 @@ public class Postulante extends Usuario {
             DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdos.add(dt);
         }
+        
+        for (OfertaLaboral elemento : getOfertasFavoritas()) {
+        	DTOfertaExtendido dt = elemento.obtenerDatosOferta();
+        	ofer_favs.add(dt);
+        }
 
-        DTPostulante postul = new DTPostulante(this.getNickname(), this.getcorreoElectronico(), this.getApellido(), this.getNombre(), this.getcontrasenia(), this.getImagen(), fechaNac, nacionalidad, sdos, sdores);
+        DTPostulante postul = new DTPostulante(this.getNickname(), this.getcorreoElectronico(), this.getApellido(), this.getNombre(), this.getcontrasenia(), this.getImagen(), fechaNac, nacionalidad, sdos, sdores, ofer_favs);
         return postul;
     }
 
@@ -193,6 +199,7 @@ public class Postulante extends Usuario {
 
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
+        Set<DTOfertaExtendido> ofer_favs = new HashSet<DTOfertaExtendido>();
 
         for (Usuario elemento : getSeguidores()) {
         	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
@@ -202,6 +209,11 @@ public class Postulante extends Usuario {
         for (Usuario elemento : getSeguidos()) {
             DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdos.add(dt);
+        }
+        
+        for (OfertaLaboral elemento : getOfertasFavoritas()) {
+        	DTOfertaExtendido dt = elemento.obtenerDatosOferta();
+        	ofer_favs.add(dt);
         }
 
         if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
@@ -222,7 +234,7 @@ public class Postulante extends Usuario {
                 postsDT.add(paux);
             }
 
-            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre, contrasenia, imagen, fechaNac, nacionalidad, postsDT, sdos, sdores);
+            postul = new DTPostulanteExtendido(nickname, correoElectronico, apellido, nombre, contrasenia, imagen, fechaNac, nacionalidad, postsDT, sdos, sdores, ofer_favs);
         } else {
             String nickname = getNickname();
             String nombre = getNombre();
@@ -232,7 +244,7 @@ public class Postulante extends Usuario {
             byte[] imagen = getImagen();
             LocalDate fechaNac = getFechaNac();
             String nacionalidad = getNacionalidad();
-            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre, contraseña, imagen, fechaNac, nacionalidad, sdos, sdores);
+            postul = new DTPostulante(nickname, correoElectronico, apellido, nombre, contraseña, imagen, fechaNac, nacionalidad, sdos, sdores, ofer_favs);
         }
         return postul;
     }
@@ -264,6 +276,14 @@ public class Postulante extends Usuario {
     
     public void desmarcarFavorita(OfertaLaboral ofer) {
     	ofertasFavoritas.remove(ofer);
+    }
+    
+    public Set<OfertaLaboral> getOfertasFavoritas(){
+    	return ofertasFavoritas;
+    }
+    
+    public void setOfertasFavoritas(Set<OfertaLaboral> oferLabs){
+    	ofertasFavoritas = oferLabs;
     }
 
 }

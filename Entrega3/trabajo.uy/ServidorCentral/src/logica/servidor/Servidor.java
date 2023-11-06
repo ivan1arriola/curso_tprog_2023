@@ -287,4 +287,14 @@ public class Servidor {
         ctrlUsuario.dejarDeseguirUsuario(usuario, usuario_seguido);
     }
 
+    @WebMethod
+    public void marcarFavorito(String nickname, String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	ctrlOferta.marcarFavorita(nickname, nombre_oferta);
+    }
+    
+    @WebMethod
+    public void desmarcarFavorito(String nickname, String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	ctrlOferta.desmarcarFavorita(nickname, nombre_oferta);
+    }
+    
 }
