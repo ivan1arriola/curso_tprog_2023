@@ -35,15 +35,19 @@ public class FinalizarOferta extends HttpServlet {
             boolean esDueño = oferta.getNicknameEmpresa().equals(nickname);
             if (esDueño){
                 logica.finalizarOferta(nombreOferta);
-                request.getRequestDispatcher()
+                response.sendRedirect("/consultaroferta?o=" + nombreOferta);
 
             } else {
-                //Pagina Error
+                request.setAttribute("nombreError", "Acceso Denegado");
+                request.setAttribute("mensajeError", "Solo el propietario puede modificar el estado");
+                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
             }
 
 
         } catch (OfertaLaboralNoEncontrada_Exception e) {
-            //Pagina de error
+            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
+            request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
         }
 
 

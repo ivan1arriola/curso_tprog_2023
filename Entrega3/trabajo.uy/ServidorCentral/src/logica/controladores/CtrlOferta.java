@@ -569,5 +569,10 @@ public class CtrlOferta implements ICtrlOferta {
         empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
         return empresa.DevolverOrden(nombre_oferta);
     }
+
+    @Override
+    public void finalizarOferta(String nombreOferta) {
+
+    }
 }
 
