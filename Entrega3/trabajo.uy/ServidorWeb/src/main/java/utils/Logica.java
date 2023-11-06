@@ -16,6 +16,7 @@ import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
 
 import logica.servidor.*;
+import trabajoUy.logica.interfaces.ICtrlUsuario;
 
 public class Logica implements ILogica {
 
@@ -92,7 +93,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) {
+	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception {
 		PostulacionBean postulacion = new PostulacionBean();
 
 		DtPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
@@ -106,6 +107,21 @@ public class Logica implements ILogica {
 		postulacion.setVideo(dtPostulacion.getUrlVideo());
 
 		return postulacion;
+	}
+
+	@Override
+	public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception {
+		servidor.altaPostulacion(nombreOferta, nickname,curriculumAbreviado, motivacion, url, fecha.toString(), video   );
+	}
+
+	@Override
+	public boolean nicknameDisponible(String nickname) {
+		return !servidor.existeUsuarioConNickname(nickname);
+	}
+
+	@Override
+	public boolean emailDisponible(String email) {
+		return !servidor.existeUsuarioConEmail(email);
 	}
 
 
@@ -128,7 +144,7 @@ public class Logica implements ILogica {
     }
 
 	@Override
-	public boolean validarCredenciales(String identificador, String contraseña) {
+	public boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado_Exception {
 		return servidor.validarCredenciales(identificador, contraseña);
 	}
 
@@ -202,7 +218,7 @@ public class Logica implements ILogica {
          Set<UsuarioBean> usuarios = new TreeSet<>();
          for(String usuario : nicknames) {
          	usuarios.add(obtenerDatosUsuario(usuario));
-         } 	
+         }
 		return usuarios;
     	
     }
@@ -227,7 +243,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<String> listarPaquetesDeEmpresa(String nickname) {
+	public Set<String> listarPaquetesDeEmpresa(String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
 		List<String> listaPaquetes = servidor.listarComprasPaquete(nickname).getListaString();
 		// Crear un TreeSet a partir de la lista para obtener un Set ordenado.
 		return new TreeSet<>(listaPaquetes);
@@ -300,14 +316,14 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<String> listarOfertasConfirmadasDeEmpresa(String nicknameParametro) {
+	public Set<String> listarOfertasConfirmadasDeEmpresa(String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception {
 		List<String> listarOfertasLaboralesConfirmadas = servidor.listarOfertasLaboralesConfirmadas(nicknameParametro).getListaString();
 		// Crear un TreeSet a partir de la lista para obtener un Set ordenado.
 		return new TreeSet<>(listarOfertasLaboralesConfirmadas);
 	}
 
 	@Override
-	public OfertaLaboralBean obtenerDatosOfertaLaboral(String nombreOferta) {
+	public OfertaLaboralBean obtenerDatosOfertaLaboral(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
 		OfertaLaboralBean ofertaLaboral = new OfertaLaboralBean();
 		DtOfertaExtendido DtOferta = servidor.obtenerOfertaLaboral(nombreOferta);
 		
@@ -331,13 +347,13 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<String> listarOfertasLaboralesDeEmpresa(String nicknameParametro) {
+	public Set<String> listarOfertasLaboralesDeEmpresa(String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception {
 		List<String> todasLasOfertas = servidor.listarTodasLasOfertasLaborales(nicknameParametro).getListaString();
 		return new TreeSet<>(todasLasOfertas);
 	}
 
 	@Override
-	public Set<String> listarPostulacionesDePostulante(String nicknameParametro) {
+	public Set<String> listarPostulacionesDePostulante(String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception {
 		List<String> listaPostulaciones = servidor.listarPostulacionesPostulante(nicknameParametro).getListaString();
 		// Crear un TreeSet a partir de la lista para obtener un Set ordenado.
 		return new TreeSet<>(listaPostulaciones);
@@ -345,7 +361,7 @@ public class Logica implements ILogica {
 
 
 	@Override
-	public PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) {
+	public PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception {
 		PostulacionBean postulacion = new PostulacionBean();
 		DtPostulacion DtPostulacion = servidor.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
 		
@@ -361,7 +377,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNickname){
+	public List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNickname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
 		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
 		List<UsuarioBean> postulantes = new ArrayList<>();
 		if ( info instanceof DtOfertaExtendidoConKeywordsTit masData) {
@@ -435,7 +451,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<OfertaLaboralBean> listarDatosOfertas() {
+	public Set<OfertaLaboralBean> listarDatosOfertas() throws OfertaLaboralNoEncontrada_Exception {
 		List<DtOfertaExtendido> DtOfertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
 		Set<OfertaLaboralBean> ofertasLaborales = new TreeSet<>();
 		for (DtOfertaExtendido Dtoferta: DtOfertas) {
@@ -445,7 +461,7 @@ public class Logica implements ILogica {
 	}
 	
 	@Override
-	public OfertaLaboralBean DatosOferta(String nombre_oferta) {
+	public OfertaLaboralBean DatosOferta(String nombre_oferta) throws OfertaLaboralNoEncontrada_Exception {
 		DtOfertaExtendido ofertaLaboral = servidor.obtenerOfertaLaboral(nombre_oferta);
 		OfertaLaboralBean olb = new OfertaLaboralBean();
 		olb.setNombre(ofertaLaboral.getNombre());
@@ -462,7 +478,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword) {
+	public Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword) throws OfertaLaboralNoEncontrada_Exception {
 		Set<String> ofertas = new TreeSet<>(servidor.listarOfertasLaboralesKeywords(keyword).getListaString());
 		
 		if(ofertas.isEmpty()) {
@@ -481,7 +497,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) {
+	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
 		Set<String> ofertas = new TreeSet<>(servidor.listarOfertasLaboralesConfirmadas(consulta).getListaString());
     	
     	if(ofertas.isEmpty()) {

@@ -14,7 +14,7 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                 <!-- Tab de perfil -->
                 <div class="tab-pane fade show active" id="perfil-panel" style="margin-top: 20px">
                     <form action="consultarusuario" method="post">
-                    	<input type="text" name="nick" placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
+                    	<input type="hidden" name="nick" style="display: none;" placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
                         <div class="row">
                             <div class="col-8">
                                 <div class="form-group">

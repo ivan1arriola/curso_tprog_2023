@@ -1,5 +1,6 @@
 package presentacion;
 
+import excepciones.ExceptionUsuarioNoEncontrado;
 import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlUsuario;
@@ -47,7 +48,7 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
     private JTextArea descripcionNuevo;
     private JTextArea descripcionActual;
 
-    public ModificarDatosDeUsuarioEmpresa(ICtrlUsuario icUsuario, DTEmpresa empresa) {
+    public ModificarDatosDeUsuarioEmpresa(ICtrlUsuario icUsuario, DTEmpresa empresa) throws ExceptionUsuarioNoEncontrado {
 
         setResizable(true);
         setIconifiable(true);
@@ -213,9 +214,17 @@ public class ModificarDatosDeUsuarioEmpresa extends JInternalFrame {
                     JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this, "No sigue el formato que debe tener correo,  por favor ingrese un correo valido.", "ERRROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (!url.isEmpty()) {
-                        icUsuario.ingresarDatosEditadosEmpresaURL(empresa.getNickname(), nombre, apellido, correo, pass, url, descripcion);
+                        try {
+                            icUsuario.ingresarDatosEditadosEmpresaURL(empresa.getNickname(), nombre, apellido, correo, pass, url, descripcion);
+                        } catch (ExceptionUsuarioNoEncontrado e) {
+                            throw new RuntimeException(e);
+                        }
                     } else {
-                        icUsuario.ingresarDatosEditadosEmpresa(empresa.getNickname(), nombre, apellido, correo, pass, descripcion);
+                        try {
+                            icUsuario.ingresarDatosEditadosEmpresa(empresa.getNickname(), nombre, apellido, correo, pass, descripcion);
+                        } catch (ExceptionUsuarioNoEncontrado e) {
+                            throw new RuntimeException(e);
+                        }
                     }
 
                     JOptionPane.showMessageDialog(ModificarDatosDeUsuarioEmpresa.this, "Los datos se han modificado exitosamente", "Modificar Datos de Usuario", JOptionPane.INFORMATION_MESSAGE);

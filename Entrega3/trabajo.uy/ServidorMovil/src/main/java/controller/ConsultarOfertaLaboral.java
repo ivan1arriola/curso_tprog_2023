@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica.servidor.DtOfertaExtendido;
+import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import logica.servidor.Servidor;
 import logica.servidor.ServidorService;
 
@@ -25,13 +26,15 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String nombreOferta = request.getParameter("oferta");
-		
+		try {
 		DtOfertaExtendido oferta = servidor.obtenerOfertaLaboral(nombreOferta);
 		request.setAttribute("oferta", oferta);
-		
 		request.getRequestDispatcher("/WEB-INF/consultarOferta/ofertaLaboral.jsp").forward(request, response);
+		} catch (OfertaLaboralNoEncontrada_Exception exc) {
+			
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

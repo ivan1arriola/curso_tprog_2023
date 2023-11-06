@@ -107,12 +107,12 @@ public class CtrlUsuario implements ICtrlUsuario {
         return res;
     }
 
-    public DTOfertaExtendido consultaOfertaLaboral(String nombre) {
+    public DTOfertaExtendido consultaOfertaLaboral(String nombre) throws OfertaLaboralNoEncontrada {
         CtrlOferta CtrlOfer = new CtrlOferta();
         return CtrlOfer.obtenerOfertaLaboral(nombre);
     }
 
-    public DTUsuario obtenerDatosUsuario(String nick) {
+    public DTUsuario obtenerDatosUsuario(String nick) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario user = UsuarioH.buscarNick(nick);
         return user.obtenerDatosUsuario();
@@ -129,7 +129,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         return res;
     }
 
-    public boolean existePostulacion(String nickname, String nombre) {
+    public boolean existePostulacion(String nickname, String nombre) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
         if (postulante != null) {
@@ -140,7 +140,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
     }
 
-    public Postulacion crearPostulacion(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab, String urlVideo) {
+    public Postulacion crearPostulacion(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab, String urlVideo) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
@@ -238,7 +238,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public Set<String> listarOfertasLaborales(String nickname) {
+    public Set<String> listarOfertasLaborales(String nickname) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario user = UsuarioH.buscarNick(nickname);
         return user.listarOfertasLaborales();
@@ -249,7 +249,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     // ################################  NUEVAS OPERACIONES ################################
     // -------------------------------------------------------------------------------------
 
-    public Set<String> listarKeywords(String nombre_oferta) {
+    public Set<String> listarKeywords(String nombre_oferta) throws OfertaLaboralNoEncontrada {
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
         OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
         List<Keyword> keywords = oferLab.getKeywords();
@@ -260,7 +260,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         return res;
     }
 
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick) {
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario usuario = UsuarioH.buscarNick(nick);
         if (nick.equals(UsuarioNickname)) {
@@ -272,29 +272,27 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
     }
 
-    public DTUsuario obtenerDatosUsuarioVisitantes(String nick) {
+    public DTUsuario obtenerDatosUsuarioVisitantes(String nick) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario usuario = UsuarioH.buscarNick(nick);
-        DTUsuario user = usuario.obtenerDatosUsuario();
-        return user;
+        return usuario.obtenerDatosUsuario();
     }
 
 
     // public void cerrarSesion(String nickname) {    } NO EXISTE
 
 
-    public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta) {
+    public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta) throws OfertaLaboralNoEncontrada {
         CtrlOferta COL = new CtrlOferta();
         DTOfertaExtendidoSinPConK infoOLVisitante = COL.infoOfertaLaboralVisitante(nombre_oferta);
         return infoOLVisitante;
     }
 
 
-    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) {
+    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
-        DTPostulacion datosPostu = user.obtenerDatosPostulacion(postulante_nick, ofer);
-        return datosPostu;
+        return user.obtenerDatosPostulacion(postulante_nick, ofer);
     }
 
 
@@ -311,7 +309,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     // public  boolean iniciarSesionNickname(String nickname,    String contrasenia);
 
 
-    public boolean validarCredenciales(String identificador, String contraseña) {
+    public boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario user;
         // Verificar si 'id' es un correo electrónico. Poner la er que sigue el correo
@@ -335,7 +333,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fechanac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
         postulante.setNombre(nombre);
@@ -352,7 +350,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         postulante.setNacionalidad(nacionalidad);
     }
 
-    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fechanac, String nacionalidad) {
+    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
         postulante.setNombre(nombre);
@@ -369,7 +367,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -381,7 +379,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     }
 
-    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion) {
+    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -391,7 +389,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         empresa.setDescripcion(descripcion);
     }
 
-    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -403,7 +401,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         empresa.setDescripcion(descripcion);
     }
 
-    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion) {
+    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -414,14 +412,14 @@ public class CtrlUsuario implements ICtrlUsuario {
         empresa.setDescripcion(descripcion);
     }
 
-    public boolean tieneURL(String nickname) {
+    public boolean tieneURL(String nickname) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         boolean tiene = empresa.tieneURL();
         return tiene;
     }
 
-    public boolean hayPostulacionW(String postulante_nick, String ofer) {
+    public boolean hayPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(postulante_nick);
         boolean existe = postulante.existePostulacion(ofer);
@@ -496,14 +494,14 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     }
 
-    public Set<String> listarOfertasLaboralesConfirmadas(String nickname_e) {
+    public Set<String> listarOfertasLaboralesConfirmadas(String nickname_e) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
         Set<String> OLConfirmadas = empresa.listarOfertasLaboralesConfirmadas();
         return OLConfirmadas;
     }
 
-    public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) {
+    public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
         boolean edito = postulante.editarPostulacion(nombre, cvAbreviado, motivacion);
@@ -511,12 +509,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     @Override
-    public Set<String> listarPostulacionesPostulante(String nickname) {
+    public Set<String> listarPostulacionesPostulante(String nickname) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
-        Set<String> postulaciones = postulante.listarPostulaciones();
 
-        return postulaciones;
+        return postulante.listarPostulaciones();
     }
 
     public boolean existeUsuarioConNickname(String nickname) {
@@ -529,53 +526,80 @@ public class CtrlUsuario implements ICtrlUsuario {
         return UsuarioH.existeCorreo(correo);
     }
 
-    public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
+    public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {    	
         if (usuario != usuario_seguido) {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr1 = UHan.buscarNick(usuario);
             Usuario usr2 = UHan.buscarNick(usuario_seguido);
+            if(usr1 == null || usr2 == null) {
+            	throw new ExceptionUsuarioNoEncontrado("El usuario no se ha encontrado.");
+            }
             usr1.seguirUsuario(usr2);
+            usr2.loSigue(usr1);
         } else {
             throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario se siga a si mismo.");
         }
     }
 
-    public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo {
+    public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {
         if (usuario != usuario_seguido) {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr = UHan.buscarNick(usuario);
             Usuario usrseg = UHan.buscarNick(usuario_seguido);
             usr.dejarDeSeguirUsuario(usrseg);
+            usrseg.noLoSigue(usr);
         } else {
             throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario deje de seguirse a si mismo.");
         }
     }
 
 
-    public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nickname_empresa, String nombre_oferta) {
+    public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nickname_empresa, String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
         return empresa.ObtenerPostulacionesOfertaLaboral(nombre_oferta);
     }
 
 
-    public void establecerPosicion(String nickname_empresa, String nombre_oferta, String nickPostulante, Integer posicion) {
+    public void establecerPosicion(String nickname_empresa, String nombre_oferta, String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
         empresa.establecerPosicion(nombre_oferta, nickPostulante, posicion);
     }
 
-    public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(String nickname_empresa) {
+    public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(String nickname_empresa) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
         Set<DTOfertaExtendidoConKeywordsTit> auxiliar = empresa.listarOfertasLaboralesNoVigentesConfirmadas();
         return auxiliar;
     }
 
-    public void finalizarOfertaLaboral(String nickname_empresa, String nombre_oferta) {
+    public void finalizarOfertaLaboral(String nickname_empresa, String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
         empresa.finalizarOfertaLaboral(nombre_oferta);
     }
+
+	@Override
+	public ArrayList<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		ArrayList<String> res = new ArrayList<>();
+		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidores();
+		for (Usuario usuario : seg) {
+			res.add(usuario.getNickname());
+		}
+		return res;
+	}
+
+	@Override
+	public ArrayList<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		ArrayList<String> res = new ArrayList<>();
+		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidos();
+		for (Usuario usuario : seg) {
+			res.add(usuario.getNickname());
+		}
+		return res;
+	}
 }
 

@@ -4,7 +4,7 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-<servlet>
+  <servlet>
     <description>Genera la pagina de inicio</description>
     <display-name>Home</display-name>
     <servlet-name>Home</servlet-name>
@@ -163,5 +163,15 @@
   <servlet-mapping>
     <servlet-name>ComprarPaquete</servlet-name>
     <url-pattern>/ComprarPaquete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Validar</display-name>
+    <servlet-name>Validar</servlet-name>
+    <servlet-class>controller.Validar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Validar</servlet-name>
+    <url-pattern>/Validar</url-pattern>
   </servlet-mapping>
 </web-app>

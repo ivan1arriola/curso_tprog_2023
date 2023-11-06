@@ -11,9 +11,7 @@ import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
-import logica.servidor.ExceptionUsuarioSeSigueASiMismo_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
+import logica.servidor.*;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -33,12 +31,11 @@ public class ConsultarUsuario extends HttpServlet {
 
     public ConsultarUsuario() {
         super();
-        
-        logica = FabricaWeb.getInstance().getLogica();
+        logica = FabricaWeb.getLogica();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         String nicknameParametro = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
@@ -46,8 +43,6 @@ public class ConsultarUsuario extends HttpServlet {
         request.setAttribute("tipoU", tipoUsuarioLogueado);
         request.setAttribute("usuarioConsultado", nicknameParametro);
    
-        
-        ILogica logica = FabricaWeb.getInstance().getLogica();
 
         if (nicknameParametro != null && !nicknameParametro.isEmpty()) {
             try {
@@ -106,7 +101,7 @@ public class ConsultarUsuario extends HttpServlet {
         }
     }
 	
-    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario, String nicknameParametro, boolean mostrarTodas) {
+    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario, String nicknameParametro, boolean mostrarTodas) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
         Set<String> nombresOfertas;
         
         if (!mostrarTodas) {
@@ -128,7 +123,7 @@ public class ConsultarUsuario extends HttpServlet {
     }
 
 
-	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) {
+	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
 		Set<String> nombreOfertasConPostulacion = logica.listarPostulacionesDePostulante(nicknameParametro);
 		Set<PostulacionBean> postulaciones = new HashSet<PostulacionBean>();
 		
@@ -155,7 +150,7 @@ public class ConsultarUsuario extends HttpServlet {
 
 
 
-	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) {
+	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
         Set<String> nombresPaquetes = logica.listarPaquetesDeEmpresa(nickname);  	
         Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
         if (nombresPaquetes != null && !nombresPaquetes.isEmpty()) {
@@ -191,7 +186,8 @@ public class ConsultarUsuario extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nicknameParametro = (String) request.getParameter("nick");
+    	RequestDispatcher dispatcher;
+    	String nicknameParametro = (String) request.getParameter("nick");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
         
         ServidorService SS = new ServidorService();
@@ -203,18 +199,22 @@ public class ConsultarUsuario extends HttpServlet {
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
 	            request.setAttribute("mensajeError", mensajeError);
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
 	            dispatcher.forward(request, response);
-			}
+			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
+                throw new RuntimeException(e);
+            }
         } else if (request.getParameter("btnDejarDeSeguir") != null) {
             try {
 				servidor.dejarDeseguirUsuario(nicknameUsuarioLogueado,nicknameParametro);
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
 	            request.setAttribute("mensajeError", mensajeError);
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
 	            dispatcher.forward(request, response);
-			}
+			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }	
 }

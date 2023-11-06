@@ -166,6 +166,9 @@ public class UsuarioBean implements Comparable<UsuarioBean> {
 
 	@Override
 	public int compareTo(UsuarioBean otroBean) {
+		if(this.nombre == null || otroBean.getNombre() == null) {
+			return 1;
+		}
 		return this.nombre.compareTo(otroBean.getNombre());
 	}
 }

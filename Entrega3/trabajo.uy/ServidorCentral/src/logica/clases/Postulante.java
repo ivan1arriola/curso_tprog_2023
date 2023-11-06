@@ -109,7 +109,7 @@ public class Postulante extends Usuario {
 
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
-
+        
         for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext(); ) {
             DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
             sdores.add(dt);

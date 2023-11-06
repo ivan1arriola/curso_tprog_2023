@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.PaqueteBean;
 import jakarta.servlet.RequestDispatcher;
 
+import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -39,7 +40,12 @@ public class ConsultarPaquete extends HttpServlet {
                 
 
                 if (tipo == TipoUsuario.Empresa) {
-                	Set<String> paquetes = FabricaWeb.getInstance().getLogica().listarPaquetesDeEmpresa(nickname);
+                    Set<String> paquetes = null;
+                    try {
+                        paquetes = FabricaWeb.getInstance().getLogica().listarPaquetesDeEmpresa(nickname);
+                    } catch (ExceptionUsuarioNoEncontrado_Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     if (!paquetes.contains(nombrePaquete)) {
                         request.setAttribute("mostrarComprar", true);
                         request.setAttribute("yaSeCompro", false);

@@ -1,6 +1,8 @@
 package presentacion;
 
 
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTOfertaExtendido;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
@@ -73,6 +75,8 @@ public class AceptarOferta extends JInternalFrame {
 
                 } catch (NullPointerException exc) {
                     System.err.println("Error al obtener las ofertas laborales");
+                } catch (ExceptionUsuarioNoEncontrado e) {
+                    throw new RuntimeException(e);
                 }
 
 
@@ -132,6 +136,8 @@ public class AceptarOferta extends JInternalFrame {
                     }
                 } catch (IllegalArgumentException ex) {
                     JOptionPane.showMessageDialog(null, "Error al confirmar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
                 }
 
                 limpiarFormulario();
@@ -157,6 +163,8 @@ public class AceptarOferta extends JInternalFrame {
 
                 } catch (IllegalArgumentException ex) {
                     JOptionPane.showMessageDialog(null, "Error al rechazar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
                 }
                 limpiarFormulario();
                 dispose();
@@ -175,7 +183,12 @@ public class AceptarOferta extends JInternalFrame {
                 if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
                     String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
 
-                    DTOfertaExtendido dto = ICO.obtenerOfertaLaboral(selectedOferta);
+                    DTOfertaExtendido dto = null;
+                    try {
+                        dto = ICO.obtenerOfertaLaboral(selectedOferta);
+                    } catch (OfertaLaboralNoEncontrada e) {
+                        throw new RuntimeException(e);
+                    }
                     ofertaDetalle.append(dto.toString());
                     ofertaDetalle.setCaretPosition(0);
 

@@ -3,6 +3,7 @@ package presentacion;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTOfertaExtendido;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
@@ -294,31 +295,49 @@ public class ElegirPostulante extends JDialog {
 
                 String esOferta = (String) cbOferta.getSelectedItem();
                 String espostulante = (String) cbPostula.getSelectedItem();
-                DTOfertaExtendido dtofer = ico.obtenerOfertaLaboral(offer);
+                DTOfertaExtendido dtofer = null;
+                try {
+                    dtofer = ico.obtenerOfertaLaboral(offer);
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
+                }
                 LocalDate fechaAlta = dtofer.getFechaDeAlta();
-                int duracion = ico.tipoOferta(esOferta).getDuracion(); //duracion segun tipo de pub
+                int duracion = 0; //duracion segun tipo de pub
+                try {
+                    duracion = ico.tipoOferta(esOferta).getDuracion();
+                } catch (OfertaLaboralNoEncontrada e) {
+                    throw new RuntimeException(e);
+                }
                 //ver de qué tipo es la oferta para ver su validez: oferta.fechaAlta + tipo.validez
                 LocalDate fechaResultado = fechaAlta.plusDays(duracion);
 
-                if (icUsuario.existePostulacion(espostulante, esOferta)) {
-                    JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
-                    cbEmpresa.setEnabled(true);
-                    cbOferta.setEnabled(true);
-                } else if (motiva.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito la motivación.", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
-                } else if (cvred.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito el CV reducido.", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
-                } else if (currentDate.isAfter(fechaResultado)) {
+                try {
+                    if (icUsuario.existePostulacion(espostulante, esOferta)) {
+                        JOptionPane.showMessageDialog(ElegirPostulante.this, "El usuario indicado ya se encuentra postulado a la oferta indicada.", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
+                        cbEmpresa.setEnabled(true);
+                        cbOferta.setEnabled(true);
+                    } else if (motiva.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito la motivación.", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
+                    } else if (cvred.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(ElegirPostulante.this, "No ha escrito el CV reducido.", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
+                    } else if (currentDate.isAfter(fechaResultado)) {
 
-                    //verificar las condiciones de fechas: tipo.validez+ oferta.fechaalta
-                    JOptionPane.showMessageDialog(ElegirPostulante.this, "Oferta no vigente", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    //String esEmpresa = (String) cbEmpresa.getSelectedItem();
-                    String curriculumVitae = cvred.getText();
-                    String video = "";
-                    ico.altaPostulacion(esOferta, espostulante, curriculumVitae, motiva.getText(), textField1.getText(), currentDate, video);
-                    JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    setVisible(false);
+                        //verificar las condiciones de fechas: tipo.validez+ oferta.fechaalta
+                        JOptionPane.showMessageDialog(ElegirPostulante.this, "Oferta no vigente", "ERROR - Elegir postulante", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        //String esEmpresa = (String) cbEmpresa.getSelectedItem();
+                        String curriculumVitae = cvred.getText();
+                        String video = "";
+                        try {
+                            ico.altaPostulacion(esOferta, espostulante, curriculumVitae, motiva.getText(), textField1.getText(), currentDate, video);
+                        } catch (OfertaLaboralNoEncontrada e) {
+                            throw new RuntimeException(e);
+                        }
+                        JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        setVisible(false);
+                    }
+                } catch (ExceptionUsuarioNoEncontrado e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

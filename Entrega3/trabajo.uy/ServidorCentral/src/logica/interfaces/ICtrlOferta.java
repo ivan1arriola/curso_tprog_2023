@@ -22,55 +22,55 @@ public interface ICtrlOferta {
 
     public abstract boolean altaKeyword(String key) throws ExcepcionKeywordVacia;
 
-    public abstract boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa;
+    public abstract boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado;
 
     public abstract boolean
     altaOfertaLaboral(String nickname_e, String tipo, String nombre,
                       String descripcion, DTHorario horario, float remun, String ciu,
                       DepUY dep, LocalDate fechaA, Set<String> keys,
-                      EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa;
+                      EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado;
 
-    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta);
+    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) throws OfertaLaboralNoEncontrada;
 
-    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta);
+    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado;
 
-    public abstract boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha, String video);
+    public abstract boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha, String video) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado;
 
-    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta);
+    public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta) throws OfertaLaboralNoEncontrada;
 
     public abstract Set<String> listarOfertasLaboralesKeywords(String keywords);
 
 
-    public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion);
+    public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado;
 
-    public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer);
+    public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado;
 
     public abstract Set<String>
-    listarOfertasLaboralesConfirmadas(String nickname_e);
+    listarOfertasLaboralesConfirmadas(String nickname_e) throws ExceptionUsuarioNoEncontrado;
 
     public abstract Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadas();
 
     public abstract Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadasYNoVencidas();
 
-    public abstract Set<String> listarOfertasLaboralesIngresadas(String nickname_e);
+    public abstract Set<String> listarOfertasLaboralesIngresadas(String nickname_e) throws ExceptionUsuarioNoEncontrado;
 
-    public abstract Set<String> listarTodasLasOfertasLaborales(String nickname_e);
+    public abstract Set<String> listarTodasLasOfertasLaborales(String nickname_e) throws ExceptionUsuarioNoEncontrado;
 
 
-    public abstract void rechazoOL(String nombre_oferta);
+    public abstract void rechazoOL(String nombre_oferta) throws OfertaLaboralNoEncontrada;
 
-    public abstract void aceptoOL(String nombre_oferta);
+    public abstract void aceptoOL(String nombre_oferta) throws OfertaLaboralNoEncontrada;
 
     public abstract Set<String> listarPostulantes();
 
-    public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre);
+    public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre) throws OfertaLaboralNoEncontrada;
 
     public abstract void
     agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 
     public abstract Set<String> listarPaquetes();
 
-    public abstract Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida;
+    public abstract Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado;
 
     public abstract DTPaquete obtenerDatosPaquete(String paq);
 
@@ -80,7 +80,7 @@ public interface ICtrlOferta {
     // ESTÁN PERO NO EN EL DCD
     public abstract Set<String> listarKeywords();
 
-    public abstract DTTipoOferta tipoOferta(String oferta);
+    public abstract DTTipoOferta tipoOferta(String oferta) throws OfertaLaboralNoEncontrada;
 
     public abstract boolean paqueteComprado(String pack);
 
@@ -88,7 +88,7 @@ public interface ICtrlOferta {
 
 
     // Operacion que para un nickname de empresa devuelve un set de String con los nombres de los paquetes comprados
-    public abstract Set<String> listarComprasPaquete(String nicknameEmpresa);
+    public abstract Set<String> listarComprasPaquete(String nicknameEmpresa) throws ExceptionUsuarioNoEncontrado;
 
     public abstract boolean existeOfertaLaboral(String nombre_ofer);
 

@@ -1,5 +1,6 @@
 package presentacion;
 
+import excepciones.ExceptionUsuarioNoEncontrado;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlUsuario;
@@ -55,7 +56,7 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
     private JTextField fechaActual;
     private JLabel lblNewLabel8;
 
-    public ModificarDatosDeUsuarioPostulante(ICtrlUsuario icUsuario, DTPostulante postulante) {
+    public ModificarDatosDeUsuarioPostulante(ICtrlUsuario icUsuario, DTPostulante postulante) throws ExceptionUsuarioNoEncontrado {
         // Se inicializa con el controlador de usuarios
         // Fabrica fabrica = Fabrica.getInstance();
         // icUsuario = fabrica.getICtrlUsuario();
@@ -247,6 +248,8 @@ public class ModificarDatosDeUsuarioPostulante extends JInternalFrame {
                     }
                 } catch (DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(ModificarDatosDeUsuarioPostulante.this, "La fecha ingresada no es válida.", "ERROR - Modificar Datos de Usuario", JOptionPane.ERROR_MESSAGE);
+                } catch (ExceptionUsuarioNoEncontrado e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

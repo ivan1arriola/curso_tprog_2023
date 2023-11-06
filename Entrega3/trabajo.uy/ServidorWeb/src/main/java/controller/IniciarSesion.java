@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.UsuarioBean;
+import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class IniciarSesion extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	ILogica logica = FabricaWeb.getInstance().getLogica();
+    	ILogica logica = FabricaWeb.getLogica();
         String identificador = request.getParameter("identificador-input");
         String contraseña = request.getParameter("password-input");
         
@@ -47,8 +48,11 @@ public class IniciarSesion extends HttpServlet {
                 request.setAttribute("identificador", identificador);
                 request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
             }
+        }  catch (ExceptionUsuarioNoEncontrado_Exception e){
+            request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión. No se encontro el usuario " + identificador);
+            request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
         } catch (Exception e) {
-            request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión.");
+            request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión." + e.getMessage());
             request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
         }
     }
@@ -60,7 +64,7 @@ public class IniciarSesion extends HttpServlet {
 
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws Exception {
         HttpSession session = request.getSession();
-        ILogica logica = FabricaWeb.getInstance().getLogica();
+        ILogica logica = FabricaWeb.getLogica();
         UsuarioBean usuario = logica.obtenerDatosUsuario(identificador);
         session.setAttribute("nickname", usuario.getNickname());
 

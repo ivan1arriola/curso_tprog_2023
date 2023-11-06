@@ -521,7 +521,7 @@ public class Utils {
 
 
 
-    public Postulacion crearPostulacionForzado(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) {
+    public Postulacion crearPostulacionForzado(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
@@ -537,7 +537,7 @@ public class Utils {
         return null;
     }
 
-    public boolean altaPostulacionForzado(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha) {
+    public boolean altaPostulacionForzado(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
         CtrlUsuario CtrllUser = new CtrlUsuario();
         boolean existe = CtrllUser.existePostulacion(nick, nombre);
         if (!existe) {

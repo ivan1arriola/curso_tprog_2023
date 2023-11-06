@@ -2,6 +2,7 @@ package presentacion;
 
 //import java.awt.EventQueue;
 
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPostulacion;
@@ -116,7 +117,7 @@ public class VerPostulaciones extends JInternalFrame {
 
     }
 
-    public void actualizar(String nombre_oferta) {
+    public void actualizar(String nombre_oferta) throws OfertaLaboralNoEncontrada {
         String nombre_o = nombre_oferta;
         DTOfertaExtendido DatosOferta = icUsuario.consultaOfertaLaboral(nombre_o);
         postulaciones = DatosOferta.getPostulaciones();

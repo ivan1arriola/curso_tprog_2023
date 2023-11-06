@@ -1,6 +1,8 @@
 package presentacion;
 
 
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTOfertaExtendido;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
@@ -89,7 +91,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 				} catch (ExceptionUsuarioNoEncontrado e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} */
+				} */ catch (ExceptionUsuarioNoEncontrado e) {
+                    throw new RuntimeException(e);
+                }
 
             }
         });
@@ -114,7 +118,12 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 
                 if (comboBoxOfertas.getSelectedIndex() != -1) {
                     String oferta = (String) comboBoxOfertas.getSelectedItem();
-                    DTOfertaExtendido dtO = ico.obtenerOfertaLaboral(oferta);
+                    DTOfertaExtendido dtO = null;
+                    try {
+                        dtO = ico.obtenerOfertaLaboral(oferta);
+                    } catch (OfertaLaboralNoEncontrada e) {
+                        throw new RuntimeException(e);
+                    }
                     infoOferta.setText("");
                     infoOferta.append(dtO.toString());
                 }

@@ -25,6 +25,9 @@
         .banner-container {
             background-image: url(<%= imagen %>);
         }
+
+
+
     </style>
 </head>
 
@@ -53,7 +56,18 @@
 
                 <% if (mostrarContenido) { %>
 
-                <div class="col-4 container text-center" id="acciones">
+
+                <div class="col-4 mt-2 container text-center" id="acciones">
+                    <h4> Dar de favorito</h4>
+                    <button class="btn btn-primary mb-2">
+				        <div class="float-right"> <!-- Clase de Bootstrap para alinear a la derecha -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart" viewBox="0 0 16 16"> <!-- Icono de corazón de Bootstrap -->
+                                <path d="M8 14s6-3.5 6-7a3.5 3.5 0 0 0-7 0C8 10.5 8 14 8 14z"/>
+                                <path fill-rule="evenodd" d="M3.906 2.293a.5.5 0 0 1 .708 0L8 6.793l3.387-4.5a.5.5 0 0 1 .763.647l-4 5a.5.5 0 0 1-.75-.001l-4-5a.5.5 0 0 1 .003-.647z"/>
+                            </svg>
+                        </div>
+                    </button>
+
 
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
