@@ -138,7 +138,7 @@ public class CtrlOferta implements ICtrlOferta {
         return !existe;
     }
 
-    public boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado {
+    public boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
 
@@ -150,7 +150,7 @@ public class CtrlOferta implements ICtrlOferta {
         return empresa.compraPaquetes(paquete, fecha, valor);
     }
 
-    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado {
+    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paq = null;
         if (paquete != null) {
@@ -165,7 +165,7 @@ public class CtrlOferta implements ICtrlOferta {
         if (!ofer) {
             List<Keyword> keywords = new ArrayList<Keyword>();
             KeywordHandler KeywordH = KeywordHandler.getInstance();
-            Map<String, Keyword> keyss = KeywordH.obtener();
+            Map<String, Keyword> keyss = KeywordHandler.obtener();
             for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
                 if (keys.contains(entry.getKey())) {
                     keywords.add(entry.getValue());
@@ -329,7 +329,7 @@ public class CtrlOferta implements ICtrlOferta {
         return oferLab.obtenerDatosOferta();
     }
 
-    public void agregarTipoOfertaPaq(String paq, String TipoOfer, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete {
+    public void agregarTipoOfertaPaq(String paq, String TipoOfer, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete, NoExistePaquete {
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paquete = PaqueteH.buscar(paq);
         TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
@@ -351,7 +351,7 @@ public class CtrlOferta implements ICtrlOferta {
         return res;
     }
 
-    public DTPaquete obtenerDatosPaquete(String paq) {
+    public DTPaquete obtenerDatosPaquete(String paq) throws NoExistePaquete {
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paquete = PaqueteH.buscar(paq);
         return paquete.getDTPaquete();
@@ -394,7 +394,7 @@ public class CtrlOferta implements ICtrlOferta {
     }
 
 
-    public boolean paqueteComprado(String pack) {
+    public boolean paqueteComprado(String pack) throws NoExistePaquete {
 
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paquet = PaqueteH.buscar(pack);
@@ -449,6 +449,23 @@ public class CtrlOferta implements ICtrlOferta {
         for (Map.Entry<String, OfertaLaboral> entry : ofertasLaborales.entrySet()) {
             if (entry.getValue().getEstado() == EstadoOL.Confirmada && !entry.getValue().estaVencida()) {
                 res.add(entry.getValue().obtenerDatosOferta());
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public Set<String> listarOfertasLaboralesConfirmadasYNoVencidasString() {
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+
+        Set<String> res = new HashSet<>();
+        Map<String, OfertaLaboral> ofertasLaborales = OLH.obtener();
+
+        for (Map.Entry<String, OfertaLaboral> entry : ofertasLaborales.entrySet()) {
+            EstadoOL estadoOferta = entry.getValue().getEstado();
+            boolean estaVencida = entry.getValue().estaVencida();
+            if (estadoOferta == EstadoOL.Confirmada && !estaVencida) {
+                res.add(entry.getValue().obtenerDatosOferta().getNombre());
             }
         }
         return res;

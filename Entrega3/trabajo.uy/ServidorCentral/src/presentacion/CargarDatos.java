@@ -1,7 +1,9 @@
 package presentacion;
 
 
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionValidezNegativa;
 import logica.Fabrica;
 import logica.interfaces.ICtrlCargaDeDatos;
@@ -48,6 +50,10 @@ public class CargarDatos extends JInternalFrame {
                 } catch (ExcepcionKeywordVacia | ExceptionValidezNegativa e) {
                     // TODO Auto-generated catch block
                     JOptionPane.showMessageDialog(CargarDatos.this, "Se han cargado todos los datos pero " + e.getMessage(), "Carga de Datos", JOptionPane.ERROR);
+                } catch (ExceptionFechaInvalida e) {
+                    throw new RuntimeException(e);
+                } catch (ErrorAgregarUsuario e) {
+                    throw new RuntimeException(e);
                 }
 
                 JOptionPane.showMessageDialog(CargarDatos.this, "Se han cargado los datos exitosamente.", "Carga de Datos", JOptionPane.INFORMATION_MESSAGE);

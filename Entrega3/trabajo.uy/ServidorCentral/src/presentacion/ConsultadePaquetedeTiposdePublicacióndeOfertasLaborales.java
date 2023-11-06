@@ -1,6 +1,7 @@
 package presentacion;
 
 import excepciones.ExcepcionTipoOfertaNoExistente;
+import excepciones.NoExistePaquete;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTPaquete;
 import logica.datatypes.DTTipoOferta;
@@ -175,7 +176,11 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
             public void actionPerformed(ActionEvent arg0) {
                 String paqueteSeleccionado = (String) listadoPaquetes.getSelectedItem();
                 if (paqueteSeleccionado != "") {
-                    paqDT = ICO.obtenerDatosPaquete(paqueteSeleccionado);
+                    try {
+                        paqDT = ICO.obtenerDatosPaquete(paqueteSeleccionado);
+                    } catch (NoExistePaquete e) {
+                        throw new RuntimeException(e);
+                    }
                     costoPaquete.setText(String.valueOf(paqDT.getCosto()));  // muestro el costo
                     paqueteDescuento.setText(String.valueOf(paqDT.getDescuento()));
                     validezPaquete.setText(String.valueOf(paqDT.getValidez()));

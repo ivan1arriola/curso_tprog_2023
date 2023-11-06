@@ -86,7 +86,7 @@
                                 <li id="<%=postulante%>" class="list-group-item">
                                     <div class="row">
                                         <div class="col">
-                                            <button id="btn-<%=postulante%>" class="btn btn-custom" onclick="cargarInfoPostulante('<%=postulante%>')">Ver</button>
+                                            <button id="btn-<%=postulante%>" class="btn btn-custom " onclick="cargarInfoPostulante('<%=postulante%>')">Ver</button>
                                         </div>
                                         <div class="col">
                                             <%=postulante%>

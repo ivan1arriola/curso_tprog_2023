@@ -5,6 +5,7 @@ import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTEmpresa;
+import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
@@ -250,7 +251,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                     } else {
                         tipo = "Postulante";
 
-
+                        
                         empresaDesc.setVisible(false);
                         empresaUrl.setVisible(false);
                         scrollPane.setVisible(false);
@@ -259,6 +260,15 @@ public class ConsultaDeUsuario extends JInternalFrame {
 
 
                         DTPostulante postula = (DTPostulante) dtusr;
+                        
+                        /* Set<DTOfertaExtendido> favs = postula.getFavs();
+                        boolean existe = false;
+                        for(DTOfertaExtendido elem : favs) {
+                        	existe = elem.getNombre() == "A. de Marketing Digital";
+                        }
+                        
+                        System.out.print(existe); */
+
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                         String formattedFecha = postula.getFechaNac().format(formatter);
 

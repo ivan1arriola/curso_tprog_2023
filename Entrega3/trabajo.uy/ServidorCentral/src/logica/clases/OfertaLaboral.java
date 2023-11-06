@@ -535,11 +535,12 @@ public class OfertaLaboral {
     }
 
     public byte[] getImagen() {
-        byte[] base64DecodedBytes = Base64.getDecoder().decode(imagen);
-        return base64DecodedBytes;
+        if (imagen == null) return null;
+        return Base64.getDecoder().decode(imagen);
     }
 
     public void setImagen(byte[] imagen) {
+        if(imagen == null) return;
         byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
         // Convert the byte array to a Base64 string
 

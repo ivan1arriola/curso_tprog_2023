@@ -1,6 +1,8 @@
 package logica.manejadores;
 
+import excepciones.NoExistePaquete;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import logica.clases.Paquete;
 
 import java.util.List;
@@ -62,21 +64,28 @@ public class PaqueteHandler {
         return existe;
     }
 
-    public Paquete buscar(String nombre) {
+    public Paquete buscar(String nombre) throws NoExistePaquete {
         if (database == null) {
             throw new IllegalStateException("EntityManager no configurado.");
         }
-        if(!database.getTransaction().isActive()) {
+        if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
-        Paquete paquete = database.createQuery("SELECT p FROM Paquete p WHERE p.nombre = :nombre", Paquete.class)
-                .setParameter("nombre", nombre)
-                .getSingleResult();
-        database.getTransaction().commit();
 
+        Paquete paquete;
+        try {
+            paquete = database.createQuery("SELECT p FROM Paquete p WHERE p.nombre = :nombre", Paquete.class)
+                    .setParameter("nombre", nombre)
+                    .getSingleResult();
+            database.getTransaction().commit();
+        } catch (NoResultException ex) {
+            database.getTransaction().rollback();
+            throw new NoExistePaquete("El paquete con el nombre '" + nombre + "' no existe.");
+        }
 
         return paquete;
     }
+
 
     public void agregar(Paquete paquete) {
         if (database == null) {

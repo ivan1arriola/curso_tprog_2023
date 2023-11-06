@@ -10,13 +10,15 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.UsuarioBean;
+import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
+import logica.servidor.Servidor;
+import logica.servidor.ServidorService;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet("/consultarofertalaboral")
 public class ConsultarOfertaLaboral extends HttpServlet {
@@ -42,8 +44,16 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             String nickname = (String) session.getAttribute("nickname");
             TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
 
-
-
+            UsuarioBean user = logica.obtenerDatosUsuario(nickname);
+            boolean estaFav = false;
+            for (OfertaLaboralBean elemento : user.getOferFavs()) {
+            	estaFav = elemento.getNombre() == nombreOferta;
+            	if(estaFav)
+            		break;
+            }
+            
+            request.setAttribute("estaFav", estaFav);
+            
             try {
                 if (nickname == null) nickname = "";
                 if (tipoUsuario == null) {
@@ -113,6 +123,36 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        
+    	ServidorService SS = new ServidorService();
+        Servidor servidor = SS.getServidorPort();
+    	
+    	String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
+    	String nombreOferta = (String) request.getParameter("nombreOferta");    	
+    	
+    	if (request.getParameter("corazonDesm") != null) {
+    		try {
+				servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
+				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
+			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (OfertaLaboralNoEncontrada_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+    	} else if (request.getParameter("corazonMarc") != null) {
+    		try {
+				servidor.desmarcarFavorito(nicknameUsuarioLogueado, nombreOferta);
+				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
+			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (OfertaLaboralNoEncontrada_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     }
 }

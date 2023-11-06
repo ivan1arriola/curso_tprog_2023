@@ -56,7 +56,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception {
+	public void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ErrorAgregarUsuario_Exception {
 
 		if (sitioWebEmpresa == null) {
 			sitioWebEmpresa = ""; // Reemplazar URL nula con una cadena vacía
@@ -72,7 +72,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception {
+	public void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ExceptionFechaInvalida_Exception, ErrorAgregarUsuario_Exception {
 		if (imagenBytes == null) {
 			servidor.altaPostulante(nickname, password, nombre, apellido, parse.toString(), email, nacionalidad);
 		} else {
@@ -131,6 +131,8 @@ public class Logica implements ILogica {
 		} catch (ExcepcionKeywordVacia_Exception | ExceptionValidezNegativa_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ExceptionFechaInvalida_Exception | ErrorAgregarUsuario_Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -305,7 +307,7 @@ public class Logica implements ILogica {
 	
 
 	@Override
-	public PaqueteBean obtenerDatosPaquete(String paquete) {
+	public PaqueteBean obtenerDatosPaquete(String paquete) throws NoExistePaquete_Exception {
 		DtPaquete dtPaquete = servidor.obtenerDatosPaquete(paquete);
 		if(dtPaquete == null)
 			return null;
@@ -486,10 +488,10 @@ public class Logica implements ILogica {
 
 	@Override
 	public Set<OfertaLaboralBean> listarDatosOfertas() throws OfertaLaboralNoEncontrada_Exception {
-		List<DtOfertaExtendido> DtOfertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
+		List<String> DtOfertas = servidor.listarOfertasLaboralesConfirmadasYNoVencidas().getListaString();
 		Set<OfertaLaboralBean> ofertasLaborales = new TreeSet<>();
-		for (DtOfertaExtendido Dtoferta: DtOfertas) {
-			ofertasLaborales.add(this.obtenerDatosOfertaLaboral(Dtoferta.getNombre()));
+		for (String nombreOferta: DtOfertas) {
+			ofertasLaborales.add(this.obtenerDatosOfertaLaboral(nombreOferta));
 		}
 		return ofertasLaborales;
 	}
@@ -550,7 +552,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<PaqueteBean> obtenerPaquetes() {
+	public Set<PaqueteBean> obtenerPaquetes() throws NoExistePaquete_Exception {
         Set<String> lista = new TreeSet<>(servidor.listarPaquetes().getListaString());
         
         Set<PaqueteBean> paquetes = new TreeSet<PaqueteBean>();

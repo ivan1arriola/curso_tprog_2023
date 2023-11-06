@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import logica.servidor.NoExistePaquete_Exception;
 import utils.FabricaWeb;
 
 @WebServlet("/comprarpaquete")
@@ -21,15 +22,20 @@ public class ComprarPaquete extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         String paquete = request.getParameter("p");
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
 
-        ILogica logica = FabricaWeb.getInstance().getLogica();
+        ILogica logica = FabricaWeb.getLogica();
 
-        int valor = (int) logica.obtenerDatosPaquete(paquete).getCosto();
+        int valor = 0;
+        try {
+            valor = (int) logica.obtenerDatosPaquete(paquete).getCosto();
+        } catch (NoExistePaquete_Exception e) {
+            throw new RuntimeException(e);
+        }
 
         logica.compraPaquetes(nickname, paquete, LocalDate.now(), valor);
 

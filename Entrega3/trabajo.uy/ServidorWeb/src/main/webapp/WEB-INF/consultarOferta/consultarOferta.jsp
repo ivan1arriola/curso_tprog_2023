@@ -12,6 +12,7 @@
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
     boolean duenioOfertaLaboral = (boolean) request.getAttribute("duenio");
     boolean mostrarContenido = tipoUsuario == TipoUsuario.Empresa || tipoUsuario == TipoUsuario.Postulante;
+    boolean estaFav = (boolean) request.getAttribute("estaFav");
 %>
 
 <!DOCTYPE html>
@@ -26,15 +27,6 @@
             background-image: url(<%= imagen %>);
         }
     </style>
-
-	<style>
-	    .heart-icon {
-	      font-size: 3em; /* Cambiar el tamaño del corazón */
-	    }
-	    .heart-icon.text-danger {
-	      color: red; /* Cambiar a color rojo al hacer clic */
-	    }
-	  </style>
     
 </head>
 
@@ -50,6 +42,7 @@
 
     <div class="container col-9">
         <div class="container">
+
             <div class="row banner-container banner-dark">
                 <h1 class="text-center text-light fw-bolder"><%= ofertaLaboral.getNombre() %></h1>
             </div>
@@ -65,20 +58,20 @@
 
 
                 <div class="col-4 mt-2 container text-center" id="acciones">
-                	
-		            <h4> Marcar de favorito</h4>
-					<button id="corazon" type="button" class="btn btn-light" aria-label="Like">
-					  <span class="heart-icon" aria-hidden="true">&#x2661;</span>
-					</button>
-					
-					<script>
-					$(document).ready(function() {
-					  $('#corazon').click(function() {
-					    $(this).find('.heart-icon').toggleClass('text-danger'); // Cambia el color al hacer clic
-					  });
-					});
-					</script>
-
+                    <form action="consultarofertalaboral" method="post">
+                        <input type="hidden" name="nombreOferta" value="<%= ofertaLaboral.getNombre() %>">
+		            <% if (TipoUsuario.Postulante == tipoUsuario && !estaFav) { %>
+			            <h4> Marcar favorito</h4>
+						<button id="corazonDesm"  name="corazonDesm" type="submit" class="btn btn-light" aria-label="Like">
+						  <span class="heart-icon" aria-hidden="true">&#10084;</span>
+						</button>
+					<%} else if (TipoUsuario.Postulante == tipoUsuario) {%>
+						<h4> Desmarcar favorito</h4>
+						<button id="corazonMarc" name="corazonMarc" type="submit" class="btn btn-light" aria-label="Like">
+						  <span class="heart-icon.text-danger" aria-hidden="true">&#10084;</span>
+						</button>
+					<%}%>
+                    </form>
 
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
@@ -93,6 +86,7 @@
             </div>
         </div>
     </div>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjvP/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -57,7 +57,7 @@ public interface ILogica {
 	/**
 	 * Obtiene el PaqueteBean del paquete paquete
 	 **/
-	PaqueteBean obtenerDatosPaquete(String paquete);
+	PaqueteBean obtenerDatosPaquete(String paquete) throws NoExistePaquete_Exception;
 
 	/**
 	 * Lista las ofertas confirmadas de la empresa nicknameParametro
@@ -117,7 +117,7 @@ public interface ILogica {
 	/**
 	 * Lista los datos de los paquetes
 	 **/
-	Set<PaqueteBean> obtenerPaquetes();
+	Set<PaqueteBean> obtenerPaquetes() throws NoExistePaquete_Exception;
 
 	OfertaLaboralBean DatosOferta(String nombre_oferta) throws OfertaLaboralNoEncontrada_Exception;
 
@@ -126,9 +126,9 @@ public interface ILogica {
 
 	DtTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente_Exception;
 
-	void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception;
+	void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ErrorAgregarUsuario_Exception;
 
-	void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception;
+	void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ExceptionFechaInvalida_Exception, ErrorAgregarUsuario_Exception;
 
 	void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad);
 

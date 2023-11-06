@@ -51,7 +51,7 @@ public class Servidor {
     }
 
     @WebMethod
-    public void cargarDatos() throws ExceptionValidezNegativa, ExcepcionKeywordVacia {
+    public void cargarDatos() throws ExceptionValidezNegativa, ExcepcionKeywordVacia, ExceptionFechaInvalida, ErrorAgregarUsuario {
         Fabrica.getInstance().getICtrlCargaDeDatos().cargarDatos();
     }
 
@@ -157,7 +157,8 @@ public class Servidor {
         return WSUtils.envolverLista(ctrlOferta.listarKeywords());
     }
 
-    public DTPaquete obtenerDatosPaquete(String nombrePaquete){
+    @WebMethod
+    public DTPaquete obtenerDatosPaquete(String nombrePaquete) throws NoExistePaquete {
         return ctrlOferta.obtenerDatosPaquete(nombrePaquete);
     }
 
@@ -182,7 +183,7 @@ public class Servidor {
     }
 
     @WebMethod
-    public void altaEmpresaURL(String nickname, String password, String nombre, String apellido, String correo, String description, String url) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+    public void altaEmpresaURL(String nickname, String password, String nombre, String apellido, String correo, String description, String url) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ErrorAgregarUsuario {
         ctrlUsuario.altaEmpresaURL(nickname, password, nombre, apellido, correo, description, url);
     }
 
@@ -209,26 +210,26 @@ public class Servidor {
     }
 
     @WebMethod
-    public boolean altaEmpresaURLyImagen(String nick, String password, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) {
+    public boolean altaEmpresaURLyImagen(String nick, String password, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) throws ErrorAgregarUsuario {
         return ctrlUsuario.altaEmpresaURLyImagen(nick, password, nombre, apellido, mail, desc, URL, imagen);
     }
 
     @WebMethod
-    public boolean altaPostulanteImagen(String nick, String password, String nombre, String apellido, String fechanac, String mail, String nacionalidad, byte[] imagen) {
+    public boolean altaPostulanteImagen(String nick, String password, String nombre, String apellido, String fechanac, String mail, String nacionalidad, byte[] imagen) throws ExceptionFechaInvalida, ErrorAgregarUsuario {
         // Se asume que fechanac esta correctamente formateada
         LocalDate fechaNacimiento = LocalDate.parse(fechanac);
         return ctrlUsuario.altaPostulanteImagen(nick, password, nombre, apellido, fechaNacimiento, mail, nacionalidad, imagen);
     }
 
     @WebMethod
-    public boolean altaPostulante(String nick, String password, String nombre, String apellido, String fechanac, String mail, String nacionalidad) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+    public boolean altaPostulante(String nick, String password, String nombre, String apellido, String fechanac, String mail, String nacionalidad) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionFechaInvalida, ErrorAgregarUsuario {
         // Se asume que fechanac esta correctamente formateada
         LocalDate fechaNacimiento = LocalDate.parse(fechanac);
         return ctrlUsuario.altaPostulante(nick, password, nombre, apellido, mail, fechaNacimiento, nacionalidad);
     }
 
     @WebMethod
-    public boolean altaEmpresaImagen(String nick, String password, String nombre, String apellido, String mail, String desc, byte[] imagen) {
+    public boolean altaEmpresaImagen(String nick, String password, String nombre, String apellido, String mail, String desc, byte[] imagen) throws ErrorAgregarUsuario {
         return ctrlUsuario.altaEmpresaImagen(nick, password, nombre, apellido, mail, desc, imagen);
     }
 
@@ -321,6 +322,11 @@ public class Servidor {
             @WebParam(name = "nombre_oferta") String nombre_oferta
     ) throws ExceptionUsuarioNoEncontrado {
         return WSUtils.envolverLista((ArrayList<String>) ctrlOferta.DevolverOrdenFinal(nombre_oferta));
+    }
+
+    @WebMethod
+    public WrapperLista listarOfertasLaboralesConfirmadasYNoVencidas(){
+        return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesConfirmadasYNoVencidasString());
     }
 
 
