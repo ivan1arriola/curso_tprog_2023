@@ -155,7 +155,7 @@ public class ConsultarUsuario extends HttpServlet {
 
 
 
-	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
+	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) throws ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception {
         Set<String> nombresPaquetes = logica.listarPaquetesDeEmpresa(nickname);  	
         Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
         if (nombresPaquetes != null && !nombresPaquetes.isEmpty()) {

@@ -2,6 +2,7 @@ package presentacion;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.NoExistePaquete;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTPaquete;
 import logica.interfaces.ICtrlOferta;
@@ -43,7 +44,12 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                     listadoTipoPub.removeAllItems();
                     String paqElegido = (String) paquetesVisualizar.getSelectedItem();
                     Set<String> publicaciones = ICO.listarTipoDePublicaciones();
-                    DTPaquete dtpaq = ICO.obtenerDatosPaquete(paqElegido);
+                    DTPaquete dtpaq = null;
+                    try {
+                        dtpaq = ICO.obtenerDatosPaquete(paqElegido);
+                    } catch (NoExistePaquete e) {
+                        throw new RuntimeException(e);
+                    }
                     Set<DTCantTO> publiAgregados = dtpaq.getTiposDePub();
                     Set<String> publiNoAgregados = new HashSet<>();
 
@@ -101,6 +107,8 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                     } catch (NumberFormatException | ExceptionCantidadPositivaDeTipoOfertaEnPaquete exc) {
 
                         JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Ingrese por favor un número", "ERROR - Agregar Tipo de Publicación de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                    } catch (NoExistePaquete e) {
+                        throw new RuntimeException(e);
                     }
                 }
 
@@ -154,14 +162,14 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
 
     }
 
-    public void actualizar() {
+    public void actualizar() throws NoExistePaquete {
 
         paquetesVisualizar.removeAllItems();
         paquetesVisualizar.setEnabled(true);
 
         Set<String> packs = ico.listarPaquetes();
         List<String> packSorted = new ArrayList<>(packs);
-        Collections.sort(packSorted, String.CASE_INSENSITIVE_ORDER);
+        packSorted.sort(String.CASE_INSENSITIVE_ORDER);
 
 //        paquetesVisualizar.addItem("");
 //

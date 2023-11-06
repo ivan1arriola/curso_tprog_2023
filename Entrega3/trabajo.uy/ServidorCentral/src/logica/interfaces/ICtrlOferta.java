@@ -23,13 +23,13 @@ public interface ICtrlOferta {
 
     public abstract boolean altaKeyword(String key) throws ExcepcionKeywordVacia;
 
-    public abstract boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado;
+    public abstract boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete;
 
     public abstract boolean
     altaOfertaLaboral(String nickname_e, String tipo, String nombre,
                       String descripcion, DTHorario horario, float remun, String ciu,
                       DepUY dep, LocalDate fechaA, Set<String> keys,
-                      EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado;
+                      EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete;
 
     public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) throws OfertaLaboralNoEncontrada;
 
@@ -67,13 +67,13 @@ public interface ICtrlOferta {
     public abstract DTOfertaExtendido obtenerOfertaLaboral(String nombre) throws OfertaLaboralNoEncontrada;
 
     public abstract void
-    agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+    agregarTipoOfertaPaq(String paquete, String TipoOferta, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete, NoExistePaquete;
 
     public abstract Set<String> listarPaquetes();
 
     public abstract Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado;
 
-    public abstract DTPaquete obtenerDatosPaquete(String paq);
+    public abstract DTPaquete obtenerDatosPaquete(String paq) throws NoExistePaquete;
 
     public abstract DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente;
 
@@ -83,13 +83,15 @@ public interface ICtrlOferta {
 
     public abstract DTTipoOferta tipoOferta(String oferta) throws OfertaLaboralNoEncontrada;
 
-    public abstract boolean paqueteComprado(String pack);
+    public abstract boolean paqueteComprado(String pack) throws NoExistePaquete;
 
     //Necesaria para el caso de uso ""
 
 
     // Operacion que para un nickname de empresa devuelve un set de String con los nombres de los paquetes comprados
     public abstract Set<String> listarComprasPaquete(String nicknameEmpresa) throws ExceptionUsuarioNoEncontrado;
+
+    Set<String> listarOfertasLaboralesConfirmadasYNoVencidasString();
 
     public abstract boolean existeOfertaLaboral(String nombre_ofer);
 

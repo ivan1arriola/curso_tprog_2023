@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.UsuarioBean;
-import logica.datatypes.DTUsuario;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import logica.servidor.Servidor;
@@ -20,7 +19,6 @@ import enumeration.TipoUsuario;
 import interfaces.ILogica;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet("/consultarofertalaboral")
 public class ConsultarOfertaLaboral extends HttpServlet {

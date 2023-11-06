@@ -1,5 +1,6 @@
 package logica.manejadores;
 
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -53,7 +54,7 @@ public class UsuarioHandler {
     }
 
 
-    public void agregar(Usuario usuario) {
+    public void agregar(Usuario usuario) throws ErrorAgregarUsuario {
         try {
             database.getTransaction().begin();
             database.persist(usuario);
@@ -63,6 +64,7 @@ public class UsuarioHandler {
                 database.getTransaction().rollback();
             }
             e.printStackTrace();
+            throw new ErrorAgregarUsuario("No se logro agregar el usuario");
         }
     }
 
@@ -77,14 +79,14 @@ public class UsuarioHandler {
     }
 
 
-    public Usuario buscarCorreo(String mail) {
+    public Usuario buscarCorreo(String mail) throws ExceptionUsuarioNoEncontrado {
         try {
             TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.correoElectronico = :mail", Usuario.class);
             query.setParameter("mail", mail);
             return query.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
-            return null; // Devuelve null si no se encuentra el usuario
+            throw new ExceptionUsuarioNoEncontrado("Usuario no encontrado para el email: " + mail);
         }
     }
 

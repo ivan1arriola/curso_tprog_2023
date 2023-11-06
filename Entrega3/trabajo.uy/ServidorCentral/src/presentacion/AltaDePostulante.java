@@ -1,9 +1,7 @@
 package presentacion;
 
 
-import excepciones.ExceptionUsuarioCorreoRepetido;
-import excepciones.ExceptionUsuarioNickRepetido;
-import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.*;
 import logica.Fabrica;
 import logica.interfaces.ICtrlUsuario;
 
@@ -248,6 +246,10 @@ public class AltaDePostulante extends JInternalFrame {
             } catch (ExceptionUsuarioNickYCorreoRepetidos evento2) {
                 JOptionPane.showMessageDialog(this, "El nickname y el correo ya se encuentra en el sistema.", "Alta de Postulante", JOptionPane.INFORMATION_MESSAGE);
 
+            } catch (ExceptionFechaInvalida e) {
+                throw new RuntimeException(e);
+            } catch (ErrorAgregarUsuario e) {
+                throw new RuntimeException(e);
             }
             // Limpio el internal frame antes de cerrar la ventana
 

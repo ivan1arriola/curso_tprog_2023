@@ -406,7 +406,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Costo no puede ser negativo", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
                     } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
                         JOptionPane.showMessageDialog(AltaOfertaLaboral.this, "Sin disponibilidad del Tipo Oferta en Paquete Seleccionado", "ERROR - Alta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-                    } 
+                    } catch (NoExistePaquete e) {
+                        throw new RuntimeException(e);
+                    }
 
 
                 }

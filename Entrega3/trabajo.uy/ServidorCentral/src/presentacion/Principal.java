@@ -1,5 +1,6 @@
 package presentacion;
 
+import excepciones.NoExistePaquete;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -314,7 +315,11 @@ public class Principal {
         JMenuItem ATPOLP = new JMenuItem("Agregar Tipo de publicación de Oferta Laboral a Paquete");
         ATPOLP.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.actualizar();
+                try {
+                    agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.actualizar();
+                } catch (NoExistePaquete e) {
+                    throw new RuntimeException(e);
+                }
                 agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setVisible(true);
             }
         });

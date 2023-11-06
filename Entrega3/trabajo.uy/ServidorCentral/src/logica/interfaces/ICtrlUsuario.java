@@ -21,14 +21,14 @@ public interface ICtrlUsuario {
     altaEmpresaURL(String nick, String contraseña, String nombre,
                    String apellido, String mail, String desc, String URL)
             throws ExceptionUsuarioCorreoRepetido,
-            ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
+            ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ErrorAgregarUsuario;
 
-    public abstract boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido;
+    public abstract boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ErrorAgregarUsuario;
 
     public abstract boolean altaPostulante(String nick, String contraseña, String nombre,
                                            String apellido, String mail, LocalDate fechanac, String nacionalidad)
             throws
-            ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido;
+            ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido, ErrorAgregarUsuario, ExceptionFechaInvalida;
 
     public abstract Set<String> listarEmpresas();
 
@@ -52,7 +52,7 @@ public interface ICtrlUsuario {
     public abstract boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre,
                                               String descripcion, DTHorario horario, float remun, String ciu, DepUY dep,
                                               LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete)
-            throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+            throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, NoExistePaquete;
 
     public abstract Set<String> listarOfertasLaborales(String nickname_e)
             throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado;
@@ -74,7 +74,7 @@ public interface ICtrlUsuario {
 
     public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido; // PRONTA
 
-    public abstract DTPaquete obtenerDatosPaquete(String paq); // PRONTA
+    public abstract DTPaquete obtenerDatosPaquete(String paq) throws NoExistePaquete; // PRONTA
 
 
     public abstract boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado; // NUEVA OPERACION que reemplaza las 2 anteriores
@@ -95,11 +95,11 @@ public interface ICtrlUsuario {
 
     public abstract boolean hayPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado; // PRONTA
 
-    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) throws ErrorAgregarUsuario; // PRONTA
 
-    public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fechanac, String mail, String nacionalidad, byte[] imagen); // PRONTA
+    public abstract boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fechanac, String mail, String nacionalidad, byte[] imagen) throws ExceptionFechaInvalida, ErrorAgregarUsuario; // PRONTA
 
-    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen); // PRONTA
+    public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen) throws ErrorAgregarUsuario; // PRONTA
 
     public abstract Set<String> listarPostulantesDeOfertas(String nickname_e, String oferta);
 

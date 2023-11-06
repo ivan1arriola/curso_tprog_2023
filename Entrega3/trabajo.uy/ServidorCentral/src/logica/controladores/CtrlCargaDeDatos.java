@@ -30,7 +30,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         utils = new Utils();
     }
 
-    public void cargarDatos() throws ExcepcionKeywordVacia, ExceptionValidezNegativa {
+    public void cargarDatos() throws ExcepcionKeywordVacia, ExceptionValidezNegativa, ExceptionFechaInvalida, ErrorAgregarUsuario {
 
         cargarUsuarios();
         cargarTipoPublicacion();
@@ -46,7 +46,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
 
     // Cargar Usuarios
-    private void cargarUsuarios() {
+    private void cargarUsuarios() throws ExceptionFechaInvalida, ErrorAgregarUsuario {
         Map<String, String[]> usuarioCSV = utils.getUsuarioCSV();
 
         for (Map.Entry<String, String[]> entry : usuarioCSV.entrySet()) {
@@ -65,7 +65,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
     }
 
 
-    private void cargarUsuarioPostulante(String user, String[] usuariosCSV) {
+    private void cargarUsuarioPostulante(String user, String[] usuariosCSV) throws ExceptionFechaInvalida, ErrorAgregarUsuario {
         Map<String, String[]> postulanteCSV = utils.getPostulanteCSV();
         String[] postulanteData = postulanteCSV.get(user);
 
@@ -102,11 +102,13 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                     ctrlUsuario.altaEmpresaImagen(usuariosCSV[2], usuariosCSV[6], usuariosCSV[3], usuariosCSV[4], usuariosCSV[5], empresaData[1], imagen);
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
+                } catch (ErrorAgregarUsuario e) {
+                    throw new RuntimeException(e);
                 }
             } else if (empresaData.length == 3) {
                 try {
                     ctrlUsuario.altaEmpresaURLyImagen(usuariosCSV[2], usuariosCSV[6], usuariosCSV[3], usuariosCSV[4], usuariosCSV[5], empresaData[1], empresaData[2], imagen);
-                } catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException | ErrorAgregarUsuario e) {
                     e.printStackTrace();
                 }
             }
@@ -210,6 +212,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
             } catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | NumberFormatException | ExceptionRemuneracionOfertaLaboralNegativa eune) {
                 eune.printStackTrace();
+            } catch (NoExistePaquete e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -230,6 +234,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 ctrlOferta.agregarTipoOfertaPaq(paquete, tipoPublicacion, cantidad);
             } catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
                 e.printStackTrace();
+            } catch (NoExistePaquete e) {
+                throw new RuntimeException(e);
             }
         }
     }

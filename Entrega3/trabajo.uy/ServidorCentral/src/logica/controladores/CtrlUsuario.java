@@ -15,7 +15,7 @@ import java.util.*;
 
 public class CtrlUsuario implements ICtrlUsuario {
     // empresa con URL y sin imagen
-    public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido {
+    public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existeNick = UsuarioH.existeNick(nick);
         boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -39,7 +39,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     // empresa sin URL ni imagen
-    public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+    public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido, ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existeNick = UsuarioH.existeNick(nick);
         boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -62,7 +62,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         return !existeNick && !existeCorreo;
     }
 
-    public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido {
+    public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido, ErrorAgregarUsuario, ExceptionFechaInvalida {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existeNick = UsuarioH.existeNick(nick);
         boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -77,20 +77,10 @@ public class CtrlUsuario implements ICtrlUsuario {
             }
         }
 
-        if (!existeNick && !existeCorreo) {
-            Postulante postulante;
-            try {
-                postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fechanac, nacionalidad);
-                UsuarioH.agregar(postulante);
-            } catch (ExceptionFechaInvalida e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return false;
-            }
-
-        }
-
-        return !existeNick && !existeCorreo;
+        Postulante postulante;
+        postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fechanac, nacionalidad);
+        UsuarioH.agregar(postulante);
+        return true;
     }
 
     public Set<String> listarEmpresas() {
@@ -172,7 +162,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
     public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida,
-            ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+            ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, NoExistePaquete {
         List<Keyword> keywords = new ArrayList<>();
 
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -302,11 +292,10 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public DTPaquete obtenerDatosPaquete(String paq) {
+    public DTPaquete obtenerDatosPaquete(String paq) throws NoExistePaquete {
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paquete = PaqueteH.buscar(paq);
-        DTPaquete datosPaq = paquete.getDTPaquete();
-        return datosPaq;
+        return paquete.getDTPaquete();
 
     }
 
@@ -431,7 +420,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) {
+    public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) throws ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
         if (!existe) {
@@ -446,18 +435,15 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
     // alta postulante con imagen
-    public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fechanac, String mail, String nacionalidad, byte[] imagen) {
+    public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fechanac, String mail, String nacionalidad, byte[] imagen) throws ExceptionFechaInvalida, ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
         if (!existe) {
             Postulante postulante;
-            try {
+
                 postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fechanac, nacionalidad, imagen);
                 UsuarioH.agregar(postulante);
-            } catch (ExceptionFechaInvalida e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } // falta agregarle el parametro img
+
 
             return true;
         } else {
@@ -466,7 +452,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     // necesito otro constructor?
-    public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen) {
+    public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen) throws ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
         if (!existe) {

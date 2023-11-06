@@ -1,6 +1,7 @@
 package presentacion;
 
 
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -199,6 +200,8 @@ public class AltaDeEmpresa extends JInternalFrame {
             } catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos |
                      ExceptionUsuarioNickRepetido e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR - Alta de Empresa", JOptionPane.ERROR_MESSAGE);
+            } catch (ErrorAgregarUsuario e) {
+                throw new RuntimeException(e);
             }
         } else if (resCheck == 2) {
             try {
@@ -218,6 +221,8 @@ public class AltaDeEmpresa extends JInternalFrame {
             } catch (ExceptionUsuarioNickYCorreoRepetidos evento2) {
                 JOptionPane.showMessageDialog(this, "El nickname y el correo ya se encuentra en el sistema.", "Alta de Postulante", JOptionPane.INFORMATION_MESSAGE);
 
+            } catch (ErrorAgregarUsuario e) {
+                throw new RuntimeException(e);
             }
         }
         // Limpio el internal frame antes de cerrar la ventana
