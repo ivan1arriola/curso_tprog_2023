@@ -110,22 +110,17 @@
                         
                         <div class="row align-items-center mt-2">
                         <a href="<%=context%>/consultarpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
-                    	Leer más
+                    	Ver Postulación
                     	</a>
 						</div>
 						
-                        <div class="row align-items-center mt-2">
-                            <!-- Link para ver postulacion en caso de existir-->
-                            <a href="/postulacion/DesarrolladorFrontEnd.html" class="btn btn-primary btn-lg">Ver Postulación</a>
-                        </div>
-
-                        <div class="row align-items-center mt-2">
-                            <!-- Link para ver postulacion en caso de existir-->
-                            <a href="/postulacion/postularse.html" class="btn btn-primary btn-lg">Postularse</a>
-
-                        </div>
-
-
+						<div class="row align-items-center mt-2">
+                        <a href="<%=context%>/crearpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
+                    	Postular
+                    	</a>
+						</div>
+						
+					
                     </div>
 
 
