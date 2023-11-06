@@ -82,7 +82,7 @@ public interface ILogica {
 	/**
 	 * Obtiene los datos de la postulacion de nicknameParametro a la oferta nombreOferta
 	 **/
-	PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception;
+	PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception;
 
 	/**
 	 * A un OfertaLaboralBean ya existente le carga los datos de los Postulantes a la oferta y
@@ -134,7 +134,7 @@ public interface ILogica {
 
 	void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String link, byte[] imagen, String descripcion);
 
-	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception;
+	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception;
 
 	void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception;
 
