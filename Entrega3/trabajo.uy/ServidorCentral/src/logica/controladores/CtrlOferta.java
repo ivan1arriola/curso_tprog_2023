@@ -458,7 +458,7 @@ public class CtrlOferta implements ICtrlOferta {
     }
     
     
-    public void marcarFavorita(String nick_postulante, String nomb_oferta) {
+    public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = (Postulante) UH.buscarNick(nick_postulante);
     	
@@ -469,7 +469,7 @@ public class CtrlOferta implements ICtrlOferta {
         ofer.marcadaFav();
     }
     
-    public void desmarcarFavorita(String nick_postulante, String nomb_oferta) {
+    public void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = (Postulante) UH.buscarNick(nick_postulante);
     	

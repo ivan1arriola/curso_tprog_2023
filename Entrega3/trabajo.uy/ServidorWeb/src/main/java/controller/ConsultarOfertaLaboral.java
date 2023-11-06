@@ -67,6 +67,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 }
 
                 request.setAttribute("ofertaLaboral", ofertaBean);
+                request.setAttribute("nombreOferta", ofertaBean.getNombre());
                 request.getRequestDispatcher("/WEB-INF/consultarOferta/consultarOferta.jsp").forward(request, response);
             } catch (IOException e) {
                 String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: " + e.getMessage();

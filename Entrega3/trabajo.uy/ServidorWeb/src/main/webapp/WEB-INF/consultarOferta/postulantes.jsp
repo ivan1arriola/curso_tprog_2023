@@ -4,6 +4,7 @@
 
 <%
     List<UsuarioBean> postulantes = (List<UsuarioBean>) request.getAttribute("postulantes");
+    String nombreOferta = (String) request.getAttribute("nombreOferta");
 %>
 
 
@@ -25,9 +26,9 @@
         } else {
         %>
         <!-- Botón con número de postulantes -->
-        <button type="button" class="btn btn-primary mb-3">
+        <a type="button" class="btn btn-primary mb-3" href="<%=request.getContextPath()%>/consultarpostulantes?oferta=<%=nombreOferta%>">
             Ver Postulantes <span class="badge bg-secondary"><%= postulantes.size() %></span>
-        </button>
+        </a>
         <%
             }
         %>
