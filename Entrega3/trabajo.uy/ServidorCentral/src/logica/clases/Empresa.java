@@ -385,7 +385,7 @@ public class Empresa extends Usuario {
         auxiliar.establecerPosicion(nickPostulante, posicion);
     }
     
-    public Boolean HayOrden(String nombre_oferta, String nickPostulante, Integer posicion) {
+    public Boolean HayOrden(String nombre_oferta, String nickPostulante) {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
         OfertaLaboral auxiliar = null;
         for (OfertaLaboral OLe : OFEmpresa) {
@@ -394,7 +394,7 @@ public class Empresa extends Usuario {
                 break;
             }
         }
-		return auxiliar.TienePosicion(nickPostulante, posicion);
+		return auxiliar.TienePosicion(nickPostulante);
     }
 
     public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas() {

@@ -5,66 +5,6 @@
 
         
 
-        DTUsuario empresa1 = ICU.obtenerDatosUsuario("Kreves");
-        DTEmpresa DTverdaderaempresa1 = (DTEmpresa) empresa1; // Casting;
-        ICU.ingresarDatosEditadosEmpresa(DTverdaderaempresa1.getNickname(),
-                DTverdaderaempresa1.getNombre(),
-                DTverdaderaempresa1.getApellido(),
-                DTverdaderaempresa1.getcorreoElectronico(),
-                DTverdaderaempresa1.getcontrasenia(),
-                DTverdaderaempresa1.getDescripcion());
-
-        ICU.ingresarDatosEditadosEmpresaImg(DTverdaderaempresa1.getNickname(),
-                DTverdaderaempresa1.getNombre(),
-                DTverdaderaempresa1.getApellido(),
-                DTverdaderaempresa1.getcorreoElectronico(),
-                DTverdaderaempresa1.getcontrasenia(),
-                img23,
-                DTverdaderaempresa1.getDescripcion());
-
-        ICU.ingresarDatosEditadosEmpresaURLImg(DTverdaderaempresa1.getNickname(),
-                DTverdaderaempresa1.getNombre(),
-                DTverdaderaempresa1.getApellido(),
-                DTverdaderaempresa1.getcorreoElectronico(),
-                DTverdaderaempresa1.getcontrasenia(),
-                DTverdaderaempresa1.getUrl(),
-                img23,
-                DTverdaderaempresa1.getDescripcion());
-
-        ICU.ingresarDatosEditadosEmpresaURL(DTverdaderaempresa1.getNickname(),
-                DTverdaderaempresa1.getNombre(),
-                DTverdaderaempresa1.getApellido(),
-                DTverdaderaempresa1.getcorreoElectronico(),
-                DTverdaderaempresa1.getcontrasenia(),
-                DTverdaderaempresa1.getUrl(),
-                DTverdaderaempresa1.getDescripcion());
-        // si no tiene url no lo toma,   en este caso google tiene url
-        if (!ICU.tieneURL("Google")) {
-            assertFalse("The test for user in system failed", true);
-        }
-
-
-        String img233 = "url";
-        // ------------------------- tipo oferta ---------------------------
-//			boolean booleano;
-        ICO.altaTipoPublicacionOL("Oferta normal", "visibilidad normal", 1, 19, 100.0f, LocalDate.now());
-        DTTipoOferta tipoOfertaDT = null;
-        try {
-            tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
-        } catch (ExcepcionTipoOfertaNoExistente e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        tipoOfertaDT.getNombre();
-        tipoOfertaDT.getFechaAlta();
-        tipoOfertaDT.getCosto();
-        tipoOfertaDT.getDuracion();
-        tipoOfertaDT.getExposicion();
-        tipoOfertaDT.getDescripcion();
-//			booleano = 
-        ICO.altaTipoPublicacionOL("Oferta destacada", "visibilidad destacada", 1, 19, 100.0f, LocalDate.now());
-        ICO.altaTipoPublicacionOL("Oferta super destacada", "visibilidad super destacada", 1, 19, 100.0f, LocalDate.now());
-        ICO.altaPaqueteOL("Paquete 1", "un paquete basico", 1, LocalDate.now(), 10.0f, img233);
 
         // los paquetes empiezan vacios,   se les va agregando tipos de oferta
 
