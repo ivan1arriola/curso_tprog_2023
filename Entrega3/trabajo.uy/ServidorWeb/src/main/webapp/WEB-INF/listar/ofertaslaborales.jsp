@@ -52,6 +52,10 @@
                 } else {
                     for (OfertaLaboralBean oferta : ofertasLaborales) {
                         String imagenUrl = oferta.getImagen();
+
+                        if(imagenUrl == null){
+                            imagenUrl = request.getContextPath() + "/imagenNoFound.png";
+                        }
                      
                         String nombre = oferta.getNombre();
                         String empresa = oferta.getNicknameEmpresa();

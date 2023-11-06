@@ -571,11 +571,20 @@ public class CtrlOferta implements ICtrlOferta {
     }
     
     @Override
-    public void finalizarOfertaLaboral(String nickname_e,String nombre_oferta) {
+    public void finalizarOfertaLaboral(String nombre_oferta) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Empresa empresa = null;
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral oferta = null;
 		try {
-			empresa = (Empresa) UH.buscarNick(nickname_e);
+			oferta = OLH.buscar(nombre_oferta);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
+    	Empresa empresa = null;
+        try {
+			empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

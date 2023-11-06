@@ -135,10 +135,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 				servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (OfertaLaboralNoEncontrada_Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -147,10 +145,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 				servidor.desmarcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (OfertaLaboralNoEncontrada_Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
