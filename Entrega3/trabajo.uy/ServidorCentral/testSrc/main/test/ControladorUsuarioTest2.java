@@ -3,50 +3,7 @@
         
         
 
-        UsuarioHandler UHan = UsuarioHandler.getInstance();
-        Postulante postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
-        // obtuve empresa,   ahora creo DTEmpresa
-
-        ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),
-                postulante1.getNombre(),
-                postulante1.getApellido(),
-                postulante1.getcorreoElectronico(),
-                postulante1.getcontrasenia(),
-                postulante1.getFechaNac(),
-                postulante1.getNacionalidad());
-
-        DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi", "LeonardoVinchi");
-        DTPostulante DTverdaderopostulante1 = (DTPostulante) DTpostulante1; // Casting;
-
-        ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(),
-                DTverdaderopostulante1.getNombre(),
-                DTverdaderopostulante1.getApellido(),
-                DTverdaderopostulante1.getcorreoElectronico(),
-                DTverdaderopostulante1.getcontrasenia(),
-                DTverdaderopostulante1.getFechaNac(),
-                DTverdaderopostulante1.getNacionalidad());
-
-        String img23 = "url";
-
-        ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),
-                DTverdaderopostulante1.getNombre(),
-                DTverdaderopostulante1.getApellido(),
-                DTverdaderopostulante1.getcorreoElectronico(),
-                DTverdaderopostulante1.getcontrasenia(),
-                img23,
-                DTverdaderopostulante1.getFechaNac(),
-                DTverdaderopostulante1.getNacionalidad());
-        postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
-        DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi", "ASwatzenegger");
-        DTPostulante DTverdaderopostulante12 = (DTPostulante) DTpostulante12; // Casting;
-
-        ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(),
-                DTverdaderopostulante12.getNombre(),
-                DTverdaderopostulante12.getApellido(),
-                DTverdaderopostulante12.getcorreoElectronico(),
-                DTverdaderopostulante12.getcontrasenia(),
-                DTverdaderopostulante12.getFechaNac(),
-                DTverdaderopostulante12.getNacionalidad());
+        
 
         DTUsuario empresa1 = ICU.obtenerDatosUsuario("Kreves");
         DTEmpresa DTverdaderaempresa1 = (DTEmpresa) empresa1; // Casting;

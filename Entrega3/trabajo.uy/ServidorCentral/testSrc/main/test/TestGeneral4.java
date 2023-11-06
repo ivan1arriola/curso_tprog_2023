@@ -4,6 +4,7 @@ package main.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,12 +13,16 @@ import java.util.Set;
 import org.junit.Test;
 
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionUsuarioNoEncontrado;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
 import logica.clases.Keyword;
+import logica.clases.Postulante;
 import logica.controladores.CtrlCargaDeDatos;
+import logica.datatypes.DTPostulante;
+import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.KeywordHandler;
@@ -95,49 +100,81 @@ public class TestGeneral4 {
         }
         // editar datos
         UsuarioHandler UHan = UsuarioHandler.getInstance();
-        Postulante postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
+        Postulante postulante1 = null;
+		try {
+			postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         // obtuve empresa,   ahora creo DTEmpresa
-
-        ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),
-                postulante1.getNombre(),
-                postulante1.getApellido(),
-                postulante1.getcorreoElectronico(),
-                postulante1.getcontrasenia(),
-                postulante1.getFechaNac(),
-                postulante1.getNacionalidad());
+		// Subtract three days
+        LocalDate threeDaysBefore = postulante1.getFechaNac().minusDays(3);
+        try {
+			ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),
+			        postulante1.getNombre(),
+			        postulante1.getApellido(),
+			        postulante1.getcorreoElectronico(),
+			        postulante1.getcontrasenia(),
+			        threeDaysBefore,
+			        postulante1.getNacionalidad());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi", "LeonardoVinchi");
         DTPostulante DTverdaderopostulante1 = (DTPostulante) DTpostulante1; // Casting;
 
-        ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(),
-                DTverdaderopostulante1.getNombre(),
-                DTverdaderopostulante1.getApellido(),
-                DTverdaderopostulante1.getcorreoElectronico(),
-                DTverdaderopostulante1.getcontrasenia(),
-                DTverdaderopostulante1.getFechaNac(),
-                DTverdaderopostulante1.getNacionalidad());
+        try {
+			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(),
+			        DTverdaderopostulante1.getNombre(),
+			        DTverdaderopostulante1.getApellido(),
+			        DTverdaderopostulante1.getcorreoElectronico(),
+			        DTverdaderopostulante1.getcontrasenia(),
+			        DTverdaderopostulante1.getFechaNac(),
+			        DTverdaderopostulante1.getNacionalidad());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         String img23 = "url";
 
-        ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),
-                DTverdaderopostulante1.getNombre(),
-                DTverdaderopostulante1.getApellido(),
-                DTverdaderopostulante1.getcorreoElectronico(),
-                DTverdaderopostulante1.getcontrasenia(),
-                img23,
-                DTverdaderopostulante1.getFechaNac(),
-                DTverdaderopostulante1.getNacionalidad());
-        postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
+        try {
+			ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),
+			        DTverdaderopostulante1.getNombre(),
+			        DTverdaderopostulante1.getApellido(),
+			        DTverdaderopostulante1.getcorreoElectronico(),
+			        DTverdaderopostulante1.getcontrasenia(),
+			        img23.getBytes(),
+			        DTverdaderopostulante1.getFechaNac(),
+			        DTverdaderopostulante1.getNacionalidad());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi", "ASwatzenegger");
         DTPostulante DTverdaderopostulante12 = (DTPostulante) DTpostulante12; // Casting;
 
-        ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(),
-                DTverdaderopostulante12.getNombre(),
-                DTverdaderopostulante12.getApellido(),
-                DTverdaderopostulante12.getcorreoElectronico(),
-                DTverdaderopostulante12.getcontrasenia(),
-                DTverdaderopostulante12.getFechaNac(),
-                DTverdaderopostulante12.getNacionalidad());
+        try {
+			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(),
+			        DTverdaderopostulante12.getNombre(),
+			        DTverdaderopostulante12.getApellido(),
+			        DTverdaderopostulante12.getcorreoElectronico(),
+			        DTverdaderopostulante12.getcontrasenia(),
+			        DTverdaderopostulante12.getFechaNac(),
+			        DTverdaderopostulante12.getNacionalidad());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// ============================================
         

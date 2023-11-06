@@ -517,4 +517,12 @@ public class CtrlOferta implements ICtrlOferta {
         empresa = (Empresa) UH.buscarNick(nombreEmpresa);
         empresa.establecerPosicion(nombre_oferta,nickPostulante,posicion) ;
     }
+    
+    @Override
+    public Boolean HayOrden(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Empresa empresa = null;
+        empresa = (Empresa) UH.buscarNick(nombreEmpresa);
+        return empresa.HayOrden(nombre_oferta,nickPostulante,posicion);
+    }
 }

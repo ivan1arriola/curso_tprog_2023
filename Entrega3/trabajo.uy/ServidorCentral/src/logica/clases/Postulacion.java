@@ -49,7 +49,7 @@ public class Postulacion {
 
     // GETTERS
     public Integer getClasificacion() {
-        return Clasificacion;
+        return Clasificacion;// si es cero no es clasificado
     }
 
     // SETTERS
