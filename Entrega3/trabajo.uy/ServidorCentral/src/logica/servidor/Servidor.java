@@ -300,7 +300,7 @@ public class Servidor {
     }
 
     public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
-       ctrlOferta.establecerPosicion(nombre_oferta, nombreEmpresa, nickPostulante, posicion);
+       //ctrlOferta.establecerPosicion(nombre_oferta, nombreEmpresa, nickPostulante, posicion);
     }
     /*@WebMethod
     public boolean existeOrdenPostulantesFinal(

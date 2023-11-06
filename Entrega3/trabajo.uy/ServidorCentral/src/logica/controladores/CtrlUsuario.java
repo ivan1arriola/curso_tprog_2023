@@ -564,6 +564,13 @@ public class CtrlUsuario implements ICtrlUsuario {
         return empresa.ObtenerPostulacionesOfertaLaboral(nombre_oferta);
     }
 
+
+    public void establecerPosicion(String nickname_empresa, String nombre_oferta, String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
+        UsuarioHandler UHan = UsuarioHandler.getInstance();
+        Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
+       // empresa.establecerPosicion(nombre_oferta, nickPostulante, posicion);
+    }
+
     public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(String nickname_empresa) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);

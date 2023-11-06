@@ -183,6 +183,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtPostulacion }
+     * 
+     * @return
+     *     the new instance of {@link DtPostulacion }
+     */
+    public DtPostulacion createDtPostulacion() {
+        return new DtPostulacion();
+    }
+
+    /**
      * Create an instance of {@link DtUsuario }
      * 
      * @return
@@ -240,16 +250,6 @@ public class ObjectFactory {
      */
     public DtOfertaExtendidoConKeywordsPostulante createDtOfertaExtendidoConKeywordsPostulante() {
         return new DtOfertaExtendidoConKeywordsPostulante();
-    }
-
-    /**
-     * Create an instance of {@link DtPostulacion }
-     * 
-     * @return
-     *     the new instance of {@link DtPostulacion }
-     */
-    public DtPostulacion createDtPostulacion() {
-        return new DtPostulacion();
     }
 
     /**
