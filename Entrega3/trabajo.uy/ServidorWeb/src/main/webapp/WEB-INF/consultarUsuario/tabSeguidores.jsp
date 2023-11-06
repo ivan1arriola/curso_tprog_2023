@@ -13,9 +13,11 @@
 %>
 
 <!-- Tab de Seguidores -->
-<div class="tab-pane fade sin-bordes p-2" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
+<div class="tab-pane fade sin-bordes p-2" id="seguidores-panel" role="tabpanel" aria-labelledby="seguidores-tab">
 
 <%
+
+	
     if(seguidores.isEmpty()){
     	
     	%>
@@ -41,7 +43,7 @@
         
         String nombre_completo = user.getNombre() + " " + user.getApellido();
         String correo = user.getCorreoElectronico();
-        String enlace = request.getContextPath() + "/consultarusuario?o=" + user.getNickname();
+        String enlace = request.getContextPath() + "/consultarusuario?u=" + user.getNickname();
     %>
     <div class="card mb-3">
         <div class="row g-0">

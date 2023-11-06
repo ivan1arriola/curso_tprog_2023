@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -141,4 +142,9 @@ public interface ILogica {
     boolean nicknameDisponible(String nickname);
 
 	boolean emailDisponible (String email);
+
+	HashSet<String> obtenerSeguidores(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
+
+	HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
+	
 }

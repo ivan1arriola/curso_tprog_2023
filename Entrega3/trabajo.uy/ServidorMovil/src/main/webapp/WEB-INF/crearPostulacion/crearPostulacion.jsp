@@ -6,8 +6,8 @@
 <html>
 
 <%
-	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
-	byte[] imagenBytes = oferta.getImagen();
+	String oferta = (String) request.getAttribute("oferta");
+	byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
 	String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
 
 %>
@@ -78,7 +78,7 @@
             <div class="col-4">
 
                 <div class="container text-center">
-                    <img src="<%= request.getAttribute("imagenOferta") %>" alt="Imagen de <%=session.getAttribute("nickname")%>"
+                    <img src="<%= request.getAttribute("imagenOferta") %>" alt="Imagen de <%=session.getAttribute("oferta")%>"
                          class="img-fluid" />
                     <a href="<%=request.getContextPath() %>/consultarofertalaboral?o=<%= request.getAttribute("oferta") %>"
                        class="text"><%= request.getAttribute("oferta") %></a>

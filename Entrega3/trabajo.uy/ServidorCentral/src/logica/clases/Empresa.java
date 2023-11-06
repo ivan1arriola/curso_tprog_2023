@@ -178,13 +178,13 @@ public class Empresa extends Usuario {
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
 
-        for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext(); ) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+        for (Usuario elemento : getSeguidores()) {
+        	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdores.add(dt);
         }
 
-        for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext(); ) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+        for (Usuario elemento : getSeguidos()) {
+            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdos.add(dt);
         }
 
@@ -294,13 +294,13 @@ public class Empresa extends Usuario {
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
 
-        for (Iterator<Usuario> iterator = getSeguidores().iterator(); iterator.hasNext(); ) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+        for (Usuario elemento : getSeguidores()) {
+        	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdores.add(dt);
         }
 
-        for (Iterator<Usuario> iterator = getSeguidos().iterator(); iterator.hasNext(); ) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(iterator.next().getNickname(), iterator.next().getcorreoElectronico(), iterator.next().getApellido(), iterator.next().getNombre(), iterator.next().getcontrasenia(), iterator.next().getImagen());
+        for (Usuario elemento : getSeguidos()) {
+            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdos.add(dt);
         }
 

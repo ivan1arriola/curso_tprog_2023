@@ -581,9 +581,9 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 	@Override
-	public ArrayList<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+	public HashSet<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
-		ArrayList<String> res = new ArrayList<>();
+		HashSet<String> res = new HashSet<String>();
 		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidores();
 		for (Usuario usuario : seg) {
 			res.add(usuario.getNickname());
@@ -592,9 +592,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	@Override
-	public ArrayList<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+	public HashSet<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
-		ArrayList<String> res = new ArrayList<>();
+		HashSet<String> res = new HashSet<String>();
 		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidos();
 		for (Usuario usuario : seg) {
 			res.add(usuario.getNickname());

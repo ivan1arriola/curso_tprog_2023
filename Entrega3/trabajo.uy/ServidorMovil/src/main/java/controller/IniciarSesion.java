@@ -62,7 +62,7 @@ public class IniciarSesion extends HttpServlet {
         DtUsuario usuario = servidor.obtenerDatosUsuario(identificador);
         HttpSession session = request.getSession();
         session.setAttribute("nickname", usuario.getNickname());
-
+        session.setAttribute("usuario", usuario);
         TipoUsuario tipo;
 
         if (usuario instanceof DtPostulante) {

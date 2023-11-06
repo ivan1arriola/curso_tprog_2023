@@ -16,7 +16,6 @@ import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
 
 import logica.servidor.*;
-import trabajoUy.logica.interfaces.ICtrlUsuario;
 
 public class Logica implements ILogica {
 
@@ -151,22 +150,25 @@ public class Logica implements ILogica {
 	@Override
 	public UsuarioBean obtenerDatosUsuario(String nickname) {
 	    UsuarioBean usuario = new UsuarioBean();
-	    try {
-	        DtUsuario DtUsuario = servidor.obtenerDatosUsuario(nickname);
+	        DtUsuario DtUsuario;
+		try {
+			DtUsuario = servidor.obtenerDatosUsuario(nickname);
 	        usuario.setNickname(DtUsuario.getNickname());
 	        usuario.setNombre(DtUsuario.getNombre());
 	        usuario.setApellido(DtUsuario.getApellido());
 	        usuario.setContrasenia(DtUsuario.getContrasenia());
 	        usuario.setCorreoElectronico(DtUsuario.getCorreoElectronico());
 			usuario.setImagen(imagenAString(DtUsuario.getImagen()));
-			Set<DtUsuarioSinInfoSocial> S1 = new TreeSet<>(DtUsuario.getSeguidores());
-			Set<DtUsuarioSinInfoSocial> S2 = new TreeSet<>(DtUsuario.getSeguidores());
-			Set<UsuarioSinInfoSocialBean> seguidores = new TreeSet<>();
-			Set<UsuarioSinInfoSocialBean> seguidos = new TreeSet<>();
+			Set<DtUsuarioSinInfoSocial> S1 = new HashSet<>(DtUsuario.getSeguidores());
+			Set<DtUsuarioSinInfoSocial> S2 = new HashSet<>(DtUsuario.getSeguidos());
+			Set<UsuarioSinInfoSocialBean> seguidores = new HashSet<>();
+			Set<UsuarioSinInfoSocialBean> seguidos = new HashSet<>();
 			
 			for (DtUsuarioSinInfoSocial elem : S1) {
 				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
 				u1.setNickname(elem.getNickname());
+				u1.setImagen(elem.getImagen().toString());
+				u1.setNombre(elem.getNombre());
 				u1.setApellido(elem.getApellido());
 				u1.setContrasenia(elem.getContrasenia());
 				u1.setCorreoElectronico(elem.getCorreoElectronico());
@@ -176,6 +178,8 @@ public class Logica implements ILogica {
 			for (DtUsuarioSinInfoSocial elem : S2) {
 				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
 				u1.setNickname(elem.getNickname());
+				u1.setImagen(elem.getImagen().toString());
+				u1.setNombre(elem.getNombre());
 				u1.setApellido(elem.getApellido());
 				u1.setContrasenia(elem.getContrasenia());
 				u1.setCorreoElectronico(elem.getCorreoElectronico());
@@ -196,15 +200,23 @@ public class Logica implements ILogica {
 	        } else {
 				throw new IllegalArgumentException("El usuario no es ni empresa ni postulante");
 			}
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        usuario.setError("Se produjo un error al obtener los datos del usuario");
-	    }
+		} catch (Exception e) {
+			usuario.setError("Se produjo un error al obtener los datos del usuario");
+		}
+	    
 	    return usuario;
 	}
 
 	
-
+	@Override
+	public HashSet<String> obtenerSeguidores(String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
+		return new HashSet<String> (servidor.obtenerSeguidoresUsuario(nickname).getListaString());
+	}	
+	
+	@Override
+	public HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
+		return new HashSet<String> (servidor.obtenerSeguidosUsuario(nickname).getListaString());
+	}
 
 	@Override
 	public void modificarDatosUsuario(String nickname, UsuarioBean usuario) {
