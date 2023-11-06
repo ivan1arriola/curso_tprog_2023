@@ -7,9 +7,9 @@
 
 <%
 	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
+	String nombreOferta = (String) request.getAttribute("nombreOferta");
 	byte[] imagenBytes = oferta.getImagen();
 	String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
-
 %>
 
 <head>
@@ -31,7 +31,7 @@
 
 
     <div class="container col-9">
-        <h2>Ya existe una postulación de <%=request.getAttribute("nombre")%> para esta oferta%></h2>
+        <h2>Ya existe una postulación de <%=request.getAttribute("nickname")%> para la oferta <%=nombreOferta%> %></h2>
 
     </div>
 

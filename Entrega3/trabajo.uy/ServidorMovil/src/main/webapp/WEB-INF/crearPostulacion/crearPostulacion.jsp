@@ -6,10 +6,14 @@
 <html>
 
 <%
-	String oferta = (String) request.getAttribute("oferta");
-	byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
-	String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
-
+	String nombreOferta = (String) request.getAttribute("nombreOferta");
+	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta"); 
+	byte[] imagenBytes = oferta.getImagen();
+	String imagen = null;
+    if(imagenBytes!=null) {
+    	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
+    }
+	
 %>
 
 <head>
@@ -60,7 +64,7 @@
 					        </div>
 					
 					
-					      <input type="hidden" name="nombreOferta" value="<%= request.getAttribute("oferta") %>">
+					      <input type="hidden" name="nombreOferta" value="<%= nombreOferta %>">
 					      <input type="hidden" name="nombrePostulante" value="<%= session.getAttribute("nickname") %>">
 					      <input type="hidden" name="fechaPostulacion" id="fechaPostulacion" readonly disabled />
 					
@@ -78,10 +82,10 @@
             <div class="col-4">
 
                 <div class="container text-center">
-                    <img src="<%= request.getAttribute("imagenOferta") %>" alt="Imagen de <%=session.getAttribute("oferta")%>"
+                    <img src="<%= imagen %>" alt="Imagen de <%=nombreOferta%>"
                          class="img-fluid" />
-                    <a href="<%=request.getContextPath() %>/consultarofertalaboral?o=<%= request.getAttribute("oferta") %>"
-                       class="text"><%= request.getAttribute("oferta") %></a>
+                    <a href="<%=request.getContextPath() %>/consultarofertalaboral?oferta=<%= nombreOferta %>"
+                       class="text"><%= nombreOferta%></a>
                 </div>
 
             </div>

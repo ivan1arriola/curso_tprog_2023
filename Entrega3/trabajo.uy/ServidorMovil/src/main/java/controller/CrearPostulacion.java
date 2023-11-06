@@ -36,32 +36,40 @@ public class CrearPostulacion extends HttpServlet {
 	protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String nickname = (String) request.getSession().getAttribute("nickname");
-		DtUsuario usuario;
-		String nombreOferta = request.getParameter("oferta");
+	    String nombreOferta = request.getParameter("oferta");
 		DtOfertaExtendido oferta = null;
+		boolean existePost = false;
+		DtUsuario usuario;
 		
 		try {
 			oferta = servidor.obtenerOfertaLaboral(nombreOferta); 
 			usuario = servidor.obtenerDatosUsuario(nickname);
-			if (oferta.getImagen() != null) {
+			if (oferta.getImagen()!= null) {
 				request.setAttribute("imagenOferta", oferta.getImagen());
 			}
+			
+			existePost = servidor.hayPostulacionW(nickname, nombreOferta);
 		} catch (OfertaLaboralNoEncontrada_Exception e) {
 
 			throw new RuntimeException(e);
 		} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-			// TODO Auto-generated catch block
+
 			throw new RuntimeException(e);
 		}
 
 
 		String postulante = usuario.getNombre() + " " + usuario.getApellido();
-
+		request.setAttribute("nickname", nickname);
 		request.setAttribute("postulante", postulante);
-		request.setAttribute("oferta", nombreOferta);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/crearPostulacion.jsp");
-        // RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionexistente.jsp");
+		request.setAttribute("nombreOferta", nombreOferta);
+		request.setAttribute("oferta", oferta);
+		RequestDispatcher dispatcher;
+		
+		if (!existePost) {
+			dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/crearPostulacion.jsp");
+		} else {
+            dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionexistente.jsp");
+		}
 		dispatcher.forward(request, response);
 	}
 
