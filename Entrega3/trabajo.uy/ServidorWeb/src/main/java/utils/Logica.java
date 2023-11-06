@@ -231,6 +231,11 @@ public class Logica implements ILogica {
 	}
 
 	@Override
+	public void finalizarOferta(String nombreOferta) {
+		servidor.finalizarOferta(nombreOferta);
+	}
+
+	@Override
 	public void modificarDatosUsuario(String nickname, UsuarioBean usuario) {
 		// TODO Auto-generated method stub
 

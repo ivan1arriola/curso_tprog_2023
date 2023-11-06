@@ -108,6 +108,6 @@ public interface ICtrlOferta {
 
 	List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
-	
 
+    void finalizarOferta(String nombreOferta);
 }

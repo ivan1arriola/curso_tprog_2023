@@ -329,6 +329,12 @@ public class Servidor {
         return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesConfirmadasYNoVencidasString());
     }
 
+    @WebMethod
+    public void finalizarOferta(
+            @WebParam(name = "nombre_oferta") String nombre_oferta
+    ) {
+        ctrlOferta.finalizarOferta(nombre_oferta);
+    }
 
 
 
