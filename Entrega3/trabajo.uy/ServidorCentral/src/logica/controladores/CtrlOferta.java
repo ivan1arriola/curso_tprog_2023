@@ -510,7 +510,7 @@ public class CtrlOferta implements ICtrlOferta {
 
     }
 
-    public void establecerPosiciones(String nombre_oferta,String nombreEmpresa,List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado {
+    public void establecerPosiciones(String nombre_oferta,String nombreEmpresa,List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = null;
         empresa = (Empresa) UH.buscarNick(nombreEmpresa);

@@ -32,6 +32,36 @@ public interface Servidor {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarNicknamesUsuariosRequest", output = "http://servidor.logica/Servidor/listarNicknamesUsuariosResponse")
+    public WrapperLista listarNicknamesUsuarios();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarTipoDePublicacionesRequest", output = "http://servidor.logica/Servidor/listarTipoDePublicacionesResponse")
+    public WrapperLista listarTipoDePublicaciones();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasResponse")
+    public WrapperLista obtenerDTOfertasLaboralesConfirmadas();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://servidor.logica/Servidor/listarPaquetesRequest", output = "http://servidor.logica/Servidor/listarPaquetesResponse")
     public WrapperLista listarPaquetes();
 
@@ -47,23 +77,401 @@ public interface Servidor {
 
     /**
      * 
-     * @return
-     *     returns logica.servidor.WrapperLista
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @throws ExceptionUsuarioNoEncontrado_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarNicknamesUsuariosRequest", output = "http://servidor.logica/Servidor/listarNicknamesUsuariosResponse")
-    public WrapperLista listarNicknamesUsuarios();
+    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulante/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public void ingresarDatosEditadosPostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        LocalDate arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerSeguidoresUsuarioRequest", output = "http://servidor.logica/Servidor/obtenerSeguidoresUsuarioResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerSeguidoresUsuario/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista obtenerSeguidoresUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerSeguidosUsuarioRequest", output = "http://servidor.logica/Servidor/obtenerSeguidosUsuarioResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerSeguidosUsuario/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista obtenerSeguidosUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns boolean
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/validarCredencialesRequest", output = "http://servidor.logica/Servidor/validarCredencialesResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/validarCredenciales/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public boolean validarCredenciales(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns logica.servidor.DtOfertaExtendidoSinPConK
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresaRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresa/Fault/OfertaLaboralNoEncontrada"),
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresa/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public DtOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadas/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista listarOfertasLaboralesConfirmadas(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/existeUsuarioConNicknameRequest", output = "http://servidor.logica/Servidor/existeUsuarioConNicknameResponse")
+    public boolean existeUsuarioConNickname(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.DtOfertaExtendidoSinPConK
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralVisitanteRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralVisitanteResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralVisitante/Fault/OfertaLaboralNoEncontrada")
+    })
+    public DtOfertaExtendidoSinPConK infoOfertaLaboralVisitante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.DtOfertaExtendido
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerOfertaLaboralRequest", output = "http://servidor.logica/Servidor/obtenerOfertaLaboralResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/obtenerOfertaLaboral/Fault/OfertaLaboralNoEncontrada")
+    })
+    public DtOfertaExtendido obtenerOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns logica.servidor.DtPostulacion
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws TipoUsuarioNoValido_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerDatosPostulacionWRequest", output = "http://servidor.logica/Servidor/obtenerDatosPostulacionWResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosPostulacionW/Fault/ExceptionUsuarioNoEncontrado"),
+        @FaultAction(className = TipoUsuarioNoValido_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosPostulacionW/Fault/TipoUsuarioNoValido")
+    })
+    public DtPostulacion obtenerDatosPostulacionW(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarComprasPaqueteRequest", output = "http://servidor.logica/Servidor/listarComprasPaqueteResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarComprasPaquete/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista listarComprasPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns logica.servidor.WrapperLista
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarTipoDePublicacionesRequest", output = "http://servidor.logica/Servidor/listarTipoDePublicacionesResponse")
-    public WrapperLista listarTipoDePublicaciones();
+    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesKeywordsRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesKeywordsResponse")
+    public WrapperLista listarOfertasLaboralesKeywords(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param nombreEmpresa
+     * @param nombreOferta
+     * @param wrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/establecerPosicionesRequest", output = "http://servidor.logica/Servidor/establecerPosicionesResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/establecerPosiciones/Fault/ExceptionUsuarioNoEncontrado"),
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/establecerPosiciones/Fault/OfertaLaboralNoEncontrada")
+    })
+    public void establecerPosiciones(
+        @WebParam(name = "nombre_oferta", partName = "nombre_oferta")
+        String nombreOferta,
+        @WebParam(name = "nombreEmpresa", partName = "nombreEmpresa")
+        String nombreEmpresa,
+        @WebParam(name = "wrapperLista", partName = "wrapperLista")
+        WrapperLista wrapperLista)
+        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteImgRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteImgResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteImg/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public void ingresarDatosEditadosPostulanteImg(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        byte[] arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        LocalDate arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns logica.servidor.DtOfertaExtendidoSinPConK
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralPostulanteRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralPostulanteResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralPostulante/Fault/OfertaLaboralNoEncontrada")
+    })
+    public DtOfertaExtendidoSinPConK infoOfertaLaboralPostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.DtUsuario
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerDatosUsuarioRequest", output = "http://servidor.logica/Servidor/obtenerDatosUsuarioResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosUsuario/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public DtUsuario obtenerDatosUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresa/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public void ingresarDatosEditadosEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaURLImgRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaURLImgResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaURLImg/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public void ingresarDatosEditadosEmpresaURLImg(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        byte[] arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
 
     /**
      * 
@@ -108,13 +516,14 @@ public interface Servidor {
      * @param arg4
      * @param arg5
      * @param arg6
-     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @param arg7
+     * @return
+     *     returns boolean
      */
     @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulante/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public void ingresarDatosEditadosPostulante(
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/altaEmpresaURLyImagenRequest", output = "http://servidor.logica/Servidor/altaEmpresaURLyImagenResponse")
+    public boolean altaEmpresaURLyImagen(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -126,60 +535,11 @@ public interface Servidor {
         @WebParam(name = "arg4", partName = "arg4")
         String arg4,
         @WebParam(name = "arg5", partName = "arg5")
-        LocalDate arg5,
+        String arg5,
         @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/existeUsuarioConNicknameRequest", output = "http://servidor.logica/Servidor/existeUsuarioConNicknameResponse")
-    public boolean existeUsuarioConNickname(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerSeguidoresUsuarioRequest", output = "http://servidor.logica/Servidor/obtenerSeguidoresUsuarioResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerSeguidoresUsuario/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public WrapperLista obtenerSeguidoresUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.DtOfertaExtendidoSinPConK
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralVisitanteRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralVisitanteResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralVisitante/Fault/OfertaLaboralNoEncontrada")
-    })
-    public DtOfertaExtendidoSinPConK infoOfertaLaboralVisitante(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoEncontrada_Exception
-    ;
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        byte[] arg7);
 
     /**
      * 
@@ -235,6 +595,19 @@ public interface Servidor {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/existeUsuarioConEmailRequest", output = "http://servidor.logica/Servidor/existeUsuarioConEmailResponse")
+    public boolean existeUsuarioConEmail(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
      * @param arg1
      * @throws ExceptionUsuarioNoEncontrado_Exception
      * @throws ExceptionUsuarioSeSigueASiMismo_Exception
@@ -250,146 +623,6 @@ public interface Servidor {
         @WebParam(name = "arg1", partName = "arg1")
         String arg1)
         throws ExceptionUsuarioNoEncontrado_Exception, ExceptionUsuarioSeSigueASiMismo_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns logica.servidor.DtOfertaExtendidoSinPConK
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralPostulanteRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralPostulanteResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralPostulante/Fault/OfertaLaboralNoEncontrada")
-    })
-    public DtOfertaExtendidoSinPConK infoOfertaLaboralPostulante(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerSeguidosUsuarioRequest", output = "http://servidor.logica/Servidor/obtenerSeguidosUsuarioResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerSeguidosUsuario/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public WrapperLista obtenerSeguidosUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarTodasLasOfertasLaboralesRequest", output = "http://servidor.logica/Servidor/listarTodasLasOfertasLaboralesResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarTodasLasOfertasLaborales/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public WrapperLista listarTodasLasOfertasLaborales(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/existeUsuarioConEmailRequest", output = "http://servidor.logica/Servidor/existeUsuarioConEmailResponse")
-    public boolean existeUsuarioConEmail(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/altaEmpresaURLyImagenRequest", output = "http://servidor.logica/Servidor/altaEmpresaURLyImagenResponse")
-    public boolean altaEmpresaURLyImagen(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        byte[] arg7);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.DtOfertaExtendido
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerOfertaLaboralRequest", output = "http://servidor.logica/Servidor/obtenerOfertaLaboralResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/obtenerOfertaLaboral/Fault/OfertaLaboralNoEncontrada")
-    })
-    public DtOfertaExtendido obtenerOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarComprasPaqueteRequest", output = "http://servidor.logica/Servidor/listarComprasPaqueteResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarComprasPaquete/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public WrapperLista listarComprasPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
     ;
 
     /**
@@ -428,19 +661,6 @@ public interface Servidor {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesKeywordsRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesKeywordsResponse")
-    public WrapperLista listarOfertasLaboralesKeywords(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
      * @param arg1
      * @param arg2
      * @param arg3
@@ -469,6 +689,24 @@ public interface Servidor {
      * 
      * @param arg0
      * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarTodasLasOfertasLaboralesRequest", output = "http://servidor.logica/Servidor/listarTodasLasOfertasLaboralesResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarTodasLasOfertasLaborales/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista listarTodasLasOfertasLaborales(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns logica.servidor.DtPaquete
      */
     @WebMethod
@@ -482,19 +720,60 @@ public interface Servidor {
      * 
      * @param arg0
      * @param arg1
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/marcarFavoritoRequest", output = "http://servidor.logica/Servidor/marcarFavoritoResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/marcarFavorito/Fault/ExceptionUsuarioNoEncontrado"),
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/marcarFavorito/Fault/OfertaLaboralNoEncontrada")
+    })
+    public void marcarFavorito(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/desmarcarFavoritoRequest", output = "http://servidor.logica/Servidor/desmarcarFavoritoResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/desmarcarFavorito/Fault/ExceptionUsuarioNoEncontrado"),
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/desmarcarFavorito/Fault/OfertaLaboralNoEncontrada")
+    })
+    public void desmarcarFavorito(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
      * @param arg2
      * @param arg3
      * @param arg4
      * @param arg5
      * @param arg6
-     * @param arg7
      * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws OfertaLaboralNoEncontrada_Exception
      */
     @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaURLImgRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaURLImgResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaURLImg/Fault/ExceptionUsuarioNoEncontrado")
+    @Action(input = "http://servidor.logica/Servidor/altaPostulacionRequest", output = "http://servidor.logica/Servidor/altaPostulacionResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/altaPostulacion/Fault/OfertaLaboralNoEncontrada"),
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/altaPostulacion/Fault/ExceptionUsuarioNoEncontrado")
     })
-    public void ingresarDatosEditadosEmpresaURLImg(
+    public void altaPostulacion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -508,102 +787,8 @@ public interface Servidor {
         @WebParam(name = "arg5", partName = "arg5")
         String arg5,
         @WebParam(name = "arg6", partName = "arg6")
-        byte[] arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns logica.servidor.DtOfertaExtendidoSinPConK
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresaRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresa/Fault/OfertaLaboralNoEncontrada"),
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralEmpresa/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public DtOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
+        String arg6)
         throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns boolean
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/validarCredencialesRequest", output = "http://servidor.logica/Servidor/validarCredencialesResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/validarCredenciales/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public boolean validarCredenciales(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadas/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public WrapperLista listarOfertasLaboralesConfirmadas(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresaResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosEmpresa/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public void ingresarDatosEditadosEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5)
-        throws ExceptionUsuarioNoEncontrado_Exception
     ;
 
     /**
@@ -615,14 +800,17 @@ public interface Servidor {
      * @param arg4
      * @param arg5
      * @param arg6
-     * @param arg7
-     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws ExceptionUsuarioCorreoRepetido_Exception
+     * @throws ExceptionUsuarioNickRepetido_Exception
+     * @throws ExceptionUsuarioNickYCorreoRepetidos_Exception
      */
     @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteImgRequest", output = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteImgResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/ingresarDatosEditadosPostulanteImg/Fault/ExceptionUsuarioNoEncontrado")
+    @Action(input = "http://servidor.logica/Servidor/altaEmpresaURLRequest", output = "http://servidor.logica/Servidor/altaEmpresaURLResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioCorreoRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioCorreoRepetido"),
+        @FaultAction(className = ExceptionUsuarioNickYCorreoRepetidos_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickYCorreoRepetidos"),
+        @FaultAction(className = ExceptionUsuarioNickRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickRepetido")
     })
-    public void ingresarDatosEditadosPostulanteImg(
+    public void altaEmpresaURL(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -634,53 +822,28 @@ public interface Servidor {
         @WebParam(name = "arg4", partName = "arg4")
         String arg4,
         @WebParam(name = "arg5", partName = "arg5")
-        byte[] arg5,
+        String arg5,
         @WebParam(name = "arg6", partName = "arg6")
-        LocalDate arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7)
-        throws ExceptionUsuarioNoEncontrado_Exception
+        String arg6)
+        throws ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception
     ;
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns logica.servidor.DtUsuario
-     * @throws ExceptionUsuarioNoEncontrado_Exception
+     *     returns logica.servidor.DtTipoOferta
+     * @throws ExcepcionTipoOfertaNoExistente_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerDatosUsuarioRequest", output = "http://servidor.logica/Servidor/obtenerDatosUsuarioResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosUsuario/Fault/ExceptionUsuarioNoEncontrado")
+    @Action(input = "http://servidor.logica/Servidor/obtenerDatosTORequest", output = "http://servidor.logica/Servidor/obtenerDatosTOResponse", fault = {
+        @FaultAction(className = ExcepcionTipoOfertaNoExistente_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosTO/Fault/ExcepcionTipoOfertaNoExistente")
     })
-    public DtUsuario obtenerDatosUsuario(
+    public DtTipoOferta obtenerDatosTO(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns logica.servidor.DtPostulacion
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     * @throws TipoUsuarioNoValido_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerDatosPostulacionWRequest", output = "http://servidor.logica/Servidor/obtenerDatosPostulacionWResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosPostulacionW/Fault/ExceptionUsuarioNoEncontrado"),
-        @FaultAction(className = TipoUsuarioNoValido_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosPostulacionW/Fault/TipoUsuarioNoValido")
-    })
-    public DtPostulacion obtenerDatosPostulacionW(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception
+        throws ExcepcionTipoOfertaNoExistente_Exception
     ;
 
     /**
@@ -727,58 +890,20 @@ public interface Servidor {
      * 
      * @param arg0
      * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @throws ExceptionUsuarioCorreoRepetido_Exception
-     * @throws ExceptionUsuarioNickRepetido_Exception
-     * @throws ExceptionUsuarioNickYCorreoRepetidos_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/altaEmpresaURLRequest", output = "http://servidor.logica/Servidor/altaEmpresaURLResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioCorreoRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioCorreoRepetido"),
-        @FaultAction(className = ExceptionUsuarioNickYCorreoRepetidos_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickYCorreoRepetidos"),
-        @FaultAction(className = ExceptionUsuarioNickRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickRepetido")
-    })
-    public void altaEmpresaURL(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns boolean
      * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws ExceptionUsuarioSeSigueASiMismo_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/hayPostulacionWRequest", output = "http://servidor.logica/Servidor/hayPostulacionWResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/hayPostulacionW/Fault/ExceptionUsuarioNoEncontrado")
+    @Action(input = "http://servidor.logica/Servidor/seguirUsuarioRequest", output = "http://servidor.logica/Servidor/seguirUsuarioResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioSeSigueASiMismo_Exception.class, value = "http://servidor.logica/Servidor/seguirUsuario/Fault/ExceptionUsuarioSeSigueASiMismo"),
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/seguirUsuario/Fault/ExceptionUsuarioNoEncontrado")
     })
-    public boolean hayPostulacionW(
+    public void seguirUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception
+        throws ExceptionUsuarioNoEncontrado_Exception, ExceptionUsuarioSeSigueASiMismo_Exception
     ;
 
     /**
@@ -834,96 +959,20 @@ public interface Servidor {
      * 
      * @param arg0
      * @param arg1
+     * @return
+     *     returns boolean
      * @throws ExceptionUsuarioNoEncontrado_Exception
-     * @throws ExceptionUsuarioSeSigueASiMismo_Exception
      */
     @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/seguirUsuarioRequest", output = "http://servidor.logica/Servidor/seguirUsuarioResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioSeSigueASiMismo_Exception.class, value = "http://servidor.logica/Servidor/seguirUsuario/Fault/ExceptionUsuarioSeSigueASiMismo"),
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/seguirUsuario/Fault/ExceptionUsuarioNoEncontrado")
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/hayPostulacionWRequest", output = "http://servidor.logica/Servidor/hayPostulacionWResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/hayPostulacionW/Fault/ExceptionUsuarioNoEncontrado")
     })
-    public void seguirUsuario(
+    public boolean hayPostulacionW(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception, ExceptionUsuarioSeSigueASiMismo_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/altaPostulacionRequest", output = "http://servidor.logica/Servidor/altaPostulacionResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/altaPostulacion/Fault/OfertaLaboralNoEncontrada"),
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/altaPostulacion/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public void altaPostulacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.servidor.DtTipoOferta
-     * @throws ExcepcionTipoOfertaNoExistente_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerDatosTORequest", output = "http://servidor.logica/Servidor/obtenerDatosTOResponse", fault = {
-        @FaultAction(className = ExcepcionTipoOfertaNoExistente_Exception.class, value = "http://servidor.logica/Servidor/obtenerDatosTO/Fault/ExcepcionTipoOfertaNoExistente")
-    })
-    public DtTipoOferta obtenerDatosTO(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExcepcionTipoOfertaNoExistente_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/establecerPosicionRequest", output = "http://servidor.logica/Servidor/establecerPosicionResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/establecerPosicion/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public void establecerPosicion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        int arg3)
         throws ExceptionUsuarioNoEncontrado_Exception
     ;
 
@@ -943,13 +992,21 @@ public interface Servidor {
 
     /**
      * 
+     * @param nombreOferta
      * @return
-     *     returns logica.servidor.WrapperLista
+     *     returns boolean
+     * @throws ExceptionUsuarioNoEncontrado_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasResponse")
-    public WrapperLista obtenerDTOfertasLaboralesConfirmadas();
+    @Action(input = "http://servidor.logica/Servidor/existeOrdenPostulantesFinalRequest", output = "http://servidor.logica/Servidor/existeOrdenPostulantesFinalResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/existeOrdenPostulantesFinal/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public boolean existeOrdenPostulantesFinal(
+        @WebParam(name = "nombre_oferta", partName = "nombre_oferta")
+        String nombreOferta)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
 
     /**
      * 
@@ -966,46 +1023,6 @@ public interface Servidor {
         @WebParam(name = "arg0", partName = "arg0")
         DtUsuario arg0)
         throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/marcarFavoritoRequest", output = "http://servidor.logica/Servidor/marcarFavoritoResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/marcarFavorito/Fault/ExceptionUsuarioNoEncontrado"),
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/marcarFavorito/Fault/OfertaLaboralNoEncontrada")
-    })
-    public void marcarFavorito(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/desmarcarFavoritoRequest", output = "http://servidor.logica/Servidor/desmarcarFavoritoResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/desmarcarFavorito/Fault/ExceptionUsuarioNoEncontrado"),
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/desmarcarFavorito/Fault/OfertaLaboralNoEncontrada")
-    })
-    public void desmarcarFavorito(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception
     ;
 
 }

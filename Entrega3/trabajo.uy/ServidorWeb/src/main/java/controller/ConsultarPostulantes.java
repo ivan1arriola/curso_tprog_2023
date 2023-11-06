@@ -10,11 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
-import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
-import logica.servidor.OfertaLaboralNoEncontrada_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
-import org.apache.catalina.Server;
+import logica.servidor.*;
 import utils.FabricaWeb;
 
 import java.io.IOException;
@@ -34,6 +30,8 @@ public class ConsultarPostulantes extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         // tiene que mostrar todos los postulantes de la pagina
+
+        //TODO: tiene que separar el caso de Seleccionar postulación a Oferta Laboral del de Consultar Postulaciones
         HttpSession session = request.getSession();
         String nombreOferta = request.getParameter("oferta");
         String nicknameEmpresa = (String) session.getAttribute("nickname");
@@ -41,7 +39,11 @@ public class ConsultarPostulantes extends HttpServlet {
 
         // si no es del tipo usuario = Empresa , redirigir a error
         if (TipoUsuario.Empresa != tipoUsuario){
-            //TODO: redirijir a error
+
+            request.setAttribute("nombreError", "No tiene permisos suficientes para visualizar esta pagina");
+            request.setAttribute("mensajeError", "Solo la empresa publicadora puede visualizar las postulaciones");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+
         } else {
             try {
                 List<String> postulantes = logica.obtenerPostulantesDeOfertaString(nombreOferta, nicknameEmpresa);
@@ -83,23 +85,42 @@ public class ConsultarPostulantes extends HttpServlet {
         ServidorService servsevice = new ServidorService();
         Servidor servidor = servsevice.getServidorPort();
 
-        int posicion = 1;
         String nombreOferta = request.getParameter("oferta");
         OfertaLaboralBean ofertaLaboralBean = null;
         try {
             ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
             String nicknameEmpresa = ofertaLaboralBean.getNicknameEmpresa();
 
+            WrapperLista wrapperListaPostulantes = new WrapperLista();
+
 
             for (String nicknamePostulante : ordenPostulantes){
-                //servidor.establecerPosicion(nombreOferta, nicknameEmpresa, nicknamePostulante, posicion);
-                posicion++;
+                wrapperListaPostulantes.getListaString().add(nicknamePostulante);
             }
+
+            servidor.establecerPosiciones(nombreOferta, nicknameEmpresa, wrapperListaPostulantes);
 
 
         } catch (OfertaLaboralNoEncontrada_Exception e) {
-            throw new RuntimeException(e);
+            // Configura los atributos necesarios para la página de error
+            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
+            request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
+
+            // Redirige a la página de error en caso de OfertaLaboralNoEncontrada_Exception
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            return; // Asegúrate de que no continúe ejecutando el código después de la redirección.
+        } catch (ExceptionUsuarioNoEncontrado_Exception e) {
+            // Configura los atributos necesarios para la página de error
+            request.setAttribute("nombreError", "Usuario No Encontrado");
+            request.setAttribute("mensajeError", "El usuario no fue encontrado. Por favor, verifique la información e inténtelo de nuevo.");
+
+            // Redirige a la página de error en caso de ExceptionUsuarioNoEncontrado_Exception
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            return; // Asegúrate de que no continúe ejecutando el código después de la redirección.
         }
+
+
+
 
 
         request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
