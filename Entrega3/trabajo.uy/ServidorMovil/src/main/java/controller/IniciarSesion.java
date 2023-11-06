@@ -78,8 +78,8 @@ public class IniciarSesion extends HttpServlet {
         byte[] imagenBytes = usuario.getImagen();
 
         if (imagenBytes != null) {
-            String imagenBase64 = Base64.getEncoder().encodeToString(imagenBytes);
-            session.setAttribute("imagen", imagenBase64);
+            //String imagenBase64 = Base64.getEncoder().encodeToString(imagenBytes);
+            session.setAttribute("imagen", imagenBytes);
         }
 
         response.sendRedirect(request.getContextPath() + "/home");

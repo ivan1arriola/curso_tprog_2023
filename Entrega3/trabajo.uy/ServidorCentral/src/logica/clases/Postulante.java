@@ -71,7 +71,7 @@ public class Postulante extends Usuario {
     public void setFechaNac(LocalDate fechaNac) throws ExceptionFechaInvalida {
 
         try {
-            if (fechaNac.isAfter(LocalDate.now())) {
+            if (fechaNac.isBefore(LocalDate.now())) {
                 this.fechaNac = fechaNac;
             } else {
                 throw new ExceptionFechaInvalida("La fecha de Nacimiento debe ser anterior a la actual");
