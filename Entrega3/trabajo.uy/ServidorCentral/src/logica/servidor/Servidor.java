@@ -20,6 +20,7 @@ import logica.servidor.bean.WrapperLista;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @WebService
@@ -299,17 +300,30 @@ public class Servidor {
     	ctrlOferta.desmarcarFavorita(nickname, nombre_oferta);
     }
 
-    public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
-       //ctrlOferta.establecerPosicion(nombre_oferta, nombreEmpresa, nickPostulante, posicion);
-    }
-    /*@WebMethod
-    public boolean existeOrdenPostulantesFinal(
+    @WebMethod
+    public void establecerPosiciones(
             @WebParam(name = "nombre_oferta") String nombre_oferta,
             @WebParam(name = "nombreEmpresa") String nombreEmpresa,
-            @WebParam(name = "nickPostulante") String nickPostulante
+            @WebParam(name = "wrapperLista") WrapperLista wrapperLista
+    ) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
+        List<String> listaPostulantes = wrapperLista.getListaString();
+        ctrlOferta.establecerPosiciones(nombre_oferta, nombreEmpresa, listaPostulantes);
+    }
+    @WebMethod
+    public boolean existeOrdenPostulantesFinal(
+            @WebParam(name = "nombre_oferta") String nombre_oferta
     ) throws ExceptionUsuarioNoEncontrado {
-        return ctrlOferta.HayOrden(nombre_oferta, nombreEmpresa, nickPostulante, 0);
-    }*/
+        return ctrlOferta.HayOrdenFinal(nombre_oferta);
+    }
+
+    @WebMethod
+    public WrapperLista obtenerPosiciones(
+            @WebParam(name = "nombre_oferta") String nombre_oferta
+    ) throws ExceptionUsuarioNoEncontrado {
+        return WSUtils.envolverLista((ArrayList<String>) ctrlOferta.DevolverOrdenFinal(nombre_oferta));
+    }
+
+
 
 
 }

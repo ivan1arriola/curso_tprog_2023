@@ -32,6 +32,7 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioNoEncontrado_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNoEncontrado");
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
+    private final static QName _ExisteOrdenFinalDePostulantes_QNAME = new QName("http://servidor.logica/", "ExisteOrdenFinalDePostulantes");
     private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
     private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/", "TipoUsuarioNoValido");
 
@@ -120,6 +121,16 @@ public class ObjectFactory {
      */
     public ExceptionValidezNegativa createExceptionValidezNegativa() {
         return new ExceptionValidezNegativa();
+    }
+
+    /**
+     * Create an instance of {@link ExisteOrdenFinalDePostulantes }
+     * 
+     * @return
+     *     the new instance of {@link ExisteOrdenFinalDePostulantes }
+     */
+    public ExisteOrdenFinalDePostulantes createExisteOrdenFinalDePostulantes() {
+        return new ExisteOrdenFinalDePostulantes();
     }
 
     /**
@@ -394,6 +405,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionValidezNegativa")
     public JAXBElement<ExceptionValidezNegativa> createExceptionValidezNegativa(ExceptionValidezNegativa value) {
         return new JAXBElement<>(_ExceptionValidezNegativa_QNAME, ExceptionValidezNegativa.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExisteOrdenFinalDePostulantes }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExisteOrdenFinalDePostulantes }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExisteOrdenFinalDePostulantes")
+    public JAXBElement<ExisteOrdenFinalDePostulantes> createExisteOrdenFinalDePostulantes(ExisteOrdenFinalDePostulantes value) {
+        return new JAXBElement<>(_ExisteOrdenFinalDePostulantes_QNAME, ExisteOrdenFinalDePostulantes.class, null, value);
     }
 
     /**

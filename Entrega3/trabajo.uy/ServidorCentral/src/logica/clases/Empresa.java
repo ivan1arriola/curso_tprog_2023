@@ -373,27 +373,37 @@ public class Empresa extends Usuario {
         Set<DTPostulacion> stringSet = auxiliar.ObtenerPostulacionesOfertaLaboral();
         return stringSet;
     }
-    
 
-    public void establecerPosicion(String nombre_oferta,List<String> nicksPostulante) {
-        Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
-        OfertaLaboral OfertaLaboralATrabajar = null;
-        OfertaLaboral auxiliar = null;
-        for (OfertaLaboral OLe : OFEmpresa) {
-            if (nombre_oferta.equals(OLe.getNombre())) {
-            	OfertaLaboralATrabajar = OLe;
-                break;
-            }
+
+    public void establecerPosicion(String nombreOferta, List<String> nicksPostulante) throws OfertaLaboralNoEncontrada {
+        Set<OfertaLaboral> ofertasEmpresa = getofertasLaborales();
+        OfertaLaboral ofertaLaboralATrabajar = encontrarOfertaPorNombre(nombreOferta);
+
+        if (ofertaLaboralATrabajar == null) {
+            // Tratar el caso en el que no se encuentre la oferta
+            throw new OfertaLaboralNoEncontrada(
+                    "Empresa " + getNickname()+ " no tiene una oferta laboral llamada " + nombreOferta);
         }
-        Integer posicion = 1;
-        for (int i = 0; i < nicksPostulante.size(); i++) {
-            String element = nicksPostulante.get(i);
-            OfertaLaboralATrabajar.establecerPosicion(element, posicion);
+
+        int posicion = 1;
+        for (String nickPostulante : nicksPostulante) {
+            ofertaLaboralATrabajar.establecerPosicion(nickPostulante, posicion);
             posicion++;
         }
-        OfertaLaboralATrabajar.setHayOrdenDefinitivo(true);
+
+        ofertaLaboralATrabajar.setHayOrdenDefinitivo(true);
     }
-    
+
+    private OfertaLaboral encontrarOfertaPorNombre(String nombreOferta) {
+        for (OfertaLaboral oferta : getofertasLaborales()) {
+            if (nombreOferta.equals(oferta.getNombre())) {
+                return oferta;
+            }
+        }
+        return null; // Si no se encuentra la oferta
+    }
+
+
     public boolean HayOrden(String nombre_oferta) {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
         OfertaLaboral auxiliar = null;
