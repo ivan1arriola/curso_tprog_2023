@@ -16,7 +16,6 @@ import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
 
 import logica.servidor.*;
-import trabajoUy.logica.interfaces.ICtrlUsuario;
 
 public class Logica implements ILogica {
 
@@ -151,18 +150,19 @@ public class Logica implements ILogica {
 	@Override
 	public UsuarioBean obtenerDatosUsuario(String nickname) {
 	    UsuarioBean usuario = new UsuarioBean();
-	    try {
-	        DtUsuario DtUsuario = servidor.obtenerDatosUsuario(nickname);
+	        DtUsuario DtUsuario;
+		try {
+			DtUsuario = servidor.obtenerDatosUsuario(nickname);
 	        usuario.setNickname(DtUsuario.getNickname());
 	        usuario.setNombre(DtUsuario.getNombre());
 	        usuario.setApellido(DtUsuario.getApellido());
 	        usuario.setContrasenia(DtUsuario.getContrasenia());
 	        usuario.setCorreoElectronico(DtUsuario.getCorreoElectronico());
 			usuario.setImagen(imagenAString(DtUsuario.getImagen()));
-			Set<DtUsuarioSinInfoSocial> S1 = new TreeSet<>(DtUsuario.getSeguidores());
-			Set<DtUsuarioSinInfoSocial> S2 = new TreeSet<>(DtUsuario.getSeguidores());
-			Set<UsuarioSinInfoSocialBean> seguidores = new TreeSet<>();
-			Set<UsuarioSinInfoSocialBean> seguidos = new TreeSet<>();
+			Set<DtUsuarioSinInfoSocial> S1 = new HashSet<>(DtUsuario.getSeguidores());
+			Set<DtUsuarioSinInfoSocial> S2 = new HashSet<>(DtUsuario.getSeguidores());
+			Set<UsuarioSinInfoSocialBean> seguidores = new HashSet<>();
+			Set<UsuarioSinInfoSocialBean> seguidos = new HashSet<>();
 			
 			for (DtUsuarioSinInfoSocial elem : S1) {
 				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
@@ -196,10 +196,10 @@ public class Logica implements ILogica {
 	        } else {
 				throw new IllegalArgumentException("El usuario no es ni empresa ni postulante");
 			}
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        usuario.setError("Se produjo un error al obtener los datos del usuario");
-	    }
+		} catch (Exception e) {
+			usuario.setError("Se produjo un error al obtener los datos del usuario");
+		}
+	    
 	    return usuario;
 	}
 
