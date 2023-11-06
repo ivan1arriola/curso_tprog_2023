@@ -384,6 +384,18 @@ public class Empresa extends Usuario {
         }
         auxiliar.establecerPosicion(nickPostulante, posicion);
     }
+    
+    public Boolean HayOrden(String nombre_oferta, String nickPostulante) {
+        Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+        OfertaLaboral auxiliar = null;
+        for (OfertaLaboral OLe : OFEmpresa) {
+            if (nombre_oferta.equals(OLe.getNombre())) {
+                auxiliar = OLe;
+                break;
+            }
+        }
+		return auxiliar.TienePosicion(nickPostulante);
+    }
 
     public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas() {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();

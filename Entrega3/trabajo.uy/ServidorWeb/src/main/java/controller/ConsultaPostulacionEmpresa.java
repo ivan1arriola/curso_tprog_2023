@@ -1,34 +1,34 @@
 package controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import interfaces.ILogica;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
-import utils.FabricaWeb;
 import org.json.JSONObject;
+import utils.FabricaWeb;
 
-@WebServlet("/consultapostulacion")
-public class ConsultaPostulacion extends HttpServlet {
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/consultapostulacionEmpresa")
+public class ConsultaPostulacionEmpresa extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ILogica logica;
 
-    public ConsultaPostulacion() {
+    public ConsultaPostulacionEmpresa() {
         logica = FabricaWeb.getLogica();
     }
 
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         HttpSession session = request.getSession(false);

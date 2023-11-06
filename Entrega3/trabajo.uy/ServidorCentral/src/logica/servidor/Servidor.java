@@ -9,6 +9,7 @@ import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
 import logica.Fabrica;
+import logica.clases.Empresa;
 import logica.clases.Usuario;
 import logica.datatypes.*;
 import logica.interfaces.ICtrlOferta;
@@ -285,6 +286,11 @@ public class Servidor {
     @WebMethod
     public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {
         ctrlUsuario.dejarDeseguirUsuario(usuario, usuario_seguido);
+    }
+
+    @WebMethod
+    public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
+       ctrlOferta.establecerPosicion(nombre_oferta, nombreEmpresa, nickPostulante, posicion);
     }
 
 }
