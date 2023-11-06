@@ -764,13 +764,15 @@ public class OfertaLaboral {
 		Integer lugar = 1;
 		for (int i = 0; i < postulaciones.size(); i++) {
 			for (int j = 0; j < postulaciones.size(); j++) {
-				if (j == lugar) {
-					Postulacion pos = postulaciones.get(j);
-		            pos.getClasificacion();
+				Postulacion pos = postulaciones.get(j);
+				if (pos.getClasificacion() == lugar) {
 		            myList.add(pos.getPostulante().getNickname());
 				}
 			}
 			lugar++;
+        }
+		for (String element : myList) {
+            System.out.println("tenemos para postular " + element);
         }
         return myList;
 	}
