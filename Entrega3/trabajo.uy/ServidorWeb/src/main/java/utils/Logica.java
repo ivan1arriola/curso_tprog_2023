@@ -160,13 +160,15 @@ public class Logica implements ILogica {
 	        usuario.setCorreoElectronico(DtUsuario.getCorreoElectronico());
 			usuario.setImagen(imagenAString(DtUsuario.getImagen()));
 			Set<DtUsuarioSinInfoSocial> S1 = new HashSet<>(DtUsuario.getSeguidores());
-			Set<DtUsuarioSinInfoSocial> S2 = new HashSet<>(DtUsuario.getSeguidores());
+			Set<DtUsuarioSinInfoSocial> S2 = new HashSet<>(DtUsuario.getSeguidos());
 			Set<UsuarioSinInfoSocialBean> seguidores = new HashSet<>();
 			Set<UsuarioSinInfoSocialBean> seguidos = new HashSet<>();
 			
 			for (DtUsuarioSinInfoSocial elem : S1) {
 				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
 				u1.setNickname(elem.getNickname());
+				u1.setImagen(elem.getImagen().toString());
+				u1.setNombre(elem.getNombre());
 				u1.setApellido(elem.getApellido());
 				u1.setContrasenia(elem.getContrasenia());
 				u1.setCorreoElectronico(elem.getCorreoElectronico());
@@ -176,6 +178,8 @@ public class Logica implements ILogica {
 			for (DtUsuarioSinInfoSocial elem : S2) {
 				UsuarioSinInfoSocialBean u1 = new UsuarioSinInfoSocialBean();
 				u1.setNickname(elem.getNickname());
+				u1.setImagen(elem.getImagen().toString());
+				u1.setNombre(elem.getNombre());
 				u1.setApellido(elem.getApellido());
 				u1.setContrasenia(elem.getContrasenia());
 				u1.setCorreoElectronico(elem.getCorreoElectronico());
@@ -204,7 +208,15 @@ public class Logica implements ILogica {
 	}
 
 	
-
+	@Override
+	public HashSet<String> obtenerSeguidores(String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
+		return new HashSet<String> (servidor.obtenerSeguidoresUsuario(nickname).getListaString());
+	}	
+	
+	@Override
+	public HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
+		return new HashSet<String> (servidor.obtenerSeguidosUsuario(nickname).getListaString());
+	}
 
 	@Override
 	public void modificarDatosUsuario(String nickname, UsuarioBean usuario) {

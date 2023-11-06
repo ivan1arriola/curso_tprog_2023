@@ -62,15 +62,10 @@ public class ConsultarUsuario extends HttpServlet {
                 if(!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
                 	usuario = cargarOfertasLaborales(usuario, nicknameParametro, false);
                 }
-                Set<UsuarioSinInfoSocialBean> seguidores = usuario.getSeguidores(); // vemos los seguidores del usuario al que se le consulta el perfil
-
-                boolean existe = false;
-                for (UsuarioSinInfoSocialBean seguidor : seguidores) {
-                    existe = seguidor.getNickname() == nicknameUsuarioLogueado;
-                    if (existe) {
-                    	break;
-                    }
-                }
+                Set<String> seguidores = logica.obtenerSeguidores(nicknameParametro); // vemos los seguidores del usuario al que se le consulta el perfil
+                Set<String> seguidos = logica.obtenerSeguidos(nicknameParametro);
+                
+                boolean existe = seguidores.contains(nicknameUsuarioLogueado);
                 
                 if(existe) {
                 	request.setAttribute("seguir", false); // mostrar botón "dejar de seguir"
@@ -78,11 +73,22 @@ public class ConsultarUsuario extends HttpServlet {
                 	request.setAttribute("seguir", true); // mostrar botón "seguir"
                 }
                 
+                Set<UsuarioBean> seguidoresUser = new HashSet<>();
+                for(String elemento : seguidores) {
+                	UsuarioBean se = logica.obtenerDatosUsuario(elemento);
+                	seguidoresUser.add(se);
+                }
+                
+                Set<UsuarioBean> seguidosUser = new HashSet<>();
+                for(String elemento : seguidos) {
+                	UsuarioBean seg = logica.obtenerDatosUsuario(elemento);
+                	seguidoresUser.add(seg);
+                }
                 
                 request.setAttribute("consultaSuPerfil", consultaSuPerfil);
                 request.setAttribute("usuario", usuario);
-
-                
+                request.setAttribute("seguidores", seguidoresUser);
+                request.setAttribute("seguidos", seguidosUser);
                 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/consultarUsuario.jsp");
                 dispatcher.forward(request, response);
@@ -196,6 +202,7 @@ public class ConsultarUsuario extends HttpServlet {
         if (request.getParameter("btnSeguir") != null) {
             try {
 				servidor.seguirUsuario(nicknameUsuarioLogueado,nicknameParametro);
+				response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nicknameParametro);
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
 	            request.setAttribute("mensajeError", mensajeError);
@@ -207,6 +214,7 @@ public class ConsultarUsuario extends HttpServlet {
         } else if (request.getParameter("btnDejarDeSeguir") != null) {
             try {
 				servidor.dejarDeseguirUsuario(nicknameUsuarioLogueado,nicknameParametro);
+				response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nicknameParametro);
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
 	            request.setAttribute("mensajeError", mensajeError);

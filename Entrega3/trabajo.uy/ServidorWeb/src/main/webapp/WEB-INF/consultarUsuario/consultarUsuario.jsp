@@ -111,8 +111,6 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 			            <jsp:include page="./tabPostulaciones.jsp" />
 			        <% } else { %>
 			            <jsp:include page="./tabPerfilEditable.jsp" />
-			           <jsp:include page="./tabSeguidos.jsp" />
-			           <jsp:include page="./tabSeguidores.jsp" />
 			        <% } %>
 			    <% } else { %>
 			        <jsp:include page="./tabPerfil.jsp" />
@@ -121,6 +119,8 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 			            <jsp:include page="./tabPaquetes.jsp" />
 			        <% } %>
 			    <% } %>
+			    <jsp:include page="./tabSeguidos.jsp" />
+			    <jsp:include page="./tabSeguidores.jsp" />
 			</div>
 		    
 

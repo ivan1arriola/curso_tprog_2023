@@ -36,6 +36,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         String nombreOferta = request.getParameter("o");
+        
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
             HttpSession session = request.getSession(false);
             String nickname = (String) session.getAttribute("nickname");

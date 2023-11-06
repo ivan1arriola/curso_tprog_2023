@@ -9,12 +9,16 @@ import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
 import logica.Fabrica;
+import logica.clases.Usuario;
 import logica.datatypes.*;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
+import logica.manejadores.UsuarioHandler;
 import logica.servidor.bean.WrapperLista;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Set;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -282,6 +286,5 @@ public class Servidor {
     public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {
         ctrlUsuario.dejarDeseguirUsuario(usuario, usuario_seguido);
     }
-
 
 }
