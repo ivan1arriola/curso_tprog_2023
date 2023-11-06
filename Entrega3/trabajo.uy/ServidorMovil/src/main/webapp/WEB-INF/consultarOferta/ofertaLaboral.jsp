@@ -6,7 +6,7 @@
 <%@ page import="java.util.Base64" %>
 <%
 	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
-
+	String nombreOferta = (String) oferta.getNombre();
 	byte[] imagenBytes = oferta.getImagen();
 	String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
 	
@@ -112,14 +112,15 @@
                      </div>
                         
                         <%
-                        DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
+                        DtUsuario usuario = (DtUsuario) request.getSession().getAttribute("usuario");
 						String nickname  = (String) request.getSession().getAttribute("nickname");
+
 						
 						if (usuario!=null && usuario instanceof DtPostulante) {
 										
 						%>
 	                        <div class="row align-items-center mt-2">
-	                        <a href="<%=context%>/consultarpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
+	                        <a href="<%=context%>/consultarpostulacion?oferta=<%=nombreOferta%>" class="card-link btn btn-primary btn-lg">
 	                    	Ver Postulación
 	                    	</a>
 							</div>
@@ -134,7 +135,7 @@
 						%>
 						
 						<div class="row align-items-center mt-2">
-                        <a href="<%=context%>/crearpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
+                        <a href="<%=context%>/crearpostulacion?oferta=<%=nombreOferta%>" class="card-link btn btn-primary btn-lg">
                     	Postular
                     	</a>
 						</div>

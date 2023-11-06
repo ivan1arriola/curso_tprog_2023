@@ -19,7 +19,7 @@
   <div class="collapse navbar-collapse order-lg-3" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <% if (session != null && session.getAttribute("tipoUsuario") != null) { %>
-      <a class="nav-link" href="/ofertasLaborales.html">Ver Ofertas Laborales</a>
+      <a class="nav-link" href="<%=contextPath%>/ofertaslaborales">Ver Ofertas Laborales</a>
       <a class="nav-link" href="/mispostulaciones.html">Ver Postulaciones</a>
       <a class="nav-link" href="/salir.html">Salir</a>
       <% } else {%>

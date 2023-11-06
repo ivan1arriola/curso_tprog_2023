@@ -5,9 +5,8 @@
 <%@ page import="java.util.Base64" %>
 
 <%
-	
     DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
-    String nombre = (String) request.getAttribute("postulante");
+	String nick = (String) request.getAttribute("nickname");
     byte[] imagenBytes = oferta.getImagen();
     String imagen = null;
     if(imagenBytes!=null) {
@@ -40,7 +39,7 @@
         <div class="row">
             <div class="container col">
                 <div class="row banner-container banner-dark">
-                    <h1 class="text-center text-light fw-bolder">No existe postulacion de <%=nombre%> para <%=oferta.getNombre()%></h1>
+                    <h1 class="text-center text-light fw-bolder">No existe postulacion de <%=nick%> para <%=oferta.getNombre()%></h1>
                 </div>
                
             </div>
