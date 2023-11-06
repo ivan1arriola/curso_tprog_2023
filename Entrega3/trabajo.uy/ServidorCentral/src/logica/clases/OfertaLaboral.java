@@ -771,9 +771,6 @@ public class OfertaLaboral {
 			}
 			lugar++;
         }
-		for (String element : myList) {
-            System.out.println("tenemos para postular " + element);
-        }
         return myList;
 	}
 }
