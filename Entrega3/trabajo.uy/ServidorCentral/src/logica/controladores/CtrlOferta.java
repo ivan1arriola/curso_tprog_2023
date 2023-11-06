@@ -460,10 +460,22 @@ public class CtrlOferta implements ICtrlOferta {
     
     public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Postulante postu = (Postulante) UH.buscarNick(nick_postulante);
+    	Postulante postu = null;
+		try {
+			postu = (Postulante) UH.buscarNick(nick_postulante);
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral ofer = OLH.buscar(nomb_oferta);
+        OfertaLaboral ofer = null;
+		try {
+			ofer = OLH.buscar(nomb_oferta);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         postu.marcarFavorita(ofer);
         ofer.marcadaFav();
@@ -471,13 +483,36 @@ public class CtrlOferta implements ICtrlOferta {
     
     public void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Postulante postu = (Postulante) UH.buscarNick(nick_postulante);
+    	Postulante postu = null;
+		try {
+			postu = (Postulante) UH.buscarNick(nick_postulante);
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral ofer = OLH.buscar(nomb_oferta);
+        OfertaLaboral ofer = null;
+		try {
+			ofer = OLH.buscar(nomb_oferta);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         postu.desmarcarFavorita(ofer);
         ofer.desmarcadaFav();
     }
     
+    public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) {
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Empresa empresa = null;
+		try {
+			empresa = (Empresa) UH.buscarNick(nombreEmpresa);
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        empresa.establecerPosicion(nombre_oferta,nickPostulante,posicion) ;
+    }
 }

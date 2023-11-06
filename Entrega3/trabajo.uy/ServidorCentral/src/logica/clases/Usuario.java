@@ -97,15 +97,21 @@ public abstract class Usuario {
     }
 
     public byte[] getImagen() {
-        byte[] base64DecodedBytes = Base64.getDecoder().decode(imagen);
-        return base64DecodedBytes;
+    	if (this.imagen != null) {
+    		byte[] base64DecodedBytes = Base64.getDecoder().decode(imagen);
+            return base64DecodedBytes;
+    	} 
+    	return null;
     }
 
     public void setImagen(byte[] imagen) {
+    	if (imagen != null) {
         byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
         // Convert the byte array to a Base64 string
-
         this.imagen = new String(base64EncodedBytes);
+    	} else {
+    		this.imagen = null;
+    	}
     }
 
     public void setCorreoElectronico(String correoElectronico) {

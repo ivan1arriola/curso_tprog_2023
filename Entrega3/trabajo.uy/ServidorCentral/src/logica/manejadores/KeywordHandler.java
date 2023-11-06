@@ -36,7 +36,8 @@ public class KeywordHandler {
             if(!database.getTransaction().isActive()) {
                 database.getTransaction().begin();
             }
-            // esto es lo que hace gardar la keyword
+            // esto es lo que hace guardar la keyword
+            // System.out.println("################## estoy agregando a base de datos ##################");
             database.persist(key);
             // tengo que hacer commit despues
             tx.commit();
@@ -54,7 +55,7 @@ public class KeywordHandler {
         return query.getSingleResult() > 0;
     }
 
-    public Map<String, Keyword> obtener() {
+    public static Map<String, Keyword> obtener() {
         if (database == null) {
             throw new IllegalStateException("EntityManager no configurado.");
         }
