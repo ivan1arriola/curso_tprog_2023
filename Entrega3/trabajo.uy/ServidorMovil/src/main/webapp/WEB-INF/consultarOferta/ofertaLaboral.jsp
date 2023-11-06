@@ -112,8 +112,9 @@
                      </div>
                         
                         <%
-                        DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
+                        DtUsuario usuario = (DtUsuario) request.getSession().getAttribute("usuario");
 						String nickname  = (String) request.getSession().getAttribute("nickname");
+
 						
 						if (usuario!=null && usuario instanceof DtPostulante) {
 										
