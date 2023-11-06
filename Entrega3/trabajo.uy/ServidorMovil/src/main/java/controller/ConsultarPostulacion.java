@@ -47,6 +47,7 @@ public class ConsultarPostulacion extends HttpServlet {
 			
 			//request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacioninexistente.jsp").forward(request, response);
 		} catch (ExceptionUsuarioNoEncontrado_Exception exc) {
+			request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacioninexistente.jsp").forward(request, response);
 			throw new RuntimeException(exc);
 		}
        
