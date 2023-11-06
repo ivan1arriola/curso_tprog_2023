@@ -428,6 +428,7 @@ public class CtrlOferta implements ICtrlOferta {
         return empresa.listarOfertasLaborales();
     }
 
+    @Override
     public Set<String> listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado {
         UsuarioHandler uHan = UsuarioHandler.getInstance();
         Empresa emp = (Empresa) uHan.buscarNick(nickname_e);
@@ -440,6 +441,7 @@ public class CtrlOferta implements ICtrlOferta {
 
     }
 
+    @Override
     public Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadasYNoVencidas() {
         Set<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
@@ -452,67 +454,67 @@ public class CtrlOferta implements ICtrlOferta {
         return res;
     }
 
+    @Override
     public boolean existeOfertaLaboral(String nombre_ofer) {
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
         return OLH.existe(nombre_ofer);
     }
-    
-    
+
+
+    @Override
     public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = null;
 		try {
 			postu = (Postulante) UH.buscarNick(nick_postulante);
+
+            OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+            OfertaLaboral ofer = null;
+            try {
+                ofer = OLH.buscar(nomb_oferta);
+                postu.marcarFavorita(ofer);
+                ofer.marcadaFav();
+            } catch (OfertaLaboralNoEncontrada e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral ofer = null;
-		try {
-			ofer = OLH.buscar(nomb_oferta);
-		} catch (OfertaLaboralNoEncontrada e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        postu.marcarFavorita(ofer);
-        ofer.marcadaFav();
+
     }
-    
+
+    @Override
     public void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = null;
 		try {
 			postu = (Postulante) UH.buscarNick(nick_postulante);
+            OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+            OfertaLaboral ofer = null;
+            try {
+                ofer = OLH.buscar(nomb_oferta);
+                postu.desmarcarFavorita(ofer);
+                ofer.desmarcadaFav();
+            } catch (OfertaLaboralNoEncontrada e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral ofer = null;
-		try {
-			ofer = OLH.buscar(nomb_oferta);
-		} catch (OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-        postu.desmarcarFavorita(ofer);
-        ofer.desmarcadaFav();
     }
-    
-    public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) {
+
+    @Override
+    public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = null;
-		try {
-			empresa = (Empresa) UH.buscarNick(nombreEmpresa);
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        empresa = (Empresa) UH.buscarNick(nombreEmpresa);
         empresa.establecerPosicion(nombre_oferta,nickPostulante,posicion) ;
     }
 }

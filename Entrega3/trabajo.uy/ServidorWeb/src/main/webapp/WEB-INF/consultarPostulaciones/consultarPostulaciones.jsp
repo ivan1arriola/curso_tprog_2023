@@ -39,6 +39,7 @@
 
             <div class="row">
                 <div class="col container m-2" id="informacionPostulante">
+                    <h1 class="text-center"> Informacion de Postulacion</h1>
                     <table class="table table-striped">
                         <tbody>
                         <tr>
@@ -78,13 +79,14 @@
 
                 <div class="col-4">
                     <div id="postulantes" class="container card m-2">
+                        <h2 class="card-title text-center">Lista de Postulantes</h2>
                         <div class="row align-items-center card-body">
                             <ol id="listaPostulantes" class="list-group list-group-numbered">
                                 <% for(String postulante : postulantes){ %>
-                                <li id="<%=postulante%>>" class="list-group-item">
+                                <li id="<%=postulante%>" class="list-group-item">
                                     <div class="row">
                                         <div class="col">
-                                            <button id="btn-<%=postulante%>>" class="btn btn-custom" onclick="cargarInfoPostulante('<%=postulante%>')">Ver</button>
+                                            <button id="btn-<%=postulante%>" class="btn btn-custom" onclick="cargarInfoPostulante('<%=postulante%>')">Ver</button>
                                         </div>
                                         <div class="col">
                                             <%=postulante%>
@@ -100,7 +102,8 @@
                         </div>
                         <form class="text-center card-footer"
                               action="${pageContext.request.contextPath}/consultarpostulantes" method="POST">
-                            <input type="hidden" name="orden" id="input-orden">
+                            <input type="hidden" name="orden" id="input-orden" value="<%=postulantes.toString()%>">
+                            <input type="hidden" name="oferta" value="<%=request.getParameter("oferta")%>">
                             <input type="submit" value="Definir Orden" class="btn btn-primary">
                         </form>
                     </div>
