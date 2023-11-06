@@ -108,8 +108,8 @@
 					
                     <div id="postulacion">
                         <div class="row align-items-center mt-2">
-                            <h2>Postulaciones</h2>
-                        </div>
+                            <h3>Postulaciones</h3>
+                     </div>
                         
                         <%
                         DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
