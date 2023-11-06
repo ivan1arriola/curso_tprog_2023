@@ -102,7 +102,7 @@ public interface ICtrlOferta {
 	boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
 	void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nickPostulante)
-            throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
+            throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes;
 
 	List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
