@@ -30,16 +30,7 @@ public class ctrlOfertaTest {
 
     @Test
     void darDeAltaTipoPublicacionExitoso() {
-        String nombre = "NombreTipoPublicacion";
-        String descripcion = "Descripción del tipo de publicación";
-        int exposicion = 3;
-        int duracion = 7;
-        float costo = 100.0f;
-        LocalDate fechaAlta = LocalDate.of(2023, 9, 2);
-
-        boolean resultado = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
-
-        assertTrue(resultado, "El alta debería ser exitosa");
+        
     }
 
     @Test

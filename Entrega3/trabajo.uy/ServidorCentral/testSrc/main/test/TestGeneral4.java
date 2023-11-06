@@ -20,6 +20,7 @@ import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionValidezNegativa;
+import excepciones.NoExistePaquete;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -292,24 +293,34 @@ public class TestGeneral4 {
 
         try {
 			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta normal", 20);
-		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
         try {
 			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta destacada", 12);
-		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+        
         try {
 			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta super destacada", 1);
-		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
-        DTPaquete nuevo = ICO.obtenerDatosPaquete("Paquete 1");
+        DTPaquete nuevo = null;
+		try {
+			nuevo = ICO.obtenerDatosPaquete("Paquete 1");
+		} catch (NoExistePaquete e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         nuevo.getCosto();
         nuevo.getDescripcion();
         nuevo.getDescuento();
@@ -335,7 +346,7 @@ public class TestGeneral4 {
         float sueldo = 100222.0f;
         String paquete = "Paquete 1";
         EstadoOL estado = EstadoOL.Confirmada;
-        try {
+		try {
 			ICO.altaOfertaLaboral(Nick,
 			        TIPOOFERTASELECCIONADA,
 			        desc,
@@ -349,10 +360,11 @@ public class TestGeneral4 {
 			        estado,
 			        img233.getBytes(),
 			        paquete);
-		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado e) {
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 
         DTOfertaLaboral temporal3 = new DTOfertaLaboral("Google",
                 "investigador IA",

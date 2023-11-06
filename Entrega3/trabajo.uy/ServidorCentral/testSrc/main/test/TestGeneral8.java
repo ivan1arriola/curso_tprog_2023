@@ -2,6 +2,9 @@ package main.test;
 
 
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
 import java.util.Map;
 
 import org.junit.Test;
@@ -22,12 +25,12 @@ import logica.manejadores.TipoOfertaHandler;
 import logica.manejadores.UsuarioHandler;
 
 
-public class TestGeneral1 {
+public class TestGeneral8 {
 	@Test
 	public void Test1() {
 		Fabrica fabri = Fabrica.getInstance();
         ICtrlUsuario ICU = fabri.getICtrlUsuario();
-        ICtrlOferta ICO = fabri.getICtrlOferta();
+        ICtrlOferta ctrlOferta = fabri.getICtrlOferta();
         CtrlCargaDeDatos ICC = fabri.getICtrlCargaDeDatos();
         // obtener handeler
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TrabajoUy");
@@ -42,47 +45,16 @@ public class TestGeneral1 {
         // ============================================
         System.out.println("################## Test 1 ##################");
         // ============================================
-        // Testeo de Keywords
-        // ============================================
-        try {
-			ICO.altaKeyword("Trabajo nocturno");
-		} catch (ExcepcionKeywordVacia e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			ICO.altaKeyword("horario vespertino");
-		} catch (ExcepcionKeywordVacia e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			ICO.altaKeyword("full time");
-		} catch (ExcepcionKeywordVacia e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			ICO.altaKeyword("part time");
-		} catch (ExcepcionKeywordVacia e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        // ============================================
-        // obtengo lista keyword
-		//        Map<String, Keyword> temporalKeywords = null;
-		//        try {
-		//            temporalKeywords = KeywordHandler.obtener();
-		//        } catch (Exception e) {
-		//            // Handle the exception or log it
-		//            e.printStackTrace();
-		//        }
-		//        if (temporalKeywords != null) {
-		//            for (Map.Entry<String, Keyword> entry : temporalKeywords.entrySet()) {
-		//                Keyword k = entry.getValue();
-		//                System.out.println("======> " + k.getNombre());
-		//            }
-		//        }
+        String nombre = "NombreTipoPublicacion";
+        String descripcion = "Descripción del tipo de publicación";
+        int exposicion = 3;
+        int duracion = 7;
+        float costo = 100.0f;
+        LocalDate fechaAlta = LocalDate.of(2023, 9, 2);
+
+        boolean resultado = ctrlOferta.altaTipoPublicacionOL(nombre, descripcion, exposicion, duracion, costo, fechaAlta);
+
+        assertTrue(resultado, "El alta debería ser exitosa");
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();

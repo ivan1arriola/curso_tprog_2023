@@ -268,7 +268,7 @@ public class OfertaLaboral {
         System.out.println("Se ha creado una Oferta Laboral (forzado). - " + nombre);
     }
 
-    private void setHorario(DTHorario atrhorario) {
+    public void setHorario(DTHorario atrhorario) {
         this.horario = atrhorario.toString();
     }
 

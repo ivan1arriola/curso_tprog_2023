@@ -11,7 +11,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -97,7 +99,12 @@ public class TestGeneral3 {
         String img = "url";
 
         //	 boolean b = 
-        ICU.altaPostulanteImagen(nickname, password, nombre, apellido, fechaNacimiento, correo, nacionalidad, img.getBytes());
+        try {
+			ICU.altaPostulanteImagen(nickname, password, nombre, apellido, fechaNacimiento, correo, nacionalidad, img.getBytes());
+		} catch (ExceptionFechaInvalida | ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         // ------------------- datatypes usuario para postulante con imagen -------------------
 
@@ -128,17 +135,16 @@ public class TestGeneral3 {
         String correo1 = "K2@gmail.com";
         String descripcion = "Vendemos lapices.";
 
-        try {
-            // boolean b =
-            ICU.altaEmpresa(nickname1, password1, nombre1, apellido1, correo1, descripcion);
-        } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
-            e.printStackTrace();
-        } catch (ExceptionUsuarioNickRepetido e) {
-            e.printStackTrace();
-        } catch (ExceptionUsuarioCorreoRepetido e) {
-            e.printStackTrace();
-        }
 
+            // boolean b =
+            try {
+				ICU.altaEmpresa(nickname1, password1, nombre1, apellido1, correo1, descripcion);
+			} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
+					| ExceptionUsuarioNickRepetido | ErrorAgregarUsuario e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+  
 
         // ------------------- datatypes usuario para postulante -------------------
         // se obtiene con nickname,  notar que estoy probando DTUsuario
@@ -169,20 +175,25 @@ public class TestGeneral3 {
         descripcion = "Vendemos informacion.";
         String url = "www.google.com";
 
-        try {
+        
 //		        boolean b = 
-            ICU.altaEmpresaURL(nickname, password, nombre, apellido, correo, descripcion, url);
-        } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
-            e.printStackTrace();
-        } catch (ExceptionUsuarioNickRepetido e) {
-            e.printStackTrace();
-        } catch (ExceptionUsuarioCorreoRepetido e) {
-            e.printStackTrace();
-        }
+            try {
+				ICU.altaEmpresaURL(nickname, password, nombre, apellido, correo, descripcion, url);
+			} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
+					| ExceptionUsuarioNickRepetido | ErrorAgregarUsuario e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
      // ----------------- dataTypes empresa -----------------
         // se obtiene con nickname,  notar que estoy probando DTUsuario
         UsuarioHandler UHan = UsuarioHandler.getInstance();
-        UHan.buscarCorreo("Larry@hotmail.com");
+        try {
+			UHan.buscarCorreo("Larry@hotmail.com");
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Empresa empresa1 = null;
 		try {
 			empresa1 = (Empresa) UHan.buscarNick("Google");
@@ -219,7 +230,13 @@ public class TestGeneral3 {
 
         // imagen
         String img3 = "url";
-        boolean booly = ICU.altaEmpresaImagen(nickname, password, nombre, apellido, correo, descripcion, img3.getBytes());
+        boolean booly = false;
+		try {
+			booly = ICU.altaEmpresaImagen(nickname, password, nombre, apellido, correo, descripcion, img3.getBytes());
+		} catch (ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         Empresa empresa2 = null;
 		try {
@@ -256,7 +273,12 @@ public class TestGeneral3 {
         // imagen
         String img4 = "url";
 //		boolean b2 = 
-        ICU.altaEmpresaURLyImagen(nickname, password, nombre, apellido, correo, descripcion, url, img4.getBytes());
+        try {
+			ICU.altaEmpresaURLyImagen(nickname, password, nombre, apellido, correo, descripcion, url, img4.getBytes());
+		} catch (ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         // ----------------- dataTypes empresa -----------------
         // se obtiene con nickname,  notar que estoy probando DTUsuario
