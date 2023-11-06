@@ -22,8 +22,9 @@ public class Postulante extends Usuario {
 
     // constructor con imagen
     public Postulante(String nickname, String contrasena, String nombre, String apellido, String correo_electronico, LocalDate fechaNac, String nacionalidad, byte[] img) throws ExceptionFechaInvalida {
-
+    	
         super(nickname, nombre, apellido, correo_electronico, contrasena, img); // super es para llamar al constructor de la clase padre
+        ofertasFavoritas = new HashSet<OfertaLaboral>();
         try {
             if (LocalDate.now().isAfter(fechaNac)) {
                 this.fechaNac = fechaNac;
