@@ -305,7 +305,7 @@ public class Servidor {
             @WebParam(name = "nombre_oferta") String nombre_oferta,
             @WebParam(name = "nombreEmpresa") String nombreEmpresa,
             @WebParam(name = "wrapperLista") WrapperLista wrapperLista
-    ) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    ) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
         List<String> listaPostulantes = wrapperLista.getListaString();
         ctrlOferta.establecerPosiciones(nombre_oferta, nombreEmpresa, listaPostulantes);
     }
@@ -315,6 +315,15 @@ public class Servidor {
     ) throws ExceptionUsuarioNoEncontrado {
         return ctrlOferta.HayOrdenFinal(nombre_oferta);
     }
+
+    @WebMethod
+    public WrapperLista obtenerPosiciones(
+            @WebParam(name = "nombre_oferta") String nombre_oferta
+    ) throws ExceptionUsuarioNoEncontrado {
+        return WSUtils.envolverLista((ArrayList<String>) ctrlOferta.DevolverOrdenFinal(nombre_oferta));
+    }
+
+
 
 
 }
