@@ -98,4 +98,7 @@ public interface ICtrlOferta {
     void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
 
     void establecerPosicion(String nombre_oferta, String nombreEmpresa, String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado;
+
+	Boolean HayOrden(String nombre_oferta, String nombreEmpresa, String nickPostulante, Integer posicion)
+			throws ExceptionUsuarioNoEncontrado;
 }

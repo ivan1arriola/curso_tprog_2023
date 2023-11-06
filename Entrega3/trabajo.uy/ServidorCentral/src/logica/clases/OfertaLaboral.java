@@ -719,6 +719,24 @@ public class OfertaLaboral {
         }
         postulacionActual.setClasificacion(posicion);
     }
+    
+    public Boolean TienePosicion(String nickPostulante, Integer posicion) {
+        List<Postulacion> postulaciones = getPostulaciones();
+        Postulacion postulacionActual = null;
+        for (int i = 0; i < postulaciones.size(); i++) {
+            Postulacion pos = postulaciones.get(i);
+            if (nickPostulante.equals(pos.obtenerNicknamePostulante())) {
+                postulacionActual = pos;
+                break;
+            }
+        }
+        if ( postulacionActual.getClasificacion() == 0) {
+        	Boolean respuesta = false;
+        }
+        return false;
+    }
+    
+    
 
     public void setId(Long id) {
         this.id = id;
