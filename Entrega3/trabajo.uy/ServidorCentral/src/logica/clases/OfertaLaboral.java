@@ -35,7 +35,7 @@ public class OfertaLaboral {
     @Lob
     private String imagen;
 
-
+    private boolean hayOrdenDefinitivo = false;
 
     @ManyToOne (cascade = CascadeType.PERSIST)
     private TipoOferta tOferta;
@@ -455,7 +455,15 @@ public class OfertaLaboral {
             throw exc;
         }
     }
+    
+    public void setHayOrdenDefinitivo(boolean respuesta) {
+    	this.hayOrdenDefinitivo = respuesta;
+    }
 
+    public boolean getHayOrdenDefinitivo() {
+    	return this.hayOrdenDefinitivo;
+    }
+    
     public Float getCosto() {
         return costo;
     }
@@ -720,20 +728,8 @@ public class OfertaLaboral {
         postulacionActual.setClasificacion(posicion);
     }
     
-    public Boolean TienePosicion(String nickPostulante) {
-        List<Postulacion> postulaciones = getPostulaciones();
-        Postulacion postulacionActual = null;
-        for (int i = 0; i < postulaciones.size(); i++) {
-            Postulacion pos = postulaciones.get(i);
-            if (nickPostulante.equals(pos.obtenerNicknamePostulante())) {
-                postulacionActual = pos;
-                break;
-            }
-        }
-        if ( postulacionActual.getClasificacion() == 0) {
-        	Boolean respuesta = false;
-        }
-        return true;
+    public boolean TienePosicion() {
+        return this.hayOrdenDefinitivo;
     }
     
     

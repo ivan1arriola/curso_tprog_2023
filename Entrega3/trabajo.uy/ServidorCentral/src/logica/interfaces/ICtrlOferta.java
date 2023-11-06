@@ -7,6 +7,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 public interface ICtrlOferta {
@@ -97,8 +98,11 @@ public interface ICtrlOferta {
 
     void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
 
-    void establecerPosicion(String nombre_oferta, String nombreEmpresa, String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado;
+	boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
-	Boolean HayOrden(String nombre_oferta, String nombreEmpresa, String nickPostulante)
+	void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nickPostulante)
 			throws ExceptionUsuarioNoEncontrado;
+
+	
+
 }

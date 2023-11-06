@@ -510,19 +510,29 @@ public class CtrlOferta implements ICtrlOferta {
 
     }
 
-    @Override
-    public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
+    public void establecerPosiciones(String nombre_oferta,String nombreEmpresa,List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = null;
         empresa = (Empresa) UH.buscarNick(nombreEmpresa);
-        empresa.establecerPosicion(nombre_oferta,nickPostulante,posicion) ;
+        empresa.establecerPosicion(nombre_oferta,nicksPostulante);
     }
     
+    // orden de las posiciones
     @Override
-    public Boolean HayOrden(String nombre_oferta,String nombreEmpresa,String nickPostulante) throws ExceptionUsuarioNoEncontrado {
+    public boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral oferta = null;
+		try {
+			oferta = OLH.buscar(nombre_oferta);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
     	Empresa empresa = null;
-        empresa = (Empresa) UH.buscarNick(nombreEmpresa);
-        return empresa.HayOrden(nombre_oferta,nickPostulante);
+        empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+        return empresa.HayOrden(nombre_oferta);
     }
 }
+
