@@ -39,4 +39,14 @@
     <servlet-name>ConsultarOfertaLaboral</servlet-name>
     <url-pattern>/ConsultarOfertaLaboral</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CerrarSesion</display-name>
+    <servlet-name>CerrarSesion</servlet-name>
+    <servlet-class>controller.CerrarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CerrarSesion</servlet-name>
+    <url-pattern>/CerrarSesion</url-pattern>
+  </servlet-mapping>
 </web-app>
