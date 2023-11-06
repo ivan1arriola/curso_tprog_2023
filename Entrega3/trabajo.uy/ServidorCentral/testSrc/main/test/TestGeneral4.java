@@ -15,7 +15,9 @@ import org.junit.Test;
 
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExcepcionTipoOfertaNoExistente;
+import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionValidezNegativa;
 import jakarta.persistence.EntityManager;
@@ -288,9 +290,24 @@ public class TestGeneral4 {
 
         // los paquetes empiezan vacios,   se les va agregando tipos de oferta
 
-        ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta normal", 20);
-        ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta destacada", 12);
-        ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta super destacada", 1);
+        try {
+			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta normal", 20);
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta destacada", 12);
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			ICO.agregarTipoOfertaPaq("Paquete 1", "Oferta super destacada", 1);
+		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         DTPaquete nuevo = ICO.obtenerDatosPaquete("Paquete 1");
         nuevo.getCosto();
@@ -318,19 +335,24 @@ public class TestGeneral4 {
         float sueldo = 100222.0f;
         String paquete = "Paquete 1";
         EstadoOL estado = EstadoOL.Confirmada;
-        ICO.altaOfertaLaboral(Nick,
-                TIPOOFERTASELECCIONADA,
-                desc,
-                titulo,
-                horario,
-                sueldo,
-                ciudad,
-                departamento,
-                fecha,
-                listaKeywords,
-                estado,
-                img233.getBytes(),
-                paquete);
+        try {
+			ICO.altaOfertaLaboral(Nick,
+			        TIPOOFERTASELECCIONADA,
+			        desc,
+			        titulo,
+			        horario,
+			        sueldo,
+			        ciudad,
+			        departamento,
+			        fecha,
+			        listaKeywords,
+			        estado,
+			        img233.getBytes(),
+			        paquete);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         DTOfertaLaboral temporal3 = new DTOfertaLaboral("Google",
                 "investigador IA",
@@ -354,8 +376,15 @@ public class TestGeneral4 {
         temporal3.getNombre();
         temporal3.getRemuneracion();
         temporal3.toString();
+        
+//        System.out.println("HE LLEGADO AQUI");
 //			Set<String> auxiliar = (HashSet<String>) 
-        ICO.listarOfertasLaboralesConfirmadas("Google");
+        try {
+			ICO.listarOfertasLaboralesConfirmadas("Google");
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         // obtener nombres de los postulantes
 //			Set<String> nombres = (HashSet<String>) 
         ICU.obtenerNicknamesPostulantes();

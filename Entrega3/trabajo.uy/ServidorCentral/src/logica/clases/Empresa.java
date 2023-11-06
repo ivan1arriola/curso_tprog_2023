@@ -99,22 +99,23 @@ public class Empresa extends Usuario {
 
                 if (paq != null) { //actualiza cantidad del tipo Oferta
                     Set<OfertaPaquete> restantes = paq.getOfertaPaquete();
-
+                    
+                    OfertaPaquete ofertaAux = null;
                     for (OfertaPaquete offer : restantes) {
 
                         if (offer.getDTCantTO().getNombre().equals(tipoOferta.getNombre())) {
-                            int cantidadAsociada = offer.getDTCantTO().getCantidad();
-
-                            if (cantidadAsociada >= 1) {
-
-                                cantidadAsociada = cantidadAsociada - 1;
-                                OfertaPaquete oferPaq = new OfertaPaquete(tipoOferta, cantidadAsociada);
-                                restantes.remove(offer);
-                                restantes.add(oferPaq);
-                            }
+                        	ofertaAux = offer;
                         }
                     } //cierra for
-
+                    if (ofertaAux != null) {
+                    	int cantidadAsociada = ofertaAux.getDTCantTO().getCantidad();
+                        if (cantidadAsociada >= 1) {
+                            cantidadAsociada = cantidadAsociada - 1;
+                            OfertaPaquete oferPaq = new OfertaPaquete(tipoOferta, cantidadAsociada);
+                            restantes.remove(ofertaAux);
+                            restantes.add(oferPaq);
+                        }
+                    }
 
                 }
 

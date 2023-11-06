@@ -1,29 +1,81 @@
 package main.test;
 
 
-import logica.datatypes.*;
-import logica.enumerados.DepUY;
-import logica.enumerados.EstadoOL;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-public class ControladorUsuarioTest3 {
+import org.junit.Test;
 
-    // testear DATATYPES en general
+import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionValidezNegativa;
+import excepciones.OfertaLaboralNoEncontrada;
+import excepciones.TipoUsuarioNoValido;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import logica.Fabrica;
+import logica.clases.Keyword;
+import logica.clases.OfertaLaboral;
+import logica.controladores.CtrlCargaDeDatos;
+import logica.datatypes.DTCompraPaquetes;
+import logica.datatypes.DTHora;
+import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+import logica.datatypes.DTOfertaExtendidoConKeywords;
+import logica.datatypes.DTOfertaExtendidoSinPConK;
+import logica.datatypes.DTPostulacion;
+import logica.enumerados.DepUY;
+import logica.enumerados.EstadoOL;
+import logica.interfaces.ICtrlOferta;
+import logica.interfaces.ICtrlUsuario;
+import logica.manejadores.KeywordHandler;
+import logica.manejadores.OfertaLaboralHandler;
+import logica.manejadores.PaqueteHandler;
+import logica.manejadores.TipoOfertaHandler;
+import logica.manejadores.UsuarioHandler;
 
-    // testear DATATYPES de oferta laboral
-    @Test
-    void testDT() {
+
+public class TestGeneral5 {
+	@Test
+	public void Test1() {
+		Fabrica fabri = Fabrica.getInstance();
+        ICtrlUsuario ICU = fabri.getICtrlUsuario();
+        ICtrlOferta ICO = fabri.getICtrlOferta();
+        CtrlCargaDeDatos ICC = fabri.getICtrlCargaDeDatos();
+        // obtener handeler
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TrabajoUy");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // Set the EntityManager for the handlers
+        KeywordHandler.setBaseDatos(entityManager);
+        KeywordHandler keywordHandler = KeywordHandler.getInstance();
+//        OfertaLaboralHandler.setBaseDatos(entityManager);
+//        PaqueteHandler.setBaseDatos(entityManager);
+//        TipoOfertaHandler.setBaseDatos(entityManager);
+//        UsuarioHandler.setBaseDatos(entityManager);
+        // ============================================
+        System.out.println("################## Test 5 ##################");
+        // ============================================
         String nombrePostulante = "Juan";
         LocalDate fechaPostulacion = LocalDate.of(2020, 12, 12);
         String URLDocExtras = "www.google.com";
         String CVitae = "CV";
         String motivacion = "motivacion";
-        DTPostulacion post = new DTPostulacion(nombrePostulante, fechaPostulacion, URLDocExtras, CVitae, motivacion);
+        String urlVid = "www.algo";
+        DTPostulacion post = new DTPostulacion(nombrePostulante, fechaPostulacion, URLDocExtras, CVitae, motivacion,urlVid);
 
         // Getters
         post.getPostulante();
@@ -58,7 +110,7 @@ public class ControladorUsuarioTest3 {
         ColPost.add(post);
         String img = "url";
         String paquete = "paquete";
-        DTOfertaExtendido OfEx = new DTOfertaExtendido(null, nombreOL,
+        DTOfertaExtendido OfEx = new DTOfertaExtendido("Mc-Donalsd", nombreOL,
                 desripcion,
                 fechaA,
                 costo,
@@ -68,10 +120,10 @@ public class ControladorUsuarioTest3 {
                 ciudad,
                 estado,
                 ColPost,
-                img,
-                paquete);
-
-        // Getters
+                img.getBytes(),
+                paquete,
+                0);
+     // Getters
         OfEx.getNombre();
         OfEx.getDescripcion();
         OfEx.getFechaDeAlta();
@@ -118,8 +170,9 @@ public class ControladorUsuarioTest3 {
                 ciudad1,
                 estado1,
                 ColPost1,
-                img1,
-                pruebaKeyword);
+                img1.getBytes(),
+                pruebaKeyword,
+                0);
         // Getters
         OfEx1.getNombre();
         OfEx1.getDescripcion();
@@ -168,8 +221,8 @@ public class ControladorUsuarioTest3 {
                 dep11,
                 ciudad11,
                 estado11,
-                img11,
-                pruebaKeyword1);
+                img11.getBytes(),
+                pruebaKeyword1,0);
         // Getters
         OfEx11.getNombre();
         OfEx11.getDescripcion();
@@ -194,6 +247,8 @@ public class ControladorUsuarioTest3 {
         reciboPaquete.getFechaCompra();
         reciboPaquete.getFechaVencimiento();
 
-    }
+		// ============================================
+        entityManager.close();
+        entityManagerFactory.close();
+	}
 }
-
