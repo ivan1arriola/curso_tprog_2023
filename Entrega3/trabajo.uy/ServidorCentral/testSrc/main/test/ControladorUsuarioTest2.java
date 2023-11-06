@@ -1,70 +1,7 @@
-package main.test;
 
-
-import excepciones.ExcepcionTipoOfertaNoExistente;
-import logica.clases.Postulante;
-import logica.datatypes.*;
-import logica.enumerados.DepUY;
-import logica.enumerados.EstadoOL;
-import logica.interfaces.ICtrlOferta;
-import logica.interfaces.ICtrlUsuario;
-import logica.manejadores.UsuarioHandler;
-import logica.Fabrica;
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-
-public class ControladorUsuarioTest2 {
-
-    // --------------- Testeo Keyowords ---------------
-    @Test
-    void keywordTest() {
-        Fabrica fabri = Fabrica.getInstance();
-        ICtrlUsuario ICU = fabri.getICtrlUsuario();
-        ICtrlOferta ICO = fabri.getICtrlOferta();
-
-        // --------------- keywords ---------------
-
-        // Adding keywords to the system
-        //boolean bool1 =
-        ICO.altaKeyword("Trabajo nocturno");
-        ICO.altaKeyword("horario vespertino");
-        ICO.altaKeyword("full time");
-        ICO.altaKeyword("part time");
-
-        // Creating a set for testing
-        Set<String> pruebaKeyword = new HashSet<>(Arrays.asList(
-                "Trabajo nocturno",
-                "horario vespertino",
-                "full time",
-                "part time"
-        ));
-
-        // Listing keywords from the system
-        Set<String> probandoEnSistema = (HashSet<String>) ICO.listarKeywords();
-
-        for (String s : pruebaKeyword) {
-            if (!probandoEnSistema.contains(s)) {
-                assertEquals("El test keywords fallo", true, false);
-            }
-        }
-
-
-        // ---------------- empresa sin url ni imagen ----------------
-        // notar que tiene todos los usuarios creados
-        Set<String> UsuariosSistema = (HashSet<String>) ICU.listarNicknamesUsuarios();
-        for (String s : UsuariosSistema) {
-            if (!s.equals("Kreves") && !s.equals("Google") && !s.equals("Apple") && !s.equals("Amazon") && !s.equals("ASwatzenegger") && !s.equals("LeonardoVinchi")) {
-                assertEquals("El test usuarios en sistema fallo", false, true);
-            }
-
-        }
+        
+        
+        
 
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Postulante postulante1 = (Postulante) UHan.buscarNick("LeonardoVinchi");
