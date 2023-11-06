@@ -21,6 +21,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       <sequence>
  *         <element name="listaString" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="ofertasExtendido" type="{http://servidor.logica/}dtOfertaExtendido" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="postulaciones" type="{http://servidor.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -32,7 +33,8 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "wrapperLista", propOrder = {
     "listaString",
-    "ofertasExtendido"
+    "ofertasExtendido",
+    "postulaciones"
 })
 public class WrapperLista {
 
@@ -40,6 +42,8 @@ public class WrapperLista {
     protected List<String> listaString;
     @XmlElement(nillable = true)
     protected List<DtOfertaExtendido> ofertasExtendido;
+    @XmlElement(nillable = true)
+    protected List<DtPostulacion> postulaciones;
 
     /**
      * Gets the value of the listaString property.
@@ -101,6 +105,37 @@ public class WrapperLista {
             ofertasExtendido = new ArrayList<>();
         }
         return this.ofertasExtendido;
+    }
+
+    /**
+     * Gets the value of the postulaciones property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the postulaciones property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPostulaciones().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtPostulacion }
+     * 
+     * 
+     * @return
+     *     The value of the postulaciones property.
+     */
+    public List<DtPostulacion> getPostulaciones() {
+        if (postulaciones == null) {
+            postulaciones = new ArrayList<>();
+        }
+        return this.postulaciones;
     }
 
 }
