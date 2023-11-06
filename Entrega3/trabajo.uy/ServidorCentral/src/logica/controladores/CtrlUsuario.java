@@ -289,10 +289,16 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado {
+    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
-        return user.obtenerDatosPostulacion(postulante_nick, ofer);
+        try {
+            Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
+            return user.obtenerDatosPostulacion(postulante_nick, ofer);
+        } catch (Exception e){
+            throw new TipoUsuarioNoValido("Se esperaba un Postulante y llego una Empresa");
+        }
+
+
     }
 
 
@@ -304,9 +310,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     }
 
-    // NO EXISTEN MAS
-    // public  boolean  iniciarSesionCorreo(String email,    String contrasenia);
-    // public  boolean iniciarSesionNickname(String nickname,    String contrasenia);
+
 
 
     public boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado {

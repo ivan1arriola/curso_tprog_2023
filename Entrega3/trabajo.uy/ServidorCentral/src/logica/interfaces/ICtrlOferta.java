@@ -7,6 +7,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 public interface ICtrlOferta {
@@ -43,7 +44,7 @@ public interface ICtrlOferta {
 
     public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado;
 
-    public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado;
+    public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido;
 
     public abstract Set<String>
     listarOfertasLaboralesConfirmadas(String nickname_e) throws ExceptionUsuarioNoEncontrado;
@@ -92,13 +93,17 @@ public interface ICtrlOferta {
 
     public abstract boolean existeOfertaLaboral(String nombre_ofer);
 
+    public abstract void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
+    
+    public abstract void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
 
-    void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
 
-    void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
 
-    void establecerPosicion(String nombre_oferta, String nombreEmpresa, String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado;
+	boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
-	Boolean HayOrden(String nombre_oferta, String nombreEmpresa, String nickPostulante)
+	void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nickPostulante)
 			throws ExceptionUsuarioNoEncontrado;
+
+	
+
 }

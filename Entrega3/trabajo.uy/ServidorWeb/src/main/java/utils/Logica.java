@@ -92,7 +92,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception {
+	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {
 		PostulacionBean postulacion = new PostulacionBean();
 
 		DtPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
@@ -196,6 +196,16 @@ public class Logica implements ILogica {
 	        } else if(DtUsuario instanceof DtPostulante postulante){
 	        	usuario.setFechaNac(LocalDate.parse(postulante.getFechaNac()));
 	        	usuario.setNacionalidad(postulante.getNacionalidad());
+
+
+				Set<OfertaLaboralBean> favoritos= new HashSet<>();
+				List<DtOfertaExtendido> favoritosEnServidor = postulante.getFavs();
+
+				for(DtOfertaExtendido ofertaServ : favoritosEnServidor){
+					favoritos.add(obtenerDatosOfertaLaboral(ofertaServ.getNombre()));
+				}
+				usuario.setOferFavs(favoritos);
+
 	        	usuario.setTipo(TipoUsuario.Postulante);
 	        } else {
 				throw new IllegalArgumentException("El usuario no es ni empresa ni postulante");
@@ -350,6 +360,7 @@ public class Logica implements ILogica {
         ofertaLaboral.setRemuneracion(DtOferta.getRemuneracion());
         ofertaLaboral.setEstado(DtOferta.getEstado());
         ofertaLaboral.setNicknameEmpresa(DtOferta.getNicknameEmpresaPublicadora());
+        ofertaLaboral.setCantFavs(DtOferta.getCantFavs());
         
         DtOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralVisitante(nombreOferta);
         ofertaLaboral.setKeywords(new TreeSet<>(nuevoDatos.getKeywords()));
@@ -373,7 +384,7 @@ public class Logica implements ILogica {
 
 
 	@Override
-	public PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception {
+	public PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {
 		PostulacionBean postulacion = new PostulacionBean();
 		DtPostulacion DtPostulacion = servidor.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
 		

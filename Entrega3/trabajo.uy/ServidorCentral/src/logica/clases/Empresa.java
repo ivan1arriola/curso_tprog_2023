@@ -372,20 +372,28 @@ public class Empresa extends Usuario {
         Set<DTPostulacion> stringSet = auxiliar.ObtenerPostulacionesOfertaLaboral();
         return stringSet;
     }
+    
 
-    public void establecerPosicion(String nombre_oferta, String nickPostulante, Integer posicion) {
+    public void establecerPosicion(String nombre_oferta,List<String> nicksPostulante) {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+        OfertaLaboral OfertaLaboralATrabajar = null;
         OfertaLaboral auxiliar = null;
         for (OfertaLaboral OLe : OFEmpresa) {
             if (nombre_oferta.equals(OLe.getNombre())) {
-                auxiliar = OLe;
+            	OfertaLaboralATrabajar = OLe;
                 break;
             }
         }
-        auxiliar.establecerPosicion(nickPostulante, posicion);
+        Integer posicion = 1;
+        for (int i = 0; i < nicksPostulante.size(); i++) {
+            String element = nicksPostulante.get(i);
+            OfertaLaboralATrabajar.establecerPosicion(element, posicion);
+            posicion++;
+        }
+        OfertaLaboralATrabajar.setHayOrdenDefinitivo(true);
     }
     
-    public Boolean HayOrden(String nombre_oferta, String nickPostulante) {
+    public boolean HayOrden(String nombre_oferta) {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
         OfertaLaboral auxiliar = null;
         for (OfertaLaboral OLe : OFEmpresa) {
@@ -394,7 +402,7 @@ public class Empresa extends Usuario {
                 break;
             }
         }
-		return auxiliar.TienePosicion(nickPostulante);
+		return auxiliar.TienePosicion();
     }
 
     public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas() {

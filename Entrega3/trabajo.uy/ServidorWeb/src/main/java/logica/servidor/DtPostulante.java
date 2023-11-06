@@ -1,8 +1,11 @@
 
 package logica.servidor;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -18,6 +21,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       <sequence>
  *         <element name="fechanac" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nacionalidad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="favs" type="{http://servidor.logica/}dtOfertaExtendido" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="fechaNac" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </extension>
@@ -31,6 +35,7 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "dtPostulante", propOrder = {
     "fechanac",
     "nacionalidad",
+    "favs",
     "fechaNac"
 })
 public class DtPostulante
@@ -39,6 +44,8 @@ public class DtPostulante
 
     protected String fechanac;
     protected String nacionalidad;
+    @XmlElement(nillable = true)
+    protected List<DtOfertaExtendido> favs;
     protected String fechaNac;
 
     /**
@@ -87,6 +94,37 @@ public class DtPostulante
      */
     public void setNacionalidad(String value) {
         this.nacionalidad = value;
+    }
+
+    /**
+     * Gets the value of the favs property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the favs property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFavs().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtOfertaExtendido }
+     * 
+     * 
+     * @return
+     *     The value of the favs property.
+     */
+    public List<DtOfertaExtendido> getFavs() {
+        if (favs == null) {
+            favs = new ArrayList<>();
+        }
+        return this.favs;
     }
 
     /**

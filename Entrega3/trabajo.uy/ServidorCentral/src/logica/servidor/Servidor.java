@@ -3,6 +3,7 @@ package logica.servidor;
 
 import excepciones.*;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
@@ -101,7 +102,7 @@ public class Servidor {
         return WSUtils.envolverLista(ctrlOferta.listarTodasLasOfertasLaborales(nicknameParametro));
     }
     @WebMethod
-    public DTPostulacion obtenerDatosPostulacionW(String nicknameParametro, String nombreOferta) throws ExceptionUsuarioNoEncontrado {
+    public DTPostulacion obtenerDatosPostulacionW(String nicknameParametro, String nombreOferta) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
         return ctrlUsuario.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
     }
 
@@ -289,8 +290,26 @@ public class Servidor {
     }
 
     @WebMethod
+    public void marcarFavorito(String nickname, String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	ctrlOferta.marcarFavorita(nickname, nombre_oferta);
+    }
+    
+    @WebMethod
+    public void desmarcarFavorito(String nickname, String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	ctrlOferta.desmarcarFavorita(nickname, nombre_oferta);
+    }
+
     public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
        ctrlOferta.establecerPosicion(nombre_oferta, nombreEmpresa, nickPostulante, posicion);
     }
+    /*@WebMethod
+    public boolean existeOrdenPostulantesFinal(
+            @WebParam(name = "nombre_oferta") String nombre_oferta,
+            @WebParam(name = "nombreEmpresa") String nombreEmpresa,
+            @WebParam(name = "nickPostulante") String nickPostulante
+    ) throws ExceptionUsuarioNoEncontrado {
+        return ctrlOferta.HayOrden(nombre_oferta, nombreEmpresa, nickPostulante, 0);
+    }*/
+
 
 }

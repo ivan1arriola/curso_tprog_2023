@@ -27,6 +27,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 	private PaqueteBean paquete;
 	private Set<String> keywords;
 	private String nicknameEmpresa;
+	private Integer cantFavs;
 
 
 	
@@ -295,11 +296,16 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 		this.nicknameEmpresa = nicknameEmpresa;
 	}
 
-
-
-
 	@Override
 	public int compareTo(OfertaLaboralBean otraOferta) {
 		return this.nombre.compareTo(otraOferta.getNombre());
+	}
+
+	public Integer getCantFavs() {
+		return cantFavs;
+	}
+
+	public void setCantFavs(Integer cantFavs) {
+		this.cantFavs = cantFavs;
 	}
 }

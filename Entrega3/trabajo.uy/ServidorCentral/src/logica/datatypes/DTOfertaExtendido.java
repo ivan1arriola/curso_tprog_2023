@@ -29,9 +29,10 @@ public class DTOfertaExtendido {
     private byte[] imagen;
     private String paq;
     private String nicknameEmpresaPublicadora;
+    private Integer cantFavs;
 
 
-    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete) {
+    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF) {
         nombre = nomb;
         descripcion = desc;
         fechaDeAlta = fechaA;
@@ -45,6 +46,7 @@ public class DTOfertaExtendido {
         imagen = img;
         paq = paquete;
         nicknameEmpresaPublicadora = empresaPublicadora;
+        cantFavs = cantF;
     }
 
     public String getNombre() {
@@ -110,6 +112,14 @@ public class DTOfertaExtendido {
     public String getNicknameEmpresaPublicadora() {
         return nicknameEmpresaPublicadora;
     }
+
+	public Integer getCantFavs() {
+		return cantFavs;
+	}
+
+	public void setCantFavs(Integer cantFavs) {
+		this.cantFavs = cantFavs;
+	}
 
 }
 //
