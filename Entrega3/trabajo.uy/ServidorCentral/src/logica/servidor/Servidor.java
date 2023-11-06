@@ -290,6 +290,17 @@ public class Servidor {
     }
 
     @WebMethod
+<<<<<<< HEAD
+    public void marcarFavorito(String nickname, String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	ctrlOferta.marcarFavorita(nickname, nombre_oferta);
+    }
+    
+    @WebMethod
+    public void desmarcarFavorito(String nickname, String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	ctrlOferta.desmarcarFavorita(nickname, nombre_oferta);
+    }
+    
+=======
     public void establecerPosicion(String nombre_oferta,String nombreEmpresa,String nickPostulante, Integer posicion) throws ExceptionUsuarioNoEncontrado {
        ctrlOferta.establecerPosicion(nombre_oferta, nombreEmpresa, nickPostulante, posicion);
     }
@@ -302,4 +313,5 @@ public class Servidor {
         return ctrlOferta.HayOrden(nombre_oferta, nombreEmpresa, nickPostulante, 0);
     }
 
+>>>>>>> branch 'main' of https://gitlab.fing.edu.uy/tprog/tpgr34.git
 }

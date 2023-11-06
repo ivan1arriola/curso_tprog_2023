@@ -196,6 +196,7 @@ public class Logica implements ILogica {
 	        } else if(DtUsuario instanceof DtPostulante postulante){
 	        	usuario.setFechaNac(LocalDate.parse(postulante.getFechaNac()));
 	        	usuario.setNacionalidad(postulante.getNacionalidad());
+	        	usuario.setOferFavs(postulante.getOfertasFavoritas());
 	        	usuario.setTipo(TipoUsuario.Postulante);
 	        } else {
 				throw new IllegalArgumentException("El usuario no es ni empresa ni postulante");
@@ -350,6 +351,7 @@ public class Logica implements ILogica {
         ofertaLaboral.setRemuneracion(DtOferta.getRemuneracion());
         ofertaLaboral.setEstado(DtOferta.getEstado());
         ofertaLaboral.setNicknameEmpresa(DtOferta.getNicknameEmpresaPublicadora());
+        ofertaLaboral.setCantFavs(DtOferta.getCantFavs());
         
         DtOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralVisitante(nombreOferta);
         ofertaLaboral.setKeywords(new TreeSet<>(nuevoDatos.getKeywords()));

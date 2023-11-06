@@ -1,9 +1,12 @@
 
 package logica.servidor;
 
+import java.util.Set;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+import javabeans.OfertaLaboralBean;
 
 
 /**
@@ -40,6 +43,7 @@ public class DtPostulante
     protected String fechanac;
     protected String nacionalidad;
     protected String fechaNac;
+    protected Set<OfertaLaboralBean> oferFavs;
 
     /**
      * Obtiene el valor de la propiedad fechanac.
@@ -113,4 +117,13 @@ public class DtPostulante
         this.fechaNac = value;
     }
 
+	public Set<OfertaLaboralBean> getOfertasFavoritas() {
+		return oferFavs;
+	}
+
+	public void setOfertasFavoritas(Set<OfertaLaboralBean> oferF) {
+		oferFavs = oferF;
+	}
+
+	
 }

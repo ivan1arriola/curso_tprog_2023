@@ -15,11 +15,13 @@ public class DTPostulante extends DTUsuario {
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechanac;
     private String nacionalidad;
+    private Set<DTOfertaExtendido> favs;
 
-    public DTPostulante(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] imagen, LocalDate fechaNac, String nacionalidad, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
+    public DTPostulante(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] imagen, LocalDate fechaNac, String nacionalidad, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores, Set<DTOfertaExtendido> favs) {
         super(nickname, correo_electronico, apellido, nombre, contraseña, imagen, seguidos, seguidores);
         this.fechanac = fechaNac;
         this.nacionalidad = nacionalidad;
+        this.setFavs(favs);
     }
 
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
@@ -30,4 +32,12 @@ public class DTPostulante extends DTUsuario {
     public String getNacionalidad() {
         return nacionalidad;
     }
+
+	public Set<DTOfertaExtendido> getFavs() {
+		return favs;
+	}
+
+	public void setFavs(Set<DTOfertaExtendido> favs) {
+		this.favs = favs;
+	}
 }

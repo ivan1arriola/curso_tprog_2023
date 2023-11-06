@@ -25,10 +25,17 @@
         .banner-container {
             background-image: url(<%= imagen %>);
         }
-
-
-
     </style>
+
+	<style>
+	    .heart-icon {
+	      font-size: 3em; /* Cambiar el tamaño del corazón */
+	    }
+	    .heart-icon.text-danger {
+	      color: red; /* Cambiar a color rojo al hacer clic */
+	    }
+	  </style>
+    
 </head>
 
 <body>
@@ -58,15 +65,19 @@
 
 
                 <div class="col-4 mt-2 container text-center" id="acciones">
-                    <h4> Dar de favorito</h4>
-                    <button class="btn btn-primary mb-2">
-				        <div class="float-right"> <!-- Clase de Bootstrap para alinear a la derecha -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart" viewBox="0 0 16 16"> <!-- Icono de corazón de Bootstrap -->
-                                <path d="M8 14s6-3.5 6-7a3.5 3.5 0 0 0-7 0C8 10.5 8 14 8 14z"/>
-                                <path fill-rule="evenodd" d="M3.906 2.293a.5.5 0 0 1 .708 0L8 6.793l3.387-4.5a.5.5 0 0 1 .763.647l-4 5a.5.5 0 0 1-.75-.001l-4-5a.5.5 0 0 1 .003-.647z"/>
-                            </svg>
-                        </div>
-                    </button>
+                	
+		            <h4> Marcar de favorito</h4>
+					<button id="corazon" type="button" class="btn btn-light" aria-label="Like">
+					  <span class="heart-icon" aria-hidden="true">&#x2661;</span>
+					</button>
+					
+					<script>
+					$(document).ready(function() {
+					  $('#corazon').click(function() {
+					    $(this).find('.heart-icon').toggleClass('text-danger'); // Cambia el color al hacer clic
+					  });
+					});
+					</script>
 
 
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
