@@ -277,7 +277,7 @@ public class CtrlOferta implements ICtrlOferta {
         return CtrlUser.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
     }
 
-    public DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado {
+    public DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
         CtrlUsuario CtrlUser = new CtrlUsuario();
         return CtrlUser.obtenerDatosPostulacionW(nick, ofer);
     }

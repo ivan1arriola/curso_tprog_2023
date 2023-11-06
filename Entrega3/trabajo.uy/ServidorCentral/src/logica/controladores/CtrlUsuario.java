@@ -289,9 +289,14 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado {
+    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
+        try {
+            Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
+        } catch (Exception e){
+            throw new TipoUsuarioNoValido("Se esperaba un Postulante y llego una Empresa");
+        }
+
         return user.obtenerDatosPostulacion(postulante_nick, ofer);
     }
 

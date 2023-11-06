@@ -43,7 +43,7 @@ public interface ICtrlOferta {
 
     public abstract boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado;
 
-    public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado;
+    public abstract DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido;
 
     public abstract Set<String>
     listarOfertasLaboralesConfirmadas(String nickname_e) throws ExceptionUsuarioNoEncontrado;
