@@ -8,7 +8,8 @@
 	DtPostulacion postulacion = (DtPostulacion) request.getAttribute("postulacion");
     DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
     String nombre = (String) request.getAttribute("postulante");
-    byte[] imagenBytes = oferta.getImagen();
+    String nombreOferta = (String) oferta.getNombre();
+    byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
     String imagen = null;
     if(imagenBytes!=null) {
     	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
@@ -40,7 +41,7 @@
         <div class="row">
             <div class="container col">
                 <div class="row banner-container banner-dark">
-                    <h1 class="text-center text-light fw-bolder">Postulacion de <%=nombre%> a <%=oferta.getNombre()%></h1>
+                    <h1 class="text-center text-light fw-bolder">Postulacion de <%=nombre%> a <%=nombreOferta%></h1>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
