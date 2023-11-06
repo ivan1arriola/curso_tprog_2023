@@ -390,6 +390,17 @@ public class Logica implements ILogica {
 
 		return postulantes;
 	}
+
+	@Override
+	public List<String> obtenerPostulantesDeOfertaString(String nombreOferta, String empresaNickname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
+		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		List<String> postulantes = new ArrayList<>();
+		if ( info instanceof DtOfertaExtendidoConKeywordsTit masData) {
+			postulantes = masData.getPostulaciones();
+
+		}
+		return postulantes;
+	}
 	
 	
 
