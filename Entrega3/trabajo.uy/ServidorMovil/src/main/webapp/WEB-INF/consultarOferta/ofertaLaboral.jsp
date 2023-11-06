@@ -99,11 +99,21 @@
                         </ul>
                     </div>
 
+					<%
+					String context = request.getContextPath();	
+					%>
+					
                     <div id="postulacion">
                         <div class="row align-items-center mt-2">
                             <h2>Postulaciones</h2>
                         </div>
-
+                        
+                        <div class="row align-items-center mt-2">
+                        <a href="<%=context%>/consultarpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
+                    	Leer más
+                    	</a>
+						</div>
+						
                         <div class="row align-items-center mt-2">
                             <!-- Link para ver postulacion en caso de existir-->
                             <a href="/postulacion/DesarrolladorFrontEnd.html" class="btn btn-primary btn-lg">Ver Postulación</a>
