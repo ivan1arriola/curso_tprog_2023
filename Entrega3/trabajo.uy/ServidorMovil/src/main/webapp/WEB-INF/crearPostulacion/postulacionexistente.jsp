@@ -31,7 +31,7 @@
 
 
     <div class="container col-9">
-        <h2>Ya existe una postulación de <%=request.getAttribute("nickname")%> para la oferta <%=nombreOferta%> %></h2>
+        <h2>Ya existe una postulación de <%=request.getAttribute("nickname")%> para la oferta <%=nombreOferta%></h2>
 
     </div>
 
