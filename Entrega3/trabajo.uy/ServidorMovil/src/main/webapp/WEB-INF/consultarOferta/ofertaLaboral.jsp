@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="logica.servidor.DtOfertaExtendido" %>
+<%@ page import="enumerado.TipoUsuario" %>
+<%@ page import="logica.servidor.DtUsuario" %>
+<%@ page import="logica.servidor.DtPostulante" %>
 <%@ page import="java.util.Base64" %>
 <%
 	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
@@ -105,32 +108,42 @@
 					
                     <div id="postulacion">
                         <div class="row align-items-center mt-2">
-                            <h2>Postulaciones</h2>
-                        </div>
+                            <h3>Postulaciones</h3>
+                     </div>
                         
-                        <div class="row align-items-center mt-2">
-                        <a href="<%=context%>/consultarpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
-                    	Leer más
+                        <%
+                        DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
+						String nickname  = (String) request.getSession().getAttribute("nickname");
+						
+						if (usuario!=null && usuario instanceof DtPostulante) {
+										
+						%>
+	                        <div class="row align-items-center mt-2">
+	                        <a href="<%=context%>/consultarpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
+	                    	Ver Postulación
+	                    	</a>
+							</div>
+						
+						<% } %>
+						
+						
+						<%
+                        						
+						if (usuario!=null && usuario instanceof DtPostulante) {
+										
+						%>
+						
+						<div class="row align-items-center mt-2">
+                        <a href="<%=context%>/crearpostulacion?oferta=<%=oferta.getNombre()%>" class="card-link btn btn-primary btn-lg">
+                    	Postular
                     	</a>
 						</div>
 						
-                        <div class="row align-items-center mt-2">
-                            <!-- Link para ver postulacion en caso de existir-->
-                            <a href="/postulacion/DesarrolladorFrontEnd.html" class="btn btn-primary btn-lg">Ver Postulación</a>
-                        </div>
-
-                        <div class="row align-items-center mt-2">
-                            <!-- Link para ver postulacion en caso de existir-->
-                            <a href="/postulacion/postularse.html" class="btn btn-primary btn-lg">Postularse</a>
-
-                        </div>
-
-
+						<% } %>
+						
+						
                     </div>
 
-
-
-                
             </div>
 
         </div>

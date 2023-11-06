@@ -94,6 +94,7 @@ public interface ILogica {
 	List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNIckname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
 
 
+	List<String> obtenerPostulantesDeOfertaString(String nombreOferta, String empresaNickname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
 	PaqueteBean obtenerPaqueteDeOferta(String nombreOferta, String empresaNickname) throws Exception;
 
 	OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean, String postulanteNickname) throws Exception;

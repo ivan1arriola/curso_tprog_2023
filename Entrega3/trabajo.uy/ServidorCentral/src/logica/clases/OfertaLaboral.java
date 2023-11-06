@@ -29,10 +29,13 @@ public class OfertaLaboral {
     private DepUY departamento;
     private String ciudad;
     private EstadoOL estado;
+
+    private Integer cantFavs;
+    
     @Lob
     private String imagen;
 
-    // relaciones
+
 
     @ManyToOne (cascade = CascadeType.PERSIST)
     private TipoOferta tOferta;
@@ -84,7 +87,9 @@ public class OfertaLaboral {
 
         this.tOferta = atrtOferta;
         this.estado = estadoNuevo;
+        this.cantFavs = 0;
         this.setImagen(imagennueva);
+
 
 
 
@@ -206,7 +211,12 @@ public class OfertaLaboral {
 
         this.tOferta = atrtOferta;
         this.estado = estadoNuevo;
+
+        
+        this.cantFavs = 0;
+
         this.setImagen(imagennueva);
+
 
 
         this.paqueteAsoc = paq;
@@ -289,7 +299,7 @@ public class OfertaLaboral {
                 atrfechaAlta,
                 estadoNuevo,
                 null,   // Imagen nula
-                null  // Paquete nulo
+                null // Paquete nulo
         );
     }
 
@@ -335,7 +345,7 @@ public class OfertaLaboral {
             String atrciudad,
             DepUY atrdepartamento,
             DTHorario atrhorario,
-            Float atrremuneracion,
+            Float atrremuneracion, 
             LocalDate atrfechaAlta,
             EstadoOL estadoNuevo,
             byte[] imagennueva
@@ -716,5 +726,14 @@ public class OfertaLaboral {
 
     public Long getId() {
         return id;
+    }
+    
+    
+    public void marcadaFav() {
+    	cantFavs = cantFavs + 1;
+    }
+    
+    public void desmarcadaFav() {
+    	cantFavs = cantFavs - 1;
     }
 }
