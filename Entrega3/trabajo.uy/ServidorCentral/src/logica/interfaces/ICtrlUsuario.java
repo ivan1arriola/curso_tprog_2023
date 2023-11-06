@@ -72,7 +72,7 @@ public interface ICtrlUsuario {
 
     public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta) throws OfertaLaboralNoEncontrada; // PRONTA
 
-    public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado; // PRONTA
+    public abstract DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido; // PRONTA
 
     public abstract DTPaquete obtenerDatosPaquete(String paq); // PRONTA
 

@@ -16,6 +16,7 @@ import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
+import logica.servidor.TipoUsuarioNoValido_Exception;
 import utils.FabricaWeb;
 import org.json.JSONObject;
 
@@ -44,6 +45,8 @@ public class ConsultaPostulacion extends HttpServlet {
         try {
             postulacion = logica.obtenerDatosPostulacionW(nickname, nombreOferta);
         } catch (ExceptionUsuarioNoEncontrado_Exception e) {
+            throw new RuntimeException(e);
+        } catch (TipoUsuarioNoValido_Exception e) {
             throw new RuntimeException(e);
         }
 

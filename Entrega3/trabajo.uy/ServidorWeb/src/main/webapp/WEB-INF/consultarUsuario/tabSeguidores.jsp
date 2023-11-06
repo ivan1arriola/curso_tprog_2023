@@ -9,7 +9,7 @@
 
 <%
 	UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
-	Set<UsuarioSinInfoSocialBean> seguidores = usuario.getSeguidores();
+	Set<UsuarioBean> seguidores = (Set<UsuarioBean>) request.getAttribute("seguidores");
 %>
 
 <!-- Tab de Seguidores -->
@@ -34,12 +34,8 @@
     %>
 
     <%
-    for (UsuarioSinInfoSocialBean user : seguidores) {
-    	String imagen = user.getImagen();
-        if (imagen== null) {
-            // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
-            imagen = request.getContextPath() +  "/imagenNoFound.png";
-        }
+    for (UsuarioBean user : seguidores) {
+    	String imagenUsuario = user.getImagen();
         
         String nombre_completo = user.getNombre() + " " + user.getApellido();
         String correo = user.getCorreoElectronico();
@@ -49,14 +45,24 @@
         <div class="row g-0">
             		<div class="card mb-3">
 					    <div class="row g-0">
-					        <div class="col-md-4">
-					            <img src="<%=imagen%>" class="img-fluid rounded-start" alt="<%=nombre_completo%>" />
-					        </div>
+					    <%
+                        if (imagenUsuario != null) {
+                        %>
+                            <img src="<%= imagenUsuario %>" alt="Imagen de Usuario" class="img-fluid mb-3 perfil rounded" style="width: 250px; height: 150px;" />
+                        <%
+                        } else {
+                        %>
+                            <img src="<%= request.getContextPath() + "/nopicture.png" %>"
+                                alt="Imagen de Usuario por Defecto"
+                                class="img-fluid mb-3 rounded-circle img-thumbnail perfil" />
+                        <%
+                        }
+                        %>
 					        <div class="col">
 					            <div class="card-body">
 					                <h5 class="card-title"><%=nombre_completo%></h5>
 					                <p class="card-text"><%=correo%></p>
-					                <a href="<%=enlace%>" class="card-link">Leer más</a>      
+					                <a href="<%=enlace%>" class="card-link">Visitar perfil</a>      
 					            </div>
 					        </div>
 					    </div>

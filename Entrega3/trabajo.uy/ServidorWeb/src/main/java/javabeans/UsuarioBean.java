@@ -22,6 +22,7 @@ public class UsuarioBean implements Comparable<UsuarioBean> {
     private TipoUsuario tipo;
     private Set<UsuarioSinInfoSocialBean> seguidos;
     private Set<UsuarioSinInfoSocialBean> seguidores;
+    private Set<OfertaLaboralBean> oferFavs;
     
     private Set<PaqueteBean> paquetes;
     
@@ -170,5 +171,13 @@ public class UsuarioBean implements Comparable<UsuarioBean> {
 			return 1;
 		}
 		return this.nombre.compareTo(otroBean.getNombre());
+	}
+
+	public Set<OfertaLaboralBean> getOferFavs() {
+		return oferFavs;
+	}
+
+	public void setOferFavs(Set<OfertaLaboralBean> oferFavs) {
+		this.oferFavs = oferFavs;
 	}
 }

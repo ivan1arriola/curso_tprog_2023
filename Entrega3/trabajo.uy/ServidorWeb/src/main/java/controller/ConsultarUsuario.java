@@ -42,8 +42,7 @@ public class ConsultarUsuario extends HttpServlet {
         TipoUsuario tipoUsuarioLogueado = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
         request.setAttribute("tipoU", tipoUsuarioLogueado);
         request.setAttribute("usuarioConsultado", nicknameParametro);
-   
-
+        
         if (nicknameParametro != null && !nicknameParametro.isEmpty()) {
             try {
                 UsuarioBean usuario = logica.obtenerDatosUsuario(nicknameParametro);
@@ -82,7 +81,7 @@ public class ConsultarUsuario extends HttpServlet {
                 Set<UsuarioBean> seguidosUser = new HashSet<>();
                 for(String elemento : seguidos) {
                 	UsuarioBean seg = logica.obtenerDatosUsuario(elemento);
-                	seguidoresUser.add(seg);
+                	seguidosUser.add(seg);
                 }
                 
                 request.setAttribute("consultaSuPerfil", consultaSuPerfil);
@@ -129,7 +128,7 @@ public class ConsultarUsuario extends HttpServlet {
     }
 
 
-	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
+	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {
 		Set<String> nombreOfertasConPostulacion = logica.listarPostulacionesDePostulante(nicknameParametro);
 		Set<PostulacionBean> postulaciones = new HashSet<PostulacionBean>();
 		

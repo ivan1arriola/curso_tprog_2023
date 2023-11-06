@@ -92,14 +92,12 @@ public class ConsultarPostulantes extends HttpServlet {
 
 
             for (String nicknamePostulante : ordenPostulantes){
-                servidor.establecerPosicion(nombreOferta, nicknameEmpresa, nicknamePostulante, posicion);
+                //servidor.establecerPosicion(nombreOferta, nicknameEmpresa, nicknamePostulante, posicion);
                 posicion++;
             }
 
 
         } catch (OfertaLaboralNoEncontrada_Exception e) {
-            throw new RuntimeException(e);
-        } catch (ExceptionUsuarioNoEncontrado_Exception e) {
             throw new RuntimeException(e);
         }
 
