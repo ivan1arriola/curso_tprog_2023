@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: main.test.OfertasTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.390 s <<< FAILURE! -- in main.test.OfertasTest
-main.test.OfertasTest.cargandoTest -- Time elapsed: 0.067 s <<< ERROR!
+Tests run: 7, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.174 s <<< FAILURE! -- in main.test.OfertasTest
+main.test.OfertasTest.cargandoTest -- Time elapsed: 0.028 s <<< ERROR!
 java.lang.Error: 
 Unresolved compilation problems: 
 	Unhandled exception type ExcepcionKeywordVacia
@@ -14,7 +14,7 @@ Unresolved compilation problems:
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-main.test.OfertasTest.altaPostulanteDesc -- Time elapsed: 0.016 s <<< ERROR!
+main.test.OfertasTest.altaPostulanteDesc -- Time elapsed: 0.021 s <<< ERROR!
 java.lang.IllegalStateException: EntityManager no configurado.
 	at logica.manejadores.PaqueteHandler.existe(PaqueteHandler.java:51)
 	at logica.controladores.CtrlOferta.altaPaqueteOL(CtrlOferta.java:113)
@@ -23,7 +23,7 @@ java.lang.IllegalStateException: EntityManager no configurado.
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-main.test.OfertasTest.altaPostulanteTest -- Time elapsed: 0.036 s <<< ERROR!
+main.test.OfertasTest.altaPostulanteTest -- Time elapsed: 0.033 s <<< ERROR!
 java.lang.NullPointerException: Cannot read the array length because "src" is null
 	at java.base/java.util.Base64$Encoder.encode(Base64.java:291)
 	at logica.clases.Usuario.setImagen(Usuario.java:105)
@@ -36,7 +36,7 @@ java.lang.NullPointerException: Cannot read the array length because "src" is nu
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-main.test.OfertasTest.keysTest -- Time elapsed: 0.006 s <<< ERROR!
+main.test.OfertasTest.keysTest -- Time elapsed: 0.002 s <<< ERROR!
 java.lang.Error: 
 Unresolved compilation problems: 
 	Unhandled exception type ExcepcionKeywordVacia
@@ -47,7 +47,7 @@ Unresolved compilation problems:
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-main.test.OfertasTest.altaPostulanteValido -- Time elapsed: 0.031 s <<< ERROR!
+main.test.OfertasTest.altaPostulanteValido -- Time elapsed: 0.006 s <<< ERROR!
 java.lang.NullPointerException: Cannot read the array length because "src" is null
 	at java.base/java.util.Base64$Encoder.encode(Base64.java:291)
 	at logica.clases.Usuario.setImagen(Usuario.java:105)
@@ -60,7 +60,7 @@ java.lang.NullPointerException: Cannot read the array length because "src" is nu
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-main.test.OfertasTest.compraPaqTest -- Time elapsed: 0.009 s <<< ERROR!
+main.test.OfertasTest.compraPaqTest -- Time elapsed: 0.002 s <<< ERROR!
 java.lang.Error: 
 Unresolved compilation problem: 
 	Unhandled exception type ExceptionValidezNegativa

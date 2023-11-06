@@ -192,7 +192,7 @@ public class Principal {
 
         // Se crea el Frame con las dimensiones indicadas.
         frmGestionDeUsuarios = new JFrame();
-        frmGestionDeUsuarios.setTitle("trabajo.uy");
+        frmGestionDeUsuarios.setTitle("Estacion de Trabajo");
         frmGestionDeUsuarios.setBounds(80, 80, 811, 860);
         frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

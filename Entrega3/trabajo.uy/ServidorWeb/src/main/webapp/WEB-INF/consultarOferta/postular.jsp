@@ -13,11 +13,11 @@
 <% if (mostrarPostular) { %>
     <div class="m-auto mt-5">
         <a href="<%= request.getContextPath() %>/crearpostulacion?id=<%= ofertaLaboral.getNombre() %>"
-            class="btn btn-primary btn-lg px-4 py-1" role="button">Postular a esta oferta</a>
+            class="btn btn-primary btn-lg px-4 py-1 mb-3" role="button">Postular a esta oferta</a>
     </div>
 <% } else if (TipoUsuario.Postulante == tipoUsuario) { %>
     <div class="m-auto mt-5">
         <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= ofertaLaboral.getNombre() %>"
-            class="btn btn-primary btn-lg px-4 py-1" role="button">Ver postulación</a>
+            class="btn btn-primary btn-lg px-4 py-1 mb-3" role="button">Ver postulación</a>
     </div>
 <% } %>

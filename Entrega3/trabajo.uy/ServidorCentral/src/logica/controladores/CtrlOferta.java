@@ -222,6 +222,7 @@ public class CtrlOferta implements ICtrlOferta {
             Postulacion postulacion = CtrllUser.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocE, oferLab, video);
             try {
                 oferLab.registrarPostulacion(postulacion);
+                OLH.actualizar(oferLab); // actualizar oferta laboral
             } catch (ExceptionFechaInvalida e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

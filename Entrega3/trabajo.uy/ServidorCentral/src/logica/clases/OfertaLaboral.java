@@ -10,10 +10,7 @@ import logica.enumerados.EstadoOL;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -32,10 +29,13 @@ public class OfertaLaboral {
     private DepUY departamento;
     private String ciudad;
     private EstadoOL estado;
-    private byte[] imagen;
-    
+
     private Integer cantFavs;
-    // relaciones
+    
+    @Lob
+    private String imagen;
+
+
 
     @ManyToOne (cascade = CascadeType.PERSIST)
     private TipoOferta tOferta;
@@ -46,8 +46,6 @@ public class OfertaLaboral {
     private Paquete paqueteAsoc;
     @OneToMany(mappedBy = "oferLab", cascade = CascadeType.PERSIST)
     private List<Postulacion> postulaciones;
-
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "empresa_id")
     private Empresa empresaPublicadora;
@@ -89,8 +87,10 @@ public class OfertaLaboral {
 
         this.tOferta = atrtOferta;
         this.estado = estadoNuevo;
-        this.imagen = imagennueva;
         this.cantFavs = 0;
+        this.setImagen(imagennueva);
+
+
 
 
         try {
@@ -211,8 +211,13 @@ public class OfertaLaboral {
 
         this.tOferta = atrtOferta;
         this.estado = estadoNuevo;
-        this.imagen = imagennueva;
+
+        
         this.cantFavs = 0;
+
+        this.setImagen(imagennueva);
+
+
 
         this.paqueteAsoc = paq;
 
@@ -522,11 +527,15 @@ public class OfertaLaboral {
     }
 
     public byte[] getImagen() {
-        return imagen;
+        byte[] base64DecodedBytes = Base64.getDecoder().decode(imagen);
+        return base64DecodedBytes;
     }
 
-    public void setImagen(byte[] imagenNueva) {
-        imagen = imagenNueva;
+    public void setImagen(byte[] imagen) {
+        byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
+        // Convert the byte array to a Base64 string
+
+        this.imagen = new String(base64EncodedBytes);
     }
 
     public Paquete getPaquete() {
@@ -629,15 +638,15 @@ public class OfertaLaboral {
 
     public DTOfertaExtendidoConKeywordsTit infoOfertaLaboralPropietario() {
         List<Keyword> keys = getKeywords();
-        Set<String> nuevo = new HashSet<>();
-        for (Keyword item : keys) {
-            nuevo.add(item.getNombre());
+        Set<String> nicknamesPostulantes = new TreeSet<>();
+        for (Postulacion item : postulaciones) {
+            nicknamesPostulantes.add(item.obtenerNicknamePostulante());
         }
         DTOfertaExtendidoConKeywordsTit dtoe;
         if (getPaquete() != null) {
-            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo, getPaquete().getDTPaquete(), nuevo);
+            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, getPaquete().getDTPaquete(), nicknamesPostulantes);
         } else {
-            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo, null, nuevo);
+            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, null, nicknamesPostulantes);
         }
         return dtoe;
     }

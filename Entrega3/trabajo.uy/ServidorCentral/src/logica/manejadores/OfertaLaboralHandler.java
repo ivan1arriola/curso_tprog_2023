@@ -93,6 +93,24 @@ public class OfertaLaboralHandler {
         return null; // Devuelve null si no se encontró ninguna oferta laboral con ese nombre.
     }
 
+    public void actualizar(OfertaLaboral ofertaActualizada) {
+        EntityTransaction transaction = database.getTransaction();
+
+        try {
+            if (!database.getTransaction().isActive()) {
+                database.getTransaction().begin();
+            }
+
+            database.merge(ofertaActualizada);
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 
     public static void setBaseDatos(EntityManager em) {
         database = em;

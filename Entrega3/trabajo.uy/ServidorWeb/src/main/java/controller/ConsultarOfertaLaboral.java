@@ -8,10 +8,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
+import javabeans.PaqueteBean;
+import javabeans.UsuarioBean;
+import trabajoUy.logica.clases.Paquete;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 @WebServlet("/consultarofertalaboral")
 public class ConsultarOfertaLaboral extends HttpServlet {
@@ -36,6 +41,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             String nickname = (String) session.getAttribute("nickname");
             TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
 
+
+
             try {
                 if (nickname == null) nickname = "";
                 if (tipoUsuario == null) {
@@ -44,8 +51,15 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
 
-                if (tipoUsuario == TipoUsuario.Empresa) {
-                    ofertaBean = cargarDatosEmpresa(ofertaBean, nombreOferta, nickname);
+                boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);
+                request.setAttribute("duenio", esCreadorOferta);
+
+                if (tipoUsuario == TipoUsuario.Empresa && esCreadorOferta) {
+                    PaqueteBean paquete = logica.obtenerPaqueteDeOferta(nombreOferta, nickname);
+                    List<UsuarioBean> postulantes = logica.obtenerPostulantesDeOferta(nombreOferta, nickname);
+
+                    request.setAttribute("paquete", paquete);
+                    request.setAttribute("postulantes", postulantes);
                 }
 
                 if (tipoUsuario == TipoUsuario.Postulante) {
@@ -59,6 +73,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 request.setAttribute("mensajeError", mensajeError);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
                 dispatcher.forward(request, response);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         } else {
             String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: No se proporcionó el nombre";
@@ -70,12 +86,13 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
     private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname) {
         try {
-            ofertaBean = logica.cargarPaquete(ofertaBean, empresaNickname);
+            //ofertaBean = logica.cargarPaquete(ofertaBean, empresaNickname);
+            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
+            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
         } catch (Exception e) {
             e.printStackTrace();
         }
