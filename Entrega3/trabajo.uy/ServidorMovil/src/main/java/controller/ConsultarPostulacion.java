@@ -44,6 +44,8 @@ public class ConsultarPostulacion extends HttpServlet {
 	        dtpost = servidor.obtenerDatosPostulacionW(nicknameUsuarioLogueado, nombreOferta);
 			request.setAttribute("infopostulacion", dtpost);
 			request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacion.jsp").forward(request, response);
+			
+			//request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacioninexistente.jsp").forward(request, response);
 		} catch (ExceptionUsuarioNoEncontrado_Exception exc) {
 			throw new RuntimeException(exc);
 		}
