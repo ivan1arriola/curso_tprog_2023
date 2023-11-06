@@ -115,3 +115,13 @@ img.perfil {
   background-color: #0056b3; /* Cambia el color de fondo cuando el cursor pasa sobre el botón */
   border: 1px solid #0056b3;
 }
+
+
+.heart-icon {
+  font-size: 3em; /* Cambiar el tamaño del corazón */
+  color: grey; /* Color de contorno inicial del corazón */
+}
+
+.heart-icon.text-danger {
+  color: red; /* Cambiar a color rojo al hacer clic */
+}

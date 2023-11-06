@@ -1,6 +1,7 @@
 package javabeans;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import enumeration.TipoUsuario;
@@ -46,6 +47,8 @@ public class UsuarioBean implements Comparable<UsuarioBean> {
         this.error = null;
         this.seguidos = null;
         this.seguidores = null;
+
+		this.oferFavs = new HashSet<>();
     }
     
 	public String getNickname() {

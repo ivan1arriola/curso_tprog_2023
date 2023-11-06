@@ -27,17 +27,6 @@
             background-image: url(<%= imagen %>);
         }
     </style>
-
-	<style>
-		.heart-icon {
-		  font-size: 3em; /* Cambiar el tamaño del corazón */
-		  color: grey; /* Color de contorno inicial del corazón */
-		}
-		
-		.heart-icon.text-danger {
-		  color: red; /* Cambiar a color rojo al hacer clic */
-		}
-	  </style>
     
 </head>
 
@@ -50,10 +39,10 @@
     <div class="container col-3">
         <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
     </div>
-	<form action="consultarofertalaboral" method="post">
+
     <div class="container col-9">
         <div class="container">
-			<input type="hidden" name="nombreOferta" style="display: none;" placeholder="nombreOferta" value="<%= ofertaLaboral.getNombre() %>">
+
             <div class="row banner-container banner-dark">
                 <h1 class="text-center text-light fw-bolder"><%= ofertaLaboral.getNombre() %></h1>
             </div>
@@ -69,6 +58,8 @@
 
 
                 <div class="col-4 mt-2 container text-center" id="acciones">
+                    <form action="consultarofertalaboral" method="post">
+                        <input type="hidden" name="nombreOferta" value="<%= ofertaLaboral.getNombre() %>">
 		            <% if (TipoUsuario.Postulante == tipoUsuario && !estaFav) { %>
 			            <h4> Marcar favorito</h4>
 						<button id="corazonDesm"  name="corazonDesm" type="submit" class="btn btn-light" aria-label="Like">
@@ -80,6 +71,7 @@
 						  <span class="heart-icon.text-danger" aria-hidden="true">&#10084;</span>
 						</button>
 					<%}%>
+                    </form>
 
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
@@ -94,7 +86,7 @@
             </div>
         </div>
     </div>
-    </form>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjvP/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
