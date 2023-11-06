@@ -12,6 +12,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
@@ -19,6 +20,8 @@ import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionValidezNegativa;
+import excepciones.NoExistePaquete;
 import excepciones.OfertaLaboralNoEncontrada;
 import excepciones.TipoUsuarioNoValido;
 import jakarta.persistence.EntityManager;
@@ -72,7 +75,7 @@ public class TestGeneral6 {
 		  float remuneracion11 = 1000;
 		  String ciudad111 = "Montevideo";
 		  DepUY dep111 = DepUY.Montevideo;
-		  LocalDate fechaA1 = LocalDate.of(2020, 12, 12);
+		  LocalDate fechaA1 = LocalDate.now();
 
 	      List<String> pruebaKeyword11 = new ArrayList<>(Arrays.asList(
 	              "Trabajo nocturno",
@@ -81,18 +84,20 @@ public class TestGeneral6 {
 	              "part time"
 	      ));
 	
-	      EstadoOL estado111 = EstadoOL.Ingresada;
+	      EstadoOL estado111 = EstadoOL.Confirmada; // si no esta confirmada, explota las cosas
 	      String img111 = "url";
-	      String paquete1 = "Paquete 1";
+	      String paquete1 = null;
 	      // public boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida{
-		  try {
-			ICU.altaOfertaLaboral(nickname, "Oferta normal", nombre11, descripcion11, horario111, remuneracion11, ciudad111, dep111, fechaA1, pruebaKeyword11, estado111, img111.getBytes(), paquete1);
-		} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | ExceptionRemuneracionOfertaLaboralNegativa
-				| ExceptionPaqueteNoVigente | ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
-				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				ICU.altaOfertaLaboral(nickname, "Oferta normal", nombre11, descripcion11, horario111, remuneracion11, ciudad111, dep111, fechaA1, pruebaKeyword11, estado111, img111.getBytes(), paquete1);
+			} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida
+					| ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
+					| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
+					| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa | NoExistePaquete e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 //			Set<String> nuevo = 
       ICU.listarPostulantesDeOfertas(nickname, nombre11);
 //			Set<String> holaaaa = 
@@ -172,85 +177,94 @@ public class TestGeneral6 {
           // TODO Auto-generated catch block
           e.printStackTrace();
       }
-//
-////			Set<String> nuevamente = 
-//      ICO.listarOfertasLaboralesKeywords("Trabajo nocturno");
-//      // esto es para crear una postulacion de verdad
-//      String nick113 = "LeonardoVinchi";
-//      try {
-//			ICO.altaPostulacion("analista", nick113, "CV", "descripccion interesante", "wwww.Linkedin.com/usuario", LocalDate.of(2020, 12, 12), "link video");
-//		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-////			nuevamente =  
-//      ICO.listarPaquetes();
-//
-////			nuevamente = 
-//      ICO.listarTipoDePublicaciones();
-//
-////			Set<DTOfertaExtendido> nuevoOfertaEX = 
-//      ICO.listarOfertasLaboralesConfirmadas();
-//
-//      ICO.paqueteComprado("Paquete 1");
-//
-////			DTOfertaExtendidoSinPConK nuevaExsinpconk = 
-//      try {
-//			ICO.infoOfertaLaboralEmpresa("Google", "analista");
-//		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//      String img33 = "url";
-//      try {
-//			ICO.altaPaqueteOL("Paquete 2", "un paquete bueno", 1, LocalDate.now(), 10.0f, img33.getBytes());
-//		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//      // los paquetes empiezan vacios,    se les va agregando tipos de oferta
-//
-//      try {
-//			ICO.agregarTipoOfertaPaq("Paquete 2", "Oferta normal", 20);
-//		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//      try {
-//			ICO.agregarTipoOfertaPaq("Paquete 2", "Oferta destacada", 12);
-//		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//      try {
-//			ICO.listarOfertasLaboralesIngresadas("Google");
-//		} catch (ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//      ICO.listarEmpresas();
-//      ICO.listarPostulantes();
-////			
-//
-////			DTOfertaExtendido EXTRA = 
-//      try {
-//			ICO.obtenerOfertaLaboral("analista");
-//		} catch (OfertaLaboralNoEncontrada e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-////			DTOfertaExtendidoSinPConK extremo = 
-//      try {
-//			ICO.infoOfertaLaboralPostulante("Arnold", "analista");
-//		} catch (OfertaLaboralNoEncontrada e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
+//			Set<String> nuevamente = 
+      ICO.listarOfertasLaboralesKeywords("Trabajo nocturno");
+      // esto es para crear una postulacion de verdad
+      String nick113 = "LeonardoVinchi";
+      try {
+			ICO.altaPostulacion("analista", nick113, "CV", "descripccion interesante", "wwww.Linkedin.com/usuario", LocalDate.now(), "link video");
+		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+//			nuevamente =  
+      ICO.listarPaquetes();
+
+//			nuevamente = 
+      ICO.listarTipoDePublicaciones();
+
+//			Set<DTOfertaExtendido> nuevoOfertaEX = 
+      ICO.listarOfertasLaboralesConfirmadas();
+
+      try {
+		ICO.paqueteComprado("Paquete 1");
+	} catch (NoExistePaquete e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+//			DTOfertaExtendidoSinPConK nuevaExsinpconk = 
+      try {
+			ICO.infoOfertaLaboralEmpresa("Google", "analista");
+		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+      String img33 = "url";
+      try {
+		ICO.altaPaqueteOL("Paquete 2", "un paquete bueno", 1, LocalDate.now(), 10.0f, img33.getBytes());
+	} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+
+      // los paquetes empiezan vacios,    se les va agregando tipos de oferta
+
+      try {
+		ICO.agregarTipoOfertaPaq("Paquete 2", "Oferta normal", 20);
+	} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+      
+	  try {
+		ICO.agregarTipoOfertaPaq("Paquete 2", "Oferta destacada", 12);
+	} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+
+      try {
+			ICO.listarOfertasLaboralesIngresadas("Google");
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+      ICO.listarEmpresas();
+      ICO.listarPostulantes();
+//			
+
+//			DTOfertaExtendido EXTRA = 
+      try {
+			ICO.obtenerOfertaLaboral("analista");
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+//			DTOfertaExtendidoSinPConK extremo = 
+      try {
+			ICO.infoOfertaLaboralPostulante("Arnold", "analista");
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();

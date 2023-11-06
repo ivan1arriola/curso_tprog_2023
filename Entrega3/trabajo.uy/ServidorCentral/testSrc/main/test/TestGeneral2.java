@@ -7,7 +7,9 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
 import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
@@ -60,18 +62,13 @@ public class TestGeneral2 {
         String nacionalidad = "Austriaco";
 
         try {
-            //boolean bandera =
-            ICU.altaPostulante(nickname, password, nombre, apellido, correo, fechaNacimiento, nacionalidad);
-        } catch (ExceptionUsuarioNickYCorreoRepetidos e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ExceptionUsuarioNickRepetido e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ExceptionUsuarioCorreoRepetido e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+			ICU.altaPostulante(nickname, password, nombre, apellido, correo, fechaNacimiento, nacionalidad);
+		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido
+				| ErrorAgregarUsuario | ExceptionFechaInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         
      // Obtaining user data with a nickname (testing DTUsuario)
         DTUsuario usu1 = null;
