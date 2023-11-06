@@ -30,6 +30,10 @@ public class ValidarEmail extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
 
+        response.setHeader("Access-Control-Allow-Origin", "*"); // Permite todas las solicitudes desde cualquier origen (no recomendado para producción).
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
         // Aquí debes agregar la lógica para verificar si el correo electrónico ya está registrado
         boolean emailDisponible = logica.emailDisponible(email);
 
