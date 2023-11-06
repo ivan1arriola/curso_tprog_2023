@@ -7,6 +7,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -445,6 +446,18 @@ public class Empresa extends Usuario {
             }
         }
 
+    }
+
+    public List<String> DevolverOrden(String nombre_oferta) {
+    	Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
+        OfertaLaboral auxiliar = null;
+        for (OfertaLaboral OLe : OFEmpresa) {
+            if (nombre_oferta.equals(OLe.getNombre())) {
+                auxiliar = OLe;
+                break;
+            }
+        }
+		return auxiliar.DevolverPosiciones();
     }
 
 }

@@ -104,6 +104,8 @@ public interface ICtrlOferta {
 	void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nickPostulante)
             throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada;
 
+	List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
+
 	
 
 }
