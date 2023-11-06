@@ -733,7 +733,7 @@ public class OfertaLaboral {
         if ( postulacionActual.getClasificacion() == 0) {
         	Boolean respuesta = false;
         }
-        return false;
+        return true;
     }
     
     

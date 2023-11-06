@@ -3,6 +3,7 @@ package main.test;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -13,7 +14,10 @@ import java.util.Set;
 import org.junit.Test;
 
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExcepcionTipoOfertaNoExistente;
+import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionValidezNegativa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -21,7 +25,9 @@ import logica.Fabrica;
 import logica.clases.Keyword;
 import logica.clases.Postulante;
 import logica.controladores.CtrlCargaDeDatos;
+import logica.datatypes.DTEmpresa;
 import logica.datatypes.DTPostulante;
+import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
@@ -172,6 +178,104 @@ public class TestGeneral4 {
 			        DTverdaderopostulante12.getFechaNac(),
 			        DTverdaderopostulante12.getNacionalidad());
 		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        	
+
+        DTUsuario empresa1 = null;
+		try {
+			empresa1 = ICU.obtenerDatosUsuario("Kreves");
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        DTEmpresa DTverdaderaempresa1 = (DTEmpresa) empresa1; // Casting;
+        try {
+			ICU.ingresarDatosEditadosEmpresa(DTverdaderaempresa1.getNickname(),
+			        DTverdaderaempresa1.getNombre(),
+			        DTverdaderaempresa1.getApellido(),
+			        DTverdaderaempresa1.getcorreoElectronico(),
+			        DTverdaderaempresa1.getcontrasenia(),
+			        DTverdaderaempresa1.getDescripcion());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        try {
+			ICU.ingresarDatosEditadosEmpresaImg(DTverdaderaempresa1.getNickname(),
+			        DTverdaderaempresa1.getNombre(),
+			        DTverdaderaempresa1.getApellido(),
+			        DTverdaderaempresa1.getcorreoElectronico(),
+			        DTverdaderaempresa1.getcontrasenia(),
+			        img23.getBytes(),
+			        DTverdaderaempresa1.getDescripcion());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        try {
+			ICU.ingresarDatosEditadosEmpresaURLImg(DTverdaderaempresa1.getNickname(),
+			        DTverdaderaempresa1.getNombre(),
+			        DTverdaderaempresa1.getApellido(),
+			        DTverdaderaempresa1.getcorreoElectronico(),
+			        DTverdaderaempresa1.getcontrasenia(),
+			        DTverdaderaempresa1.getUrl(),
+			        img23.getBytes(),
+			        DTverdaderaempresa1.getDescripcion());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        try {
+			ICU.ingresarDatosEditadosEmpresaURL(DTverdaderaempresa1.getNickname(),
+			        DTverdaderaempresa1.getNombre(),
+			        DTverdaderaempresa1.getApellido(),
+			        DTverdaderaempresa1.getcorreoElectronico(),
+			        DTverdaderaempresa1.getcontrasenia(),
+			        DTverdaderaempresa1.getUrl(),
+			        DTverdaderaempresa1.getDescripcion());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        // si no tiene url no lo toma,   en este caso google tiene url
+        try {
+			if (!ICU.tieneURL("Google")) {
+			    assertFalse("The test for user in system failed", true);
+			}
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        
+        // ------------------------- tipo oferta ---------------------------
+		//			boolean booleano;
+		String img233 = "url";
+        ICO.altaTipoPublicacionOL("Oferta normal", "visibilidad normal", 1, 19, 100.0f, LocalDate.now());
+        DTTipoOferta tipoOfertaDT = null;
+        try {
+            tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
+        } catch (ExcepcionTipoOfertaNoExistente e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        tipoOfertaDT.getNombre();
+        tipoOfertaDT.getFechaAlta();
+        tipoOfertaDT.getCosto();
+        tipoOfertaDT.getDuracion();
+        tipoOfertaDT.getExposicion();
+        tipoOfertaDT.getDescripcion();
+//			booleano = 
+        ICO.altaTipoPublicacionOL("Oferta destacada", "visibilidad destacada", 1, 19, 100.0f, LocalDate.now());
+        ICO.altaTipoPublicacionOL("Oferta super destacada", "visibilidad super destacada", 1, 19, 100.0f, LocalDate.now());
+        try {
+			ICO.altaPaqueteOL("Paquete 1", "un paquete basico", 1, LocalDate.now(), 10.0f, img233.getBytes());
+		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
