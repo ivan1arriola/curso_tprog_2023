@@ -40,22 +40,37 @@ public class DTOfertaExtendidoSinPConK {
 
     }
 
-    public DTOfertaExtendidoSinPConK(String nicknameEmpresa, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estado, byte[] img, Set<String> keys, Integer cantF) {
-        // no es subclase de DTOfertaExtendido,  es una version sin postulaciones
-        nombre = nomb;
-        descripcion = desc;
-        fechaAlta = fechaA;
-        costo = cost;
-        remuneracion = remu;
-        this.horario = horario;
-        departamento = dep;
-        ciudad = ciu;
-        imagen = img;
-        this.estado = estado;
-        keywords = new ArrayList<>(keys);
-        nicknameEmpresaPublicadora = nicknameEmpresa;
-        setCantFavs(cantF);
-    }
+    public DTOfertaExtendidoSinPConK(
+    	    String nicknameEmpresa,
+    	    String nomb,
+    	    String desc,
+    	    LocalDate fechaA,
+    	    float cost,
+    	    float remu,
+    	    DTHorario horario,
+    	    DepUY dep,
+    	    String ciu,
+    	    EstadoOL estado,
+    	    byte[] img,
+    	    Set<String> keys,
+    	    Integer cantF
+    	) {
+    	    // No es subclase de DTOfertaExtendido, es una versión sin postulaciones
+    	    nombre = nomb;
+    	    descripcion = desc;
+    	    fechaAlta = fechaA;
+    	    costo = cost;
+    	    remuneracion = remu;
+    	    this.horario = horario;
+    	    departamento = dep;
+    	    ciudad = ciu;
+    	    imagen = img;
+    	    this.estado = estado;
+    	    keywords = new ArrayList<>(keys);
+    	    nicknameEmpresaPublicadora = nicknameEmpresa;
+    	    setCantFavs(cantF);
+    	}
+
 
     public String getNombre() {
         return nombre;

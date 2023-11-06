@@ -29,21 +29,36 @@ public class DTOfertaExtendidoConKeywords {
     private Set<String> keywords;
     private Integer cantFavs;
 
-    public DTOfertaExtendidoConKeywords(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, Set<String> keys, Integer cantF) {
-        nombre = nomb;
-        descripcion = desc;
-        fechaDeAlta = fechaA;
-        costo = cost;
-        remuneracion = remu;
-        this.horario = horario;
-        departamento = dep;
-        ciudad = ciu;
-        estado = est;
-        postulaciones = post;
-        imagen = img;
-        keywords = keys;
-        setCantFavs(cantF);
-    }
+    public DTOfertaExtendidoConKeywords(
+    	    String nomb,
+    	    String desc,
+    	    LocalDate fechaA,
+    	    float cost,
+    	    float remu,
+    	    DTHorario horario,
+    	    DepUY dep,
+    	    String ciu,
+    	    EstadoOL est,
+    	    Set<DTPostulacion> post,
+    	    byte[] img,
+    	    Set<String> keys,
+    	    Integer cantF
+    	) {
+    	    nombre = nomb;
+    	    descripcion = desc;
+    	    fechaDeAlta = fechaA;
+    	    costo = cost;
+    	    remuneracion = remu;
+    	    this.horario = horario;
+    	    departamento = dep;
+    	    ciudad = ciu;
+    	    estado = est;
+    	    postulaciones = post;
+    	    imagen = img;
+    	    keywords = keys;
+    	    setCantFavs(cantF);
+    	}
+
 
     public String getNombre() {
         return nombre;

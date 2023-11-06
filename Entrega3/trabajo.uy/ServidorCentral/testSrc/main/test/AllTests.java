@@ -8,7 +8,9 @@ import org.junit.platform.suite.api.Suite;
 		TestGeneral1.class,
 		TestGeneral2.class,
 		TestGeneral3.class,
-		TestGeneral4.class
+		TestGeneral4.class,
+		TestGeneral5.class,
+		TestGeneral6.class
 //		ControladorUsuarioTest.class,
 //		ControladorUsuarioTest2.class,
 //		ControladorUsuarioTest3.class,
