@@ -30,6 +30,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         <element name="paq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nicknameEmpresaPublicadora" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="cantFavs" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -52,7 +53,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "postulaciones",
     "imagen",
     "paq",
-    "nicknameEmpresaPublicadora"
+    "nicknameEmpresaPublicadora",
+    "cantFavs"
 })
 public class DtOfertaExtendido {
 
@@ -366,13 +368,29 @@ public class DtOfertaExtendido {
     public void setNicknameEmpresaPublicadora(String value) {
         this.nicknameEmpresaPublicadora = value;
     }
-    
-	public Integer getCantFavs() {
-		return cantFavs;
-	}
 
-	public void setCantFavs(Integer cantFavs) {
-		this.cantFavs = cantFavs;
-	}
+    /**
+     * Obtiene el valor de la propiedad cantFavs.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getCantFavs() {
+        return cantFavs;
+    }
+
+    /**
+     * Define el valor de la propiedad cantFavs.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setCantFavs(Integer value) {
+        this.cantFavs = value;
+    }
 
 }
