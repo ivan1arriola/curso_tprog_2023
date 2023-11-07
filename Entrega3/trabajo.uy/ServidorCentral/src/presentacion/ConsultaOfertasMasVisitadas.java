@@ -49,7 +49,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Paquete de Tipos de Publicación de Ofertas Laborales");
-        setBounds(30, 30, 704, 373);
+        setBounds(30, 30, 729, 287);
         getContentPane().setLayout(null);
 
         //////////////////// BOTON CERRAR //////////////
@@ -59,7 +59,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(543, 307, 117, 25);
+        btnCerrar.setBounds(586, 209, 117, 25);
         getContentPane().add(btnCerrar);
         //////////////////////////////////////////////
 
@@ -71,48 +71,52 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 
         table = new JTable(tableModel);
         
-        table.setBounds(27, 121, 632, 175);
+        table.setBounds(27, 101, 676, 97);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
         JLabel labelTitulo = new JLabel("Ofertas Laborales mas visitadas en el sitio");
         labelTitulo.setFont(new Font("Dialog", Font.BOLD, 16));
-        labelTitulo.setBounds(174, 23, 576, 15);
+        labelTitulo.setBounds(205, 21, 576, 15);
         getContentPane().add(labelTitulo);
         
         JLabel lblNewLabel = new JLabel("Seleccione el tipo de oferta: ");
+        lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         lblNewLabel.setBounds(27, 69, 235, 14);
         getContentPane().add(lblNewLabel);
         
         JRadioButton btnVigentes = new JRadioButton("Vigentes");
+        btnVigentes.setFont(new Font("Arial", Font.PLAIN, 14));
         btnVigentes.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String op = "C";
                 actualizarTabla(op);
         	}
         });
-        btnVigentes.setBounds(205, 65, 82, 23);
+        btnVigentes.setBounds(234, 65, 82, 23);
         getContentPane().add(btnVigentes);
         
         JRadioButton btnFinalizadas = new JRadioButton("Vencidas");
+        btnFinalizadas.setFont(new Font("Arial", Font.PLAIN, 14));
         btnFinalizadas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String op = "F";
                 actualizarTabla(op);
         	}
         });
-        btnFinalizadas.setBounds(284, 65, 82, 23);
+        btnFinalizadas.setBounds(328, 65, 94, 23);
         getContentPane().add(btnFinalizadas);
         
         JRadioButton btnTodas = new JRadioButton("Todas");
+        btnTodas.setFont(new Font("Arial", Font.PLAIN, 14));
         btnTodas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String op = "F";
                 actualizarTabla(op);
         	}
         });
-        btnTodas.setBounds(370, 65, 82, 23);
+        btnTodas.setBounds(424, 65, 82, 23);
         getContentPane().add(btnTodas);
 
 
@@ -129,6 +133,13 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 
     
     public void actualizarTabla(String op) {
+    	
+    	// Define un tamaño de fuente para la tabla
+    	Font customFont = new Font("Arial", Font.PLAIN, 14);  // Puedes ajustar el tamaño y la fuente según tus preferencias
+
+    	// Asigna la fuente personalizada a la tabla
+    	table.setFont(customFont);
+    	
         // Elimina todas las filas existentes en el modelo de la tabla
         tableModel.setRowCount(0);
         
@@ -166,10 +177,11 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	     Font boldFont = new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize());
 	        	
 	     // AJUSTAR EL ANCHO DE LAS COLUMNAS 
-	     table.getColumnModel().getColumn(0).setPreferredWidth(15); // Ancho de la columna del índice 
+	     table.getColumnModel().getColumn(0).setPreferredWidth(10); // Ancho de la columna del índice 
 	     table.getColumnModel().getColumn(1).setPreferredWidth(170); // Ancho de la columna del nombre de la oferta
-	     table.getColumnModel().getColumn(2).setPreferredWidth(80);
-	     table.getColumnModel().getColumn(3).setPreferredWidth(100);
+	     table.getColumnModel().getColumn(2).setPreferredWidth(110);
+	     table.getColumnModel().getColumn(3).setPreferredWidth(120);
+	     table.getColumnModel().getColumn(4).setPreferredWidth(120);
 	        
 	        
 	     // CENTRAR COLUMNAS
