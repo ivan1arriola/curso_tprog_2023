@@ -69,27 +69,27 @@ public class TestGeneral6 {
 		  String nickname = "Google";
 		  String nombre11 = "analista";
 		  String descripcion11 = "Analista de sistemas";
-		  DTHora hora1111 = new DTHora(8, 0);
-		  DTHora hora21 = new DTHora(1, 0);
-		  DTHorario horario111 = new DTHorario(hora1111, hora21);
+		  DTHora hora1111 = new DTHora(8,  0);
+		  DTHora hora21 = new DTHora(1,  0);
+		  DTHorario horario111 = new DTHorario(hora1111,  hora21);
 		  float remuneracion11 = 1000;
 		  String ciudad111 = "Montevideo";
 		  DepUY dep111 = DepUY.Montevideo;
 		  LocalDate fechaA1 = LocalDate.now();
 
 	      List<String> pruebaKeyword11 = new ArrayList<>(Arrays.asList(
-	              "Trabajo nocturno",
-	              "horario vespertino",
-	              "full time",
+	              "Trabajo nocturno", 
+	              "horario vespertino", 
+	              "full time", 
 	              "part time"
 	      ));
 	
-	      EstadoOL estado111 = EstadoOL.Confirmada; // si no esta confirmada, explota las cosas
+	      EstadoOL estado111 = EstadoOL.Confirmada; // si no esta confirmada,  explota las cosas
 	      String img111 = "url";
 	      String paquete1 = null;
-	      // public boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida{
+	      // public boolean altaOfertaLaboral(String nickname_e,   String tipo,   String nombre,   String descripcion,   DTHorario horario,   float remun,   String ciu,   DepUY dep,   LocalDate FechaA,   List<String> keys,   EstadoOL estado,   byte[] img,   String paquete) throws ExceptionUsuarioNoEncontrado,   ExceptionEmpresaInvalida{
 			try {
-				ICU.altaOfertaLaboral(nickname, "Oferta normal", nombre11, descripcion11, horario111, remuneracion11, ciudad111, dep111, fechaA1, pruebaKeyword11, estado111, img111.getBytes(), paquete1);
+				ICU.altaOfertaLaboral(nickname,  "Oferta normal",  nombre11,  descripcion11,  horario111,  remuneracion11,  ciudad111,  dep111,  fechaA1,  pruebaKeyword11,  estado111,  img111.getBytes(),  paquete1);
 			} catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida
 					| ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
 					| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
@@ -99,7 +99,7 @@ public class TestGeneral6 {
 			}
 		
 //			Set<String> nuevo = 
-      ICU.listarPostulantesDeOfertas(nickname, nombre11);
+      ICU.listarPostulantesDeOfertas(nickname,  nombre11);
 //			Set<String> holaaaa = 
       try {
 			ICU.listarKeywords("analista");
@@ -110,14 +110,14 @@ public class TestGeneral6 {
 
 //			DTUsuario gogogo = 
       try {
-			ICU.obtenerDatosUsuarioEspecial("Google", "Google");
+			ICU.obtenerDatosUsuarioEspecial("Google",  "Google");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 //			gogogo = 
       try {
-			ICU.obtenerDatosUsuarioEspecial("Google", "Kreves");
+			ICU.obtenerDatosUsuarioEspecial("Google",  "Kreves");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,7 +125,7 @@ public class TestGeneral6 {
 
 //			boolean sefs = 
       try {
-			ICU.existePostulacion("ASwatzenegger", "analista");
+			ICU.existePostulacion("ASwatzenegger",  "analista");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,30 +137,30 @@ public class TestGeneral6 {
       LocalDate fecha1 =  LocalDate.now();
       String URLDocExtras11 = "www.google.com";
       OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-      Map<String, OfertaLaboral> mapa = OLH.obtener();
+      Map<String,  OfertaLaboral> mapa = OLH.obtener();
       OfertaLaboral oferta = mapa.get("analista");
 //			Postulacion nueva = 
       try {
-			ICU.crearPostulacion(nick, curriculumVitae, motivacion1111111, fecha1, URLDocExtras11, oferta, "link video");
+			ICU.crearPostulacion(nick,  curriculumVitae,  motivacion1111111,  fecha1,  URLDocExtras11,  oferta,  "link video");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
       try {
-			ICU.modificarPostulacion("analista", nick, "CV asad", "quiero DORMIR");
+			ICU.modificarPostulacion("analista",  nick,  "CV asad",  "quiero DORMIR");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICU.obtenerDatosPostulacionW("ASwatzenegger", "analista");
+			ICU.obtenerDatosPostulacionW("ASwatzenegger",  "analista");
 		} catch (ExceptionUsuarioNoEncontrado | TipoUsuarioNoValido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
       try {
-			ICU.hayPostulacionW("ASwatzenegger", "analista");
+			ICU.hayPostulacionW("ASwatzenegger",  "analista");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -183,7 +183,7 @@ public class TestGeneral6 {
       // esto es para crear una postulacion de verdad
       String nick113 = "LeonardoVinchi";
       try {
-			ICO.altaPostulacion("analista", nick113, "CV", "descripccion interesante", "wwww.Linkedin.com/usuario", LocalDate.now(), "link video");
+			ICO.altaPostulacion("analista",  nick113,  "CV",  "descripccion interesante",  "wwww.Linkedin.com/usuario",  LocalDate.now(),  "link video");
 		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -207,7 +207,7 @@ public class TestGeneral6 {
 
 //			DTOfertaExtendidoSinPConK nuevaExsinpconk = 
       try {
-			ICO.infoOfertaLaboralEmpresa("Google", "analista");
+			ICO.infoOfertaLaboralEmpresa("Google",  "analista");
 		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -215,17 +215,17 @@ public class TestGeneral6 {
 
       String img33 = "url";
       try {
-		ICO.altaPaqueteOL("Paquete 2", "un paquete bueno", 1, LocalDate.now(), 10.0f, img33.getBytes());
+		ICO.altaPaqueteOL("Paquete 2",  "un paquete bueno",  1,  LocalDate.now(),  10.0f,  img33.getBytes());
 	} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	
 
-      // los paquetes empiezan vacios,    se les va agregando tipos de oferta
+      // los paquetes empiezan vacios,     se les va agregando tipos de oferta
 
       try {
-		ICO.agregarTipoOfertaPaq("Paquete 2", "Oferta normal", 20);
+		ICO.agregarTipoOfertaPaq("Paquete 2",  "Oferta normal",  20);
 	} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -233,7 +233,7 @@ public class TestGeneral6 {
 	
       
 	  try {
-		ICO.agregarTipoOfertaPaq("Paquete 2", "Oferta destacada", 12);
+		ICO.agregarTipoOfertaPaq("Paquete 2",  "Oferta destacada",  12);
 	} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -260,7 +260,7 @@ public class TestGeneral6 {
 
 //			DTOfertaExtendidoSinPConK extremo = 
       try {
-			ICO.infoOfertaLaboralPostulante("Arnold", "analista");
+			ICO.infoOfertaLaboralPostulante("Arnold",  "analista");
 		} catch (OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

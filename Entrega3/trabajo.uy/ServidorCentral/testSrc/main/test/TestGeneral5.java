@@ -70,12 +70,12 @@ public class TestGeneral5 {
         System.out.println("################## Test 5 ##################");
         // ============================================
         String nombrePostulante = "Juan";
-        LocalDate fechaPostulacion = LocalDate.of(2020, 12, 12);
+        LocalDate fechaPostulacion = LocalDate.of(2020,  12,  12);
         String URLDocExtras = "www.google.com";
         String CVitae = "CV";
         String motivacion = "motivacion";
         String urlVid = "www.algo";
-        DTPostulacion post = new DTPostulacion(nombrePostulante, fechaPostulacion, URLDocExtras, CVitae, motivacion,urlVid);
+        DTPostulacion post = new DTPostulacion(nombrePostulante,  fechaPostulacion,  URLDocExtras,  CVitae,  motivacion, urlVid);
 
         // Getters
         post.getPostulante();
@@ -86,12 +86,12 @@ public class TestGeneral5 {
 
         String nombreOL = "Administrador Google";
         String desripcion = "puesto importante";
-        LocalDate fechaA = LocalDate.of(2020, 12, 12);
+        LocalDate fechaA = LocalDate.of(2020,  12,  12);
         float costo = 1000;
         float remuneracion = 2000;
-        DTHora hora1 = new DTHora(8, 0);
-        DTHora hora2 = new DTHora(1, 0);
-        DTHorario horario = new DTHorario(hora1, hora2);
+        DTHora hora1 = new DTHora(8,  0);
+        DTHora hora2 = new DTHora(1,  0);
+        DTHorario horario = new DTHorario(hora1,  hora2);
         // ------------------------------------------
 //			int num1 = 
         hora1.getHora();
@@ -111,20 +111,20 @@ public class TestGeneral5 {
         String img = "url";
         String paquete = "paquete";
         DTOfertaExtendido OfEx = new DTOfertaExtendido(
-        		"Mc-Donalsd", 
-        		nombreOL,
-                desripcion,
-                fechaA,
-                costo,
-                remuneracion,
-                horario,
-                dep,
-                ciudad,
-                estado,
-                ColPost,
-                img.getBytes(),
-                paquete,
-                0,0);
+        		"Mc-Donalsd",  
+        		nombreOL, 
+                desripcion, 
+                fechaA, 
+                costo, 
+                remuneracion, 
+                horario, 
+                dep, 
+                ciudad, 
+                estado, 
+                ColPost, 
+                img.getBytes(), 
+                paquete, 
+                0, 0);
      // Getters
         OfEx.getNombre();
         OfEx.getDescripcion();
@@ -144,12 +144,12 @@ public class TestGeneral5 {
 
         String nombre = "Asesor";
         String descripcion = "Asesoramiento";
-        LocalDate fecha = LocalDate.of(2020, 12, 12);
+        LocalDate fecha = LocalDate.of(2020,  12,  12);
         float costo1 = 1000;
         float remuneracion1 = 2000;
-        DTHora hora11 = new DTHora(8, 0);
-        DTHora hora22 = new DTHora(1, 0);
-        DTHorario horario1 = new DTHorario(hora11, hora22);
+        DTHora hora11 = new DTHora(8,  0);
+        DTHora hora22 = new DTHora(1,  0);
+        DTHorario horario1 = new DTHorario(hora11,  hora22);
         DepUY dep1 = DepUY.Montevideo;
         String ciudad1 = "Montevideo";
         EstadoOL estado1 = EstadoOL.Ingresada;
@@ -157,24 +157,24 @@ public class TestGeneral5 {
         ColPost1.add(post);
         String img1 = "url";
         Set<String> pruebaKeyword = new HashSet<>(Arrays.asList(
-                "Trabajo nocturno",
-                "horario vespertino",
-                "full time",
+                "Trabajo nocturno", 
+                "horario vespertino", 
+                "full time", 
                 "part time"
         ));
-        DTOfertaExtendidoConKeywords OfEx1 = new DTOfertaExtendidoConKeywords(nombre,
-                descripcion,
-                fecha,
-                costo1,
-                remuneracion1,
-                horario1,
-                dep1,
-                ciudad1,
-                estado1,
-                ColPost1,
-                img1.getBytes(),
-                pruebaKeyword,
-                0,0);
+        DTOfertaExtendidoConKeywords OfEx1 = new DTOfertaExtendidoConKeywords(nombre, 
+                descripcion, 
+                fecha, 
+                costo1, 
+                remuneracion1, 
+                horario1, 
+                dep1, 
+                ciudad1, 
+                estado1, 
+                ColPost1, 
+                img1.getBytes(), 
+                pruebaKeyword, 
+                0, 0);
         // Getters
         OfEx1.getNombre();
         OfEx1.getDescripcion();
@@ -196,12 +196,12 @@ public class TestGeneral5 {
         // testear DATATYPES Oferta Extendidos
         String nombre1 = "Asesor";
         String descripcion1 = "Asesoramiento";
-        LocalDate fechaPostulacion1 = LocalDate.of(2020, 12, 12);
+        LocalDate fechaPostulacion1 = LocalDate.of(2020,  12,  12);
         float costo2 = 1000;
         float remuneracion2 = 2000;
-        DTHora hora111 = new DTHora(8, 0);
-        DTHora hora222 = new DTHora(1, 0);
-        DTHorario horario11 = new DTHorario(hora111, hora222);
+        DTHora hora111 = new DTHora(8,  0);
+        DTHora hora222 = new DTHora(1,  0);
+        DTHorario horario11 = new DTHorario(hora111,  hora222);
         DepUY dep11 = DepUY.Montevideo;
         String ciudad11 = "Montevideo";
         EstadoOL estado11 = EstadoOL.Ingresada;
@@ -209,22 +209,22 @@ public class TestGeneral5 {
         ColPost11.add(post);
         String img11 = "url";
         Set<String> pruebaKeyword1 = new HashSet<>(Arrays.asList(
-                "Trabajo nocturno",
-                "horario vespertino",
-                "full time",
+                "Trabajo nocturno", 
+                "horario vespertino", 
+                "full time", 
                 "part time"
         ));
-        DTOfertaExtendidoSinPConK OfEx11 = new DTOfertaExtendidoSinPConK("empresa", nombre1,
-                descripcion1,
-                fechaPostulacion1,
-                costo2,
-                remuneracion2,
-                horario11,
-                dep11,
-                ciudad11,
-                estado11,
-                img11.getBytes(),
-                pruebaKeyword1,0,0);
+        DTOfertaExtendidoSinPConK OfEx11 = new DTOfertaExtendidoSinPConK("empresa",  nombre1, 
+                descripcion1, 
+                fechaPostulacion1, 
+                costo2, 
+                remuneracion2, 
+                horario11, 
+                dep11, 
+                ciudad11, 
+                estado11, 
+                img11.getBytes(), 
+                pruebaKeyword1, 0, 0);
         // Getters
         OfEx11.getNombre();
         OfEx11.getDescripcion();
@@ -243,8 +243,8 @@ public class TestGeneral5 {
 
         // DTCompraPaquete
         String cualquiera = "nombvre";
-        LocalDate fechaA28 = LocalDate.of(2020, 12, 12);
-        DTCompraPaquetes reciboPaquete = new DTCompraPaquetes(cualquiera, fechaA28, fechaA28);
+        LocalDate fechaA28 = LocalDate.of(2020,  12,  12);
+        DTCompraPaquetes reciboPaquete = new DTCompraPaquetes(cualquiera,  fechaA28,  fechaA28);
         reciboPaquete.getNombre();
         reciboPaquete.getFechaCompra();
         reciboPaquete.getFechaVencimiento();

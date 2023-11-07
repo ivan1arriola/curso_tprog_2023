@@ -88,11 +88,11 @@ public class TestGeneral10 {
         Paquete NuevoPaq = null;
 		try {
 			NuevoPaq = new  Paquete(
-				    "Manteca Paquete",
-				    "cremosa como nunca",
-				    900,
-				    SixDaysAgo,
-				    randomFloat,
+				    "Manteca Paquete", 
+				    "cremosa como nunca", 
+				    900, 
+				    SixDaysAgo, 
+				    randomFloat, 
 				    imagen.getBytes()
 				);
 		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
@@ -102,20 +102,20 @@ public class TestGeneral10 {
             
 		
         Empresa empresaNueva = new Empresa(
-				    "Hidraulioocs",
-				    "Fierro-motors",
-				    "Le_bron-james",
-				    "El@correo.com",
-				    "1231254",
-				    "hola".getBytes(),
-				    "mejores biciclertas y motos",
+				    "Hidraulioocs", 
+				    "Fierro-motors", 
+				    "Le_bron-james", 
+				    "El@correo.com", 
+				    "1231254", 
+				    "hola".getBytes(), 
+				    "mejores biciclertas y motos", 
 				    "www.motos.com"
 				);
         
         // ===============================
         // lista de keywords
         List<Keyword> myList = new ArrayList<>();
-        Map<String, Keyword> nuevaKeyword = KeywordHandler.obtener();
+        Map<String,  Keyword> nuevaKeyword = KeywordHandler.obtener();
         String keywordToObtain = "Trabajo nocturno";
         Keyword utopicKeyword = nuevaKeyword.get(keywordToObtain);
         String keywordToObtain1 = "full time";
@@ -126,11 +126,11 @@ public class TestGeneral10 {
         TipoOferta tipoofertaNuevo = null;
 		try {
 			tipoofertaNuevo = new TipoOferta(
-				    "dentro Paquete manteca",
-				    SevenDaysAgo,
-				    randomFloat,
-				    300,
-				    300,
+				    "dentro Paquete manteca", 
+				    SevenDaysAgo, 
+				    randomFloat, 
+				    300, 
+				    300, 
 				    "es la sorpresa dentro manteca"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -140,7 +140,7 @@ public class TestGeneral10 {
 		
 		// ======================================================================
 		// paquete ---> oferta paquete ---> TipoOferta
-		OfertaPaquete OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo,44);
+		OfertaPaquete OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo, 44);
 		Set<OfertaPaquete> OLA = new HashSet<>();
 		OLA.add(OfertaPaqueteNueva);
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
@@ -162,28 +162,28 @@ public class TestGeneral10 {
         // -------------------------------------------
         EstadoOL nunevoestado = EstadoOL.Confirmada;
         // -------------------------------------------
-        DTHora hora12 = new DTHora(8, 0);
-        DTHora hora22 = new DTHora(1, 0);
-        DTHorario horario2 = new DTHorario(hora12, hora22);
+        DTHora hora12 = new DTHora(8,  0);
+        DTHora hora22 = new DTHora(1,  0);
+        DTHorario horario2 = new DTHorario(hora12,  hora22);
         // -------------------------------------------
         String imagen1 ="hola";
         // crear oferta laboral
         OfertaLaboral OfertaLabolra = null;
 		try {
 			OfertaLabolra = new OfertaLaboral(
-					true,
-			        empresaNueva,
-			        myList,
-			        tipoofertaNuevo,
-			        "Panqueqes",
-			        "muy esponjosos",
-			        "panquequeLandia",
-			        dep111,
-			        horario2,
-			        randomFloat1,
-			        threeDaysAgo,
-			        nunevoestado,
-			        imagen1.getBytes(),
+					true, 
+			        empresaNueva, 
+			        myList, 
+			        tipoofertaNuevo, 
+			        "Panqueqes", 
+			        "muy esponjosos", 
+			        "panquequeLandia", 
+			        dep111, 
+			        horario2, 
+			        randomFloat1, 
+			        threeDaysAgo, 
+			        nunevoestado, 
+			        imagen1.getBytes(), 
 			        NuevoPaq);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
 				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
@@ -197,21 +197,21 @@ public class TestGeneral10 {
 		String nombre = "Sylvester";
 		String apellido = "Stallone";
 		String correo = "Sylvester@Rocky.com";
-		LocalDate fechaNacimiento = LocalDate.of(1946, 7, 6); // Modify the birthdate accordingly
+		LocalDate fechaNacimiento = LocalDate.of(1946,  7,  6); // Modify the birthdate accordingly
 		String nacionalidad = "American"; // Modify the nationality as needed
 		String imagen11 = "llllllllllll";
 		Postulante nuevoPos = null;
 		try {
-			nuevoPos = new Postulante(nickname, password, nombre, apellido, correo, fechaNacimiento, nacionalidad,imagen11.getBytes());
+			nuevoPos = new Postulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad, imagen11.getBytes());
 		} catch (ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// --------------------------------------------
-		DTUsuario datosUsuario = empresaNueva.obtenerDatosUsuarioEspecial("Hidraulioocs", "Hidraulioocs");
+		DTUsuario datosUsuario = empresaNueva.obtenerDatosUsuarioEspecial("Hidraulioocs",  "Hidraulioocs");
 		// --------------------------------------------
-		Postulacion nuevaPost = new Postulacion(nuevoPos,"buen curriculum vitae","estoy muy motivado", twoDaysAgo,"Stallone-Oficial", OfertaLabolra , "video impresionante"); 
-		// setear postulacion manualmente a la oferta laboral, es decir aggregarla manualmente
+		Postulacion nuevaPost = new Postulacion(nuevoPos, "buen curriculum vitae", "estoy muy motivado",  twoDaysAgo, "Stallone-Oficial",  OfertaLabolra ,  "video impresionante"); 
+		// setear postulacion manualmente a la oferta laboral,  es decir aggregarla manualmente
 		List<Postulacion> PostulacionList = new ArrayList<>();
 		PostulacionList.add(nuevaPost);
 		OfertaLabolra.setPostulaciones(PostulacionList);
@@ -221,13 +221,13 @@ public class TestGeneral10 {
 		OfertaLabolra.desmarcadaFav();
 		OfertaLabolra.setCantFav(9);
 		OfertaLabolra.TienePosicion();
-		OfertaLabolra.establecerPosicion("Stallone",1);
+		OfertaLabolra.establecerPosicion("Stallone", 1);
 		OfertaLabolra.DevolverPosiciones();
 		// --------------------------------------------
 		List<String> nickList = new ArrayList<>();
 		nickList.add("Stallone");
 		try {
-			empresaNueva.establecerPosicion("Panqueqes",nickList);
+			empresaNueva.establecerPosicion("Panqueqes", nickList);
 		} catch (OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -236,12 +236,12 @@ public class TestGeneral10 {
 		TipoOferta tipoofertaNuevo2 = null;
 		try {
 			tipoofertaNuevo2 = new TipoOferta(
-				    "dentro Paquete manteca version 2",
-				    SevenDaysAgo,
-				    randomFloat,
-				    300,
-				    300,
-				    "mitad calorias, mismo sabor"
+				    "dentro Paquete manteca version 2", 
+				    SevenDaysAgo, 
+				    randomFloat, 
+				    300, 
+				    300, 
+				    "mitad calorias,  mismo sabor"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
 			// TODO Auto-generated catch block
@@ -258,17 +258,17 @@ public class TestGeneral10 {
 		
 		try {
 			OfertaLabolra2 = empresaNueva.altaOfertaLaboralImagenPaquete(
-				tipoofertaNuevo,
-			    "matambre",
-			    "a la leche",
-			    horario2,
-			    randomFloat1,
-			    "MuUruguay",
-			    dep111,
-			    threeDaysAgo,
-			    myList,
-			    nunevoestado,
-			    "qlqllqlqe".getBytes(),
+				tipoofertaNuevo, 
+			    "matambre", 
+			    "a la leche", 
+			    horario2, 
+			    randomFloat1, 
+			    "MuUruguay", 
+			    dep111, 
+			    threeDaysAgo, 
+			    myList, 
+			    nunevoestado, 
+			    "qlqllqlqe".getBytes(), 
 			    NuevoPaq
 			);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -283,16 +283,16 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra3 = null;
 		try {
 			OfertaLabolra3 = empresaNueva.altaOfertaLaboralImagen(
-					tipoofertaNuevo,
-				    "asado de tira",
-				    "a punto",
-				    horario2,
-				    randomFloat1,
-				    "MuUruguay",
-				    dep111,
-				    threeDaysAgo,
-				    myList,
-				    nunevoestado,
+					tipoofertaNuevo, 
+				    "asado de tira", 
+				    "a punto", 
+				    horario2, 
+				    randomFloat1, 
+				    "MuUruguay", 
+				    dep111, 
+				    threeDaysAgo, 
+				    myList, 
+				    nunevoestado, 
 				    "qlqllqlqe".getBytes()
 				);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -305,17 +305,17 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra4 = null;
 		try {
 			OfertaLabolra4 = empresaNueva.altaOfertaLaboralForzado(
-					tipoofertaNuevo,
-				    "anana con piza",
-				    "algo sobrenatural",
-				    horario2,
-				    randomFloat1,
-				    "MuUruguay",
-				    dep111,
-				    threeDaysAgo,
-				    myList,
-				    nunevoestado,
-				    "qlqllqlqe".getBytes(),
+					tipoofertaNuevo, 
+				    "anana con piza", 
+				    "algo sobrenatural", 
+				    horario2, 
+				    randomFloat1, 
+				    "MuUruguay", 
+				    dep111, 
+				    threeDaysAgo, 
+				    myList, 
+				    nunevoestado, 
+				    "qlqllqlqe".getBytes(), 
 				    NuevoPaq
 				);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -379,13 +379,13 @@ public class TestGeneral10 {
 		OLH.agregar(OfertaLabolra);
 		ICO.finalizarOfertaLaboral(OfertaLabolra2.getNombre());
 		try {
-			ICO.marcarFavorita(nuevoPos.getNickname(),OfertaLabolra2.getNombre());
+			ICO.marcarFavorita(nuevoPos.getNickname(), OfertaLabolra2.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICO.desmarcarFavorita(nuevoPos.getNickname(),OfertaLabolra2.getNombre());
+			ICO.desmarcarFavorita(nuevoPos.getNickname(), OfertaLabolra2.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -409,7 +409,7 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		try {
-			ICO.establecerPosiciones(OfertaLabolra.getNombre(),empresaNueva.getNickname(),nickList);
+			ICO.establecerPosiciones(OfertaLabolra.getNombre(), empresaNueva.getNickname(), nickList);
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
