@@ -599,5 +599,12 @@ public class CtrlOferta implements ICtrlOferta {
     	OfertaLaboral ol = OLH.buscar(nombre_oferta);
     	ol.setCantVisitas(ol.getCantVisitas()+1);
     }
+    
+    @Override
+    public String obtenerTipoPubOfertaLaboral(String nomb_oferta) throws OfertaLaboralNoEncontrada  {
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral ol = OLH.buscar(nomb_oferta);
+    	return ol.getTipoOferta().getNombre();
+    }
 }
 
