@@ -80,6 +80,18 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         listaEmpresas = new JComboBox<String>();
         listaEmpresas.setBounds(183, 6, 400, 28);
         getContentPane().add(listaEmpresas);
+        
+        listaEmpresas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evento) {
+            	listaOfertasLaborales.removeAllItems();
+            	limpiarFormulario();
+    
+            }
+        });
+        
+        
+        
+        
 
 
         JLabel lblIngresoCI_1 = new JLabel("Lista de empresas:");
@@ -128,8 +140,6 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         listaOfertasLaborales.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
-
-            	
                 String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
                 
                 //if (listaOfertasLaborales.getSelectedIndex()!=0 && listaOfertasLaborales.getSelectedIndex()!=-1) {
@@ -312,6 +322,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         tfDepartamento.setText("");
         tfCiudad.setText("");
         tAKey.setText("");
+        tfPaquete.setText("");
     }
 
     public void actualizar() {
