@@ -73,6 +73,8 @@
 						</button>
 					<%}%>
                     </form>
+                    <h4> Cantidad de favoritos:  </h4>
+                    <h4 class="text-center fw-bolder"><%= request.getAttribute("cantFavs") %></h4>
 
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />

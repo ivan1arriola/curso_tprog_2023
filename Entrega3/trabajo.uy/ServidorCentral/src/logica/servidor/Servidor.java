@@ -328,6 +328,11 @@ public class Servidor {
     public WrapperLista listarOfertasLaboralesConfirmadasYNoVencidas(){
         return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesConfirmadasYNoVencidasString());
     }
+    
+    @WebMethod
+    public void compraPaquetes(String nickname, String paquete, String now, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
+    	ctrlOferta.compraPaquetes(nickname, paquete, LocalDate.parse(now), valor);
+    }
 
     @WebMethod
     public void finalizarOferta(

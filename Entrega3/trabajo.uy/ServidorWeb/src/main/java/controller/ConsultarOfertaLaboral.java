@@ -48,7 +48,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             UsuarioBean user = logica.obtenerDatosUsuario(nickname);
             boolean estaFav = false;
             for (OfertaLaboralBean elemento : user.getOferFavs()) {
-            	estaFav = elemento.getNombre() == nombreOferta;
+            	estaFav = elemento.getNombre().equals(nombreOferta);
             	if(estaFav)
             		break;
             }
@@ -66,7 +66,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
 
-
+                request.setAttribute("cantFavs", ofertaBean.getCantFavs());
                 boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);
                 request.setAttribute("duenio", esCreadorOferta);
 

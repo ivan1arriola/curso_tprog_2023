@@ -260,14 +260,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
 
 
                         DTPostulante postula = (DTPostulante) dtusr;
-                        
-                        /* Set<DTOfertaExtendido> favs = postula.getFavs();
-                        boolean existe = false;
-                        for(DTOfertaExtendido elem : favs) {
-                        	existe = elem.getNombre() == "A. de Marketing Digital";
-                        }
-                        
-                        System.out.print(existe); */
 
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                         String formattedFecha = postula.getFechaNac().format(formatter);

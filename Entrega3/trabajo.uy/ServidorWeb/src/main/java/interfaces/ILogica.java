@@ -41,7 +41,7 @@ public interface ILogica {
 						   Departamento dep, LocalDate fechaA, Set<String> keys,
 						   EstadoOfertaLaboral estado, String img, String paquete);
 
-	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor);
+	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCompraPaqueteConValorNegativo_Exception, ExceptionUsuarioNoEncontrado_Exception, ExceptionValidezNegativa_Exception, NoExistePaquete_Exception;
 
 
 	Set<String> listarKeywords();
