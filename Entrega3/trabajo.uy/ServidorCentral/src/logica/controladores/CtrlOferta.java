@@ -571,24 +571,13 @@ public class CtrlOferta implements ICtrlOferta {
     }
     
     @Override
-    public void finalizarOfertaLaboral(String nombre_oferta) {
+    public void finalizarOfertaLaboral(String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral oferta = null;
-		try {
-			oferta = OLH.buscar(nombre_oferta);
-		} catch (OfertaLaboralNoEncontrada e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	OfertaLaboral oferta = OLH.buscar(nombre_oferta);
+        if(!oferta.estaVencida()) throw new FinalizarOfertaNoVencida("Para finalizar la oferta se necesita que este vencida");
     	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
-    	Empresa empresa = null;
-        try {
-			empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	Empresa empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
     	empresa.finalizarOfertaLaboral(nombre_oferta);
     }
 }

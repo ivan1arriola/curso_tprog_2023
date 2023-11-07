@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
+import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import utils.FabricaWeb;
 import interfaces.ILogica;
@@ -32,8 +33,8 @@ public class FinalizarOferta extends HttpServlet {
 
         try {
             OfertaLaboralBean oferta = logica.obtenerDatosOfertaLaboral(nombreOferta);
-            boolean esDueño = oferta.getNicknameEmpresa().equals(nickname);
-            if (esDueño){
+            boolean esPropietario = oferta.getNicknameEmpresa().equals(nickname);
+            if (esPropietario){
                 logica.finalizarOferta(nombreOferta);
                 response.sendRedirect("/consultaroferta?o=" + nombreOferta);
 
@@ -47,6 +48,10 @@ public class FinalizarOferta extends HttpServlet {
         } catch (OfertaLaboralNoEncontrada_Exception e) {
             request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
             request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+        } catch (ExceptionUsuarioNoEncontrado_Exception e) {
+            request.setAttribute("nombreError", "Usuario No Encontrada");
+            request.setAttribute("mensajeError", "La oferta laboral no esta asociada a ningun usuario X_X");
             request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
         }
 

@@ -231,7 +231,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void finalizarOferta(String nombreOferta) {
+	public void finalizarOferta(String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception {
 		servidor.finalizarOferta(nombreOferta);
 	}
 
