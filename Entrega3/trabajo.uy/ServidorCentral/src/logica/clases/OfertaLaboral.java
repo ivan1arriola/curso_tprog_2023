@@ -142,10 +142,15 @@ public class OfertaLaboral {
                 }
 
 
-            } catch (ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido |
-                     ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCosto) {
+            } catch (ExceptionCostoPaqueteNoNegativo excCosto) {
                 System.err.println("Error: " + excCosto.getMessage());
                 throw excCosto;
+            } catch (ExceptionDescuentoInvalido excDesc) {
+                System.err.println("Error: " + excDesc.getMessage());
+                throw excDesc;
+            } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCant) {
+                System.err.println("Error: " + excCant.getMessage());
+                throw excCant;
             }
 
 
@@ -596,7 +601,10 @@ public class OfertaLaboral {
 
     public DTOfertaExtendido obtenerDatosOferta() {
         Set<DTPostulacion> posts = new HashSet<>();
-        for (Postulacion elem : postulaciones) {
+        // muestro todas las postulaciones
+        for (int i = 0; i < postulaciones.size(); i++) {
+            Postulacion elem = postulaciones.get(i);
+            // obtengo DTPostulacion para cada una
             posts.add(elem.obtenerDT());
         }
         Paquete paq = getPaquete();
@@ -604,7 +612,8 @@ public class OfertaLaboral {
         if (paq != null) {
             paq_nomb = paq.getNombre();
         }
-        return new DTOfertaExtendido(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb, getCantFav(), estaVencida());
+        DTOfertaExtendido dtoe = new DTOfertaExtendido(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb, getCantFav());
+        return dtoe;
     }
 
     public boolean tieneKeyword(String keyword) {

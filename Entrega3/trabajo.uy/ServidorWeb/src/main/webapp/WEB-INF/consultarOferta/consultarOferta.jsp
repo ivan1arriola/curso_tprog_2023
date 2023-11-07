@@ -13,7 +13,6 @@
     boolean duenioOfertaLaboral = (boolean) request.getAttribute("duenio");
     boolean mostrarContenido = tipoUsuario == TipoUsuario.Empresa || tipoUsuario == TipoUsuario.Postulante;
     boolean estaFav = (boolean) request.getAttribute("estaFav");
-    boolean vigente = (boolean) request.getAttribute("vigente");
 %>
 
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
 <head>
     <jsp:include page="/WEB-INF/templates/head.jsp" />
     <title><%= ofertaLaboral.getNombre() %></title>
-
+    
     <style>
         .banner-container {
             background-image: url(<%= imagen %>);
@@ -34,6 +33,8 @@
 <body>
 <header>
     <jsp:include page="/WEB-INF/templates/header.jsp" />
+    
+    
 </header>
 
 <main class="container-fluid d-flex">
@@ -75,22 +76,13 @@
                     </form>
                     <h4> Cantidad de favoritos:  </h4>
                     <h4 class="text-center fw-bolder"><%= request.getAttribute("cantFavs") %></h4>
-
+                  
+					
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
                     <jsp:include page="./paquetes.jsp" />
-                    <%
-                    if (!vigente){
-                    %>
-                        <form action="<%=request.getContextPath()%>/finalizaroferta" method="POST">
-                            <input type="hidden" value="<%=ofertaLaboral.getNombre()%>" name="oferta">
-                            <button type="submit" class="btn btn-danger">
-                                Finalizar Oferta Laboral
-                            </button>
-                        </form>
 
-                    <%}
-                    } else if (tipoUsuario == TipoUsuario.Postulante){%>
+                    <%} else if (tipoUsuario == TipoUsuario.Postulante){%>
                     <jsp:include page="./postular.jsp" />
                     <%}%>
 

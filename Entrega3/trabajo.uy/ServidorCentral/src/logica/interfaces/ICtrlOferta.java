@@ -109,5 +109,5 @@ public interface ICtrlOferta {
 	List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
 
-	void finalizarOfertaLaboral(String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida;
+	void finalizarOfertaLaboral(String nombre_oferta);
 }

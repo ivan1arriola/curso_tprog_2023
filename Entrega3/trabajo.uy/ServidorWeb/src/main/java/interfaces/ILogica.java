@@ -122,8 +122,6 @@ public interface ILogica {
 	OfertaLaboralBean DatosOferta(String nombre_oferta) throws OfertaLaboralNoEncontrada_Exception;
 
 
-	boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
-
 	Set<DtTipoOferta> obtenerTipoOfertas();
 
 	DtTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente_Exception;
@@ -149,5 +147,5 @@ public interface ILogica {
 
 	HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
 
-    void finalizarOferta(String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception;
+    void finalizarOferta(String nombreOferta);
 }

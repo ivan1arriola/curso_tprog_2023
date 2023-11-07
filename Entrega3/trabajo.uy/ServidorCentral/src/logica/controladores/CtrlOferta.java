@@ -480,6 +480,7 @@ public class CtrlOferta implements ICtrlOferta {
 
     @Override
     public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = null;
 		try {
@@ -488,7 +489,7 @@ public class CtrlOferta implements ICtrlOferta {
             OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
             OfertaLaboral ofer = null;
             try {
-                ofer = OLH.buscar(nomb_oferta);
+                ofer = OLH.buscar(nomb_oferta); 
                 postu.marcarFavorita(ofer);
                 ofer.marcadaFav();
             } catch (OfertaLaboralNoEncontrada e) {
@@ -571,13 +572,24 @@ public class CtrlOferta implements ICtrlOferta {
     }
     
     @Override
-    public void finalizarOfertaLaboral(String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
+    public void finalizarOfertaLaboral(String nombre_oferta) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral oferta = OLH.buscar(nombre_oferta);
-        if(!oferta.estaVencida()) throw new FinalizarOfertaNoVencida("Para finalizar la oferta se necesita que este vencida");
+    	OfertaLaboral oferta = null;
+		try {
+			oferta = OLH.buscar(nombre_oferta);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
-    	Empresa empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+    	Empresa empresa = null;
+        try {
+			empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	empresa.finalizarOfertaLaboral(nombre_oferta);
     }
 }

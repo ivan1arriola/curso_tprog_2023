@@ -328,18 +328,19 @@ public class Servidor {
     public WrapperLista listarOfertasLaboralesConfirmadasYNoVencidas(){
         return WSUtils.envolverLista(ctrlOferta.listarOfertasLaboralesConfirmadasYNoVencidasString());
     }
-    
+
     @WebMethod
     public void compraPaquetes(String nickname, String paquete, String now, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
     	ctrlOferta.compraPaquetes(nickname, paquete, LocalDate.parse(now), valor);
     }
-
+    
     @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado, FinalizarOfertaNoVencida {
-        ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
+    ) {
+        ctrlOferta.finalizarOferta(nombre_oferta);
     }
+
 
 
 

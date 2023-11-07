@@ -9,11 +9,10 @@ import logica.servidor.DtOfertaExtendido;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import logica.servidor.Servidor;
 import logica.servidor.ServidorService;
-import logica.servidor.TipoUsuarioNoValido_Exception;
 
 import java.io.IOException;
 
-//import enumerado.TipoUsuario;
+import enumerado.TipoUsuario;
 import logica.servidor.DtPostulacion;
 import logica.servidor.DtUsuario;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
@@ -63,8 +62,6 @@ public class ConsultarPostulacion extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/consultarPostulacion/nopostulacion.jsp").forward(request, response);
 			throw new RuntimeException(exc);
 		} catch (OfertaLaboralNoEncontrada_Exception exc) {
-			throw new RuntimeException(exc);
-		} catch (TipoUsuarioNoValido_Exception exc) {
 			throw new RuntimeException(exc);
 		}
        
