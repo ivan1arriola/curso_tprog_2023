@@ -592,5 +592,12 @@ public class CtrlOferta implements ICtrlOferta {
 		}
     	empresa.finalizarOfertaLaboral(nombre_oferta);
     }
+    
+    @Override
+    public void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada {
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral ol = OLH.buscar(nombre_oferta);
+    	ol.setCantVisitas(ol.getCantVisitas()+1);
+    }
 }
 

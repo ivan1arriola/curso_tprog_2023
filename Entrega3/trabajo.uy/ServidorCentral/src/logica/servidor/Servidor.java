@@ -335,10 +335,15 @@ public class Servidor {
     }
     
     @WebMethod
+    public void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada {
+    	ctrlOferta.aumentarVisita(nombre_oferta);
+    }
+    
+    @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
     ) {
-        ctrlOferta.finalizarOferta(nombre_oferta);
+//        ctrlOferta.finalizarOferta(nombre_oferta);
     }
 
 
