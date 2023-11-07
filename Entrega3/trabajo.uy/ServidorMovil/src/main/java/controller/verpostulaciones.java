@@ -60,8 +60,7 @@ public class verpostulaciones extends HttpServlet {
  			     ofertasPostulado.add(offer);
 				 postulaciones.add(dtpos);
 				 
-				 System.out.println(dtpos.getNombrePostulante());
-				 
+		 
 				}
 			}
 	
