@@ -110,7 +110,9 @@ public class TestGeneral5 {
         ColPost.add(post);
         String img = "url";
         String paquete = "paquete";
-        DTOfertaExtendido OfEx = new DTOfertaExtendido("Mc-Donalsd", nombreOL,
+        DTOfertaExtendido OfEx = new DTOfertaExtendido(
+        		"Mc-Donalsd", 
+        		nombreOL,
                 desripcion,
                 fechaA,
                 costo,
@@ -122,7 +124,7 @@ public class TestGeneral5 {
                 ColPost,
                 img.getBytes(),
                 paquete,
-                0);
+                0,0);
      // Getters
         OfEx.getNombre();
         OfEx.getDescripcion();
@@ -172,7 +174,7 @@ public class TestGeneral5 {
                 ColPost1,
                 img1.getBytes(),
                 pruebaKeyword,
-                0);
+                0,0);
         // Getters
         OfEx1.getNombre();
         OfEx1.getDescripcion();
@@ -222,7 +224,7 @@ public class TestGeneral5 {
                 ciudad11,
                 estado11,
                 img11.getBytes(),
-                pruebaKeyword1,0);
+                pruebaKeyword1,0,0);
         // Getters
         OfEx11.getNombre();
         OfEx11.getDescripcion();

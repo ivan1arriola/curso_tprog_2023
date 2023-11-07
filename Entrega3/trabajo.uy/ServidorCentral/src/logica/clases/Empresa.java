@@ -57,6 +57,10 @@ public class Empresa extends Usuario {
     public String getDescripcion() {
         return descripcion;
     }
+    
+    public void setofertasLaborales(Set<OfertaLaboral> OL) {
+    	ofertasLaborales =  OL; 
+    }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;

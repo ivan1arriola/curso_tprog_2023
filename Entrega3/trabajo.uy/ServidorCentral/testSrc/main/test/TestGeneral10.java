@@ -12,16 +12,21 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCiudadInvalida;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionDuracionNegativa;
+import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionExpoNegativa;
 import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionValidezNegativa;
+import excepciones.ExisteOrdenFinalDePostulantes;
 import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -30,6 +35,7 @@ import logica.Fabrica;
 import logica.clases.Empresa;
 import logica.clases.Keyword;
 import logica.clases.OfertaLaboral;
+import logica.clases.OfertaPaquete;
 import logica.clases.Paquete;
 import logica.clases.Postulacion;
 import logica.clases.Postulante;
@@ -94,7 +100,7 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
             
-        
+		
         Empresa empresaNueva = new Empresa(
 				    "Hidraulioocs",
 				    "Fierro-motors",
@@ -131,8 +137,22 @@ public class TestGeneral10 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		
+		// ======================================================================
+		// paquete ---> oferta paquete ---> TipoOferta
+		OfertaPaquete OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo,44);
+		Set<OfertaPaquete> OLA = new HashSet<>();
+		OLA.add(OfertaPaqueteNueva);
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		TOH.agregar(tipoofertaNuevo);
+		NuevoPaq.setOfertaPaquete(OLA);
+		OfertaPaqueteNueva.getDTCantTO();
+		
+		// ======================================================================
+		        
+		
         // -------------------------------------------
-        float randomFloat1 = 100000.0f;
+        float randomFloat1 = 100.0f;
         // -------------------------------------------
         DepUY dep111 = DepUY.Montevideo;
         // -------------------------------------------
@@ -212,6 +232,195 @@ public class TestGeneral10 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// ============================================
+		TipoOferta tipoofertaNuevo2 = null;
+		try {
+			tipoofertaNuevo2 = new TipoOferta(
+				    "dentro Paquete manteca version 2",
+				    SevenDaysAgo,
+				    randomFloat,
+				    300,
+				    300,
+				    "mitad calorias, mismo sabor"
+				);
+		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		try {
+			OfertaLabolra.setTipoOferta(tipoofertaNuevo2);
+		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ============================================
+		OfertaLaboral OfertaLabolra2 = null;
+		
+		try {
+			OfertaLabolra2 = empresaNueva.altaOfertaLaboralImagenPaquete(
+				tipoofertaNuevo,
+			    "matambre",
+			    "a la leche",
+			    horario2,
+			    randomFloat1,
+			    "MuUruguay",
+			    dep111,
+			    threeDaysAgo,
+			    myList,
+			    nunevoestado,
+			    "qlqllqlqe".getBytes(),
+			    NuevoPaq
+			);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
+				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		// ============================================
+		empresaNueva.listarOfertasLaboralesNoVigentesConfirmadas();
+		OfertaLaboral OfertaLabolra3 = null;
+		try {
+			OfertaLabolra3 = empresaNueva.altaOfertaLaboralImagen(
+					tipoofertaNuevo,
+				    "asado de tira",
+				    "a punto",
+				    horario2,
+				    randomFloat1,
+				    "MuUruguay",
+				    dep111,
+				    threeDaysAgo,
+				    myList,
+				    nunevoestado,
+				    "qlqllqlqe".getBytes()
+				);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
+				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ============================================
+		OfertaLaboral OfertaLabolra4 = null;
+		try {
+			OfertaLabolra4 = empresaNueva.altaOfertaLaboralForzado(
+					tipoofertaNuevo,
+				    "anana con piza",
+				    "algo sobrenatural",
+				    horario2,
+				    randomFloat1,
+				    "MuUruguay",
+				    dep111,
+				    threeDaysAgo,
+				    myList,
+				    nunevoestado,
+				    "qlqllqlqe".getBytes(),
+				    NuevoPaq
+				);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
+				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ============================================
+		Set<OfertaLaboral> OL = new HashSet<>();
+		OL.add(OfertaLabolra);
+		empresaNueva.setofertasLaborales(OL);
+		empresaNueva.ObtenerPostulacionesOfertaLaboral("Panqueqes");
+		// ============================================
+		try {
+			OfertaLabolra.setPaquete(NuevoPaq);
+		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.setFechaAlta(twoDaysAgo);
+		} catch (ExceptionPaqueteNoVigente e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.setCosto(randomFloat);
+		} catch (ExceptionCostoPaqueteNoNegativo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.setRemuneracion(randomFloat);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.setCiudad("aaaaaaaaaaaaaaaaaaA");
+		} catch (ExceptionCiudadInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OfertaLabolra.obtenerDatosPostulacion(empresaNueva.getNickname());
+		// ============================================
+		empresaNueva.DevolverOrden(OfertaLabolra.getNombre());
+		empresaNueva.HayOrden(OfertaLabolra.getNombre());
+		empresaNueva.listarPaquetesNoVencidos();
+		// ============================================
+		ICO.listarOfertasLaboralesConfirmadasYNoVencidasString();
+		ICO.listarOfertasLaboralesConfirmadasYNoVencidas();
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		try {
+			UH.agregar(nuevoPos);
+		} catch (ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OLH.agregar(OfertaLabolra2);
+		OLH.agregar(OfertaLabolra);
+		ICO.finalizarOfertaLaboral(OfertaLabolra2.getNombre());
+		try {
+			ICO.marcarFavorita(nuevoPos.getNickname(),OfertaLabolra2.getNombre());
+		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.desmarcarFavorita(nuevoPos.getNickname(),OfertaLabolra2.getNombre());
+		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.listarComprasPaquete(empresaNueva.getNickname());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.DevolverOrdenFinal(OfertaLabolra.getNombre());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.HayOrdenFinal(OfertaLabolra.getNombre());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.establecerPosiciones(OfertaLabolra.getNombre(),empresaNueva.getNickname(),nickList);
+		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.listarPaquetesNoVencidos(empresaNueva.getNickname());
+		} catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();

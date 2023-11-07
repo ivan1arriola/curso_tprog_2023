@@ -33,23 +33,39 @@ public class DTOfertaExtendido {
     private Integer cantVisitas;
 
 
-    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF, Integer cantV) {
-        nombre = nomb;
-        descripcion = desc;
-        fechaDeAlta = fechaA;
-        costo = cost;
-        remuneracion = remu;
-        this.horario = horario;
-        departamento = dep;
-        ciudad = ciu;
-        estado = est;
-        postulaciones = post;
-        imagen = img;
-        paq = paquete;
-        nicknameEmpresaPublicadora = empresaPublicadora;
-        cantFavs = cantF;
-        cantVisitas = cantV;
-    }
+    public DTOfertaExtendido(
+    	    String empresaPublicadora,
+    	    String nomb,
+    	    String desc,
+    	    LocalDate fechaA,
+    	    float cost,
+    	    float remu,
+    	    DTHorario horario,
+    	    DepUY dep,
+    	    String ciu,
+    	    EstadoOL est,
+    	    Set<DTPostulacion> post,
+    	    byte[] img,
+    	    String paquete,
+    	    Integer cantF,
+    	    Integer cantV
+    	) {
+    	    nombre = nomb;
+    	    descripcion = desc;
+    	    fechaDeAlta = fechaA;
+    	    costo = cost;
+    	    remuneracion = remu;
+    	    this.horario = horario;
+    	    departamento = dep;
+    	    ciudad = ciu;
+    	    estado = est;
+    	    postulaciones = post;
+    	    imagen = img;
+    	    paq = paquete;
+    	    nicknameEmpresaPublicadora = empresaPublicadora;
+    	    cantFavs = cantF;
+    	    cantVisitas = cantV;
+    	}
 
     public String getNombre() {
         return nombre;
