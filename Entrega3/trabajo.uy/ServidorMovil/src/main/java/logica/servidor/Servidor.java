@@ -1128,5 +1128,7 @@ public interface Servidor {
     @WebResult(partName = "return")
     @Action(input = "http://servidor.logica/Servidor/listarTipoDePublicacionesRequest", output = "http://servidor.logica/Servidor/listarTipoDePublicacionesResponse")
     public WrapperLista listarTipoDePublicaciones();
+    
+    
 
 }

@@ -44,6 +44,7 @@ public class verpostulaciones extends HttpServlet {
 			request.setAttribute("nickname", nickname);
 			List<DtOfertaExtendido> ofertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
 			postulaciones =  servidor.listarPostulacionesPostulante(nickname).getPostulaciones();
+			
 
 			List<DtOfertaExtendido> ofertasPostulado = new ArrayList<>();
 			
