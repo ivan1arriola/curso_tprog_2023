@@ -31,16 +31,11 @@ public class Logica implements ILogica {
 
 
 	@Override
-	public boolean estaVigenteOferta(String nombreOferta){
-		OfertaLaboralBean ofertaLaboralBean = obtenerDatosOfertaLaboral(nombreOferta);
-		DtTipoOferta
-
-		return true;
+	public boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
+		DtOfertaExtendido oferta = servidor.obtenerOfertaLaboral(nombreOferta);
+		return !oferta.isEstaVencido();
 	}
 
-
-
-    
 
 	public Set<DtTipoOferta> obtenerTipoOfertas(){
 		Set<String> lista =  new TreeSet<>( servidor.listarTipoDePublicaciones().getListaString());

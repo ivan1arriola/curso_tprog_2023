@@ -37,7 +37,7 @@ public class FinalizarOferta extends HttpServlet {
             boolean esPropietario = oferta.getNicknameEmpresa().equals(nickname);
             if (esPropietario){
                 logica.finalizarOferta(nombreOferta);
-                response.sendRedirect("/consultaroferta?o=" + nombreOferta);
+                response.sendRedirect(request.getContextPath()+"/consultaroferta?o=" + nombreOferta);
 
             } else {
                 request.setAttribute("nombreError", "Acceso Denegado");

@@ -100,17 +100,7 @@ public class DTOfertaExtendido {
         return paq;
     }
 
-    @Override
-    public String toString() {
-        String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n"
-                + "Fecha de alta: " + fechaDeAlta + "\n" + "Costo: "
-                + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n"
-                + "Horario de Entrada: " + horario.getDesde() + "\n"
-                + "Horario de Salida: " + horario.getHasta() + "\n" + ciudad
-                + ",  " + departamento + "\n" + "Estado: " + estado;
 
-        return texto;
-    }
 
     public String getNicknameEmpresaPublicadora() {
         return nicknameEmpresaPublicadora;
@@ -124,5 +114,12 @@ public class DTOfertaExtendido {
 		this.cantFavs = cantFavs;
 	}
 
+    public boolean isEstaVencido() {
+        return estaVencido;
+    }
+
+    public void setEstaVencido(boolean estaVencido) {
+        this.estaVencido = estaVencido;
+    }
 }
 //

@@ -122,7 +122,7 @@ public interface ILogica {
 	OfertaLaboralBean DatosOferta(String nombre_oferta) throws OfertaLaboralNoEncontrada_Exception;
 
 
-	boolean estaVigenteOferta(String nombreOferta);
+	boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
 
 	Set<DtTipoOferta> obtenerTipoOfertas();
 
