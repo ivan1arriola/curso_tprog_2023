@@ -11,7 +11,7 @@
     String nombreOferta = (String) oferta.getNombre();
     byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
     String imagen = null;
-    if(imagenBytes!=null) {
+    if (imagenBytes!=null) {
     	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
     }
 %>
@@ -70,7 +70,7 @@
                         <tr>
                             <td><b>Video Postulacion:</b></td>
                             <td>
-                        <% if(postulacion.getUrlVideo() != null){ %>
+                        <% if (postulacion.getUrlVideo() != null){ %>
 
                                 <iframe
                                         width="100%"

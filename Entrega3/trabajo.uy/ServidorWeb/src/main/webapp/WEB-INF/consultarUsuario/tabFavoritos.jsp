@@ -19,7 +19,7 @@
 <%
 
 	
-    if(oferFavs.isEmpty()){
+    if (oferFavs.isEmpty()){
     	
     	%>
     	

@@ -70,7 +70,7 @@
                         <tr>
                             <td><b>Video Postulacion:</b></td>
                             <td>
-                        <% if(postulacion.getVideo() != null){ %>
+                        <% if (postulacion.getVideo() != null){ %>
 
 
 

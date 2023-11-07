@@ -116,7 +116,7 @@ public class Paquete {
     }
 
     public void setImagen(byte[] imagenBytes){
-        if(imagenBytes == null)
+        if (imagenBytes == null)
             this.imagen = null;
         else {
             byte[] base64EncodedBytes = Base64.getEncoder().encode(imagenBytes);
@@ -138,7 +138,7 @@ public class Paquete {
     }
 
     public byte[] getImagen() {
-        if(this.imagen != null)
+        if (this.imagen != null)
             return Base64.getDecoder().decode(imagen);
         byte[] imagenNull = null;
         return imagenNull;

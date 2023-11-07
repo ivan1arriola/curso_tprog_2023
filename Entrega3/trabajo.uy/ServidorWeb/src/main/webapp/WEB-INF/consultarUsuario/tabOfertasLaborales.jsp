@@ -18,7 +18,7 @@
 <div class="tab-pane fade sin-bordes p-2" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
 
 <%
-    if(ofertasLaborales == null || ofertasLaborales.isEmpty()){
+    if (ofertasLaborales == null || ofertasLaborales.isEmpty()){
     	
     	%>
     	

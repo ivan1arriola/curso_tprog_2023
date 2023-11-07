@@ -18,7 +18,7 @@
 <%
 
 	
-    if(seguidores.isEmpty()){
+    if (seguidores.isEmpty()){
     	
     	%>
     	

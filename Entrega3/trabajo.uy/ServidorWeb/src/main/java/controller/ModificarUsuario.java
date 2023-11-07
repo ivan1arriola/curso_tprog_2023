@@ -53,11 +53,11 @@ public class ModificarUsuario extends HttpServlet {
         ILogica logica = FabricaWeb.getLogica();
         
         try {
-	        if(fechanacimiento != null && descripcion == null) {
+	        if (fechanacimiento != null && descripcion == null) {
 	        	// es postulante
 	        	LocalDate fecha = convertirCadenaAFecha(fechanacimiento);
 	        	logica.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, null, fecha, nacionalidad);
-	        } else if(fechanacimiento == null && descripcion != null) {
+	        } else if (fechanacimiento == null && descripcion != null) {
                 logica.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, link, null, descripcion);
 	        }
 	        response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nickname);

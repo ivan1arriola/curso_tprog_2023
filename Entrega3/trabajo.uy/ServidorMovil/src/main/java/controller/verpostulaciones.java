@@ -53,7 +53,7 @@ public class verpostulaciones extends HttpServlet {
 				
 				boolean existe = servidor.hayPostulacionW(nickname, offer.getNombre()); 
 				
-				if(existe) {
+				if (existe) {
 					
 					
 				 DtPostulacion dtpos = servidor.obtenerDatosPostulacionW(nickname, offer.getNombre());
@@ -75,7 +75,7 @@ public class verpostulaciones extends HttpServlet {
 		
 		request.setAttribute("postulaciones", postulaciones);
 		
-		if(!postulaciones.isEmpty()) {
+		if (!postulaciones.isEmpty()) {
 			request.getRequestDispatcher("/WEB-INF/listarPostula/verpostulacion.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/listarPostula/sinpostulaciones.jsp").forward(request, response);

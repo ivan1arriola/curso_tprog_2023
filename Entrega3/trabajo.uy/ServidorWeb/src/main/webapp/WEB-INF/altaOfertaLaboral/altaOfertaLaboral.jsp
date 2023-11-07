@@ -50,7 +50,7 @@
               <select class="form-control custom-select-validation" id="listadoOfertas" name="tipoOferta" required>
                 <option value="0" selected>Seleccionar Tipo de Oferta</option>
                 <%
-                if(keys != null && !keys.isEmpty()){  
+                if (keys != null && !keys.isEmpty()){  
                   	for(String tipo : tipoPublicaciones ){
                 %>
                 <option value="<%= tipo %>">
@@ -182,7 +182,7 @@
                 <option value="1" selected>Pagar Sin Paquete</option>
               
               <%
-                if(paquetes != null && !paquetes.isEmpty()){  
+                if (paquetes != null && !paquetes.isEmpty()){  
                   	for(String paquete : paquetes ){
                 %>
                 <option value="<%= paquete %>">

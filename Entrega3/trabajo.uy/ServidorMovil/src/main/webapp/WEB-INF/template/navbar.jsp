@@ -17,7 +17,7 @@
     	byte[] imagenUsr = (byte[]) session.getAttribute("imagen"); 
     	String imagen = null;
     	
-    	if(imagenUsr!=null) {
+    	if (imagenUsr!=null) {
         	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenUsr);
         }
 

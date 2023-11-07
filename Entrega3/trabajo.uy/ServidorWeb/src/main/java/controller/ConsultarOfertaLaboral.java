@@ -59,7 +59,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             
             for (OfertaLaboralBean elemento : user.getOferFavs()) {
             	estaFav = elemento.getNombre().equals(nombreOferta);
-            	if(estaFav)
+            	if (estaFav)
             		break;
             }
             

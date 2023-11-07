@@ -521,7 +521,7 @@ public class CtrlUsuario implements ICtrlUsuario {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr1 = UHan.buscarNick(usuario);
             Usuario usr2 = UHan.buscarNick(usuario_seguido);
-            if(usr1 == null || usr2 == null) {
+            if (usr1 == null || usr2 == null) {
             	throw new ExceptionUsuarioNoEncontrado("El usuario no se ha encontrado.");
             }
             usr1.seguirUsuario(usr2);

@@ -244,7 +244,7 @@ public class Servidor {
     }
     @WebMethod
     public void modificarDatosUsuario(DTUsuario usuario) throws TipoUsuarioNoValido, ExceptionUsuarioNoEncontrado {
-        if(usuario instanceof DTEmpresa empresa){
+        if (usuario instanceof DTEmpresa empresa){
             ctrlUsuario.ingresarDatosEditadosEmpresaURLImg(
                     empresa.getNickname(),
                     empresa.getNombre(),

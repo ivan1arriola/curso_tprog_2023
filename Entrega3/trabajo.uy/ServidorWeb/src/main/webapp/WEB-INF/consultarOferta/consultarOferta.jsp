@@ -78,7 +78,7 @@
                     <h4 class="text-center fw-bolder"><%= request.getAttribute("cantFavs") %></h4>
                   
 					
-                    <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
+                    <% if (tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
                     <jsp:include page="./paquetes.jsp" />
 

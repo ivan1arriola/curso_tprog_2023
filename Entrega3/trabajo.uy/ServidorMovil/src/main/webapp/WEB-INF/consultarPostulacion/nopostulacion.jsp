@@ -9,7 +9,7 @@
 	String nick = (String) request.getAttribute("nickname");
     byte[] imagenBytes = oferta.getImagen();
     String imagen = null;
-    if(imagenBytes!=null) {
+    if (imagenBytes!=null) {
     	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
     }
 %>

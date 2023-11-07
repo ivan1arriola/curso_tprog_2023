@@ -23,7 +23,7 @@
     <%
     } else {
         for (PostulacionBean postulacion : postulaciones) {
-        	if(postulacion.getEstado() == "Vigente"){
+        	if (postulacion.getEstado() == "Vigente"){
       		  %>
     		  <div class="card mb-3">
     		      <div class="card-body">

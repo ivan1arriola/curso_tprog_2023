@@ -468,7 +468,7 @@ public class Empresa extends Usuario {
 	public LocalDate obtenerFechaDeCompra(String paq) {
 		System.out.println(paq);
 		for(InfoCompra ic : infoCompras) {
-			if(ic.getPaquete().getNombre().equals(paq)) {
+			if (ic.getPaquete().getNombre().equals(paq)) {
 				return ic.getfCompra();
 			}
 		}

@@ -184,11 +184,11 @@ public class Logica implements ILogica {
 			usuario.setSeguidores(seguidores);
 			usuario.setSeguidos(seguidos);
 			
-	        if(DtUsuario instanceof DtEmpresa empresa) {
+	        if (DtUsuario instanceof DtEmpresa empresa) {
 				usuario.setDescripcion(empresa.getDescripcion());
 	        	usuario.setUrl(empresa.getUrl());
 	        	usuario.setTipo(TipoUsuario.Empresa);
-	        } else if(DtUsuario instanceof DtPostulante postulante){
+	        } else if (DtUsuario instanceof DtPostulante postulante){
 	        	usuario.setFechaNac(LocalDate.parse(postulante.getFechaNac()));
 	        	usuario.setNacionalidad(postulante.getNacionalidad());
 
@@ -298,7 +298,7 @@ public class Logica implements ILogica {
 	@Override
 	public PaqueteBean obtenerDatosPaquete(String paquete) throws NoExistePaquete_Exception {
 		DtPaquete dtPaquete = servidor.obtenerDatosPaquete(paquete);
-		if(dtPaquete == null)
+		if (dtPaquete == null)
 			return null;
 		PaqueteBean paqueteBean = new PaqueteBean();
 		paqueteBean.setCosto(dtPaquete.getCosto());
@@ -439,7 +439,7 @@ public class Logica implements ILogica {
 	    if (info instanceof DtOfertaExtendidoConKeywordsTit masData) {
 	        // La oferta contiene un paquete
 			DtPaquete dtPaquete = masData.getPaq();
-			if(dtPaquete == null) return null;
+			if (dtPaquete == null) return null;
 			paquete = obtenerDatosPaquete(dtPaquete.getNombre());
 
 	    }
@@ -507,7 +507,7 @@ public class Logica implements ILogica {
 	public Set<OfertaLaboralBean> buscarOfertasPorKeyword(String keyword) throws OfertaLaboralNoEncontrada_Exception {
 		Set<String> ofertas = new TreeSet<>(servidor.listarOfertasLaboralesKeywords(keyword).getListaString());
 		
-		if(ofertas.isEmpty()) {
+		if (ofertas.isEmpty()) {
     		return null;
     	}
     	
@@ -526,7 +526,7 @@ public class Logica implements ILogica {
 	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
 		Set<String> ofertas = new TreeSet<>(servidor.listarOfertasLaboralesConfirmadas(consulta).getListaString());
     	
-    	if(ofertas.isEmpty()) {
+    	if (ofertas.isEmpty()) {
     		return null;
     	}
     	

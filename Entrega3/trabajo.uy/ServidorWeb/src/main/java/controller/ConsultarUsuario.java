@@ -65,7 +65,7 @@ public class ConsultarUsuario extends HttpServlet {
                     
                     Set<String> paquetesVencidos = new HashSet<>();
                     for(PaqueteBean paq : paquetes) {
-                    	if(!paqs.contains(paq.getNombre())) {
+                    	if (!paqs.contains(paq.getNombre())) {
                     		paquetesVencidos.add(paq.getNombre());
                     	}
                     	mapaStringFecha.put(paq.getNombre(), LocalDate.parse(servidor.obtenerFechaCompra(usuario.getNickname(), paq.getNombre())));
@@ -89,7 +89,7 @@ public class ConsultarUsuario extends HttpServlet {
                     usuario = cargarPostulaciones(usuario, nicknameParametro);
                 }
                 
-                if(!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
+                if (!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
                 	usuario = cargarOfertasLaborales(usuario, nicknameParametro, false);
                 }
                 Set<String> seguidores = logica.obtenerSeguidores(nicknameParametro); // vemos los seguidores del usuario al que se le consulta el perfil
@@ -97,7 +97,7 @@ public class ConsultarUsuario extends HttpServlet {
                 
                 boolean existe = seguidores.contains(nicknameUsuarioLogueado);
                 
-                if(existe) {
+                if (existe) {
                 	request.setAttribute("seguir", false); // mostrar botón "dejar de seguir"
                 } else {
                 	request.setAttribute("seguir", true); // mostrar botón "seguir"
@@ -167,10 +167,10 @@ public class ConsultarUsuario extends HttpServlet {
             for (String nombreOferta : nombreOfertasConPostulacion) {
             	PostulacionBean inc = logica.obtenerDatosPostulacion(nombreOferta, nicknameParametro);
             	EstadoOfertaLaboral EOL = logica.obtenerDatosOfertaLaboral(inc.getNombreOfertaLaboral()).getEstado();
-            	if(EOL == EstadoOfertaLaboral.Confirmada ) {
+            	if (EOL == EstadoOfertaLaboral.Confirmada ) {
             		inc.setEstado("Vigente");
             	}
-            	else if(EOL == EstadoOfertaLaboral.Finalizada) {
+            	else if (EOL == EstadoOfertaLaboral.Finalizada) {
             		inc.setEstado("Finalizada");
             	}
             	

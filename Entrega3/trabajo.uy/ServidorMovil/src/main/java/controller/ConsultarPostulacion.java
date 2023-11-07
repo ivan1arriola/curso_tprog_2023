@@ -51,7 +51,7 @@ public class ConsultarPostulacion extends HttpServlet {
 	        request.setAttribute("nickname", nickname);
 	        request.setAttribute("imagenOferta", imagenOferta);
         	
-        	if(existe) {
+        	if (existe) {
         		dtpost = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
 	          	request.setAttribute("postulacion", dtpost);
 		  		request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacion.jsp").forward(request, response);
