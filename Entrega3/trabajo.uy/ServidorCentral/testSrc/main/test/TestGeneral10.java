@@ -18,9 +18,11 @@ import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionDuracionNegativa;
 import excepciones.ExceptionExpoNegativa;
+import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionValidezNegativa;
+import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -29,12 +31,14 @@ import logica.clases.Empresa;
 import logica.clases.Keyword;
 import logica.clases.OfertaLaboral;
 import logica.clases.Paquete;
+import logica.clases.Postulacion;
 import logica.clases.Postulante;
 import logica.clases.TipoOferta;
 import logica.controladores.CtrlCargaDeDatos;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import logica.datatypes.DTUsuario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
@@ -144,9 +148,9 @@ public class TestGeneral10 {
         // -------------------------------------------
         String imagen1 ="hola";
         // crear oferta laboral
-        
+        OfertaLaboral OfertaLabolra = null;
 		try {
-			OfertaLaboral OfertaLabolra = new OfertaLaboral(
+			OfertaLabolra = new OfertaLaboral(
 					true,
 			        empresaNueva,
 			        myList,
@@ -176,11 +180,38 @@ public class TestGeneral10 {
 		LocalDate fechaNacimiento = LocalDate.of(1946, 7, 6); // Modify the birthdate accordingly
 		String nacionalidad = "American"; // Modify the nationality as needed
 		String imagen11 = "llllllllllll";
-		Postulante nuevoPos = new Postulante(nickname, password, nombre, apellido, correo, fechaNacimiento, nacionalidad,imagen11.getBytes());
+		Postulante nuevoPos = null;
+		try {
+			nuevoPos = new Postulante(nickname, password, nombre, apellido, correo, fechaNacimiento, nacionalidad,imagen11.getBytes());
+		} catch (ExceptionFechaInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// --------------------------------------------
-		Postulacion nuevaPost = new Postulacion(nuevoPos,"buen curriculum vitae","estoy muy motivado", LocalDate fecha, String uRLDocExtras, OfertaLaboral oferLab, String urlVid) 
+		DTUsuario datosUsuario = empresaNueva.obtenerDatosUsuarioEspecial("Hidraulioocs", "Hidraulioocs");
+		// --------------------------------------------
+		Postulacion nuevaPost = new Postulacion(nuevoPos,"buen curriculum vitae","estoy muy motivado", twoDaysAgo,"Stallone-Oficial", OfertaLabolra , "video impresionante"); 
+		// setear postulacion manualmente a la oferta laboral, es decir aggregarla manualmente
+		List<Postulacion> PostulacionList = new ArrayList<>();
+		PostulacionList.add(nuevaPost);
+		OfertaLabolra.setPostulaciones(PostulacionList);
         // ============================================
-		DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante)
+		DTOfertaExtendidoConKeywordsPostulante datos =  OfertaLabolra.infoOfertaLaboralPost(nickname);
+		OfertaLabolra.marcadaFav();
+		OfertaLabolra.desmarcadaFav();
+		OfertaLabolra.setCantFav(9);
+		OfertaLabolra.TienePosicion();
+		OfertaLabolra.establecerPosicion("Stallone",1);
+		OfertaLabolra.DevolverPosiciones();
+		// --------------------------------------------
+		List<String> nickList = new ArrayList<>();
+		nickList.add("Stallone");
+		try {
+			empresaNueva.establecerPosicion("Panqueqes",nickList);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();
