@@ -172,7 +172,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(aceptarOfertaInternalFrame);
         
         consultaOfertasMasVisitadasInternalFrame = new ConsultaOfertasMasVisitadas(ICO, ICU);
-        consultaOfertasMasVisitadasInternalFrame.setSize(720, 270); // revisar tamaño
+        consultaOfertasMasVisitadasInternalFrame.setSize(700, 270); // revisar tamaño
         consultaOfertasMasVisitadasInternalFrame.setLocation(89, 77);
         consultaOfertasMasVisitadasInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(consultaOfertasMasVisitadasInternalFrame);

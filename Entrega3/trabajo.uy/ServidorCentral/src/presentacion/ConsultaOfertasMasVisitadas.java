@@ -48,8 +48,8 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
-        setTitle("Consulta de Paquete de Tipos de Publicación de Ofertas Laborales");
-        setBounds(30, 30, 729, 287);
+        setTitle("Ofertas laborales más visitadas");
+        setBounds(30, 30, 715, 279);
         getContentPane().setLayout(null);
 
         //////////////////// BOTON CERRAR //////////////
@@ -59,31 +59,31 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(586, 209, 117, 25);
+        btnCerrar.setBounds(569, 208, 117, 25);
         getContentPane().add(btnCerrar);
         //////////////////////////////////////////////
 
         
         
         // Definir los nombres de las columnas
-        String[] columnNames = {"#", "Oferta Laboral", "Empresa", "Tipo de publicación", "Cantidad de visitas"};
+        String[] columnNames = {"#", "Oferta Laboral", "Empresa", "Tipo de publicación", "Visitas"};
         tableModel = new DefaultTableModel(columnNames, 0);
 
         table = new JTable(tableModel);
         
-        table.setBounds(27, 101, 676, 97);
+        table.setBounds(10, 101, 676, 97);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
-        JLabel labelTitulo = new JLabel("Ofertas Laborales mas visitadas en el sitio");
-        labelTitulo.setFont(new Font("Dialog", Font.BOLD, 16));
-        labelTitulo.setBounds(205, 21, 576, 15);
+        JLabel labelTitulo = new JLabel("Ofertas laborales más visitadas en el sitio");
+        labelTitulo.setFont(new Font("Dialog", Font.BOLD, 18));
+        labelTitulo.setBounds(163, 22, 576, 15);
         getContentPane().add(labelTitulo);
         
         JLabel lblNewLabel = new JLabel("Seleccione el tipo de oferta: ");
         lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        lblNewLabel.setBounds(27, 69, 235, 14);
+        lblNewLabel.setBounds(10, 69, 235, 14);
         getContentPane().add(lblNewLabel);
         
         JRadioButton btnVigentes = new JRadioButton("Vigentes");
@@ -181,7 +181,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	     table.getColumnModel().getColumn(1).setPreferredWidth(170); // Ancho de la columna del nombre de la oferta
 	     table.getColumnModel().getColumn(2).setPreferredWidth(110);
 	     table.getColumnModel().getColumn(3).setPreferredWidth(120);
-	     table.getColumnModel().getColumn(4).setPreferredWidth(120);
+	     table.getColumnModel().getColumn(4).setPreferredWidth(60);
 	        
 	        
 	     // CENTRAR COLUMNAS
