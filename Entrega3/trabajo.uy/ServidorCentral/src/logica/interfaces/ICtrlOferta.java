@@ -110,4 +110,6 @@ public interface ICtrlOferta {
 
 
 	void finalizarOfertaLaboral(String nombre_oferta);
+
+	void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada;
 }

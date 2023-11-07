@@ -182,6 +182,21 @@ public interface Servidor {
     /**
      * 
      * @param arg0
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/aumentarVisitaRequest", output = "http://servidor.logica/Servidor/aumentarVisitaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/aumentarVisita/Fault/OfertaLaboralNoEncontrada")
+    })
+    public void aumentarVisita(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns logica.servidor.DtOfertaExtendidoSinPConK
      * @throws OfertaLaboralNoEncontrada_Exception
