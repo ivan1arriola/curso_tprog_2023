@@ -12,7 +12,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
@@ -300,7 +303,11 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
     public void actualizar() {
         listaEmpresas.removeAllItems();
-        Set<String> empresas = icUsuario.listarEmpresas();
+        Set<String> empresasUnsort = icUsuario.listarEmpresas();
+        
+        List<String> empresas = new ArrayList<>(empresasUnsort);
+        Collections.sort(empresas, String.CASE_INSENSITIVE_ORDER);
+        
         for (String elemento : empresas) {
             listaEmpresas.addItem(elemento);
         }
