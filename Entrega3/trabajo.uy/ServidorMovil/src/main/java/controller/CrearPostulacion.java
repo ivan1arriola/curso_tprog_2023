@@ -18,8 +18,6 @@ import logica.servidor.Servidor;
 import logica.servidor.ServidorService;
 
 
-
-
 @WebServlet("/crearpostulacion")
 public class CrearPostulacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -87,6 +85,7 @@ public class CrearPostulacion extends HttpServlet {
 
 		servidor.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", currentDateStr, videoYouTube);
 			response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
+			
 		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 			throw new RuntimeException(e);
 		}
