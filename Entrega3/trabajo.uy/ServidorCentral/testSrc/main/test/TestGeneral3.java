@@ -164,7 +164,7 @@ public class TestGeneral3 {
                 usu3.getcorreoElectronico().equals(correo)
                 &&
                 usu3.getcontrasenia().equals(password);
-        assertEquals("El test usu3 fallo",  result,  false);// si result es true se creo el usuario
+        assertEquals("El test usu3 fallo",  result,  false); // si result es true se creo el usuario
 
         // ------------------ empresa con url ------------------
         nickname = "Google";

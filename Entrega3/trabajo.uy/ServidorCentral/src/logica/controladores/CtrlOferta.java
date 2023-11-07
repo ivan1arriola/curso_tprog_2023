@@ -528,12 +528,12 @@ public class CtrlOferta implements ICtrlOferta {
 
     }
 
-    public void establecerPosiciones(String nombre_oferta,String nombreEmpresa,List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
+    public void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
         if (HayOrdenFinal(nombre_oferta)) throw new ExisteOrdenFinalDePostulantes("No se reasignar el orden de postulantes");
         UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = null;
         empresa = (Empresa) UH.buscarNick(nombreEmpresa);
-        empresa.establecerPosicion(nombre_oferta,nicksPostulante);
+        empresa.establecerPosicion(nombre_oferta, nicksPostulante);
     }
     
     // orden de las posiciones
