@@ -11,6 +11,7 @@ import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -47,7 +48,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Paquete de Tipos de Publicación de Ofertas Laborales");
-        setBounds(30, 30, 704, 371);
+        setBounds(30, 30, 704, 337);
         getContentPane().setLayout(null);
 
         //////////////////// BOTON CERRAR //////////////
@@ -57,7 +58,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(548, 297, 117, 25);
+        btnCerrar.setBounds(549, 271, 117, 25);
         getContentPane().add(btnCerrar);
         //////////////////////////////////////////////
 
@@ -69,14 +70,14 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 
         table = new JTable(tableModel);
         
-        table.setBounds(33, 67, 632, 218);
+        table.setBounds(33, 67, 632, 175);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
         JLabel labelTitulo = new JLabel("Ofertas Laborales mas visitadas en el sitio");
         labelTitulo.setFont(new Font("Dialog", Font.BOLD, 16));
-        labelTitulo.setBounds(143, 28, 576, 15);
+        labelTitulo.setBounds(153, 29, 576, 15);
         getContentPane().add(labelTitulo);
         
         
@@ -104,14 +105,41 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	     // Toma las primeras 5 ofertas de la lista ordenada (las 5 con mayor cantidad de visitas)
 	     List<DTOfertaExtendido> cincoOfertasMasVisitadas = listaOfertas.stream().limit(5).collect(Collectors.toList());
         
+	     	tableModel.addRow(new Object[]{null, null, null, null, null});
+	        Integer indice = 1;
 
-		    Integer indice = 1;
+	        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+	        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+	        Font boldFont = new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize());
+	        	
+	        // AJUSTAR EL ANCHO DE LAS COLUMNAS 
+	        table.getColumnModel().getColumn(0).setPreferredWidth(15); // Ancho de la columna del índice 
+	        table.getColumnModel().getColumn(1).setPreferredWidth(170); // Ancho de la columna del nombre de la oferta
+	        table.getColumnModel().getColumn(2).setPreferredWidth(80);
+	        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+	        
+	        
+	        // CENTRAR COLUMNAS
+	        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+	        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+	        for (int i = 0; i < tableModel.getColumnCount(); i++) {
+	            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+	        }
+	        
+	        // NEGRITA PARA EL TITULO DE LAS COLUMNAS
+	        for (int i = 0; i < tableModel.getColumnCount(); i++) {
+	            table.setValueAt("<html><b>" + tableModel.getColumnName(i) + "</b></html>", 0, i);
+	            table.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+	            table.getTableHeader().setFont(boldFont);
+	        }
+	        
+	        // SE AGREGAN LAS OFERTAS LABORALES MAS VISITADAS
 	        for (DTOfertaExtendido oferta : cincoOfertasMasVisitadas) {
 	        	String tipoPub;
 				try {
 					tipoPub = ico.obtenerTipoPubOfertaLaboral(oferta.getNombre());
 		            tableModel.addRow(new Object[]{indice, oferta.getNombre(), oferta.getNicknameEmpresaPublicadora(), tipoPub, oferta.getCantVisitas()});
-		            indice = indice +1;
+		            indice = indice +1;	
 				} catch (OfertaLaboralNoEncontrada e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
