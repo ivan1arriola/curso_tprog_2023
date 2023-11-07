@@ -35,7 +35,7 @@ public class verpostulaciones extends HttpServlet {
 		
 		String nickname = (String) request.getSession().getAttribute("nickname");
 		List<DtPostulacion> postulaciones = new ArrayList<>();
-		List<DtPostulacion> postulacionOferta = new ArrayList<>();
+		//List<DtPostulacion> postulacionOferta = new ArrayList<>();
 		
 
 		try {
@@ -43,9 +43,6 @@ public class verpostulaciones extends HttpServlet {
 			request.setAttribute("usuario", usuario);
 			request.setAttribute("nickname", nickname);
 			List<DtOfertaExtendido> ofertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
-			
-			//no esta encontrando las postulaciones
-			postulaciones =  servidor.listarPostulacionesPostulante(nickname).getPostulaciones();
 			
 			//String nom = servidor.listarPostulacionesPostulante(nickname).getListaString().get(1);
 			//System.out.println(nom);
@@ -61,16 +58,19 @@ public class verpostulaciones extends HttpServlet {
 					
 				 DtPostulacion dtpos = servidor.obtenerDatosPostulacionW(nickname, offer.getNombre());
  			     ofertasPostulado.add(offer);
-				 postulacionOferta.add(dtpos);
+				 postulaciones.add(dtpos);
+				 
+				 System.out.println(dtpos.getNombrePostulante());
+				 
 				}
 			}
 	
 			request.setAttribute("ofertas", ofertasPostulado);
-			request.setAttribute("postulaciones", postulacionOferta);
+			request.setAttribute("postulaciones", postulaciones);
 		} catch (ExceptionUsuarioNoEncontrado_Exception exc) {
 			exc.printStackTrace();
 		} catch (TipoUsuarioNoValido_Exception exc) {
-			// TODO Auto-generated catch block
+
 			exc.printStackTrace();
 		}
 		
