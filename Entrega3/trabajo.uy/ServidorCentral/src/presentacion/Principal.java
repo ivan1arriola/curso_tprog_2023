@@ -31,6 +31,7 @@ public class Principal {
     private ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame;
     private AltaDeKeywords altaDeKeywordsInternalFrame;
     private AceptarOferta aceptarOfertaInternalFrame;
+    private ConsultaOfertasMasVisitadas consultaOfertasMasVisitadasInternalFrame;
 
     EntityManagerFactory entityManagerFactory = null;
     EntityManager entityManager = null;
@@ -165,10 +166,16 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(altaDeOfertaLaboralInternalFrame);
 
         aceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
-        aceptarOfertaInternalFrame.setSize(400, 270);
+        aceptarOfertaInternalFrame.setSize(400, 170);
         aceptarOfertaInternalFrame.setLocation(89, 77);
         aceptarOfertaInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(aceptarOfertaInternalFrame);
+        
+        consultaOfertasMasVisitadasInternalFrame = new ConsultaOfertasMasVisitadas(ICO, ICU);
+        consultaOfertasMasVisitadasInternalFrame.setSize(700, 380); // revisar tamaño
+        consultaOfertasMasVisitadasInternalFrame.setLocation(89, 77);
+        consultaOfertasMasVisitadasInternalFrame.setVisible(false);
+        frmGestionDeUsuarios.getContentPane().add(consultaOfertasMasVisitadasInternalFrame);
 
     }
 
@@ -344,6 +351,15 @@ public class Principal {
             }
         });
         mnOfertaL.add(aceptarOffer);
+        
+        JMenuItem consOfMasVis = new JMenuItem("Ofertas laborales más visitadas");
+        consOfMasVis.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                consultaOfertasMasVisitadasInternalFrame.actualizarTabla();
+                consultaOfertasMasVisitadasInternalFrame.setVisible(true);
+            }
+        });
+        mnOfertaL.add(consOfMasVis);
 
 
         JMenu Keywords = new JMenu("Keywords");

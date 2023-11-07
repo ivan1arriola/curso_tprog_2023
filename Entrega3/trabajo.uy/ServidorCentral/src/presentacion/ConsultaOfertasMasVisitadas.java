@@ -2,6 +2,7 @@ package presentacion;
 
 import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.NoExistePaquete;
+import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPaquete;
@@ -46,7 +47,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Paquete de Tipos de Publicación de Ofertas Laborales");
-        setBounds(30, 30, 688, 713);
+        setBounds(30, 30, 704, 371);
         getContentPane().setLayout(null);
 
         //////////////////// BOTON CERRAR //////////////
@@ -56,7 +57,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(548, 644, 117, 25);
+        btnCerrar.setBounds(548, 297, 117, 25);
         getContentPane().add(btnCerrar);
         //////////////////////////////////////////////
 
@@ -68,14 +69,14 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 
         table = new JTable(tableModel);
         
-        table.setBounds(33, 67, 632, 260);
+        table.setBounds(33, 67, 632, 218);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
         JLabel labelTitulo = new JLabel("Ofertas Laborales mas visitadas en el sitio");
         labelTitulo.setFont(new Font("Dialog", Font.BOLD, 16));
-        labelTitulo.setBounds(76, 26, 355, 15);
+        labelTitulo.setBounds(143, 28, 576, 15);
         getContentPane().add(labelTitulo);
         
         
@@ -104,14 +105,19 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	     List<DTOfertaExtendido> cincoOfertasMasVisitadas = listaOfertas.stream().limit(5).collect(Collectors.toList());
         
 
-	    Integer indice = 1;
-        for (DTOfertaExtendido oferta : cincoOfertasMasVisitadas) {
-        	String tipoPub = ico.obtenerTipoPubOfertaLaboral(oferta.getNombre());
-            tableModel.addRow(new Object[]{indice, oferta.getNombre(), oferta.getNicknameEmpresaPublicadora(), tipoPub, oferta.getCantVisitas()});
-            indice = indice +1;
-        }
-
-
+		    Integer indice = 1;
+	        for (DTOfertaExtendido oferta : cincoOfertasMasVisitadas) {
+	        	String tipoPub;
+				try {
+					tipoPub = ico.obtenerTipoPubOfertaLaboral(oferta.getNombre());
+		            tableModel.addRow(new Object[]{indice, oferta.getNombre(), oferta.getNicknameEmpresaPublicadora(), tipoPub, oferta.getCantVisitas()});
+		            indice = indice +1;
+				} catch (OfertaLaboralNoEncontrada e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+    }
 }
 
 	
