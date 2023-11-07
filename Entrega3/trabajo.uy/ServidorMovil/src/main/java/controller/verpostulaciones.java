@@ -43,8 +43,12 @@ public class verpostulaciones extends HttpServlet {
 			request.setAttribute("usuario", usuario);
 			request.setAttribute("nickname", nickname);
 			List<DtOfertaExtendido> ofertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
+			
+			//no esta encontrando las postulaciones
 			postulaciones =  servidor.listarPostulacionesPostulante(nickname).getPostulaciones();
 			
+			//String nom = servidor.listarPostulacionesPostulante(nickname).getListaString().get(1);
+			//System.out.println(nom);
 
 			List<DtOfertaExtendido> ofertasPostulado = new ArrayList<>();
 			
@@ -53,7 +57,7 @@ public class verpostulaciones extends HttpServlet {
 				boolean existe = servidor.hayPostulacionW(nickname, offer.getNombre()); 
 				
 				if(existe) {
-					System.out.println("existe");
+					
 					
 				 DtPostulacion dtpos = servidor.obtenerDatosPostulacionW(nickname, offer.getNombre());
  			     ofertasPostulado.add(offer);
