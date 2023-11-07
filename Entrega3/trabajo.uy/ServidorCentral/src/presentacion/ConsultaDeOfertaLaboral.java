@@ -64,7 +64,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Oferta Laboral");
-        setBounds(30, 30, 660, 650);
+        setBounds(30, 30, 620, 650);
         getContentPane().setLayout(null);
 
         JButton btnCerrar = new JButton("Cerrar");
@@ -74,11 +74,11 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                 setVisible(false);
             }
         });
-        btnCerrar.setBounds(517, 588, 117, 25);
+        btnCerrar.setBounds(466, 584, 117, 25);
         getContentPane().add(btnCerrar);
 
         listaEmpresas = new JComboBox<String>();
-        listaEmpresas.setBounds(183, 6, 455, 28);
+        listaEmpresas.setBounds(183, 6, 400, 28);
         getContentPane().add(listaEmpresas);
 
 
@@ -119,7 +119,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             }
         });
         
-        btnAceptar_1.setBounds(96, 37, 450, 25);
+        btnAceptar_1.setBounds(133, 40, 450, 25);
         getContentPane().add(btnAceptar_1);
         
 
@@ -182,7 +182,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
             }
         });
-        listaOfertasLaborales.setBounds(183, 73, 455, 28);
+        listaOfertasLaborales.setBounds(183, 73, 400, 28);
         getContentPane().add(listaOfertasLaborales);
 
         JLabel lblIngresoCI_1_2 = new JLabel("Ofertas Laborales:");
@@ -203,17 +203,17 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
         tfNombre = new JTextField();
         tfNombre.setEditable(false);
-        tfNombre.setBounds(183, 110, 455, 25);
+        tfNombre.setBounds(183, 110, 400, 25);
         getContentPane().add(tfNombre);
 
         tfDescripcion = new JTextField();
         tfDescripcion.setEditable(false);
-        tfDescripcion.setBounds(183, 148, 455, 25);
+        tfDescripcion.setBounds(183, 148, 400, 25);
         getContentPane().add(tfDescripcion);
 
         tfFechaDeAlta = new JTextField();
         tfFechaDeAlta.setEditable(false);
-        tfFechaDeAlta.setBounds(183, 185, 455, 25);
+        tfFechaDeAlta.setBounds(183, 185, 400, 25);
         getContentPane().add(tfFechaDeAlta);
 
         JLabel lblIngresoCI_1_2_1_1_1_1 = new JLabel("Costo:");
@@ -226,12 +226,12 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
         tfCosto = new JTextField();
         tfCosto.setEditable(false);
-        tfCosto.setBounds(183, 223, 455, 25);
+        tfCosto.setBounds(183, 223, 400, 25);
         getContentPane().add(tfCosto);
 
         tfRemuneracion = new JTextField();
         tfRemuneracion.setEditable(false);
-        tfRemuneracion.setBounds(183, 261, 455, 25);
+        tfRemuneracion.setBounds(183, 261, 400, 25);
         getContentPane().add(tfRemuneracion);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1 = new JLabel("Horario:");
@@ -240,17 +240,17 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
         tfHorario = new JTextField();
         tfHorario.setEditable(false);
-        tfHorario.setBounds(183, 302, 455, 25);
+        tfHorario.setBounds(183, 302, 400, 25);
         getContentPane().add(tfHorario);
 
         tfDepartamento = new JTextField();
         tfDepartamento.setEditable(false);
-        tfDepartamento.setBounds(183, 343, 455, 25);
+        tfDepartamento.setBounds(183, 343, 400, 25);
         getContentPane().add(tfDepartamento);
 
         tfCiudad = new JTextField();
         tfCiudad.setEditable(false);
-        tfCiudad.setBounds(183, 384, 455, 25);
+        tfCiudad.setBounds(183, 384, 400, 25);
         getContentPane().add(tfCiudad);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1 = new JLabel("Departamento:");
@@ -273,7 +273,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
             }
         });
-        btnVerPostulaciones.setBounds(12, 552, 626, 25);
+        btnVerPostulaciones.setBounds(133, 551, 450, 25);
         getContentPane().add(btnVerPostulaciones);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1 = new JLabel("Keywords:");
@@ -281,13 +281,13 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1);
 
         tAKey = new JTextArea();
-        tAKey.setBounds(183, 480, 455, 60);
+        tAKey.setBounds(183, 480, 400, 60);
         getContentPane().add(tAKey);
         tAKey.setEditable(false);
 
         tfPaquete = new JTextField();
         tfPaquete.setEditable(false);
-        tfPaquete.setBounds(183, 432, 455, 25);
+        tfPaquete.setBounds(183, 432, 400, 25);
         getContentPane().add(tfPaquete);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2 = new JLabel("Paquete:");
