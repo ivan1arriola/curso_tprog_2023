@@ -125,3 +125,7 @@ img.perfil {
 .heart-icon.text-danger {
   color: red; /* Cambiar a color rojo al hacer clic */
 }
+
+.heart-icon:hover{
+  color: red;
+}

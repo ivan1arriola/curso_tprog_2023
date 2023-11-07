@@ -31,8 +31,10 @@ public class DTOfertaExtendido {
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
 
+    private boolean estaVencido;
 
-    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF) {
+
+    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF, boolean estaVencido) {
         nombre = nomb;
         descripcion = desc;
         fechaDeAlta = fechaA;
@@ -47,6 +49,7 @@ public class DTOfertaExtendido {
         paq = paquete;
         nicknameEmpresaPublicadora = empresaPublicadora;
         cantFavs = cantF;
+        this.estaVencido = estaVencido;
     }
 
     public String getNombre() {
@@ -97,17 +100,7 @@ public class DTOfertaExtendido {
         return paq;
     }
 
-    @Override
-    public String toString() {
-        String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n"
-                + "Fecha de alta: " + fechaDeAlta + "\n" + "Costo: "
-                + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n"
-                + "Horario de Entrada: " + horario.getDesde() + "\n"
-                + "Horario de Salida: " + horario.getHasta() + "\n" + ciudad
-                + ",  " + departamento + "\n" + "Estado: " + estado;
 
-        return texto;
-    }
 
     public String getNicknameEmpresaPublicadora() {
         return nicknameEmpresaPublicadora;
@@ -121,5 +114,12 @@ public class DTOfertaExtendido {
 		this.cantFavs = cantFavs;
 	}
 
+    public boolean isEstaVencido() {
+        return estaVencido;
+    }
+
+    public void setEstaVencido(boolean estaVencido) {
+        this.estaVencido = estaVencido;
+    }
 }
 //

@@ -27,6 +27,8 @@ public class DTOfertaLaboral {
     private Integer cantFavs;
 
 
+
+
     public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes, Integer cantF) {
         nombre = nomb;
         descripcion = desc;

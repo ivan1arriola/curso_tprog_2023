@@ -13,6 +13,7 @@
     boolean duenioOfertaLaboral = (boolean) request.getAttribute("duenio");
     boolean mostrarContenido = tipoUsuario == TipoUsuario.Empresa || tipoUsuario == TipoUsuario.Postulante;
     boolean estaFav = (boolean) request.getAttribute("estaFav");
+    boolean vigente = (boolean) request.getAttribute("vigente");
 %>
 
 <!DOCTYPE html>
@@ -76,8 +77,18 @@
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
                     <jsp:include page="./paquetes.jsp" />
+                    <%
+                    if (!vigente){
+                    %>
+                        <form action="<%=request.getContextPath()%>/finalizaroferta" method="POST">
+                            <input type="hidden" value="<%=ofertaLaboral.getNombre()%>" name="oferta">
+                            <button type="submit" class="btn btn-danger">
+                                Finalizar Oferta Laboral
+                            </button>
+                        </form>
 
-                    <%} else if (tipoUsuario == TipoUsuario.Postulante){%>
+                    <%}
+                    } else if (tipoUsuario == TipoUsuario.Postulante){%>
                     <jsp:include page="./postular.jsp" />
                     <%}%>
 

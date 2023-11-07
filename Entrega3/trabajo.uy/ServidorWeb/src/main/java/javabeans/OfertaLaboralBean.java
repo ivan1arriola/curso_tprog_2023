@@ -152,7 +152,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 				estado = EstadoOfertaLaboral.Rechazada;
 				break;
 			case FINALIZADA:
-				// Puedes manejar este caso si es necesario
+				estado = EstadoOfertaLaboral.Finalizada;
 				break;
 		}
 

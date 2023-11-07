@@ -25,6 +25,15 @@
     <url-pattern>/IniciarSesion</url-pattern>
   </servlet-mapping>
   <servlet>
+    <display-name>FinalizarOferta</display-name>
+    <servlet-name>FinalizarOferta</servlet-name>
+    <servlet-class>controller.FinalizarOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FinalizarOferta</servlet-name>
+    <url-pattern>/FinalizarOferta</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>AltaUsuario</display-name>
     <servlet-name>AltaUsuario</servlet-name>

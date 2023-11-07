@@ -332,8 +332,8 @@ public class Servidor {
     @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) {
-        ctrlOferta.finalizarOferta(nombre_oferta);
+    ) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado, FinalizarOfertaNoVencida {
+        ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
 
 

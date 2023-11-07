@@ -38,7 +38,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
         String nombreOferta = request.getParameter("o");
-        
+
+
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
             HttpSession session = request.getSession(false);
             String nickname = (String) session.getAttribute("nickname");
@@ -55,12 +56,16 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             request.setAttribute("estaFav", estaFav);
             
             try {
+                boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
+                request.setAttribute("vigente", estaVigente);
+
                 if (nickname == null) nickname = "";
                 if (tipoUsuario == null) {
                     tipoUsuario = TipoUsuario.Visitante;
                 }
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
+
 
                 boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);
                 request.setAttribute("duenio", esCreadorOferta);
@@ -80,11 +85,13 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 request.setAttribute("ofertaLaboral", ofertaBean);
                 request.setAttribute("nombreOferta", ofertaBean.getNombre());
                 request.getRequestDispatcher("/WEB-INF/consultarOferta/consultarOferta.jsp").forward(request, response);
+                return;
             } catch (IOException e) {
                 String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: " + e.getMessage();
                 request.setAttribute("mensajeError", mensajeError);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
                 dispatcher.forward(request, response);
+                return;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -96,21 +103,6 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         }
     }
 
-    private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname) {
-        try {
-            //ofertaBean = logica.cargarPaquete(ofertaBean, empresaNickname);
-            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return ofertaBean;
-    }
 
     private OfertaLaboralBean cargarDatosPostulante(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
         try {
@@ -134,21 +126,17 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     		try {
 				servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
-			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-				e.printStackTrace();
-			} catch (OfertaLaboralNoEncontrada_Exception e) {
+			} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 				e.printStackTrace();
 			}
-			
-    	} else if (request.getParameter("corazonMarc") != null) {
+
+        } else if (request.getParameter("corazonMarc") != null) {
     		try {
 				servidor.desmarcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
-			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-				e.printStackTrace();
-			} catch (OfertaLaboralNoEncontrada_Exception e) {
+			} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 				e.printStackTrace();
 			}
-    	}
+        }
     }
 }
