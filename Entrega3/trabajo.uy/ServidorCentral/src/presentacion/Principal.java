@@ -355,7 +355,8 @@ public class Principal {
         JMenuItem consOfMasVis = new JMenuItem("Ofertas laborales más visitadas");
         consOfMasVis.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                consultaOfertasMasVisitadasInternalFrame.actualizarTabla();
+            	String operacionInicial = "C";
+                consultaOfertasMasVisitadasInternalFrame.actualizarTabla(operacionInicial);
                 consultaOfertasMasVisitadasInternalFrame.setVisible(true);
             }
         });

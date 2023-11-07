@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Paquete de Tipos de Publicación de Ofertas Laborales");
-        setBounds(30, 30, 704, 337);
+        setBounds(30, 30, 704, 373);
         getContentPane().setLayout(null);
 
         //////////////////// BOTON CERRAR //////////////
@@ -58,7 +59,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(549, 271, 117, 25);
+        btnCerrar.setBounds(543, 307, 117, 25);
         getContentPane().add(btnCerrar);
         //////////////////////////////////////////////
 
@@ -70,31 +71,83 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 
         table = new JTable(tableModel);
         
-        table.setBounds(33, 67, 632, 175);
+        table.setBounds(27, 121, 632, 175);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
         JLabel labelTitulo = new JLabel("Ofertas Laborales mas visitadas en el sitio");
         labelTitulo.setFont(new Font("Dialog", Font.BOLD, 16));
-        labelTitulo.setBounds(153, 29, 576, 15);
+        labelTitulo.setBounds(174, 23, 576, 15);
         getContentPane().add(labelTitulo);
         
+        JLabel lblNewLabel = new JLabel("Seleccione el tipo de oferta: ");
+        lblNewLabel.setBounds(27, 69, 235, 14);
+        getContentPane().add(lblNewLabel);
         
+        JRadioButton btnVigentes = new JRadioButton("Vigentes");
+        btnVigentes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String op = "C";
+                actualizarTabla(op);
+        	}
+        });
+        btnVigentes.setBounds(205, 65, 82, 23);
+        getContentPane().add(btnVigentes);
         
-	     
-	     
-        actualizarTabla();
+        JRadioButton btnFinalizadas = new JRadioButton("Vencidas");
+        btnFinalizadas.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String op = "F";
+                actualizarTabla(op);
+        	}
+        });
+        btnFinalizadas.setBounds(284, 65, 82, 23);
+        getContentPane().add(btnFinalizadas);
+        
+        JRadioButton btnTodas = new JRadioButton("Todas");
+        btnTodas.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String op = "F";
+                actualizarTabla(op);
+        	}
+        });
+        btnTodas.setBounds(370, 65, 82, 23);
+        getContentPane().add(btnTodas);
+
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+  
+        buttonGroup.add(btnVigentes);
+        buttonGroup.add(btnFinalizadas);
+        buttonGroup.add(btnTodas);
+        
+
 
 
     }
 
     
-    public void actualizarTabla() {
+    public void actualizarTabla(String op) {
         // Elimina todas las filas existentes en el modelo de la tabla
         tableModel.setRowCount(0);
         
-        Set<DTOfertaExtendido> ofertas = ico.listarOfertasLaboralesConfirmadas();
+        Set<DTOfertaExtendido> ofertas = null;
+        
+        if (op == "C") { 
+        	ofertas = ico.listarOfertasLaboralesConfirmadasYNoVencidas();
+        } else if (op == "F") {
+        	Set<DTOfertaExtendido> of1 = ico.listarOfertasLaboralesConfirmadas();
+        	Set<DTOfertaExtendido> of2 = ico.listarOfertasLaboralesConfirmadasYNoVencidas();
+        	
+        	// Crear una copia del conjunto of1 para preservar los datos originales
+        	ofertas = new HashSet<>(of1);
+        	ofertas.removeAll(of2);
+        	
+        } else {
+        	ofertas = ico.listarOfertasLaboralesConfirmadas();
+        }
+        		
 
         // Convierte el Set a una lista para poder ordenarla
         List<DTOfertaExtendido> listaOfertas = ofertas.stream().collect(Collectors.toList());
@@ -105,46 +158,46 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	     // Toma las primeras 5 ofertas de la lista ordenada (las 5 con mayor cantidad de visitas)
 	     List<DTOfertaExtendido> cincoOfertasMasVisitadas = listaOfertas.stream().limit(5).collect(Collectors.toList());
         
-	     	tableModel.addRow(new Object[]{null, null, null, null, null});
-	        Integer indice = 1;
+	     tableModel.addRow(new Object[]{null, null, null, null, null});
+	     Integer indice = 1;
 
-	        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
-	        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-	        Font boldFont = new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize());
+	     DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+	     headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+	     Font boldFont = new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize());
 	        	
-	        // AJUSTAR EL ANCHO DE LAS COLUMNAS 
-	        table.getColumnModel().getColumn(0).setPreferredWidth(15); // Ancho de la columna del índice 
-	        table.getColumnModel().getColumn(1).setPreferredWidth(170); // Ancho de la columna del nombre de la oferta
-	        table.getColumnModel().getColumn(2).setPreferredWidth(80);
-	        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+	     // AJUSTAR EL ANCHO DE LAS COLUMNAS 
+	     table.getColumnModel().getColumn(0).setPreferredWidth(15); // Ancho de la columna del índice 
+	     table.getColumnModel().getColumn(1).setPreferredWidth(170); // Ancho de la columna del nombre de la oferta
+	     table.getColumnModel().getColumn(2).setPreferredWidth(80);
+	     table.getColumnModel().getColumn(3).setPreferredWidth(100);
 	        
 	        
-	        // CENTRAR COLUMNAS
-	        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-	        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-	        for (int i = 0; i < tableModel.getColumnCount(); i++) {
-	            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-	        }
+	     // CENTRAR COLUMNAS
+	     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+	     centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+	     for (int i = 0; i < tableModel.getColumnCount(); i++) {
+	    	 table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+	     }
+	       
+	     // NEGRITA PARA EL TITULO DE LAS COLUMNAS
+	     for (int i = 0; i < tableModel.getColumnCount(); i++) {
+	    	 table.setValueAt("<html><b>" + tableModel.getColumnName(i) + "</b></html>", 0, i);
+	         table.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+	         table.getTableHeader().setFont(boldFont);
+	     }
 	        
-	        // NEGRITA PARA EL TITULO DE LAS COLUMNAS
-	        for (int i = 0; i < tableModel.getColumnCount(); i++) {
-	            table.setValueAt("<html><b>" + tableModel.getColumnName(i) + "</b></html>", 0, i);
-	            table.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
-	            table.getTableHeader().setFont(boldFont);
-	        }
-	        
-	        // SE AGREGAN LAS OFERTAS LABORALES MAS VISITADAS
-	        for (DTOfertaExtendido oferta : cincoOfertasMasVisitadas) {
-	        	String tipoPub;
-				try {
-					tipoPub = ico.obtenerTipoPubOfertaLaboral(oferta.getNombre());
-		            tableModel.addRow(new Object[]{indice, oferta.getNombre(), oferta.getNicknameEmpresaPublicadora(), tipoPub, oferta.getCantVisitas()});
-		            indice = indice +1;	
-				} catch (OfertaLaboralNoEncontrada e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
+	     // SE AGREGAN LAS OFERTAS LABORALES MAS VISITADAS
+	     for (DTOfertaExtendido oferta : cincoOfertasMasVisitadas) {
+	    	 String tipoPub;
+	    	 try {
+	    		 tipoPub = ico.obtenerTipoPubOfertaLaboral(oferta.getNombre());
+		         tableModel.addRow(new Object[]{indice, oferta.getNombre(), oferta.getNicknameEmpresaPublicadora(), tipoPub, oferta.getCantVisitas()});
+		         indice = indice +1;	
+	    	 } catch (OfertaLaboralNoEncontrada e) {
+	    		 // TODO Auto-generated catch block
+	    		 e.printStackTrace();
+	    	 }
+	    }
     }
 }
 
