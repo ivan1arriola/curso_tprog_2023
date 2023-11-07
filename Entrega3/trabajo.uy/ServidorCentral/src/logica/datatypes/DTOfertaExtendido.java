@@ -31,8 +31,10 @@ public class DTOfertaExtendido {
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
 
+    private boolean estaVencido;
 
-    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF) {
+
+    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF, boolean estaVencido) {
         nombre = nomb;
         descripcion = desc;
         fechaDeAlta = fechaA;
@@ -47,6 +49,7 @@ public class DTOfertaExtendido {
         paq = paquete;
         nicknameEmpresaPublicadora = empresaPublicadora;
         cantFavs = cantF;
+        this.estaVencido = estaVencido;
     }
 
     public String getNombre() {

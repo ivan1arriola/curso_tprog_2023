@@ -142,15 +142,10 @@ public class OfertaLaboral {
                 }
 
 
-            } catch (ExceptionCostoPaqueteNoNegativo excCosto) {
+            } catch (ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido |
+                     ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCosto) {
                 System.err.println("Error: " + excCosto.getMessage());
                 throw excCosto;
-            } catch (ExceptionDescuentoInvalido excDesc) {
-                System.err.println("Error: " + excDesc.getMessage());
-                throw excDesc;
-            } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCant) {
-                System.err.println("Error: " + excCant.getMessage());
-                throw excCant;
             }
 
 
@@ -601,10 +596,7 @@ public class OfertaLaboral {
 
     public DTOfertaExtendido obtenerDatosOferta() {
         Set<DTPostulacion> posts = new HashSet<>();
-        // muestro todas las postulaciones
-        for (int i = 0; i < postulaciones.size(); i++) {
-            Postulacion elem = postulaciones.get(i);
-            // obtengo DTPostulacion para cada una
+        for (Postulacion elem : postulaciones) {
             posts.add(elem.obtenerDT());
         }
         Paquete paq = getPaquete();

@@ -96,21 +96,6 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         }
     }
 
-    private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname) {
-        try {
-            //ofertaBean = logica.cargarPaquete(ofertaBean, empresaNickname);
-            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return ofertaBean;
-    }
 
     private OfertaLaboralBean cargarDatosPostulante(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
         try {
@@ -134,21 +119,17 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     		try {
 				servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
-			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-				e.printStackTrace();
-			} catch (OfertaLaboralNoEncontrada_Exception e) {
+			} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 				e.printStackTrace();
 			}
-			
-    	} else if (request.getParameter("corazonMarc") != null) {
+
+        } else if (request.getParameter("corazonMarc") != null) {
     		try {
 				servidor.desmarcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
-			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-				e.printStackTrace();
-			} catch (OfertaLaboralNoEncontrada_Exception e) {
+			} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 				e.printStackTrace();
 			}
-    	}
+        }
     }
 }

@@ -30,6 +30,15 @@ public class Logica implements ILogica {
     }
 
 
+	@Override
+	public boolean estaVigenteOferta(String nombreOferta){
+		OfertaLaboralBean ofertaLaboralBean = obtenerDatosOfertaLaboral(nombreOferta);
+		DtTipoOferta
+
+		return true;
+	}
+
+
 
     
 
@@ -231,7 +240,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void finalizarOferta(String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception {
+	public void finalizarOferta(String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception {
 		servidor.finalizarOferta(nombreOferta);
 	}
 
@@ -368,7 +377,7 @@ public class Logica implements ILogica {
         ofertaLaboral.setEstado(DtOferta.getEstado());
         ofertaLaboral.setNicknameEmpresa(DtOferta.getNicknameEmpresaPublicadora());
         ofertaLaboral.setCantFavs(DtOferta.getCantFavs());
-        
+
         DtOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralVisitante(nombreOferta);
         ofertaLaboral.setKeywords(new TreeSet<>(nuevoDatos.getKeywords()));
 
