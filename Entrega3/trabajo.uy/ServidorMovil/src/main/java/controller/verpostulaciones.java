@@ -19,13 +19,13 @@ import java.util.ArrayList;
 
 
 @WebServlet("/verpostulacion")
-public class VerPostulaciones extends HttpServlet {
+public class verpostulaciones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServidorService servidorService;
 	private Servidor servidor;
        
 
-    public VerPostulaciones() {
+    public verpostulaciones() {
         super();
         servidorService = new ServidorService();
         servidor = servidorService.getServidorPort();
@@ -52,6 +52,8 @@ public class VerPostulaciones extends HttpServlet {
 				boolean existe = servidor.hayPostulacionW(nickname, offer.getNombre()); 
 				
 				if(existe) {
+					System.out.println("existe");
+					
 				 DtPostulacion dtpos = servidor.obtenerDatosPostulacionW(nickname, offer.getNombre());
  			     ofertasPostulado.add(offer);
 				 postulacionOferta.add(dtpos);
