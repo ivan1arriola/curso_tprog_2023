@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
     private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
     private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCompraPaqueteConValorNegativo");
+    private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionEmpresaInvalida");
     private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
     private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
     private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
@@ -96,6 +97,16 @@ public class ObjectFactory {
      */
     public ExceptionCompraPaqueteConValorNegativo createExceptionCompraPaqueteConValorNegativo() {
         return new ExceptionCompraPaqueteConValorNegativo();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionEmpresaInvalida }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionEmpresaInvalida }
+     */
+    public ExceptionEmpresaInvalida createExceptionEmpresaInvalida() {
+        return new ExceptionEmpresaInvalida();
     }
 
     /**
@@ -421,6 +432,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCompraPaqueteConValorNegativo")
     public JAXBElement<ExceptionCompraPaqueteConValorNegativo> createExceptionCompraPaqueteConValorNegativo(ExceptionCompraPaqueteConValorNegativo value) {
         return new JAXBElement<>(_ExceptionCompraPaqueteConValorNegativo_QNAME, ExceptionCompraPaqueteConValorNegativo.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionEmpresaInvalida }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionEmpresaInvalida }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionEmpresaInvalida")
+    public JAXBElement<ExceptionEmpresaInvalida> createExceptionEmpresaInvalida(ExceptionEmpresaInvalida value) {
+        return new JAXBElement<>(_ExceptionEmpresaInvalida_QNAME, ExceptionEmpresaInvalida.class, null, value);
     }
 
     /**

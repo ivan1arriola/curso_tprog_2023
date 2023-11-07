@@ -97,6 +97,11 @@ public class Servidor {
     public WrapperLista listarPaquetes() {
         return WSUtils.envolverLista(ctrlOferta.listarPaquetes());
     }
+    
+    @WebMethod
+    public WrapperLista listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado {
+        return WSUtils.envolverLista(ctrlOferta.listarPaquetesNoVencidos(nickname_e));
+    }
 
     @WebMethod
     public WrapperLista listarTodasLasOfertasLaborales(String nicknameParametro) throws ExceptionUsuarioNoEncontrado {
@@ -337,6 +342,11 @@ public class Servidor {
     @WebMethod
     public void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada {
     	ctrlOferta.aumentarVisita(nombre_oferta);
+    }
+    
+    @WebMethod
+    public String obtenerFechaCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado {
+    	return ctrlUsuario.obtenerFechaDeCompra(nickname_e, paq).toString();
     }
     
     @WebMethod

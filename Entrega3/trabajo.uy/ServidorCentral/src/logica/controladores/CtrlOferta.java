@@ -606,5 +606,6 @@ public class CtrlOferta implements ICtrlOferta {
     	OfertaLaboral ol = OLH.buscar(nomb_oferta);
     	return ol.getTipoOferta().getNombre();
     }
+
 }
 

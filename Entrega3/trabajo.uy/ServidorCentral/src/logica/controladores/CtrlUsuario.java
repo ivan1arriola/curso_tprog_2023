@@ -587,5 +587,12 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 		return res;
 	}
+	
+	@Override
+    public LocalDate obtenerFechaDeCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado {
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Empresa e = (Empresa) UH.buscarNick(nickname_e);
+    	return e.obtenerFechaDeCompra(paq);
+    }
 }
 

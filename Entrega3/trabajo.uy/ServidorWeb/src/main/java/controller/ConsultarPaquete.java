@@ -52,14 +52,14 @@ public class ConsultarPaquete extends HttpServlet {
                     } else {
                         request.setAttribute("mostrarComprar", true);
                         request.setAttribute("yaSeCompro", true);
-                    }
+                    }      
                 }   
             }
         }
 
         try {
             PaqueteBean paquete = FabricaWeb.getInstance().getLogica().obtenerDatosPaquete(nombrePaquete);
-
+            
             request.setAttribute("paquete", paquete);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPaquete/paquete.jsp");

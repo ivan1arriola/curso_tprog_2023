@@ -633,24 +633,6 @@ public interface Servidor {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadas/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public WrapperLista listarOfertasLaboralesConfirmadas(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
      * @param arg1
      * @param arg2
      * @param arg3
@@ -916,6 +898,26 @@ public interface Servidor {
      * 
      * @param arg0
      * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionEmpresaInvalida_Exception
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarPaquetesNoVencidosRequest", output = "http://servidor.logica/Servidor/listarPaquetesNoVencidosResponse", fault = {
+        @FaultAction(className = ExceptionEmpresaInvalida_Exception.class, value = "http://servidor.logica/Servidor/listarPaquetesNoVencidos/Fault/ExceptionEmpresaInvalida"),
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarPaquetesNoVencidos/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista listarPaquetesNoVencidos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionEmpresaInvalida_Exception, ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns logica.servidor.DtTipoOferta
      * @throws ExcepcionTipoOfertaNoExistente_Exception
      */
@@ -1096,6 +1098,27 @@ public interface Servidor {
 
     /**
      * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns java.lang.String
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerFechaCompraRequest", output = "http://servidor.logica/Servidor/obtenerFechaCompraResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerFechaCompra/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public String obtenerFechaCompra(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
      * @param nombreOferta
      */
     @WebMethod
@@ -1143,5 +1166,23 @@ public interface Servidor {
     @WebResult(partName = "return")
     @Action(input = "http://servidor.logica/Servidor/listarTipoDePublicacionesRequest", output = "http://servidor.logica/Servidor/listarTipoDePublicacionesResponse")
     public WrapperLista listarTipoDePublicaciones();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadas/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public WrapperLista listarOfertasLaboralesConfirmadas(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
 
 }

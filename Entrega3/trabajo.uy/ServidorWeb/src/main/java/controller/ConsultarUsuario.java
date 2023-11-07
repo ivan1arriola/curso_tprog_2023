@@ -13,9 +13,13 @@ import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
 import logica.servidor.*;
 import utils.FabricaWeb;
+import java.time.LocalDate;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
@@ -43,6 +47,9 @@ public class ConsultarUsuario extends HttpServlet {
         request.setAttribute("tipoU", tipoUsuarioLogueado);
         request.setAttribute("usuarioConsultado", nicknameParametro);
         
+        ServidorService SS = new ServidorService();
+        Servidor servidor = SS.getServidorPort();
+        
         if (nicknameParametro != null && !nicknameParametro.isEmpty()) {
             try {
                 UsuarioBean usuario = logica.obtenerDatosUsuario(nicknameParametro);
@@ -52,6 +59,30 @@ public class ConsultarUsuario extends HttpServlet {
 
                 if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
                     usuario = cargarPaquete(usuario, nicknameParametro);
+                    Set<PaqueteBean> paquetes = usuario.getPaquetes();
+                    List<String> paqs = servidor.listarPaquetesNoVencidos(usuario.getNickname()).getListaString();
+                    Map<String, LocalDate> mapaStringFecha = new HashMap<>();
+                    
+                    Set<String> paquetesVencidos = new HashSet<>();
+                    for(PaqueteBean paq : paquetes) {
+                    	if(!paqs.contains(paq.getNombre())) {
+                    		paquetesVencidos.add(paq.getNombre());
+                    	}
+                    	mapaStringFecha.put(paq.getNombre(), LocalDate.parse(servidor.obtenerFechaCompra(usuario.getNickname(), paq.getNombre())));
+                    }
+                    
+                    request.setAttribute("mapaStringFecha", mapaStringFecha);
+                    request.setAttribute("paquetesVencidos", paquetesVencidos);
+                    
+                    /*String s = ""; test de cosas
+                    for(PaqueteBean elem : paquetes) {
+                        s = s + elem.getNombre() + elem.get.toString();// + elem.getValidez();
+                    }
+                    
+                    request.setAttribute("mensajeError", s);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+                    dispatcher.forward(request, response);*/
+                    
                     usuario = cargarOfertasLaborales(usuario, nicknameParametro, true );
                 }
                 if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) {
@@ -158,9 +189,11 @@ public class ConsultarUsuario extends HttpServlet {
 	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) throws ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception {
         Set<String> nombresPaquetes = logica.listarPaquetesDeEmpresa(nickname);  	
         Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
+        
         if (nombresPaquetes != null && !nombresPaquetes.isEmpty()) {
             for (String nombre : nombresPaquetes) {
             	paquetes.add(logica.obtenerDatosPaquete(nombre));
+            	
             }
         }
         usuario.setPaquetes(paquetes);
