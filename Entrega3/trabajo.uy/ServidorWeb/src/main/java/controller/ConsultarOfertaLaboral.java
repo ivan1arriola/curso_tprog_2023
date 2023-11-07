@@ -39,6 +39,16 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
         String nombreOferta = request.getParameter("o");
         
+        ServidorService SS = new ServidorService();
+        Servidor servidor = SS.getServidorPort();
+        
+        try {
+			servidor.aumentarVisita(nombreOferta);
+		} catch (OfertaLaboralNoEncontrada_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
             HttpSession session = request.getSession(false);
             String nickname = (String) session.getAttribute("nickname");
