@@ -28,6 +28,7 @@ public class DTOfertaExtendidoConKeywords {
     @XmlJavaTypeAdapter(SetStringAdapter.class)
     private Set<String> keywords;
     private Integer cantFavs;
+    private Integer cantVisitas;
 
     public DTOfertaExtendidoConKeywords(
     	    String nomb,
@@ -42,7 +43,8 @@ public class DTOfertaExtendidoConKeywords {
     	    Set<DTPostulacion> post,
     	    byte[] img,
     	    Set<String> keys,
-    	    Integer cantF
+    	    Integer cantF,
+    	    Integer cantV
     	) {
     	    nombre = nomb;
     	    descripcion = desc;
@@ -57,6 +59,7 @@ public class DTOfertaExtendidoConKeywords {
     	    imagen = img;
     	    keywords = keys;
     	    setCantFavs(cantF);
+    	    cantVisitas = cantV;
     	}
 
 
@@ -128,6 +131,16 @@ public class DTOfertaExtendidoConKeywords {
 
 	public void setCantFavs(Integer cantFavs) {
 		this.cantFavs = cantFavs;
+	}
+
+
+	public Integer getCantVisitas() {
+		return cantVisitas;
+	}
+
+
+	public void setCantVisitas(Integer cantVisitas) {
+		this.cantVisitas = cantVisitas;
 	}
 
 }

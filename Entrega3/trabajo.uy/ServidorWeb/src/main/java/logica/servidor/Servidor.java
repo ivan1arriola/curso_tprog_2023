@@ -31,6 +31,45 @@ public interface Servidor {
      * @param arg1
      * @param arg2
      * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @throws ErrorAgregarUsuario_Exception
+     * @throws ExceptionUsuarioCorreoRepetido_Exception
+     * @throws ExceptionUsuarioNickRepetido_Exception
+     * @throws ExceptionUsuarioNickYCorreoRepetidos_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/altaEmpresaURLRequest", output = "http://servidor.logica/Servidor/altaEmpresaURLResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioCorreoRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioCorreoRepetido"),
+        @FaultAction(className = ExceptionUsuarioNickYCorreoRepetidos_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickYCorreoRepetidos"),
+        @FaultAction(className = ExceptionUsuarioNickRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickRepetido"),
+        @FaultAction(className = ErrorAgregarUsuario_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ErrorAgregarUsuario")
+    })
+    public void altaEmpresaURL(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6)
+        throws ErrorAgregarUsuario_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
      * @throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception
      * @throws ExceptionCompraPaqueteConValorNegativo_Exception
      * @throws ExceptionUsuarioNoEncontrado_Exception
@@ -76,45 +115,6 @@ public interface Servidor {
         @WebParam(name = "arg1", partName = "arg1")
         String arg1)
         throws OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @throws ErrorAgregarUsuario_Exception
-     * @throws ExceptionUsuarioCorreoRepetido_Exception
-     * @throws ExceptionUsuarioNickRepetido_Exception
-     * @throws ExceptionUsuarioNickYCorreoRepetidos_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/altaEmpresaURLRequest", output = "http://servidor.logica/Servidor/altaEmpresaURLResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioCorreoRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioCorreoRepetido"),
-        @FaultAction(className = ExceptionUsuarioNickYCorreoRepetidos_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickYCorreoRepetidos"),
-        @FaultAction(className = ExceptionUsuarioNickRepetido_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ExceptionUsuarioNickRepetido"),
-        @FaultAction(className = ErrorAgregarUsuario_Exception.class, value = "http://servidor.logica/Servidor/altaEmpresaURL/Fault/ErrorAgregarUsuario")
-    })
-    public void altaEmpresaURL(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws ErrorAgregarUsuario_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception
     ;
 
     /**
