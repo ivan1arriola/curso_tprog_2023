@@ -98,6 +98,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                     Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombreE);
                     ofertas_laborales.iterator();
                     if (!ofertas_laborales.isEmpty()) {
+                    	//listaOfertasLaborales.addItem("");
                         for (String it : ofertas_laborales) {
                             listaOfertasLaborales.addItem(it);
                         }
@@ -127,58 +128,62 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         listaOfertasLaborales.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
+
+            	
                 String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
-
-                if (selectedUsuario1 != null) {
-                    selectedUsuario = selectedUsuario1;
-                }
-                DTOfertaExtendido infoConsOf = null;
                 
-               
-                try {
-                	infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
-                } catch (OfertaLaboralNoEncontrada e) {
-                    throw new RuntimeException(e);
+                //if (listaOfertasLaborales.getSelectedIndex()!=0 && listaOfertasLaborales.getSelectedIndex()!=-1) {
+                if (listaOfertasLaborales.getSelectedIndex()!=-1) {
+	                if (selectedUsuario1 != null) {
+	                    selectedUsuario = selectedUsuario1;
+	                }
+	                DTOfertaExtendido infoConsOf = null;
+	                
+	               
+	                try {
+	                	infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
+	                } catch (OfertaLaboralNoEncontrada e) {
+	                    throw new RuntimeException(e);
+	                }
+	                tfNombre.setText(infoConsOf.getNombre());
+	                tfDescripcion.setText(infoConsOf.getDescripcion());
+	
+	
+	                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	                String fechaComoString = infoConsOf.getFechaDeAlta().format(formatter);
+	                tfFechaDeAlta.setText(fechaComoString);
+	
+	                tfCosto.setText(String.valueOf(infoConsOf.getCosto()));
+	
+	                tfRemuneracion.setText(String.valueOf(infoConsOf.getRemuneracion()));
+	
+	                tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
+	
+	                tfDepartamento.setText((infoConsOf.getDepartamento()).name());
+	
+	                tfCiudad.setText(infoConsOf.getCiudad());
+	                String paq = infoConsOf.getPaquete();
+	
+	                if (paq == null) {
+	                    tfPaquete.setText("No fue comprado con un paquete.");
+	                } else {
+	                    tfPaquete.setText(paq);
+	                }
+	
+	                Set<String> keywords = null;
+	                try {
+	                    keywords = icUsuario.listarKeywords(selectedUsuario1);
+	                } catch (OfertaLaboralNoEncontrada e) {
+	                    throw new RuntimeException(e);
+	                }
+	
+	                tAKey.setText("");
+	                Iterator<String> iterator = keywords.iterator();
+	                while (iterator.hasNext()) {
+	                    tAKey.append(iterator.next());
+	                    tAKey.append("\n");
+	                }
                 }
-                tfNombre.setText(infoConsOf.getNombre());
-                tfDescripcion.setText(infoConsOf.getDescripcion());
-
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                String fechaComoString = infoConsOf.getFechaDeAlta().format(formatter);
-                tfFechaDeAlta.setText(fechaComoString);
-
-                tfCosto.setText(String.valueOf(infoConsOf.getCosto()));
-
-                tfRemuneracion.setText(String.valueOf(infoConsOf.getRemuneracion()));
-
-                tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
-
-                tfDepartamento.setText((infoConsOf.getDepartamento()).name());
-
-                tfCiudad.setText(infoConsOf.getCiudad());
-                String paq = infoConsOf.getPaquete();
-
-                if (paq == null) {
-                    tfPaquete.setText("No fue comprado con un paquete.");
-                } else {
-                    tfPaquete.setText(paq);
-                }
-
-                Set<String> keywords = null;
-                try {
-                    keywords = icUsuario.listarKeywords(selectedUsuario1);
-                } catch (OfertaLaboralNoEncontrada e) {
-                    throw new RuntimeException(e);
-                }
-
-                tAKey.setText("");
-                Iterator<String> iterator = keywords.iterator();
-                while (iterator.hasNext()) {
-                    tAKey.append(iterator.next());
-                    tAKey.append("\n");
-                }
-
 
             }
         });
