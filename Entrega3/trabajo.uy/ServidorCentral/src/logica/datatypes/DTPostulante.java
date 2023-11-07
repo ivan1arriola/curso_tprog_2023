@@ -21,7 +21,7 @@ public class DTPostulante extends DTUsuario {
         super(nickname, correo_electronico, apellido, nombre, contraseña, imagen, seguidos, seguidores);
         this.fechanac = fechaNac;
         this.nacionalidad = nacionalidad;
-        this.setFavs(favs);
+        this.favs = favs;
     }
 
     @XmlJavaTypeAdapter(LocalDateAdapter.class)

@@ -46,8 +46,9 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
             UsuarioBean user = logica.obtenerDatosUsuario(nickname);
             boolean estaFav = false;
+            
             for (OfertaLaboralBean elemento : user.getOferFavs()) {
-            	estaFav = elemento.getNombre() == nombreOferta;
+            	estaFav = elemento.getNombre().equals(nombreOferta);
             	if(estaFav)
             		break;
             }
@@ -61,7 +62,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 }
 
                 OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
-
+              
+                request.setAttribute("cantFavs", ofertaBean.getCantFavs());
                 boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);
                 request.setAttribute("duenio", esCreadorOferta);
 
@@ -132,7 +134,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     	
     	if (request.getParameter("corazonDesm") != null) {
     		try {
-				servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
+    			servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
 				e.printStackTrace();
@@ -142,6 +144,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 			
     	} else if (request.getParameter("corazonMarc") != null) {
     		try {
+    			
 				servidor.desmarcarFavorito(nicknameUsuarioLogueado, nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {

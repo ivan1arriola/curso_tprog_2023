@@ -480,6 +480,7 @@ public class CtrlOferta implements ICtrlOferta {
 
     @Override
     public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = null;
 		try {
@@ -488,7 +489,7 @@ public class CtrlOferta implements ICtrlOferta {
             OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
             OfertaLaboral ofer = null;
             try {
-                ofer = OLH.buscar(nomb_oferta);
+                ofer = OLH.buscar(nomb_oferta); 
                 postu.marcarFavorita(ofer);
                 ofer.marcadaFav();
             } catch (OfertaLaboralNoEncontrada e) {

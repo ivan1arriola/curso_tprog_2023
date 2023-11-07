@@ -126,7 +126,6 @@ public class Postulante extends Usuario {
         	DTOfertaExtendido dt = elemento.obtenerDatosOferta();
         	ofer_favs.add(dt);
         }
-
         DTPostulante postul = new DTPostulante(this.getNickname(), this.getcorreoElectronico(), this.getApellido(), this.getNombre(), this.getcontrasenia(), this.getImagen(), fechaNac, nacionalidad, sdos, sdores, ofer_favs);
         return postul;
     }

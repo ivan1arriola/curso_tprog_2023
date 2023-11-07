@@ -27,6 +27,8 @@ public class ObjectFactory {
     private final static QName _ErrorAgregarUsuario_QNAME = new QName("http://servidor.logica/", "ErrorAgregarUsuario");
     private final static QName _ExcepcionKeywordVacia_QNAME = new QName("http://servidor.logica/", "ExcepcionKeywordVacia");
     private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
+    private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
+    private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCompraPaqueteConValorNegativo");
     private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
     private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
     private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
@@ -74,6 +76,26 @@ public class ObjectFactory {
      */
     public ExcepcionTipoOfertaNoExistente createExcepcionTipoOfertaNoExistente() {
         return new ExcepcionTipoOfertaNoExistente();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa }
+     */
+    public ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa createExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa() {
+        return new ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionCompraPaqueteConValorNegativo }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionCompraPaqueteConValorNegativo }
+     */
+    public ExceptionCompraPaqueteConValorNegativo createExceptionCompraPaqueteConValorNegativo() {
+        return new ExceptionCompraPaqueteConValorNegativo();
     }
 
     /**
@@ -184,16 +206,6 @@ public class ObjectFactory {
      */
     public TipoUsuarioNoValido createTipoUsuarioNoValido() {
         return new TipoUsuarioNoValido();
-    }
-
-    /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
     }
 
     /**
@@ -337,6 +349,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link LocalDate }
+     * 
+     * @return
+     *     the new instance of {@link LocalDate }
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ErrorAgregarUsuario }{@code >}
      * 
      * @param value
@@ -373,6 +395,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExcepcionTipoOfertaNoExistente")
     public JAXBElement<ExcepcionTipoOfertaNoExistente> createExcepcionTipoOfertaNoExistente(ExcepcionTipoOfertaNoExistente value) {
         return new JAXBElement<>(_ExcepcionTipoOfertaNoExistente_QNAME, ExcepcionTipoOfertaNoExistente.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa")
+    public JAXBElement<ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa> createExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa(ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa value) {
+        return new JAXBElement<>(_ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionCompraPaqueteConValorNegativo }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionCompraPaqueteConValorNegativo }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCompraPaqueteConValorNegativo")
+    public JAXBElement<ExceptionCompraPaqueteConValorNegativo> createExceptionCompraPaqueteConValorNegativo(ExceptionCompraPaqueteConValorNegativo value) {
+        return new JAXBElement<>(_ExceptionCompraPaqueteConValorNegativo_QNAME, ExceptionCompraPaqueteConValorNegativo.class, null, value);
     }
 
     /**

@@ -21,7 +21,7 @@
 <head>
     <jsp:include page="/WEB-INF/templates/head.jsp" />
     <title><%= ofertaLaboral.getNombre() %></title>
-
+    
     <style>
         .banner-container {
             background-image: url(<%= imagen %>);
@@ -33,6 +33,8 @@
 <body>
 <header>
     <jsp:include page="/WEB-INF/templates/header.jsp" />
+    
+    
 </header>
 
 <main class="container-fluid d-flex">
@@ -72,7 +74,10 @@
 						</button>
 					<%}%>
                     </form>
-
+                    <h4> Cantidad de favoritos:  </h4>
+                    <h4 class="text-center fw-bolder"><%= request.getAttribute("cantFavs") %></h4>
+                  
+					
                     <% if(tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral){ %>
                     <jsp:include page="./postulantes.jsp" />
                     <jsp:include page="./paquetes.jsp" />

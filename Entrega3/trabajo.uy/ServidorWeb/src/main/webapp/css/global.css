@@ -123,5 +123,6 @@ img.perfil {
 }
 
 .heart-icon.text-danger {
+  font-size: 3em;
   color: red; /* Cambiar a color rojo al hacer clic */
 }

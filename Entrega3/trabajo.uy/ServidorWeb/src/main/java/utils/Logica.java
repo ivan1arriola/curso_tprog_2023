@@ -22,16 +22,9 @@ public class Logica implements ILogica {
 	Servidor servidor;
 	
 	public Logica(){
-		
-		
 		ServidorService service = new ServidorService();
-		servidor = service.getServidorPort();
-		
+		servidor = service.getServidorPort();	
     }
-
-
-
-    
 
 	public Set<DtTipoOferta> obtenerTipoOfertas(){
 		Set<String> lista =  new TreeSet<>( servidor.listarTipoDePublicaciones().getListaString());
@@ -202,10 +195,11 @@ public class Logica implements ILogica {
 
 				Set<OfertaLaboralBean> favoritos= new HashSet<>();
 				List<DtOfertaExtendido> favoritosEnServidor = postulante.getFavs();
-
+				
 				for(DtOfertaExtendido ofertaServ : favoritosEnServidor){
 					favoritos.add(obtenerDatosOfertaLaboral(ofertaServ.getNombre()));
 				}
+				
 				usuario.setOferFavs(favoritos);
 
 	        	usuario.setTipo(TipoUsuario.Postulante);
@@ -295,18 +289,8 @@ public class Logica implements ILogica {
 
 
 	@Override
-	public void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) {
-		/*try {
-			servidor.compraPaquetes(nickname, paquete, now, valor);
-		} catch (ExceptionCompraPaqueteConValorNegativo
-				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionValidezNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
+	public void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCompraPaqueteConValorNegativo_Exception, ExceptionUsuarioNoEncontrado_Exception, ExceptionValidezNegativa_Exception, NoExistePaquete_Exception {
+		servidor.compraPaquetes(nickname, paquete, now.toString(), valor);		
 	}
 	
 	
