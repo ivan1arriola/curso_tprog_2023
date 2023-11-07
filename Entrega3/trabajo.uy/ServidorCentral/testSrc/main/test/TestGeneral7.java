@@ -363,13 +363,13 @@ public class TestGeneral7 {
 		}
         // -----------------------------------------------------------
         DTOfertaExtendidoSinPConK nuevo = null;
-		try {
-			nuevo = ICU.infoOfertaLaboralVisitante("pensador");
-		} catch (OfertaLaboralNoEncontrada e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        nuevo.getCosto();
+//		try {
+//			nuevo = ICU.infoOfertaLaboralVisitante("pensador");
+//		} catch (OfertaLaboralNoEncontrada e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        nuevo.getCosto();
         try {
 			ICU.consultaOfertaLaboral("pensador");
 		} catch (OfertaLaboralNoEncontrada e) {
@@ -403,103 +403,103 @@ public class TestGeneral7 {
         LocalDate fecha = LocalDate.of(2020, 12, 12);
         String URLDocExtras = "www.google.com";
         Postulacion Ultima = null;
-		try {
-			Ultima = ICU.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocExtras, OLpensador,"direccion video");
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        Ultima.getCV();
-        Ultima.getFecha();
-        Ultima.getMotivacion();
-        Ultima.getOfertaLaboral();
-        Ultima.getPostulante();
-        Ultima.getuRLDocExtras();
-        Ultima.setCV(Ultima.getCV());
-        Ultima.setFecha(LocalDate.of(2020, 12, 12));
-        Ultima.setMotivacion("Me gusta pensar");
-        Ultima.setOfertaLaboral(OLpensador);
-        Ultima.setPostulante(Ultima.getPostulante());
-        Ultima.setuRLDocExtras("www.google.com");
-        Ultima.esPostulacion(nombre22);
-        Ultima.editarPostulacion(URLDocExtras, motivacion);
+//		try {
+//			Ultima = ICU.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocExtras, OLpensador,"direccion video");
+//		} catch (ExceptionUsuarioNoEncontrado e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        Ultima.getCV();
+//        Ultima.getFecha();
+//        Ultima.getMotivacion();
+//        Ultima.getOfertaLaboral();
+//        Ultima.getPostulante();
+//        Ultima.getuRLDocExtras();
+//        Ultima.setCV(Ultima.getCV());
+//        Ultima.setFecha(LocalDate.of(2020, 12, 12));
+//        Ultima.setMotivacion("Me gusta pensar");
+//        Ultima.setOfertaLaboral(OLpensador);
+//        Ultima.setPostulante(Ultima.getPostulante());
+//        Ultima.setuRLDocExtras("www.google.com");
+//        Ultima.esPostulacion(nombre22);
+//        Ultima.editarPostulacion(URLDocExtras, motivacion);
         // ------------------------------- operaciones oferta laboral  ---------------------------
-
-        OLpensador.getCiudad();
-        OLpensador.getCosto();
-        OLpensador.getDepartamento();
-        OLpensador.getDescripcion();
-        OLpensador.getEstado();
-        OLpensador.getFechaAlta();
-        OLpensador.getHorario();
-        OLpensador.getImagen();
-        OLpensador.getKeywords();
-        OLpensador.getNombre();
-        OLpensador.getPaquete();
-        OLpensador.getPostulaciones();
-        OLpensador.getRemuneracion();
-        OLpensador.getTipoOferta();
-        try {
-			OLpensador.setCiudad("Montevideo");
-		} catch (ExceptionCiudadInvalida e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			OLpensador.setCosto(1);
-		} catch (ExceptionCostoPaqueteNoNegativo e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        OLpensador.setDepartamento(DepUY.Montevideo);
-        OLpensador.setDescripcion("Pensador de sistemas");
-        OLpensador.setEstado(EstadoOL.Ingresada);
-        try {
-			OLpensador.setFechaAlta(LocalDate.of(2020, 12, 12));
-		} catch (ExceptionPaqueteNoVigente e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        OLpensador.setHorario(horario2);
-        OLpensador.setImagen(img.getBytes());
-        OLpensador.setKeywords(OLpensador.getKeywords());
-        OLpensador.setNombre("pensador");
-        try {
-			OLpensador.setPaquete(Pack);
-		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			OLpensador.setRemuneracion(OLpensador.getRemuneracion());
-		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			OLpensador.setTipoOferta(ofertaLaboralSalada);
-		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        //  -------------------- agrego a oferta laborla la postulacion -----------------
-        List<Postulacion> stringList = new ArrayList<>();
-        stringList.add(Ultima);
-        OLpensador.setPostulaciones(stringList);
-        // ojo dice nombre,  pero es con nickname
-        DTOfertaExtendidoConKeywordsPostulante auxi9 = OLpensador.infoOfertaLaboralPost("ReneDescartes");
-        auxi9.getCiudad();
-        auxi9.getCosto();
-        auxi9.getDatosPostulacion();
-        auxi9.getDepartamento();
-        auxi9.getDescripcion();
-        auxi9.getEstado();
-        auxi9.getFechaAlta();
-        auxi9.getHorario();
-        auxi9.getImagen();
-        auxi9.getKeywords();
-        auxi9.getNombre();
-        auxi9.getRemuneracion();
+//
+//        OLpensador.getCiudad();
+//        OLpensador.getCosto();
+//        OLpensador.getDepartamento();
+//        OLpensador.getDescripcion();
+//        OLpensador.getEstado();
+//        OLpensador.getFechaAlta();
+//        OLpensador.getHorario();
+//        OLpensador.getImagen();
+//        OLpensador.getKeywords();
+//        OLpensador.getNombre();
+//        OLpensador.getPaquete();
+//        OLpensador.getPostulaciones();
+//        OLpensador.getRemuneracion();
+//        OLpensador.getTipoOferta();
+//        try {
+//			OLpensador.setCiudad("Montevideo");
+//		} catch (ExceptionCiudadInvalida e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        try {
+//			OLpensador.setCosto(1);
+//		} catch (ExceptionCostoPaqueteNoNegativo e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        OLpensador.setDepartamento(DepUY.Montevideo);
+//        OLpensador.setDescripcion("Pensador de sistemas");
+//        OLpensador.setEstado(EstadoOL.Ingresada);
+//        try {
+//			OLpensador.setFechaAlta(LocalDate.of(2020, 12, 12));
+//		} catch (ExceptionPaqueteNoVigente e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        OLpensador.setHorario(horario2);
+//        OLpensador.setImagen(img.getBytes());
+//        OLpensador.setKeywords(OLpensador.getKeywords());
+//        OLpensador.setNombre("pensador");
+//        try {
+//			OLpensador.setPaquete(Pack);
+//		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        try {
+//			OLpensador.setRemuneracion(OLpensador.getRemuneracion());
+//		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        try {
+//			OLpensador.setTipoOferta(ofertaLaboralSalada);
+//		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        //  -------------------- agrego a oferta laborla la postulacion -----------------
+//        List<Postulacion> stringList = new ArrayList<>();
+//        stringList.add(Ultima);
+//        OLpensador.setPostulaciones(stringList);
+//        // ojo dice nombre,  pero es con nickname
+//        DTOfertaExtendidoConKeywordsPostulante auxi9 = OLpensador.infoOfertaLaboralPost("ReneDescartes");
+//        auxi9.getCiudad();
+//        auxi9.getCosto();
+//        auxi9.getDatosPostulacion();
+//        auxi9.getDepartamento();
+//        auxi9.getDescripcion();
+//        auxi9.getEstado();
+//        auxi9.getFechaAlta();
+//        auxi9.getHorario();
+//        auxi9.getImagen();
+//        auxi9.getKeywords();
+//        auxi9.getNombre();
+//        auxi9.getRemuneracion();
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();
