@@ -7,10 +7,16 @@
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  
+  
   <div class="d-flex mx-auto">
-    <h1 class="text-primary m-0 fw-bold">trabajo</h1>
-    <h1 class="text-secondary m-0">.uy</h1>
+  <a href="<%= request.getContextPath() %>/home" style="text-decoration: none;">
+    <h1 class="text-primary m-0 fw-bold" style="display: inline;">trabajo</h1>
+    <h1 class="text-secondary m-0" style="display: inline;">.uy</h1>
+   </a>
   </div>
+  
+  
   <div class="d-flex align-items-center justify-content-between">
     <% if (session != null && session.getAttribute("tipoUsuario") != null) { 
     	String nickname = (String) session.getAttribute("nickname");    
