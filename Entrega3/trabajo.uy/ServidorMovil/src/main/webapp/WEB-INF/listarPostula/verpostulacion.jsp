@@ -24,7 +24,7 @@
 
         <h1>Postulaciones</h1>
 
-        <div class="container-fluid" id="ofertas-laborales" >
+        <div class="container-fluid" id="ofertas-laborales">
 
           <div class="sin-bordes">
           
@@ -43,47 +43,37 @@
         	  String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
       
           %>
-
-            <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="<%=imagen %>" class="img-fluid rounded-start h-100" alt="Imagen de <%= offer.getNombre()  %>" />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= offer.getNombre()  %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Empresa: <%= offer.getNicknameEmpresaPublicadora()  %></h6>
-                    
-                    <div style="margin-bottom: 10px;">
-                    <a href="<%=context%>/consultarofertalaboral?oferta=<%=offer.getNombre()%>" class="card-link btn btn-primary btn-sm">
-                    Detalles de oferta
+          
+            <div class="col-12 col-sm-6 col-md-4 mb-4 mx-auto">
+            	<div class="card" style="width: 18rem;">
+				  <img src="<%=imagen %>" class="img-fluid rounded-start h-100" alt="Imagen de <%= offer.getNombre()  %>" />
+				  <div class="card-body">
+				    <h5 class="card-title"><%= offer.getNombre()  %></h5>
+				    <p class="card-text">Empresa: <%= offer.getNicknameEmpresaPublicadora()  %></p>
+				  </div>
+				  <ul class="list-group list-group-flush">
+				    <li class="list-group-item"> <strong> Fecha de Postulación: </strong><%=dtpos.getFecha() %> </li>
+				    <li class="list-group-item"><strong> Url Documentos extras: </strong> <%= dtpos.getURLDocExtras() %></li>
+				    <li class="list-group-item"><strong>CV:</strong> <%=dtpos.getCVitae() %></li>
+				    <li class="list-group-item"><strong>Motivación:</strong> <%=dtpos.getMotivacion() %></li>
+				    <li class="list-group-item"><strong>Url Video:</strong> <a href="<%= dtpos.getUrlVideo()%>" class="card-link btn btn-primary btn-sm">
+                    <%=dtpos.getUrlVideo() %></a></li>
+                  </ul>
+				  <div class="card-body">
+				    <a href="<%=context%>/consultarofertalaboral?oferta=<%=offer.getNombre()%>" class="card-link btn btn-primary btn-sm">
+                    Más Detalles de Oferta
                     </a>
-                    </div>
-                    
-	                 <h5 class="card title">Detalles de Postulación</h5>
-					 <h6 class="card-subtitle mb-2 text-muted"> <strong> Fecha: </strong><%=dtpos.getFecha() %> 
-					 </h6>
-					 <h6 class="card-subtitle mb-2 text-muted"> <strong> Url Documentos extras: </strong>
-					 	<%= dtpos.getURLDocExtras() %>
-					 </h6>
-					 <h6 class="card-subtitle mb-2 text-muted"> <strong>CV:</strong> <%=dtpos.getCVitae() %>
-					 </h6>
-					 <h6 class="card-subtitle mb-2 text-muted"> <strong>Motivación:</strong> <%=dtpos.getMotivacion() %>
-					 </h6>
-					 <h6 class="card-subtitle mb-2 text-muted"> <strong>Url Video:</strong> <a href="<%= dtpos.getUrlVideo()%>" class="card-link btn btn-primary btn-sm">
-                    <%=dtpos.getUrlVideo() %>
-                    </a>
-					 </h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+				   </div>
+				</div>
+			</div>	
+                  
             <% } %>
 
             
           </div>
         </div>
+        
+       </div>
 
 
     </main>
