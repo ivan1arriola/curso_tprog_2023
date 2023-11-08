@@ -31,6 +31,7 @@ public class DTOfertaExtendido {
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
     private Integer cantVisitas;
+    private String tipoOferta;
 
 
     public DTOfertaExtendido(
@@ -48,7 +49,8 @@ public class DTOfertaExtendido {
     	    byte[] img,
     	    String paquete,
     	    Integer cantF,
-    	    Integer cantV
+    	    Integer cantV,
+    	    String tipoOfer
     	) {
     	    nombre = nomb;
     	    descripcion = desc;
@@ -65,6 +67,7 @@ public class DTOfertaExtendido {
     	    nicknameEmpresaPublicadora = empresaPublicadora;
     	    cantFavs = cantF;
     	    cantVisitas = cantV;
+    	    setTipoOferta(tipoOfer);
     	}
 
     public String getNombre() {
@@ -145,6 +148,14 @@ public class DTOfertaExtendido {
 
 	public void setCantVisitas(Integer cantVisitas) {
 		this.cantVisitas = cantVisitas;
+	}
+
+	public String getTipoOferta() {
+		return tipoOferta;
+	}
+
+	public void setTipoOferta(String tipoOferta) {
+		this.tipoOferta = tipoOferta;
 	}
 
 }

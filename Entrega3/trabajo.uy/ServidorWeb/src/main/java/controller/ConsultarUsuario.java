@@ -10,7 +10,6 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
-import javabeans.UsuarioSinInfoSocialBean;
 import logica.servidor.*;
 import utils.FabricaWeb;
 import java.time.LocalDate;
@@ -21,8 +20,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import enumeration.EstadoOfertaLaboral;
 import enumeration.TipoUsuario;

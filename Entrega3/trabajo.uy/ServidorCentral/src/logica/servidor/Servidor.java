@@ -350,6 +350,11 @@ public class Servidor {
     }
     
     @WebMethod
+    public WrapperLista listarEmpresas() {
+    	return WSUtils.envolverLista(ctrlUsuario.listarEmpresas());
+    }
+    
+    @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
     ) {

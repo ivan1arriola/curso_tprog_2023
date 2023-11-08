@@ -36,6 +36,7 @@ public class DTOfertaExtendidoSinPConK {
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
     private Integer cantVisitas;
+    private String tipoOferta;
 
     public DTOfertaExtendidoSinPConK(){
 
@@ -55,7 +56,8 @@ public class DTOfertaExtendidoSinPConK {
     	    byte[] img,
     	    Set<String> keys,
     	    Integer cantF,
-    	    Integer cantV
+    	    Integer cantV,
+    	    String tipoOfer
     	) {
     	    // No es subclase de DTOfertaExtendido, es una versión sin postulaciones
     	    nombre = nomb;
@@ -72,6 +74,7 @@ public class DTOfertaExtendidoSinPConK {
     	    nicknameEmpresaPublicadora = nicknameEmpresa;
     	    setCantFavs(cantF);
     	    cantVisitas = cantV;
+    	    tipoOferta = tipoOfer;
     	}
 
 

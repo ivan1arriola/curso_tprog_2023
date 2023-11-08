@@ -28,6 +28,21 @@ public interface Servidor {
     /**
      * 
      * @param arg0
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/aumentarVisitaRequest", output = "http://servidor.logica/Servidor/aumentarVisitaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/aumentarVisita/Fault/OfertaLaboralNoEncontrada")
+    })
+    public void aumentarVisita(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @param arg1
      * @param arg2
      * @param arg3
@@ -177,21 +192,6 @@ public interface Servidor {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
         throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @Action(input = "http://servidor.logica/Servidor/aumentarVisitaRequest", output = "http://servidor.logica/Servidor/aumentarVisitaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/aumentarVisita/Fault/OfertaLaboralNoEncontrada")
-    })
-    public void aumentarVisita(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoEncontrada_Exception
     ;
 
     /**
@@ -850,16 +850,6 @@ public interface Servidor {
 
     /**
      * 
-     * @return
-     *     returns logica.servidor.WrapperLista
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasYNoVencidasRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasYNoVencidasResponse")
-    public WrapperLista listarOfertasLaboralesConfirmadasYNoVencidas();
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns logica.servidor.WrapperLista
@@ -995,16 +985,6 @@ public interface Servidor {
 
     /**
      * 
-     * @return
-     *     returns logica.servidor.WrapperLista
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasResponse")
-    public WrapperLista obtenerDTOfertasLaboralesConfirmadas();
-
-    /**
-     * 
      * @param arg0
      * @throws ExceptionUsuarioNoEncontrado_Exception
      * @throws TipoUsuarioNoValido_Exception
@@ -1134,6 +1114,16 @@ public interface Servidor {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasRequest", output = "http://servidor.logica/Servidor/obtenerDTOfertasLaboralesConfirmadasResponse")
+    public WrapperLista obtenerDTOfertasLaboralesConfirmadas();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://servidor.logica/Servidor/listarNicknamesUsuariosRequest", output = "http://servidor.logica/Servidor/listarNicknamesUsuariosResponse")
     public WrapperLista listarNicknamesUsuarios();
 
@@ -1154,6 +1144,16 @@ public interface Servidor {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarEmpresasRequest", output = "http://servidor.logica/Servidor/listarEmpresasResponse")
+    public WrapperLista listarEmpresas();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://servidor.logica/Servidor/listarKeywordsRequest", output = "http://servidor.logica/Servidor/listarKeywordsResponse")
     public WrapperLista listarKeywords();
 
@@ -1166,6 +1166,16 @@ public interface Servidor {
     @WebResult(partName = "return")
     @Action(input = "http://servidor.logica/Servidor/listarTipoDePublicacionesRequest", output = "http://servidor.logica/Servidor/listarTipoDePublicacionesResponse")
     public WrapperLista listarTipoDePublicaciones();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasYNoVencidasRequest", output = "http://servidor.logica/Servidor/listarOfertasLaboralesConfirmadasYNoVencidasResponse")
+    public WrapperLista listarOfertasLaboralesConfirmadasYNoVencidas();
 
     /**
      * 

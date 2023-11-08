@@ -32,6 +32,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="nicknameEmpresaPublicadora" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="cantFavs" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         <element name="cantVisitas" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         <element name="tipoOferta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -56,7 +57,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "paq",
     "nicknameEmpresaPublicadora",
     "cantFavs",
-    "cantVisitas"
+    "cantVisitas",
+    "tipoOferta"
 })
 public class DtOfertaExtendido {
 
@@ -77,6 +79,7 @@ public class DtOfertaExtendido {
     protected String nicknameEmpresaPublicadora;
     protected Integer cantFavs;
     protected Integer cantVisitas;
+    protected String tipoOferta;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -418,6 +421,30 @@ public class DtOfertaExtendido {
      */
     public void setCantVisitas(Integer value) {
         this.cantVisitas = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad tipoOferta.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTipoOferta() {
+        return tipoOferta;
+    }
+
+    /**
+     * Define el valor de la propiedad tipoOferta.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTipoOferta(String value) {
+        this.tipoOferta = value;
     }
 
 }
