@@ -16,7 +16,7 @@
 <div class="tab-pane fade sin-bordes p-2" id="seguidos-panel" role="tabpanel" aria-labelledby="seguidos-tab">
 
 <%
-    if(seguidos.isEmpty()){
+    if (seguidos.isEmpty()){
     	
     	%>
     	

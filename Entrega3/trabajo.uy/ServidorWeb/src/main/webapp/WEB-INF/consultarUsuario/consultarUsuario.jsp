@@ -88,6 +88,10 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#postulaciones-panel" type="button" role="tab"
                             aria-controls="postulaciones-panel">Postulaciones</a>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#favoritos-panel" type="button" role="tab"
+                            aria-controls="favoritos-panel">Favoritos</a>
+                    </li>
                 <%} %>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidos-panel" type="button" role="tab"
@@ -109,6 +113,7 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 			        <% } else if (usuario.getTipo() == TipoUsuario.Postulante) { %>
 			            <jsp:include page="./tabPerfilEditable.jsp" />
 			            <jsp:include page="./tabPostulaciones.jsp" />
+			            <jsp:include page="./tabFavoritos.jsp" />
 			        <% } else { %>
 			            <jsp:include page="./tabPerfilEditable.jsp" />
 			        <% } %>

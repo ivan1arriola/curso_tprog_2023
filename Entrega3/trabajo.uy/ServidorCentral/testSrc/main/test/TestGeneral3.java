@@ -64,7 +64,7 @@ public class TestGeneral3 {
         String nombre = "Arnold";
         String apellido = "Schwarzenegger";
         String correo = "Arnold@Skynet.com";
-        LocalDate fechaNacimiento = LocalDate.of(1947, 7, 30);
+        LocalDate fechaNacimiento = LocalDate.of(1947,  7,  30);
         String nacionalidad = "Austriaco";
         DTUsuario usu1 = null;
 		try {
@@ -86,21 +86,21 @@ public class TestGeneral3 {
                 &&
                 usu1.getcontrasenia().equals(password);
 
-        assertEquals("El test usu1 fallo", true, result1);
+        assertEquals("El test usu1 fallo",  true,  result1);
      // ------------------- postulante con imagen -------------------
         nickname = "LeonardoVinchi";
         password = "LaContrasenaMasSeguraDelMundo";
         nombre = "Leonardo";
         apellido = "Da Vinci";
         correo = "Leo@vinchi.com";
-        fechaNacimiento = LocalDate.of(1452, 4, 15);
+        fechaNacimiento = LocalDate.of(1452,  4,  15);
         nacionalidad = "Italiano";
 
         String img = "url";
 
         //	 boolean b = 
         try {
-			ICU.altaPostulanteImagen(nickname, password, nombre, apellido, fechaNacimiento, correo, nacionalidad, img.getBytes());
+			ICU.altaPostulanteImagen(nickname,  password,  nombre,  apellido,  fechaNacimiento,  correo,  nacionalidad,  img.getBytes());
 		} catch (ExceptionFechaInvalida | ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,7 +126,7 @@ public class TestGeneral3 {
                 usu2.getcorreoElectronico().equals(correo)
                 &&
                 usu2.getcontrasenia().equals(password);
-        assertEquals("El test usu2 fallo", true, result2);
+        assertEquals("El test usu2 fallo",  true,  result2);
      // ---------------- empresa sin url ni imagen ----------------
         String nickname1 = "Kreves";
         String password1 = "Pass";
@@ -138,7 +138,7 @@ public class TestGeneral3 {
 
             // boolean b =
             try {
-				ICU.altaEmpresa(nickname1, password1, nombre1, apellido1, correo1, descripcion);
+				ICU.altaEmpresa(nickname1,  password1,  nombre1,  apellido1,  correo1,  descripcion);
 			} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
 					| ExceptionUsuarioNickRepetido | ErrorAgregarUsuario e) {
 				// TODO Auto-generated catch block
@@ -147,7 +147,7 @@ public class TestGeneral3 {
   
 
         // ------------------- datatypes usuario para postulante -------------------
-        // se obtiene con nickname,  notar que estoy probando DTUsuario
+        // se obtiene con nickname,   notar que estoy probando DTUsuario
         DTUsuario usu3 = null;
 		try {
 			usu3 = ICU.obtenerDatosUsuario("Kreves");
@@ -164,7 +164,7 @@ public class TestGeneral3 {
                 usu3.getcorreoElectronico().equals(correo)
                 &&
                 usu3.getcontrasenia().equals(password);
-        assertEquals("El test usu3 fallo", result, false);// si result es true se creo el usuario
+        assertEquals("El test usu3 fallo",  result,  false); // si result es true se creo el usuario
 
         // ------------------ empresa con url ------------------
         nickname = "Google";
@@ -178,7 +178,7 @@ public class TestGeneral3 {
         
 //		        boolean b = 
             try {
-				ICU.altaEmpresaURL(nickname, password, nombre, apellido, correo, descripcion, url);
+				ICU.altaEmpresaURL(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url);
 			} catch (ExceptionUsuarioCorreoRepetido | ExceptionUsuarioNickYCorreoRepetidos
 					| ExceptionUsuarioNickRepetido | ErrorAgregarUsuario e) {
 				// TODO Auto-generated catch block
@@ -186,7 +186,7 @@ public class TestGeneral3 {
 			}
 
      // ----------------- dataTypes empresa -----------------
-        // se obtiene con nickname,  notar que estoy probando DTUsuario
+        // se obtiene con nickname,   notar que estoy probando DTUsuario
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         try {
 			UHan.buscarCorreo("Larry@hotmail.com");
@@ -201,7 +201,7 @@ public class TestGeneral3 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        // obtuve empresa,  ahora creo DTEmpresa
+        // obtuve empresa,   ahora creo DTEmpresa
         DTUsuario DTempresa1 = empresa1.obtenerDatosUsuario();
         DTEmpresa DTverdaderoEmpresa1 = (DTEmpresa) DTempresa1; // Casting
         boolean result21 = DTempresa1.getNickname().equals(nickname)
@@ -217,7 +217,7 @@ public class TestGeneral3 {
                 DTverdaderoEmpresa1.getDescripcion().equals(descripcion)
                 &&
                 DTverdaderoEmpresa1.getUrl().equals(url);
-        assertEquals("El test usu4 fallo", result21, true);
+        assertEquals("El test usu4 fallo",  result21,  true);
 
 
         // ----------------- empresa con imagen ------------------
@@ -232,7 +232,7 @@ public class TestGeneral3 {
         String img3 = "url";
         boolean booly = false;
 		try {
-			booly = ICU.altaEmpresaImagen(nickname, password, nombre, apellido, correo, descripcion, img3.getBytes());
+			booly = ICU.altaEmpresaImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  img3.getBytes());
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -247,7 +247,7 @@ public class TestGeneral3 {
 		}
         DTUsuario DTempresa2 = empresa2.obtenerDatosUsuario();
         DTEmpresa DTverdaderoEmpresa2 = (DTEmpresa) DTempresa2; // Casting
-        assertEquals("El test usu2 fallo", true, result21);
+        assertEquals("El test usu2 fallo",  true,  result21);
         byte[] imagen4 = DTverdaderoEmpresa2.getImagen();
 
 
@@ -274,14 +274,14 @@ public class TestGeneral3 {
         String img4 = "url";
 //		boolean b2 = 
         try {
-			ICU.altaEmpresaURLyImagen(nickname, password, nombre, apellido, correo, descripcion, url, img4.getBytes());
+			ICU.altaEmpresaURLyImagen(nickname,  password,  nombre,  apellido,  correo,  descripcion,  url,  img4.getBytes());
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
         // ----------------- dataTypes empresa -----------------
-        // se obtiene con nickname,  notar que estoy probando DTUsuario
+        // se obtiene con nickname,   notar que estoy probando DTUsuario
         Empresa empresa3 = null;
 		try {
 			empresa3 = (Empresa) UHan.buscarNick("Amazon");
@@ -289,7 +289,7 @@ public class TestGeneral3 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        // obtuve empresa,  ahora creo DTEmpresa
+        // obtuve empresa,   ahora creo DTEmpresa
         DTUsuario DTempresa3 = empresa3.obtenerDatosUsuario();
         DTEmpresa DTverdaderoEmpresa3 = (DTEmpresa) DTempresa3; // Casting
         boolean result4 = DTempresa3.getNickname().equals(nickname)
@@ -305,7 +305,7 @@ public class TestGeneral3 {
                 DTverdaderoEmpresa3.getDescripcion().equals(descripcion)
                 &&
                 DTverdaderoEmpresa3.getUrl().equals(url);
-        assertEquals("El test usu4 fallo", result4, true);
+        assertEquals("El test usu4 fallo",  result4,  true);
 
         byte[] imagen5 = DTverdaderoEmpresa3.getImagen();
      // ------------------- ver empresa en el sistema -------------------
@@ -331,7 +331,7 @@ public class TestGeneral3 {
         }
 
         if (!krevesFound || !googleFound || !appleFound || !amazonFound) {
-            assertEquals("El test empresa en sistema fallo", false, true);
+            assertEquals("El test empresa en sistema fallo",  false,  true);
         }
      // ------------------- ver usuarios en el sistema -------------------
         // si no esta uno aborta
@@ -360,41 +360,41 @@ public class TestGeneral3 {
         }
 
         if (!krevesFound1 || !googleFound1 || !appleFound1 || !amazonFound1 || !aswatzeneggerFound || !leonardoVinchiFound) {
-            assertEquals("El test usuarios en sistema fallo", false, true);
+            assertEquals("El test usuarios en sistema fallo",  false,  true);
         }
         // ------------------------------- validar credenciales --------------------------
         try {
-			booly = ICU.validarCredenciales("Bezo@porBezo.com", "Password");
+			booly = ICU.validarCredenciales("Bezo@porBezo.com",  "Password");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        assertEquals("El test validarCredenciales fallo", true, booly);
+        assertEquals("El test validarCredenciales fallo",  true,  booly);
         try {
-			booly = ICU.validarCredenciales("Larry@hotmail.com", "Pass");
+			booly = ICU.validarCredenciales("Larry@hotmail.com",  "Pass");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         if (booly) {
-            assertEquals("El test validarCredenciales fallo", true, booly);
+            assertEquals("El test validarCredenciales fallo",  true,  booly);
         }
         nickname = "Amazon";
         try {
-			booly = ICU.validarCredenciales(nickname, "Password");
+			booly = ICU.validarCredenciales(nickname,  "Password");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        assertEquals("El test validarCredenciales fallo", true, booly);
+        assertEquals("El test validarCredenciales fallo",  true,  booly);
         try {
-			booly = ICU.validarCredenciales(nickname, "Pass");
+			booly = ICU.validarCredenciales(nickname,  "Pass");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         if (booly) {
-            assertEquals("El test validarCredenciales fallo", true, booly);
+            assertEquals("El test validarCredenciales fallo",  true,  booly);
         }
         // ============================================
         

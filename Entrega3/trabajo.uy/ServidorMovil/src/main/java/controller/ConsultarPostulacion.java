@@ -9,6 +9,7 @@ import logica.servidor.DtOfertaExtendido;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import logica.servidor.Servidor;
 import logica.servidor.ServidorService;
+import logica.servidor.TipoUsuarioNoValido_Exception;
 
 import java.io.IOException;
 
@@ -50,7 +51,7 @@ public class ConsultarPostulacion extends HttpServlet {
 	        request.setAttribute("nickname", nickname);
 	        request.setAttribute("imagenOferta", imagenOferta);
         	
-        	if(existe) {
+        	if (existe) {
         		dtpost = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
 	          	request.setAttribute("postulacion", dtpost);
 		  		request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacion.jsp").forward(request, response);
@@ -62,6 +63,9 @@ public class ConsultarPostulacion extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/consultarPostulacion/nopostulacion.jsp").forward(request, response);
 			throw new RuntimeException(exc);
 		} catch (OfertaLaboralNoEncontrada_Exception exc) {
+			throw new RuntimeException(exc);
+		} catch (TipoUsuarioNoValido_Exception exc) {
+			// TODO Auto-generated catch block
 			throw new RuntimeException(exc);
 		}
        

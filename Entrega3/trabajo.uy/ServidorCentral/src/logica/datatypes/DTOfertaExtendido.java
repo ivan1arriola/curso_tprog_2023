@@ -30,27 +30,42 @@ public class DTOfertaExtendido {
     private String paq;
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
+    private Integer cantVisitas;
 
-    private boolean estaVencido;
 
-
-    public DTOfertaExtendido(String empresaPublicadora, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL est, Set<DTPostulacion> post, byte[] img, String paquete, Integer cantF, boolean estaVencido) {
-        nombre = nomb;
-        descripcion = desc;
-        fechaDeAlta = fechaA;
-        costo = cost;
-        remuneracion = remu;
-        this.horario = horario;
-        departamento = dep;
-        ciudad = ciu;
-        estado = est;
-        postulaciones = post;
-        imagen = img;
-        paq = paquete;
-        nicknameEmpresaPublicadora = empresaPublicadora;
-        cantFavs = cantF;
-        this.estaVencido = estaVencido;
-    }
+    public DTOfertaExtendido(
+    	    String empresaPublicadora,
+    	    String nomb,
+    	    String desc,
+    	    LocalDate fechaA,
+    	    float cost,
+    	    float remu,
+    	    DTHorario horario,
+    	    DepUY dep,
+    	    String ciu,
+    	    EstadoOL est,
+    	    Set<DTPostulacion> post,
+    	    byte[] img,
+    	    String paquete,
+    	    Integer cantF,
+    	    Integer cantV
+    	) {
+    	    nombre = nomb;
+    	    descripcion = desc;
+    	    fechaDeAlta = fechaA;
+    	    costo = cost;
+    	    remuneracion = remu;
+    	    this.horario = horario;
+    	    departamento = dep;
+    	    ciudad = ciu;
+    	    estado = est;
+    	    postulaciones = post;
+    	    imagen = img;
+    	    paq = paquete;
+    	    nicknameEmpresaPublicadora = empresaPublicadora;
+    	    cantFavs = cantF;
+    	    cantVisitas = cantV;
+    	}
 
     public String getNombre() {
         return nombre;
@@ -100,7 +115,17 @@ public class DTOfertaExtendido {
         return paq;
     }
 
+    @Override
+    public String toString() {
+        String texto = "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n"
+                + "Fecha de alta: " + fechaDeAlta + "\n" + "Costo: "
+                + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n"
+                + "Horario de Entrada: " + horario.getDesde() + "\n"
+                + "Horario de Salida: " + horario.getHasta() + "\n" + ciudad
+                + ",  " + departamento + "\n" + "Estado: " + estado;
 
+        return texto;
+    }
 
     public String getNicknameEmpresaPublicadora() {
         return nicknameEmpresaPublicadora;
@@ -114,12 +139,13 @@ public class DTOfertaExtendido {
 		this.cantFavs = cantFavs;
 	}
 
-    public boolean isEstaVencido() {
-        return estaVencido;
-    }
+	public Integer getCantVisitas() {
+		return cantVisitas;
+	}
 
-    public void setEstaVencido(boolean estaVencido) {
-        this.estaVencido = estaVencido;
-    }
+	public void setCantVisitas(Integer cantVisitas) {
+		this.cantVisitas = cantVisitas;
+	}
+
 }
 //

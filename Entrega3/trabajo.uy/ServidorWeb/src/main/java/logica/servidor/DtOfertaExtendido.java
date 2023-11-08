@@ -31,7 +31,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="paq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nicknameEmpresaPublicadora" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="cantFavs" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         <element name="estaVencido" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         <element name="cantVisitas" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -56,7 +56,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "paq",
     "nicknameEmpresaPublicadora",
     "cantFavs",
-    "estaVencido"
+    "cantVisitas"
 })
 public class DtOfertaExtendido {
 
@@ -76,7 +76,7 @@ public class DtOfertaExtendido {
     protected String paq;
     protected String nicknameEmpresaPublicadora;
     protected Integer cantFavs;
-    protected boolean estaVencido;
+    protected Integer cantVisitas;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -397,19 +397,27 @@ public class DtOfertaExtendido {
     }
 
     /**
-     * Obtiene el valor de la propiedad estaVencido.
+     * Obtiene el valor de la propiedad cantVisitas.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public boolean isEstaVencido() {
-        return estaVencido;
+    public Integer getCantVisitas() {
+        return cantVisitas;
     }
 
     /**
-     * Define el valor de la propiedad estaVencido.
+     * Define el valor de la propiedad cantVisitas.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setEstaVencido(boolean value) {
-        this.estaVencido = value;
+    public void setCantVisitas(Integer value) {
+        this.cantVisitas = value;
     }
 
 }

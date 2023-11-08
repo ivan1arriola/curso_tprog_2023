@@ -9,7 +9,7 @@
 	String nick = (String) request.getAttribute("nickname");
     byte[] imagenBytes = oferta.getImagen();
     String imagen = null;
-    if(imagenBytes!=null) {
+    if (imagenBytes!=null) {
     	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
     }
 %>
@@ -19,16 +19,13 @@
 
 <head>
   <jsp:include page="/WEB-INF/template/head.jsp" />
-  <title>trabajo.uy</title>
-  <style type="text/css">
-    	.banner-container {
-		    background-image: url("<%=imagen%>");
-		}
-  </style>
+  <title>Postulaciones</title>
 </head>
 
 <body>
-
+<header>
+  <jsp:include page="/WEB-INF/template/navbar.jsp" />
+</header>
 
 <main>
     <div class="container container col-12">
@@ -39,8 +36,12 @@
         <div class="row">
             <div class="container col">
                 <div class="row banner-container banner-dark">
-                    <h1 class="text-center text-light fw-bolder">No existe postulacion de <%=nick%> para <%=oferta.getNombre()%></h1>
+                    <h1 class="text-center text-dark fw-bolder" style="color: #000080;">No existe postulacion de <%=nick%> para <%=oferta.getNombre()%></h1>
                 </div>
+                
+                <div class="row banner-container banner-dark">
+            		<img src="<%= imagen %>" alt="Descripción de la imagen" width="300" height="200">
+        		</div>
                
             </div>
             

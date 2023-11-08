@@ -39,7 +39,7 @@ public class TipoOfertaHandler {
     public void agregar(TipoOferta tipoOferta) {
         EntityTransaction transaction = database.getTransaction();
         try {
-            if(!database.getTransaction().isActive()) {
+            if (!database.getTransaction().isActive()) {
                 database.getTransaction().begin();
             }
             database.persist(tipoOferta);

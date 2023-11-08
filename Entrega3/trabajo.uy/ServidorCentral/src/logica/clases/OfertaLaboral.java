@@ -32,6 +32,8 @@ public class OfertaLaboral {
 
     private Integer cantFavs;
     
+    private Integer cantVisitas;
+    
     @Lob
     private String imagen;
 
@@ -49,6 +51,8 @@ public class OfertaLaboral {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "empresa_id")
     private Empresa empresaPublicadora;
+    
+    
 
 
 
@@ -73,6 +77,8 @@ public class OfertaLaboral {
         this.ciudad = atrciudad;
         this.departamento = atrdepartamento;
         this.setHorario(atrhorario);
+        
+        cantVisitas = 0;
 
         try {
             if (atrremuneracion <= 0) {
@@ -142,10 +148,15 @@ public class OfertaLaboral {
                 }
 
 
-            } catch (ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido |
-                     ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCosto) {
+            } catch (ExceptionCostoPaqueteNoNegativo excCosto) {
                 System.err.println("Error: " + excCosto.getMessage());
                 throw excCosto;
+            } catch (ExceptionDescuentoInvalido excDesc) {
+                System.err.println("Error: " + excDesc.getMessage());
+                throw excDesc;
+            } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa excCant) {
+                System.err.println("Error: " + excCant.getMessage());
+                throw excCant;
             }
 
 
@@ -193,6 +204,7 @@ public class OfertaLaboral {
         this.departamento = atrdepartamento;
         this.setHorario(atrhorario);
 
+        cantVisitas = 0;
         try {
             if (atrremuneracion <= 0) {
                 throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración debe ser mayor que 0");
@@ -535,7 +547,7 @@ public class OfertaLaboral {
     }
 
     public void setImagen(byte[] imagen) {
-        if(imagen == null) return;
+        if (imagen == null) return;
         byte[] base64EncodedBytes = Base64.getEncoder().encode(imagen);
         // Convert the byte array to a Base64 string
 
@@ -596,7 +608,10 @@ public class OfertaLaboral {
 
     public DTOfertaExtendido obtenerDatosOferta() {
         Set<DTPostulacion> posts = new HashSet<>();
-        for (Postulacion elem : postulaciones) {
+        // muestro todas las postulaciones
+        for (int i = 0; i < postulaciones.size(); i++) {
+            Postulacion elem = postulaciones.get(i);
+            // obtengo DTPostulacion para cada una
             posts.add(elem.obtenerDT());
         }
         Paquete paq = getPaquete();
@@ -604,7 +619,8 @@ public class OfertaLaboral {
         if (paq != null) {
             paq_nomb = paq.getNombre();
         }
-        return new DTOfertaExtendido(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb, getCantFav(), estaVencida());
+        DTOfertaExtendido dtoe = new DTOfertaExtendido(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb, getCantFav(), getCantVisitas());
+        return dtoe;
     }
 
     public boolean tieneKeyword(String keyword) {
@@ -622,7 +638,7 @@ public class OfertaLaboral {
         for (Keyword item : keys) {
             nuevo.add(item.getNombre());
         }
-        DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo, getCantFav());
+        DTOfertaExtendidoSinPConK dtoe = new DTOfertaExtendidoSinPConK(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nuevo, getCantFav(), getCantVisitas());
         return dtoe;
     }
 
@@ -644,9 +660,9 @@ public class OfertaLaboral {
         }
         DTOfertaExtendidoConKeywordsTit dtoe;
         if (getPaquete() != null) {
-            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, getPaquete().getDTPaquete(), nicknamesPostulantes, getCantFav());
+            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, getPaquete().getDTPaquete(), nicknamesPostulantes, getCantFav(), getCantVisitas());
         } else {
-            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, null, nicknamesPostulantes, getCantFav());
+            dtoe = new DTOfertaExtendidoConKeywordsTit(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), nicknamesPostulantes, null, nicknamesPostulantes, getCantFav(), getCantVisitas());
         }
         return dtoe;
     }
@@ -688,7 +704,7 @@ public class OfertaLaboral {
         for (int i = 0; i < keywords.size() && !salir; i++) {
             keys.add(keywords.get(i).getNombre());
         }
-        DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), keys, dtPost, getCantFav());
+        DTOfertaExtendidoConKeywordsPostulante entregar = new DTOfertaExtendidoConKeywordsPostulante(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), getImagen(), keys, dtPost, getCantFav(), getCantVisitas());
 
 
         return entregar;
@@ -764,5 +780,15 @@ public class OfertaLaboral {
 			lugar++;
         }
         return myList;
+	}
+
+
+	public Integer getCantVisitas() {
+		return cantVisitas;
+	}
+
+
+	public void setCantVisitas(Integer cantVisitas) {
+		this.cantVisitas = cantVisitas;
 	}
 }

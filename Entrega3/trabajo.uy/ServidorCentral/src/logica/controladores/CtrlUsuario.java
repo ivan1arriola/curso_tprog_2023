@@ -521,7 +521,7 @@ public class CtrlUsuario implements ICtrlUsuario {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr1 = UHan.buscarNick(usuario);
             Usuario usr2 = UHan.buscarNick(usuario_seguido);
-            if(usr1 == null || usr2 == null) {
+            if (usr1 == null || usr2 == null) {
             	throw new ExceptionUsuarioNoEncontrado("El usuario no se ha encontrado.");
             }
             usr1.seguirUsuario(usr2);
@@ -587,5 +587,12 @@ public class CtrlUsuario implements ICtrlUsuario {
 		}
 		return res;
 	}
+	
+	@Override
+    public LocalDate obtenerFechaDeCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado {
+    	UsuarioHandler UH = UsuarioHandler.getInstance();
+    	Empresa e = (Empresa) UH.buscarNick(nickname_e);
+    	return e.obtenerFechaDeCompra(paq);
+    }
 }
 

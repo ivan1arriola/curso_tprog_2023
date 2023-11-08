@@ -33,7 +33,7 @@ public class KeywordHandler {
         }
             // obtengo instancia de la base de datos
             EntityTransaction tx = database.getTransaction();
-            if(!database.getTransaction().isActive()) {
+            if (!database.getTransaction().isActive()) {
                 database.getTransaction().begin();
             }
             // esto es lo que hace guardar la keyword

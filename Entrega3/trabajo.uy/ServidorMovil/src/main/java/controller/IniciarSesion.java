@@ -49,7 +49,7 @@ public class IniciarSesion extends HttpServlet {
             } else {
                 request.setAttribute("mensajeError", "Inicio de sesión fallido. Verifique sus credenciales.");
                 request.setAttribute("identificador", identificador);
-                request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request, response);
             }
         } catch (Exception e) {
             request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión.");
@@ -63,6 +63,7 @@ public class IniciarSesion extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("nickname", usuario.getNickname());
         session.setAttribute("usuario", usuario);
+        session.setAttribute("nombreUsuario", usuario.getNombre() + " " + usuario.getApellido());
         TipoUsuario tipo;
 
         if (usuario instanceof DtPostulante) {

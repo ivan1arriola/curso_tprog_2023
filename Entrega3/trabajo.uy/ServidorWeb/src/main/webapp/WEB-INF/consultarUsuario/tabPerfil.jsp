@@ -47,7 +47,7 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                                 
 							    <!-- ... otros campos del formulario ... -->
 							
-							    <% if(!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
+							    <% if (!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
 							        if (seguir) { %>
 							            <button class="btn btn-primary mt-2" name="btnSeguir" type="submit">
 							                Seguir

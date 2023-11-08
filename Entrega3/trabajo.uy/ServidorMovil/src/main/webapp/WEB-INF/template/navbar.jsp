@@ -7,17 +7,23 @@
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  
+  
   <div class="d-flex mx-auto">
-    <h1 class="text-primary m-0 fw-bold">trabajo</h1>
-    <h1 class="text-secondary m-0">.uy</h1>
+  <a href="<%= request.getContextPath() %>/home" style="text-decoration: none;">
+    <h1 class="text-primary m-0 fw-bold" style="display: inline;">trabajo</h1>
+    <h1 class="text-secondary m-0" style="display: inline;">.uy</h1>
+   </a>
   </div>
+  
+  
   <div class="d-flex align-items-center justify-content-between">
     <% if (session != null && session.getAttribute("tipoUsuario") != null) { 
     	String nickname = (String) session.getAttribute("nickname");    
     	byte[] imagenUsr = (byte[]) session.getAttribute("imagen"); 
     	String imagen = null;
     	
-    	if(imagenUsr!=null) {
+    	if (imagenUsr!=null) {
         	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenUsr);
         }
 
@@ -32,8 +38,8 @@
     <div class="navbar-nav">
       <% if (session != null && session.getAttribute("tipoUsuario") != null) { %>
       <a class="nav-link" href="<%=contextPath%>/ofertaslaborales">Ver Ofertas Laborales</a>
-      <a class="nav-link" href="/mispostulaciones.html">Ver Postulaciones</a>
-      <a class="nav-link" href="/salir.html">Salir</a>
+      <a class="nav-link" href="<%=contextPath%>/verpostulacion">Ver Postulaciones</a>
+      <a class="nav-link" href="<%=contextPath%>/cerrarsesion">Salir</a>
       <% } else {%>
       <a class="nav-link" href="<%=contextPath%>/iniciarsesion">Iniciar Sesion</a>
       <%}%>

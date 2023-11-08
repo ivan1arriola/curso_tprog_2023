@@ -12,7 +12,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
@@ -61,7 +64,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Oferta Laboral");
-        setBounds(30, 30, 660, 716);
+        setBounds(30, 30, 620, 650);
         getContentPane().setLayout(null);
 
         JButton btnCerrar = new JButton("Cerrar");
@@ -71,87 +74,43 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                 setVisible(false);
             }
         });
-        btnCerrar.setBounds(521, 647, 117, 25);
+        btnCerrar.setBounds(466, 584, 117, 25);
         getContentPane().add(btnCerrar);
 
         listaEmpresas = new JComboBox<String>();
-        listaEmpresas.setBounds(186, 20, 455, 28);
+        listaEmpresas.setBounds(183, 6, 400, 28);
         getContentPane().add(listaEmpresas);
+        
+        listaEmpresas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evento) {
+            	listaOfertasLaborales.removeAllItems();
+            	limpiarFormulario();
+    
+            }
+        });
+        
+        
+        
+        
 
 
         JLabel lblIngresoCI_1 = new JLabel("Lista de empresas:");
-        lblIngresoCI_1.setBounds(12, 27, 170, 15);
+        lblIngresoCI_1.setBounds(12, 11, 170, 15);
         getContentPane().add(lblIngresoCI_1);
-
-        listaOfertasLaborales = new JComboBox<String>();
-        listaOfertasLaborales.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evento) {
-
-                String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
-
-                if (selectedUsuario1 != null) {
-                    selectedUsuario = selectedUsuario1;
-                }
-                DTOfertaExtendido infoConsOf = null;
-                try {
-                    infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
-                } catch (OfertaLaboralNoEncontrada e) {
-                    throw new RuntimeException(e);
-                }
-                tfNombre.setText(infoConsOf.getNombre());
-                tfDescripcion.setText(infoConsOf.getDescripcion());
-
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                String fechaComoString = infoConsOf.getFechaDeAlta().format(formatter);
-                tfFechaDeAlta.setText(fechaComoString);
-
-                tfCosto.setText(String.valueOf(infoConsOf.getCosto()));
-
-                tfRemuneracion.setText(String.valueOf(infoConsOf.getRemuneracion()));
-
-                tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
-
-                tfDepartamento.setText((infoConsOf.getDepartamento()).name());
-
-                tfCiudad.setText(infoConsOf.getCiudad());
-                String paq = infoConsOf.getPaquete();
-
-                if (paq == null) {
-                    tfPaquete.setText("No fue comprado con un paquete.");
-                } else {
-                    tfPaquete.setText(paq);
-                }
-
-                Set<String> keywords = null;
-                try {
-                    keywords = icUsuario.listarKeywords(selectedUsuario1);
-                } catch (OfertaLaboralNoEncontrada e) {
-                    throw new RuntimeException(e);
-                }
-
-                tAKey.setText("");
-                Iterator<String> iterator = keywords.iterator();
-                while (iterator.hasNext()) {
-                    tAKey.append(iterator.next());
-                    tAKey.append("\n");
-                }
-
-
-            }
-        });
-        listaOfertasLaborales.setBounds(186, 107, 455, 28);
-        getContentPane().add(listaOfertasLaborales);
-
+        
         JButton btnAceptar_1 = new JButton("Desplegar Ofertas Laborales");
         btnAceptar_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
+            
                 listaOfertasLaborales.removeAllItems();
                 nombreE = (String) listaEmpresas.getSelectedItem();
+            
                 try {
+                	       	
                     Set<String> ofertas_laborales = icUsuario.listarOfertasLaborales(nombreE);
                     ofertas_laborales.iterator();
                     if (!ofertas_laborales.isEmpty()) {
+                    	//listaOfertasLaborales.addItem("");
                         for (String it : ofertas_laborales) {
                             listaOfertasLaborales.addItem(it);
                         }
@@ -168,86 +127,153 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+                
+                
             }
         });
-        btnAceptar_1.setBounds(12, 67, 629, 25);
+        
+        btnAceptar_1.setBounds(133, 40, 450, 25);
         getContentPane().add(btnAceptar_1);
+        
+
+        listaOfertasLaborales = new JComboBox<String>();
+        listaOfertasLaborales.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evento) {
+
+                String selectedUsuario1 = (String) listaOfertasLaborales.getSelectedItem();
+                
+                //if (listaOfertasLaborales.getSelectedIndex()!=0 && listaOfertasLaborales.getSelectedIndex()!=-1) {
+                if (listaOfertasLaborales.getSelectedIndex()!=-1) {
+	                if (selectedUsuario1 != null) {
+	                    selectedUsuario = selectedUsuario1;
+	                }
+	                DTOfertaExtendido infoConsOf = null;
+	                
+	               
+	                try {
+	                	infoConsOf = icUsuario.consultaOfertaLaboral(selectedUsuario);
+	                } catch (OfertaLaboralNoEncontrada e) {
+	                    throw new RuntimeException(e);
+	                }
+	                tfNombre.setText(infoConsOf.getNombre());
+	                tfDescripcion.setText(infoConsOf.getDescripcion());
+	
+	
+	                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	                String fechaComoString = infoConsOf.getFechaDeAlta().format(formatter);
+	                tfFechaDeAlta.setText(fechaComoString);
+	
+	                tfCosto.setText(String.valueOf(infoConsOf.getCosto()));
+	
+	                tfRemuneracion.setText(String.valueOf(infoConsOf.getRemuneracion()));
+	
+	                tfHorario.setText((infoConsOf.getHorario()).getDesde() + "-" + (infoConsOf.getHorario()).getHasta());
+	
+	                tfDepartamento.setText((infoConsOf.getDepartamento()).name());
+	
+	                tfCiudad.setText(infoConsOf.getCiudad());
+	                String paq = infoConsOf.getPaquete();
+	
+	                if (paq == null) {
+	                    tfPaquete.setText("No fue comprado con un paquete.");
+	                } else {
+	                    tfPaquete.setText(paq);
+	                }
+	
+	                Set<String> keywords = null;
+	                try {
+	                    keywords = icUsuario.listarKeywords(selectedUsuario1);
+	                } catch (OfertaLaboralNoEncontrada e) {
+	                    throw new RuntimeException(e);
+	                }
+	
+	                tAKey.setText("");
+	                Iterator<String> iterator = keywords.iterator();
+	                while (iterator.hasNext()) {
+	                    tAKey.append(iterator.next());
+	                    tAKey.append("\n");
+	                }
+                }
+
+            }
+        });
+        listaOfertasLaborales.setBounds(183, 73, 400, 28);
+        getContentPane().add(listaOfertasLaborales);
 
         JLabel lblIngresoCI_1_2 = new JLabel("Ofertas Laborales:");
-        lblIngresoCI_1_2.setBounds(12, 114, 170, 15);
+        lblIngresoCI_1_2.setBounds(12, 80, 170, 15);
         getContentPane().add(lblIngresoCI_1_2);
 
-
         JLabel lblIngresoCI_1_2_1 = new JLabel("Nombre:");
-        lblIngresoCI_1_2_1.setBounds(12, 156, 170, 15);
+        lblIngresoCI_1_2_1.setBounds(12, 118, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1);
 
         JLabel lblIngresoCI_1_2_1_1 = new JLabel("Descripción:");
-        lblIngresoCI_1_2_1_1.setBounds(12, 199, 170, 15);
+        lblIngresoCI_1_2_1_1.setBounds(12, 156, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1);
 
         JLabel lblIngresoCI_1_2_1_1_1 = new JLabel("Fecha de alta:");
-        lblIngresoCI_1_2_1_1_1.setBounds(12, 240, 170, 15);
+        lblIngresoCI_1_2_1_1_1.setBounds(12, 190, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1);
 
         tfNombre = new JTextField();
         tfNombre.setEditable(false);
-        tfNombre.setBounds(186, 149, 455, 30);
+        tfNombre.setBounds(183, 110, 400, 25);
         getContentPane().add(tfNombre);
 
         tfDescripcion = new JTextField();
         tfDescripcion.setEditable(false);
-        tfDescripcion.setBounds(186, 192, 455, 30);
+        tfDescripcion.setBounds(183, 148, 400, 25);
         getContentPane().add(tfDescripcion);
 
         tfFechaDeAlta = new JTextField();
         tfFechaDeAlta.setEditable(false);
-        tfFechaDeAlta.setBounds(186, 233, 455, 30);
+        tfFechaDeAlta.setBounds(183, 185, 400, 25);
         getContentPane().add(tfFechaDeAlta);
 
         JLabel lblIngresoCI_1_2_1_1_1_1 = new JLabel("Costo:");
-        lblIngresoCI_1_2_1_1_1_1.setBounds(12, 283, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1.setBounds(12, 231, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1 = new JLabel("Remuneración:");
-        lblIngresoCI_1_2_1_1_1_1_1.setBounds(12, 328, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1.setBounds(12, 269, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1);
 
         tfCosto = new JTextField();
         tfCosto.setEditable(false);
-        tfCosto.setBounds(186, 275, 455, 30);
+        tfCosto.setBounds(183, 223, 400, 25);
         getContentPane().add(tfCosto);
 
         tfRemuneracion = new JTextField();
         tfRemuneracion.setEditable(false);
-        tfRemuneracion.setBounds(186, 321, 455, 30);
+        tfRemuneracion.setBounds(183, 261, 400, 25);
         getContentPane().add(tfRemuneracion);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1 = new JLabel("Horario:");
-        lblIngresoCI_1_2_1_1_1_1_1_1.setBounds(12, 378, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1.setBounds(12, 310, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1);
 
         tfHorario = new JTextField();
         tfHorario.setEditable(false);
-        tfHorario.setBounds(186, 371, 455, 30);
+        tfHorario.setBounds(183, 302, 400, 25);
         getContentPane().add(tfHorario);
 
         tfDepartamento = new JTextField();
         tfDepartamento.setEditable(false);
-        tfDepartamento.setBounds(186, 413, 455, 30);
+        tfDepartamento.setBounds(183, 343, 400, 25);
         getContentPane().add(tfDepartamento);
 
         tfCiudad = new JTextField();
         tfCiudad.setEditable(false);
-        tfCiudad.setBounds(186, 455, 455, 30);
+        tfCiudad.setBounds(183, 384, 400, 25);
         getContentPane().add(tfCiudad);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1 = new JLabel("Departamento:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1.setBounds(12, 420, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1.setBounds(12, 351, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1 = new JLabel("Ciudad:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1.setBounds(12, 462, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1.setBounds(12, 394, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1);
 
         JButton btnVerPostulaciones = new JButton("Ver postulaciones");
@@ -262,25 +288,25 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 
             }
         });
-        btnVerPostulaciones.setBounds(12, 610, 626, 25);
+        btnVerPostulaciones.setBounds(133, 551, 450, 25);
         getContentPane().add(btnVerPostulaciones);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1 = new JLabel("Keywords:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12, 560, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1.setBounds(12, 485, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_1);
 
         tAKey = new JTextArea();
-        tAKey.setBounds(186, 537, 455, 61);
+        tAKey.setBounds(183, 480, 400, 60);
         getContentPane().add(tAKey);
         tAKey.setEditable(false);
 
         tfPaquete = new JTextField();
         tfPaquete.setEditable(false);
-        tfPaquete.setBounds(186, 497, 455, 30);
+        tfPaquete.setBounds(183, 432, 400, 25);
         getContentPane().add(tfPaquete);
 
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2 = new JLabel("Paquete:");
-        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12, 504, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12, 432, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2);
 
 
@@ -296,11 +322,16 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         tfDepartamento.setText("");
         tfCiudad.setText("");
         tAKey.setText("");
+        tfPaquete.setText("");
     }
 
     public void actualizar() {
         listaEmpresas.removeAllItems();
-        Set<String> empresas = icUsuario.listarEmpresas();
+        listaEmpresas.addItem("");
+        Set<String> empresasUnsort = icUsuario.listarEmpresas();
+        List<String> empresas = new ArrayList<>(empresasUnsort);
+        Collections.sort(empresas, String.CASE_INSENSITIVE_ORDER);
+        
         for (String elemento : empresas) {
             listaEmpresas.addItem(elemento);
         }

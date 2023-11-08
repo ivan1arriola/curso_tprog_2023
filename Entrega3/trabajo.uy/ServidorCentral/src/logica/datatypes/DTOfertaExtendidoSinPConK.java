@@ -35,6 +35,7 @@ public class DTOfertaExtendidoSinPConK {
     private ArrayList<String> keywords;
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
+    private Integer cantVisitas;
 
     public DTOfertaExtendidoSinPConK(){
 
@@ -53,7 +54,8 @@ public class DTOfertaExtendidoSinPConK {
     	    EstadoOL estado,
     	    byte[] img,
     	    Set<String> keys,
-    	    Integer cantF
+    	    Integer cantF,
+    	    Integer cantV
     	) {
     	    // No es subclase de DTOfertaExtendido, es una versión sin postulaciones
     	    nombre = nomb;
@@ -69,6 +71,7 @@ public class DTOfertaExtendidoSinPConK {
     	    keywords = new ArrayList<>(keys);
     	    nicknameEmpresaPublicadora = nicknameEmpresa;
     	    setCantFavs(cantF);
+    	    cantVisitas = cantV;
     	}
 
 
@@ -126,6 +129,14 @@ public class DTOfertaExtendidoSinPConK {
 
 	public void setCantFavs(Integer cantFavs) {
 		this.cantFavs = cantFavs;
+	}
+
+	public Integer getCantVisitas() {
+		return cantVisitas;
+	}
+
+	public void setCantVisitas(Integer cantV) {
+		this.cantVisitas = cantV;
 	}
 
 

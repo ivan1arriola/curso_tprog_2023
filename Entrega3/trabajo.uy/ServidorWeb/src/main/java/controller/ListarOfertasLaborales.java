@@ -48,7 +48,7 @@ public class ListarOfertasLaborales extends HttpServlet {
         Set<OfertaLaboralBean> ofertas = null;
 
         try {
-        	if(keyword != null && !keyword.isEmpty()) {
+        	if (keyword != null && !keyword.isEmpty()) {
         		ofertas = logica.buscarOfertasPorKeyword(keyword);
         		
         	} else if (consulta != null && !consulta.isEmpty()) {

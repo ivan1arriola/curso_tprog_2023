@@ -33,7 +33,7 @@ public class OfertaLaboralHandler {
     public void agregar(OfertaLaboral tipoOfertaL) {
         EntityTransaction transaction = database.getTransaction();
         try {
-            if(!database.getTransaction().isActive()) {
+            if (!database.getTransaction().isActive()) {
                 database.getTransaction().begin();
             }
             database.persist(tipoOfertaL);

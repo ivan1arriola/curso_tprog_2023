@@ -26,7 +26,7 @@
             <jsp:include page="/WEB-INF/templates/navbar.jsp" />
             
             <%  String keyword = request.getParameter("key"); %>
-            <% if(keyword != null) { %>
+            <% if (keyword != null) { %>
             	
             	<jsp:include page="/WEB-INF/templates/keywordFiltro.jsp" />
            <%} %> 
@@ -53,7 +53,7 @@
                     for (OfertaLaboralBean oferta : ofertasLaborales) {
                         String imagenUrl = oferta.getImagen();
 
-                        if(imagenUrl == null){
+                        if (imagenUrl == null){
                             imagenUrl = request.getContextPath() + "/imagenNoFound.png";
                         }
                      

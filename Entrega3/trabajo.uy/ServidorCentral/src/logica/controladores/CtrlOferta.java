@@ -480,6 +480,7 @@ public class CtrlOferta implements ICtrlOferta {
 
     @Override
     public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
+    	
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	Postulante postu = null;
 		try {
@@ -488,7 +489,7 @@ public class CtrlOferta implements ICtrlOferta {
             OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
             OfertaLaboral ofer = null;
             try {
-                ofer = OLH.buscar(nomb_oferta);
+                ofer = OLH.buscar(nomb_oferta); 
                 postu.marcarFavorita(ofer);
                 ofer.marcadaFav();
             } catch (OfertaLaboralNoEncontrada e) {
@@ -527,12 +528,12 @@ public class CtrlOferta implements ICtrlOferta {
 
     }
 
-    public void establecerPosiciones(String nombre_oferta,String nombreEmpresa,List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
-        if(HayOrdenFinal(nombre_oferta)) throw new ExisteOrdenFinalDePostulantes("No se reasignar el orden de postulantes");
+    public void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
+        if (HayOrdenFinal(nombre_oferta)) throw new ExisteOrdenFinalDePostulantes("No se reasignar el orden de postulantes");
         UsuarioHandler UH = UsuarioHandler.getInstance();
     	Empresa empresa = null;
         empresa = (Empresa) UH.buscarNick(nombreEmpresa);
-        empresa.establecerPosicion(nombre_oferta,nicksPostulante);
+        empresa.establecerPosicion(nombre_oferta, nicksPostulante);
     }
     
     // orden de las posiciones
@@ -571,14 +572,40 @@ public class CtrlOferta implements ICtrlOferta {
     }
     
     @Override
-    public void finalizarOfertaLaboral(String nombre_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
+    public void finalizarOfertaLaboral(String nombre_oferta) {
     	UsuarioHandler UH = UsuarioHandler.getInstance();
     	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral oferta = OLH.buscar(nombre_oferta);
-        if(!oferta.estaVencida()) throw new FinalizarOfertaNoVencida("Para finalizar la oferta se necesita que este vencida");
+    	OfertaLaboral oferta = null;
+		try {
+			oferta = OLH.buscar(nombre_oferta);
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
-    	Empresa empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+    	Empresa empresa = null;
+        try {
+			empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	empresa.finalizarOfertaLaboral(nombre_oferta);
     }
+    
+    @Override
+    public void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada {
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral ol = OLH.buscar(nombre_oferta);
+    	ol.setCantVisitas(ol.getCantVisitas()+1);
+    }
+    
+    @Override
+    public String obtenerTipoPubOfertaLaboral(String nomb_oferta) throws OfertaLaboralNoEncontrada  {
+    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	OfertaLaboral ol = OLH.buscar(nomb_oferta);
+    	return ol.getTipoOferta().getNombre();
+    }
+
 }
 

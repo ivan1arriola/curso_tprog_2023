@@ -97,6 +97,11 @@ public class Servidor {
     public WrapperLista listarPaquetes() {
         return WSUtils.envolverLista(ctrlOferta.listarPaquetes());
     }
+    
+    @WebMethod
+    public WrapperLista listarPaquetesNoVencidos(String nickname_e) throws ExceptionEmpresaInvalida, ExceptionUsuarioNoEncontrado {
+        return WSUtils.envolverLista(ctrlOferta.listarPaquetesNoVencidos(nickname_e));
+    }
 
     @WebMethod
     public WrapperLista listarTodasLasOfertasLaborales(String nicknameParametro) throws ExceptionUsuarioNoEncontrado {
@@ -239,7 +244,7 @@ public class Servidor {
     }
     @WebMethod
     public void modificarDatosUsuario(DTUsuario usuario) throws TipoUsuarioNoValido, ExceptionUsuarioNoEncontrado {
-        if(usuario instanceof DTEmpresa empresa){
+        if (usuario instanceof DTEmpresa empresa){
             ctrlUsuario.ingresarDatosEditadosEmpresaURLImg(
                     empresa.getNickname(),
                     empresa.getNombre(),
@@ -330,11 +335,27 @@ public class Servidor {
     }
 
     @WebMethod
+    public void compraPaquetes(String nickname, String paquete, String now, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
+    	ctrlOferta.compraPaquetes(nickname, paquete, LocalDate.parse(now), valor);
+    }
+    
+    @WebMethod
+    public void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada {
+    	ctrlOferta.aumentarVisita(nombre_oferta);
+    }
+    
+    @WebMethod
+    public String obtenerFechaCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado {
+    	return ctrlUsuario.obtenerFechaDeCompra(nickname_e, paq).toString();
+    }
+    
+    @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado, FinalizarOfertaNoVencida {
-        ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
+    ) {
+//        ctrlOferta.finalizarOferta(nombre_oferta);
     }
+
 
 
 

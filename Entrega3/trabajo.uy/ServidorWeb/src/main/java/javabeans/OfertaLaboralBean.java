@@ -28,6 +28,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 	private Set<String> keywords;
 	private String nicknameEmpresa;
 	private Integer cantFavs;
+	private Integer cantVisitas;
 
 
 	
@@ -46,6 +47,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
         this.setPaquete(null);
         this.keywords = new HashSet<String>();
         this.setPostulantes(new HashSet<UsuarioBean>());
+        setCantVisitas(0);
     }
 	
 	public Departamento getDepartamento() {
@@ -152,7 +154,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 				estado = EstadoOfertaLaboral.Rechazada;
 				break;
 			case FINALIZADA:
-				estado = EstadoOfertaLaboral.Finalizada;
+				// Puedes manejar este caso si es necesario
 				break;
 		}
 
@@ -307,5 +309,13 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 
 	public void setCantFavs(Integer cantFavs) {
 		this.cantFavs = cantFavs;
+	}
+
+	public Integer getCantVisitas() {
+		return cantVisitas;
+	}
+
+	public void setCantVisitas(Integer cantVisitas) {
+		this.cantVisitas = cantVisitas;
 	}
 }

@@ -6,7 +6,7 @@
 
 <%
     PaqueteBean paquete = (PaqueteBean) request.getAttribute("paquete");
-    if(paquete != null){
+    if (paquete != null){
         String imagenPaquete = paquete.getImagen();
 
 %>

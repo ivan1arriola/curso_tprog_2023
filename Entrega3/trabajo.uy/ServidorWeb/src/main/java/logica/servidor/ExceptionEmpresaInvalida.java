@@ -7,12 +7,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para FinalizarOfertaNoVencida complex type.
+ * <p>Clase Java para ExceptionEmpresaInvalida complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="FinalizarOfertaNoVencida">
+ * <complexType name="ExceptionEmpresaInvalida">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -26,10 +26,10 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "FinalizarOfertaNoVencida", propOrder = {
+@XmlType(name = "ExceptionEmpresaInvalida", propOrder = {
     "message"
 })
-public class FinalizarOfertaNoVencida {
+public class ExceptionEmpresaInvalida {
 
     protected String message;
 

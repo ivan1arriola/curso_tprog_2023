@@ -29,7 +29,7 @@ public class PaqueteHandler {
             throw new IllegalStateException("EntityManager no configurado.");
         }
 
-        if(!database.getTransaction().isActive()) {
+        if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
         List<Paquete> paqueteList = database.createQuery("SELECT p FROM Paquete p", Paquete.class).getResultList();
@@ -53,7 +53,7 @@ public class PaqueteHandler {
             throw new IllegalStateException("EntityManager no configurado.");
         }
 
-        if(!database.getTransaction().isActive()) {
+        if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
         boolean existe = database.createQuery("SELECT COUNT(p) FROM Paquete p WHERE p.nombre = :nombre", Long.class)
@@ -92,7 +92,7 @@ public class PaqueteHandler {
             throw new IllegalStateException("EntityManager no configurado.");
         }
 
-        if(!database.getTransaction().isActive()) {
+        if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
         database.persist(paquete);
@@ -104,7 +104,7 @@ public class PaqueteHandler {
             throw new IllegalStateException("EntityManager no configurado.");
         }
 
-        if(!database.getTransaction().isActive()) {
+        if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
         database.merge(paquete);

@@ -18,7 +18,7 @@
 <div class="tab-pane fade sin-bordes p-2" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
 
 <%
-    if(ofertasLaborales == null || ofertasLaborales.isEmpty()){
+    if (ofertasLaborales == null || ofertasLaborales.isEmpty()){
     	
     	%>
     	
@@ -40,7 +40,7 @@
             // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
             imagen = request.getContextPath() +  "/imagenNoFound.png";
         }
-        
+ 
         String nombre = oferta.getNombre();
         String descripcion = oferta.getDescripcion();
         String enlace = request.getContextPath() + "/consultarofertalaboral?o=" + nombre;
@@ -60,8 +60,8 @@
 					                <a href="<%=enlace%>" class="card-link">Leer más</a>      
 					            </div>
 					        </div>
+					        
 					        <div class="col-2">
-					        	
 					        	<span class="badge <%=estado.getCssClass()%>"><%=estado%></span>
 					        </div>
 					    </div>

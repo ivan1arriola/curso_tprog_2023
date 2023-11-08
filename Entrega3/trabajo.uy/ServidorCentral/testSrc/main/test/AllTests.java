@@ -12,7 +12,9 @@ import org.junit.platform.suite.api.Suite;
 		TestGeneral5.class,
 		TestGeneral6.class,
 		TestGeneral7.class,
-		TestGeneral8.class
+		TestGeneral8.class,
+		TestGeneral9.class,
+		TestGeneral10.class
 })
 
 public class AllTests {

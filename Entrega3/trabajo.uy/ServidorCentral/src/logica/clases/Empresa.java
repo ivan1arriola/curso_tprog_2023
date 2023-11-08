@@ -57,6 +57,10 @@ public class Empresa extends Usuario {
     public String getDescripcion() {
         return descripcion;
     }
+    
+    public void setofertasLaborales(Set<OfertaLaboral> OL) {
+    	ofertasLaborales =  OL; 
+    }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -460,6 +464,16 @@ public class Empresa extends Usuario {
         }
 		return auxiliar.DevolverPosiciones();
     }
+
+	public LocalDate obtenerFechaDeCompra(String paq) {
+		System.out.println(paq);
+		for (InfoCompra ic : infoCompras) {
+			if (ic.getPaquete().getNombre().equals(paq)) {
+				return ic.getfCompra();
+			}
+		}
+		return null;
+	}
 
 }
 

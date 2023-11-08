@@ -34,6 +34,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="keywords" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="nicknameEmpresaPublicadora" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="cantFavs" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         <element name="cantVisitas" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -56,7 +57,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "imagen",
     "keywords",
     "nicknameEmpresaPublicadora",
-    "cantFavs"
+    "cantFavs",
+    "cantVisitas"
 })
 @XmlSeeAlso({
     DtOfertaExtendidoConKeywordsPostulante.class,
@@ -80,6 +82,7 @@ public class DtOfertaExtendidoSinPConK {
     protected List<String> keywords;
     protected String nicknameEmpresaPublicadora;
     protected Integer cantFavs;
+    protected Integer cantVisitas;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -380,6 +383,30 @@ public class DtOfertaExtendidoSinPConK {
      */
     public void setCantFavs(Integer value) {
         this.cantFavs = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantVisitas.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getCantVisitas() {
+        return cantVisitas;
+    }
+
+    /**
+     * Define el valor de la propiedad cantVisitas.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setCantVisitas(Integer value) {
+        this.cantVisitas = value;
     }
 
 }
