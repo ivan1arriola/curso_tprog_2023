@@ -307,7 +307,12 @@ public class CtrlUsuario implements ICtrlUsuario {
         Usuario user = null;
         // Verificar si 'id' es un correo electrónico. Poner la er que sigue el correo
         if (identificador.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            user = UsuarioH.buscarCorreo(identificador);
+        	try {
+        	user = UsuarioH.buscarCorreo(identificador);
+        	} catch (ExceptionUsuarioNoEncontrado e) {
+                return false; // Usuario no encontrado, devuelve false
+            }
+        	
             if (user.getcontrasenia().equals(contraseña)) {
                 return true;
             } else {
