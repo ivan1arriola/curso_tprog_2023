@@ -18,10 +18,12 @@
         <div class="text-center mb-4">
           <h1>Iniciar Sesión</h1>
         </div>
+        
         <% String mensajeError = (String) request.getAttribute("mensajeError");
                    if (mensajeError != null && !mensajeError.isEmpty()) { %>
                     <div class="alert alert-danger"><%= mensajeError %></div>
         <% } %>
+        
         <form class="form-signin needs-validation" novalidate action="IniciarSesion" method="post">
           <div class="form-floating">
 			<input type="text" class="form-control" name="identificador-input" id="identificador-input" 
@@ -32,6 +34,7 @@
               Nickname / Correo Electronico es un atributo requerido
             </div>
           </div>
+          
           <div class="form-floating">
             <input type="password" class="form-control" name="password-input" id="password-input" placeholder="Contraseña" required />
             <label for="password-input">Contraseña</label>

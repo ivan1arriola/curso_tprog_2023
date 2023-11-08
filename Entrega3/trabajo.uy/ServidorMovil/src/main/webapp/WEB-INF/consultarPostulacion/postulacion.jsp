@@ -20,16 +20,25 @@
 <html>
 
 <head>
-  <jsp:include page="/WEB-INF/template/head.jsp" />
-  <title>trabajo.uy</title>
-  <style type="text/css">
-    	.banner-container {
-		    background-image: url("<%=imagen%>");
-		}
+<style>
+    .titulo-con-fondo {
+      background-image: url("<%=imagen%>");
+      background-size: cover; 
+      color: white; 
+      text-align: center; 
+      font-weight: bold; 
+    }
   </style>
+
+
+  <jsp:include page="/WEB-INF/template/head.jsp" />
+  <title>Postulaciones</title>
 </head>
 
 <body>
+<header>
+  <jsp:include page="/WEB-INF/template/navbar.jsp" />
+</header>
 
 
 <main>
@@ -41,7 +50,7 @@
         <div class="row">
             <div class="container col">
                 <div class="row banner-container banner-dark">
-                    <h1 class="text-center text-light fw-bolder">Postulacion de <%=nombre%> a <%=nombreOferta%></h1>
+                    <h1 class="titulo-con-fondo text-center text-light fw-bolder">Postulacion de <%=nombre%> a <%=nombreOferta%></h1>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">

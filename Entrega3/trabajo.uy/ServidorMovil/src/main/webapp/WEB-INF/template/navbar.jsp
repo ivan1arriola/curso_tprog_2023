@@ -39,7 +39,7 @@
       <% if (session != null && session.getAttribute("tipoUsuario") != null) { %>
       <a class="nav-link" href="<%=contextPath%>/ofertaslaborales">Ver Ofertas Laborales</a>
       <a class="nav-link" href="<%=contextPath%>/verpostulacion">Ver Postulaciones</a>
-      <a class="nav-link" href="/salir.html">Salir</a>
+      <a class="nav-link" href="<%=contextPath%>/cerrarsesion">Salir</a>
       <% } else {%>
       <a class="nav-link" href="<%=contextPath%>/iniciarsesion">Iniciar Sesion</a>
       <%}%>
