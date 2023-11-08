@@ -51,6 +51,12 @@ public class IniciarSesion extends HttpServlet {
                 request.setAttribute("identificador", identificador);
                 request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request, response);
             }
+        } catch (ExceptionUsuarioNoEncontrado_Exception exc) { 
+        	
+        	request.setAttribute("mensajeError", "Usuario no encontrado. Verifique sus credenciales.");
+            request.setAttribute("identificador", identificador);
+            request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request, response);
+        
         } catch (Exception e) {
             request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión.");
             request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
