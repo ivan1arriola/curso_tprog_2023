@@ -5,7 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import logica.servidor.*;
 import java.io.IOException;
 //import java.util.Base64;
@@ -26,15 +25,9 @@ public class Postulacionexitosa extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("nickname") != null) {
-            response.sendRedirect(request.getContextPath() + "/home");
-        } else {
-            request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp").forward(request, response);
-        }
-        */
-		//String nombre = (String) request.getSession().getAttribute("postulante");
 		
+		String nombreOferta = (String) request.getParameter("oferta");
+		request.setAttribute("nombreOferta", nombreOferta);
         request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp").forward(request, response);
 	}
 

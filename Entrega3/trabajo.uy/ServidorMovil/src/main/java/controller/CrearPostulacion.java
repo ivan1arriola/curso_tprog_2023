@@ -83,11 +83,13 @@ public class CrearPostulacion extends HttpServlet {
 			String videoYouTube = request.getParameter("videoYouTube");
 			String currentDateStr = LocalDate.now().toString();
 
-
+			
 			
 		servidor.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", currentDateStr, videoYouTube);
 			//response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
-			response.sendRedirect(request.getContextPath() + "/postulacionexitosa");
+			//response.sendRedirect(request.getContextPath() + "/postulacionexitosa");
+			
+			response.sendRedirect(request.getContextPath() + "/postulacionexitosa?oferta=" + nombreOferta);
 			
 		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 			throw new RuntimeException(e);

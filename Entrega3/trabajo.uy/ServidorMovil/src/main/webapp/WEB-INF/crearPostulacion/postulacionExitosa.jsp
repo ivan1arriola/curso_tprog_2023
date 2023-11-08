@@ -7,7 +7,7 @@
 
     String nick = (String) session.getAttribute("nickname");
 	String nombrecompleto = (String) session.getAttribute("nombreUsuario");
-
+	String oferta = (String) request.getAttribute("nombreOferta");
     /* byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
     String imagen = null;
     if (imagenBytes!=null) {
@@ -35,7 +35,7 @@
 
 
     <div class="container col-9">
-        <h2><%=nombrecompleto %>: la postulación ha sido exitosa</h2>
+        <h2><%=nombrecompleto %>: la postulación a la oferta <%=oferta %> ha sido exitosa</h2>
 
     </div>
 
