@@ -301,6 +301,78 @@ public class TestGeneral11 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		// 00000000000000000000000000000000000000000000
+		try {
+			ICO.listarComprasPaquete(empresaNueva.getNickname());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.finalizarOfertaLaboral(OfertaLabolra.getNombre());
+		} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.aumentarVisita(OfertaLabolra.getNombre());
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.tipoOferta(OfertaLabolra.getNombre());
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ============================================
+		nuevoPos.listarOfertasLaborales();
+		nuevoPos.listarPostulaciones();
+		Set<Postulacion> PostulacionesUsuario = new HashSet<>();
+		PostulacionesUsuario.add(nuevaPost);
+		nuevoPos.setPostulaciones(PostulacionesUsuario);
+		nuevoPos.editarPostulacion(OfertaLabolra.getNombre(),"nuevo curriculum","nueva motivacion");
+		// ============================================
+		nuevoPos.marcarFavorita(OfertaLabolra);
+		nuevoPos.desmarcarFavorita(OfertaLabolra);
+		Set<OfertaLaboral> OfertaLaborales = new HashSet<>();
+		OfertaLaborales.add(OfertaLabolra);
+		nuevoPos.setOfertasFavoritas(OfertaLaborales);
+		nuevoPos.existePostulacion(OfertaLabolra.getNombre());
+		// ????????????????????????????????????????????
+		Postulante nuevoPos2 = null;
+		try {
+			nuevoPos2 = new Postulante("johnn",  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad, imagen11.getBytes());
+		} catch (ExceptionFechaInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			nuevoPos2.crearPostulacionForzado("curiculum flamante", 
+					"estyoy pereparado", 
+					LocalDate.now(), 
+					"documentos extras", 
+					OfertaLabolra, 
+					"el video imperdibvle");
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		nuevoPos2.seguirUsuario(nuevoPos);
+		nuevoPos.seguirUsuario(nuevoPos2);
+		
+		nuevoPos.obtenerDatosUsuario();
+		nuevoPos.obtenerDatosUsuarioEspecial(nuevoPos.getNickname(),nuevoPos.getNickname()); 
+		// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		empresaNueva.finalizarOfertaLaboral(OfertaLabolra.getNombre());
+		empresaNueva.seguirUsuario(nuevoPos);
+		nuevoPos.seguirUsuario(empresaNueva);
+		empresaNueva.obtenerDatosUsuarioEspecial(empresaNueva.getNickname(),empresaNueva.getNickname());
+		empresaNueva.obtenerDatosUsuario();
+		// //////////////////////////////////////////////
+		UH.obtenerCorreo();
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();
