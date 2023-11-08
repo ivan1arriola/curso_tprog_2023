@@ -353,7 +353,7 @@ public class Servidor {
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
     ) {
-//        ctrlOferta.finalizarOferta(nombre_oferta);
+        ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
 
 

@@ -7,6 +7,7 @@
 <%
     List<String> postulantes = (List<String>) request.getAttribute("postulantes");
     String imagen = (String) request.getAttribute("imagenOferta");
+    String nombreOferta = request.getParameter("oferta");
 %>
 
 <head>
@@ -37,144 +38,72 @@
                 <h1 class="text-center text-light fw-bolder">Desarrollador Frontend</h1>
             </div>
 
-            <div class="row">
-                <div class="col container m-2" id="informacionPostulante">
-                    <h1 class="text-center"> Informacion de Postulacion</h1>
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <td><b>Postulante:</b></td>
-                            <td id="nombrePostulanteLink"><a></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Oferta Laboral</b></td>
-                            <td id="nombreOferta">
-                                <a href="<%= request.getContextPath()%> /consultarofertalaboral?o= <%=request.getParameter("oferta")%>">
-                                    <%=request.getParameter("oferta")%>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>CV reducido:</b></td>
-                            <td id="curriculum"></td>
-                        </tr>
-                        <tr>
-                            <td><b>Motivación:</b></td>
-                            <td id="motivacion"></td>
-                        </tr>
-                        <tr>
-                            <td><b>Fecha Postulación:</b></td>
-                            <td id="fecha"></td>
-                        </tr>
-                        <tr>
-                            <td><b>Video Postulacion:</b></td>
-                            <td id="video">
-
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col-4">
-                    <div id="postulantes" class="container card m-2">
-                        <h2 class="card-title text-center">Lista de Postulantes</h2>
-                        <div class="row align-items-center card-body">
-                            <ol id="listaPostulantes" class="list-group list-group-numbered">
-                                <% for(String postulante : postulantes){ %>
-                                <li id="<%=postulante%>" class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <button id="btn-<%=postulante%>" class="btn btn-custom " onclick="cargarInfoPostulante('<%=postulante%>')">Ver</button>
-                                        </div>
-                                        <div class="col">
-                                            <%=postulante%>
-                                        </div>
-                                    </div>
-                                </li>
-                                <%}%>
-
-                            </ol>
-
-
-
-                        </div>
-                        <form class="text-center card-footer"
-                              action="${pageContext.request.contextPath}/consultarpostulantes" method="POST">
-                            <input type="hidden" name="orden" id="input-orden" value="<%=postulantes.toString()%>">
-                            <input type="hidden" name="oferta" value="<%=request.getParameter("oferta")%>">
-                            <input type="submit" value="Definir Orden" class="btn btn-primary">
-                        </form>
+            <div class="col">
+                <div id="postulantes" class="container card m-2">
+                    <div class="text-center m-2">
+                        <h2 class="card-title">Lista de Postulantes</h2>
                     </div>
 
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th >#</th>
+                            <th class="col-6">Postulante</th>
+                            <th class="col-3">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody id="listaPostulantes">
+                        <% int rowIndex = 1; %>
+                        <% for(String postulante : postulantes) { %>
+                        <tr id="<%=postulante%>" class="postulante-row tr-draggable">
+                            <th scope="row" class="row-index" id="index-<%=postulante%>"><%= rowIndex++ %></th>
+                            <td>
+                                <%=postulante%>
+                            </td>
+                            <td>
+                                <button
+                                        id="btn-<%=postulante%>"
+                                        class="btn btn-info"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                        onclick="cargarInfoPostulante('<%=postulante%>','<%=nombreOferta%>' )"
+                                >
+                                    Ver Postulacion
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+
+                    <form class="text-center card-footer" action="${pageContext.request.contextPath}/consultarpostulantes" method="POST">
+                        <input type="hidden" name="orden" id="input-orden" value="<%=postulantes.toString()%>">
+                        <input type="hidden" name="oferta" value="<%=request.getParameter("oferta")%>">
+                        <input type="submit" value="Definir Orden Final" class="btn btn-primary">
+                    </form>
                 </div>
-
-
             </div>
+
+
+
+        </div>
         </div>
     </div>
 </main>
 
+<jsp:include page="./consultarPostulacionModal.jsp" />
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+
 <script>
-    $(document).ready(function () {
-        $("#listaPostulantes").sortable({
-            update: function (event, ui) {
-                // Actualiza el orden en el input oculto
-                const order = $("#listaPostulantes").sortable("toArray");
-                $("#input-orden").val(order);
-                console.log(order);
-            }
-        });
-        $("#listaPostulantes").disableSelection();
-    });
-
-
-
-    const cargarInfoPostulante = (nickname) => {
-        // Deshabilita todos los botones
-        $('button[id^="btn-"]').prop('disabled', true);
-
-        $.ajax({
-            url: "<%=request.getContextPath()%>/consultapostulacion",
-            data: {
-                postulante: nickname,
-                oferta: "<%=request.getParameter("oferta")%>"
-            },
-            type: "POST",
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-                // Actualiza la tabla con los datos
-                $("#nombrePostulanteLink a").text(data.nombre);
-                $("#nombrePostulanteLink a").attr("href", "/ServidorWeb/consultarusuario?u=" + nickname);
-                $("#nombreOferta a").attr("href", "/ServidorWeb/consultarofertalaboral?o=" + data.oferta);
-                $("#curriculum").text(data.curriculum);
-                $("#motivacion").text(data.motivacion);
-                $("#fecha").text(data.fecha);
-                if (data.video) {
-                    $("#video").html('<a href="' + data.video + '">Ver Video</a>');
-                } else {
-                    $("#video").html('<div class="alert alert-warning" role="alert">No se ha subido un video.</div>');
-                }
-            },
-            error: function (error) {
-                console.log("Error: ", error);
-            },
-            complete: function () {
-                // Habilita todos los botones nuevamente
-                $('button[id^="btn-"]').prop('disabled', false);
-                $(`#btn-${nickname}`).prop('disabled', true);
-
-            }
-        });
-    }
-
-
+    const contextPath = "<%=request.getContextPath()%>";
 </script>
+
+<script src="<%=request.getContextPath() + "/js/consultarPostulaciones.js"%>">
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
