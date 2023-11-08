@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
+import logica.servidor.FinalizarOfertaNoVencida_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import utils.FabricaWeb;
 import interfaces.ILogica;
@@ -35,7 +36,7 @@ public class FinalizarOferta extends HttpServlet {
             boolean esDueño = oferta.getNicknameEmpresa().equals(nickname);
             if (esDueño){
                 logica.finalizarOferta(nombreOferta);
-                response.sendRedirect("/consultaroferta?o=" + nombreOferta);
+                response.sendRedirect(request.getContextPath()+"/consultaroferta?o=" + nombreOferta);
 
             } else {
                 request.setAttribute("nombreError", "Acceso Denegado");
@@ -47,6 +48,10 @@ public class FinalizarOferta extends HttpServlet {
         } catch (OfertaLaboralNoEncontrada_Exception e) {
             request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
             request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+        } catch (FinalizarOfertaNoVencida_Exception e) {
+            request.setAttribute("nombreError", "No se pudo finalizar Oferta Laboral");
+            request.setAttribute("mensajeError", "No se puede finalizar una oferta laboral que aun no este vencida");
             request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
         }
 

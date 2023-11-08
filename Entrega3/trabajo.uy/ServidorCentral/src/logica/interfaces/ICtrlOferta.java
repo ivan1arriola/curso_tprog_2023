@@ -103,14 +103,15 @@ public interface ICtrlOferta {
 
     public abstract boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
-	public abstract void establecerPosiciones(String nombre_oferta, String nombreEmpresa, List<String> nickPostulante)
+	public abstract void establecerPosiciones(String nombre_oferta, List<String> nickPostulante)
             throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes;
 
 	public abstract List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 
-	public abstract void finalizarOfertaLaboral(String nombre_oferta);
+	public abstract void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida;
 
 	public abstract void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada;
 	
 	public abstract String obtenerTipoPubOfertaLaboral(String nomb_oferta) throws OfertaLaboralNoEncontrada;
+
 }

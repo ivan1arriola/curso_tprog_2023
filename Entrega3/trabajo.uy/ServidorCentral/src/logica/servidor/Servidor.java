@@ -313,7 +313,7 @@ public class Servidor {
             @WebParam(name = "wrapperLista") WrapperLista wrapperLista
     ) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
         List<String> listaPostulantes = wrapperLista.getListaString();
-        ctrlOferta.establecerPosiciones(nombre_oferta, nombreEmpresa, listaPostulantes);
+        ctrlOferta.establecerPosiciones(nombre_oferta, listaPostulantes);
     }
     @WebMethod
     public boolean existeOrdenPostulantesFinal(
@@ -357,7 +357,7 @@ public class Servidor {
     @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) {
+    ) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
         ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
 

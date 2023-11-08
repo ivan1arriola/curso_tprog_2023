@@ -8,6 +8,7 @@
   List<String> postulantes = (List<String>) request.getAttribute("postulantesFinal");
   String imagen = (String) request.getAttribute("imagenOferta");
   String nombreOferta = request.getParameter("oferta");
+  boolean estaFinalizada = (boolean) request.getAttribute("estaFinalizada");
 %>
 
 <head>
@@ -42,6 +43,7 @@
         <div class="col">
           <div id="postulantes" class="container card m-2">
             <h2 class="card-title text-center mt-2">Lista Final de Postulantes</h2>
+            <% if(estaFinalizada){ %> <h3>Oferta Finalizada</h3> <%}%>
             <div class="row align-items-center card-body">
               <table class="table table-bordered">
                 <thead>

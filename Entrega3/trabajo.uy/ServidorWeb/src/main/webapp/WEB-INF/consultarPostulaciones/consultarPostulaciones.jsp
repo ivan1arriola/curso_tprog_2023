@@ -27,6 +27,8 @@
     <jsp:include page="/WEB-INF/templates/header.jsp" />
 </header>
 
+<% boolean estaVigente = (boolean) request.getAttribute("estaVigente"); %>
+
 <main class="container-fluid d-flex">
     <div class="container col-3">
         <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
@@ -42,6 +44,12 @@
                 <div id="postulantes" class="container card m-2">
                     <div class="text-center m-2">
                         <h2 class="card-title">Lista de Postulantes</h2>
+                        <% if(estaVigente){ %>
+                        <h3>Oferta Aún Vigente</h3>
+                        <%} else { %>
+                        <h3>Oferta Vencida</h3>
+                        <h4>Seleccionar Orden Postulantes:</h4>
+                        <%}%>
                     </div>
 
                     <table class="table">
@@ -55,7 +63,9 @@
                         <tbody id="listaPostulantes">
                         <% int rowIndex = 1; %>
                         <% for(String postulante : postulantes) { %>
-                        <tr id="<%=postulante%>" class="postulante-row tr-draggable">
+                        <tr id="<%=postulante%>"
+                            class="postulante-row <% if(!estaVigente){ %>tr-draggable <%}%>"
+                        >
                             <th scope="row" class="row-index" id="index-<%=postulante%>"><%= rowIndex++ %></th>
                             <td>
                                 <%=postulante%>
@@ -76,11 +86,14 @@
                         </tbody>
                     </table>
 
+
+                    <% if(!estaVigente){ %>
                     <form class="text-center card-footer" action="${pageContext.request.contextPath}/consultarpostulantes" method="POST">
                         <input type="hidden" name="orden" id="input-orden" value="<%=postulantes.toString()%>">
                         <input type="hidden" name="oferta" value="<%=request.getParameter("oferta")%>">
-                        <input type="submit" value="Definir Orden Final" class="btn btn-primary">
+                        <input type="submit" value="Finalizar Oferta" class="btn btn-success">
                     </form>
+                    <%} %>
                 </div>
             </div>
 
@@ -101,8 +114,13 @@
     const contextPath = "<%=request.getContextPath()%>";
 </script>
 
-<script src="<%=request.getContextPath() + "/js/consultarPostulaciones.js"%>">
-</script>
+<script src="<%=request.getContextPath() + "/js/consultarPostulaciones.js"%>"></script>
+
+
+
+<% if(!estaVigente){ %>
+<script src="<%=request.getContextPath() + "/js/listaArrastrable.js" %>"></script>
+<%} %>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

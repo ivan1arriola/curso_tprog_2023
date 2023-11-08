@@ -29,6 +29,10 @@ public interface ILogica {
 	UsuarioBean obtenerDatosUsuario(String nickname);
 
 
+	boolean estaFinalizada(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
+
+	boolean estaFinalizadaConOrdenPostulantes(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
+
 	void modificarDatosUsuario(String nickname, UsuarioBean usuario);
 
 	Set<UsuarioBean> listarUsuarios();
@@ -147,5 +151,7 @@ public interface ILogica {
 
 	HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
 
-    void finalizarOferta(String nombreOferta);
+    void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception;
+
+	boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
 }

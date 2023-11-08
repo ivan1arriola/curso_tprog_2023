@@ -11,10 +11,7 @@
 
 %>
 
-<div class="container">
-    <div class="row">
-        <h5>Paquete</h5>
-    </div>
+<div class="mb-2">
     <div class="row">
         <div class="col">
             <img src="<%= imagenPaquete %>" alt="Imagen Paquete" class="img-fluid">
@@ -22,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col text-center">
-            <h5>
+            <h5> Paquete:
                 <a href="<%= request.getContextPath() %>/consultarpaquete?p=<%= paquete.getNombre() %>" class="card-link">
                     <%= paquete.getNombre() %>
                 </a>
@@ -33,7 +30,7 @@
 
 
 <%} else {%>
-<div class="container">
+<div class="mb-2">
 
 <div class="row">
     <h4>Paquete</h4>

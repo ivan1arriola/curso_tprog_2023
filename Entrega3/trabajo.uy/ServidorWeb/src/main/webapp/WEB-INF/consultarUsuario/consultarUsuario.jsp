@@ -2,10 +2,7 @@
 <%@ page import="javabeans.UsuarioBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
 
-<%@ page import="java.util.Base64" %>
-<%@ page import="java.io.File" %>
-<%@ page import="java.io.FileOutputStream" %>
-<%@ page import="java.io.IOException" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +10,8 @@
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
+boolean seguir = (boolean) request.getAttribute("seguir");
+TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
 %>
 
 <head>
@@ -56,6 +55,23 @@ boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
                     	<h1 class='fw-bold'><%= usuario.getNickname() %></h1>
                         <h2><%= usuario.getNombre() + ' ' + usuario.getApellido() %></h2>
                         <h2><%= usuario.getCorreoElectronico() %> </h2>
+                    </div>
+
+                    <div class="col-2">
+                        <form action="consultarusuario" method="post">
+                            <input type="hidden" name="nick" style="display: none;" placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
+                        <% if (!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
+                            if (seguir) { %>
+                        <button class="btn btn-success mt-2" name="btnSeguir" type="submit">
+                            Seguir
+                        </button>
+                        <% } else { %>
+                        <button class="btn btn-danger mt-2" name="btnDejarDeSeguir" type="submit">
+                            Dejar de seguir
+                        </button>
+                        <% }
+                        } %>
+                        </form>
                     </div>
                 </div>
             </div>

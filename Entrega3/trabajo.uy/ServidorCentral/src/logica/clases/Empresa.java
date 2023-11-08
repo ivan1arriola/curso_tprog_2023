@@ -7,7 +7,6 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -381,31 +380,26 @@ public class Empresa extends Usuario {
 
 
     public void establecerPosicion(String nombreOferta, List<String> nicksPostulante) throws OfertaLaboralNoEncontrada {
-        Set<OfertaLaboral> ofertasEmpresa = getofertasLaborales();
-        OfertaLaboral ofertaLaboralATrabajar = encontrarOfertaPorNombre(nombreOferta);
-
-        if (ofertaLaboralATrabajar == null) {
-            // Tratar el caso en el que no se encuentre la oferta
-            throw new OfertaLaboralNoEncontrada(
-                    "Empresa " + getNickname()+ " no tiene una oferta laboral llamada " + nombreOferta);
-        }
+        OfertaLaboral ofertaLaboral = encontrarOfertaPorNombre(nombreOferta);
 
         int posicion = 1;
         for (String nickPostulante : nicksPostulante) {
-            ofertaLaboralATrabajar.establecerPosicion(nickPostulante, posicion);
+            ofertaLaboral.establecerPosicion(nickPostulante, posicion);
             posicion++;
         }
 
-        ofertaLaboralATrabajar.setHayOrdenDefinitivo(true);
+        ofertaLaboral.setHayOrdenDefinitivo(true);
+        ofertaLaboral.setEstado(EstadoOL.Finalizada);
     }
 
-    private OfertaLaboral encontrarOfertaPorNombre(String nombreOferta) {
+    private OfertaLaboral encontrarOfertaPorNombre(String nombreOferta) throws OfertaLaboralNoEncontrada {
         for (OfertaLaboral oferta : getofertasLaborales()) {
             if (nombreOferta.equals(oferta.getNombre())) {
                 return oferta;
             }
         }
-        return null; // Si no se encuentra la oferta
+        throw new OfertaLaboralNoEncontrada(
+                "Empresa " + getNickname()+ " no tiene una oferta laboral llamada " + nombreOferta);
     }
 
 
@@ -444,9 +438,9 @@ public class Empresa extends Usuario {
 
         EstadoOL estado = EstadoOL.Finalizada;
 
-        for (OfertaLaboral OLe : OFEmpresa) {
-            if (nombre_oferta.equals(OLe.getNombre())) {
-                OLe.setEstado(estado);
+        for (OfertaLaboral ofertaLaboral : OFEmpresa) {
+            if (nombre_oferta.equals(ofertaLaboral.getNombre())) {
+                ofertaLaboral.setEstado(estado);
                 break;
             }
         }

@@ -33,6 +33,22 @@ public class DTOfertaExtendido {
     private Integer cantVisitas;
     private String tipoOferta;
 
+    private boolean estaVencido;
+    private boolean tieneOrdenPostulantes;
+
+    public String getPaq() {
+        return paq;
+    }
+
+    public boolean isTieneOrdenPostulantes() {
+        return tieneOrdenPostulantes;
+    }
+
+
+
+    public boolean isEstaVencido() {
+        return estaVencido;
+    }
 
     public DTOfertaExtendido(
     	    String empresaPublicadora,
@@ -50,7 +66,9 @@ public class DTOfertaExtendido {
     	    String paquete,
     	    Integer cantF,
     	    Integer cantV,
-    	    String tipoOfer
+    	    String tipoOfer,
+            boolean estaVencido,
+            boolean tieneOrdenPostulantes
     	) {
     	    nombre = nomb;
     	    descripcion = desc;
@@ -68,6 +86,8 @@ public class DTOfertaExtendido {
     	    cantFavs = cantF;
     	    cantVisitas = cantV;
     	    setTipoOferta(tipoOfer);
+            this.estaVencido = estaVencido;
+            this.tieneOrdenPostulantes = tieneOrdenPostulantes;
     	}
 
     public String getNombre() {

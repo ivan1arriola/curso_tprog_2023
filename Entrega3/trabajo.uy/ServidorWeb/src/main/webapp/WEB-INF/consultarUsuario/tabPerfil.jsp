@@ -5,9 +5,6 @@
 
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
-boolean seguir = (boolean) request.getAttribute("seguir");
-boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
-TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
 %>
 
 
@@ -47,17 +44,6 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                                 
 							    <!-- ... otros campos del formulario ... -->
 							
-							    <% if (!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
-							        if (seguir) { %>
-							            <button class="btn btn-primary mt-2" name="btnSeguir" type="submit">
-							                Seguir
-							            </button>
-							        <% } else { %>
-							            <button class="btn btn-primary mt-2" name="btnDejarDeSeguir" type="submit">
-							                Dejar de seguir
-							            </button>
-							        <% }
-							    } %>
 
                                 
                             </div>

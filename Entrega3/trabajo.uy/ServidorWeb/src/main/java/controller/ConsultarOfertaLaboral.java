@@ -30,10 +30,6 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
-    private OfertaLaboralBean cargarDatosIniciales(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
-        return logica.obtenerDatosOfertaLaboral(nombreOferta);
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
 
@@ -71,7 +67,13 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                     tipoUsuario = TipoUsuario.Visitante;
                 }
 
-                OfertaLaboralBean ofertaBean = cargarDatosIniciales(nombreOferta);
+                OfertaLaboralBean ofertaBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
+
+                boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
+                request.setAttribute("vigente", estaVigente);
+
+                boolean estaFinalizada = logica.estaFinalizada(nombreOferta);
+                request.setAttribute("estaFinalizada", estaFinalizada);
               
                 request.setAttribute("cantFavs", ofertaBean.getCantFavs());
                 boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);

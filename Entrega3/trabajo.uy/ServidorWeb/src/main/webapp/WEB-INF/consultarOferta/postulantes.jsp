@@ -8,12 +8,7 @@
 %>
 
 
-<div>
-    <div class="mt-4" id="postulaciones">
-        <h4 class="text-center">Postulantes</h4>
-    </div>
-
-    <div class="mt-4">
+    <div class="mb-2">
         <%
             if (postulantes.isEmpty()) {
         %>
@@ -26,11 +21,10 @@
         } else {
         %>
         <!-- Botón con número de postulantes -->
-        <a type="button" class="btn btn-primary mb-3" href="<%=request.getContextPath()%>/consultarpostulantes?oferta=<%=nombreOferta%>">
+        <a type="button" class="btn btn-primary" href="<%=request.getContextPath()%>/consultarpostulantes?oferta=<%=nombreOferta%>">
             Ver Postulantes <span class="badge bg-secondary"><%= postulantes.size() %></span>
         </a>
         <%
             }
         %>
     </div>
-</div>

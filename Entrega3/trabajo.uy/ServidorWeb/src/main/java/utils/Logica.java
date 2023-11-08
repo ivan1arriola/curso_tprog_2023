@@ -225,8 +225,30 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void finalizarOferta(String nombreOferta) {
+	public void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception {
 		servidor.finalizarOferta(nombreOferta);
+	}
+
+	@Override
+	public boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
+		DtOfertaExtendido oferta = servidor.obtenerOfertaLaboral(nombreOferta);
+		return !oferta.isEstaVencido();
+	}
+
+	@Override
+	public boolean estaFinalizada(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
+		DtOfertaExtendido ofertaExtendido = servidor.obtenerOfertaLaboral(nombreOferta);
+		return ofertaExtendido.getEstado() == EstadoOL.FINALIZADA;
+	}
+
+	@Override
+	public boolean estaFinalizadaConOrdenPostulantes(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception {
+		DtOfertaExtendido oferta = servidor.obtenerOfertaLaboral(nombreOferta);
+		boolean estaFinalizada = oferta.getEstado().equals(EstadoOL.FINALIZADA);
+		boolean tieneOrdenPostulantes = oferta.isTieneOrdenPostulantes();
+
+		return estaFinalizada && tieneOrdenPostulantes;
+
 	}
 
 	@Override

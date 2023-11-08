@@ -28,18 +28,21 @@ public class ConsultarPostulantes extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
+
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         // tiene que mostrar todos los postulantes de la pagina
-
-        //TODO: tiene que separar el caso de Seleccionar postulación a Oferta Laboral del de Consultar Postulaciones
-        HttpSession session = request.getSession();
-        String nombreOferta = request.getParameter("oferta");
-        String nicknameEmpresa = (String) session.getAttribute("nickname");
-        TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-
-        ServidorService servsevice = new ServidorService();
-        Servidor servidor = servsevice.getServidorPort();
         try {
+            //TODO: tiene que separar el caso de Seleccionar postulación a Oferta Laboral del de Consultar Postulaciones
+            HttpSession session = request.getSession();
+            String nombreOferta = request.getParameter("oferta");
+            String nicknameEmpresa = (String) session.getAttribute("nickname");
+            TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+
+            ServidorService servsevice = new ServidorService();
+            Servidor servidor = servsevice.getServidorPort();
+
             boolean irAOrdenFinal = servidor.existeOrdenPostulantesFinal(nombreOferta);
 
 
@@ -49,27 +52,31 @@ public class ConsultarPostulantes extends HttpServlet {
                 request.setAttribute("nombreError", "No tiene permisos suficientes para visualizar esta pagina");
                 request.setAttribute("mensajeError", "Solo la empresa publicadora puede visualizar las postulaciones");
                 request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+                return;
 
             } else {
 
 
                 OfertaLaboralBean ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
+                boolean estaFinalizada = logica.estaFinalizada(nombreOferta);
 
-                if (irAOrdenFinal){
+                if (irAOrdenFinal || estaFinalizada){
 
                     // Obtengo la lista devuelta del servidor
                     WrapperLista listaDelServidor = servidor.obtenerPosiciones(nombreOferta);
 
-
+                    request.setAttribute("estaFinalizada",estaFinalizada);
                     request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
                     request.setAttribute("postulantesFinal", listaDelServidor.getListaString());
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/resultado.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/ordenPostulantesFinal.jsp");
                     dispatcher.forward(request, response);
                     return;
 
 
                 }
+                    boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
 
+                    request.setAttribute("estaVigente", estaVigente);
                     List<String> postulantes = logica.obtenerPostulantesDeOfertaString(nombreOferta, nicknameEmpresa);
                     request.setAttribute("postulantes", postulantes);
                     request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
@@ -133,7 +140,7 @@ public class ConsultarPostulantes extends HttpServlet {
 
             request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
             request.setAttribute("postulantesFinal", listaDelServidor.getListaString());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/resultado.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/ordenPostulantesFinal.jsp");
             dispatcher.forward(request, response);
 
 
