@@ -376,7 +376,7 @@ public class TestGeneral4 {
                 ciudad, 
                 estado, 
                 img233.getBytes(), 
-                0);
+                0,"tipo oferta manteca");
         temporal3.getCiudad();
         temporal3.getCosto();
         temporal3.getDepartamento();

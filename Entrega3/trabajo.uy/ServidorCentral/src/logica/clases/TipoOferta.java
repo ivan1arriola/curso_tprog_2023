@@ -30,7 +30,7 @@ public class TipoOferta {
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;
         try {
-            if (costo < 0) {
+            if (Float.compare(costo, 0.0f) < 0) {
                 throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor o igual a 0");
             }
             this.costo = costo;
@@ -88,7 +88,7 @@ public class TipoOferta {
 
     public void setCosto(float costo) throws ExceptionCostoPaqueteNoNegativo {
         try {
-            if (costo < 0) {
+            if (Float.compare(costo, 0.0f) < 0) {
                 throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor o igual a 0");
             }
             this.costo = costo;

@@ -81,7 +81,7 @@ public class OfertaLaboral {
         cantVisitas = 0;
 
         try {
-            if (atrremuneracion <= 0) {
+        	if (Float.compare(atrremuneracion, 0.0f) <= 0) {
                 throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración debe ser mayor que 0");
             } else {
                 this.remuneracion = atrremuneracion;
@@ -122,12 +122,12 @@ public class OfertaLaboral {
 
 
             try {
-                if (tOferta.getCosto() <= 0) {
+                if (Float.compare(tOferta.getCosto(), 0.0f) <= 0) {
                     throw new ExceptionCostoPaqueteNoNegativo("El costo del paquete debe ser mayor que 0");
                 }
                 costodadoPaq = tOferta.getCosto();
 
-                if (paqueteAsoc.getDescuento() < 0) {
+                if (Float.compare(paqueteAsoc.getDescuento(), 0.0f) < 0) {
                     throw new ExceptionDescuentoInvalido("El descuento debe ser mayor o igual a 0");
                 }
 
@@ -160,7 +160,7 @@ public class OfertaLaboral {
             }
 
 
-            if (paqueteAsoc.getDescuento() == 0) {
+            if (Float.compare(paqueteAsoc.getDescuento(), 0.0f) == 0) {
                 this.costo = costodadoPaq;
             } else {
                 //this.costo = costodadoPaq - costodadoPaq * (1 / descuento);
@@ -256,7 +256,7 @@ public class OfertaLaboral {
             }
 
 
-            if (paqueteAsoc.getDescuento() == 0) {
+            if (Float.compare(paqueteAsoc.getDescuento(), 0.0f) == 0) {
                 this.costo = costodadoPaq;
             } else {
                 //this.costo = costodadoPaq - costodadoPaq * (1 / descuento);
@@ -432,7 +432,7 @@ public class OfertaLaboral {
 
     public void setRemuneracion(Float Remunera) throws ExceptionRemuneracionOfertaLaboralNegativa {
         try {
-            if (Remunera <= 0) {
+            if (Float.compare(Remunera, 0.0f) <= 0) {
                 throw new ExceptionRemuneracionOfertaLaboralNegativa("Remuneración debe ser mayor que 0");
             } else {
                 remuneracion = Remunera;
@@ -477,7 +477,7 @@ public class OfertaLaboral {
 
     public void setCosto(float cost) throws ExceptionCostoPaqueteNoNegativo {
         try {
-            if (cost <= 0) {
+            if (Float.compare(cost, 0.0f) <= 0) {
                 throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor que 0");
             }
             costo = cost;
