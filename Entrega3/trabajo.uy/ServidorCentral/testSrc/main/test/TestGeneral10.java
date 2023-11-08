@@ -625,30 +625,7 @@ public class TestGeneral10 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		try {
-//			ICO.DevolverOrdenFinal(OfertaLabolra.getNombre());
-//		} catch (ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ICO.HayOrdenFinal(OfertaLabolra.getNombre());
-//		} catch (ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ICO.establecerPosiciones(OfertaLabolra.getNombre(), nickList);
-//		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ICO.listarPaquetesNoVencidos(empresaNueva.getNickname());
-//		} catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
+
 		// ============================================
 		try {
 			OfertaLabolra2.registrarPostulacionForzado(nuevaPost);
