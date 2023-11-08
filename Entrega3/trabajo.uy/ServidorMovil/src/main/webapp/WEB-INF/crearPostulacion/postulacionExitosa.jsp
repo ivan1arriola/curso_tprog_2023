@@ -7,7 +7,7 @@
 
     String nick = (String) session.getAttribute("nickname");
 	String nombrecompleto = (String) session.getAttribute("nombreUsuario");
-	String oferta = (String) request.getAttribute("nombreOferta");
+	String oferta = (String) request.getAttribute("oferta");
     /* byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
     String imagen = null;
     if (imagenBytes!=null) {

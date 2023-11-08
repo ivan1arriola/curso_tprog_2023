@@ -60,6 +60,8 @@ public class CrearPostulacion extends HttpServlet {
 		request.setAttribute("nickname", nickname);
 		request.setAttribute("postulante", postulante);
 		request.setAttribute("nombreOferta", nombreOferta);
+
+		
 		request.setAttribute("oferta", oferta);
 		RequestDispatcher dispatcher;
 		
@@ -73,24 +75,24 @@ public class CrearPostulacion extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		try {
 			String cvAbrev = request.getParameter("cvAbreviado");
 			String motiv = request.getParameter("motivacion");
+			
+		
 			HttpSession session = request.getSession(false);
 			String nickname = (String) session.getAttribute("nickname");
 			String nombreOferta = request.getParameter("nombreOferta");
 			String videoYouTube = request.getParameter("videoYouTube");
 			String currentDateStr = LocalDate.now().toString();
 
+			request.setAttribute("oferta", nombreOferta);
 			
-			
-		servidor.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", currentDateStr, videoYouTube);
-			//response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
-			//response.sendRedirect(request.getContextPath() + "/postulacionexitosa");
-			
-			response.sendRedirect(request.getContextPath() + "/postulacionexitosa?oferta=" + nombreOferta);
-			
+			servidor.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", currentDateStr, videoYouTube);
+						
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp");
+			dispatcher.forward(request, response);
 		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
 			throw new RuntimeException(e);
 		}

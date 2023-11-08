@@ -25,9 +25,11 @@ public class Postulacionexitosa extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//String nombreOferta = (String) request.getParameter("oferta");
+		String nombreOferta = (String) request.getAttribute("oferta");
 		
-		String nombreOferta = (String) request.getParameter("oferta");
 		request.setAttribute("nombreOferta", nombreOferta);
+
         request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp").forward(request, response);
 	}
 
