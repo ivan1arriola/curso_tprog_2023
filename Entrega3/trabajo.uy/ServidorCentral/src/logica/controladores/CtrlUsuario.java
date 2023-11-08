@@ -314,12 +314,21 @@ public class CtrlUsuario implements ICtrlUsuario {
                 return false;
             }
         } else {
-            user = UsuarioH.buscarNick(identificador);
+        	
+            try {
+                user = UsuarioH.buscarNick(identificador);
+            } catch (ExceptionUsuarioNoEncontrado e) {
+                return false; // Usuario no encontrado, devuelve false
+            }
+        	
+                  //user = UsuarioH.buscarNick(identificador);
             if (user!= null && user.getcontrasenia().equals(contraseña)) {
                 return true;
             } else {
                 return false;
             }
+            
+            
 
         }
 
