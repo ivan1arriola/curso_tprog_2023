@@ -309,7 +309,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         if (identificador.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
         	try {
         	user = UsuarioH.buscarCorreo(identificador);
-        	} catch (ExceptionUsuarioNoEncontrado e) {
+        	} catch (ExceptionUsuarioNoEncontrado exc) {
                 return false; // Usuario no encontrado, devuelve false
             }
         	
@@ -322,8 +322,10 @@ public class CtrlUsuario implements ICtrlUsuario {
         	
             try {
                 user = UsuarioH.buscarNick(identificador);
-            } catch (ExceptionUsuarioNoEncontrado e) {
-                return false; // Usuario no encontrado, devuelve false
+            } catch (ExceptionUsuarioNoEncontrado exc) {
+            	throw exc;
+            	
+            	//return false; // Usuario no encontrado, devuelve false
             }
         	
                   //user = UsuarioH.buscarNick(identificador);
@@ -333,7 +335,7 @@ public class CtrlUsuario implements ICtrlUsuario {
                 return false;
             }
             
-            
+      
 
         }
 
