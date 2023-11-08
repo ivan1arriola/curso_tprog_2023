@@ -29,6 +29,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 	private String nicknameEmpresa;
 	private Integer cantFavs;
 	private Integer cantVisitas;
+	private String tipoOferta;
 
 
 	
@@ -317,5 +318,13 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 
 	public void setCantVisitas(Integer cantVisitas) {
 		this.cantVisitas = cantVisitas;
+	}
+
+	public String getTipoOferta() {
+		return tipoOferta;
+	}
+
+	public void setTipoOferta(String tipoOferta) {
+		this.tipoOferta = tipoOferta;
 	}
 }

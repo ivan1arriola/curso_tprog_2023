@@ -353,6 +353,7 @@ public class Logica implements ILogica {
         ofertaLaboral.setNicknameEmpresa(DtOferta.getNicknameEmpresaPublicadora());
         ofertaLaboral.setCantFavs(DtOferta.getCantFavs());
         ofertaLaboral.setCantVisitas(DtOferta.getCantVisitas());
+        ofertaLaboral.setTipoOferta(DtOferta.getTipoOferta());
         
         DtOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralVisitante(nombreOferta);
         ofertaLaboral.setKeywords(new TreeSet<>(nuevoDatos.getKeywords()));

@@ -25,9 +25,10 @@ public class DTOfertaLaboral {
     private byte[] imagen;
     private EstadoOL estado;
     private Integer cantFavs;
+    private String tipoOferta;
 
 
-    public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes, Integer cantF) {
+    public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes, Integer cantF, String tipoOfer) {
         nombre = nomb;
         descripcion = desc;
         fechaDeAlta = fechaA;
@@ -39,6 +40,7 @@ public class DTOfertaLaboral {
         estado = estadoOL;
         imagen = imagenBytes;
         setCantFavs(cantF);
+        setTipoOferta(tipoOfer);
     }
 
 
@@ -99,5 +101,15 @@ public class DTOfertaLaboral {
 
 	public void setCantFavs(Integer cantFavs) {
 		this.cantFavs = cantFavs;
+	}
+
+
+	public String getTipoOferta() {
+		return tipoOferta;
+	}
+
+
+	public void setTipoOferta(String tipoOferta) {
+		this.tipoOferta = tipoOferta;
 	}
 }

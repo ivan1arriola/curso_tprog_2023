@@ -29,6 +29,7 @@ public class DTOfertaExtendidoConKeywords {
     private Set<String> keywords;
     private Integer cantFavs;
     private Integer cantVisitas;
+    private String tipoOferta;
 
     public DTOfertaExtendidoConKeywords(
     	    String nomb,
@@ -44,7 +45,8 @@ public class DTOfertaExtendidoConKeywords {
     	    byte[] img,
     	    Set<String> keys,
     	    Integer cantF,
-    	    Integer cantV
+    	    Integer cantV,
+    	    String tipoOfer
     	) {
     	    nombre = nomb;
     	    descripcion = desc;
@@ -60,6 +62,7 @@ public class DTOfertaExtendidoConKeywords {
     	    keywords = keys;
     	    setCantFavs(cantF);
     	    cantVisitas = cantV;
+    	    setTipoOferta(tipoOfer);
     	}
 
 
@@ -141,6 +144,16 @@ public class DTOfertaExtendidoConKeywords {
 
 	public void setCantVisitas(Integer cantVisitas) {
 		this.cantVisitas = cantVisitas;
+	}
+
+
+	public String getTipoOferta() {
+		return tipoOferta;
+	}
+
+
+	public void setTipoOferta(String tipoOferta) {
+		this.tipoOferta = tipoOferta;
 	}
 
 }
