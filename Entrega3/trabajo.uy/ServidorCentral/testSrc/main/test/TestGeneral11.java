@@ -81,6 +81,7 @@ public class TestGeneral11 {
         // ============================================
         System.out.println("################## Test 11 ##################");
         // ============================================
+        // bug de keyword por lo menos una
         // 88888888888888888888888888888888888888888888888888888888888888888888888
         String imagen ="hola";
         // -------------------------------------------
@@ -119,13 +120,22 @@ public class TestGeneral11 {
         // ===============================
         // lista de keywords
         List<Keyword> myList = new ArrayList<>();
-        Map<String,  Keyword> nuevaKeyword = KeywordHandler.obtener();
-        String keywordToObtain = "Trabajo nocturno";
-        Keyword utopicKeyword = nuevaKeyword.get(keywordToObtain);
-        String keywordToObtain1 = "full time";
-        Keyword utopicKeyword1 = nuevaKeyword.get(keywordToObtain1);
-        myList.add(utopicKeyword);
-        myList.add(utopicKeyword1);
+        
+        KeywordHandler KW = KeywordHandler.getInstance();
+        String keywordToObtain = "FABULOSO TODO BRILLA";
+        Keyword utopicKeyword = null;
+		try {
+			utopicKeyword = new Keyword(keywordToObtain);
+		} catch (ExcepcionKeywordVacia e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		myList.add(utopicKeyword);
+		utopicKeyword.getNombre();
+		utopicKeyword.setNombre(keywordToObtain);
+		KW.agregar(utopicKeyword);
+		KW.existe(keywordToObtain);
+		
         // -------------------------------------------
         TipoOferta tipoofertaNuevo = null;
 		try {
@@ -151,6 +161,13 @@ public class TestGeneral11 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Set<OfertaPaquete> OP = new HashSet<>();
+		OP.add(OfertaPaqueteNueva);
+		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
+		TOH.agregar(tipoofertaNuevo);
+		NuevoPaq.setOfertaPaquete(OP);
+		
+		
 		// ======================================================================
         float randomFloat1 = 100.0f;
         // -------------------------------------------
@@ -169,10 +186,10 @@ public class TestGeneral11 {
         String imagen1 ="hola";
         // crear oferta laboral
         OfertaLaboral OfertaLabolra = null;
-		try {
+        
+        try {
 			OfertaLabolra = new OfertaLaboral(
-					true, 
-			        empresaNueva, 
+					empresaNueva, 
 			        myList, 
 			        tipoofertaNuevo, 
 			        "Panawfewefawfwafes", 
@@ -184,37 +201,106 @@ public class TestGeneral11 {
 			        threeDaysAgo, 
 			        nunevoestado, 
 			        imagen1.getBytes(), 
-			        NuevoPaq);
-		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
-				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
+			        NuevoPaq
+			);
+		} 
+        catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
+				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+		
+		// creo postulante
+		String nickname = "Stallonjhjklhjke";
+		String password = "contraseNaSeguraCreeme";
+		String nombre = "Sylvester";
+		String apellido = "Stallone";
+		String correo = "Sylvester@Rocky.com";
+		LocalDate fechaNacimiento = LocalDate.of(1946,  7,  6); // Modify the birthdate accordingly
+		String nacionalidad = "American"; // Modify the nationality as needed
+		String imagen11 = "llllllllllll";
+		Postulante nuevoPos = null;
+		try {
+			nuevoPos = new Postulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad, imagen11.getBytes());
+		} catch (ExceptionFechaInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Postulacion nuevaPost = new Postulacion(nuevoPos, 
+				"buen curriculum vitae", 
+				"estoy muy motivado",  
+				twoDaysAgo, 
+				"Stallone-Oficial",  
+				OfertaLabolra ,  
+				"video impresionante"); 
+		// setear postulacion manualmente a la oferta laboral,  es decir aggregarla manualmente
+		List<Postulacion> PostulacionList = new ArrayList<>();
+		PostulacionList.add(nuevaPost);
+		OfertaLabolra.setPostulaciones(PostulacionList);
+		
+		// IIIIIIIIIIIIIIIIIIIIIIIIIIIII HANDLERS IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		UsuarioHandler UH = UsuarioHandler.getInstance();
+		try {
+			UH.agregar(nuevoPos);
+		} catch (ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			UH.agregar(empresaNueva);
+		} catch (ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+		OLH.agregar(OfertaLabolra);
+		if (!OLH.existe(OfertaLabolra.getNombre())) {
+            System.out.println("%%%%%%%%%%***********************************%%%%%%%%%%");
+        }
+		entityManager.close();
+		entityManagerFactory.close();
+        //-------------------
+        entityManagerFactory = Persistence.createEntityManagerFactory("TrabajoUy");
+        entityManager = entityManagerFactory.createEntityManager();
+        // Set the EntityManager for the handlers
+        KeywordHandler.setBaseDatos(entityManager);
+        OfertaLaboralHandler.setBaseDatos(entityManager);
+        PaqueteHandler.setBaseDatos(entityManager);
+        TipoOfertaHandler.setBaseDatos(entityManager);
+        UsuarioHandler.setBaseDatos(entityManager);
+        
         // 88888888888888888888888888888888888888888888888888888888888888888888888
-//		try {
-//			ICO.DevolverOrdenFinal(OfertaLabolra.getNombre());
-//		} catch (ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ICO.HayOrdenFinal(OfertaLabolra.getNombre());
-//		} catch (ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ICO.establecerPosiciones(OfertaLabolra.getNombre(), nickList);
-//		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ICO.listarPaquetesNoVencidos(empresaNueva.getNickname());
-//		} catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
+		try {
+			ICO.DevolverOrdenFinal(OfertaLabolra.getNombre());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.HayOrdenFinal(OfertaLabolra.getNombre());
+		} catch (ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		List<String> nickList = new ArrayList<>();
+		nickList.add("Stallonjhjklhjke");
+		
+		try {
+			ICO.establecerPosiciones(OfertaLabolra.getNombre(), nickList);
+		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ICO.listarPaquetesNoVencidos(empresaNueva.getNickname());
+		} catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();
