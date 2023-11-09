@@ -88,6 +88,7 @@ public class CrearPostulacion extends HttpServlet {
 			String currentDateStr = LocalDate.now().toString();
 
 			request.setAttribute("oferta", nombreOferta);
+			request.setAttribute("imagenOferta", servidor.obtenerOfertaLaboral(nombreOferta).getImagen());
 			
 			servidor.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", currentDateStr, videoYouTube);
 						

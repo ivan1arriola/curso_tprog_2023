@@ -8,11 +8,11 @@
     String nick = (String) session.getAttribute("nickname");
 	String nombrecompleto = (String) session.getAttribute("nombreUsuario");
 	String oferta = (String) request.getAttribute("oferta");
-    /* byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
+     byte[] imagenBytes = (byte[]) request.getAttribute("imagenOferta");
     String imagen = null;
     if (imagenBytes!=null) {
     	imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
-    }*/
+    }
 %>
 
 
@@ -33,12 +33,22 @@
 
 <main class="container-fluid d-flex">
 
-
+<!-- 
     <div class="container col-9">
         <h2><%=nombrecompleto %>: la postulación a la oferta <%=oferta %> ha sido exitosa</h2>
-
     </div>
+ -->
 
+<div class="d-flex justify-content-center">
+	<div class="col-6">
+		    <div class="card" style="width: 16rem;">
+		  		<img src="<%=imagen %>" class="card-img-top" alt="<%=oferta %>" />
+		  		<div class="card-body">
+		    	<p class="card-text"><%=nombrecompleto %>: la postulación a la oferta <%=oferta %> se ha creado exitosamente</p>
+		  		</div>
+			</div>
+	</div>
+</div>
 
 </main>
 
