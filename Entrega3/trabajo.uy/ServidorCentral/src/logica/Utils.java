@@ -12,6 +12,8 @@ import logica.manejadores.*;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
@@ -26,6 +28,11 @@ public class Utils {
 
     private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
     private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
+    
+    private static final String proxyHost ="proxy.fing.edu.uy";
+    private static final int proxyPort = 3128; //TODO: no debe quedar hardcodeado en la version final
+    
+    private static final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 
 
     Map<String, String[]> usuarioCSV = new HashMap<>();
@@ -177,27 +184,32 @@ public class Utils {
 
 
     public static String getDirectUrl(String shortUrl) {
-        try {
-            URL url = new URL(shortUrl);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+    	 try {
+             
 
-            // Configurar la solicitud
-            httpURLConnection.setInstanceFollowRedirects(false); // Deshabilitar redirecciones automáticas
-            httpURLConnection.setRequestMethod("GET");
+             // Crear la URL con el proxy
+             URL url = new URL(shortUrl);
+             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(proxy);
 
-            // Realizar la solicitud
-            int responseCode = httpURLConnection.getResponseCode();
+             // Configurar la solicitud
+             httpURLConnection.setInstanceFollowRedirects(false); // Deshabilitar redirecciones automáticas
+             httpURLConnection.setRequestMethod("GET");
 
-            // Verificar si hay redirección
-            if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM) {
-                return httpURLConnection.getHeaderField("Location");
-            } else {
-                return shortUrl;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+             // Realizar la solicitud
+             int responseCode = httpURLConnection.getResponseCode();
+
+             // Verificar si hay redirección
+             if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM) {
+                 String finalUrl = httpURLConnection.getHeaderField("Location");
+                 return finalUrl;
+             } else {
+                 return shortUrl;
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+             // Manejar la excepción de manera más específica si es necesario
+             return null;
+         }
     }
 
     public DTHorario obtenerHorario(String horarioStr) {
@@ -228,7 +240,7 @@ public class Utils {
 
         URL url = new URL(link);
         byte[] imagen;
-        URLConnection connection = url.openConnection();
+        URLConnection connection = url.openConnection(proxy);
         connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
         try (InputStream in = connection.getInputStream();
