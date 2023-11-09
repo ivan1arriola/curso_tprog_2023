@@ -30,9 +30,10 @@
 <main class="container-fluid d-flex">
 
 
-    <div class="container col-9">
-        <h2>Ya existe una postulación de <%=request.getAttribute("nickname")%> para la oferta <%=nombreOferta%></h2>
-
+    <div class="container col-8">
+	    <div class="alert alert-danger text-center" role="alert">
+	        <h6>Ya existe una postulación de <%=request.getAttribute("nickname")%> para la oferta <%=nombreOferta%></h6>
+		</div>
     </div>
 
 

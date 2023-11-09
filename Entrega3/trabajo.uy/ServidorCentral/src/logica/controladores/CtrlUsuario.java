@@ -304,22 +304,38 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     public boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Usuario user;
+        Usuario user = null;
         // Verificar si 'id' es un correo electrónico. Poner la er que sigue el correo
         if (identificador.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            user = UsuarioH.buscarCorreo(identificador);
+        	try {
+        	user = UsuarioH.buscarCorreo(identificador);
+        	} catch (ExceptionUsuarioNoEncontrado exc) {
+                return false; // Usuario no encontrado, devuelve false
+            }
+        	
             if (user.getcontrasenia().equals(contraseña)) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            user = UsuarioH.buscarNick(identificador);
-            if (user.getcontrasenia().equals(contraseña)) {
+        	
+            try {
+                user = UsuarioH.buscarNick(identificador);
+            } catch (ExceptionUsuarioNoEncontrado exc) {
+            	throw exc;
+            	
+            	//return false; // Usuario no encontrado, devuelve false
+            }
+        	
+                  //user = UsuarioH.buscarNick(identificador);
+            if (user!= null && user.getcontrasenia().equals(contraseña)) {
                 return true;
             } else {
                 return false;
             }
+            
+      
 
         }
 

@@ -1,6 +1,7 @@
 package logica.clases;
 
 import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionValidezNegativa;
@@ -41,7 +42,7 @@ public class Paquete {
 
     // Constructor
     public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento, byte[] imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
-        if (descuento >= 0 && descuento <= 100) {
+        if (Float.compare(descuento, 0.0f) >= 0  && Float.compare(descuento, 100.0f) <= 0) {
             if (validez >= 0) {
                 this.nombre = nombre;
                 this.descripcion = descripcion;
@@ -95,7 +96,7 @@ public class Paquete {
     }
 
     public void setCosto(float costo) throws ExceptionCostoPaqueteNoNegativo {
-        if (costo >= 0) {
+        if (Float.compare(costo, 0.0f) >= 0) {
             this.costo = costo;
         } else {
             throw new ExceptionCostoPaqueteNoNegativo("El costo de un paquete no puede ser negativo.");
@@ -107,7 +108,7 @@ public class Paquete {
     }
 
     public void setDescuento(float descuento) throws ExceptionDescuentoInvalido {
-        if (descuento >= 0 && descuento <= 100) {
+        if (Float.compare(descuento, 0.0f) >= 0  && Float.compare(descuento, 100.0f) <= 0) {
             this.descuento = descuento;
         } else {
             throw new ExceptionDescuentoInvalido("El descuento tiene que ser un número entre 0 y 100.");
@@ -183,7 +184,13 @@ public class Paquete {
     // OPERACIONES
     public void crearOfertaPaquete(TipoOferta tipoO, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete {
         if (cantidad > 0) {
-            OfertaPaquete ofpaq = new OfertaPaquete(tipoO, cantidad);
+            OfertaPaquete ofpaq = null;
+			try {
+				ofpaq = new OfertaPaquete(tipoO, cantidad);
+			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             Set<OfertaPaquete> OFERTASPAQUETES = this.getOfertaPaquete();
             OFERTASPAQUETES.add(ofpaq);
             float Costo = 0;

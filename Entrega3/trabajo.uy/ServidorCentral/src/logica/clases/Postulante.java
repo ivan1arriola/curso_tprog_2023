@@ -107,21 +107,17 @@ public class Postulante extends Usuario {
 
     public DTUsuario obtenerDatosUsuario() {
         // hacer un DTPostulante
-
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTOfertaExtendido> ofer_favs = new HashSet<DTOfertaExtendido>();
-
         for (Usuario elemento : getSeguidores()) {
         	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdores.add(dt);
         }
-
         for (Usuario elemento : getSeguidos()) {
             DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
             sdos.add(dt);
         }
-        
         for (OfertaLaboral elemento : getOfertasFavoritas()) {
         	DTOfertaExtendido dt = elemento.obtenerDatosOferta();
         	ofer_favs.add(dt);
