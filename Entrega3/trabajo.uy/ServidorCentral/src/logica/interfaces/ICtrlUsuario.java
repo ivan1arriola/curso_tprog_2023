@@ -5,6 +5,30 @@ import excepciones.*;
 import logica.clases.OfertaLaboral;
 import logica.clases.Postulacion;
 import logica.datatypes.*;
+
+//import logica.datatypes.DTCantTO;
+//import logica.datatypes.DTCompraPaquetes;
+//import logica.datatypes.DTEmpresa;
+//import logica.datatypes.DTEmpresaConCompras;
+//import logica.datatypes.DTHora;
+import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+//import logica.datatypes.DTOfertaExtendidoConKeywords;
+//import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import logica.datatypes.DTOfertaExtendidoSinPConK;
+//import logica.datatypes.DTOfertaLaboral;
+import logica.datatypes.DTPaquete;
+import logica.datatypes.DTPostulacion;
+//import logica.datatypes.DTPostulante;
+//import logica.datatypes.DTPostulanteExtendido;
+//import logica.datatypes.DTTipoOferta;
+import logica.datatypes.DTUsuario;
+//import logica.datatypes.DTUsuarioSinInfoSocial;
+
+
+
+
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
