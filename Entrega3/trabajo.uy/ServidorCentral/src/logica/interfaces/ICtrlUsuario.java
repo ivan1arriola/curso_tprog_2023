@@ -1,6 +1,6 @@
 package logica.interfaces;
 
-import excepciones.*;
+//import excepciones.*;
 
 
 import excepciones.ErrorAgregarUsuario;
