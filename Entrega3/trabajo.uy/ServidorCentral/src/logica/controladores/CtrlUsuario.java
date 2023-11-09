@@ -540,7 +540,7 @@ public class CtrlUsuario implements ICtrlUsuario {
             if (usr1 == null || usr2 == null) {
             	throw new ExceptionUsuarioNoEncontrado("El usuario no se ha encontrado.");
             }
-            if(usr1.getSeguidos().contains(usr2)) return;
+            if (usr1.getSeguidos().contains(usr2)) return;
             usr1.seguirUsuario(usr2);
 
             if (usr2.getSeguidores().contains(usr1)) return;

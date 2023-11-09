@@ -516,7 +516,7 @@ public class CtrlOferta implements ICtrlOferta {
     public void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
     	OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
     	OfertaLaboral oferta = ofertaLaboralHandler.buscar(nombre_oferta);
-        if(!oferta.estaVencida()){
+        if (!oferta.estaVencida()){
             throw new FinalizarOfertaNoVencida("No se puede finalizar una oferta que no este vendida");
         }
     	Empresa empresa = oferta.getEmpresaPublicadora();
