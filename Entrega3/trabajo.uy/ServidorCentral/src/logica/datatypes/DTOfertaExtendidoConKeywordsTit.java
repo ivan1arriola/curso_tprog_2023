@@ -11,7 +11,7 @@ import logica.servidor.adapter.SetStringAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.TreeSet;
+//import java.util.TreeSet;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
