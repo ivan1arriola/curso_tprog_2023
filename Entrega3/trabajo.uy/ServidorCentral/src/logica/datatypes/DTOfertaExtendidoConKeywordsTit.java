@@ -3,10 +3,10 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+//import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
-import logica.servidor.adapter.SetStringAdapter;
+//import logica.servidor.adapter.SetStringAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
