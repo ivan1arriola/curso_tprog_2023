@@ -92,7 +92,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         }
 
         // cargar seguidores
-        for(Map.Entry<String, String[]> entry : seguidoresCSV.entrySet()){
+        for (Map.Entry<String, String[]> entry : seguidoresCSV.entrySet()){
             String claveUsuarioSeguidor = entry.getValue()[1];
             String claveUsuarioSeguido = entry.getValue()[2];
 
