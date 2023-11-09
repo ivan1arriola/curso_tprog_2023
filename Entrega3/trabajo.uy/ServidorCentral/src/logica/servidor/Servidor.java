@@ -12,11 +12,32 @@ import jakarta.xml.ws.Endpoint;
 import logica.Fabrica;
 //import logica.clases.Empresa;
 //import logica.clases.Usuario;
-import logica.datatypes.*;
+//import logica.datatypes.*;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 //import logica.manejadores.UsuarioHandler;
 import logica.servidor.bean.WrapperLista;
+
+//import logica.datatypes.DTCantTO;
+//import logica.datatypes.DTCompraPaquetes;
+import logica.datatypes.DTEmpresa;
+//import logica.datatypes.DTEmpresaConCompras;
+//import logica.datatypes.DTHora;
+//import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+//import logica.datatypes.DTOfertaExtendidoConKeywords;
+//import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+//import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import logica.datatypes.DTOfertaExtendidoSinPConK;
+//import logica.datatypes.DTOfertaLaboral;
+import logica.datatypes.DTPaquete;
+import logica.datatypes.DTPostulacion;
+import logica.datatypes.DTPostulante;
+//import logica.datatypes.DTPostulanteExtendido;
+import logica.datatypes.DTTipoOferta;
+import logica.datatypes.DTUsuario;
+//import logica.datatypes.DTUsuarioSinInfoSocial;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
