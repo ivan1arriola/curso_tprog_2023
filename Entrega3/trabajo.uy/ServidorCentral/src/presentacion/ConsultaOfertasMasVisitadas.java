@@ -1,12 +1,12 @@
 package presentacion;
 
-import excepciones.ExcepcionTipoOfertaNoExistente;
-import excepciones.NoExistePaquete;
+//import excepciones.ExcepcionTipoOfertaNoExistente;
+//import excepciones.NoExistePaquete;
 import excepciones.OfertaLaboralNoEncontrada;
-import logica.datatypes.DTCantTO;
+//import logica.datatypes.DTCantTO;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPaquete;
-import logica.datatypes.DTTipoOferta;
+//import logica.datatypes.DTTipoOferta;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.Comparator;
 import java.util.HashSet;
