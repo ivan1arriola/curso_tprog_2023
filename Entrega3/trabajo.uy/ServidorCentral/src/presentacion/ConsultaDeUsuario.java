@@ -5,7 +5,7 @@ import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTEmpresa;
-import logica.datatypes.DTOfertaExtendido;
+//import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPostulante;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
