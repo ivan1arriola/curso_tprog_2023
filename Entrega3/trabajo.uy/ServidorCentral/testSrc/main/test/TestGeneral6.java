@@ -46,7 +46,7 @@ import logica.manejadores.UsuarioHandler;
 
 public class TestGeneral6 {
 	@Test
-	public void Test1() {
+	public void test1() {
 		Fabrica fabri = Fabrica.getInstance();
         ICtrlUsuario ICU = fabri.getICtrlUsuario();
         ICtrlOferta ICO = fabri.getICtrlOferta();
