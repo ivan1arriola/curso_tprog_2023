@@ -42,7 +42,6 @@ public class Servidor {
         endpoint = Endpoint.publish(address, this);
         System.out.println("Se publico el servicio en " + address);
         System.out.println("WSDL : " + address + "?wsdl");
-        System.out.println("Tipos de Datos : " + address + "?xsd=1");
     }
 
     @WebMethod(exclude = true)
@@ -138,7 +137,7 @@ public class Servidor {
     }
 
     @WebMethod
-    public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, String fechaString, String video) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
+    public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, String fechaString, String video) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado, ExceptionFechaInvalida {
         LocalDate fecha = LocalDate.parse(fechaString);
         ctrlOferta.altaPostulacion(nombreOferta, nickname, curriculumAbreviado, motivacion, url, fecha, video);
     }

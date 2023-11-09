@@ -6,6 +6,7 @@ import logica.datatypes.*;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
+import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,22 @@ import java.util.Map.Entry;
 
 public class CtrlOferta implements ICtrlOferta {
 
+    private final ICtrlUsuario ctrlUsuario;
+    private UsuarioHandler usuarioHandler;
+    private final PaqueteHandler paqueteHandler;
+    private final KeywordHandler keywordHandler;
+    private final OfertaLaboralHandler ofertaLaboralHandler;
+    private final TipoOfertaHandler tipoOfertaHandler;
+    private KeywordHandler keywordH;
+
     public CtrlOferta() {
+        usuarioHandler = UsuarioHandler.getInstance();
+        paqueteHandler = PaqueteHandler.getInstance();
+        keywordHandler = KeywordHandler.getInstance();
+        ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
+        tipoOfertaHandler = TipoOfertaHandler.getInstance();
+
+        ctrlUsuario = new CtrlUsuario();
     }
 
     public Set<String> listarEmpresas() {
@@ -108,12 +124,11 @@ public class CtrlOferta implements ICtrlOferta {
             throw new IllegalArgumentException("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.");
         }
 
-        PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
 
-        boolean existe = PaqueteH.existe(nombre);
+        boolean existe = paqueteHandler.existe(nombre);
         if (!existe) {
             Paquete paq = new Paquete(nombre, descripcion, validez, fechaA, descuento, imagen);
-            PaqueteH.agregar(paq);
+            paqueteHandler.agregar(paq);
         } else {
             throw new IllegalArgumentException("El argumento 'nombre' ya existe en el sistema.");
         }
@@ -126,7 +141,7 @@ public class CtrlOferta implements ICtrlOferta {
             throw new ExcepcionKeywordVacia("La palabra clave no puede estar vacía.");
         }
 
-        KeywordHandler keywordHandler = KeywordHandler.getInstance();
+
         boolean existe = keywordHandler.existe(key);
 
         if (!existe) {
@@ -139,34 +154,29 @@ public class CtrlOferta implements ICtrlOferta {
     }
 
     public boolean compraPaquetes(String nickname_e, String paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
+        Empresa empresa = (Empresa) usuarioHandler.buscarNick(nickname_e);
 
-        PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-        Paquete paquete = PaqueteH.buscar(paq);
+        Paquete paquete = paqueteHandler.buscar(paq);
 
-        PaqueteH.actualizarPaquete(paquete);
+        paqueteHandler.actualizarPaquete(paquete);
 
         return empresa.compraPaquetes(paquete, fecha, valor);
     }
 
     public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
-        PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
+
         Paquete paq = null;
         if (paquete != null) {
-            paq = PaqueteH.buscar(paquete);
+            paq = paqueteHandler.buscar(paquete);
         }
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        boolean ofer = OLH.existe(nombre);
-        TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-        TipoOferta tipoOfer = TOH.buscar(tipo);
+        Empresa empresa = (Empresa) usuarioHandler.buscarNick(nickname_e);
+
+        boolean ofer = ofertaLaboralHandler.existe(nombre);
+        TipoOferta tipoOfer = tipoOfertaHandler.buscar(tipo);
         if (!ofer) {
             List<Keyword> keywords = new ArrayList<Keyword>();
-            KeywordHandler KeywordH = KeywordHandler.getInstance();
-            Map<String, Keyword> keyss = KeywordHandler.obtener();
-            for (Map.Entry<String, Keyword> entry : keyss.entrySet()) {
+            Map<String, Keyword> keyss = keywordHandler.obtener();
+            for (Entry<String, Keyword> entry : keyss.entrySet()) {
                 if (keys.contains(entry.getKey())) {
                     keywords.add(entry.getValue());
                 }
@@ -175,7 +185,7 @@ public class CtrlOferta implements ICtrlOferta {
             OfertaLaboral oferLab;
             try {
                 oferLab = empresa.altaOfertaLaboral(tipoOfer, nombre, descripcion, horario, remun, ciu, dep, fechaA, keywords, estado, img, paq);
-                OLH.agregar(oferLab);
+                ofertaLaboralHandler.agregar(oferLab);
             } catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
                      | ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido |
                      ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
@@ -188,21 +198,18 @@ public class CtrlOferta implements ICtrlOferta {
     }
 
     public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) throws OfertaLaboralNoEncontrada {
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
-        boolean existe = oferLab.existePostulacion(nombre_postulante);
+        OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre_oferta);
+        boolean existe = ofertaLaboral.existePostulacion(nombre_postulante);
         if (existe) {
-            return oferLab.infoOfertaLaboralPost(nombre_postulante);
+            return ofertaLaboral.infoOfertaLaboralPost(nombre_postulante);
         } else {
-            return oferLab.infoOfertaLaboralVisitante();
+            return ofertaLaboral.infoOfertaLaboralVisitante();
         }
     }
 
     public DTOfertaExtendidoSinPConK infoOfertaLaboralEmpresa(String nombre_empresa, String nombre_oferta) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Empresa empresa = (Empresa) UsuarioH.buscarNick(nombre_empresa);
+        OfertaLaboral oferLab = ofertaLaboralHandler.buscar(nombre_oferta);
+        Empresa empresa = (Empresa) usuarioHandler.buscarNick(nombre_empresa);
         boolean existe = empresa.existeOfertaLaboral(nombre_oferta);
         DTOfertaExtendidoSinPConK auxiliar;
         if (existe) {
@@ -213,20 +220,13 @@ public class CtrlOferta implements ICtrlOferta {
         return auxiliar;
     }
 
-    public boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha, String video) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
-        CtrlUsuario CtrllUser = new CtrlUsuario();
-        boolean existe = CtrllUser.existePostulacion(nick, nombre);
+    public boolean altaPostulacion(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha, String video) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado, ExceptionFechaInvalida {
+        boolean existe = ctrlUsuario.existePostulacion(nick, nombre);
         if (!existe) {
-            OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-            OfertaLaboral oferLab = OLH.buscar(nombre);
-            Postulacion postulacion = CtrllUser.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocE, oferLab, video);
-            try {
-                oferLab.registrarPostulacion(postulacion);
-                OLH.actualizar(oferLab); // actualizar oferta laboral
-            } catch (ExceptionFechaInvalida e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre);
+            Postulacion postulacion = ctrlUsuario.crearPostulacion(nick, curriculumVitae, motivacion, fecha, URLDocE, ofertaLaboral, video);
+            ofertaLaboral.registrarPostulacion(postulacion);
+            ofertaLaboralHandler.actualizar(ofertaLaboral);
         }
         return !existe;
     }
@@ -249,14 +249,12 @@ public class CtrlOferta implements ICtrlOferta {
 	}*/
 
     public DTOfertaExtendidoSinPConK infoOfertaLaboralVisitante(String nombre_oferta) throws OfertaLaboralNoEncontrada {
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
-        return oferLab.infoOfertaLaboralVisitante();
+        OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre_oferta);
+        return ofertaLaboral.infoOfertaLaboralVisitante();
     }
 
     public Set<String> listarOfertasLaboralesKeywords(String keywords) {
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
+        Map<String, Usuario> usuarios = usuarioHandler.obtenerNick();
         Set<String> res = new HashSet<String>();
 
         for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
@@ -273,25 +271,21 @@ public class CtrlOferta implements ICtrlOferta {
 
 
     public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado {
-        CtrlUsuario CtrlUser = new CtrlUsuario();
-        return CtrlUser.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
+        return ctrlUsuario.modificarPostulacion(nombre, nick, cvAbreviado, motivacion);
     }
 
-    public DTPostulacion obtenerDatosPostulacionW(String nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
-        CtrlUsuario CtrlUser = new CtrlUsuario();
-        return CtrlUser.obtenerDatosPostulacionW(nick, ofer);
+    public DTPostulacion obtenerDatosPostulacionW(String nick, String nombreOferta) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
+        return ctrlUsuario.obtenerDatosPostulacionW(nick, nombreOferta);
     }
 
     public Set<String> listarOfertasLaboralesConfirmadas(String nickname_e) throws ExceptionUsuarioNoEncontrado {
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
+        Empresa empresa = (Empresa) usuarioHandler.buscarNick(nickname_e);
         return empresa.listarOfertasLaboralesConfirmadas();
     }
 
     public Set<DTOfertaExtendido> listarOfertasLaboralesConfirmadas() {
         Set<DTOfertaExtendido> res = new HashSet<DTOfertaExtendido>();
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        Map<String, OfertaLaboral> ofertasLaborales = OLH.obtener();
+        Map<String, OfertaLaboral> ofertasLaborales = ofertaLaboralHandler.obtener();
         for (Map.Entry<String, OfertaLaboral> entry : ofertasLaborales.entrySet()) {
             if (entry.getValue().getEstado() == EstadoOL.Confirmada) {
                 res.add(entry.getValue().obtenerDatosOferta());
@@ -301,47 +295,39 @@ public class CtrlOferta implements ICtrlOferta {
     }
 
     public Set<String> listarOfertasLaboralesIngresadas(String nickname_e) throws ExceptionUsuarioNoEncontrado {
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname_e);
+        Empresa empresa = (Empresa) usuarioHandler.buscarNick(nickname_e);
         return empresa.listarOfertasLaboralesIngresadas();
     }
 
     public void rechazoOL(String nombre_oferta) throws OfertaLaboralNoEncontrada {
-        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral oferLab = OLH.buscar(nombre_oferta);
-        oferLab.setEstado(EstadoOL.Rechazada);
+        OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre_oferta);
+        ofertaLaboral.setEstado(EstadoOL.Rechazada);
     }
 
     public void aceptoOL(String nombre_oferta) throws OfertaLaboralNoEncontrada {
-        OfertaLaboralHandler OferLabH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral oferLab = OferLabH.buscar(nombre_oferta);
-        oferLab.setEstado(EstadoOL.Confirmada);
+        OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre_oferta);
+        ofertaLaboral.setEstado(EstadoOL.Confirmada);
     }
 
     public Set<String> listarPostulantes() {
-        CtrlUsuario CtrlUser = new CtrlUsuario();
-        return CtrlUser.obtenerNicknamesPostulantes();
+        return ctrlUsuario.obtenerNicknamesPostulantes();
     }
 
     public DTOfertaExtendido obtenerOfertaLaboral(String nombre) throws OfertaLaboralNoEncontrada {
-        OfertaLaboralHandler OferLabH = OfertaLaboralHandler.getInstance();
-        OfertaLaboral oferLab = OferLabH.buscar(nombre);
-        return oferLab.obtenerDatosOferta();
+        OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre);
+        return ofertaLaboral.obtenerDatosOferta();
     }
 
-    public void agregarTipoOfertaPaq(String paq, String TipoOfer, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete, NoExistePaquete {
-        PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-        Paquete paquete = PaqueteH.buscar(paq);
-        TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-        TipoOferta tipoO = TOH.buscar(TipoOfer);
+    public void agregarTipoOfertaPaq(String paq, String tipoOferta, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete, NoExistePaquete {
+        Paquete paquete = paqueteHandler.buscar(paq);
+        TipoOferta tipoO = tipoOfertaHandler.buscar(tipoOferta);
         paquete.crearOfertaPaquete(tipoO, cantidad);
-        PaqueteH.actualizarPaquete(paquete);
+        paqueteHandler.actualizarPaquete(paquete);
     }
 
     public Set<String> listarPaquetes() {
         Set<String> res = new HashSet<>();
-        PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-        Map<String, Paquete> paquetes = PaqueteH.obtener();
+        Map<String, Paquete> paquetes = paqueteHandler.obtener();
 
         for (Map.Entry<String, Paquete> entry : paquetes.entrySet()) {
             Paquete paq = entry.getValue();
@@ -352,18 +338,15 @@ public class CtrlOferta implements ICtrlOferta {
     }
 
     public DTPaquete obtenerDatosPaquete(String paq) throws NoExistePaquete {
-        PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
-        Paquete paquete = PaqueteH.buscar(paq);
+        Paquete paquete = paqueteHandler.buscar(paq);
         return paquete.getDTPaquete();
     }
 
     public DTTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente {
-        TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
-        boolean existe = TOH.existe(nombre);
+        boolean existe = tipoOfertaHandler.existe(nombre);
         if (existe) {
-            TipoOferta tipoOfer = TOH.buscar(nombre);
-            DTTipoOferta res = tipoOfer.obtenerDT();
-            return res;
+            TipoOferta tipoOferta = tipoOfertaHandler.buscar(nombre);
+            return tipoOferta.obtenerDT();
         } else {
             throw new ExcepcionTipoOfertaNoExistente("El tipo de publicación de oferta laboral indicado no existe.");
         }
@@ -371,17 +354,8 @@ public class CtrlOferta implements ICtrlOferta {
     }
 
 
-    // REVISAR EXCEPCIONES,   NICK Y NOMBRE !!!!!
-    // nombre es el nombre de la OfertaLaboral y nick el nickname del Usuario.
-
     public Set<String> listarKeywords() {
-        Set<String> res = new HashSet<>();
-        KeywordHandler KeywordH = KeywordHandler.getInstance();
-        Map<String, Keyword> keys = KeywordH.obtener();
-        for (Map.Entry<String, Keyword> entry : keys.entrySet()) {
-            res.add(entry.getKey());
-        }
-        return res;
+        return keywordHandler.obtener().keySet();
     }
 
     // notar que esta operacion es le paso el nombrre de la oferta laboral y tretorna el tipo de oferta laboral
@@ -399,14 +373,9 @@ public class CtrlOferta implements ICtrlOferta {
         PaqueteHandler PaqueteH = PaqueteHandler.getInstance();
         Paquete paquet = PaqueteH.buscar(pack);
 
-        if (paquet.getInfoCompra().isEmpty()) {//nadie lo compro
-
-            return false;
-        } else {//ya fue comprado
-
-            return true;
-
-        }
+        //nadie lo compro
+        //ya fue comprado
+        return !paquet.getInfoCompra().isEmpty();
     }
 
     @Override
@@ -480,52 +449,25 @@ public class CtrlOferta implements ICtrlOferta {
 
     @Override
     public void marcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
-    	
-    	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Postulante postu = null;
-		try {
-			postu = (Postulante) UH.buscarNick(nick_postulante);
 
-            OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-            OfertaLaboral ofer = null;
-            try {
-                ofer = OLH.buscar(nomb_oferta); 
-                postu.marcarFavorita(ofer);
-                ofer.marcadaFav();
-            } catch (OfertaLaboralNoEncontrada e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+        usuarioHandler = UsuarioHandler.getInstance();
+    	Postulante postulante = (Postulante) usuarioHandler.buscarNick(nick_postulante);
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboral ofertaLaboral = OLH.buscar(nomb_oferta);
+        postulante.marcarFavorita(ofertaLaboral);
+        ofertaLaboral.marcadaFav();
+        System.out.println(nick_postulante + "marco como oferta laboral favorita a " + nomb_oferta);
 
-
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
     }
 
     @Override
     public void desmarcarFavorita(String nick_postulante, String nomb_oferta) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada {
-    	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Postulante postu = null;
-		try {
-			postu = (Postulante) UH.buscarNick(nick_postulante);
-            OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-            OfertaLaboral ofer = null;
-            try {
-                ofer = OLH.buscar(nomb_oferta);
-                postu.desmarcarFavorita(ofer);
-                ofer.desmarcadaFav();
-            } catch (OfertaLaboralNoEncontrada e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+    	    	Postulante postulante = (Postulante) usuarioHandler.buscarNick(nick_postulante);
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboral ofertaLaboral = OLH.buscar(nomb_oferta);
+        postulante.desmarcarFavorita(ofertaLaboral);
+        ofertaLaboral.desmarcadaFav();
     }
 
     public void establecerPosiciones(String nombre_oferta, List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, ExisteOrdenFinalDePostulantes, OfertaLaboralNoEncontrada {
@@ -540,8 +482,7 @@ public class CtrlOferta implements ICtrlOferta {
     // orden de las posiciones
     @Override
     public boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
-    	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+    	    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
     	OfertaLaboral oferta = null;
 		try {
 			oferta = OLH.buscar(nombre_oferta);
@@ -551,14 +492,13 @@ public class CtrlOferta implements ICtrlOferta {
 		}
     	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
     	Empresa empresa = null;
-        empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+        empresa = (Empresa) usuarioHandler.buscarNick(nicknameEmpresa);
         return empresa.HayOrden(nombre_oferta);
     }
     
     @Override
     public List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
-    	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
     	OfertaLaboral oferta = null;
 		try {
 			oferta = OLH.buscar(nombre_oferta);
@@ -568,7 +508,7 @@ public class CtrlOferta implements ICtrlOferta {
 		}
     	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
     	Empresa empresa = null;
-        empresa = (Empresa) UH.buscarNick(nicknameEmpresa);
+        empresa = (Empresa) usuarioHandler.buscarNick(nicknameEmpresa);
         return empresa.DevolverOrden(nombre_oferta);
     }
     

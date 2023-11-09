@@ -61,14 +61,14 @@
         if (!estaFav) {
       %>
       <h5> Marcar favorito</h5>
-      <button id="corazonDesm" name="corazonDesm" type="submit" class="btn btn-light" aria-label="Like">
+      <button id="corazonDesm" name="corazonDesm" type="submit" class="btn" aria-label="Like">
         <span class="heart-icon" aria-hidden="true">&#10084;</span>
       </button>
       <%
       } else {
       %>
       <h5> Desmarcar favorito</h5>
-      <button id="corazonMarc" name="corazonMarc" type="submit" class="btn btn-light" aria-label="Like">
+      <button id="corazonMarc" name="corazonMarc" type="submit" class="btn" aria-label="Like">
         <span class="heart-icon text-danger" aria-hidden="true">&#10084;</span>
       </button>
       <%

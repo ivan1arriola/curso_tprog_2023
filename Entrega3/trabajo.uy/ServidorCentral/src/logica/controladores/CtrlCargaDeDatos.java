@@ -30,7 +30,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         utils = new Utils();
     }
 
-    public void cargarDatos() throws ExcepcionKeywordVacia, ExceptionValidezNegativa, ExceptionFechaInvalida, ErrorAgregarUsuario {
+    public void cargarDatos() throws ExceptionFechaInvalida, ErrorAgregarUsuario {
 
         cargarUsuarios();
         cargarTipoPublicacion();
@@ -40,14 +40,36 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         cargarPostulaciones();
         cargarTiposPublicacionPaquetes();
         cargarPaquetesCompras();
+        cargarOfertasFavoritasPostulantes();
+    }
+
+    private void cargarOfertasFavoritasPostulantes() {
+        Map<String, String[]> ofertaFavoritasCSV = utils.getPostulantesOfertaLaboralFavoritas();
+        Map<String, String[]> postulantes = utils.getUsuarioCSV();
+        Map<String, String[]> ofertas = utils.getOfertasLaboralesCSV();
+
+        for (Map.Entry<String, String[]> entry : ofertaFavoritasCSV.entrySet()) {
+            String clavePostulante = entry.getValue()[0];
+            String claveOferta = entry.getValue()[1];
+
+            String nicknamePostulante = postulantes.get(clavePostulante)[2];
+            String nombreOferta = ofertas.get(claveOferta)[1];
+
+            try {
+                ctrlOferta.marcarFavorita(nicknamePostulante, nombreOferta);
+            } catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
+                System.err.println(e.getMessage());
+            }
+
+        }
+
     }
 
 
-
-
     // Cargar Usuarios
-    private void cargarUsuarios() throws ExceptionFechaInvalida, ErrorAgregarUsuario {
+    private void cargarUsuarios() {
         Map<String, String[]> usuarioCSV = utils.getUsuarioCSV();
+        Map<String, String[]> seguidoresCSV = utils.getSeguidoresCSV();
 
         for (Map.Entry<String, String[]> entry : usuarioCSV.entrySet()) {
             String user = entry.getKey(); // Clave del mapa, que es el codigo del usuario
@@ -57,11 +79,36 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             boolean existe = ctrlUsuario.existeUsuarioConNickname(userData[2]);
 
             if (!existe && tipo.equals("P")) {
-                cargarUsuarioPostulante(user, userData);
+                try {
+                    cargarUsuarioPostulante(user, userData);
+                } catch (ExceptionFechaInvalida e) {
+                    System.err.println("No se pudo agregar el usuario " + userData[2] + ". Fecha invalida");
+                } catch (ErrorAgregarUsuario e) {
+                    System.err.println("No se pudo agregar el usuario " + userData[2]);
+                }
             } else if (!existe && tipo.equals("E")) {
                 cargarUsuarioEmpresa(user, userData);
             }
         }
+
+        // cargar seguidores
+        for(Map.Entry<String, String[]> entry : seguidoresCSV.entrySet()){
+            String claveUsuarioSeguidor = entry.getValue()[1];
+            String claveUsuarioSeguido = entry.getValue()[2];
+
+            String nicknameUsuarioSeguidor = usuarioCSV.get(claveUsuarioSeguidor)[2];
+            String nicknameUsuarioSeguido = usuarioCSV.get(claveUsuarioSeguido)[2];
+
+            try {
+                ctrlUsuario.seguirUsuario(nicknameUsuarioSeguidor, nicknameUsuarioSeguido);
+            } catch (ExceptionUsuarioSeSigueASiMismo e) {
+                System.err.println("Usuario se intento seguir a si mismo -" + nicknameUsuarioSeguidor);
+            } catch (ExceptionUsuarioNoEncontrado e) {
+                System.err.println(nicknameUsuarioSeguido + " - " + nicknameUsuarioSeguidor + " - No se encontro");
+            }
+        }
+
+
     }
 
 
@@ -208,7 +255,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
 
                 if (!ctrlOferta.existeOfertaLaboral(ofertaLaboralId)) {
-                    utils.altaOfertaLaboralForzado(nickname_empresa, tipodePublicacion, ofertaNombre, ofertaLaboralData[2], horario, Float.valueOf(ofertaLaboralData[6]), ofertaLaboralData[4], dep, fecha, keys, estado, imagen, paq);
+                    utils.altaOfertaLaboralForzado(nickname_empresa, tipodePublicacion, ofertaNombre, ofertaLaboralData[2], horario, Float.parseFloat(ofertaLaboralData[6]), ofertaLaboralData[4], dep, fecha, keys, estado, imagen, paq);
                 }
             } catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | NumberFormatException | ExceptionRemuneracionOfertaLaboralNegativa eune) {
                 eune.printStackTrace();

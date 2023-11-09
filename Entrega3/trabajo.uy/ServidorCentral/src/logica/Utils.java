@@ -26,125 +26,114 @@ public class Utils {
 
     private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
     private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
-    private static final String DEFAULT_UBICACION = System.getProperty("user.home") + File.separator + ".trabajoUy";
 
-    private static final String CONFIG_FOLDER = System.getProperty("user.home") + File.separator + ".trabajoUy";
-
-    public static String getUbicacionImagenes() {
-        return DEFAULT_UBICACION;
-    }
-
-    private static void crearDirectorio(String rutaDirectorio) {
-        File directorio = new File(rutaDirectorio);
-
-        if (!directorio.exists()) {
-            if (directorio.mkdirs()) {
-                System.out.println("Directorio creado: " + rutaDirectorio);
-            } else {
-                System.err.println("No se pudo crear el directorio: " + rutaDirectorio);
-            }
-        }
-    }
 
     Map<String, String[]> usuarioCSV = new HashMap<>();
     Map<String, String[]> empresaCSV = new HashMap<>();
     Map<String, String[]> postulanteCSV = new HashMap<>();
+
+    Map<String, String[]> seguidoresCSV = new HashMap<>();
+
+
+    Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
+    Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
+
+    Map<String, String[]> resultadosPostulacionCSV = new HashMap<>();
+
+    Map<String, String[]> postulantesOfertaLaboralFavoritas = new HashMap<>();
+
     Map<String, String[]> keywordsCSV = new HashMap<>();
     Map<String, String[]> ofertasLaboralesCSV = new HashMap<>();
     Map<String, String[]> ofertasLaboralesKeyCSV = new HashMap<>();
     Map<String, String[]> paquetesCSV = new HashMap<>();
+
     Map<String, String[]> paquetesCompraCSV = new HashMap<>();
     Map<String, String[]> postulacionesCSV = new HashMap<>();
-    Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
-    Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
+
+    public Map<String, String[]> getSeguidoresCSV() {
+        return seguidoresCSV;
+    }
+
+    public void setSeguidoresCSV(Map<String, String[]> seguidoresCSV) {
+        this.seguidoresCSV = seguidoresCSV;
+    }
+
+    public Map<String, String[]> getResultadosPostulacionCSV() {
+        return resultadosPostulacionCSV;
+    }
+
+    public void setResultadosPostulacionCSV(Map<String, String[]> resultadosPostulacionCSV) {
+        this.resultadosPostulacionCSV = resultadosPostulacionCSV;
+    }
+
+    public Map<String, String[]> getPostulantesOfertaLaboralFavoritas() {
+        return postulantesOfertaLaboralFavoritas;
+    }
+
+    public void setPostulantesOfertaLaboralFavoritas(Map<String, String[]> postulantesOfertaLaboralFavoritas) {
+        this.postulantesOfertaLaboralFavoritas = postulantesOfertaLaboralFavoritas;
+    }
+
+
+
+
+
+
 
 
     public Map<String, String[]> getUsuarioCSV() {
         return usuarioCSV;
     }
 
-    public void setUsuarioCSV(Map<String, String[]> usuarioCSV) {
-        this.usuarioCSV = usuarioCSV;
-    }
-
     public Map<String, String[]> getEmpresaCSV() {
         return empresaCSV;
     }
 
-    public void setEmpresaCSV(Map<String, String[]> empresaCSV) {
-        this.empresaCSV = empresaCSV;
-    }
 
     public Map<String, String[]> getPostulanteCSV() {
         return postulanteCSV;
     }
 
-    public void setPostulanteCSV(Map<String, String[]> postulanteCSV) {
-        this.postulanteCSV = postulanteCSV;
-    }
 
     public Map<String, String[]> getKeywordsCSV() {
         return keywordsCSV;
     }
 
-    public void setKeywordsCSV(Map<String, String[]> keywordsCSV) {
-        this.keywordsCSV = keywordsCSV;
-    }
 
     public Map<String, String[]> getOfertasLaboralesCSV() {
         return ofertasLaboralesCSV;
     }
 
-    public void setOfertasLaboralesCSV(Map<String, String[]> ofertasLaboralesCSV) {
-        this.ofertasLaboralesCSV = ofertasLaboralesCSV;
-    }
+
 
     public Map<String, String[]> getOfertasLaboralesKeyCSV() {
         return ofertasLaboralesKeyCSV;
     }
 
-    public void setOfertasLaboralesKeyCSV(Map<String, String[]> ofertasLaboralesKeyCSV) {
-        this.ofertasLaboralesKeyCSV = ofertasLaboralesKeyCSV;
-    }
 
     public Map<String, String[]> getPaquetesCSV() {
         return paquetesCSV;
     }
 
-    public void setPaquetesCSV(Map<String, String[]> paquetesCSV) {
-        this.paquetesCSV = paquetesCSV;
-    }
 
     public Map<String, String[]> getPaquetesCompraCSV() {
         return paquetesCompraCSV;
     }
 
-    public void setPaquetesCompraCSV(Map<String, String[]> paquetesCompraCSV) {
-        this.paquetesCompraCSV = paquetesCompraCSV;
-    }
+
 
     public Map<String, String[]> getPostulacionesCSV() {
         return postulacionesCSV;
     }
 
-    public void setPostulacionesCSV(Map<String, String[]> postulacionesCSV) {
-        this.postulacionesCSV = postulacionesCSV;
-    }
 
     public Map<String, String[]> getTipoPublicacionCSV() {
         return tipoPublicacionCSV;
     }
 
-    public void setTipoPublicacionCSV(Map<String, String[]> tipoPublicacionCSV) {
-        this.tipoPublicacionCSV = tipoPublicacionCSV;
-    }
 
     public Map<String, String[]> getTipoPubPaquetesCSV() {
         return tipoPubPaquetesCSV;
-    }
-
-    public void setTipoPubPaquetesCSV(Map<String, String[]> tipoPubPaquetesCSV) {
-        this.tipoPubPaquetesCSV = tipoPubPaquetesCSV;
     }
 
 
@@ -165,26 +154,9 @@ public class Utils {
         postulacionesCSV = cargarCSV("Postulaciones.csv");
         tipoPublicacionCSV = cargarCSV("TipoPublicacion.csv");
         tipoPubPaquetesCSV = cargarCSV("TiposPublicacionPaquetes.csv");
-
-    }
-
-    public String[] obtenerUsuario(String clave) {
-        return usuarioCSV.get(clave);
-    }
-
-    // Obtener empresa por clave (nombre de empresa)
-    public String[] obtenerEmpresa(String clave) {
-        return empresaCSV.get(clave);
-    }
-
-    // Obtener postulante por clave (nombre de postulante)
-    public String[] obtenerPostulante(String clave) {
-        return postulanteCSV.get(clave);
-    }
-
-    // Obtener datos de keywords por clave
-    public String[] obtenerKeyword(String clave) {
-        return keywordsCSV.get(clave);
+        seguidoresCSV = cargarCSV("Usuarios-Seguidores.csv");
+        resultadosPostulacionCSV = cargarCSV("ResultadoPostulacion.csv");
+        postulantesOfertaLaboralFavoritas = cargarCSV("PostulantesOfertasLaboralesFavoritas.csv");
     }
 
     // Obtener datos de ofertas laborales por clave (nombre de la oferta)
@@ -192,35 +164,6 @@ public class Utils {
         return ofertasLaboralesCSV.get(clave);
     }
 
-    // Obtener datos de ofertas laborales por clave (nombre de la oferta)
-    public String[] obtenerOfertaLaboralKey(String clave) {
-        return ofertasLaboralesKeyCSV.get(clave);
-    }
-
-    // Obtener datos de paquetes por clave
-    public String[] obtenerPaquete(String clave) {
-        return paquetesCSV.get(clave);
-    }
-
-    // Obtener datos de paquetes de compra por clave
-    public String[] obtenerPaqueteCompra(String clave) {
-        return paquetesCompraCSV.get(clave);
-    }
-
-    // Obtener datos de postulaciones por clave
-    public String[] obtenerPostulacion(String clave) {
-        return postulacionesCSV.get(clave);
-    }
-
-    // Obtener datos de tipo de publicación por clave
-    public String[] obtenerTipoPublicacion(String clave) {
-        return tipoPublicacionCSV.get(clave);
-    }
-
-    // Obtener datos de tipo de publicación de paquetes por clave
-    public String[] obtenerTipoPublicacionPaquete(String clave) {
-        return tipoPubPaquetesCSV.get(clave);
-    }
 
     private Map<String, String[]> cargarCSV(String fileName) {
         Map<String, String[]> data = new HashMap<>();
@@ -231,20 +174,6 @@ public class Utils {
         });
         return data;
     }
-
-    public static String generateImageCode(String input) {
-        // Reemplaza caracteres no válidos con guiones bajos (_)
-        String sanitizedInput = input.replaceAll("[^a-zA-Z0-9.-]", "_");
-
-        // Limita la longitud del nombre de archivo a un valor razonable
-        int maxFileNameLength = 255; // Establece la longitud máxima deseada
-        if (sanitizedInput.length() > maxFileNameLength) {
-            sanitizedInput = sanitizedInput.substring(0, maxFileNameLength);
-        }
-
-        return sanitizedInput;
-    }
-
 
 
     public static String getDirectUrl(String shortUrl) {
@@ -450,7 +379,7 @@ public class Utils {
     }
 
 
-    public boolean altaOfertaLaboralForzado(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa, NoExistePaquete {
+    public void altaOfertaLaboralForzado(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa, NoExistePaquete {
         List<Keyword> keywords = new ArrayList<>();
 
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -484,22 +413,13 @@ public class Utils {
                     try {
                         oferL = empresa.altaOfertaLaboralForzado(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
                         OLH.agregar(oferL);
-                    } catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (ExceptionPaqueteNoVigente e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (ExceptionCostoPaqueteNoNegativo e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (ExceptionDescuentoInvalido e) {
+                    } catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionCostoPaqueteNoNegativo |
+                             ExceptionDescuentoInvalido | ExceptionPaqueteNoVigente e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
 
                 }
-                return !ofer;
             } else {
                 throw new ExceptionEmpresaInvalida("No existe una empresa con el nickname indicado.");
             }

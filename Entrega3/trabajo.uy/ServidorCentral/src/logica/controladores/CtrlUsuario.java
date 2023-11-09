@@ -540,8 +540,12 @@ public class CtrlUsuario implements ICtrlUsuario {
             if (usr1 == null || usr2 == null) {
             	throw new ExceptionUsuarioNoEncontrado("El usuario no se ha encontrado.");
             }
+            if(usr1.getSeguidos().contains(usr2)) return;
             usr1.seguirUsuario(usr2);
+
+            if (usr2.getSeguidores().contains(usr1)) return;
             usr2.loSigue(usr1);
+            System.out.println(usr1.getNickname() + " sigue a " + usr2.getNickname());
         } else {
             throw new ExceptionUsuarioSeSigueASiMismo("No es posible que un usuario se siga a si mismo.");
         }
