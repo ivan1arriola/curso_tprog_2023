@@ -135,8 +135,6 @@ public class WrapperLista {
         if (postulaciones == null) {
             postulaciones = new ArrayList<>();
         }
-        
-       
         return this.postulaciones;
     }
 
