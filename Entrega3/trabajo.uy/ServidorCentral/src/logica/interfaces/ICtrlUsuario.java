@@ -1,10 +1,46 @@
 package logica.interfaces;
 
 import excepciones.*;
+
+
+import excepciones.ErrorAgregarUsuario;
+//import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExcepcionTipoOfertaNoExistente;
+//import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+//import excepciones.ExceptionCiudadInvalida;
+//import excepciones.ExceptionCompraPaqueteConValorNegativo;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+//import excepciones.ExceptionDuracionNegativa;
+import excepciones.ExceptionEmpresaInvalida;
+//import excepciones.ExceptionExpoNegativa;
+import excepciones.ExceptionFechaInvalida;
+import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.ExceptionUsuarioCorreoRepetido;
+import excepciones.ExceptionUsuarioNickRepetido;
+import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionUsuarioSeSigueASiMismo;
+//import excepciones.ExceptionValidezNegativa;
+//import excepciones.ExisteOrdenFinalDePostulantes;
+//import excepciones.FaltaCvException;
+//import excepciones.FaltaMotivaException;
+//import excepciones.FinalizarOfertaNoVencida;
+import excepciones.NoExistePaquete;
+import excepciones.OfertaLaboralNoEncontrada;
+//import excepciones.PostulaExistenteException;
+import excepciones.TipoUsuarioNoValido;
+//import excepciones.UsuarioNoExisteException;
+
+
+
+
+
 //import jakarta.persistence.EntityManager;
 import logica.clases.OfertaLaboral;
 import logica.clases.Postulacion;
-import logica.datatypes.*;
 
 //import logica.datatypes.DTCantTO;
 //import logica.datatypes.DTCompraPaquetes;
