@@ -1,7 +1,7 @@
 package logica.interfaces;
 
 import excepciones.*;
-import jakarta.persistence.EntityManager;
+//import jakarta.persistence.EntityManager;
 import logica.clases.OfertaLaboral;
 import logica.clases.Postulacion;
 import logica.datatypes.*;
@@ -9,7 +9,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
