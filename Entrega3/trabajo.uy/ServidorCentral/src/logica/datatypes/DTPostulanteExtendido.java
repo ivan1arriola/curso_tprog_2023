@@ -3,7 +3,7 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import logica.servidor.adapter.SetDTCantTOAdapter;
+//import logica.servidor.adapter.SetDTCantTOAdapter;
 import logica.servidor.adapter.SetDTPostulacionAdapter;
 
 import java.time.LocalDate;

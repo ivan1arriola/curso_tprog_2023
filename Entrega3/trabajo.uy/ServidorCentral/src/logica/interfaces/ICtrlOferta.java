@@ -1,7 +1,7 @@
 package logica.interfaces;
 
 import excepciones.*;
-import jakarta.persistence.EntityManager;
+//import jakarta.persistence.EntityManager;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
