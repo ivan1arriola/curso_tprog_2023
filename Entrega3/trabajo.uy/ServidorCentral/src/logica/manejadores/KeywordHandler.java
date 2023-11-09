@@ -55,7 +55,7 @@ public class KeywordHandler {
         return query.getSingleResult() > 0;
     }
 
-    public static Map<String, Keyword> obtener() {
+    public Map<String, Keyword> obtener() {
         if (database == null) {
             throw new IllegalStateException("EntityManager no configurado.");
         }

@@ -2,6 +2,7 @@ package presentacion;
 
 
 import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.OfertaLaboralNoEncontrada;
 import logica.datatypes.DTOfertaExtendido;
@@ -48,9 +49,6 @@ public class ElegirPostulante extends JDialog {
 
 
         setResizable(true);
-        //setIconifiable(true);
-        //setMaximizable(true);
-        // setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Crear Postulación");
         setBounds(30, 30, 500, 400);
@@ -76,33 +74,31 @@ public class ElegirPostulante extends JDialog {
         cbEmpresa.setEnabled(false);
         cbEmpresa.setEditable(false);
 
-        cbEmpresa.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evento) {
+        cbEmpresa.addActionListener(evento -> {
 
-                cbOferta.removeAllItems();
+            cbOferta.removeAllItems();
 
-                try {
-                    if (cbEmpresa.getSelectedIndex() != -1 && cbEmpresa.getSelectedIndex() != 0) {
-                        String selectedEmpresa = (String) cbEmpresa.getSelectedItem();
-                        Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
-                        cbOferta.removeAllItems(); // Limpiar el comboBoxOfertas
+            try {
+                if (cbEmpresa.getSelectedIndex() != -1 && cbEmpresa.getSelectedIndex() != 0) {
+                    String selectedEmpresa = (String) cbEmpresa.getSelectedItem();
+                    Set<String> ofertasEmpresa = icUsuario.listarOfertasLaborales(selectedEmpresa);
+                    cbOferta.removeAllItems(); // Limpiar el comboBoxOfertas
 
-                        if (ofertasEmpresa.isEmpty()) {
+                    if (ofertasEmpresa.isEmpty()) {
 
-                            JOptionPane.showMessageDialog(ElegirPostulante.this, "No hay ofertas de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            for (String oferta : ofertasEmpresa) {
-                                cbOferta.addItem(oferta);
-                            }
+                        JOptionPane.showMessageDialog(ElegirPostulante.this, "No hay ofertas de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        for (String oferta : ofertasEmpresa) {
+                            cbOferta.addItem(oferta);
                         }
                     }
-
-                } catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado exc) {
-                    System.err.println("Error al obtener las ofertas laborales");
                 }
 
-
+            } catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado exc) {
+                System.err.println("Error al obtener las ofertas laborales");
             }
+
+
         });
 
 
@@ -148,16 +144,9 @@ public class ElegirPostulante extends JDialog {
 
 
         //COMBOBOX postulante
-        cbPostula = new JComboBox<String>();
+        cbPostula = new JComboBox<>();
 
-    	
-        /*cbPostula.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
-                String selectedUsuario = (String) cbPostula.getSelectedItem();
-                
-            };
-        });*/
 
 
         gbl.setConstraints(cbPostula, gbc);
@@ -330,7 +319,7 @@ public class ElegirPostulante extends JDialog {
                         String video = "";
                         try {
                             ico.altaPostulacion(esOferta, espostulante, curriculumVitae, motiva.getText(), textField1.getText(), currentDate, video);
-                        } catch (OfertaLaboralNoEncontrada e) {
+                        } catch (OfertaLaboralNoEncontrada | ExceptionFechaInvalida e) {
                             throw new RuntimeException(e);
                         }
                         JOptionPane.showMessageDialog(btnCrear, "Postulación creada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -375,7 +364,7 @@ public class ElegirPostulante extends JDialog {
         cbEmpresa.addItem(" ");
 
         List<String> empresasSorted = new ArrayList<>(empresas);
-        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        empresasSorted.sort(String.CASE_INSENSITIVE_ORDER);
         for (String nickname : empresasSorted) {
 
             cbEmpresa.addItem(nickname);
@@ -384,14 +373,14 @@ public class ElegirPostulante extends JDialog {
         cbPostula.addItem(" ");
 
         List<String> postulantesSorted = new ArrayList<>(postulantes);
-        Collections.sort(postulantesSorted, String.CASE_INSENSITIVE_ORDER);
+        postulantesSorted.sort(String.CASE_INSENSITIVE_ORDER);
 
         for (String nick : postulantesSorted) {
             cbPostula.addItem(nick);
         }
 
         List<String> ofertasSorted = new ArrayList<>(ofertas);
-        Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
+        ofertasSorted.sort(String.CASE_INSENSITIVE_ORDER);
 
         for (String nick : ofertasSorted) {
             cbOferta.addItem(nick);
