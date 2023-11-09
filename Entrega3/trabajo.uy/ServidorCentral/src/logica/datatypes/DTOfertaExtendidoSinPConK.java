@@ -8,7 +8,7 @@ import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.servidor.adapter.DTHorarioAdapter;
 import logica.servidor.adapter.LocalDateAdapter;
-import logica.servidor.adapter.SetStringAdapter;
+//import logica.servidor.adapter.SetStringAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
