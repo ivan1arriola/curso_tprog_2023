@@ -31,7 +31,7 @@
 	  <jsp:include page="/WEB-INF/template/navbar.jsp" />
 	</header>
 
-<main class="container-fluid d-flex">
+<main class="container-fluid">
 
 <!-- 
     <div class="container col-9">
