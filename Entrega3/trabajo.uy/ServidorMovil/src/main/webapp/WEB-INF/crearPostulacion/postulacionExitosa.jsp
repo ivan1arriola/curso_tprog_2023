@@ -44,11 +44,14 @@
 		    <div class="card" style="width: 16rem;">
 		  		<img src="<%=imagen %>" class="card-img-top" alt="<%=oferta %>" />
 		  		<div class="card-body">
+		  		<div class="alert alert-success" role="alert">
 		    	<p class="card-text"><%=nombrecompleto %>: la postulación a la oferta <%=oferta %> se ha creado exitosamente</p>
+		    	</div>
+		    	</div>
 		  		</div>
 			</div>
-	</div>
 </div>
+
 
 </main>
 
