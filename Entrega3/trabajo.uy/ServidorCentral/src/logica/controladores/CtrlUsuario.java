@@ -310,7 +310,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         	try {
         	user = UsuarioH.buscarCorreo(identificador);
         	} catch (ExceptionUsuarioNoEncontrado exc) {
-                return false; // Usuario no encontrado, devuelve false
+        		throw exc;
             }
         	
             if (user.getcontrasenia().equals(contraseña)) {
