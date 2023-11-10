@@ -70,7 +70,7 @@ public class TestGeneral1 {
 		}
         // ============================================
         // obtengo lista keyword
-		//        Map<String,  Keyword> temporalKeywords = null;
+		//        Map<String,    Keyword> temporalKeywords = null;
 		//        try {
 		//            temporalKeywords = KeywordHandler.obtener();
 		//        } catch (Exception e) {
@@ -78,7 +78,7 @@ public class TestGeneral1 {
 		//            e.printStackTrace();
 		//        }
 		//        if (temporalKeywords != null) {
-		//            for (Map.Entry<String,  Keyword> entry : temporalKeywords.entrySet()) {
+		//            for (Map.Entry<String,    Keyword> entry : temporalKeywords.entrySet()) {
 		//                Keyword k = entry.getValue();
 		//                System.out.println("======> " + k.getNombre());
 		//            }

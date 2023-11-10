@@ -69,9 +69,9 @@ public class TestGeneral4 {
         // ============================================
         // pruebo si efectivamente se persistieron keywords
         Set<String> pruebaKeyword = new HashSet<>(Arrays.asList(
-                "Trabajo nocturno", 
-                "horario vespertino", 
-                "full time", 
+                "Trabajo nocturno",   
+                "horario vespertino",   
+                "full time",   
                 "part time"
         ));
 
@@ -80,7 +80,7 @@ public class TestGeneral4 {
 
         for (String s : pruebaKeyword) {
             if (!probandoEnSistema.contains(s)) {
-                assertEquals("El test keywords fallo",  true,  false);
+                assertEquals("El test keywords fallo",    true,    false);
             }
         }
      // ---------------- empresa sin url ni imagen ----------------
@@ -111,7 +111,7 @@ public class TestGeneral4 {
         }
 
         if (!kreves2 || !google2 || !apple2 || !amazon2 || !aswatzenegger2 || !leonardoVinchi2) {
-            assertEquals("El test usuarios en sistema fallo",  false,  true);
+            assertEquals("El test usuarios en sistema fallo",    false,    true);
         }
         // editar datos
         UsuarioHandler UHan = UsuarioHandler.getInstance();
@@ -122,32 +122,32 @@ public class TestGeneral4 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        // obtuve empresa,    ahora creo DTEmpresa
+        // obtuve empresa,      ahora creo DTEmpresa
 		// Subtract three days
         LocalDate threeDaysBefore = postulante1.getFechaNac().minusDays(3);
         try {
-			ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(), 
-			        postulante1.getNombre(), 
-			        postulante1.getApellido(), 
-			        postulante1.getcorreoElectronico(), 
-			        postulante1.getcontrasenia(), 
-			        threeDaysBefore, 
+			ICU.ingresarDatosEditadosPostulante(postulante1.getNickname(),   
+			        postulante1.getNombre(),   
+			        postulante1.getApellido(),   
+			        postulante1.getcorreoElectronico(),   
+			        postulante1.getcontrasenia(),   
+			        threeDaysBefore,   
 			        postulante1.getNacionalidad());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-        DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",  "LeonardoVinchi");
+        DTUsuario DTpostulante1 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",    "LeonardoVinchi");
         DTPostulante DTverdaderopostulante1 = (DTPostulante) DTpostulante1; // Casting;
 
         try {
-			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(), 
-			        DTverdaderopostulante1.getNombre(), 
-			        DTverdaderopostulante1.getApellido(), 
-			        DTverdaderopostulante1.getcorreoElectronico(), 
-			        DTverdaderopostulante1.getcontrasenia(), 
-			        DTverdaderopostulante1.getFechaNac(), 
+			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante1.getNickname(),   
+			        DTverdaderopostulante1.getNombre(),   
+			        DTverdaderopostulante1.getApellido(),   
+			        DTverdaderopostulante1.getcorreoElectronico(),   
+			        DTverdaderopostulante1.getcontrasenia(),   
+			        DTverdaderopostulante1.getFechaNac(),   
 			        DTverdaderopostulante1.getNacionalidad());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -157,13 +157,13 @@ public class TestGeneral4 {
         String img23 = "url";
 
         try {
-			ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(), 
-			        DTverdaderopostulante1.getNombre(), 
-			        DTverdaderopostulante1.getApellido(), 
-			        DTverdaderopostulante1.getcorreoElectronico(), 
-			        DTverdaderopostulante1.getcontrasenia(), 
-			        img23.getBytes(), 
-			        DTverdaderopostulante1.getFechaNac(), 
+			ICU.ingresarDatosEditadosPostulanteImg(DTverdaderopostulante1.getNickname(),   
+			        DTverdaderopostulante1.getNombre(),   
+			        DTverdaderopostulante1.getApellido(),   
+			        DTverdaderopostulante1.getcorreoElectronico(),   
+			        DTverdaderopostulante1.getcontrasenia(),   
+			        img23.getBytes(),   
+			        DTverdaderopostulante1.getFechaNac(),   
 			        DTverdaderopostulante1.getNacionalidad());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -175,16 +175,16 @@ public class TestGeneral4 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",  "ASwatzenegger");
+        DTUsuario DTpostulante12 = postulante1.obtenerDatosUsuarioEspecial("LeonardoVinchi",    "ASwatzenegger");
         DTPostulante DTverdaderopostulante12 = (DTPostulante) DTpostulante12; // Casting;
 
         try {
-			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(), 
-			        DTverdaderopostulante12.getNombre(), 
-			        DTverdaderopostulante12.getApellido(), 
-			        DTverdaderopostulante12.getcorreoElectronico(), 
-			        DTverdaderopostulante12.getcontrasenia(), 
-			        DTverdaderopostulante12.getFechaNac(), 
+			ICU.ingresarDatosEditadosPostulante(DTverdaderopostulante12.getNickname(),   
+			        DTverdaderopostulante12.getNombre(),   
+			        DTverdaderopostulante12.getApellido(),   
+			        DTverdaderopostulante12.getcorreoElectronico(),   
+			        DTverdaderopostulante12.getcontrasenia(),   
+			        DTverdaderopostulante12.getFechaNac(),   
 			        DTverdaderopostulante12.getNacionalidad());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -201,11 +201,11 @@ public class TestGeneral4 {
 		}
         DTEmpresa DTverdaderaempresa1 = (DTEmpresa) empresa1; // Casting;
         try {
-			ICU.ingresarDatosEditadosEmpresa(DTverdaderaempresa1.getNickname(), 
-			        DTverdaderaempresa1.getNombre(), 
-			        DTverdaderaempresa1.getApellido(), 
-			        DTverdaderaempresa1.getcorreoElectronico(), 
-			        DTverdaderaempresa1.getcontrasenia(), 
+			ICU.ingresarDatosEditadosEmpresa(DTverdaderaempresa1.getNickname(),   
+			        DTverdaderaempresa1.getNombre(),   
+			        DTverdaderaempresa1.getApellido(),   
+			        DTverdaderaempresa1.getcorreoElectronico(),   
+			        DTverdaderaempresa1.getcontrasenia(),   
 			        DTverdaderaempresa1.getDescripcion());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -213,12 +213,12 @@ public class TestGeneral4 {
 		}
 
         try {
-			ICU.ingresarDatosEditadosEmpresaImg(DTverdaderaempresa1.getNickname(), 
-			        DTverdaderaempresa1.getNombre(), 
-			        DTverdaderaempresa1.getApellido(), 
-			        DTverdaderaempresa1.getcorreoElectronico(), 
-			        DTverdaderaempresa1.getcontrasenia(), 
-			        img23.getBytes(), 
+			ICU.ingresarDatosEditadosEmpresaImg(DTverdaderaempresa1.getNickname(),   
+			        DTverdaderaempresa1.getNombre(),   
+			        DTverdaderaempresa1.getApellido(),   
+			        DTverdaderaempresa1.getcorreoElectronico(),   
+			        DTverdaderaempresa1.getcontrasenia(),   
+			        img23.getBytes(),   
 			        DTverdaderaempresa1.getDescripcion());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -226,13 +226,13 @@ public class TestGeneral4 {
 		}
 
         try {
-			ICU.ingresarDatosEditadosEmpresaURLImg(DTverdaderaempresa1.getNickname(), 
-			        DTverdaderaempresa1.getNombre(), 
-			        DTverdaderaempresa1.getApellido(), 
-			        DTverdaderaempresa1.getcorreoElectronico(), 
-			        DTverdaderaempresa1.getcontrasenia(), 
-			        DTverdaderaempresa1.getUrl(), 
-			        img23.getBytes(), 
+			ICU.ingresarDatosEditadosEmpresaURLImg(DTverdaderaempresa1.getNickname(),   
+			        DTverdaderaempresa1.getNombre(),   
+			        DTverdaderaempresa1.getApellido(),   
+			        DTverdaderaempresa1.getcorreoElectronico(),   
+			        DTverdaderaempresa1.getcontrasenia(),   
+			        DTverdaderaempresa1.getUrl(),   
+			        img23.getBytes(),   
 			        DTverdaderaempresa1.getDescripcion());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -240,21 +240,21 @@ public class TestGeneral4 {
 		}
 
         try {
-			ICU.ingresarDatosEditadosEmpresaURL(DTverdaderaempresa1.getNickname(), 
-			        DTverdaderaempresa1.getNombre(), 
-			        DTverdaderaempresa1.getApellido(), 
-			        DTverdaderaempresa1.getcorreoElectronico(), 
-			        DTverdaderaempresa1.getcontrasenia(), 
-			        DTverdaderaempresa1.getUrl(), 
+			ICU.ingresarDatosEditadosEmpresaURL(DTverdaderaempresa1.getNickname(),   
+			        DTverdaderaempresa1.getNombre(),   
+			        DTverdaderaempresa1.getApellido(),   
+			        DTverdaderaempresa1.getcorreoElectronico(),   
+			        DTverdaderaempresa1.getcontrasenia(),   
+			        DTverdaderaempresa1.getUrl(),   
 			        DTverdaderaempresa1.getDescripcion());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        // si no tiene url no lo toma,    en este caso google tiene url
+        // si no tiene url no lo toma,      en este caso google tiene url
         try {
 			if (!ICU.tieneURL("Google")) {
-			    assertFalse("The test for user in system failed",  true);
+			    assertFalse("The test for user in system failed",    true);
 			}
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
@@ -265,7 +265,7 @@ public class TestGeneral4 {
         // ------------------------- tipo oferta ---------------------------
 		//			boolean booleano;
 		String img233 = "url";
-        ICO.altaTipoPublicacionOL("Oferta normal",  "visibilidad normal",  1,  19,  100.0f,  LocalDate.now());
+        ICO.altaTipoPublicacionOL("Oferta normal",    "visibilidad normal",    1,    19,    100.0f,    LocalDate.now());
         DTTipoOferta tipoOfertaDT = null;
         try {
             tipoOfertaDT = ICO.obtenerDatosTO("Oferta normal");
@@ -280,26 +280,26 @@ public class TestGeneral4 {
         tipoOfertaDT.getExposicion();
         tipoOfertaDT.getDescripcion();
 //			booleano = 
-        ICO.altaTipoPublicacionOL("Oferta destacada",  "visibilidad destacada",  1,  19,  100.0f,  LocalDate.now());
-        ICO.altaTipoPublicacionOL("Oferta super destacada",  "visibilidad super destacada",  1,  19,  100.0f,  LocalDate.now());
+        ICO.altaTipoPublicacionOL("Oferta destacada",    "visibilidad destacada",    1,    19,    100.0f,    LocalDate.now());
+        ICO.altaTipoPublicacionOL("Oferta super destacada",    "visibilidad super destacada",    1,    19,    100.0f,    LocalDate.now());
         try {
-			ICO.altaPaqueteOL("Paquete 1",  "un paquete basico",  1,  LocalDate.now(),  10.0f,  img233.getBytes());
+			ICO.altaPaqueteOL("Paquete 1",    "un paquete basico",    1,    LocalDate.now(),    10.0f,    img233.getBytes());
 		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-        // los paquetes empiezan vacios,    se les va agregando tipos de oferta
+        // los paquetes empiezan vacios,      se les va agregando tipos de oferta
 
         try {
-			ICO.agregarTipoOfertaPaq("Paquete 1",  "Oferta normal",  20);
+			ICO.agregarTipoOfertaPaq("Paquete 1",    "Oferta normal",    20);
 		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
         try {
-			ICO.agregarTipoOfertaPaq("Paquete 1",  "Oferta destacada",  12);
+			ICO.agregarTipoOfertaPaq("Paquete 1",    "Oferta destacada",    12);
 		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -307,7 +307,7 @@ public class TestGeneral4 {
 		
         
         try {
-			ICO.agregarTipoOfertaPaq("Paquete 1",  "Oferta super destacada",  1);
+			ICO.agregarTipoOfertaPaq("Paquete 1",    "Oferta super destacada",    1);
 		} catch (ExceptionCantidadPositivaDeTipoOfertaEnPaquete | NoExistePaquete e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,9 +331,9 @@ public class TestGeneral4 {
         // coloco todas keywors del sistema
         Set<String> listaKeywords = (HashSet<String>) ICO.listarKeywords();
 
-        DTHora hora1 = new DTHora(8,  0);
-        DTHora hora2 = new DTHora(1,  0);
-        DTHorario horario = new DTHorario(hora1,  hora2);
+        DTHora hora1 = new DTHora(8,    0);
+        DTHora hora2 = new DTHora(1,    0);
+        DTHorario horario = new DTHorario(hora1,    hora2);
         String TIPOOFERTASELECCIONADA = "Oferta normal";
 
 
@@ -347,18 +347,18 @@ public class TestGeneral4 {
         String paquete = "Paquete 1";
         EstadoOL estado = EstadoOL.Confirmada;
 		try {
-			ICO.altaOfertaLaboral(Nick, 
-			        TIPOOFERTASELECCIONADA, 
-			        desc, 
-			        titulo, 
-			        horario, 
-			        sueldo, 
-			        ciudad, 
-			        departamento, 
-			        fecha, 
-			        listaKeywords, 
-			        estado, 
-			        img233.getBytes(), 
+			ICO.altaOfertaLaboral(Nick,   
+			        TIPOOFERTASELECCIONADA,   
+			        desc,   
+			        titulo,   
+			        horario,   
+			        sueldo,   
+			        ciudad,   
+			        departamento,   
+			        fecha,   
+			        listaKeywords,   
+			        estado,   
+			        img233.getBytes(),   
 			        paquete);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete e) {
 			// TODO Auto-generated catch block
@@ -366,17 +366,17 @@ public class TestGeneral4 {
 		}
 	
 
-        DTOfertaLaboral temporal3 = new DTOfertaLaboral("Google", 
-                "investigador IA", 
-                LocalDate.now(), 
-                100222.0f, 
-                100222.0f, 
-                horario, 
-                departamento, 
-                ciudad, 
-                estado, 
-                img233.getBytes(), 
-                0,"tipo oferta manteca");
+        DTOfertaLaboral temporal3 = new DTOfertaLaboral("Google",   
+                "investigador IA",   
+                LocalDate.now(),   
+                100222.0f,   
+                100222.0f,   
+                horario,   
+                departamento,   
+                ciudad,   
+                estado,   
+                img233.getBytes(),   
+                0,  "tipo oferta manteca");
         temporal3.getCiudad();
         temporal3.getCosto();
         temporal3.getDepartamento();

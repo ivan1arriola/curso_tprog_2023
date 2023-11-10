@@ -93,11 +93,11 @@ public class TestGeneral10 {
         Paquete NuevoPaq = null;
 		try {
 			NuevoPaq = new  Paquete(
-				    "Manteca Paquete", 
-				    "cremosa como nunca", 
-				    900, 
-				    SixDaysAgo, 
-				    randomFloat, 
+				    "Manteca Paquete",   
+				    "cremosa como nunca",   
+				    900,   
+				    SixDaysAgo,   
+				    randomFloat,   
 				    imagen.getBytes()
 				);
 		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
@@ -108,11 +108,11 @@ public class TestGeneral10 {
 		Paquete NuevoPaq2 = null;
 		try {
 			NuevoPaq2 = new  Paquete(
-				    "Manteca Paquete", 
-				    "cremosa como nunca", 
-				    900, 
-				    SixDaysAgo, 
-				    -3452.0f, 
+				    "Manteca Paquete",   
+				    "cremosa como nunca",   
+				    900,   
+				    SixDaysAgo,   
+				    -3452.0f,   
 				    imagen.getBytes()
 				);
 		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
@@ -122,20 +122,20 @@ public class TestGeneral10 {
           
 		
         Empresa empresaNueva = new Empresa(
-				    "Hidraulioocs", 
-				    "Fierro-motors", 
-				    "Le_bron-james", 
-				    "El@correo.com", 
-				    "1231254", 
-				    "hola".getBytes(), 
-				    "mejores biciclertas y motos", 
+				    "Hidraulioocs",   
+				    "Fierro-motors",   
+				    "Le_bron-james",   
+				    "El@correo.com",   
+				    "1231254",   
+				    "hola".getBytes(),   
+				    "mejores biciclertas y motos",   
 				    "www.motos.com"
 				);
         
         // ===============================
         // lista de keywords
         List<Keyword> myList = new ArrayList<>();
-        Map<String,  Keyword> nuevaKeyword = KeywordHandler.obtener();
+        Map<String,    Keyword> nuevaKeyword = KeywordHandler.obtener();
         String keywordToObtain = "Trabajo nocturno";
         Keyword utopicKeyword = nuevaKeyword.get(keywordToObtain);
         String keywordToObtain1 = "full time";
@@ -146,11 +146,11 @@ public class TestGeneral10 {
         TipoOferta tipoofertaNuevo = null;
 		try {
 			tipoofertaNuevo = new TipoOferta(
-				    "dentro Paquete manteca", 
-				    SevenDaysAgo, 
-				    randomFloat, 
-				    300, 
-				    300, 
+				    "dentro Paquete manteca",   
+				    SevenDaysAgo,   
+				    randomFloat,   
+				    300,   
+				    300,   
 				    "es la sorpresa dentro manteca"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -161,11 +161,11 @@ public class TestGeneral10 {
 		TipoOferta tipoofertaNuevo2 = null;
 		try {
 			tipoofertaNuevo2 = new TipoOferta(
-				    "2222222 dentro Paquete manteca", 
-				    SevenDaysAgo, 
-				    3452.0f, 
-				    300, 
-				    300, 
+				    "2222222 dentro Paquete manteca",   
+				    SevenDaysAgo,   
+				    3452.0f,   
+				    300,   
+				    300,   
 				    "es la sorpresa dentro manteca 22222222"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -177,11 +177,11 @@ public class TestGeneral10 {
 		TipoOferta tipoofertaNuevo24 = null;
 		try {
 			tipoofertaNuevo24 = new TipoOferta(
-				    "2222222 dentro Paquete manteca", 
-				    SevenDaysAgo, 
-				    -3452.0f, 
-				    300, 
-				    300, 
+				    "2222222 dentro Paquete manteca",   
+				    SevenDaysAgo,   
+				    -3452.0f,   
+				    300,   
+				    300,   
 				    "es la sorpresa dentro manteca 22222222"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -192,11 +192,11 @@ public class TestGeneral10 {
 		TipoOferta tipoofertaNuevo244 = null;
 		try {
 			tipoofertaNuevo244 = new TipoOferta(
-				    "2222222 dentro Paquete manteca", 
-				    SevenDaysAgo, 
-				    3452.0f, 
-				    -300, 
-				    300, 
+				    "2222222 dentro Paquete manteca",   
+				    SevenDaysAgo,   
+				    3452.0f,   
+				    -300,   
+				    300,   
 				    "es la sorpresa dentro manteca 22222222"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -206,11 +206,11 @@ public class TestGeneral10 {
 		TipoOferta tipoofertaNuevo2454 = null;
 		try {
 			tipoofertaNuevo2454 = new TipoOferta(
-				    "2222222 dentro Paquete manteca", 
-				    SevenDaysAgo, 
-				    3452.0f, 
-				    300, 
-				    -300, 
+				    "2222222 dentro Paquete manteca",   
+				    SevenDaysAgo,   
+				    3452.0f,   
+				    300,   
+				    -300,   
 				    "es la sorpresa dentro manteca 22222222"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -221,7 +221,7 @@ public class TestGeneral10 {
 		// paquete ---> oferta paquete ---> TipoOferta
 		OfertaPaquete OfertaPaqueteNueva = null;
 		try {
-			OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo, 44);
+			OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo,   44);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -229,7 +229,7 @@ public class TestGeneral10 {
 		
 		OfertaPaquete OfertaPaqueteNueva2 = null;
 		try {
-			OfertaPaqueteNueva2= new OfertaPaquete(tipoofertaNuevo, -1);
+			OfertaPaqueteNueva2= new OfertaPaquete(tipoofertaNuevo,   -1);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -255,28 +255,28 @@ public class TestGeneral10 {
         // -------------------------------------------
         EstadoOL nunevoestado = EstadoOL.Confirmada;
         // -------------------------------------------
-        DTHora hora12 = new DTHora(8,  0);
-        DTHora hora22 = new DTHora(1,  0);
-        DTHorario horario2 = new DTHorario(hora12,  hora22);
+        DTHora hora12 = new DTHora(8,    0);
+        DTHora hora22 = new DTHora(1,    0);
+        DTHorario horario2 = new DTHorario(hora12,    hora22);
         // -------------------------------------------
         String imagen1 ="hola";
         // crear oferta laboral
         OfertaLaboral OfertaLabolra = null;
 		try {
 			OfertaLabolra = new OfertaLaboral(
-					true, 
-			        empresaNueva, 
-			        myList, 
-			        tipoofertaNuevo, 
-			        "Panqueqes", 
-			        "muy esponjosos", 
-			        "panquequeLandia", 
-			        dep111, 
-			        horario2, 
-			        randomFloat1, 
-			        threeDaysAgo, 
-			        nunevoestado, 
-			        imagen1.getBytes(), 
+					true,   
+			        empresaNueva,   
+			        myList,   
+			        tipoofertaNuevo,   
+			        "Panqueqes",   
+			        "muy esponjosos",   
+			        "panquequeLandia",   
+			        dep111,   
+			        horario2,   
+			        randomFloat1,   
+			        threeDaysAgo,   
+			        nunevoestado,   
+			        imagen1.getBytes(),   
 			        NuevoPaq);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
 				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
@@ -290,12 +290,12 @@ public class TestGeneral10 {
 		String nombre = "Sylvester";
 		String apellido = "Stallone";
 		String correo = "Sylvester@Rocky.com";
-		LocalDate fechaNacimiento = LocalDate.of(1946,  7,  6); // Modify the birthdate accordingly
+		LocalDate fechaNacimiento = LocalDate.of(1946,    7,    6); // Modify the birthdate accordingly
 		String nacionalidad = "American"; // Modify the nationality as needed
 		String imagen11 = "llllllllllll";
 		Postulante nuevoPos = null;
 		try {
-			nuevoPos = new Postulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad, imagen11.getBytes());
+			nuevoPos = new Postulante(nickname,    password,    nombre,    apellido,    correo,    fechaNacimiento,    nacionalidad,   imagen11.getBytes());
 		} catch (ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -313,7 +313,7 @@ public class TestGeneral10 {
 		String imagen115 = "llllllllllll";
 		Postulante nuevoPos5 = null;
 		try {
-		    nuevoPos5 = new Postulante(nickname5, password5, nombre5, apellido5, correo5, fechaNacimiento52, nacionalidad5, imagen115.getBytes());
+		    nuevoPos5 = new Postulante(nickname5,   password5,   nombre5,   apellido5,   correo5,   fechaNacimiento52,   nacionalidad5,   imagen115.getBytes());
 		} catch (ExceptionFechaInvalida e) {
 		    e.printStackTrace();
 		}
@@ -326,21 +326,21 @@ public class TestGeneral10 {
 		}
 		
 		try {
-			ICU.seguirUsuario("Willis", "Stallone");
+			ICU.seguirUsuario("Willis",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		try {
-			ICU.dejarDeseguirUsuario("Willis","Stallone");
+			ICU.dejarDeseguirUsuario("Willis",  "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
 		try {
-			ICU.seguirUsuario("Willis", "Stallone");
+			ICU.seguirUsuario("Willis",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -361,18 +361,18 @@ public class TestGeneral10 {
 		}
 	
 
-		LocalDate fechaNacimiento5 = LocalDate.of(1955, 3, 19); // Modify the birthdate accordingly
+		LocalDate fechaNacimiento5 = LocalDate.of(1955,   3,   19); // Modify the birthdate accordingly
 		try {
-		    nuevoPos5 = new Postulante(nickname5, password5, nombre5, apellido5, correo5, fechaNacimiento5, nacionalidad5, imagen115.getBytes());
+		    nuevoPos5 = new Postulante(nickname5,   password5,   nombre5,   apellido5,   correo5,   fechaNacimiento5,   nacionalidad5,   imagen115.getBytes());
 		} catch (ExceptionFechaInvalida e) {
 		    e.printStackTrace();
 		}
-//		obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta)
+//		obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,   String UsuarioQueSeHaceConsulta)
 		// --------------------------------------------
-		DTUsuario datosUsuario = empresaNueva.obtenerDatosUsuarioEspecial("Hidraulioocs",  "Hidraulioocs");
+		DTUsuario datosUsuario = empresaNueva.obtenerDatosUsuarioEspecial("Hidraulioocs",    "Hidraulioocs");
 		// --------------------------------------------
-		Postulacion nuevaPost = new Postulacion(nuevoPos, "buen curriculum vitae", "estoy muy motivado",  twoDaysAgo, "Stallone-Oficial",  OfertaLabolra ,  "video impresionante"); 
-		// setear postulacion manualmente a la oferta laboral,  es decir aggregarla manualmente
+		Postulacion nuevaPost = new Postulacion(nuevoPos,   "buen curriculum vitae",   "estoy muy motivado",    twoDaysAgo,   "Stallone-Oficial",    OfertaLabolra ,    "video impresionante"); 
+		// setear postulacion manualmente a la oferta laboral,    es decir aggregarla manualmente
 		List<Postulacion> PostulacionList = new ArrayList<>();
 		PostulacionList.add(nuevaPost);
 		OfertaLabolra.setPostulaciones(PostulacionList);
@@ -382,13 +382,13 @@ public class TestGeneral10 {
 		OfertaLabolra.desmarcadaFav();
 		OfertaLabolra.setCantFav(9);
 		OfertaLabolra.TienePosicion();
-		OfertaLabolra.establecerPosicion("Stallone", 1);
+		OfertaLabolra.establecerPosicion("Stallone",   1);
 		OfertaLabolra.DevolverPosiciones();
 		// --------------------------------------------
 		List<String> nickList = new ArrayList<>();
 		nickList.add("Stallone");
 		try {
-			empresaNueva.establecerPosicion("Panqueqes", nickList);
+			empresaNueva.establecerPosicion("Panqueqes",   nickList);
 		} catch (OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -397,12 +397,12 @@ public class TestGeneral10 {
 		TipoOferta tipoofertaNuevo3= null;
 		try {
 			tipoofertaNuevo3 = new TipoOferta(
-				    "dentro Paquete manteca version 2", 
-				    SevenDaysAgo, 
-				    randomFloat, 
-				    300, 
-				    300, 
-				    "mitad calorias,  mismo sabor"
+				    "dentro Paquete manteca version 2",   
+				    SevenDaysAgo,   
+				    randomFloat,   
+				    300,   
+				    300,   
+				    "mitad calorias,    mismo sabor"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
 			// TODO Auto-generated catch block
@@ -419,17 +419,17 @@ public class TestGeneral10 {
 		
 		try {
 			OfertaLabolra2 = empresaNueva.altaOfertaLaboralImagenPaquete(
-				tipoofertaNuevo, 
-			    "matambre", 
-			    "a la leche", 
-			    horario2, 
-			    randomFloat1, 
-			    "MuUruguay", 
-			    dep111, 
-			    threeDaysAgo, 
-			    myList, 
-			    nunevoestado, 
-			    "qlqllqlqe".getBytes(), 
+				tipoofertaNuevo,   
+			    "matambre",   
+			    "a la leche",   
+			    horario2,   
+			    randomFloat1,   
+			    "MuUruguay",   
+			    dep111,   
+			    threeDaysAgo,   
+			    myList,   
+			    nunevoestado,   
+			    "qlqllqlqe".getBytes(),   
 			    NuevoPaq
 			);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -443,17 +443,17 @@ public class TestGeneral10 {
 		
 		try {
 			OfertaLabolra222 = empresaNueva.altaOfertaLaboralImagenPaquete(
-				tipoofertaNuevo, 
-			    "matambre", 
-			    "a la leche", 
-			    horario2, 
-			    -randomFloat1, 
-			    "MuUruguay", 
-			    dep111, 
-			    threeDaysAgo, 
-			    myList, 
-			    nunevoestado, 
-			    "qlqllqlqe".getBytes(), 
+				tipoofertaNuevo,   
+			    "matambre",   
+			    "a la leche",   
+			    horario2,   
+			    -randomFloat1,   
+			    "MuUruguay",   
+			    dep111,   
+			    threeDaysAgo,   
+			    myList,   
+			    nunevoestado,   
+			    "qlqllqlqe".getBytes(),   
 			    NuevoPaq
 			);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -467,16 +467,16 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra3 = null;
 		try {
 			OfertaLabolra3 = empresaNueva.altaOfertaLaboralImagen(
-					tipoofertaNuevo, 
-				    "asado de tira", 
-				    "a punto", 
-				    horario2, 
-				    randomFloat1, 
-				    "MuUruguay", 
-				    dep111, 
-				    threeDaysAgo, 
-				    myList, 
-				    nunevoestado, 
+					tipoofertaNuevo,   
+				    "asado de tira",   
+				    "a punto",   
+				    horario2,   
+				    randomFloat1,   
+				    "MuUruguay",   
+				    dep111,   
+				    threeDaysAgo,   
+				    myList,   
+				    nunevoestado,   
 				    "qlqllqlqe".getBytes()
 				);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -489,17 +489,17 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra4 = null;
 		try {
 			OfertaLabolra4 = empresaNueva.altaOfertaLaboralForzado(
-					tipoofertaNuevo, 
-				    "anana con piza", 
-				    "algo sobrenatural", 
-				    horario2, 
-				    randomFloat1, 
-				    "MuUruguay", 
-				    dep111, 
-				    threeDaysAgo, 
-				    myList, 
-				    nunevoestado, 
-				    "qlqllqlqe".getBytes(), 
+					tipoofertaNuevo,   
+				    "anana con piza",   
+				    "algo sobrenatural",   
+				    horario2,   
+				    randomFloat1,   
+				    "MuUruguay",   
+				    dep111,   
+				    threeDaysAgo,   
+				    myList,   
+				    nunevoestado,   
+				    "qlqllqlqe".getBytes(),   
 				    NuevoPaq
 				);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
@@ -566,19 +566,19 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		try {
-			ICU.seguirUsuario("Willis", "Stallone");
+			ICU.seguirUsuario("Willis",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICU.dejarDeseguirUsuario("Willis","Stallone");
+			ICU.dejarDeseguirUsuario("Willis",  "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICU.seguirUsuario("Willis", "Stallone");
+			ICU.seguirUsuario("Willis",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -608,13 +608,13 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		try {
-			ICO.marcarFavorita(nuevoPos.getNickname(), OfertaLabolra2.getNombre());
+			ICO.marcarFavorita(nuevoPos.getNickname(),   OfertaLabolra2.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICO.desmarcarFavorita(nuevoPos.getNickname(), OfertaLabolra2.getNombre());
+			ICO.desmarcarFavorita(nuevoPos.getNickname(),   OfertaLabolra2.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -646,7 +646,7 @@ public class TestGeneral10 {
 		// paquete ---> oferta paquete ---> TipoOferta
 				OfertaPaquete OfertaPaqueteNueva21 = null;
 				try {
-					OfertaPaqueteNueva21 = new OfertaPaquete(tipoofertaNuevo2, 0);
+					OfertaPaqueteNueva21 = new OfertaPaquete(tipoofertaNuevo2,   0);
 				} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -660,19 +660,19 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra12344 = null;
 		try {
 			OfertaLabolra12344 = new OfertaLaboral(
-					true, 
-			        empresaNueva, 
-			        myList, 
-			        tipoofertaNuevo2, 
-			        "Panqueqes", 
-			        "muy esponjosos", 
-			        "panquequeLandia", 
-			        dep111, 
-			        horario2, 
-			        -3452.0f, 
-			        threeDaysAgo, 
-			        nunevoestado, 
-			        imagen1.getBytes(), 
+					true,   
+			        empresaNueva,   
+			        myList,   
+			        tipoofertaNuevo2,   
+			        "Panqueqes",   
+			        "muy esponjosos",   
+			        "panquequeLandia",   
+			        dep111,   
+			        horario2,   
+			        -3452.0f,   
+			        threeDaysAgo,   
+			        nunevoestado,   
+			        imagen1.getBytes(),   
 			        NuevoPaq);
 		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
 				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido e) {
@@ -682,7 +682,7 @@ public class TestGeneral10 {
 		// ============================================
 		InfoCompra nuevaCompra = null;
 		try {
-			nuevaCompra = new InfoCompra(threeDaysAgo, -3452.0f, NuevoPaq, empresaNueva,null);
+			nuevaCompra = new InfoCompra(threeDaysAgo,   -3452.0f,   NuevoPaq,   empresaNueva,  null);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa | ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -695,7 +695,7 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		try {
-			ICU.finalizarOfertaLaboral(empresaNueva.getNickname(),OfertaLabolra.getNombre());
+			ICU.finalizarOfertaLaboral(empresaNueva.getNickname(),  OfertaLabolra.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -704,23 +704,23 @@ public class TestGeneral10 {
 		// ========
 		InfoCompraOferta InfoCompraNuevo = null;
 		try {
-			InfoCompraNuevo = new InfoCompraOferta(tipoofertaNuevo, 20);
+			InfoCompraNuevo = new InfoCompraOferta(tipoofertaNuevo,   20);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DTCantTO nuevopaquete = new DTCantTO(tipoofertaNuevo.getNombre(),23);
+		DTCantTO nuevopaquete = new DTCantTO(tipoofertaNuevo.getNombre(),  23);
 		Set<DTCantTO> conjuntoS = new HashSet<>();
 		conjuntoS.add(nuevopaquete);
 		try {
-			nuevaCompra = new InfoCompra(threeDaysAgo, 3452.0f, NuevoPaq, empresaNueva,conjuntoS);
+			nuevaCompra = new InfoCompra(threeDaysAgo,   3452.0f,   NuevoPaq,   empresaNueva,  conjuntoS);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa | ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
-			ICU.obtenerFechaDeCompra(empresaNueva.getNickname(), NuevoPaq.getNombre());
+			ICU.obtenerFechaDeCompra(empresaNueva.getNickname(),   NuevoPaq.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

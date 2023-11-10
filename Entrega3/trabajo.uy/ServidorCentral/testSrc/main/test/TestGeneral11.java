@@ -94,11 +94,11 @@ public class TestGeneral11 {
         Paquete NuevoPaq = null;
 		try {
 			NuevoPaq = new  Paquete(
-				    "Manwqeuete", 
-				    "cremosa como nunca", 
-				    900, 
-				    SixDaysAgo, 
-				    randomFloat, 
+				    "Manwqeuete",   
+				    "cremosa como nunca",   
+				    900,   
+				    SixDaysAgo,   
+				    randomFloat,   
 				    imagen.getBytes()
 				);
 		} catch (ExceptionValidezNegativa | ExceptionDescuentoInvalido e) {
@@ -107,13 +107,13 @@ public class TestGeneral11 {
 		}
 		
         Empresa empresaNueva = new Empresa(
-				    "Hidraqwerqweroocs", 
-				    "Fierro-motors", 
-				    "Le_bron-james", 
-				    "El@correo.com", 
-				    "1231254", 
-				    "hola".getBytes(), 
-				    "mejores biciclertas y motos", 
+				    "Hidraqwerqweroocs",   
+				    "Fierro-motors",   
+				    "Le_bron-james",   
+				    "El@correo.com",   
+				    "1231254",   
+				    "hola".getBytes(),   
+				    "mejores biciclertas y motos",   
 				    "www.motos.com"
 				);
         
@@ -140,11 +140,11 @@ public class TestGeneral11 {
         TipoOferta tipoofertaNuevo = null;
 		try {
 			tipoofertaNuevo = new TipoOferta(
-				    "dentro Paquete manteca", 
-				    SevenDaysAgo, 
-				    randomFloat, 
-				    300, 
-				    300, 
+				    "dentro Paquete manteca",   
+				    SevenDaysAgo,   
+				    randomFloat,   
+				    300,   
+				    300,   
 				    "es la sorpresa dentro manteca"
 				);
 		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionDuracionNegativa | ExceptionExpoNegativa e) {
@@ -156,7 +156,7 @@ public class TestGeneral11 {
 		// paquete ---> oferta paquete ---> TipoOferta
 		OfertaPaquete OfertaPaqueteNueva = null;
 		try {
-			OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo, 44);
+			OfertaPaqueteNueva = new OfertaPaquete(tipoofertaNuevo,   44);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,9 +179,9 @@ public class TestGeneral11 {
         // -------------------------------------------
         EstadoOL nunevoestado = EstadoOL.Confirmada;
         // -------------------------------------------
-        DTHora hora12 = new DTHora(8,  0);
-        DTHora hora22 = new DTHora(1,  0);
-        DTHorario horario2 = new DTHorario(hora12,  hora22);
+        DTHora hora12 = new DTHora(8,    0);
+        DTHora hora22 = new DTHora(1,    0);
+        DTHorario horario2 = new DTHorario(hora12,    hora22);
         // -------------------------------------------
         String imagen1 ="hola";
         // crear oferta laboral
@@ -189,18 +189,18 @@ public class TestGeneral11 {
         
         try {
 			OfertaLabolra = new OfertaLaboral(
-					empresaNueva, 
-			        myList, 
-			        tipoofertaNuevo, 
-			        "Panawfewefawfwafes", 
-			        "muy esponjosos", 
-			        "panquequeLandia", 
-			        dep111, 
-			        horario2, 
-			        randomFloat1, 
-			        threeDaysAgo, 
-			        nunevoestado, 
-			        imagen1.getBytes(), 
+					empresaNueva,   
+			        myList,   
+			        tipoofertaNuevo,   
+			        "Panawfewefawfwafes",   
+			        "muy esponjosos",   
+			        "panquequeLandia",   
+			        dep111,   
+			        horario2,   
+			        randomFloat1,   
+			        threeDaysAgo,   
+			        nunevoestado,   
+			        imagen1.getBytes(),   
 			        NuevoPaq
 			);
 		} 
@@ -218,25 +218,25 @@ public class TestGeneral11 {
 		String nombre = "Sylvester";
 		String apellido = "Stallone";
 		String correo = "Sylvester@Rocky.com";
-		LocalDate fechaNacimiento = LocalDate.of(1946,  7,  6); // Modify the birthdate accordingly
+		LocalDate fechaNacimiento = LocalDate.of(1946,    7,    6); // Modify the birthdate accordingly
 		String nacionalidad = "American"; // Modify the nationality as needed
 		String imagen11 = "llllllllllll";
 		Postulante nuevoPos = null;
 		try {
-			nuevoPos = new Postulante(nickname,  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad, imagen11.getBytes());
+			nuevoPos = new Postulante(nickname,    password,    nombre,    apellido,    correo,    fechaNacimiento,    nacionalidad,   imagen11.getBytes());
 		} catch (ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		Postulacion nuevaPost = new Postulacion(nuevoPos, 
-				"buen curriculum vitae", 
-				"estoy muy motivado",  
-				twoDaysAgo, 
-				"Stallone-Oficial",  
-				OfertaLabolra ,  
+		Postulacion nuevaPost = new Postulacion(nuevoPos,   
+				"buen curriculum vitae",   
+				"estoy muy motivado",    
+				twoDaysAgo,   
+				"Stallone-Oficial",    
+				OfertaLabolra ,    
 				"video impresionante"); 
-		// setear postulacion manualmente a la oferta laboral,  es decir aggregarla manualmente
+		// setear postulacion manualmente a la oferta laboral,    es decir aggregarla manualmente
 		List<Postulacion> PostulacionList = new ArrayList<>();
 		PostulacionList.add(nuevaPost);
 		OfertaLabolra.setPostulaciones(PostulacionList);
@@ -290,7 +290,7 @@ public class TestGeneral11 {
 		nickList.add("Stallonjhjklhjke");
 		
 		try {
-			ICO.establecerPosiciones(OfertaLabolra.getNombre(), nickList);
+			ICO.establecerPosiciones(OfertaLabolra.getNombre(),   nickList);
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -332,7 +332,7 @@ public class TestGeneral11 {
 		Set<Postulacion> PostulacionesUsuario = new HashSet<>();
 		PostulacionesUsuario.add(nuevaPost);
 		nuevoPos.setPostulaciones(PostulacionesUsuario);
-		nuevoPos.editarPostulacion(OfertaLabolra.getNombre(),"nuevo curriculum","nueva motivacion");
+		nuevoPos.editarPostulacion(OfertaLabolra.getNombre(),  "nuevo curriculum",  "nueva motivacion");
 		// ============================================
 		nuevoPos.marcarFavorita(OfertaLabolra);
 		nuevoPos.desmarcarFavorita(OfertaLabolra);
@@ -343,17 +343,17 @@ public class TestGeneral11 {
 		// ????????????????????????????????????????????
 		Postulante nuevoPos2 = null;
 		try {
-			nuevoPos2 = new Postulante("johnn",  password,  nombre,  apellido,  correo,  fechaNacimiento,  nacionalidad, imagen11.getBytes());
+			nuevoPos2 = new Postulante("johnn",    password,    nombre,    apellido,    correo,    fechaNacimiento,    nacionalidad,   imagen11.getBytes());
 		} catch (ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			nuevoPos2.crearPostulacionForzado("curiculum flamante", 
-					"estyoy pereparado", 
-					LocalDate.now(), 
-					"documentos extras", 
-					OfertaLabolra, 
+			nuevoPos2.crearPostulacionForzado("curiculum flamante",   
+					"estyoy pereparado",   
+					LocalDate.now(),   
+					"documentos extras",   
+					OfertaLabolra,   
 					"el video imperdibvle");
 		} catch (ExceptionValidezNegativa e) {
 			// TODO Auto-generated catch block
@@ -364,12 +364,12 @@ public class TestGeneral11 {
 		nuevoPos.seguirUsuario(nuevoPos2);
 		
 		nuevoPos.obtenerDatosUsuario();
-		nuevoPos.obtenerDatosUsuarioEspecial(nuevoPos.getNickname(),nuevoPos.getNickname()); 
+		nuevoPos.obtenerDatosUsuarioEspecial(nuevoPos.getNickname(),  nuevoPos.getNickname()); 
 		// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 		empresaNueva.finalizarOfertaLaboral(OfertaLabolra.getNombre());
 		empresaNueva.seguirUsuario(nuevoPos);
 		nuevoPos.seguirUsuario(empresaNueva);
-		empresaNueva.obtenerDatosUsuarioEspecial(empresaNueva.getNickname(),empresaNueva.getNickname());
+		empresaNueva.obtenerDatosUsuarioEspecial(empresaNueva.getNickname(),  empresaNueva.getNickname());
 		empresaNueva.obtenerDatosUsuario();
 		// //////////////////////////////////////////////
 		UH.obtenerCorreo();
