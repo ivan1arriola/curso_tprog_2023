@@ -37,30 +37,18 @@ public class Utils {
     private static final Proxy proxy;
     
     static {
-        String proxyHost = System.getProperty("http.proxyHost");
-        String proxyPortString = System.getProperty("http.proxyPort");
+    	String proxyProperty = System.getenv("http_proxy");
         
-        
-        if (proxyHost != null) {
-        	int proxyPort;
-        	
-        	if (proxyPortString != null) {
-                // Si http.proxyPort está configurado, utilízalo directamente
-                proxyPort = Integer.parseInt(proxyPortString);
-            } else {
-            	
-            	try {
-                    URL proxyUrl = new URL(proxyHost);
-                    // Obtén el puerto de la URL, o utiliza el puerto predeterminado si no está especificado
-                    proxyPort = proxyUrl.getPort() != -1 ? proxyUrl.getPort() : proxyUrl.getDefaultPort();
-                } catch (MalformedURLException e) {
-                    // Maneja la excepción si la URL del proxy no es válida
-                    e.printStackTrace();
-                    proxyPort = 3128;  //-1; O establece un valor predeterminado
-                }
-            
-            }
-       
+    	if (proxyProperty != null && !proxyProperty.isEmpty()) {
+
+//    		String[] parts = proxyProperty.replaceFirst("^http://", "").split(":");
+ //   		String proxyHost = parts[0];
+//    		int proxyPort = Integer.parseInt(parts[1].replaceAll("[^\\d]", ""));
+    		
+    	    String proxyHost = "proxy.fing.edu.uy";
+    	    int proxyPort = 3128;
+
+    	           
             proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
             
         } else {
