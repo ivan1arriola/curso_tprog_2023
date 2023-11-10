@@ -8,7 +8,7 @@
 %>
 
 
-    <div class="mb-2">
+
         <%
             if (postulantes.isEmpty()) {
         %>
@@ -27,4 +27,4 @@
         <%
             }
         %>
-    </div>
+

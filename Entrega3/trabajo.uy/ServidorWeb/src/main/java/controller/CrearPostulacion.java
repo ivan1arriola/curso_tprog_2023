@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Set;
 
+import enumeration.EstadoOfertaLaboral;
 import interfaces.ILogica;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -45,6 +46,14 @@ public class CrearPostulacion extends HttpServlet {
 			if (oferta.getImagen() != null) {
 				request.setAttribute("imagenOferta", oferta.getImagen());
 			}
+
+			if(oferta.getEstado() != EstadoOfertaLaboral.Confirmada){
+				request.setAttribute("nombreError", "Esta oferta laboral no esta confirmada");
+				request.setAttribute("mensajeError", "No te puedes postular a una oferta laboral que no este en estado confirmada");
+				request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+				return;
+			}
+
 		} catch (OfertaLaboralNoEncontrada_Exception e) {
 
 			throw new RuntimeException(e);
