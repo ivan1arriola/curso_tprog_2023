@@ -40,10 +40,12 @@ public class Utils {
     	String proxyProperty = System.getenv("http_proxy");
         
     	if (proxyProperty != null && !proxyProperty.isEmpty()) {
-    	    // Asignar el host
-    	    String proxyHost = "proxy.fing.edu.uy";
 
-    	    // Asignar el puerto (ten en cuenta que puedes necesitar convertirlo a un tipo numérico)
+//    		String[] parts = proxyProperty.replaceFirst("^http://", "").split(":");
+ //   		String proxyHost = parts[0];
+//    		int proxyPort = Integer.parseInt(parts[1].replaceAll("[^\\d]", ""));
+    		
+    	    String proxyHost = "proxy.fing.edu.uy";
     	    int proxyPort = 3128;
 
     	           
