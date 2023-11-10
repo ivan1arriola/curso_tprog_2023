@@ -10,7 +10,15 @@ import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+//import javax.swing.JPanel;
+//import javax.swing.JDesktopPane;
+//import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JLabel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
