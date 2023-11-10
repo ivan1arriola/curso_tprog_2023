@@ -33,16 +33,55 @@ import excepciones.OfertaLaboralNoEncontrada;
 import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
 
-import logica.clases.*;
-import logica.datatypes.*;
+import logica.clases.Empresa;
+import logica.clases.InfoCompra;
+//import logica.clases.InfoCompraOferta;
+import logica.clases.Keyword;
+import logica.clases.OfertaLaboral;
+//import logica.clases.OfertaPaquete;
+import logica.clases.Paquete;
+import logica.clases.Postulacion;
+import logica.clases.Postulante;
+import logica.clases.TipoOferta;
+import logica.clases.Usuario;
+
+//import logica.datatypes.DTCantTO;
+//import logica.datatypes.DTCompraPaquetes;
+//import logica.datatypes.DTEmpresa;
+//import logica.datatypes.DTEmpresaConCompras;
+//import logica.datatypes.DTHora;
+import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+//import logica.datatypes.DTOfertaExtendidoConKeywords;
+//import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+//import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import logica.datatypes.DTOfertaExtendidoSinPConK;
+//import logica.datatypes.DTOfertaLaboral;
+import logica.datatypes.DTPaquete;
+import logica.datatypes.DTPostulacion;
+//import logica.datatypes.DTPostulante;
+//import logica.datatypes.DTPostulanteExtendido;
+import logica.datatypes.DTTipoOferta;
+//import logica.datatypes.DTUsuario;
+//import logica.datatypes.DTUsuarioSinInfoSocial;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.manejadores.*;
+import logica.manejadores.KeywordHandler;
+import logica.manejadores.OfertaLaboralHandler;
+import logica.manejadores.PaqueteHandler;
+import logica.manejadores.TipoOfertaHandler;
+import logica.manejadores.UsuarioHandler;
+
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+//import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class CtrlOferta implements ICtrlOferta {
