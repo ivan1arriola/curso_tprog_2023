@@ -3,33 +3,33 @@ package main.test;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+//import java.util.List;
+//import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
-import excepciones.ExcepcionKeywordVacia;
-import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
-import excepciones.ExceptionCostoPaqueteNoNegativo;
-import excepciones.ExceptionDescuentoInvalido;
-import excepciones.ExceptionEmpresaInvalida;
-import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-import excepciones.ExceptionUsuarioNoEncontrado;
-import excepciones.ExceptionValidezNegativa;
-import excepciones.OfertaLaboralNoEncontrada;
-import excepciones.TipoUsuarioNoValido;
+//import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+//import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+//import excepciones.ExceptionCostoPaqueteNoNegativo;
+//import excepciones.ExceptionDescuentoInvalido;
+//import excepciones.ExceptionEmpresaInvalida;
+//import excepciones.ExceptionPaqueteNoVigente;
+//import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+//import excepciones.ExceptionUsuarioNoEncontrado;
+//import excepciones.ExceptionValidezNegativa;
+//import excepciones.OfertaLaboralNoEncontrada;
+//import excepciones.TipoUsuarioNoValido;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
-import logica.clases.Keyword;
-import logica.clases.OfertaLaboral;
+//import logica.clases.Keyword;
+//import logica.clases.OfertaLaboral;
 import logica.controladores.CtrlCargaDeDatos;
 import logica.datatypes.DTCompraPaquetes;
 import logica.datatypes.DTHora;
@@ -43,10 +43,10 @@ import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.KeywordHandler;
-import logica.manejadores.OfertaLaboralHandler;
-import logica.manejadores.PaqueteHandler;
-import logica.manejadores.TipoOfertaHandler;
-import logica.manejadores.UsuarioHandler;
+//import logica.manejadores.OfertaLaboralHandler;
+//import logica.manejadores.PaqueteHandler;
+//import logica.manejadores.TipoOfertaHandler;
+//import logica.manejadores.UsuarioHandler;
 
 
 public class TestGeneral5 {
