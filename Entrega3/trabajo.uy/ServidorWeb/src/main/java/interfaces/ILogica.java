@@ -140,7 +140,7 @@ public interface ILogica {
 
 	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception;
 
-	void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception;
+	void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception, ExceptionFechaInvalida_Exception;
 
 
     boolean nicknameDisponible(String nickname);

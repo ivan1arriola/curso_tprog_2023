@@ -102,8 +102,8 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception {
-		servidor.altaPostulacion(nombreOferta, nickname,curriculumAbreviado, motivacion, url, fecha.toString(), video   );
+	public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception, ExceptionFechaInvalida_Exception {
+		servidor.altaPostulacion(nombreOferta, nickname,curriculumAbreviado, motivacion, url, fecha.toString(), video);
 	}
 
 	@Override
