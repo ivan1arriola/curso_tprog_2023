@@ -6,9 +6,10 @@ import excepciones.ErrorAgregarUsuario;
 //import excepciones.ExcepcionKeywordVacia;
 //import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCiudadInvalida;
-//import excepciones.ExceptionCompraPaqueteConValorNegativo;
+import excepciones.ExceptionCompraPaqueteConValorNegativo;
 //import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 //import excepciones.ExceptionDuracionNegativa;
@@ -32,6 +33,7 @@ import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
 //import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
+import excepciones.ExcepcionKeywordVacia;
 import logica.Fabrica;
 import logica.Utils;
 import logica.datatypes.DTHorario;
@@ -175,7 +177,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             byte[] imagen = null;
             try {
                 imagen = utils.descargarImagen(usuariosCSV[7]);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 // Manejar la excepción adecuadamente
                 e.printStackTrace();
             }
@@ -225,8 +227,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 if (!KeywordHandler.getInstance().existe(keywordData[1])) {
                     ctrlOferta.altaKeyword(keywordData[1]);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (ExcepcionKeywordVacia exc) {
+                exc.printStackTrace();
             }
         }
     }
@@ -350,9 +352,24 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
             try {
                 ctrlOferta.compraPaquetes(nickname_e, paq, fecha, Integer.parseInt(compraPaqueteData[4]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (ExceptionCompraPaqueteConValorNegativo exc) {
+                exc.printStackTrace();
+            } catch (NumberFormatException exc) {
+				// TODO Auto-generated catch block
+				exc.printStackTrace();
+			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionValidezNegativa exc) {
+				// TODO Auto-generated catch block
+				exc.printStackTrace();
+			} catch (ExceptionUsuarioNoEncontrado exc) {
+				// TODO Auto-generated catch block
+				exc.printStackTrace();
+			} catch (NoExistePaquete exc) {
+				// TODO Auto-generated catch block
+				exc.printStackTrace();
+			}
         }
     }
 

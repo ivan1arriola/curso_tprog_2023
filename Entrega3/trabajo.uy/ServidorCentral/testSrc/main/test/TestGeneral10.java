@@ -511,7 +511,7 @@ public class TestGeneral10 {
 		Set<OfertaLaboral> OL = new HashSet<>();
 		OL.add(OfertaLabolra);
 		empresaNueva.setofertasLaborales(OL);
-		empresaNueva.ObtenerPostulacionesOfertaLaboral("Panqueqes");
+		empresaNueva.obtenerPostulacionesOfertaLaboral("Panqueqes");
 		// ============================================
 		try {
 			OfertaLabolra.setPaquete(NuevoPaq);

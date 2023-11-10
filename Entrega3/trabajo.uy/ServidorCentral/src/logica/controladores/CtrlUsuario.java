@@ -356,7 +356,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         try {
             Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
             return user.obtenerDatosPostulacion(postulante_nick, ofer);
-        } catch (Exception e){
+        } catch (ExceptionUsuarioNoEncontrado exc){
             throw new TipoUsuarioNoValido("Se esperaba un Postulante y llego una Empresa");
         }
 
@@ -634,7 +634,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nickname_empresa, String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
-        return empresa.ObtenerPostulacionesOfertaLaboral(nombre_oferta);
+        return empresa.obtenerPostulacionesOfertaLaboral(nombre_oferta);
     }
 
 

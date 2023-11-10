@@ -5,6 +5,7 @@ import excepciones.ExceptionUsuarioNoEncontrado;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.PersistenceException;
 import logica.clases.Usuario;
 
 //import java.util.HashMap;
@@ -35,7 +36,7 @@ public class UsuarioHandler {
             query.setParameter("nombre", nombre);
             Long count = query.getSingleResult();
             return count > 0;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return false;
         }
@@ -47,7 +48,7 @@ public class UsuarioHandler {
             query.setParameter("mail", mail);
             Long count = query.getSingleResult();
             return count > 0;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return false;
         }
@@ -59,7 +60,7 @@ public class UsuarioHandler {
             database.getTransaction().begin();
             database.persist(usuario);
             database.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (database.getTransaction() != null && database.getTransaction().isActive()) {
                 database.getTransaction().rollback();
             }
@@ -84,7 +85,7 @@ public class UsuarioHandler {
             TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.correoElectronico = :mail", Usuario.class);
             query.setParameter("mail", mail);
             return query.getSingleResult();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             throw new ExceptionUsuarioNoEncontrado("Usuario no encontrado para el email: " + mail);
         }
@@ -101,7 +102,7 @@ public class UsuarioHandler {
             }
 
             return nickUsuariosMap;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return null; // Devuelve null en caso de error
         }
@@ -118,7 +119,7 @@ public class UsuarioHandler {
             }
 
             return correoUsuariosMap;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return null; // Devuelve null en caso de error
         }
