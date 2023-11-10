@@ -4,7 +4,7 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import logica.servidor.adapter.LocalDateAdapter;
-import logica.servidor.adapter.SetDTCantTOAdapter;
+//import logica.servidor.adapter.SetDTCantTOAdapter;
 
 import java.time.LocalDate;
 @XmlAccessorType(XmlAccessType.FIELD)
