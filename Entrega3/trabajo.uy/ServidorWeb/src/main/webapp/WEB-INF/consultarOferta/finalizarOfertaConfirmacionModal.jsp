@@ -5,10 +5,7 @@
   boolean hayOrdenDefinido = (boolean) request.getAttribute("hayOrdenDefinido");
 %>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#finalizarOfertaModal">
-  Finalizar Oferta Laboral
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="finalizarOfertaModal" tabindex="-1" aria-labelledby="finalizarOfertaModalLabel" aria-hidden="true">
@@ -65,6 +62,16 @@
           <input type="hidden" value="<%=nombreOferta%>" name="oferta">
           <button type="submit" class="btn btn-danger">Finalizar Oferta Laboral</button>
         </form>
+
+        <%if(hayOrdenDefinido){%>
+        <form action="<%=request.getContextPath()%>/descartarorden" method="POST">
+          <input type="hidden" value="<%=nombreOferta%>" name="oferta">
+          <button type="submit" class="btn btn-danger">Descartar Orden de Postulantes</button>
+        </form>
+
+        <% } %>
+
+
       </div>
     </div>
   </div>

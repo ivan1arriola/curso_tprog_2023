@@ -19,9 +19,7 @@
   <ul class="list-group list-group-flush">
   <li id="estadoOferta" class="list-group-item">
     <h4>
-      <span class="badge rounded-pill <%=ofertaLaboral.getEstado().getCssClass()%>">
-        <%=ofertaLaboral.getEstado()%>
-      </span>
+
     </h4>
 
   </li>
@@ -38,18 +36,6 @@
 
       <% } %>
 
-  <%
-    if (!vigente && !estaFinalizada) {
-  %>
-  <li class="list-group-item"  id="finalizar-oferta">
-    <form action="<%=request.getContextPath()%>/finalizaroferta" method="POST">
-      <input type="hidden" value="<%=ofertaLaboral.getNombre()%>" name="oferta">
-      <button type="submit" class="btn btn-danger">Finalizar Oferta Laboral</button>
-    </form>
-  </li>
-  <%
-    }
-  %>
 
       <%
         if (TipoUsuario.Postulante == tipoUsuario ) {
@@ -87,19 +73,10 @@
   <%
     if (tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral) {
   %>
-  <li class="list-group-item" id="postulantes">
-    <jsp:include page="./postulantes.jsp" />
-  </li>
   <li class="list-group-item" id="paquete">
     <jsp:include page="./paquetes.jsp" />
   </li>
   <%
-  } else if (tipoUsuario == TipoUsuario.Postulante && !estaFinalizada && vigente) {
-  %>
-  <li class="list-group-item" id="postular">
-    <jsp:include page="./postular.jsp" />
-  </li>
-  <%
-    }
+  }
   %>
 </div>

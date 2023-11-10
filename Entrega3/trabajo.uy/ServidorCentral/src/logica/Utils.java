@@ -322,6 +322,8 @@ public class Utils {
                 return EstadoOL.Ingresada;
             case "Rechazada":
                 return EstadoOL.Rechazada;
+            case "Finalizada":
+                return EstadoOL.Finalizada;
             default:
                 return null; // Otra acción si el nombre del estado no coincide con ninguno
         }

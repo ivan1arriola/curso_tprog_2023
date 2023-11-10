@@ -2,19 +2,29 @@
 
 <%@ page import="java.util.Set" %>    
 <%@ page import="javabeans.OfertaLaboralBean" %>
-<%@ page import="enumeration.TipoUsuario" %>
-<%@ page import="javabeans.UsuarioBean" %>
 
 <%
     // Obtener el objeto de usuario desde los atributos de la solicitud
     OfertaLaboralBean ofertaLaboral = (OfertaLaboralBean) request.getAttribute("ofertaLaboral");
 	Set<String> keywords = ofertaLaboral.getKeywords();
 	String contextPath = request.getContextPath();
+    boolean estaFinalizada = (boolean) request.getAttribute("estaFinalizada");
 %>
 
     <div class="row align-items-center mt-2">
         <table class="table">
             <tbody>
+
+                <tr>
+                    <th>
+                        Estado de Oferta:
+                    </th>
+                    <td>
+                        <span class="badge rounded-pill <%=ofertaLaboral.getEstado().getCssClass()%>">
+                            <%=ofertaLaboral.getEstado()%>
+                          </span>
+                    </td>
+                </tr>
                 <tr>
                     <th>Nombre:</th>
                     <td><%= ofertaLaboral.getNombre() %></td>

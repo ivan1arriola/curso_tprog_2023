@@ -5,13 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import enumeration.Departamento;
-import enumeration.EstadoOfertaLaboral;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
-import logica.datatypes.DTHorario;
 import logica.servidor.*;
 
 
