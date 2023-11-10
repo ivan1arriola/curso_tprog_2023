@@ -29,33 +29,42 @@ public class Utils {
     private static final String PREFIX_ORIGINAL = "http://tprogdatostarea2.infinityfreeapp.com";
     private static final String PREFIX_NUEVO = "https://raw.githubusercontent.com/ivan1arriola/tprogImagenes/main";
     
-    private static final String proxyHost ="proxy.fing.edu.uy";
-    private static final int proxyPort = 3128; //TODO: no debe quedar hardcodeado en la version final
+//    private static final String proxyHost ="proxy.fing.edu.uy";
+//    private static final int proxyPort = 3128; //TODO: no debe quedar hardcodeado en la version final
+//    private static final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+// 
+    private static final Proxy proxy;
     
-    private static final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+    static {
+        String proxyHost = System.getProperty("http.proxyHost");
+        String proxyPortString = System.getProperty("http.proxyPort");
 
-
+        if (proxyHost != null && proxyPortString != null) {
+            int proxyPort = Integer.parseInt(proxyPortString);
+            proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+        } else {
+            proxy = null;  // No se establece el proxy si no se encuentran las propiedades
+        }
+    }
+    
     Map<String, String[]> usuarioCSV = new HashMap<>();
     Map<String, String[]> empresaCSV = new HashMap<>();
     Map<String, String[]> postulanteCSV = new HashMap<>();
-
     Map<String, String[]> seguidoresCSV = new HashMap<>();
-
-
     Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
     Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
-
     Map<String, String[]> resultadosPostulacionCSV = new HashMap<>();
-
     Map<String, String[]> postulantesOfertaLaboralFavoritas = new HashMap<>();
-
     Map<String, String[]> keywordsCSV = new HashMap<>();
     Map<String, String[]> ofertasLaboralesCSV = new HashMap<>();
     Map<String, String[]> ofertasLaboralesKeyCSV = new HashMap<>();
     Map<String, String[]> paquetesCSV = new HashMap<>();
-
     Map<String, String[]> paquetesCompraCSV = new HashMap<>();
     Map<String, String[]> postulacionesCSV = new HashMap<>();
+    
+  
+    
+   
 
     public Map<String, String[]> getSeguidoresCSV() {
         return seguidoresCSV;
@@ -80,12 +89,6 @@ public class Utils {
     public void setPostulantesOfertaLaboralFavoritas(Map<String, String[]> postulantesOfertaLaboralFavoritas) {
         this.postulantesOfertaLaboralFavoritas = postulantesOfertaLaboralFavoritas;
     }
-
-
-
-
-
-
 
 
     public Map<String, String[]> getUsuarioCSV() {
@@ -186,25 +189,46 @@ public class Utils {
     public static String getDirectUrl(String shortUrl) {
     	 try {
              
+//             // Crear la URL con el proxy
+//             URL url = new URL(shortUrl);
+//             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(proxy);
+//             
+//             // Configurar la solicitud
+//             httpURLConnection.setInstanceFollowRedirects(false); // Deshabilitar redirecciones automáticas
+//             httpURLConnection.setRequestMethod("GET");
+// 
+//             // Realizar la solicitud
+//             int responseCode = httpURLConnection.getResponseCode();
+//
+//             // Verificar si hay redirección
+//             if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM) {
+//                 String finalUrl = httpURLConnection.getHeaderField("Location");
+//                 return finalUrl;
+//             } else {
+//                 return shortUrl;
+//             }
+    		 
+    		 URL url = new URL(shortUrl);
+             HttpURLConnection httpURLConnection;
+             
+             if (proxy != null) {
+                 httpURLConnection = (HttpURLConnection) url.openConnection(proxy);
+             } else {
+                 httpURLConnection = (HttpURLConnection) url.openConnection();
+             }
 
-             // Crear la URL con el proxy
-             URL url = new URL(shortUrl);
-             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(proxy);
-
-             // Configurar la solicitud
-             httpURLConnection.setInstanceFollowRedirects(false); // Deshabilitar redirecciones automáticas
+             httpURLConnection.setInstanceFollowRedirects(false);
              httpURLConnection.setRequestMethod("GET");
 
-             // Realizar la solicitud
              int responseCode = httpURLConnection.getResponseCode();
 
-             // Verificar si hay redirección
              if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM) {
                  String finalUrl = httpURLConnection.getHeaderField("Location");
                  return finalUrl;
              } else {
                  return shortUrl;
              }
+               
          } catch (IOException e) {
              e.printStackTrace();
              // Manejar la excepción de manera más específica si es necesario
@@ -240,7 +264,14 @@ public class Utils {
 
         URL url = new URL(link);
         byte[] imagen;
-        URLConnection connection = url.openConnection(proxy);
+        
+        URLConnection connection;
+        if (proxy==null) {
+        	connection = url.openConnection();
+        } else {
+        	connection = url.openConnection(proxy);
+        }
+        
         connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
         try (InputStream in = connection.getInputStream();
