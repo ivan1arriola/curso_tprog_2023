@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Map;
+//import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
 import excepciones.ErrorAgregarUsuario;
-import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
@@ -25,7 +25,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
-import logica.clases.Keyword;
+//import logica.clases.Keyword;
 import logica.controladores.CtrlCargaDeDatos;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;

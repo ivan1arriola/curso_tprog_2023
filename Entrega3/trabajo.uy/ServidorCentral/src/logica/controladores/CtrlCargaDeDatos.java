@@ -1,6 +1,37 @@
 package logica.controladores;
 
-import excepciones.*;
+//import excepciones.AsignarOrdenAOfertaFinalizada;
+//import excepciones.AsignarOrdenAOfertaNoVencida;
+import excepciones.ErrorAgregarUsuario;
+//import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExcepcionTipoOfertaNoExistente;
+import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+//import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+//import excepciones.ExceptionCiudadInvalida;
+//import excepciones.ExceptionCompraPaqueteConValorNegativo;
+//import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+//import excepciones.ExceptionDuracionNegativa;
+import excepciones.ExceptionEmpresaInvalida;
+//import excepciones.ExceptionExpoNegativa;
+import excepciones.ExceptionFechaInvalida;
+//import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+//import excepciones.ExceptionUsuarioCorreoRepetido;
+//import excepciones.ExceptionUsuarioNickRepetido;
+//import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionUsuarioSeSigueASiMismo;
+import excepciones.ExceptionValidezNegativa;
+//import excepciones.FaltaCvException;
+//import excepciones.FaltaMotivaException;
+//import excepciones.FinalizarOfertaNoVencida;
+import excepciones.NoExistePaquete;
+//import excepciones.NoHayOrdenDefinidoDePostulantes;
+import excepciones.OfertaLaboralNoEncontrada;
+//import excepciones.PostulaExistenteException;
+//import excepciones.TipoUsuarioNoValido;
+//import excepciones.UsuarioNoExisteException;
 import logica.Fabrica;
 import logica.Utils;
 import logica.datatypes.DTHorario;
@@ -15,7 +46,12 @@ import logica.manejadores.TipoOfertaHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+//import java.util.ArrayList;
+//import java.util.Collections;
+//import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+//import java.util.Set;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 

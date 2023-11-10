@@ -7,13 +7,53 @@ import jakarta.persistence.Persistence;
 import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.manejadores.*;
+import logica.manejadores.KeywordHandler;
+import logica.manejadores.OfertaLaboralHandler;
+import logica.manejadores.PaqueteHandler;
+import logica.manejadores.TipoOfertaHandler;
+import logica.manejadores.UsuarioHandler;
+//import logica.manejadores.UsuarioHandler;
 import logica.servidor.Servidor;
 
-import javax.swing.*;
-import java.awt.*;
+//import javax.swing.JButton;
+import javax.swing.JFrame;
+//import javax.swing.JPanel;
+//import javax.swing.JDesktopPane;
+//import javax.swing.JInternalFrame;
+//import javax.swing.JOptionPane;
+//import javax.swing.JLabel;
+//import javax.swing.JDialog;
+//import javax.swing.JTextField;
+//import javax.swing.JComboBox;
+//import javax.swing.JTextArea;
+//import javax.swing.SwingConstants;
+//import javax.swing.JScrollPane;
+//import javax.swing.ScrollPaneConstants;
+//import javax.swing.JPasswordField;
+//import javax.swing.JTable;
+//import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+//import javax.swing.JSpinner;
+//import javax.swing.JSplitPane;
+//import javax.swing.JRadioButton;
+//import javax.swing.DefaultListModel;
+//import javax.swing.ListSelectionModel;
+//import javax.swing.JComponent;
+//import javax.swing.SpinnerNumberModel;
+//import javax.swing.ButtonGroup;
+
+//import java.awt.GridBagConstraints;
+//import java.awt.GridBagLayout;
+//import java.awt.GridLayout;
+//import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//import java.awt.BorderLayout;
+import java.awt.EventQueue;
+//import java.awt.Font;
+
 
 public class Principal {
     private JFrame frmGestionDeUsuarios;

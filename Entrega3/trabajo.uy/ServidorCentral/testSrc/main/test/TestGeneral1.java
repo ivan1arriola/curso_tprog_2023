@@ -2,7 +2,7 @@ package main.test;
 
 
 
-import java.util.Map;
+//import java.util.Map;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
-import logica.clases.Keyword;
+//import logica.clases.Keyword;
 import logica.controladores.CtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;

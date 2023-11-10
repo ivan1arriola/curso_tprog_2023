@@ -1,6 +1,15 @@
 package presentacion;
 
-import excepciones.*;
+
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.NoExistePaquete;
+
 import logica.Fabrica;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;

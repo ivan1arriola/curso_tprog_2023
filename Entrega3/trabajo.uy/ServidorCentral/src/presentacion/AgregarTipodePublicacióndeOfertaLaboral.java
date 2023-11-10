@@ -10,9 +10,9 @@ import logica.interfaces.ICtrlUsuario;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
+//import javax.swing.JPanel;
+//import javax.swing.JDesktopPane;
+//import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
@@ -26,7 +26,12 @@ import javax.swing.JComboBox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 @SuppressWarnings("serial")
 public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {

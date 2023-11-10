@@ -3,12 +3,12 @@ package main.test;
 
 
 import java.time.LocalDate;
-import java.util.Map;
+//import java.util.Map;
 
 import org.junit.Test;
 
 import excepciones.ErrorAgregarUsuario;
-import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionUsuarioCorreoRepetido;
 import excepciones.ExceptionUsuarioNickRepetido;
@@ -18,15 +18,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
-import logica.clases.Keyword;
+//import logica.clases.Keyword;
 import logica.controladores.CtrlCargaDeDatos;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.KeywordHandler;
-import logica.manejadores.OfertaLaboralHandler;
-import logica.manejadores.PaqueteHandler;
-import logica.manejadores.TipoOfertaHandler;
+//import logica.manejadores.OfertaLaboralHandler;
+//import logica.manejadores.PaqueteHandler;
+//import logica.manejadores.TipoOfertaHandler;
 import logica.manejadores.UsuarioHandler;
 
 
