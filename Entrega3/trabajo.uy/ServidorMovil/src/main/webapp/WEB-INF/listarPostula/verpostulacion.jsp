@@ -52,17 +52,26 @@
 				    <p class="card-text">Empresa: <%= offer.getNicknameEmpresaPublicadora()  %></p>
 				  </div>
 				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item"> <strong> Fecha de Postulación: </strong><%=dtpos.getFecha() %> </li>
-				    <li class="list-group-item"><strong> Url Documentos extras: </strong> <%= dtpos.getURLDocExtras() %></li>
-				    <li class="list-group-item"><strong>CV:</strong> <%=dtpos.getCVitae() %></li>
-				    <li class="list-group-item"><strong>Motivación:</strong> <%=dtpos.getMotivacion() %></li>
-				    <li class="list-group-item"><strong>Url Video:</strong> <a href="<%= dtpos.getUrlVideo()%>" class="card-link btn btn-primary btn-sm">
-                    <%=dtpos.getUrlVideo() %></a></li>
+				    <li class="list-group-item" style="text-align: left;"> <strong> Fecha de Postulación: </strong><%=dtpos.getFecha() %> </li>
+				    <li class="list-group-item" style="text-align: left;"><strong> Url Documentos extras: </strong> <%= dtpos.getURLDocExtras() %></li>
+				    <li class="list-group-item" style="text-align: left;"><strong>CV:</strong> <%=dtpos.getCVitae() %></li>
+				    <li class="list-group-item" style="text-align: left;"><strong>Motivación:</strong> <%=dtpos.getMotivacion() %></li>
+                    <li class="list-group-item" style="text-align: left;">
+                    <strong>Url Video:</strong>
+	                    <% if (dtpos.getUrlVideo() == null || dtpos.getUrlVideo()=="") { %>
+	                    	No Disponible
+	                    <% } else {%>
+	                      <a href="<%= dtpos.getUrlVideo() %>" class="card-link btn btn-primary btn-sm" style="background-color: green; border-color: green;">
+	                        <%=dtpos.getUrlVideo()%>
+	                      </a>
+	                    <% } %>
+	                     
+                  </li>
+                    
                   </ul>
 				  <div class="card-body">
-				    <a href="<%=context%>/consultarofertalaboral?oferta=<%=offer.getNombre()%>" class="card-link btn btn-primary btn-sm">
-                    Más Detalles de Oferta
-                    </a>
+					    <a href="<%=context%>/consultarofertalaboral?oferta=<%=offer.getNombre()%>" class="card-link btn btn-primary btn-sm">
+	                    Más Detalles de Oferta </a>
 				   </div>
 				</div>
 			</div>	
@@ -73,7 +82,6 @@
           </div>
         </div>
         
-       </div>
 
 
     </main>
