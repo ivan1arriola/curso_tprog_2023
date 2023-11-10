@@ -1,16 +1,52 @@
 package logica.clases;
 
-import excepciones.*;
-import jakarta.persistence.*;
+import excepciones.AsignarOrdenAOfertaFinalizada;
+import excepciones.AsignarOrdenAOfertaNoVencida;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCiudadInvalida;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionFechaInvalida;
+import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.NoHayOrdenDefinidoDePostulantes;
 
-import logica.Utils;
-import logica.datatypes.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+
+
+import logica.datatypes.DTCantTO;
+import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+
+import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+import logica.datatypes.DTOfertaExtendidoSinPConK;
+
+import logica.datatypes.DTPostulacion;
+
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Map;
 
 
 @Entity
