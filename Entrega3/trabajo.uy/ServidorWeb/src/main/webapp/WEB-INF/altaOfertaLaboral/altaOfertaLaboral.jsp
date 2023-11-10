@@ -40,7 +40,7 @@
         <h2 class="mb-4">Publicar Oferta Laboral</h2>
 
         
-		<form class="form-signup needs-validation" novalidate  action="AltaOfertaLaboral" method="POST" enctype="multipart/form-data">
+		<form class="form-signin needs-validation" novalidate  action="AltaOfertaLaboral" method="POST" enctype="multipart/form-data">
 
           <div class="col-12 row mb-2">
             <div class="col-4">

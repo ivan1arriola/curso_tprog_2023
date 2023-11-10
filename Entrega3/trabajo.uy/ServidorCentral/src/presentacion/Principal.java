@@ -115,7 +115,7 @@ public class Principal {
 
         // ConsultaDeOfertaLaboral
         consultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios, ICU);
-        consultaDeOfertaLaboralInternalFrame.setSize(670, 720);
+        consultaDeOfertaLaboralInternalFrame.setSize(620, 660);
         consultaDeOfertaLaboralInternalFrame.setLocation(89, 77);
         consultaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(consultaDeOfertaLaboralInternalFrame);
@@ -141,7 +141,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(altaDeKeywordsInternalFrame);
 
         postulacionAOfertaLaboralInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
-        postulacionAOfertaLaboralInternalFrame.setSize(480, 290);
+        postulacionAOfertaLaboralInternalFrame.setSize(510, 290);
         postulacionAOfertaLaboralInternalFrame.setLocation(89, 77);
         postulacionAOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(postulacionAOfertaLaboralInternalFrame);
@@ -166,7 +166,7 @@ public class Principal {
         frmGestionDeUsuarios.getContentPane().add(altaDeOfertaLaboralInternalFrame);
 
         aceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
-        aceptarOfertaInternalFrame.setSize(400, 170);
+        aceptarOfertaInternalFrame.setSize(400, 260);
         aceptarOfertaInternalFrame.setLocation(89, 77);
         aceptarOfertaInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(aceptarOfertaInternalFrame);

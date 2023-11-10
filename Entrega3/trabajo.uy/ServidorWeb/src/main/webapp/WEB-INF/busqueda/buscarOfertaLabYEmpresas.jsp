@@ -53,42 +53,45 @@
 				                <label for="orden-ofertas" style="margin-right: 10px; font-size: 14px;">Ordenar por:</label>
 				                <!-- Menú de selección de orden -->
 							    <form id="orden-ofertas-form" action="Home" method="POST">
-							        <select id="orden-ofertas" name="ordenEmp" class="form-select" onchange="submitForm()">
-							            <option value="defectoOfertaLab" ${"defectoEmp".equals(request.getAttribute("defectoOfertaLab")) ? 'selected' : ''}>Por defecto</option>
-							            <option value="alfabeticoOfertaLab" ${"alfabeticoEmp".equals(request.getAttribute("alfabeticoOfertaLab")) ? 'selected' : ''}>Alfabéticamente (A-Z a-z)</option>
-							        </select>
-							    </form>
-							
-							    <script>
-							        window.onload = function () {
-							            loadSelection();
-							        };
-							
-							        document.getElementById('orden-ofertas').addEventListener('change', function() {
-							            if (isSelectionChanged()) {
-							                submitForm();
-							            }
-							        });
-							
-							        function loadSelection() {
-							            var ordenGuardado = localStorage.getItem('ordenSeleccionado');
-							            if (ordenGuardado) {
-							                document.getElementById('orden-ofertas').value = ordenGuardado;
-							            }
-							        }
-							
-							        function isSelectionChanged() {
-							            var ordenSeleccionado = document.getElementById('orden-ofertas').value;
-							            var ordenGuardado = localStorage.getItem('ordenSeleccionado');
-							            return ordenSeleccionado !== ordenGuardado;
-							        }
-							
-							        function submitForm() {
-							            var ordenSeleccionado = document.getElementById('orden-ofertas').value;
-							            localStorage.setItem('ordenSeleccionado', ordenSeleccionado);
-							            document.getElementById('orden-ofertas-form').submit();
-							        }
-							    </script>
+								    <select id="orden-ofertas" name="ordenOfertaLab" class="form-select" onchange="submitForm()">
+								        <option value="defectoOfertaLab">Por defecto</option>
+								        <option value="alfabeticoOfertaLab">Alfabéticamente (A-Z a-z)</option>
+								    </select>
+								</form>
+							 
+								<script>
+								    document.getElementById('orden-ofertas').addEventListener('change', function () {
+								        if (isSelectionChanged1()) {
+								            submitForm1();
+								        }
+								    });
+								
+								    function loadSelection1() {
+								        var ordenGuardado1 = localStorage.getItem('ordenSeleccionado1');
+								        if (!ordenGuardado1) {
+								            ordenGuardado1 = "defectoOfertaLab";
+								            localStorage.setItem('ordenSeleccionado1', ordenGuardado1);
+								        }
+								        document.getElementById('orden-ofertas').value = ordenGuardado1;
+								    }
+								
+								    function isSelectionChanged1() {
+								        var ordenSeleccionado1 = document.getElementById('orden-ofertas').value;
+								        var ordenGuardado1 = localStorage.getItem('ordenSeleccionado1');
+								        return ordenSeleccionado1 !== ordenGuardado1;
+								    }
+								
+								    function submitForm1() {
+								        var ordenSeleccionado1 = document.getElementById('orden-ofertas').value;
+								        localStorage.setItem('ordenSeleccionado1', ordenSeleccionado1);
+								        document.getElementById('orden-ofertas-form').submit();
+								    }
+								
+								    // Llama a loadSelection después de que la página se ha cargado completamente
+								    window.addEventListener('load', function () {
+								        loadSelection1();
+								    });
+								</script>
 
 				            </div>
 				        </div>

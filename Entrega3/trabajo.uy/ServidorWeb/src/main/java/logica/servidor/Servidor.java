@@ -257,7 +257,6 @@ public interface Servidor {
      * @param arg0
      * @param arg1
      * @param arg10
-     * @param arg11
      * @param arg2
      * @param arg3
      * @param arg4
@@ -298,9 +297,7 @@ public interface Servidor {
         @WebParam(name = "arg9", partName = "arg9")
         String arg9,
         @WebParam(name = "arg10", partName = "arg10")
-        byte[] arg10,
-        @WebParam(name = "arg11", partName = "arg11")
-        String arg11)
+        String arg10)
         throws ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
     ;
 
@@ -1176,6 +1173,58 @@ public interface Servidor {
         @WebParam(name = "nombre_oferta", partName = "nombre_oferta")
         String nombreOferta)
         throws FinalizarOfertaNoVencida_Exception, OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg10
+     * @param arg11
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @param arg8
+     * @param arg9
+     * @throws ExceptionRemuneracionOfertaLaboralNegativa_Exception
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws NoExistePaquete_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/altaOfertaLaboralConImagenRequest", output = "http://servidor.logica/Servidor/altaOfertaLaboralConImagenResponse", fault = {
+        @FaultAction(className = ExceptionRemuneracionOfertaLaboralNegativa_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionRemuneracionOfertaLaboralNegativa"),
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionUsuarioNoEncontrado"),
+        @FaultAction(className = NoExistePaquete_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/NoExistePaquete")
+    })
+    public void altaOfertaLaboralConImagen(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        float arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        String arg8,
+        @WebParam(name = "arg9", partName = "arg9")
+        String arg9,
+        @WebParam(name = "arg10", partName = "arg10")
+        byte[] arg10,
+        @WebParam(name = "arg11", partName = "arg11")
+        String arg11)
+        throws ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
     ;
 
     /**

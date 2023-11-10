@@ -719,7 +719,7 @@ public class OfertaLaboral {
     }
 
     public boolean estaVencida() {
-        return tOferta.estaVencida();
+    	return LocalDate.now().isAfter(fechaAlta.plusDays(tOferta.getDuracion()));
     }
 
     // ===============================================================

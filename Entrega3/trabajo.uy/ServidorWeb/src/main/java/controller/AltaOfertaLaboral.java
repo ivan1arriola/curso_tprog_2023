@@ -2,6 +2,7 @@ package controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import java.util.Set;
 import java.util.List;
 
 @WebServlet("/altaofertalaboral")
+@MultipartConfig
 public class AltaOfertaLaboral extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ILogica logica;
@@ -97,7 +99,8 @@ public class AltaOfertaLaboral extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
-    	
+        RequestDispatcher dispatcher;
+        
         String tipoOferta = request.getParameter("tipoOferta");
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
@@ -124,16 +127,22 @@ public class AltaOfertaLaboral extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
-
+        
             try {
-				servidor.altaOfertaLaboral( nickname, tipoOferta, nombre, descripcion, horarioInicio, horarioFinal,
-				    remuneracion, ciudad, departamentoStr, keywordsString, null, formaPago);
+            	if(imagenBytes != null) {
+            		servidor.altaOfertaLaboralConImagen( nickname, tipoOferta, nombre, descripcion, horarioInicio, horarioFinal,
+        				    remuneracion, ciudad, departamentoStr, keywordsString, imagenBytes, formaPago);
+            	} else {
+            		servidor.altaOfertaLaboral( nickname, tipoOferta, nombre, descripcion, horarioInicio, horarioFinal,
+        				    remuneracion, ciudad, departamentoStr, keywordsString, formaPago);
+            	}
+				
 				response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
 			} catch (ExceptionRemuneracionOfertaLaboralNegativa_Exception | ExceptionUsuarioNoEncontrado_Exception
 					| NoExistePaquete_Exception e) {
 				// TODO Auto-generated catch block
                 request.setAttribute("mensajeError", "ERROR");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+                dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
                 dispatcher.forward(request, response);
 			}
             
