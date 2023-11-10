@@ -31,6 +31,7 @@ public class ObjectFactory {
     private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCompraPaqueteConValorNegativo");
     private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionEmpresaInvalida");
     private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
+    private final static QName _ExceptionRemuneracionOfertaLaboralNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionRemuneracionOfertaLaboralNegativa");
     private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
     private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
     private final static QName _ExceptionUsuarioNickYCorreoRepetidos_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickYCorreoRepetidos");
@@ -118,6 +119,16 @@ public class ObjectFactory {
      */
     public ExceptionFechaInvalida createExceptionFechaInvalida() {
         return new ExceptionFechaInvalida();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionRemuneracionOfertaLaboralNegativa }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionRemuneracionOfertaLaboralNegativa }
+     */
+    public ExceptionRemuneracionOfertaLaboralNegativa createExceptionRemuneracionOfertaLaboralNegativa() {
+        return new ExceptionRemuneracionOfertaLaboralNegativa();
     }
 
     /**
@@ -469,6 +480,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionFechaInvalida")
     public JAXBElement<ExceptionFechaInvalida> createExceptionFechaInvalida(ExceptionFechaInvalida value) {
         return new JAXBElement<>(_ExceptionFechaInvalida_QNAME, ExceptionFechaInvalida.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionRemuneracionOfertaLaboralNegativa }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionRemuneracionOfertaLaboralNegativa }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionRemuneracionOfertaLaboralNegativa")
+    public JAXBElement<ExceptionRemuneracionOfertaLaboralNegativa> createExceptionRemuneracionOfertaLaboralNegativa(ExceptionRemuneracionOfertaLaboralNegativa value) {
+        return new JAXBElement<>(_ExceptionRemuneracionOfertaLaboralNegativa_QNAME, ExceptionRemuneracionOfertaLaboralNegativa.class, null, value);
     }
 
     /**

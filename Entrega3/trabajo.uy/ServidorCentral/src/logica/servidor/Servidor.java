@@ -21,6 +21,7 @@ import logica.servidor.bean.WrapperLista;
 //import logica.datatypes.DTCantTO;
 //import logica.datatypes.DTCompraPaquetes;
 import logica.datatypes.DTEmpresa;
+import logica.datatypes.DTHorario;
 //import logica.datatypes.DTEmpresaConCompras;
 //import logica.datatypes.DTHora;
 //import logica.datatypes.DTHorario;
@@ -33,16 +34,21 @@ import logica.datatypes.DTOfertaExtendidoSinPConK;
 import logica.datatypes.DTPaquete;
 import logica.datatypes.DTPostulacion;
 import logica.datatypes.DTPostulante;
+import logica.datatypes.DTHora;
 //import logica.datatypes.DTPostulanteExtendido;
 import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 //import logica.datatypes.DTUsuarioSinInfoSocial;
-
+import logica.enumerados.DepUY;
+import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-//import java.util.Set;
+import java.util.Set;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -380,6 +386,35 @@ public class Servidor {
     ) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
         ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
+    
+    @WebMethod
+    public void altaOfertaLaboral(String nickname, String tipoOferta, String nombre, String descripcion,
+			String horarioInicio, String horarioFinal, float remuneracion, String ciudad, String departamento,
+			String keywordsString, byte[] imagen, String formaPago) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
+        // Obtener horas y minutos
+
+        // Dividir el String en un array usando ":" como separador
+        String[] keywordsArray = keywordsString.split(":");
+
+        // Crear un HashSet<String> a partir del array
+        Set<String> keywordsSet = new HashSet<String>(Arrays.asList(keywordsArray));
+    	
+        LocalTime localTime = LocalTime.parse(horarioInicio);
+        int horasInicio = localTime.getHour();
+        int minutosInicio = localTime.getMinute();
+        
+        localTime = LocalTime.parse(horarioFinal);
+        
+        int horasFinal = localTime.getHour();
+        int minutosFinal = localTime.getMinute();
+        
+        DTHora horaIni = new DTHora(horasInicio,minutosInicio);
+    	DTHora horaFin = new DTHora(horasFinal,minutosFinal);
+        DTHorario horario = new DTHorario(horaIni,horaFin);
+        
+    	ctrlOferta.altaOfertaLaboral(nickname, tipoOferta, nombre, descripcion, horario, remuneracion, ciudad, DepUY.valueOf(departamento), LocalDate.now(),  keywordsSet, EstadoOL.Ingresada, imagen, formaPago);
+    }
+
 
 
 

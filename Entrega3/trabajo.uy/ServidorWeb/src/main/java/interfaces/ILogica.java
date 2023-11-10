@@ -11,6 +11,7 @@ import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
+import logica.datatypes.DTHorario;
 import logica.servidor.*;
 
 
@@ -38,12 +39,6 @@ public interface ILogica {
 	Set<UsuarioBean> listarUsuarios();
 
 	Set<String> listarNicknamesUsuario();
-
-
-	void altaOfertaLaboral(String nickname_e, String tipo, String nombre,
-						   String descripcion, String horario, float remun, String ciu,
-						   Departamento dep, LocalDate fechaA, Set<String> keys,
-						   EstadoOfertaLaboral estado, String img, String paquete);
 
 	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCompraPaqueteConValorNegativo_Exception, ExceptionUsuarioNoEncontrado_Exception, ExceptionValidezNegativa_Exception, NoExistePaquete_Exception;
 

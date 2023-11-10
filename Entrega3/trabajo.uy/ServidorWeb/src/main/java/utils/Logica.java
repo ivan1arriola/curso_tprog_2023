@@ -14,6 +14,7 @@ import javabeans.PaqueteBean;
 import javabeans.PostulacionBean;
 import javabeans.UsuarioBean;
 import javabeans.UsuarioSinInfoSocialBean;
+import java.util.HashSet;
 
 import logica.servidor.*;
 
@@ -272,11 +273,6 @@ public class Logica implements ILogica {
 	public Set<String> listarNicknamesUsuario() {
 		List<String> nicknames = (List<String>) servidor.listarNicknamesUsuarios().getListaString();
 		return new TreeSet<>(nicknames);
-	}
-
-	@Override
-	public void altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, String horario, float remun, String ciu, Departamento dep, LocalDate fechaA, Set<String> keys, EstadoOfertaLaboral estado, String img, String paquete) {
-
 	}
 
 

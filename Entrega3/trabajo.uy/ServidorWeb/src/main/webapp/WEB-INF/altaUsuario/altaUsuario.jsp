@@ -207,7 +207,7 @@
                           <label for="image-input">Subir una imagen de perfil (max 250 KB)</label>
                           <input type="file" class="form-control" id="image-input" name="imagen" accept=".jpg" />
                           <div class="invalid-feedback" id="image-invalid-feedback">
-                              La imagen debe superar el tamaño máximo permitido de 250 KB.
+                              La imagen no debe superar el tamaño máximo permitido de 250 KB.
                           </div>
                       </div>
                   </section>
