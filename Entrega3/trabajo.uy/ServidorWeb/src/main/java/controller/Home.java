@@ -102,13 +102,8 @@ public class Home extends HttpServlet {
             LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadasPorFecha;
             
             opcionSeleccionada = request.getParameter("ordenEmp");      
-           
-            if(opcionSeleccionada != null && opcionSeleccionada.equals("alfabeticoEmp")){
-                if(! opcionSeleccionada.equals("alfabeticoEmp") ) {
-    	            request.setAttribute("mensajeError", "ENTRO ACÁ");
-    	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-    	            dispatcher.forward(request, response);
-                }
+            
+            if(opcionSeleccionada != null && opcionSeleccionada.equals("alfabeticoEmp")) {
             	
             	LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadas = new LinkedHashMap<>();;
             	// input = (String) request.getAttribute("input");
@@ -123,7 +118,7 @@ public class Home extends HttpServlet {
             	
             	empresasOrdenadasPorFecha = empresasOrdenadas.entrySet()
             		    .stream()
-            		    .sorted(Map.Entry.comparingByKey(Comparator.comparing(UsuarioBean::getNombre)))
+            		    .sorted(Map.Entry.comparingByKey(Comparator.comparing(UsuarioBean::getNickname)))
             		    .collect(Collectors.toMap(
             		        Map.Entry::getKey,
             		        Map.Entry::getValue,

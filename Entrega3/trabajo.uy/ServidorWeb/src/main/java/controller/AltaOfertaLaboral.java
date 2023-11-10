@@ -1,23 +1,28 @@
 package controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import logica.servidor.ExceptionEmpresaInvalida_Exception;
+import logica.servidor.ExceptionRemuneracionOfertaLaboralNegativa_Exception;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
+import logica.servidor.NoExistePaquete_Exception;
+import logica.servidor.Servidor;
+import logica.servidor.ServidorService;
 import utils.FabricaWeb;
-import enumeration.Departamento;
-import enumeration.EstadoOfertaLaboral;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Arrays;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @WebServlet("/altaofertalaboral")
 public class AltaOfertaLaboral extends HttpServlet {
@@ -52,8 +57,18 @@ public class AltaOfertaLaboral extends HttpServlet {
     }
 
     private void cargarPaquetes(HttpServletRequest request, HttpServletResponse response, String nickname) throws ExceptionUsuarioNoEncontrado_Exception {
-        Set<String> paquetes = logica.listarPaquetesDeEmpresa(nickname);
-        request.setAttribute("paquetes", paquetes);
+        ServidorService SS = new ServidorService();
+        Servidor servidor = SS.getServidorPort();
+        List<String> paquetesEmp;
+		try {
+			paquetesEmp = servidor.listarPaquetesNoVencidos(nickname).getListaString();
+			Set<String> paquetes = new HashSet<>(paquetesEmp);
+			request.setAttribute("paquetes", paquetes);
+		} catch (ExceptionEmpresaInvalida_Exception | ExceptionUsuarioNoEncontrado_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
 
     private void cargarTipoOferta(HttpServletRequest request, HttpServletResponse response) {
@@ -61,45 +76,67 @@ public class AltaOfertaLaboral extends HttpServlet {
         request.setAttribute("tipoPublicaciones", tipoPublicaciones);
     }
 
+    private byte[] procesarImagen(Part imagenPart) throws IOException {
+        if (imagenPart == null) {
+            return null;
+        }
+
+        try (InputStream input = imagenPart.getInputStream()) {
+            byte[] imagenBytes = input.readAllBytes();
+            if (imagenBytes.length == 0) {
+                return null;
+            }
+            return imagenBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServidorService SS = new ServidorService();
+        Servidor servidor = SS.getServidorPort();
+    	
         String tipoOferta = request.getParameter("tipoOferta");
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-        String horaInicio = request.getParameter("horaInicio");
-        String horaFinal = request.getParameter("horaFinal");
+        String horarioInicio = request.getParameter("horaInicio");
+        String horarioFinal = request.getParameter("horaFinal");
+        // Parsear la cadena a LocalTime
+        
+        Part imagenPart = request.getPart("imagen");
+        
+        byte[] imagenBytes  = procesarImagen(imagenPart);
+        
         String departamentoStr = request.getParameter("departamento");
         String ciudad = request.getParameter("ciudad");
         String formaPago = request.getParameter("formaPago");
         String[] keywords = request.getParameterValues("keywords[]");
-        Set<String> keywordsSet = new HashSet<>(Arrays.asList(keywords));
-
-        if (formaPago.equals("1") || formaPago.equals("0")) {
-            formaPago = null;
+        
+        String keywordsString = "";
+        if(keywords != null) {
+        	keywordsString = String.join(":", keywords);
         }
-
+        
+        
         float remuneracion = Float.parseFloat(request.getParameter("remuneracion"));
-
-        Departamento departamento = null;
-        if (departamentoStr != null && !departamentoStr.isEmpty()) {
-            try {
-                departamento = Departamento.valueOf(departamentoStr);
-            } catch (IllegalArgumentException e) {
-            }
-        }
 
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
 
-        try {
-           /* logica.altaOfertaLaboral(
-                nickname, tipoOferta, nombre, descripcion, new DTHorario(obtenerDTHora(horaInicio), obtenerDTHora(horaFinal)),
-                remuneracion, ciudad, departamento, LocalDate.now(), keywordsSet, EstadoOfertaLaboral.Ingresada, null, formaPago
-            );*/
-            response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/altaofertalaboral");
-        }
+            try {
+				servidor.altaOfertaLaboral( nickname, tipoOferta, nombre, descripcion, horarioInicio, horarioFinal,
+				    remuneracion, ciudad, departamentoStr, keywordsString, null, formaPago);
+				response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
+			} catch (ExceptionRemuneracionOfertaLaboralNegativa_Exception | ExceptionUsuarioNoEncontrado_Exception
+					| NoExistePaquete_Exception e) {
+				// TODO Auto-generated catch block
+                request.setAttribute("mensajeError", "ERROR");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+                dispatcher.forward(request, response);
+			}
+            
     }
 
 

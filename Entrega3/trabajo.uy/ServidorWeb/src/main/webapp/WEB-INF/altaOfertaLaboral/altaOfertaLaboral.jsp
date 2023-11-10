@@ -39,8 +39,8 @@
       <div class="mx-5">
         <h2 class="mb-4">Publicar Oferta Laboral</h2>
 
-        <form id="alta-oferta-laboral" class="row g-3 form-signin needs-validation" novalidate method="POST" action="AltaOfertaLaboral">
-
+        
+		<form class="form-signup needs-validation" novalidate  action="AltaOfertaLaboral" method="POST" enctype="multipart/form-data">
 
           <div class="col-12 row mb-2">
             <div class="col-4">
@@ -48,7 +48,6 @@
             </div>
             <div class="col-8">
               <select class="form-control custom-select-validation" id="listadoOfertas" name="tipoOferta" required>
-                <option value="0" selected>Seleccionar Tipo de Oferta</option>
                 <%
                 if (keys != null && !keys.isEmpty()){  
                   	for(String tipo : tipoPublicaciones ){
@@ -131,8 +130,7 @@
             </div>
             <div class="col-8">
               <select class="form-control custom-select-validation" id="listadoDepartamentos" name="departamento" required>
-                <option value="0" selected>Seleccione un departamento</option>
-                <option value="Artigas">Artigas</option>
+                <option value="Artigas" selected>Artigas</option>
                 <option value="Canelones">Canelones</option>
                 <option value="Cerro Largo">Cerro Largo</option>
                 <option value="Colonia">Colonia</option>
@@ -152,18 +150,15 @@
                 <option value="Tacuarembó">Tacuarembó</option>
                 <option value="Treinta y Tres">Treinta y Tres</option>
               </select>
-              <div class="invalid-feedback">
-              Selecciona un departamento
-            </div>
-            </div>
+          	</div>
           </div>
 
           <div class="col-12 row mb-2">
             <div class="col-4">
-              <label for="ciudad" class="form-label">Ciudad</label>
+              <label for="ciudad" class="form-label mt-1">Ciudad</label>
             </div>
             <div class="col-8">
-              <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad" required />
+              <input type="text" class="form-control mt-1" id="ciudad" name="ciudad" placeholder="Ciudad" required />
               <div class="invalid-feedback">
               No puede ser vacio
             </div>
@@ -178,7 +173,6 @@
             </div>
             <div class="col-8">
               <select class="form-control custom-select-validation" id="listadoPagos" name="formaPago" required>
-                <option value="0" selected>Seleccionar método de pago</option>
                 <option value="1" selected>Pagar Sin Paquete</option>
               
               <%
@@ -212,9 +206,24 @@
 			        </div>
 			    </div>
 			</div>
+			
+		  <!-- Sección de Imagen de Perfil -->
+          <section>
+              <h2 class="h4">Imagen de Perfil</h2>
+
+              <div class="form-group mb-3 " id="div-image-input">
+                  <label for="image-input">Subir una imagen de la Oferta Laboral (max 250 KB)</label>
+                  <input type="file" class="form-control" id="image-input" name="imagen" accept=".jpg" />
+                  <div class="invalid-feedback" id="image-invalid-feedback">
+                      La imagen no debe superar el tamaño máximo permitido de 250 KB.
+                  </div>
+              </div>
+          </section>
+		  
           <div class="col-12 row mb-2">
             <button type="submit" class="btn btn-primary">Aceptar</button>
           </div>
+         
         </form>
       </div>
     </div>
