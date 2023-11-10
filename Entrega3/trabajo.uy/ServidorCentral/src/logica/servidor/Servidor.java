@@ -418,7 +418,7 @@ public class Servidor {
     	DTHora horaFin = new DTHora(horasFinal,  minutosFinal);
         DTHorario horario = new DTHorario(horaIni,  horaFin);
         
-        if(formaPago.equals("1")) {
+        if (formaPago.equals("1")) {
         	formaPago = null;
         }
     	ctrlOferta.altaOfertaLaboral(nickname,   tipoOferta,   nombre,   descripcion,   horario,   remuneracion,   ciudad,   DepUY.valueOf(departamento),   LocalDate.now(),    keywordsSet,   EstadoOL.Ingresada,   imagen,   formaPago);
@@ -449,7 +449,7 @@ public class Servidor {
     	DTHora horaFin = new DTHora(horasFinal,  minutosFinal);
         DTHorario horario = new DTHorario(horaIni,  horaFin);
         
-        if(formaPago.equals("1")) {
+        if (formaPago.equals("1")) {
         	formaPago = null;
         }
     	ctrlOferta.altaOfertaLaboral(nickname,   tipoOferta,   nombre,   descripcion,   horario,   remuneracion,   ciudad,   DepUY.valueOf(departamento),   LocalDate.now(),    keywordsSet,   EstadoOL.Ingresada,   null,   formaPago);
