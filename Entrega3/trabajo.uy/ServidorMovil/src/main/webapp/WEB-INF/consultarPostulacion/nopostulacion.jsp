@@ -28,27 +28,23 @@
 </header>
 
 <main>
-    <div class="container container col-12">
-        
-
-    	  <div class="container p-3">
-
-        <div class="row">
-            <div class="container col">
-                <div class="row banner-container banner-dark">
-                    <h1 class="text-center text-dark fw-bolder" style="color: #000080;">No existe postulacion de <%=nick%> para <%=oferta.getNombre()%></h1>
-                </div>
-                
-                <div class="row banner-container banner-dark">
-            		<img src="<%= imagen %>" alt="Descripción de la imagen" width="300" height="200">
-        		</div>
-               
-            </div>
-            
-        </div>
-        </div>
-
-    </div>
+  
+    
+    <div class="d-flex justify-content-center">
+		<div class="col-6">
+			    <div class="card" style="width: 16rem;">
+			  		<img src="<%=imagen %>" class="card-img-top" alt="<%=oferta %>" />
+			  		<div class="card-body">
+			  		<div class="alert alert-info" role="alert">
+			    	<p class="card-text">No existe postulacion de <%=nick%> para <%=oferta.getNombre()%></p>
+			    	</div>
+			    	</div>
+			  		</div>
+		</div>
+	</div>
+    
+    
+    
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
