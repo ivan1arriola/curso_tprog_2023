@@ -16,18 +16,21 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-action border-0 py-1">
+                <li class="list-group-item list-group-item-action border-0">
                     <a href="<%= request.getContextPath() %>/consultarusuario?u=<%=nickname %>" class="list-group-item list-group-item-action border-0 py-1">
                         <span class="material-symbols-outlined align-middle mr-2">account_circle</span> Mi Perfil
                     </a>
                 </li>
                 <% if (tipo == TipoUsuario.Empresa) { %>
-                <li class="list-group-item list-group-item-action border-0 py-1">
+                <li class="list-group-item list-group-item-action border-0">
                     <a href="<%= request.getContextPath() %>/altaofertalaboral" class="list-group-item list-group-item-action border-0 py-1">Alta Oferta Laboral</a>
+                </li>
+                <li class="list-group-item list-group-item-action border-0">
+                    <a href="<%= request.getContextPath() %>/consultarusuario?u=<%=nickname %>&ofertas=true" class="list-group-item list-group-item-action border-0 py-1">Mis Ofertas Laborales</a>
                 </li>
                 <% } %>
                 <% if (tipo == TipoUsuario.Postulante) { %>
-                <li class="list-group-item list-group-item-action border-0 py-1">
+                <li class="list-group-item list-group-item-action border-0">
                     <a href="<%= request.getContextPath() %>/ofertaslaborales" class="list-group-item list-group-item-action border-0 py-1">Postular a Oferta Laboral</a>
                 </li>
                 <% } %>

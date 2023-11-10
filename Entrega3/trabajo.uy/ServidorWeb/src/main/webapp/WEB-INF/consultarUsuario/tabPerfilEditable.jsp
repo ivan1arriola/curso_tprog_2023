@@ -13,8 +13,7 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
     <div class="tab-pane fade show active" id="perfil-panel" style="margin-top: 20px">
         <!-- Formulario de Modificación -->
         <form class="form-signin needs-validation" novalidate action="ModificarUsuario" method="post">
-            <div class="row">
-                <div class="col-md-8">
+
                     <div class="form-group">
                         <label for="nickname">Nickname:</label>
                         <input type="text" class="form-control" id="nickname" name="nickname" disabled readonly
@@ -48,9 +47,9 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                     </section>
                     <!-- Importar JSP de acuerdo al tipo de usuario -->
                     <% if (usuario.getTipo() == TipoUsuario.Postulante) { %>
-                    <jsp:include page="./camposPostulante.jsp" />
+                        <jsp:include page="./camposPostulante.jsp" />
                     <% } else if (usuario.getTipo() == TipoUsuario.Empresa) { %>
-                    <jsp:include page="./camposEmpresa.jsp" />
+                        <jsp:include page="./camposEmpresa.jsp" />
                     <% } %>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-success" id="aceptarBtn">
@@ -60,8 +59,7 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                             Cancelar
                         </a>
                     </div>
-                </div>
-            </div>
+     
         </form>
         <!-- Botón para Modificar Datos -->
         <div class="form-group mt-3">

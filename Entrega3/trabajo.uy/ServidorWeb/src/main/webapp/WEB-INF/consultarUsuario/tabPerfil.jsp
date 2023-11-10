@@ -9,12 +9,12 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 
 
                 <!-- Tab de perfil -->
-                <div class="tab-pane fade show active" id="perfil-panel" style="margin-top: 20px">
+                <div class="tab-pane fade show active" id="perfil-panel">
                     <form action="consultarusuario" method="post">
-                    	<input type="hidden" name="nick" style="display: none;" placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="form-group">
+                    	    <input type="hidden" name="nick"  placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
+
+
+                            <div class="form-group">
                                     <label for="nombre">Nombre:</label>
                                     <input type="text" class="form-control" id="nombre" disabled
                                         value="<%= usuario.getNombre() %>" required />
@@ -31,22 +31,15 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                                 </div>
                                 
                                 <%if (usuario.getTipo() == TipoUsuario.Postulante) {  // Importar JSP de camposPostulante.jsp %>
-                                
-                                <jsp:include page="./camposPostulante.jsp" />
-                                
+                                    <jsp:include page="./camposPostulante.jsp" />
                                 <% }%>
                                 
                                 <%if (usuario.getTipo() == TipoUsuario.Empresa) {  // Importar JSP de camposPostulante.jsp %>
-                                
-                                <jsp:include page="./camposEmpresa.jsp" />
-                                
+                                    <jsp:include page="./camposEmpresa.jsp" />
                                 <% }%>
-                                
-							    <!-- ... otros campos del formulario ... -->
-							
 
                                 
-                            </div>
-                        </div>
+
+
                     </form>
                 </div>

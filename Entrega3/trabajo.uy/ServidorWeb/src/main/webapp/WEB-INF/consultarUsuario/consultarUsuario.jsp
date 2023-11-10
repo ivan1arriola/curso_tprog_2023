@@ -31,8 +31,8 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
 
         <div class="container col-9 p-4">
         
-            <div class="container">
-                <div class="row">
+
+            <div class="row">
                     <div class="col-3">
                         <%
                         // Mostrar la imagen del usuario si está disponible
@@ -74,79 +74,102 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                         </form>
                     </div>
                 </div>
+
+
+            <div class="row d-flex align-items-start">
+
+
+                <div class="col-3">
+                    <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#perfil-panel" type="button"
+                            role="tab" aria-controls="perfil-panel">Perfil</a>
+                    </li>
+                    <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
+                                aria-controls="ofertas-panel">Ofertas Laborales</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#paquete-panel" type="button" role="tab"
+                                aria-controls="paquete-panel">Paquete</a>
+                        </li>
+                    <%} %>
+
+                    <%if (!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
+                                aria-controls="ofertas-panel">Ofertas Laborales</a>
+                        </li>
+                    <%} %>
+                    <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) { %>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#postulaciones-panel" type="button" role="tab"
+                                aria-controls="postulaciones-panel">Postulaciones</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#favoritos-panel" type="button" role="tab"
+                                aria-controls="favoritos-panel">Favoritos</a>
+                        </li>
+                    <%} %>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidos-panel" type="button" role="tab"
+                                aria-controls="seguidos-panel">Seguidos</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidores-panel" type="button" role="tab"
+                                aria-controls="seguidores-panel">Seguidores</a>
+                        </li>
+                </ul>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="myTabsContent">
+                        <!-- Contenido de las pestañas -->
+                        <% if (consultaSuPerfil) { %>
+                            <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
+                                <jsp:include page="./tabPerfilEditable.jsp" />
+                                <jsp:include page="./tabOfertasLaborales.jsp" />
+                                <jsp:include page="./tabPaquetes.jsp" />
+                            <% } else if (usuario.getTipo() == TipoUsuario.Postulante) { %>
+                                <jsp:include page="./tabPerfilEditable.jsp" />
+                                <jsp:include page="./tabPostulaciones.jsp" />
+                                <jsp:include page="./tabFavoritos.jsp" />
+                            <% } else { %>
+                                <jsp:include page="./tabPerfilEditable.jsp" />
+                            <% } %>
+                        <% } else { %>
+                            <jsp:include page="./tabPerfil.jsp" />
+                            <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
+                                <jsp:include page="./tabOfertasLaborales.jsp" />
+                                <jsp:include page="./tabPaquetes.jsp" />
+                            <% } %>
+                        <% } %>
+                        <jsp:include page="./tabSeguidos.jsp" />
+                        <jsp:include page="./tabSeguidores.jsp" />
+                    </div>
+                </div>
             </div>
-
-            <!-- Agrega las pestañas (tabs) -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#perfil-panel" type="button"
-                        role="tab" aria-controls="perfil-panel">Perfil</a>
-                </li>
-                <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
-                            aria-controls="ofertas-panel">Ofertas Laborales</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#paquete-panel" type="button" role="tab"
-                            aria-controls="paquete-panel">Paquete</a>
-                    </li>
-                <%} %>
-                
-                <%if (!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
-                            aria-controls="ofertas-panel">Ofertas Laborales</a>
-                    </li>
-                <%} %>
-                <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) { %>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#postulaciones-panel" type="button" role="tab"
-                            aria-controls="postulaciones-panel">Postulaciones</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#favoritos-panel" type="button" role="tab"
-                            aria-controls="favoritos-panel">Favoritos</a>
-                    </li>
-                <%} %>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidos-panel" type="button" role="tab"
-                            aria-controls="seguidos-panel">Seguidos</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#seguidores-panel" type="button" role="tab"
-                            aria-controls="seguidores-panel">Seguidores</a>
-                    </li>
-            </ul>
-
-		    <div class="tab-content" id="myTabsContent">
-			    <!-- Contenido de las pestañas -->
-			    <% if (consultaSuPerfil) { %>
-			        <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
-			            <jsp:include page="./tabPerfilEditable.jsp" />
-			            <jsp:include page="./tabOfertasLaborales.jsp" />
-			            <jsp:include page="./tabPaquetes.jsp" />
-			        <% } else if (usuario.getTipo() == TipoUsuario.Postulante) { %>
-			            <jsp:include page="./tabPerfilEditable.jsp" />
-			            <jsp:include page="./tabPostulaciones.jsp" />
-			            <jsp:include page="./tabFavoritos.jsp" />
-			        <% } else { %>
-			            <jsp:include page="./tabPerfilEditable.jsp" />
-			        <% } %>
-			    <% } else { %>
-			        <jsp:include page="./tabPerfil.jsp" />
-			        <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
-			            <jsp:include page="./tabOfertasLaborales.jsp" />
-			            <jsp:include page="./tabPaquetes.jsp" />
-			        <% } %>
-			    <% } %>
-			    <jsp:include page="./tabSeguidos.jsp" />
-			    <jsp:include page="./tabSeguidores.jsp" />
-			</div>
 		    
 
         </div>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Obtén el parámetro 'ofertas' de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const ofertasParam = urlParams.get('ofertas');
+
+            // Si el parámetro 'ofertas' es 'true', activa el tab correspondiente
+            if (ofertasParam && ofertasParam.toLowerCase() === 'true') {
+                $('#myTabs a[href="#ofertas-panel"]').tab('show');
+            } else {
+                // Puedes cambiar 'tabPerfil' por el ID del tab que quieres que esté activo por defecto
+                $('#myTabs a[href="#tabPerfil"]').tab('show');
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

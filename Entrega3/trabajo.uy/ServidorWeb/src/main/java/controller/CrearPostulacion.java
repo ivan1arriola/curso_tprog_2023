@@ -15,6 +15,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.UsuarioBean;
+import logica.servidor.ExceptionFechaInvalida_Exception;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import utils.FabricaWeb;
@@ -74,7 +75,8 @@ public class CrearPostulacion extends HttpServlet {
 
 			logica.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", LocalDate.now(), videoYouTube);
 			response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
-		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
+		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception |
+				 ExceptionFechaInvalida_Exception e) {
 			throw new RuntimeException(e);
 		}
 
