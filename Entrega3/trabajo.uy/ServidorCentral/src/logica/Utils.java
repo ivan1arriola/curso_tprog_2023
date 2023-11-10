@@ -43,16 +43,20 @@ public class Utils {
         
     	if (proxyProperty != null && !proxyProperty.isEmpty()) {
     	    // Dividir el host y el puerto
-    	    String[] parts = proxyProperty.split(":");
-    	    
+    		
+    		String proxyWithoutPrefix = proxyProperty.substring("http://".length());
+
+    	    // Dividir la cadena en host y puerto
+    	    String[] parts = proxyWithoutPrefix.split(":");
+
     	    // Asignar el host
     	    String proxyHost = parts[0];
-    	    
+
     	    // Asignar el puerto (ten en cuenta que puedes necesitar convertirlo a un tipo numérico)
-    	    int proxyPort = Integer.parseInt(parts[1]);
-    	
- 	
-       
+    	    int proxyPort = Integer.parseInt(parts[1].replaceAll("[^\\d]", ""));
+
+    	    // Crear un objeto Proxy con el host y el puerto
+    	           
             proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
             
         } else {
