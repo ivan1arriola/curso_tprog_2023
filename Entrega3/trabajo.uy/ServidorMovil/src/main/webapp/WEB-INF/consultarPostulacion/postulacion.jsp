@@ -79,7 +79,7 @@
                         <tr>
                             <td><b>Video Postulacion:</b></td>
                             <td>
-                        <% if (postulacion.getUrlVideo() != null){ %>
+                        <% if (postulacion.getUrlVideo() != null && postulacion.getUrlVideo() != ""){ %>
 
                                 <iframe
                                         width="100%"
