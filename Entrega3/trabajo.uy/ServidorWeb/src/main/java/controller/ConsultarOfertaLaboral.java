@@ -1,5 +1,6 @@
 package controller;
 
+import enumeration.EstadoOfertaLaboral;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,13 +35,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
-        
-        try {
-			servidor.aumentarVisita(nombreOferta);
-		} catch (OfertaLaboralNoEncontrada_Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
         
         if (nombreOferta != null && !nombreOferta.isEmpty()) {
             HttpSession session = request.getSession(false);
@@ -59,6 +54,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             request.setAttribute("estaFav", estaFav);
             
             try {
+                servidor.aumentarVisita(nombreOferta);
                 if (nickname == null) nickname = "";
                 if (tipoUsuario == null) {
                     tipoUsuario = TipoUsuario.Visitante;
@@ -91,6 +87,18 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
                     request.setAttribute("paquete", paquete);
                     request.setAttribute("postulantes", postulantes);
+                }
+
+                boolean permisoDenegado = ofertaBean.getEstado() != EstadoOfertaLaboral.Confirmada || !estaVigente;
+
+                if (!esCreadorOferta && permisoDenegado){
+                    request.setAttribute("nombreError", "Esta oferta laboral no esta confirmada");
+                    request.setAttribute(
+                            "mensajeError",
+                            "No te puedes consultar a una oferta laboral que no este en estado confirmada si no eres la empresa publicadora"
+                    );
+                    request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+                    return;
                 }
 
                 if (tipoUsuario == TipoUsuario.Postulante) {

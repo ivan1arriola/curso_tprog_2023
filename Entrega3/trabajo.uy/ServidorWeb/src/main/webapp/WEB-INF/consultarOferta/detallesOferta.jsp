@@ -9,12 +9,13 @@
 	Set<String> keywords = ofertaLaboral.getKeywords();
 	String contextPath = request.getContextPath();
     boolean estaFinalizada = (boolean) request.getAttribute("estaFinalizada");
+    boolean duenioOfertaLaboral = (boolean) request.getAttribute("duenio");
 %>
 
     <div class="row align-items-center mt-2">
         <table class="table">
             <tbody>
-
+                <%if (duenioOfertaLaboral){ %>
                 <tr>
                     <th>
                         Estado de Oferta:
@@ -25,6 +26,7 @@
                           </span>
                     </td>
                 </tr>
+                <% } %>
                 <tr>
                     <th>Nombre:</th>
                     <td><%= ofertaLaboral.getNombre() %></td>
