@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import logica.clases.TipoOferta;
-
+import jakarta.persistence.PersistenceException;
 import java.util.Map;
 import java.util.List;
 import java.util.TreeMap;
@@ -30,7 +30,7 @@ public class TipoOfertaHandler {
             Long count = query.getSingleResult();
 
             return count > 0;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return false;
         }
@@ -44,7 +44,7 @@ public class TipoOfertaHandler {
             }
             database.persist(tipoOferta);
             transaction.commit();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
@@ -61,7 +61,7 @@ public class TipoOfertaHandler {
             if (!resultados.isEmpty()) {
                 return resultados.get(0);
             }
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
         }
 
@@ -77,7 +77,7 @@ public class TipoOfertaHandler {
             for (TipoOferta tipoOferta : resultados) {
                 tipoOfertas.put(tipoOferta.getNombre(), tipoOferta);
             }
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
         }
 
