@@ -7,7 +7,12 @@ import jakarta.persistence.Persistence;
 import logica.Fabrica;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
-import logica.manejadores.*;
+import logica.manejadores.KeywordHandler;
+import logica.manejadores.OfertaLaboralHandler;
+import logica.manejadores.PaqueteHandler;
+import logica.manejadores.TipoOfertaHandler;
+import logica.manejadores.UsuarioHandler;
+//import logica.manejadores.UsuarioHandler;
 import logica.servidor.Servidor;
 
 //import javax.swing.JButton;
