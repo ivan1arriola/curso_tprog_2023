@@ -12,6 +12,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 import logica.servidor.DtOfertaExtendido;
 import logica.servidor.DtUsuario;
+import logica.servidor.ExceptionFechaInvalida_Exception;
 import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import logica.servidor.Servidor;
@@ -94,8 +95,11 @@ public class CrearPostulacion extends HttpServlet {
 						
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp");
 			dispatcher.forward(request, response);
-		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception e) {
-			throw new RuntimeException(e);
+		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception exc) {
+			throw new RuntimeException(exc);
+		} catch (ExceptionFechaInvalida_Exception exc) {
+			// TODO Auto-generated catch block
+			exc.printStackTrace();
 		}
 
 	}
