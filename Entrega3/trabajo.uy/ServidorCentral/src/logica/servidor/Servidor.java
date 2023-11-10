@@ -329,24 +329,30 @@ public class Servidor {
     @WebMethod
     public void establecerPosiciones(
             @WebParam(name = "nombre_oferta") String nombre_oferta,
-            @WebParam(name = "nombreEmpresa") String nombreEmpresa,
             @WebParam(name = "wrapperLista") WrapperLista wrapperLista
-    ) throws ExceptionUsuarioNoEncontrado, OfertaLaboralNoEncontrada, ExisteOrdenFinalDePostulantes {
+    ) throws AsignarOrdenAOfertaNoVencida, OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado, AsignarOrdenAOfertaFinalizada {
         List<String> listaPostulantes = wrapperLista.getListaString();
         ctrlOferta.establecerPosiciones(nombre_oferta, listaPostulantes);
     }
     @WebMethod
-    public boolean existeOrdenPostulantesFinal(
+    public boolean hayOrdenDefinido(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) throws ExceptionUsuarioNoEncontrado {
-        return ctrlOferta.HayOrdenFinal(nombre_oferta);
+    ) throws OfertaLaboralNoEncontrada {
+        return ctrlOferta.hayOrdenDefinido(nombre_oferta);
+    }
+
+    @WebMethod
+    public void descargarOrdenPostulantes(
+            @WebParam(name = "nombre_oferta") String nombre_oferta
+    ) throws OfertaLaboralNoEncontrada {
+        ctrlOferta.descartarOrdenPostulantes(nombre_oferta);
     }
 
     @WebMethod
     public WrapperLista obtenerPosiciones(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) throws ExceptionUsuarioNoEncontrado {
-        return WSUtils.envolverLista((ArrayList<String>) ctrlOferta.DevolverOrdenFinal(nombre_oferta));
+    ) throws OfertaLaboralNoEncontrada, NoHayOrdenDefinidoDePostulantes {
+        return WSUtils.envolverLista((ArrayList<String>) ctrlOferta.devolverOrdenPostulantes(nombre_oferta));
     }
 
     @WebMethod
@@ -380,6 +386,16 @@ public class Servidor {
     ) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
         ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
+
+
+    @WebMethod
+    public WrapperLista listarPostulantesOfertaLaboral(
+            @WebParam(name = "nombre_oferta") String nombre_oferta
+    ) throws OfertaLaboralNoEncontrada {
+
+        return WSUtils.envolverLista((ArrayList<String>) ctrlUsuario.listarPostulantesDeOfertas(nombre_oferta));
+    }
+
 
 
 

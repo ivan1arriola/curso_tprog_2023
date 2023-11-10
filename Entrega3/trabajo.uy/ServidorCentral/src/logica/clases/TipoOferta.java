@@ -146,7 +146,10 @@ public class TipoOferta {
     }
 
     public boolean estaVencida() {
+
+        LocalDate fechaVencimiento = fechaAlta.plusDays(duracion);
         LocalDate fechaActual = LocalDate.now();
-        return fechaAlta.plusDays(duracion).isBefore(fechaActual);
+
+        return fechaVencimiento.isBefore(fechaActual);
     }
 }

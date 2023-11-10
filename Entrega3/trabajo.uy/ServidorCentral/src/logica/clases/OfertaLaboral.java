@@ -37,7 +37,9 @@ public class OfertaLaboral {
     @Lob
     private String imagen;
 
-    private boolean hayOrdenDefinitivo = false;
+
+
+    private boolean hayOrdenDefinido = false;
 
     @ManyToOne (cascade = CascadeType.PERSIST)
     private TipoOferta tOferta;
@@ -463,12 +465,15 @@ public class OfertaLaboral {
         }
     }
     
-    public void setHayOrdenDefinitivo(boolean respuesta) {
-    	this.hayOrdenDefinitivo = respuesta;
+
+
+
+    public boolean isHayOrdenDefinido() {
+        return hayOrdenDefinido;
     }
 
-    public boolean getHayOrdenDefinitivo() {
-    	return this.hayOrdenDefinitivo;
+    public void setHayOrdenDefinido(boolean hayOrdenDefinido) {
+        this.hayOrdenDefinido = hayOrdenDefinido;
     }
     
     public Float getCosto() {
@@ -619,7 +624,7 @@ public class OfertaLaboral {
         if (paq != null) {
             paq_nomb = paq.getNombre();
         }
-        DTOfertaExtendido dtoe = new DTOfertaExtendido(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb, getCantFav(), getCantVisitas(), getTipoOferta().getNombre(), estaVencida(), getHayOrdenDefinitivo());
+        DTOfertaExtendido dtoe = new DTOfertaExtendido(getEmpresaPublicadora().getNickname(), getNombre(), getDescripcion(), getFechaAlta(), getCosto(), getRemuneracion(), getHorario(), getDepartamento(), getCiudad(), getEstado(), posts, getImagen(), paq_nomb, getCantFav(), getCantVisitas(), getTipoOferta().getNombre(), estaVencida(), hayOrdenDefinido);
         return dtoe;
     }
 
@@ -723,25 +728,21 @@ public class OfertaLaboral {
     }
 
     // ===============================================================
-    public void establecerPosicion(String nickPostulante, Integer posicion) {
-        List<Postulacion> postulaciones = getPostulaciones();
-        Postulacion postulacionActual = null;
-        for (int i = 0; i < postulaciones.size(); i++) {
-            Postulacion pos = postulaciones.get(i);
-            if (nickPostulante.equals(pos.obtenerNicknamePostulante())) {
-                postulacionActual = pos;
-                break;
-            }
-        }
-        assert postulacionActual != null;
-        postulacionActual.setClasificacion(posicion);
+    public void establecerPosicion(List<String> nickPostulantes) throws AsignarOrdenAOfertaFinalizada, AsignarOrdenAOfertaNoVencida {
+        if (getEstado() == EstadoOL.Finalizada) throw new AsignarOrdenAOfertaFinalizada("No se reasignar el orden de postulantes porque la oferta ya finalizo");
+        if(!estaVencida()) throw new AsignarOrdenAOfertaNoVencida("No se puede asignar un orden a una oferta que no vencio");
+
+        List<Postulacion> postulacionesOferta = getPostulaciones();
+
+        // Ordena la lista de postulaciones según el orden de los nicknames
+        postulacionesOferta.sort(Comparator.comparingInt(p -> nickPostulantes.indexOf(p.obtenerNicknamePostulante())));
+
+        // Setea la lista ordenada
+        setPostulaciones(postulacionesOferta);
+        setHayOrdenDefinido(true);
+
     }
-    
-    public boolean TienePosicion() {
-        return this.hayOrdenDefinitivo;
-    }
-    
-    
+
 
     public void setId(Long id) {
         this.id = id;
@@ -768,23 +769,7 @@ public class OfertaLaboral {
     }
 
 
-	public List<String> DevolverPosiciones() {
-		List<String> myList = new ArrayList<String>();
-		Integer lugar = 1;
-		for (int i = 0; i < postulaciones.size(); i++) {
-			for (int j = 0; j < postulaciones.size(); j++) {
-				Postulacion pos = postulaciones.get(j);
-				if (pos.getClasificacion() == lugar) {
-		            myList.add(pos.getPostulante().getNickname());
-				}
-			}
-			lugar++;
-        }
-        return myList;
-	}
-
-
-	public Integer getCantVisitas() {
+    public Integer getCantVisitas() {
 		return cantVisitas;
 	}
 
@@ -792,4 +777,32 @@ public class OfertaLaboral {
 	public void setCantVisitas(Integer cantVisitas) {
 		this.cantVisitas = cantVisitas;
 	}
+
+    public List<String> getOrdenPostulantes() throws NoHayOrdenDefinidoDePostulantes {
+        if(!isHayOrdenDefinido()) throw new NoHayOrdenDefinidoDePostulantes("La oferta laboral " + getNombre() + " aun no tiene un orden de postulantes definido");
+
+        List<String> nicknamesPostulantes = new ArrayList<>();
+
+        for (Postulacion postulacion : postulaciones){
+            nicknamesPostulantes.add(postulacion.obtenerNicknamePostulante());
+        }
+
+        return nicknamesPostulantes;
+    }
+
+    public void finalizarOferta() {
+        if(hayOrdenDefinido) {
+            List<Postulacion> postulacionesOferta = getPostulaciones();
+            int posicion = 0;
+            for (Postulacion postulacion : postulacionesOferta) {
+                posicion++;
+                postulacion.setClasificacion(posicion);
+            }
+        }
+        setEstado(EstadoOL.Finalizada);
+    }
+
+    public void descartarOrden() {
+        setHayOrdenDefinido(false);
+    }
 }

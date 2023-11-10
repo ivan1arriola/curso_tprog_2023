@@ -482,21 +482,16 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public Set<String> listarPostulantesDeOfertas(String nickname_e, String oferta) {
-        Set<String> res = new HashSet<>();
-        UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
-        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-            Usuario user = entry.getValue();
-            if (!(user.esEmpresa())) {
-                Postulante postulante = (Postulante) user;
-                boolean esta = postulante.existePostulacion(oferta); // CUIDADO CON ESTA OPERACION DEVUELVE BOOLEANO!!
-                if (esta) {
-                    res.add(postulante.getNickname());
-                }
-            }
+    @Override
+    public List<String> listarPostulantesDeOfertas(String nombreOferta) throws OfertaLaboralNoEncontrada {
+        List<String> listaNicknamesPostulanes= new ArrayList<>();
+        OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
+        OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombreOferta);
+        List<Postulacion> postulaciones = ofertaLaboral.getPostulaciones();
+        for (Postulacion postulacion : postulaciones){
+            listaNicknamesPostulanes.add(postulacion.obtenerNicknamePostulante());
         }
-        return res;
+        return listaNicknamesPostulanes;
 
     }
 
@@ -580,13 +575,10 @@ public class CtrlUsuario implements ICtrlUsuario {
         return auxiliar;
     }
 
-    public void finalizarOfertaLaboral(String nickname_empresa, String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
-        UsuarioHandler UHan = UsuarioHandler.getInstance();
-        Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
-        empresa.finalizarOfertaLaboral(nombre_oferta);
-    }
 
-	@Override
+
+
+    @Override
 	public HashSet<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UH = UsuarioHandler.getInstance();
 		HashSet<String> res = new HashSet<String>();

@@ -10,10 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import javabeans.PaqueteBean;
 import javabeans.UsuarioBean;
-import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
-import logica.servidor.OfertaLaboralNoEncontrada_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
+import logica.servidor.*;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
@@ -78,6 +75,15 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 request.setAttribute("cantFavs", ofertaBean.getCantFavs());
                 boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);
                 request.setAttribute("duenio", esCreadorOferta);
+
+                boolean hayOrdenDefinido = servidor.hayOrdenDefinido(nombreOferta); // indica si se definio orden de postulantes
+                request.setAttribute("hayOrdenDefinido", hayOrdenDefinido);
+
+                if (hayOrdenDefinido){
+                    WrapperLista listaDelServidor = servidor.obtenerPosiciones(nombreOferta);
+                    request.setAttribute("postulantesOrden", listaDelServidor.getListaString());
+                }
+
 
                 if (tipoUsuario == TipoUsuario.Empresa && esCreadorOferta) {
                     PaqueteBean paquete = logica.obtenerPaqueteDeOferta(nombreOferta, nickname);

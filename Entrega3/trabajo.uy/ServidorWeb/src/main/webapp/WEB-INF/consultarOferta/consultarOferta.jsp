@@ -11,6 +11,7 @@
         imagen = request.getContextPath() + "/imagenNoFound.png";
     }
     TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+    boolean vigente = (boolean) request.getAttribute("vigente");
 %>
 
 <head>
@@ -39,6 +40,11 @@
         <div class="container">
             <div class="row banner-container banner-dark">
                 <h1 class="text-center text-light fw-bolder"><%= ofertaLaboral.getNombre() %></h1>
+            </div>
+
+            <div class="row">
+                <jsp:include page="./barraAcciones.jsp" />
+
             </div>
 
             <div class="row">

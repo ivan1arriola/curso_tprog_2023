@@ -43,7 +43,7 @@ public class ConsultarPostulantes extends HttpServlet {
             ServidorService servsevice = new ServidorService();
             Servidor servidor = servsevice.getServidorPort();
 
-            boolean irAOrdenFinal = servidor.existeOrdenPostulantesFinal(nombreOferta);
+            boolean irAOrdenFinal = servidor.hayOrdenDefinido(nombreOferta);
 
 
             // si no es del tipo usuario = Empresa , redirigir a error
@@ -98,9 +98,9 @@ public class ConsultarPostulantes extends HttpServlet {
             request.setAttribute("nombreError", "Usuario No Encontrado");
             request.setAttribute("mensajeError", "El usuario no fue encontrado. Por favor, verifique la información e inténtelo de nuevo.");
             request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+        } catch (NoHayOrdenDefinidoDePostulantes_Exception e) {
+            throw new RuntimeException(e);
         }
-
-
 
 
     }
@@ -120,9 +120,8 @@ public class ConsultarPostulantes extends HttpServlet {
         Servidor servidor = servsevice.getServidorPort();
 
         String nombreOferta = request.getParameter("oferta");
-        OfertaLaboralBean ofertaLaboralBean = null;
         try {
-            ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
+            OfertaLaboralBean ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
             String nicknameEmpresa = ofertaLaboralBean.getNicknameEmpresa();
 
             WrapperLista wrapperListaPostulantes = new WrapperLista();
@@ -132,7 +131,7 @@ public class ConsultarPostulantes extends HttpServlet {
                 wrapperListaPostulantes.getListaString().add(nicknamePostulante);
             }
 
-            servidor.establecerPosiciones(nombreOferta, nicknameEmpresa, wrapperListaPostulantes);
+            servidor.establecerPosiciones(nombreOferta, wrapperListaPostulantes);
 
             // Obtengo la lista devuelta del servidor
             WrapperLista listaDelServidor = servidor.obtenerPosiciones(nombreOferta);
@@ -154,10 +153,13 @@ public class ConsultarPostulantes extends HttpServlet {
             request.setAttribute("nombreError", "Usuario No Encontrado");
             request.setAttribute("mensajeError", "El usuario no fue encontrado. Por favor, verifique la información e inténtelo de nuevo.");
             request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
-        } catch (ExisteOrdenFinalDePostulantes_Exception e) {
-            request.setAttribute("nombreError", "Existe Orden final de postulantes");
-            request.setAttribute("mensajeError", "No se puede redefinir el orden de los postulantes.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+        } catch (NoHayOrdenDefinidoDePostulantes_Exception e) {
+            throw new RuntimeException(e);
+
+        } catch (AsignarOrdenAOfertaFinalizada_Exception e) {
+            throw new RuntimeException(e);
+        } catch (AsignarOrdenAOfertaNoVencida_Exception e) {
+            throw new RuntimeException(e);
         }
 
     }

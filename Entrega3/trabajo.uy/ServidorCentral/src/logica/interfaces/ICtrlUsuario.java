@@ -24,7 +24,7 @@ import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionUsuarioSeSigueASiMismo;
 //import excepciones.ExceptionValidezNegativa;
-//import excepciones.ExisteOrdenFinalDePostulantes;
+//import excepciones.AsignarOrdenAOfertaFinalizada;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
 //import excepciones.FinalizarOfertaNoVencida;
@@ -161,7 +161,7 @@ public interface ICtrlUsuario {
 
     public abstract boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen) throws ErrorAgregarUsuario; // PRONTA
 
-    public abstract Set<String> listarPostulantesDeOfertas(String nickname_e, String oferta);
+    public abstract List<String> listarPostulantesDeOfertas(String oferta) throws OfertaLaboralNoEncontrada;
 
     public abstract Set<String> listarOfertasLaboralesConfirmadas(String nickname_e) throws ExceptionUsuarioNoEncontrado;  // PRONTA
 
@@ -188,5 +188,4 @@ public interface ICtrlUsuario {
     
 	public abstract Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(String nickname_empresa)  throws ExceptionUsuarioNoEncontrado;
 	
-	public void finalizarOfertaLaboral(String nickname_empresa, String nombre_oferta) throws ExceptionUsuarioNoEncontrado;
 }
