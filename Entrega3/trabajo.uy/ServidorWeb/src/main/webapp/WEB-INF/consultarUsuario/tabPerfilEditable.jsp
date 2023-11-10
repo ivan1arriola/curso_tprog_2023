@@ -59,7 +59,7 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
                             Cancelar
                         </a>
                     </div>
-     
+
         </form>
         <!-- Botón para Modificar Datos -->
         <div class="form-group mt-3">

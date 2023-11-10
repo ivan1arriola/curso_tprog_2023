@@ -88,8 +88,7 @@ form > div {
 }
 
 img.perfil {
-  object-fit: cover;
-  height: 200px;
+  max-height: 300px;
   aspect-ratio: 1;
 }
 

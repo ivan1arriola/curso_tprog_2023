@@ -7,12 +7,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para ExisteOrdenFinalDePostulantes complex type.
+ * <p>Clase Java para AsignarOrdenAOfertaFinalizada complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="ExisteOrdenFinalDePostulantes">
+ * <complexType name="AsignarOrdenAOfertaFinalizada">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -26,10 +26,10 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExisteOrdenFinalDePostulantes", propOrder = {
+@XmlType(name = "AsignarOrdenAOfertaFinalizada", propOrder = {
     "message"
 })
-public class ExisteOrdenFinalDePostulantes {
+public class AsignarOrdenAOfertaFinalizada {
 
     protected String message;
 

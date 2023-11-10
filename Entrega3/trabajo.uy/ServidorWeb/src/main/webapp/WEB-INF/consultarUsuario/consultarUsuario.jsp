@@ -29,10 +29,10 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
             <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
         </div>
 
-        <div class="container col-9 p-4">
+        <div class="container col-9">
         
 
-            <div class="row">
+            <div class="row mb-2">
                     <div class="col-3">
                         <%
                         // Mostrar la imagen del usuario si está disponible
@@ -40,7 +40,7 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                         if (imagenUsuario != null) {
                         %>
                             <img src="<%= imagenUsuario %>"
-                                alt="Imagen de Usuario" class="img-fluid mb-3 perfil rounded" />
+                                alt="Imagen de Usuario" class="img-fluid w-100 perfil rounded" />
                         <%
                         } else {
                         %>
@@ -51,28 +51,47 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                         }
                         %>
                     </div>
-                    <div class="col text-center">
-                    	<h1 class='fw-bold'><%= usuario.getNickname() %></h1>
-                        <h2><%= usuario.getNombre() + ' ' + usuario.getApellido() %></h2>
-                        <h2><%= usuario.getCorreoElectronico() %> </h2>
+                    <div class="col-9 text-center">
+
+                        <div class="row">
+
+                            <div class="col">
+                                <h1 class='fw-bold'><%= usuario.getNickname() %></h1>
+                                <h2><%= usuario.getNombre() + ' ' + usuario.getApellido() %></h2>
+                                <h2><%= usuario.getCorreoElectronico() %> </h2>
+                            </div>
+
+                            <% if (!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
+                                if (seguir) { %>
+
+                            <div class="col-4">
+                                <form action="consultarusuario" method="post">
+                                    <input type="hidden" name="nick" placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
+
+                                    <button class="btn btn-success mt-2" name="btnSeguir" type="submit">
+                                        Seguir
+                                    </button>
+                                </form>
+                            </div>
+                                    <% } else { %>
+                            <div class="col-4">
+                                <form action="consultarusuario" method="post">
+                                    <input type="hidden" name="nick"  placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
+
+                                    <button class="btn btn-danger mt-2" name="btnDejarDeSeguir" type="submit">
+                                        Dejar de seguir
+                                    </button>
+
+                                </form>
+                            </div>
+                            <% }
+                            } %>
+
+
+                        </div>
                     </div>
 
-                    <div class="col-2">
-                        <form action="consultarusuario" method="post">
-                            <input type="hidden" name="nick" style="display: none;" placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
-                        <% if (!consultaSuPerfil && (tu == TipoUsuario.Postulante || tu == TipoUsuario.Empresa)) {
-                            if (seguir) { %>
-                        <button class="btn btn-success mt-2" name="btnSeguir" type="submit">
-                            Seguir
-                        </button>
-                        <% } else { %>
-                        <button class="btn btn-danger mt-2" name="btnDejarDeSeguir" type="submit">
-                            Dejar de seguir
-                        </button>
-                        <% }
-                        } %>
-                        </form>
-                    </div>
+
                 </div>
 
 

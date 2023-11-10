@@ -34,7 +34,6 @@ public class ConsultarPostulantes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         // tiene que mostrar todos los postulantes de la pagina
         try {
-            //TODO: tiene que separar el caso de Seleccionar postulación a Oferta Laboral del de Consultar Postulaciones
             HttpSession session = request.getSession();
             String nombreOferta = request.getParameter("oferta");
             String nicknameEmpresa = (String) session.getAttribute("nickname");
@@ -43,11 +42,12 @@ public class ConsultarPostulantes extends HttpServlet {
             ServidorService servsevice = new ServidorService();
             Servidor servidor = servsevice.getServidorPort();
 
-            boolean irAOrdenFinal = servidor.existeOrdenPostulantesFinal(nombreOferta);
+
+            OfertaLaboralBean ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
 
 
             // si no es del tipo usuario = Empresa , redirigir a error
-            if (TipoUsuario.Empresa != tipoUsuario){
+            if (TipoUsuario.Empresa != tipoUsuario || !ofertaLaboralBean.getNicknameEmpresa().equals(nicknameEmpresa)){
 
                 request.setAttribute("nombreError", "No tiene permisos suficientes para visualizar esta pagina");
                 request.setAttribute("mensajeError", "Solo la empresa publicadora puede visualizar las postulaciones");
@@ -57,31 +57,25 @@ public class ConsultarPostulantes extends HttpServlet {
             } else {
 
 
-                OfertaLaboralBean ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
+
                 boolean estaFinalizada = logica.estaFinalizada(nombreOferta);
+                boolean hayOrdenDefinido = servidor.hayOrdenDefinido(nombreOferta);
 
-                if (irAOrdenFinal || estaFinalizada){
-
+                List<String> nicknamePostulantes;
+                if (hayOrdenDefinido || estaFinalizada){
                     // Obtengo la lista devuelta del servidor
-                    WrapperLista listaDelServidor = servidor.obtenerPosiciones(nombreOferta);
-
-                    request.setAttribute("estaFinalizada",estaFinalizada);
-                    request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
-                    request.setAttribute("postulantesFinal", listaDelServidor.getListaString());
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/ordenPostulantesFinal.jsp");
-                    dispatcher.forward(request, response);
-                    return;
-
-
+                    nicknamePostulantes  = servidor.obtenerPosiciones(nombreOferta).getListaString();
+                } else {
+                   nicknamePostulantes = servidor.listarPostulantesOfertaLaboral(nombreOferta).getListaString();
                 }
-                    boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
 
-                    request.setAttribute("estaVigente", estaVigente);
-                    List<String> postulantes = logica.obtenerPostulantesDeOfertaString(nombreOferta, nicknameEmpresa);
-                    request.setAttribute("postulantes", postulantes);
-                    request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/consultarPostulaciones.jsp");
-                    dispatcher.forward(request, response);
+                request.setAttribute("estaFinalizada",estaFinalizada);
+                request.setAttribute("hayOrdenDefinido", hayOrdenDefinido);
+                request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
+                request.setAttribute("nicknamesPostulantes", nicknamePostulantes);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/consultarPostulaciones.jsp");
+                dispatcher.forward(request, response);
+                return;
 
 
 
@@ -93,72 +87,15 @@ public class ConsultarPostulantes extends HttpServlet {
             request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
             request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
             request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
-        } catch (ExceptionUsuarioNoEncontrado_Exception e) {
-            // Configura los atributos necesarios para la página de error
-            request.setAttribute("nombreError", "Usuario No Encontrado");
-            request.setAttribute("mensajeError", "El usuario no fue encontrado. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+        } catch (NoHayOrdenDefinidoDePostulantes_Exception e) {
+            throw new RuntimeException(e);
         }
-
-
 
 
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String orden = request.getParameter("orden");
-        if (orden.startsWith("[") && orden.endsWith("]")) {
-            orden = orden.substring(1, orden.length() - 1);
-        }
-        String[] ordenArray = orden.split(",");
-        List<String> ordenPostulantes = new ArrayList<>(Arrays.asList(ordenArray));
-
-        // Imprimir el orden o realizar otras acciones necesarias
-        System.out.println("Orden recibido en el servlet: " + ordenPostulantes);
-
-        ServidorService servsevice = new ServidorService();
-        Servidor servidor = servsevice.getServidorPort();
-
-        String nombreOferta = request.getParameter("oferta");
-        OfertaLaboralBean ofertaLaboralBean = null;
-        try {
-            ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
-            String nicknameEmpresa = ofertaLaboralBean.getNicknameEmpresa();
-
-            WrapperLista wrapperListaPostulantes = new WrapperLista();
-
-
-            for (String nicknamePostulante : ordenPostulantes){
-                wrapperListaPostulantes.getListaString().add(nicknamePostulante);
-            }
-
-            servidor.establecerPosiciones(nombreOferta, nicknameEmpresa, wrapperListaPostulantes);
-
-            // Obtengo la lista devuelta del servidor
-            WrapperLista listaDelServidor = servidor.obtenerPosiciones(nombreOferta);
-
-
-            request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
-            request.setAttribute("postulantesFinal", listaDelServidor.getListaString());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/ordenPostulantesFinal.jsp");
-            dispatcher.forward(request, response);
-
-
-        } catch (OfertaLaboralNoEncontrada_Exception e) {
-            // Configura los atributos necesarios para la página de error
-            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
-            request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
-        } catch (ExceptionUsuarioNoEncontrado_Exception e) {
-            // Configura los atributos necesarios para la página de error
-            request.setAttribute("nombreError", "Usuario No Encontrado");
-            request.setAttribute("mensajeError", "El usuario no fue encontrado. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
-        } catch (ExisteOrdenFinalDePostulantes_Exception e) {
-            request.setAttribute("nombreError", "Existe Orden final de postulantes");
-            request.setAttribute("mensajeError", "No se puede redefinir el orden de los postulantes.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
-        }
+      doGet(request, response);
 
     }
 

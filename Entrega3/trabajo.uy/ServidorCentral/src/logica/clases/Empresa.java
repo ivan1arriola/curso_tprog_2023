@@ -379,19 +379,6 @@ public class Empresa extends Usuario {
     }
 
 
-    public void establecerPosicion(String nombreOferta, List<String> nicksPostulante) throws OfertaLaboralNoEncontrada {
-        OfertaLaboral ofertaLaboral = encontrarOfertaPorNombre(nombreOferta);
-
-        int posicion = 1;
-        for (String nickPostulante : nicksPostulante) {
-            ofertaLaboral.establecerPosicion(nickPostulante, posicion);
-            posicion++;
-        }
-
-        ofertaLaboral.setHayOrdenDefinitivo(true);
-        ofertaLaboral.setEstado(EstadoOL.Finalizada);
-    }
-
     private OfertaLaboral encontrarOfertaPorNombre(String nombreOferta) throws OfertaLaboralNoEncontrada {
         for (OfertaLaboral oferta : getofertasLaborales()) {
             if (nombreOferta.equals(oferta.getNombre())) {
@@ -402,18 +389,6 @@ public class Empresa extends Usuario {
                 "Empresa " + getNickname()+ " no tiene una oferta laboral llamada " + nombreOferta);
     }
 
-
-    public boolean HayOrden(String nombre_oferta) {
-        Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
-        OfertaLaboral auxiliar = null;
-        for (OfertaLaboral OLe : OFEmpresa) {
-            if (nombre_oferta.equals(OLe.getNombre())) {
-                auxiliar = OLe;
-                break;
-            }
-        }
-		return auxiliar.TienePosicion();
-    }
 
     public Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas() {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
@@ -433,33 +408,8 @@ public class Empresa extends Usuario {
         return stringSet;
     }
 
-    public void finalizarOfertaLaboral(String nombre_oferta) {
-        Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
 
-        EstadoOL estado = EstadoOL.Finalizada;
-
-        for (OfertaLaboral ofertaLaboral : OFEmpresa) {
-            if (nombre_oferta.equals(ofertaLaboral.getNombre())) {
-                ofertaLaboral.setEstado(estado);
-                break;
-            }
-        }
-
-    }
-
-    public List<String> DevolverOrden(String nombre_oferta) {
-    	Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
-        OfertaLaboral auxiliar = null;
-        for (OfertaLaboral OLe : OFEmpresa) {
-            if (nombre_oferta.equals(OLe.getNombre())) {
-                auxiliar = OLe;
-                break;
-            }
-        }
-		return auxiliar.DevolverPosiciones();
-    }
-
-	public LocalDate obtenerFechaDeCompra(String paq) {
+    public LocalDate obtenerFechaDeCompra(String paq) {
 		System.out.println(paq);
 		for (InfoCompra ic : infoCompras) {
 			if (ic.getPaquete().getNombre().equals(paq)) {

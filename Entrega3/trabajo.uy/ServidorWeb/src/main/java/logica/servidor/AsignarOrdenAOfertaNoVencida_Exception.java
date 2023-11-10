@@ -10,8 +10,8 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExisteOrdenFinalDePostulantes", targetNamespace = "http://servidor.logica/")
-public class ExisteOrdenFinalDePostulantes_Exception
+@WebFault(name = "AsignarOrdenAOfertaNoVencida", targetNamespace = "http://servidor.logica/")
+public class AsignarOrdenAOfertaNoVencida_Exception
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class ExisteOrdenFinalDePostulantes_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private ExisteOrdenFinalDePostulantes faultInfo;
+    private AsignarOrdenAOfertaNoVencida faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public ExisteOrdenFinalDePostulantes_Exception(String message, ExisteOrdenFinalDePostulantes faultInfo) {
+    public AsignarOrdenAOfertaNoVencida_Exception(String message, AsignarOrdenAOfertaNoVencida faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class ExisteOrdenFinalDePostulantes_Exception
      * @param faultInfo
      * @param message
      */
-    public ExisteOrdenFinalDePostulantes_Exception(String message, ExisteOrdenFinalDePostulantes faultInfo, Throwable cause) {
+    public AsignarOrdenAOfertaNoVencida_Exception(String message, AsignarOrdenAOfertaNoVencida faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class ExisteOrdenFinalDePostulantes_Exception
     /**
      * 
      * @return
-     *     returns fault bean: logica.servidor.ExisteOrdenFinalDePostulantes
+     *     returns fault bean: logica.servidor.AsignarOrdenAOfertaNoVencida
      */
-    public ExisteOrdenFinalDePostulantes getFaultInfo() {
+    public AsignarOrdenAOfertaNoVencida getFaultInfo() {
         return faultInfo;
     }
 

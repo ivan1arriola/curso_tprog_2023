@@ -470,57 +470,39 @@ public class CtrlOferta implements ICtrlOferta {
         ofertaLaboral.desmarcadaFav();
     }
 
-    public void establecerPosiciones(String nombre_oferta, List<String> nicksPostulante) throws ExceptionUsuarioNoEncontrado, ExisteOrdenFinalDePostulantes, OfertaLaboralNoEncontrada {
-        if (HayOrdenFinal(nombre_oferta)) throw new ExisteOrdenFinalDePostulantes("No se reasignar el orden de postulantes");
-
+    public void establecerPosiciones(String nombre_oferta, List<String> nicksPostulante) throws AsignarOrdenAOfertaFinalizada, OfertaLaboralNoEncontrada, AsignarOrdenAOfertaNoVencida {
         OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
         OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre_oferta);
-        Empresa empresa = ofertaLaboral.getEmpresaPublicadora();
-        empresa.establecerPosicion(nombre_oferta, nicksPostulante);
+        ofertaLaboral.establecerPosicion(nicksPostulante);
+
+        System.out.println("Se establecio un orden de postulantes : " + nicksPostulante.toString());
+
     }
-    
-    // orden de las posiciones
-    @Override
-    public boolean HayOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
-    	    	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral oferta = null;
-		try {
-			oferta = OLH.buscar(nombre_oferta);
-		} catch (OfertaLaboralNoEncontrada e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
-    	Empresa empresa = null;
-        empresa = (Empresa) usuarioHandler.buscarNick(nicknameEmpresa);
-        return empresa.HayOrden(nombre_oferta);
-    }
+
     
     @Override
-    public List<String> DevolverOrdenFinal(String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
+    public List<String> devolverOrdenPostulantes(String nombre_oferta) throws OfertaLaboralNoEncontrada, NoHayOrdenDefinidoDePostulantes {
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral oferta = null;
-		try {
-			oferta = OLH.buscar(nombre_oferta);
-		} catch (OfertaLaboralNoEncontrada e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	String nicknameEmpresa = oferta.getEmpresaPublicadora().getNickname();
-    	Empresa empresa = null;
-        empresa = (Empresa) usuarioHandler.buscarNick(nicknameEmpresa);
-        return empresa.DevolverOrden(nombre_oferta);
+    	OfertaLaboral oferta = OLH.buscar(nombre_oferta);
+        return oferta.getOrdenPostulantes();
     }
-    
+
+    @Override
+    public void descartarOrdenPostulantes(String nombreOferta) throws OfertaLaboralNoEncontrada {
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboral oferta = OLH.buscar(nombreOferta);
+        oferta.descartarOrden();
+    }
+
+
     @Override
     public void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
     	OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
     	OfertaLaboral oferta = ofertaLaboralHandler.buscar(nombre_oferta);
         if (!oferta.estaVencida()){
-            throw new FinalizarOfertaNoVencida("No se puede finalizar una oferta que no este vendida");
+            throw new FinalizarOfertaNoVencida("No se puede finalizar una oferta que no este vencida");
         }
-    	Empresa empresa = oferta.getEmpresaPublicadora();
-    	empresa.finalizarOfertaLaboral(nombre_oferta);
+        oferta.finalizarOferta();
     }
     
     @Override
@@ -535,6 +517,14 @@ public class CtrlOferta implements ICtrlOferta {
     	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
     	OfertaLaboral ol = OLH.buscar(nomb_oferta);
     	return ol.getTipoOferta().getNombre();
+    }
+
+    @Override
+    public boolean hayOrdenDefinido(String nombreOferta) throws OfertaLaboralNoEncontrada {
+        OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
+        OfertaLaboral oferta = OLH.buscar(nombreOferta);
+
+        return oferta.isHayOrdenDefinido();
     }
 
 }

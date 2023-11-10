@@ -24,6 +24,8 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _AsignarOrdenAOfertaFinalizada_QNAME = new QName("http://servidor.logica/", "AsignarOrdenAOfertaFinalizada");
+    private final static QName _AsignarOrdenAOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "AsignarOrdenAOfertaNoVencida");
     private final static QName _ErrorAgregarUsuario_QNAME = new QName("http://servidor.logica/", "ErrorAgregarUsuario");
     private final static QName _ExcepcionKeywordVacia_QNAME = new QName("http://servidor.logica/", "ExcepcionKeywordVacia");
     private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
@@ -38,9 +40,9 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioNoEncontrado_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNoEncontrado");
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
-    private final static QName _ExisteOrdenFinalDePostulantes_QNAME = new QName("http://servidor.logica/", "ExisteOrdenFinalDePostulantes");
     private final static QName _FinalizarOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaNoVencida");
     private final static QName _NoExistePaquete_QNAME = new QName("http://servidor.logica/", "NoExistePaquete");
+    private final static QName _NoHayOrdenDefinidoDePostulantes_QNAME = new QName("http://servidor.logica/", "NoHayOrdenDefinidoDePostulantes");
     private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
     private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/", "TipoUsuarioNoValido");
 
@@ -49,6 +51,26 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link AsignarOrdenAOfertaFinalizada }
+     * 
+     * @return
+     *     the new instance of {@link AsignarOrdenAOfertaFinalizada }
+     */
+    public AsignarOrdenAOfertaFinalizada createAsignarOrdenAOfertaFinalizada() {
+        return new AsignarOrdenAOfertaFinalizada();
+    }
+
+    /**
+     * Create an instance of {@link AsignarOrdenAOfertaNoVencida }
+     * 
+     * @return
+     *     the new instance of {@link AsignarOrdenAOfertaNoVencida }
+     */
+    public AsignarOrdenAOfertaNoVencida createAsignarOrdenAOfertaNoVencida() {
+        return new AsignarOrdenAOfertaNoVencida();
     }
 
     /**
@@ -192,16 +214,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExisteOrdenFinalDePostulantes }
-     * 
-     * @return
-     *     the new instance of {@link ExisteOrdenFinalDePostulantes }
-     */
-    public ExisteOrdenFinalDePostulantes createExisteOrdenFinalDePostulantes() {
-        return new ExisteOrdenFinalDePostulantes();
-    }
-
-    /**
      * Create an instance of {@link FinalizarOfertaNoVencida }
      * 
      * @return
@@ -219,6 +231,16 @@ public class ObjectFactory {
      */
     public NoExistePaquete createNoExistePaquete() {
         return new NoExistePaquete();
+    }
+
+    /**
+     * Create an instance of {@link NoHayOrdenDefinidoDePostulantes }
+     * 
+     * @return
+     *     the new instance of {@link NoHayOrdenDefinidoDePostulantes }
+     */
+    public NoHayOrdenDefinidoDePostulantes createNoHayOrdenDefinidoDePostulantes() {
+        return new NoHayOrdenDefinidoDePostulantes();
     }
 
     /**
@@ -389,6 +411,32 @@ public class ObjectFactory {
      */
     public LocalDate createLocalDate() {
         return new LocalDate();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaFinalizada }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaFinalizada }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "AsignarOrdenAOfertaFinalizada")
+    public JAXBElement<AsignarOrdenAOfertaFinalizada> createAsignarOrdenAOfertaFinalizada(AsignarOrdenAOfertaFinalizada value) {
+        return new JAXBElement<>(_AsignarOrdenAOfertaFinalizada_QNAME, AsignarOrdenAOfertaFinalizada.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaNoVencida }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaNoVencida }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "AsignarOrdenAOfertaNoVencida")
+    public JAXBElement<AsignarOrdenAOfertaNoVencida> createAsignarOrdenAOfertaNoVencida(AsignarOrdenAOfertaNoVencida value) {
+        return new JAXBElement<>(_AsignarOrdenAOfertaNoVencida_QNAME, AsignarOrdenAOfertaNoVencida.class, null, value);
     }
 
     /**
@@ -574,19 +622,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExisteOrdenFinalDePostulantes }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link ExisteOrdenFinalDePostulantes }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExisteOrdenFinalDePostulantes")
-    public JAXBElement<ExisteOrdenFinalDePostulantes> createExisteOrdenFinalDePostulantes(ExisteOrdenFinalDePostulantes value) {
-        return new JAXBElement<>(_ExisteOrdenFinalDePostulantes_QNAME, ExisteOrdenFinalDePostulantes.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaNoVencida }{@code >}
      * 
      * @param value
@@ -610,6 +645,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "NoExistePaquete")
     public JAXBElement<NoExistePaquete> createNoExistePaquete(NoExistePaquete value) {
         return new JAXBElement<>(_NoExistePaquete_QNAME, NoExistePaquete.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoHayOrdenDefinidoDePostulantes }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link NoHayOrdenDefinidoDePostulantes }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "NoHayOrdenDefinidoDePostulantes")
+    public JAXBElement<NoHayOrdenDefinidoDePostulantes> createNoHayOrdenDefinidoDePostulantes(NoHayOrdenDefinidoDePostulantes value) {
+        return new JAXBElement<>(_NoHayOrdenDefinidoDePostulantes_QNAME, NoHayOrdenDefinidoDePostulantes.class, null, value);
     }
 
     /**
