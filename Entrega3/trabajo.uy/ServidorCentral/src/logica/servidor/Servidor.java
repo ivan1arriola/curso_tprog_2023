@@ -457,8 +457,7 @@ public class Servidor {
 
 
 
-<<<<<<< HEAD
-=======
+
     @WebMethod
     public WrapperLista listarPostulantesOfertaLaboral(
             @WebParam(name = "nombre_oferta") String nombre_oferta
@@ -469,7 +468,4 @@ public class Servidor {
 
 
 
-
-
->>>>>>> 163757fed07479e5c4dd3ac8cf1610918a093c99
 }

@@ -10,61 +10,79 @@
   boolean estaFinalizada = (boolean) request.getAttribute("estaFinalizada");
   TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
   boolean duenioOfertaLaboral = (boolean) request.getAttribute("duenio");
+  int cantFavs = (int) request.getAttribute("cantFavs");
+  boolean estaFav = (boolean) request.getAttribute("estaFav");
 %>
 
-<div class="nav nav-pills flex-column">
+<div class="container-fluid">
 
+  <div class="d-flex flex-column justify-content-between  pt-3 pb-2 mb-3 border-bottom">
 
+    <% if (!vigente && !estaFinalizada && tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral) { %>
+    <a href="<%=request.getContextPath()%>/ordenarpostulantes?oferta=<%=ofertaLaboral.getNombre()%>" class="btn btn-primary">Definir Orden de Selección</a>
 
-    <!-- Botón desplegable para otras acciones -->
-    <div class="btn-group" role="group">
-      <button id="accionesMenu" type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Acciones
-      </button>
-      <div class="dropdown-menu" aria-labelledby="accionesMenu">
+    <!-- Item de menú para finalizar oferta -->
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#finalizarOfertaModal">
+      Finalizar Oferta Laboral
+    </button>
+    <% } %>
 
-        <!-- Botón de definir orden -->
+    <!-- Puedes agregar más acciones aquí como elementos de menú -->
 
-        <%
-          if (!vigente && !estaFinalizada) {
-        %>
+    <% if (tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral) { %>
+    <li class="list-group-item" id="postulantes">
+      <jsp:include page="./postulantes.jsp" />
+    </li>
+    <% } else if (tipoUsuario == TipoUsuario.Postulante && !estaFinalizada && vigente) { %>
+    <li class="list-group-item" id="postular">
+      <jsp:include page="./postular.jsp" />
+    </li>
+    <% } %>
+  </div>
 
-        <a href="<%=request.getContextPath()%>/ordenarpostulantes?oferta=<%=ofertaLaboral.getNombre()%>" class="btn btn-primary">Definir Orden de Selección</a>
+  <ul class="list-group list-group-flush">
+    <li id="estadoOferta" class="list-group-item">
+      <h4></h4>
+    </li>
 
+    <% if (!vigente && !estaFinalizada) { %>
+    <li id="estadoOferta" class="list-group-item">
+      <h5>
+        <span class="badge bg-danger">Oferta No Vigente</span>
+      </h5>
+    </li>
+    <% } %>
 
-        <!-- Item de menú para finalizar oferta -->
-        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#finalizarOfertaModal">
-          Finalizar Oferta Laboral
+    <% if (TipoUsuario.Postulante == tipoUsuario) { %>
+    <li class="list-group-item" id="accion-favorito">
+      <form action="consultarofertalaboral" method="post">
+        <input type="hidden" name="nombreOferta" value="<%= ofertaLaboral.getNombre() %>">
+        <% if (!estaFav) { %>
+        <h5> Marcar favorito</h5>
+        <button id="corazonDesm" name="corazonDesm" type="submit" class="btn" aria-label="Like">
+          <span class="heart-icon" aria-hidden="true">&#10084;</span>
         </button>
+        <% } else { %>
+        <h5> Desmarcar favorito</h5>
+        <button id="corazonMarc" name="corazonMarc" type="submit" class="btn" aria-label="Like">
+          <span class="heart-icon text-danger" aria-hidden="true">&#10084;</span>
+        </button>
+        <% } %>
+      </form>
+    </li>
+    <% } %>
 
+    <li class="list-group-item" id="cantidad-favoritos">
+      <h4>Cantidad de favoritos: <span class="badge bg-success"><%= cantFavs %></span></h4>
+    </li>
 
-        <%
-          }
-        %>
+    <% if (tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral) { %>
+    <li class="list-group-item" id="paquete">
+      <jsp:include page="./paquetes.jsp" />
+    </li>
+    <% } %>
+  </ul>
 
-
-
-        <!-- Puedes agregar más acciones aquí como elementos de menú -->
-
-        <%
-          if (tipoUsuario == TipoUsuario.Empresa && duenioOfertaLaboral) {
-        %>
-        <li class="list-group-item" id="postulantes">
-          <jsp:include page="./postulantes.jsp" />
-        </li>
-        <%
-        } else if (tipoUsuario == TipoUsuario.Postulante && !estaFinalizada && vigente) {
-        %>
-        <li class="list-group-item" id="postular">
-          <jsp:include page="./postular.jsp" />
-        </li>
-        <%
-          }
-        %>
-
-
-      </div>
-    </div>
 </div>
 
 <jsp:include page="./finalizarOfertaConfirmacionModal.jsp" />

@@ -42,10 +42,6 @@
                 <h1 class="text-center text-light fw-bolder"><%= ofertaLaboral.getNombre() %></h1>
             </div>
 
-            <div class="row">
-                <jsp:include page="./barraAcciones.jsp" />
-
-            </div>
 
             <div class="row">
                 <div class="col-9">
@@ -59,7 +55,7 @@
                     if (mostrarContenido) {
                 %>
                 <div class="col-3" id="acciones">
-                    <jsp:include page="./sidePanel.jsp" />
+                    <jsp:include page="./barraAcciones.jsp" />
                 </div>
                 <%
                     }
