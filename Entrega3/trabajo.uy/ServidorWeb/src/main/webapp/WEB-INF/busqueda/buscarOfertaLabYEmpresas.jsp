@@ -40,7 +40,8 @@
             <!-- Sección de ofertas laborales (primera columna) -->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="sin-bordes">
+                	<div class="sin-bordes text-center">
+        				<h2>Ofertas Laborales</h2>
                     	<!-- Encuadre de texto de cantidad de resultados y menú de selección de orden -->
 				        <div class="row mb-3" style="border: 1px solid #ccc; padding: 10px;">
 				            <div class="col-md-3 d-flex align-items-center">
@@ -53,9 +54,8 @@
 				                <!-- Menú de selección de orden -->
 							    <form id="orden-ofertas-form" action="Home" method="POST">
 							        <select id="orden-ofertas" name="ordenEmp" class="form-select" onchange="submitForm()">
-							            <option value="" ${"".equals(request.getAttribute("ordenEmp")) ? 'selected' : ''}>Seleccione una opción</option>
-							            <option value="defectoEmp" ${"defectoEmp".equals(request.getAttribute("ordenEmp")) ? 'selected' : ''}>Por defecto</option>
-							            <option value="alfabeticoEmp" ${"alfabeticoEmp".equals(request.getAttribute("ordenEmp")) ? 'selected' : ''}>Alfabéticamente (A-Z a-z)</option>
+							            <option value="defectoOfertaLab" ${"defectoEmp".equals(request.getAttribute("defectoOfertaLab")) ? 'selected' : ''}>Por defecto</option>
+							            <option value="alfabeticoOfertaLab" ${"alfabeticoEmp".equals(request.getAttribute("alfabeticoOfertaLab")) ? 'selected' : ''}>Alfabéticamente (A-Z a-z)</option>
 							        </select>
 							    </form>
 							
@@ -136,7 +136,8 @@
 
                 <!-- Sección de empresas (segunda columna) -->
                 <div class="col-md-6">
-                    <div class="sin-bordes">
+                    <div class="sin-bordes text-center">
+        				<h2>Empresas</h2>
 				        <!-- Encuadre de texto de cantidad de resultados y menú de selección de orden -->
 				        <div class="row mb-3" style="border: 1px solid #ccc; padding: 10px;">
 				            <div class="col-md-3 d-flex align-items-center">
@@ -147,14 +148,50 @@
 				                <!-- Texto "Ordenar por" con tamaño más pequeño -->
 				                <label for="orden-ofertas" style="margin-right: 10px; font-size: 14px;">Ordenar por:</label>
 				                <!-- Menú de selección de orden -->
-								<form action="Home" method="POST">
-								    <select id="orden-ofertas" name="orden" class="form-select">
+								<form id="orden-empresas-form" action="Home" method="POST">
+								    <select id="orden-empresas" name="ordenEmp" class="form-select" onchange="submitForm()">
 								        <option value="defectoEmp">Por defecto</option>
 								        <option value="alfabeticoEmp">Alfabéticamente (A-Z a-z)</option>
 								    </select>
-								    <input type="submit" value="Enviar">
 								</form>
-				            </div>
+								
+								<script>
+								    document.getElementById('orden-empresas').addEventListener('change', function () {
+								        if (isSelectionChanged()) {
+								            submitForm();
+								        }
+								    });
+								
+								    function loadSelection() {
+								        var ordenGuardado = localStorage.getItem('ordenSeleccionado');
+								        if (!ordenGuardado) {
+								            ordenGuardado = "defectoEmp";
+								            localStorage.setItem('ordenSeleccionado', ordenGuardado);
+								        }
+								        document.getElementById('orden-empresas').value = ordenGuardado;
+								    }
+								
+								    function isSelectionChanged() {
+								        var ordenSeleccionado = document.getElementById('orden-empresas').value;
+								        var ordenGuardado = localStorage.getItem('ordenSeleccionado');
+								        return ordenSeleccionado !== ordenGuardado;
+								    }
+								
+								    function submitForm() {
+								        var ordenSeleccionado = document.getElementById('orden-empresas').value;
+								        localStorage.setItem('ordenSeleccionado', ordenSeleccionado);
+								        document.getElementById('orden-empresas-form').submit();
+								    }
+								
+								    // Llama a loadSelection después de que la página se ha cargado completamente
+								    window.addEventListener('load', function () {
+								        loadSelection();
+								    });
+								</script>
+
+
+
+				        	</div>
 				        </div>
                         <div class="row">
                             <% if (empresas == null || empresas.isEmpty()) { %>
