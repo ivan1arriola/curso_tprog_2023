@@ -422,7 +422,7 @@ public class Empresa extends Usuario {
 
     // ============================================================
 
-    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral(String nombre_oferta_laboral) {
+    public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nombre_oferta_laboral) {
         Set<OfertaLaboral> OFEmpresa = getofertasLaborales();
         OfertaLaboral auxiliar = null;
         for (OfertaLaboral OLe : OFEmpresa) {
@@ -431,7 +431,7 @@ public class Empresa extends Usuario {
                 break;
             }
         }
-        Set<DTPostulacion> stringSet = auxiliar.ObtenerPostulacionesOfertaLaboral();
+        Set<DTPostulacion> stringSet = auxiliar.obtenerPostulacionesOfertaLaboral();
         return stringSet;
     }
 
