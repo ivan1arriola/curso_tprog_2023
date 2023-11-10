@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
+ 
 
 public class AceptarOferta extends JInternalFrame {
     private static final long serialVersionUID = 1L;
