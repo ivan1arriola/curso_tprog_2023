@@ -37,21 +37,21 @@ public class Utils {
     private static final Proxy proxy;
     
     static {
-        String proxyHost = System.getProperty("http.proxyHost");
-        String proxyPortString = System.getProperty("http.proxyPort");
+    	String proxyProperty = System.getProperty("http.proxyHost");
+        //String proxyHost = System.getProperty("http.proxyHost");
+        //String proxyPortString = System.getProperty("http.proxyPort");
         
-        
-        if (proxyHost != null) {
-        	int proxyPort;
-        	
-        	if (proxyPortString != null) {
-                // Si http.proxyPort está configurado, utilízalo directamente
-                proxyPort = Integer.parseInt(proxyPortString);
-            } else {
-            	
-            	proxyPort = 3128;
-            
-            }
+    	if (proxyProperty != null && !proxyProperty.isEmpty()) {
+    	    // Dividir el host y el puerto
+    	    String[] parts = proxyProperty.split(":");
+    	    
+    	    // Asignar el host
+    	    String proxyHost = parts[0];
+    	    
+    	    // Asignar el puerto (ten en cuenta que puedes necesitar convertirlo a un tipo numérico)
+    	    int proxyPort = Integer.parseInt(parts[1]);
+    	
+ 	
        
             proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
             
