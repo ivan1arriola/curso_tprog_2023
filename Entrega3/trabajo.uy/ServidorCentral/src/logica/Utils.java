@@ -49,15 +49,7 @@ public class Utils {
                 proxyPort = Integer.parseInt(proxyPortString);
             } else {
             	
-            	try {
-                    URL proxyUrl = new URL(proxyHost);
-                    // Obtén el puerto de la URL, o utiliza el puerto predeterminado si no está especificado
-                    proxyPort = proxyUrl.getPort() != -1 ? proxyUrl.getPort() : proxyUrl.getDefaultPort();
-                } catch (MalformedURLException e) {
-                    // Maneja la excepción si la URL del proxy no es válida
-                    e.printStackTrace();
-                    proxyPort = 3128;  //-1; O establece un valor predeterminado
-                }
+            	proxyPort = 3128;
             
             }
        
