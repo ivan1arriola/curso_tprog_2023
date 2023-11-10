@@ -62,7 +62,7 @@ public class ConsultarPostulantes extends HttpServlet {
                 boolean hayOrdenDefinido = servidor.hayOrdenDefinido(nombreOferta);
 
                 List<String> nicknamePostulantes;
-                if (hayOrdenDefinido || estaFinalizada){
+                if (hayOrdenDefinido){
                     // Obtengo la lista devuelta del servidor
                     nicknamePostulantes  = servidor.obtenerPosiciones(nombreOferta).getListaString();
                 } else {
