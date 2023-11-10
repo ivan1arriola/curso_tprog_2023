@@ -730,7 +730,7 @@ public class OfertaLaboral {
     // ===============================================================
     public void establecerPosicion(List<String> nickPostulantes) throws AsignarOrdenAOfertaFinalizada, AsignarOrdenAOfertaNoVencida {
         if (getEstado() == EstadoOL.Finalizada) throw new AsignarOrdenAOfertaFinalizada("No se reasignar el orden de postulantes porque la oferta ya finalizo");
-        if(!estaVencida()) throw new AsignarOrdenAOfertaNoVencida("No se puede asignar un orden a una oferta que no vencio");
+        if (!estaVencida()) throw new AsignarOrdenAOfertaNoVencida("No se puede asignar un orden a una oferta que no vencio");
 
         List<Postulacion> postulacionesOferta = getPostulaciones();
 
@@ -779,7 +779,7 @@ public class OfertaLaboral {
 	}
 
     public List<String> getOrdenPostulantes() throws NoHayOrdenDefinidoDePostulantes {
-        if(!isHayOrdenDefinido()) throw new NoHayOrdenDefinidoDePostulantes("La oferta laboral " + getNombre() + " aun no tiene un orden de postulantes definido");
+        if (!isHayOrdenDefinido()) throw new NoHayOrdenDefinidoDePostulantes("La oferta laboral " + getNombre() + " aun no tiene un orden de postulantes definido");
 
         List<String> nicknamesPostulantes = new ArrayList<>();
 
@@ -791,7 +791,7 @@ public class OfertaLaboral {
     }
 
     public void finalizarOferta() {
-        if(hayOrdenDefinido) {
+        if (hayOrdenDefinido) {
             List<Postulacion> postulacionesOferta = getPostulaciones();
             int posicion = 0;
             for (Postulacion postulacion : postulacionesOferta) {
