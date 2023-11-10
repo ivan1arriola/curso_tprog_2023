@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import logica.clases.OfertaLaboral;
+import jakarta.persistence.PersistenceException;
 
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class OfertaLaboralHandler {
             }
             database.persist(tipoOfertaL);
             transaction.commit();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
@@ -55,7 +56,7 @@ public class OfertaLaboralHandler {
             for (OfertaLaboral oferta : resultados) {
                 ofertasLaborales.put(oferta.getNombre(), oferta);
             }
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
         }
 
@@ -70,7 +71,7 @@ public class OfertaLaboralHandler {
             Long count = query.getSingleResult();
 
             return count > 0;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return false;
         }
@@ -100,7 +101,7 @@ public class OfertaLaboralHandler {
             database.merge(ofertaActualizada);
             transaction.commit();
 
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
