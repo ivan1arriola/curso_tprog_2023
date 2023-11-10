@@ -455,10 +455,6 @@ public class Servidor {
     	ctrlOferta.altaOfertaLaboral(nickname, tipoOferta, nombre, descripcion, horario, remuneracion, ciudad, DepUY.valueOf(departamento), LocalDate.now(),  keywordsSet, EstadoOL.Ingresada, null, formaPago);
     }
 
-
-
-<<<<<<< HEAD
-=======
     @WebMethod
     public WrapperLista listarPostulantesOfertaLaboral(
             @WebParam(name = "nombre_oferta") String nombre_oferta
@@ -466,10 +462,4 @@ public class Servidor {
 
         return WSUtils.envolverLista((ArrayList<String>) ctrlUsuario.listarPostulantesDeOfertas(nombre_oferta));
     }
-
-
-
-
-
->>>>>>> 163757fed07479e5c4dd3ac8cf1610918a093c99
 }
