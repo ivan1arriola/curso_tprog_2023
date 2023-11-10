@@ -1,5 +1,6 @@
 package logica;
 
+import java.net.MalformedURLException;
 import excepciones.*;
 import logica.clases.*;
 import logica.controladores.CtrlOferta;
@@ -38,13 +39,34 @@ public class Utils {
     static {
         String proxyHost = System.getProperty("http.proxyHost");
         String proxyPortString = System.getProperty("http.proxyPort");
-
-        if (proxyHost != null && proxyPortString != null) {
-            int proxyPort = Integer.parseInt(proxyPortString);
+        
+        
+        if (proxyHost != null) {
+        	int proxyPort;
+        	
+        	if (proxyPortString != null) {
+                // Si http.proxyPort está configurado, utilízalo directamente
+                proxyPort = Integer.parseInt(proxyPortString);
+            } else {
+            	
+            	try {
+                    URL proxyUrl = new URL(proxyHost);
+                    // Obtén el puerto de la URL, o utiliza el puerto predeterminado si no está especificado
+                    proxyPort = proxyUrl.getPort() != -1 ? proxyUrl.getPort() : proxyUrl.getDefaultPort();
+                } catch (MalformedURLException e) {
+                    // Maneja la excepción si la URL del proxy no es válida
+                    e.printStackTrace();
+                    proxyPort = 3128;  //-1; O establece un valor predeterminado
+                }
+            
+            }
+       
             proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+            
         } else {
             proxy = null;  // No se establece el proxy si no se encuentran las propiedades
         }
+   
     }
     
     Map<String, String[]> usuarioCSV = new HashMap<>();
