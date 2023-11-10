@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 public class Home extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ILogica logica;
+    private String input;
 
     public Home() {
         super();
@@ -42,11 +43,17 @@ public class Home extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String input = (String) request.getParameter("buscar-input");
+        if(input != null) {
+        	this.input = input;
+        }
+        
 
         RequestDispatcher dispatcher;
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
 
+        
+        
         try {
             // OBTENER TODAS LAS OFERTAS LABORALES Y EMPRESAS
             Set<OfertaLaboralBean> ofertas_laborales = logica.listarDatosOfertas();
@@ -59,45 +66,99 @@ public class Home extends HttpServlet {
             Map<OfertaLaboralBean, Integer> ofertasLab = new HashMap<>();
 
             for(OfertaLaboralBean ol : ofertas_laborales) {
-                if(ol.getNombre().toLowerCase().contains(input.toLowerCase()) || ol.getDescripcion().toLowerCase().contains(input.toLowerCase())) {
+                if(ol.getNombre().toLowerCase().contains(this.input.toLowerCase()) || ol.getDescripcion().toLowerCase().contains(this.input.toLowerCase())) {
                     ofertasLab.put(ol, servidor.obtenerDatosTO(ol.getTipoOferta()).getExposicion());
                     cantOfertasLaborales++;
                 }
             }
+            LinkedHashMap<OfertaLaboralBean, Integer> ofertasLabOrdenadas;
+            
+            String opcionSeleccionada = request.getParameter("ordenOfertaLab");
+            if(opcionSeleccionada != null && opcionSeleccionada.equals("alfabeticoOfertaLab")){
+            	ofertasLabOrdenadas = ofertasLab.entrySet()
+            		    .stream()
+            		    .sorted(Map.Entry.comparingByKey(Comparator.comparing(OfertaLaboralBean::getNombre)))
+            		    .collect(Collectors.toMap(
+            		        Map.Entry::getKey,
+            		        Map.Entry::getValue,
+            		        (oldValue, newValue) -> oldValue,
+            		        LinkedHashMap::new
+            		    ));
 
-            // Ordenar el mapa por los valores y, en caso de empate, por la fechaAlta de más reciente a más antiguo
-            LinkedHashMap<OfertaLaboralBean, Integer> ofertasLabOrdenadas = ofertasLab.entrySet()
-                    .stream()
-                    .sorted(Map.Entry.<OfertaLaboralBean, Integer>comparingByValue()
-                            .thenComparing((e1, e2) -> e2.getKey().getFechaDeAlta().compareTo(e1.getKey().getFechaDeAlta())))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            } else {
+                // Ordenar el mapa por los valores y, en caso de empate, por la fechaAlta de más reciente a más antiguo
+                ofertasLabOrdenadas = ofertasLab.entrySet()
+                        .stream()
+                        .sorted(Map.Entry.<OfertaLaboralBean, Integer>comparingByValue()
+                                .thenComparing((e1, e2) -> e2.getKey().getFechaDeAlta().compareTo(e1.getKey().getFechaDeAlta())))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            }
 
             request.setAttribute("ofertasLabOrdenadas", ofertasLabOrdenadas);
             request.setAttribute("cantOfertasLaborales", cantOfertasLaborales);
 
-            // OBTENER EMPRESAS
-            LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadas = new LinkedHashMap<>();
 
-            for(String emp : empresas) {
-                UsuarioBean userDatos = logica.obtenerDatosUsuario(emp);
-                if(emp.toLowerCase().contains(input.toLowerCase()) || userDatos.getDescripcion().contains(input.toLowerCase())) {
-                    Set<String> ofertasLaborales = logica.listarOfertasConfirmadasDeEmpresa(emp);
-                    LocalDate fechaMasActual = LocalDate.MIN;
-                    for(String ol : ofertasLaborales) {
-                        LocalDate fecha = logica.obtenerDatosOfertaLaboral(ol).getFechaDeAlta();
-                        if(fecha.isAfter(fechaMasActual)) {
-                            fechaMasActual = fecha;
-                        }
-                    }
-                    empresasOrdenadas.put(userDatos,fechaMasActual);
-                    cantEmpresas++;
+
+            LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadasPorFecha;
+            
+            opcionSeleccionada = request.getParameter("ordenEmp");      
+           
+            if(opcionSeleccionada != null && opcionSeleccionada.equals("alfabeticoEmp")){
+                if(! opcionSeleccionada.equals("alfabeticoEmp") ) {
+    	            request.setAttribute("mensajeError", "ENTRO ACÁ");
+    	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
+    	            dispatcher.forward(request, response);
                 }
-            }
+            	
+            	LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadas = new LinkedHashMap<>();;
+            	// input = (String) request.getAttribute("input");
+            	
+                for(String emp : empresas) {
+                    UsuarioBean userDatos = logica.obtenerDatosUsuario(emp);
+                    if(emp.toLowerCase().contains(this.input.toLowerCase()) || userDatos.getDescripcion().contains(this.input.toLowerCase())) {
+                        empresasOrdenadas.put(userDatos,LocalDate.now());
+                        cantEmpresas++;
+                    }
+                }
+            	
+            	empresasOrdenadasPorFecha = empresasOrdenadas.entrySet()
+            		    .stream()
+            		    .sorted(Map.Entry.comparingByKey(Comparator.comparing(UsuarioBean::getNombre)))
+            		    .collect(Collectors.toMap(
+            		        Map.Entry::getKey,
+            		        Map.Entry::getValue,
+            		        (oldValue, newValue) -> oldValue,
+            		        LinkedHashMap::new
+            		    ));
 
-            LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadasPorFecha = empresasOrdenadas.entrySet()
-                    .stream()
-                    .sorted(Map.Entry.<UsuarioBean, LocalDate>comparingByValue().reversed())
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            } else {
+                // OBTENER EMPRESAS
+                LinkedHashMap<UsuarioBean, LocalDate> empresasOrdenadas = new LinkedHashMap<>();
+        
+                for(String emp : empresas) {
+                    UsuarioBean userDatos = logica.obtenerDatosUsuario(emp);
+                    if(emp.toLowerCase().contains(this.input.toLowerCase()) || userDatos.getDescripcion().contains(this.input.toLowerCase())) {
+                        Set<String> ofertasLaborales = logica.listarOfertasConfirmadasDeEmpresa(emp);
+                        LocalDate fechaMasActual = LocalDate.MIN;
+                        for(String ol : ofertasLaborales) {
+                            LocalDate fecha = logica.obtenerDatosOfertaLaboral(ol).getFechaDeAlta();
+                            if(fecha.isAfter(fechaMasActual)) {
+                                fechaMasActual = fecha;
+                            }
+                        }
+                        empresasOrdenadas.put(userDatos,fechaMasActual);
+                        cantEmpresas++;
+                    }
+                }
+            	
+            	
+            	empresasOrdenadasPorFecha = empresasOrdenadas.entrySet()
+                        .stream()
+                        .sorted(Map.Entry.<UsuarioBean, LocalDate>comparingByValue().reversed())
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            }
+            
+            
 
             request.setAttribute("empresasOrdenadas", empresasOrdenadasPorFecha);
             request.setAttribute("cantEmpresas", cantEmpresas);

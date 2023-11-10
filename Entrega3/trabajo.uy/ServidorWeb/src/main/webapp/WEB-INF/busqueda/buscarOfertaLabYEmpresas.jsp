@@ -36,7 +36,7 @@
                 LinkedHashMap<UsuarioBean, LocalDate> empresas = (LinkedHashMap<UsuarioBean, LocalDate>) request.getAttribute("empresasOrdenadas");
                 Integer cantEmp = (Integer) request.getAttribute("cantEmpresas");
             %>
-
+			<input type="hidden" name="input" style="display: none;" placeholder="nick" value="<%= (String) request.getAttribute("input") %>">
             <!-- Sección de ofertas laborales (primera columna) -->
             <div class="row">
                 <div class="col-md-6">
@@ -51,10 +51,45 @@
 				                <!-- Texto "Ordenar por" con tamaño más pequeño -->
 				                <label for="orden-ofertas" style="margin-right: 10px; font-size: 14px;">Ordenar por:</label>
 				                <!-- Menú de selección de orden -->
-				                <select id="orden-ofertas" onchange="ordenarOfertas" class="form-select">
-				                	<option value="defecto">Por defecto</option>
-				                    <option value="alfabetico">Alfabéticamente (A-Z a-z)</option>
-				                </select>
+							    <form id="orden-ofertas-form" action="Home" method="POST">
+							        <select id="orden-ofertas" name="ordenEmp" class="form-select" onchange="submitForm()">
+							            <option value="" ${"".equals(request.getAttribute("ordenEmp")) ? 'selected' : ''}>Seleccione una opción</option>
+							            <option value="defectoEmp" ${"defectoEmp".equals(request.getAttribute("ordenEmp")) ? 'selected' : ''}>Por defecto</option>
+							            <option value="alfabeticoEmp" ${"alfabeticoEmp".equals(request.getAttribute("ordenEmp")) ? 'selected' : ''}>Alfabéticamente (A-Z a-z)</option>
+							        </select>
+							    </form>
+							
+							    <script>
+							        window.onload = function () {
+							            loadSelection();
+							        };
+							
+							        document.getElementById('orden-ofertas').addEventListener('change', function() {
+							            if (isSelectionChanged()) {
+							                submitForm();
+							            }
+							        });
+							
+							        function loadSelection() {
+							            var ordenGuardado = localStorage.getItem('ordenSeleccionado');
+							            if (ordenGuardado) {
+							                document.getElementById('orden-ofertas').value = ordenGuardado;
+							            }
+							        }
+							
+							        function isSelectionChanged() {
+							            var ordenSeleccionado = document.getElementById('orden-ofertas').value;
+							            var ordenGuardado = localStorage.getItem('ordenSeleccionado');
+							            return ordenSeleccionado !== ordenGuardado;
+							        }
+							
+							        function submitForm() {
+							            var ordenSeleccionado = document.getElementById('orden-ofertas').value;
+							            localStorage.setItem('ordenSeleccionado', ordenSeleccionado);
+							            document.getElementById('orden-ofertas-form').submit();
+							        }
+							    </script>
+
 				            </div>
 				        </div>
                         <div class="row">
@@ -112,10 +147,13 @@
 				                <!-- Texto "Ordenar por" con tamaño más pequeño -->
 				                <label for="orden-ofertas" style="margin-right: 10px; font-size: 14px;">Ordenar por:</label>
 				                <!-- Menú de selección de orden -->
-				                <select id="orden-ofertas" onchange="ordenarOfertas" class="form-select">
-				                	<option value="defecto">Por defecto</option>
-				                    <option value="alfabetico">Alfabéticamente (A-Z a-z)</option>
-				                </select>
+								<form action="Home" method="POST">
+								    <select id="orden-ofertas" name="orden" class="form-select">
+								        <option value="defectoEmp">Por defecto</option>
+								        <option value="alfabeticoEmp">Alfabéticamente (A-Z a-z)</option>
+								    </select>
+								    <input type="submit" value="Enviar">
+								</form>
 				            </div>
 				        </div>
                         <div class="row">
