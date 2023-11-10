@@ -37,9 +37,7 @@ public class Utils {
     private static final Proxy proxy;
     
     static {
-    	String proxyProperty = System.getenv("http.proxy");
-        //String proxyHost = System.getProperty("http.proxyHost");
-        //String proxyPortString = System.getProperty("http.proxyPort");
+    	String proxyProperty = System.getenv("http_proxy");
         
     	if (proxyProperty != null && !proxyProperty.isEmpty()) {
     	    // Asignar el host
