@@ -32,6 +32,7 @@ import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
 //import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
+
 import jakarta.persistence.*;
 import logica.datatypes.*;
 import logica.enumerados.DepUY;
