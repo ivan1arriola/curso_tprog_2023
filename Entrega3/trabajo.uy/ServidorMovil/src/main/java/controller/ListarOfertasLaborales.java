@@ -10,6 +10,8 @@ import logica.servidor.Servidor;
 import logica.servidor.ServidorService;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -28,6 +30,7 @@ public class ListarOfertasLaborales extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<DtOfertaExtendido> DtOfertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
+		Collections.sort(DtOfertas, Comparator.comparing(DtOfertaExtendido::getNombre));
 		request.setAttribute("ofertas", DtOfertas);
 		request.getRequestDispatcher("/WEB-INF/listarOfertasLaborales/ofertasLaborales.jsp").forward(request, response);
 	}
