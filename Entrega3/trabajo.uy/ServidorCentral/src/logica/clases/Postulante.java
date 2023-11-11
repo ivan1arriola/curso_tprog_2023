@@ -147,16 +147,16 @@ public class Postulante extends Usuario {
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTOfertaExtendido> ofer_favs = new HashSet<DTOfertaExtendido>();
         for (Usuario elemento : getSeguidores()) {
-        	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdores.add(dt);
+        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdores.add(dtp);
         }
         for (Usuario elemento : getSeguidos()) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdos.add(dt);
+            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdos.add(dtp);
         }
         for (OfertaLaboral elemento : getOfertasFavoritas()) {
-        	DTOfertaExtendido dt = elemento.obtenerDatosOferta();
-        	ofer_favs.add(dt);
+        	DTOfertaExtendido dtp = elemento.obtenerDatosOferta();
+        	ofer_favs.add(dtp);
         }
         DTPostulante postul = new DTPostulante(this.getNickname(), this.getcorreoElectronico(), this.getApellido(), this.getNombre(), this.getcontrasenia(), this.getImagen(), fechaNac, nacionalidad, sdos, sdores, ofer_favs);
         return postul;
@@ -234,18 +234,18 @@ public class Postulante extends Usuario {
         Set<DTOfertaExtendido> ofer_favs = new HashSet<DTOfertaExtendido>();
 
         for (Usuario elemento : getSeguidores()) {
-        	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdores.add(dt);
+        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdores.add(dtp);
         }
 
         for (Usuario elemento : getSeguidos()) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdos.add(dt);
+            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdos.add(dtp);
         }
         
         for (OfertaLaboral elemento : getOfertasFavoritas()) {
-        	DTOfertaExtendido dt = elemento.obtenerDatosOferta();
-        	ofer_favs.add(dt);
+        	DTOfertaExtendido dtp = elemento.obtenerDatosOferta();
+        	ofer_favs.add(dtp);
         }
 
         if (UsuarioRegistradoActual.equals(UsuarioQueSeHaceConsulta)) {
