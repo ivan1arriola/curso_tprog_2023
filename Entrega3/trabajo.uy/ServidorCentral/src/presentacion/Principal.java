@@ -73,8 +73,8 @@ public class Principal {
     private AceptarOferta aceptarOfertaInternalFrame;
     private ConsultaOfertasMasVisitadas consultaOfertasMasVisitadasInternalFrame;
 
-    EntityManagerFactory entityManagerFactory = null;
-    EntityManager entityManager = null;
+    private EntityManagerFactory entityManagerFactory = null;
+    private EntityManager entityManager = null;
 
     private void empezarConexion() {
         entityManagerFactory = Persistence.createEntityManagerFactory("TrabajoUy");

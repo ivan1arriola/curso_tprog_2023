@@ -107,20 +107,20 @@ public class Utils {
    
     }
     
-    Map<String, String[]> usuarioCSV = new HashMap<>();
-    Map<String, String[]> empresaCSV = new HashMap<>();
-    Map<String, String[]> postulanteCSV = new HashMap<>();
-    Map<String, String[]> seguidoresCSV = new HashMap<>();
-    Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
-    Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
-    Map<String, String[]> resultadosPostulacionCSV = new HashMap<>();
-    Map<String, String[]> postulantesOfertaLaboralFavoritas = new HashMap<>();
-    Map<String, String[]> keywordsCSV = new HashMap<>();
-    Map<String, String[]> ofertasLaboralesCSV = new HashMap<>();
-    Map<String, String[]> ofertasLaboralesKeyCSV = new HashMap<>();
-    Map<String, String[]> paquetesCSV = new HashMap<>();
-    Map<String, String[]> paquetesCompraCSV = new HashMap<>();
-    Map<String, String[]> postulacionesCSV = new HashMap<>();
+    private Map<String, String[]> usuarioCSV = new HashMap<>();
+    private Map<String, String[]> empresaCSV = new HashMap<>();
+    private Map<String, String[]> postulanteCSV = new HashMap<>();
+    private Map<String, String[]> seguidoresCSV = new HashMap<>();
+    private Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
+    private Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
+    private Map<String, String[]> resultadosPostulacionCSV = new HashMap<>();
+    private Map<String, String[]> postulantesOfertaLaboralFavoritas = new HashMap<>();
+    private Map<String, String[]> keywordsCSV = new HashMap<>();
+    private Map<String, String[]> ofertasLaboralesCSV = new HashMap<>();
+    private Map<String, String[]> ofertasLaboralesKeyCSV = new HashMap<>();
+    private Map<String, String[]> paquetesCSV = new HashMap<>();
+    private Map<String, String[]> paquetesCompraCSV = new HashMap<>();
+    private Map<String, String[]> postulacionesCSV = new HashMap<>();
     
   
     

@@ -57,9 +57,9 @@ import java.util.Map;
 
 public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
-    ICtrlOferta ctrlOferta;
-    ICtrlUsuario ctrlUsuario;
-    Utils utils;
+    private ICtrlOferta ctrlOferta;
+    private ICtrlUsuario ctrlUsuario;
+    private Utils utils;
 
     public CtrlCargaDeDatos() {
         Fabrica fabrica = Fabrica.getInstance();
