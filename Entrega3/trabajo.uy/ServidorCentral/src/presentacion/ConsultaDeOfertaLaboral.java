@@ -335,22 +335,22 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2);
         
         // =========================================================================
-        Fabrica fabrica = Fabrica.getInstance();
-        ICtrlOferta ico = fabrica.getICtrlOferta();
-        JButton btnFinaluizar = new JButton("finalizar");
-        btnFinaluizar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		String nombreOL = (String)  listaOfertasLaborales.getSelectedItem();
-        		try {
-					ico.finalizarOfertaLaboral(nombreOL);
-				} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-        	}
-        });
-        btnFinaluizar.setBounds(466, 38, 117, 25);
-        getContentPane().add(btnFinaluizar);
+//        Fabrica fabrica = Fabrica.getInstance();
+//        ICtrlOferta ico = fabrica.getICtrlOferta();
+//        JButton btnFinaluizar = new JButton("finalizar");
+//        btnFinaluizar.addActionListener(new ActionListener() {
+//        	public void actionPerformed(ActionEvent e) {
+//        		String nombreOL = (String)  listaOfertasLaborales.getSelectedItem();
+//        		try {
+//					ico.finalizarOfertaLaboral(nombreOL);
+//				} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//        	}
+//        });
+//        btnFinaluizar.setBounds(466, 38, 117, 25);
+//        getContentPane().add(btnFinaluizar);
         // =========================================================================
 
     }
