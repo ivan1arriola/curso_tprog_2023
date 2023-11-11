@@ -718,15 +718,15 @@ public class OfertaLaboral {
 
     // ----------------------------------------------------
 
-    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral() {
-        List<Postulacion> lista = getPostulaciones();
-        Set<DTPostulacion> stringSet = new HashSet<>();
-        for (Postulacion item : lista) {
-            DTPostulacion post = item.obtenerDT();
-            stringSet.add(post);
-        }
-        return stringSet;
-    }
+//    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral() {
+//        List<Postulacion> lista = getPostulaciones();
+//        Set<DTPostulacion> stringSet = new HashSet<>();
+//        for (Postulacion item : lista) {
+//            DTPostulacion post = item.obtenerDT();
+//            stringSet.add(post);
+//        }
+//        return stringSet;
+//    }
 
     // ----------------------------------------------------
 
