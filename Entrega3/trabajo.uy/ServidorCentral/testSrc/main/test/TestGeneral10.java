@@ -303,14 +303,21 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		try {
+			UHan.agregar(nuevoPos);
+		} catch (ErrorAgregarUsuario e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// ===============================================
-		// Create a Postulante with the name "Bruce Willis"
-		String nickname5 = "Willis";
+		// Create a Postulante with the name "Bruce Willis1"
+		String nickname5 = "Willis1";
 		String password5= "securePassword123";
 		String nombre5 = "Bruce";
-		String apellido5 = "Willis";
+		String apellido5 = "Willis1";
 		String correo5 = "Bruce@DieHard.com";
-		LocalDate fechaNacimiento52 = LocalDate.now(); // Modify the birthdate accordingly
+		LocalDate fechaNacimiento52 = LocalDate.of(1975, 10, 31); // Modify the birthdate accordingly
 		String nacionalidad5 = "American"; // Modify the nationality as needed
 		String imagen115 = "llllllllllll";
 		Postulante nuevoPos5 = null;
@@ -319,7 +326,6 @@ public class TestGeneral10 {
 		} catch (ExceptionFechaInvalida e) {
 		    e.printStackTrace();
 		}
-		UsuarioHandler UHan = UsuarioHandler.getInstance();
 		try {
 			UHan.agregar(nuevoPos5);
 		} catch (ErrorAgregarUsuario e) {
@@ -328,21 +334,21 @@ public class TestGeneral10 {
 		}
 		
 		try {
-			ICU.seguirUsuario("Willis",   "Stallone");
+			ICU.seguirUsuario("Willis1",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		try {
-			ICU.dejarDeseguirUsuario("Willis",  "Stallone");
+			ICU.dejarDeseguirUsuario("Willis1",  "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
 		try {
-			ICU.seguirUsuario("Willis",   "Stallone");
+			ICU.seguirUsuario("Willis1",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -356,7 +362,7 @@ public class TestGeneral10 {
 		}
 	
 		try {
-			ICU.obtenerSeguidosUsuario("Willis");
+			ICU.obtenerSeguidosUsuario("Willis1");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -389,6 +395,14 @@ public class TestGeneral10 {
 		try {
 			OfertaLabolra.establecerPosicion(nickList);
 		} catch (AsignarOrdenAOfertaFinalizada | AsignarOrdenAOfertaNoVencida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			ICO.establecerPosiciones(OfertaLabolra.getNombre(),nickList);
+		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | AsignarOrdenAOfertaFinalizada
+				| AsignarOrdenAOfertaNoVencida e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -558,25 +572,19 @@ public class TestGeneral10 {
 		
 		// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		try {
-			UHan.agregar(nuevoPos5);
-		} catch (ErrorAgregarUsuario e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			ICU.seguirUsuario("Willis",   "Stallone");
+			ICU.seguirUsuario("Willis1",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICU.dejarDeseguirUsuario("Willis",  "Stallone");
+			ICU.dejarDeseguirUsuario("Willis1",  "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			ICU.seguirUsuario("Willis",   "Stallone");
+			ICU.seguirUsuario("Willis1",   "Stallone");
 		} catch (ExceptionUsuarioSeSigueASiMismo | ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -588,7 +596,7 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		try {
-			ICU.obtenerSeguidosUsuario("Willis");
+			ICU.obtenerSeguidosUsuario("Willis1");
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
