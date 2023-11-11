@@ -182,7 +182,7 @@ public interface ICtrlUsuario {
 
     public abstract Set<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
     
-    public abstract HashSet<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
+    public abstract Set<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
 
 	public abstract LocalDate obtenerFechaDeCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado;
     

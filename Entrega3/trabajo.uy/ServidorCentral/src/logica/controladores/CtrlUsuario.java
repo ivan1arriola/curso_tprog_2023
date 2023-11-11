@@ -662,9 +662,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	@Override
-	public HashSet<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+	public Set<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UHan = UsuarioHandler.getInstance();
-		HashSet<String> res = new HashSet<String>();
+		Set<String> res = new HashSet<String>();
 		Set<Usuario> seg = UHan.buscarNick(nickname).getSeguidos();
 		for (Usuario usuario : seg) {
 			res.add(usuario.getNickname());
