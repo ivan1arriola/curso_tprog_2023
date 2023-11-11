@@ -24,7 +24,7 @@ import logica.datatypes.DTCantTO;
 public class OfertaPaquete {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id; // Se agrega un campo id como clave primaria
+    private int iden; // Se agrega un campo id como clave primaria
 
     private int cantidad;
 
