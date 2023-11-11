@@ -40,6 +40,10 @@ import logica.datatypes.DTPostulanteExtendido;
 //import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTUsuarioSinInfoSocial;
+import logica.dto.PostulacionDTO;
+import logica.dto.PostulanteDTO;
+import logica.dto.UsuarioDTO;
+import logica.persistencia.TrabajoUyHistoricoManager;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -291,6 +295,25 @@ public class Postulante extends Usuario {
         }
 
         return lista;
+    }
+
+    @Override
+    public UsuarioDTO getDTO() {
+
+        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
+        UsuarioDTO usuarioDTO = trabajoUyHistoricoManager.obtenerUsuarioDT(getNickname());
+        if(usuarioDTO!= null){
+            usuarioDTO.setNombre(getNombre());
+            usuarioDTO.setApellido(getApellido());
+            if (usuarioDTO instanceof PostulanteDTO postulanteDTO){
+                postulanteDTO.setFecha_nacimiento(getFechaNac());
+                postulanteDTO.setNacionalidad(getNacionalidad());
+                System.out.println("se encontro en la base de datos: " + postulanteDTO.getNickname());
+                return postulanteDTO;
+            } else return usuarioDTO;
+        } else {
+            return new PostulanteDTO(getNickname(), getcorreoElectronico(), getNombre(), getApellido(), getNacionalidad(), getFechaNac() );
+        }
     }
 
     public Set<String> listarPostulaciones() {

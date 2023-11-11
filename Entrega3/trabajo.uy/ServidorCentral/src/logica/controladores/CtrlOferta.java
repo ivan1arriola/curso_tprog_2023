@@ -1,36 +1,15 @@
 package logica.controladores;
 
-import excepciones.AsignarOrdenAOfertaFinalizada;
-import excepciones.AsignarOrdenAOfertaNoVencida;
+import excepciones.*;
 //import excepciones.ErrorAgregarUsuario;
-import excepciones.ExcepcionKeywordVacia;
-import excepciones.ExcepcionTipoOfertaNoExistente;
-import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCiudadInvalida;
-import excepciones.ExceptionCompraPaqueteConValorNegativo;
-import excepciones.ExceptionCostoPaqueteNoNegativo;
-import excepciones.ExceptionDescuentoInvalido;
-import excepciones.ExceptionDuracionNegativa;
-import excepciones.ExceptionEmpresaInvalida;
-import excepciones.ExceptionExpoNegativa;
-import excepciones.ExceptionFechaInvalida;
-import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 //import excepciones.ExceptionUsuarioCorreoRepetido;
 //import excepciones.ExceptionUsuarioNickRepetido;
 //import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import excepciones.ExceptionUsuarioNoEncontrado;
 //import excepciones.ExceptionUsuarioSeSigueASiMismo;
-import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
-import excepciones.FinalizarOfertaNoVencida;
-import excepciones.NoExistePaquete;
-import excepciones.NoHayOrdenDefinidoDePostulantes;
-import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
-import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
 
 import logica.clases.Empresa;
@@ -234,7 +213,7 @@ public class CtrlOferta implements ICtrlOferta {
         return empresa.compraPaquetes(paquete, fecha, valor);
     }
 
-    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete {
+    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete, ExceptionCostoPaqueteNoNegativo, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido {
 
         Paquete paq = null;
         if (paquete != null) {
@@ -254,15 +233,8 @@ public class CtrlOferta implements ICtrlOferta {
             }
 
             OfertaLaboral oferLab;
-            try {
-                oferLab = empresa.altaOfertaLaboral(tipoOfer, nombre, descripcion, horario, remun, ciu, dep, fechaA, keywords, estado, img, paq);
-                ofertaLaboralHandler.agregar(oferLab);
-            } catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
-                     | ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido |
-                     ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            oferLab = empresa.altaOfertaLaboral(tipoOfer, nombre, descripcion, horario, remun, ciu, dep, fechaA, keywords, estado, img, paq);
+            ofertaLaboralHandler.agregar(oferLab);
 
         }
         return !ofer;
@@ -567,7 +539,7 @@ public class CtrlOferta implements ICtrlOferta {
 
 
     @Override
-    public void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida {
+    public void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida, FinalizarOfertaYaFinalizada {
     	OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
     	OfertaLaboral oferta = ofertaLaboralHandler.buscar(nombre_oferta);
         if (!oferta.estaVencida()){

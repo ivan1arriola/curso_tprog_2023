@@ -6,11 +6,12 @@
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
+boolean ofertasTabAbierto = Boolean.parseBoolean(request.getParameter("ofertas"));
 %>
 
 
                 <!-- Tab de perfil -->
-                <div class="tab-pane fade show active" id="perfil-panel">
+                <div class="tab-pane fade <%= !ofertasTabAbierto ? "show active" : "" %> " id="perfil-panel">
                     <form action="consultarusuario" method="post">
                     	    <input type="hidden" name="nick"  placeholder="nick" value="<%= (String) request.getAttribute("usuarioConsultado") %>">
 

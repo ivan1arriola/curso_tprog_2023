@@ -20,6 +20,8 @@ import jakarta.persistence.DiscriminatorType;
 
 //import logica.Utils;
 import logica.datatypes.DTUsuario;
+import logica.dto.EmpresaDTO;
+import logica.dto.UsuarioDTO;
 
 import java.util.Base64;
 import java.util.HashSet;
@@ -192,4 +194,5 @@ public abstract class Usuario {
     	seguidores.remove(usr1);
     }
 
+    public abstract UsuarioDTO getDTO();
 }

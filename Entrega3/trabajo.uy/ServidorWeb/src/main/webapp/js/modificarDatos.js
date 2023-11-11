@@ -174,8 +174,6 @@ const validarTamañoImagen = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
-    mostrarCamposEspeciales();
-
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll(".needs-validation");

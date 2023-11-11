@@ -12,6 +12,8 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 boolean seguir = (boolean) request.getAttribute("seguir");
 TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
+
+boolean ofertasTabAbierto = Boolean.parseBoolean(request.getParameter("ofertas"));
 %>
 
 <head>
@@ -30,7 +32,6 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
         </div>
 
         <div class="container col-9">
-        
 
             <div class="row mb-2">
                     <div class="col-3">
@@ -101,12 +102,12 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                 <div class="col-3">
                     <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#perfil-panel" type="button"
+                        <a class="nav-link <%= !ofertasTabAbierto ? "active" : "" %>" data-bs-toggle="tab" data-bs-target="#perfil-panel" type="button"
                             role="tab" aria-controls="perfil-panel">Perfil</a>
                     </li>
                     <%if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) { %>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
+                            <a class="nav-link <%= ofertasTabAbierto ? "active" : "" %>" data-bs-toggle="tab" data-bs-target="#ofertas-panel" type="button" role="tab"
                                 aria-controls="ofertas-panel">Ofertas Laborales</a>
                         </li>
                         <li class="nav-item" role="presentation">

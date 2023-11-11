@@ -9,12 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import logica.servidor.ExceptionEmpresaInvalida_Exception;
-import logica.servidor.ExceptionRemuneracionOfertaLaboralNegativa_Exception;
-import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
-import logica.servidor.NoExistePaquete_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
+import logica.servidor.*;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
@@ -37,7 +32,7 @@ public class AltaOfertaLaboral extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
         HttpSession session = request.getSession(false);
         if (session == null) {
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
@@ -47,7 +42,8 @@ public class AltaOfertaLaboral extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
             } else {
                 String nickname = (String) session.getAttribute("nickname");
-                cargarTipoOferta(request, response);
+                Set<String> tipoPublicaciones = logica.listarTipoDePublicaciones();
+                request.setAttribute("tipoPublicaciones", tipoPublicaciones);
                 try {
                     cargarPaquetes(request, response, nickname);
                 } catch (ExceptionUsuarioNoEncontrado_Exception e) {
@@ -73,10 +69,7 @@ public class AltaOfertaLaboral extends HttpServlet {
         
     }
 
-    private void cargarTipoOferta(HttpServletRequest request, HttpServletResponse response) {
-        Set<String> tipoPublicaciones = logica.listarTipoDePublicaciones();
-        request.setAttribute("tipoPublicaciones", tipoPublicaciones);
-    }
+
 
     private byte[] procesarImagen(Part imagenPart) throws IOException {
         if (imagenPart == null) {
@@ -144,8 +137,16 @@ public class AltaOfertaLaboral extends HttpServlet {
                 request.setAttribute("mensajeError", "ERROR");
                 dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
                 dispatcher.forward(request, response);
-			}
-            
+			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception e) {
+                throw new RuntimeException(e);
+            } catch (ExceptionCostoPaqueteNoNegativo_Exception e) {
+                throw new RuntimeException(e);
+            } catch (ExceptionPaqueteNoVigente_Exception e) {
+                throw new RuntimeException(e);
+            } catch (ExceptionDescuentoInvalido_Exception e) {
+                throw new RuntimeException(e);
+            }
+
     }
 
 

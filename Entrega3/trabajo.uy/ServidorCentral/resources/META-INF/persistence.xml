@@ -33,4 +33,28 @@
 		</properties>
 		
 	</persistence-unit>
+
+	<!-- Segunda unidad de persistencia -->
+	<persistence-unit name="TrabajoUyHistorico" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>logica.dto.UsuarioDTO</class>
+		<class>logica.dto.EmpresaDTO</class>
+		<class>logica.dto.PostulanteDTO</class>
+		<class>logica.dto.OfertaLaboralDTO</class>
+		<class>logica.dto.PostulacionDTO</class>
+
+		<properties>
+			<property name="jakarta.persistence.jdbc.driver"
+					  value="org.hsqldb.jdbcDriver" />
+			<property name="jakarta.persistence.jdbc.url"
+					  value="jdbc:hsqldb:file:TrabajoUyHistorico;shutdown=true" />
+			<property name="jakarta.persistence.jdbc.user" value="user" />
+			<property name="jakarta.persistence.jdbc.password" value="123456" />
+			<property name="eclipselink.ddl-generation"
+					  value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+					  value="database" />
+		</properties>
+	</persistence-unit>
 </persistence>

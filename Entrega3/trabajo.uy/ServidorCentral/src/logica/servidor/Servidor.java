@@ -1,37 +1,17 @@
 package logica.servidor;
 
 
-import excepciones.AsignarOrdenAOfertaFinalizada;
-import excepciones.AsignarOrdenAOfertaNoVencida;
-import excepciones.ErrorAgregarUsuario;
-import excepciones.ExcepcionKeywordVacia;
-import excepciones.ExcepcionTipoOfertaNoExistente;
+import excepciones.*;
 //import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCiudadInvalida;
-import excepciones.ExceptionCompraPaqueteConValorNegativo;
 //import excepciones.ExceptionCostoPaqueteNoNegativo;
 //import excepciones.ExceptionDescuentoInvalido;
 //import excepciones.ExceptionDuracionNegativa;
-import excepciones.ExceptionEmpresaInvalida;
 //import excepciones.ExceptionExpoNegativa;
-import excepciones.ExceptionFechaInvalida;
 //import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-import excepciones.ExceptionUsuarioCorreoRepetido;
-import excepciones.ExceptionUsuarioNickRepetido;
-import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import excepciones.ExceptionUsuarioNoEncontrado;
-import excepciones.ExceptionUsuarioSeSigueASiMismo;
-import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
-import excepciones.FinalizarOfertaNoVencida;
-import excepciones.NoExistePaquete;
-import excepciones.NoHayOrdenDefinidoDePostulantes;
-import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
-import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
@@ -485,14 +465,14 @@ public class Servidor {
     @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) throws OfertaLaboralNoEncontrada,   FinalizarOfertaNoVencida {
+    ) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida, FinalizarOfertaYaFinalizada {
         ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
     
     @WebMethod
     public void altaOfertaLaboralConImagen(String nickname,   String tipoOferta,   String nombre,   String descripcion,  
 			String horarioInicio,   String horarioFinal,   float remuneracion,   String ciudad,   String departamento,  
-			String keywordsString,   byte[] imagen,   String formaPago) throws ExceptionRemuneracionOfertaLaboralNegativa,   ExceptionUsuarioNoEncontrado,   NoExistePaquete {
+			String keywordsString,   byte[] imagen,   String formaPago) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete, ExceptionCostoPaqueteNoNegativo, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido {
         // Obtener horas y minutos
 
         // Dividir el String en un array usando ":" como separador
@@ -523,7 +503,7 @@ public class Servidor {
     @WebMethod
     public void altaOfertaLaboral(String nickname,   String tipoOferta,   String nombre,   String descripcion,  
 			String horarioInicio,   String horarioFinal,   float remuneracion,   String ciudad,   String departamento,  
-			String keywordsString,   String formaPago) throws ExceptionRemuneracionOfertaLaboralNegativa,   ExceptionUsuarioNoEncontrado,   NoExistePaquete {
+			String keywordsString,   String formaPago) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete, ExceptionCostoPaqueteNoNegativo, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido {
         // Obtener horas y minutos
 
         // Dividir el String en un array usando ":" como separador

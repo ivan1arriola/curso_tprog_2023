@@ -12,10 +12,11 @@
 	// Obtener el objeto de empresa y sus ofertas laborales desde los atributos de la solicitud
 	UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 	Set<OfertaLaboralBean> ofertasLaborales = usuario.getOfertasLaborales();
+	boolean ofertasTabAbierto = Boolean.parseBoolean(request.getParameter("ofertas"));
 %>
 
 <!-- Tab de ofertas laborales -->
-<div class="tab-pane fade sin-bordes p-2" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
+<div class="tab-pane fade sin-bordes <%= ofertasTabAbierto ? "show active" : "" %>" id="ofertas-panel" role="tabpanel" aria-labelledby="ofertas-tab">
 
 <%
     if (ofertasLaborales == null || ofertasLaborales.isEmpty()){

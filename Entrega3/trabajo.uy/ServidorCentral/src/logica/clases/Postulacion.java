@@ -17,6 +17,9 @@ import jakarta.persistence.ManyToOne;
 //import jakarta.persistence.DiscriminatorColumn;
 //import jakarta.persistence.DiscriminatorType;
 import logica.datatypes.DTPostulacion;
+import logica.dto.OfertaLaboralDTO;
+import logica.dto.PostulacionDTO;
+import logica.dto.PostulanteDTO;
 
 import java.time.LocalDate;
 
@@ -33,11 +36,11 @@ public class Postulacion {
     private String uRLDocExtras;
     // relaciones
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "ofertaLaboral_id")
     private OfertaLaboral oferLab;
 
-    @ManyToOne (cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "postulante_id")
     private Postulante postulante;
     private String urlVideo;
@@ -156,5 +159,10 @@ public class Postulacion {
 
     public String obtenerNicknamePostulante() {
         return postulante.getNickname();
+    }
+
+    public PostulacionDTO getDTO(OfertaLaboralDTO ofertaLaboralDTO) {
+        PostulanteDTO postulanteDTO = (PostulanteDTO) postulante.getDTO();
+        return new PostulacionDTO(getCV(), getMotivacion(), fecha, ofertaLaboralDTO, postulanteDTO);
     }
 }

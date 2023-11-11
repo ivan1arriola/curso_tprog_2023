@@ -43,6 +43,8 @@ public class ConsultarUsuario extends HttpServlet {
         TipoUsuario tipoUsuarioLogueado = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
         request.setAttribute("tipoU", tipoUsuarioLogueado);
         request.setAttribute("usuarioConsultado", nicknameParametro);
+
+
         
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();

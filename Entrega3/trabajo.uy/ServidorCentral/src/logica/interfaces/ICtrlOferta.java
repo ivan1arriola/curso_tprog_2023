@@ -1,36 +1,19 @@
 package logica.interfaces;
 
-import excepciones.AsignarOrdenAOfertaFinalizada;
-import excepciones.AsignarOrdenAOfertaNoVencida;
+import excepciones.*;
 //import excepciones.ErrorAgregarUsuario;
-import excepciones.ExcepcionKeywordVacia;
-import excepciones.ExcepcionTipoOfertaNoExistente;
-import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCiudadInvalida;
-import excepciones.ExceptionCompraPaqueteConValorNegativo;
 //import excepciones.ExceptionCostoPaqueteNoNegativo;
-import excepciones.ExceptionDescuentoInvalido;
 //import excepciones.ExceptionDuracionNegativa;
-import excepciones.ExceptionEmpresaInvalida;
 //import excepciones.ExceptionExpoNegativa;
-import excepciones.ExceptionFechaInvalida;
 //import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 //import excepciones.ExceptionUsuarioCorreoRepetido;
 //import excepciones.ExceptionUsuarioNickRepetido;
 //import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import excepciones.ExceptionUsuarioNoEncontrado;
 //import excepciones.ExceptionUsuarioSeSigueASiMismo;
-import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
-import excepciones.FinalizarOfertaNoVencida;
-import excepciones.NoExistePaquete;
-import excepciones.NoHayOrdenDefinidoDePostulantes;
-import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
-import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
 //import jakarta.persistence.EntityManager;
 
@@ -79,7 +62,7 @@ public interface ICtrlOferta {
     altaOfertaLaboral(String nickname_e, String tipo, String nombre,
                       String descripcion, DTHorario horario, float remun, String ciu,
                       DepUY dep, LocalDate fechaA, Set<String> keys,
-                      EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete;
+                      EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete, ExceptionCostoPaqueteNoNegativo, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido;
 
     public abstract DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) throws OfertaLaboralNoEncontrada;
 
@@ -159,7 +142,7 @@ public interface ICtrlOferta {
 
 
     public abstract void descartarOrdenPostulantes(String nombreOferta) throws OfertaLaboralNoEncontrada;
-	public abstract void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida;
+	public abstract void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida, FinalizarOfertaYaFinalizada;
 
 	public abstract void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada;
 	

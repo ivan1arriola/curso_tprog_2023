@@ -2,40 +2,29 @@ package logica.controladores;
 
 //import excepciones.AsignarOrdenAOfertaFinalizada;
 //import excepciones.AsignarOrdenAOfertaNoVencida;
-import excepciones.ErrorAgregarUsuario;
+import excepciones.*;
 //import excepciones.ExcepcionKeywordVacia;
 //import excepciones.ExcepcionTipoOfertaNoExistente;
-import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCiudadInvalida;
-import excepciones.ExceptionCompraPaqueteConValorNegativo;
 //import excepciones.ExceptionCostoPaqueteNoNegativo;
-import excepciones.ExceptionDescuentoInvalido;
 //import excepciones.ExceptionDuracionNegativa;
-import excepciones.ExceptionEmpresaInvalida;
 //import excepciones.ExceptionExpoNegativa;
-import excepciones.ExceptionFechaInvalida;
 //import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 //import excepciones.ExceptionUsuarioCorreoRepetido;
 //import excepciones.ExceptionUsuarioNickRepetido;
 //import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-import excepciones.ExceptionUsuarioNoEncontrado;
-import excepciones.ExceptionUsuarioSeSigueASiMismo;
-import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
 //import excepciones.FinalizarOfertaNoVencida;
-import excepciones.NoExistePaquete;
 //import excepciones.NoHayOrdenDefinidoDePostulantes;
-import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
 //import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
-import excepciones.ExcepcionKeywordVacia;
 import logica.Fabrica;
+import logica.persistencia.TrabajoUyHistoricoManager;
 import logica.Utils;
+import logica.clases.OfertaLaboral;
 import logica.datatypes.DTHorario;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
@@ -43,6 +32,7 @@ import logica.interfaces.ICtrlCargaDeDatos;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 import logica.manejadores.KeywordHandler;
+import logica.manejadores.OfertaLaboralHandler;
 import logica.manejadores.PaqueteHandler;
 import logica.manejadores.TipoOfertaHandler;
 
@@ -79,6 +69,25 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         cargarTiposPublicacionPaquetes();
         cargarPaquetesCompras();
         cargarOfertasFavoritasPostulantes();
+        persistirOfertasFinalizadas();
+    }
+
+    private void persistirOfertasFinalizadas() {
+        OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
+        Map<String, OfertaLaboral> ofertas = ofertaLaboralHandler.obtener();
+
+        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
+
+        for (Map.Entry<String, OfertaLaboral> entry : ofertas.entrySet()){
+            OfertaLaboral ofertaLaboral = entry.getValue();
+            if(ofertaLaboral.getEstado().equals(EstadoOL.Finalizada)){
+                try {
+                    trabajoUyHistoricoManager.persistirOfertaFinalizada(ofertaLaboral);
+                } catch (PersistirOfertaNoFinalizada e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     private void cargarOfertasFavoritasPostulantes() {
@@ -294,6 +303,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
                 if (!ctrlOferta.existeOfertaLaboral(ofertaLaboralId)) {
                     utils.altaOfertaLaboralForzado(nickname_empresa, tipodePublicacion, ofertaNombre, ofertaLaboralData[2], horario, Float.parseFloat(ofertaLaboralData[6]), ofertaLaboralData[4], dep, fecha, keys, estado, imagen, paq);
+
                 }
             } catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | NumberFormatException | ExceptionRemuneracionOfertaLaboralNegativa eune) {
                 eune.printStackTrace();

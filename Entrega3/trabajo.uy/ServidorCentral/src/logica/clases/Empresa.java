@@ -60,8 +60,11 @@ import logica.datatypes.DTPostulacion;
 //import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTUsuarioSinInfoSocial;
+import logica.dto.EmpresaDTO;
+import logica.dto.UsuarioDTO;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
+import logica.persistencia.TrabajoUyHistoricoManager;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -144,6 +147,14 @@ public class Empresa extends Usuario {
         }
 
         return lista;
+    }
+
+    @Override
+    public UsuarioDTO getDTO() {
+        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
+        UsuarioDTO usuarioDTO = trabajoUyHistoricoManager.obtenerUsuarioDT(getNickname());
+        if(usuarioDTO!= null) return usuarioDTO;
+        return new EmpresaDTO(getNickname(), getcorreoElectronico(), getNombre(), getApellido(), getDescripcion(), geturl());
     }
 
     @Override
@@ -475,6 +486,7 @@ public class Empresa extends Usuario {
 		}
 		return null;
 	}
+
 
 }
 

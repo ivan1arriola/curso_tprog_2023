@@ -1,15 +1,6 @@
 package logica.clases;
 
-import excepciones.AsignarOrdenAOfertaFinalizada;
-import excepciones.AsignarOrdenAOfertaNoVencida;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
-import excepciones.ExceptionCiudadInvalida;
-import excepciones.ExceptionCostoPaqueteNoNegativo;
-import excepciones.ExceptionDescuentoInvalido;
-import excepciones.ExceptionFechaInvalida;
-import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-import excepciones.NoHayOrdenDefinidoDePostulantes;
+import excepciones.*;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 
-
+import logica.persistencia.TrabajoUyHistoricoManager;
 import logica.datatypes.DTCantTO;
 import logica.datatypes.DTHorario;
 import logica.datatypes.DTOfertaExtendido;
@@ -33,6 +24,8 @@ import logica.datatypes.DTOfertaExtendidoSinPConK;
 
 import logica.datatypes.DTPostulacion;
 
+import logica.dto.EmpresaDTO;
+import logica.dto.OfertaLaboralDTO;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 
@@ -72,6 +65,8 @@ public class OfertaLaboral {
     
     @Lob
     private String imagen;
+
+    private LocalDate fechaBaja;
 
 
 
@@ -307,6 +302,7 @@ public class OfertaLaboral {
         }
 
         this.fechaAlta = atrfechaAlta;
+        if(estadoNuevo.equals(EstadoOL.Finalizada)) this.fechaBaja = LocalDate.now();
         this.keywords = atrkeywords; // la lista de keywords
         this.postulaciones = new ArrayList<>(); // originalmente vacío
 
@@ -826,7 +822,9 @@ public class OfertaLaboral {
         return nicknamesPostulantes;
     }
 
-    public void finalizarOferta() {
+    public void finalizarOferta() throws FinalizarOfertaNoVencida, FinalizarOfertaYaFinalizada {
+        if(getEstado().equals(EstadoOL.Finalizada)) throw new FinalizarOfertaYaFinalizada("No se puede finalizar la oferta" + nombre + " porque ya fue finalizada anteriormente");
+        if(!estaVencida()) throw new FinalizarOfertaNoVencida("No se puede finalizar la oferta " + nombre + " porque no esta vencida aun");
         if (hayOrdenDefinido) {
             List<Postulacion> postulacionesOferta = getPostulaciones();
             int posicion = 0;
@@ -836,6 +834,15 @@ public class OfertaLaboral {
             }
         }
         setEstado(EstadoOL.Finalizada);
+        fechaBaja = LocalDate.now();
+
+        // persistir oferta
+        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
+        try {
+            trabajoUyHistoricoManager.persistirOfertaFinalizada(this);
+        } catch (PersistirOfertaNoFinalizada e) {
+            throw new RuntimeException(e); // NO hay chance de que esto pase, espero
+        }
     }
 
     public void descartarOrden() {
@@ -849,5 +856,29 @@ public class OfertaLaboral {
             dtPostulacionesSet.add(postulacion.obtenerDT());
         }
         return dtPostulacionesSet;
+    }
+
+    public OfertaLaboralDTO getDTO() {
+        String nombrePaquete = null;
+        if(paqueteAsoc!= null){
+            nombrePaquete = paqueteAsoc.getNombre();
+        }
+
+
+        return new OfertaLaboralDTO(
+                nombre,
+                descripcion,
+                horario,
+                remuneracion,
+                departamento,
+                ciudad,
+                tOferta.getNombre(),
+                fechaAlta,
+                fechaBaja,
+                costo,
+                nombrePaquete,
+                (EmpresaDTO) empresaPublicadora.getDTO()
+        );
+
     }
 }
