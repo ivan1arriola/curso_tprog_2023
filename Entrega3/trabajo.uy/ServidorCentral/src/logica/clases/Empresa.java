@@ -241,13 +241,13 @@ public class Empresa extends Usuario {
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
 
         for (Usuario elemento : getSeguidores()) {
-        	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdores.add(dt);
+        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdores.add(dtp);
         }
 
         for (Usuario elemento : getSeguidos()) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdos.add(dt);
+            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdos.add(dtp);
         }
 
         String nickname = getNickname();
@@ -357,13 +357,13 @@ public class Empresa extends Usuario {
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
 
         for (Usuario elemento : getSeguidores()) {
-        	DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdores.add(dt);
+        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdores.add(dtp);
         }
 
         for (Usuario elemento : getSeguidos()) {
-            DTUsuarioSinInfoSocial dt = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
-            sdos.add(dt);
+            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            sdos.add(dtp);
         }
 
         DTEmpresa empre;
