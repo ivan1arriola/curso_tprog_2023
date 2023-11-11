@@ -38,7 +38,7 @@ public class KeywordHandler {
             throw new IllegalArgumentException("La keyword a agregar no puede ser vacía");
         }
             // obtengo instancia de la base de datos
-            EntityTransaction tx = database.getTransaction();
+            EntityTransaction trx = database.getTransaction();
             if (!database.getTransaction().isActive()) {
                 database.getTransaction().begin();
             }
@@ -46,7 +46,7 @@ public class KeywordHandler {
             // System.out.println("################## estoy agregando a base de datos ##################");
             database.persist(key);
             // tengo que hacer commit despues
-            tx.commit();
+            trx.commit();
     }
 
 
@@ -78,7 +78,7 @@ public class KeywordHandler {
     }
 
 
-    public static void setBaseDatos(EntityManager em) {
-        database = em;
+    public static void setBaseDatos(EntityManager emm) {
+        database = emm;
     }
 }
