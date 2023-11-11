@@ -36,6 +36,13 @@
 
 #Base de datos
 *.iml
+*.log
+*.properties
+*.lobs
+*.lck
+*.script
+Entrega3/trabajo.uy/ServidorCentral/TrabajoUy.tmp/
+Entrega3/trabajo.uy/ServidorCentral/TrabajoUyHistorico.tmp/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -49,14 +56,14 @@ Entrega1/trabajo.uy/bin/
 Entrega1/trabajo.uy/bin/logica/Controladores/CtrlOferta.class
 /bin/
 ./bin/
-Entrega3/trabajo.uy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-Entrega3/trabajo.uy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-Entrega3/trabajo.uy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/DispositivoMovil/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+Entrega3/trabajo.uy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+Entrega3/trabajo.uy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+Entrega3/trabajo.uy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/maven/trabajoUy/ServodorMovil/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 
-Entrega3/trabajo.uy/DispositivoMovil/
+Entrega3/trabajo.uy/ServodorMovil/
 Entrega3/trabajo.uy/Servers/
 Entrega3/trabajo.uy/Servers2/
 
-Entrega3/trabajo.uy/DispositivoMovil/
+Entrega3/trabajo.uy/ServodorMovil/
 Entrega3/trabajo.uy/Servers/
 Entrega3/trabajo.uy/Servers2/
