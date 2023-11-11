@@ -53,7 +53,7 @@ import java.util.TreeSet;
 public class OfertaLaboral {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long iden;
     // atributos
     private String nombre;
     private String descripcion;
@@ -780,12 +780,12 @@ public class OfertaLaboral {
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long iden) {
+        this.iden = iden;
     }
 
     public Long getId() {
-        return id;
+        return iden;
     }
     
     public Integer getCantFav() {
