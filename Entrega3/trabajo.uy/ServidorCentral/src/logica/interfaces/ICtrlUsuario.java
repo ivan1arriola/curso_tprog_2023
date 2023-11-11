@@ -180,7 +180,7 @@ public interface ICtrlUsuario {
 
     public abstract void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado;
 
-    public abstract HashSet<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
+    public abstract Set<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
     
     public abstract HashSet<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado;
 
