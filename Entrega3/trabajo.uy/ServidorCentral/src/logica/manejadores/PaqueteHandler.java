@@ -44,10 +44,10 @@ public class PaqueteHandler {
     }
 
 
-    public static void setBaseDatos(EntityManager em) {
-        database = em;
+    public static void setBaseDatos(EntityManager emm) {
+        database = emm;
     }
-
+ 
     public  boolean existe(String nombre) {
         if (database == null) {
             throw new IllegalStateException("EntityManager no configurado.");

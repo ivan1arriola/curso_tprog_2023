@@ -140,7 +140,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         		String oper = "F";
                 actualizarTabla(oper);
         	}
-        });
+        }); 
         btnFinalizadas.setBounds(328, 65, 94, 23);
         getContentPane().add(btnFinalizadas);
         

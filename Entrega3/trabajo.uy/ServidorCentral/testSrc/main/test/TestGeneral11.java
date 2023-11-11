@@ -121,7 +121,7 @@ public class TestGeneral11 {
         // lista de keywords
         List<Keyword> myList = new ArrayList<>();
         
-        KeywordHandler KW = KeywordHandler.getInstance();
+        KeywordHandler KWord = KeywordHandler.getInstance();
         String keywordToObtain = "FABULOSO TODO BRILLA";
         Keyword utopicKeyword = null;
 		try {
@@ -133,8 +133,8 @@ public class TestGeneral11 {
 		myList.add(utopicKeyword);
 		utopicKeyword.getNombre();
 		utopicKeyword.setNombre(keywordToObtain);
-		KW.agregar(utopicKeyword);
-		KW.existe(keywordToObtain);
+		KWord.agregar(utopicKeyword);
+		KWord.existe(keywordToObtain);
 		
         // -------------------------------------------
         TipoOferta tipoofertaNuevo = null;
@@ -161,11 +161,11 @@ public class TestGeneral11 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Set<OfertaPaquete> OP = new HashSet<>();
-		OP.add(OfertaPaqueteNueva);
+		Set<OfertaPaquete> OPer = new HashSet<>();
+		OPer.add(OfertaPaqueteNueva);
 		TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
 		TOH.agregar(tipoofertaNuevo);
-		NuevoPaq.setOfertaPaquete(OP);
+		NuevoPaq.setOfertaPaquete(OPer);
 		
 		
 		// ======================================================================
