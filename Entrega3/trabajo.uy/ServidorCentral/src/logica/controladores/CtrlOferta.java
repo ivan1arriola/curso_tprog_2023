@@ -71,7 +71,7 @@ public class CtrlOferta implements ICtrlOferta {
     private final KeywordHandler keywordHandler;
     private final OfertaLaboralHandler ofertaLaboralHandler;
     private final TipoOfertaHandler tipoOfertaHandler;
-    private KeywordHandler keywordH;
+    //private KeywordHandler keywordH;
 
     public CtrlOferta() {
         usuarioHandler = UsuarioHandler.getInstance();
@@ -551,15 +551,15 @@ public class CtrlOferta implements ICtrlOferta {
     @Override
     public void aumentarVisita(String nombre_oferta) throws OfertaLaboralNoEncontrada {
     	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral ol = OLH.buscar(nombre_oferta);
-    	ol.setCantVisitas(ol.getCantVisitas()+1);
+    	OfertaLaboral olab = OLH.buscar(nombre_oferta);
+    	olab.setCantVisitas(olab.getCantVisitas()+1);
     }
     
     @Override
     public String obtenerTipoPubOfertaLaboral(String nomb_oferta) throws OfertaLaboralNoEncontrada  {
     	OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral ol = OLH.buscar(nomb_oferta);
-    	return ol.getTipoOferta().getNombre();
+    	OfertaLaboral olab = OLH.buscar(nomb_oferta);
+    	return olab.getTipoOferta().getNombre();
     }
 
     @Override

@@ -108,8 +108,8 @@ public class OfertaLaboralHandler {
             e.printStackTrace();
         }
     }
-
-    public static void setBaseDatos(EntityManager em) {
-        database = em;
+ 
+    public static void setBaseDatos(EntityManager emm) {
+        database = emm;
     }
 }

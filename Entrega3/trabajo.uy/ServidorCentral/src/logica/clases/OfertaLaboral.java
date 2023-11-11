@@ -46,7 +46,7 @@ import java.util.TreeSet;
 public class OfertaLaboral {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long iden;
     // atributos
     private String nombre;
     private String descripcion;
@@ -714,15 +714,15 @@ public class OfertaLaboral {
 
     // ----------------------------------------------------
 
-    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral() {
-        List<Postulacion> lista = getPostulaciones();
-        Set<DTPostulacion> stringSet = new HashSet<>();
-        for (Postulacion item : lista) {
-            DTPostulacion post = item.obtenerDT();
-            stringSet.add(post);
-        }
-        return stringSet;
-    }
+//    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral() {
+//        List<Postulacion> lista = getPostulaciones();
+//        Set<DTPostulacion> stringSet = new HashSet<>();
+//        for (Postulacion item : lista) {
+//            DTPostulacion post = item.obtenerDT();
+//            stringSet.add(post);
+//        }
+//        return stringSet;
+//    }
 
     // ----------------------------------------------------
 
@@ -776,12 +776,12 @@ public class OfertaLaboral {
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long iden) {
+        this.iden = iden;
     }
 
     public Long getId() {
-        return id;
+        return iden;
     }
     
     public Integer getCantFav() {

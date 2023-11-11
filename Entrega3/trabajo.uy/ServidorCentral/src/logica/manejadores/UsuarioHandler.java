@@ -125,8 +125,8 @@ public class UsuarioHandler {
         }
     }
 
-    public static void setBaseDatos(EntityManager em) {
+    public static void setBaseDatos(EntityManager emm) {
 
-        database = em;
+        database = emm;
     }
 }

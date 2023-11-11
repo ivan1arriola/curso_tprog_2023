@@ -37,7 +37,7 @@ import java.util.Set;
 public class Paquete {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     // -----------
     // Atributos
     private String nombre;

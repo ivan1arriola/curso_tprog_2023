@@ -325,11 +325,11 @@ public class Utils {
         
         connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-        try (InputStream in = connection.getInputStream();
+        try (InputStream into = connection.getInputStream();
              ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             byte[] buffer = new byte[4096];
             int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
+            while ((bytesRead = into.read(buffer)) != -1) {
                 out.write(buffer, 0, bytesRead);
             }
             imagen = out.toByteArray();

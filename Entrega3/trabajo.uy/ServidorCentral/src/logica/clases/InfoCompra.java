@@ -24,7 +24,7 @@ import java.util.Set;
 public class InfoCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Se agrega un campo id como clave primaria
+    private Long iden; // Se agrega un campo id como clave primaria
 
     private LocalDate fechaCompra;
     private LocalDate fechaVencimiento;

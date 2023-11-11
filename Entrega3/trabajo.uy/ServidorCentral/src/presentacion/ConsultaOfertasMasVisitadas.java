@@ -125,9 +125,9 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         JRadioButton btnVigentes = new JRadioButton("Vigentes");
         btnVigentes.setFont(new Font("Arial", Font.PLAIN, 14));
         btnVigentes.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		String op = "C";
-                actualizarTabla(op);
+        	public void actionPerformed(ActionEvent eve) {
+        		String oper = "C";
+                actualizarTabla(oper);
         	}
         });
         btnVigentes.setBounds(234, 65, 82, 23);
@@ -136,20 +136,20 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         JRadioButton btnFinalizadas = new JRadioButton("Vencidas");
         btnFinalizadas.setFont(new Font("Arial", Font.PLAIN, 14));
         btnFinalizadas.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		String op = "F";
-                actualizarTabla(op);
+        	public void actionPerformed(ActionEvent eve) {
+        		String oper = "F";
+                actualizarTabla(oper);
         	}
-        });
+        }); 
         btnFinalizadas.setBounds(328, 65, 94, 23);
         getContentPane().add(btnFinalizadas);
         
         JRadioButton btnTodas = new JRadioButton("Todas");
         btnTodas.setFont(new Font("Arial", Font.PLAIN, 14));
         btnTodas.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		String op = "F";
-                actualizarTabla(op);
+        	public void actionPerformed(ActionEvent eve) {
+        		String oper = "F";
+                actualizarTabla(oper);
         	}
         });
         btnTodas.setBounds(424, 65, 82, 23);
@@ -168,7 +168,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
     }
 
     
-    public void actualizarTabla(String op) {
+    public void actualizarTabla(String oper) {
     	
     	// Define un tamaño de fuente para la tabla
     	Font customFont = new Font("Arial", Font.PLAIN, 14);  // Puedes ajustar el tamaño y la fuente según tus preferencias
@@ -181,9 +181,9 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         
         Set<DTOfertaExtendido> ofertas = null;
         
-        if (op == "C") { 
+        if (oper == "C") { 
         	ofertas = ico.listarOfertasLaboralesConfirmadasYNoVencidas();
-        } else if (op == "F") {
+        } else if (oper == "F") {
         	Set<DTOfertaExtendido> of1 = ico.listarOfertasLaboralesConfirmadas();
         	Set<DTOfertaExtendido> of2 = ico.listarOfertasLaboralesConfirmadasYNoVencidas();
         	

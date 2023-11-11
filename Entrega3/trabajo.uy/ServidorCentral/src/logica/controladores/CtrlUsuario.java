@@ -651,10 +651,10 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
     @Override
-	public HashSet<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashSet<String> res = new HashSet<String>();
-		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidores();
+	public Set<String> obtenerSeguidoresUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		Set<String> res = new HashSet<String>();
+		Set<Usuario> seg = UHan.buscarNick(nickname).getSeguidores();
 		for (Usuario usuario : seg) {
 			res.add(usuario.getNickname());
 		}
@@ -662,10 +662,10 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 
 	@Override
-	public HashSet<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
-		UsuarioHandler UH = UsuarioHandler.getInstance();
-		HashSet<String> res = new HashSet<String>();
-		Set<Usuario> seg = UH.buscarNick(nickname).getSeguidos();
+	public Set<String> obtenerSeguidosUsuario(String nickname) throws ExceptionUsuarioNoEncontrado {
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
+		Set<String> res = new HashSet<String>();
+		Set<Usuario> seg = UHan.buscarNick(nickname).getSeguidos();
 		for (Usuario usuario : seg) {
 			res.add(usuario.getNickname());
 		}
@@ -674,9 +674,9 @@ public class CtrlUsuario implements ICtrlUsuario {
 	
 	@Override
     public LocalDate obtenerFechaDeCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado {
-    	UsuarioHandler UH = UsuarioHandler.getInstance();
-    	Empresa e = (Empresa) UH.buscarNick(nickname_e);
-    	return e.obtenerFechaDeCompra(paq);
+    	UsuarioHandler UHan = UsuarioHandler.getInstance();
+    	Empresa emp = (Empresa) UHan.buscarNick(nickname_e);
+    	return emp.obtenerFechaDeCompra(paq);
     }
 }
 

@@ -84,7 +84,7 @@ public class TipoOfertaHandler {
         return tipoOfertas;
     }
 
-    public static void setBaseDatos(EntityManager em) {
-        database = em;
+    public static void setBaseDatos(EntityManager emm) {
+        database = emm;
     }
 }

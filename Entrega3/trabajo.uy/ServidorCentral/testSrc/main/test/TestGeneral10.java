@@ -317,9 +317,9 @@ public class TestGeneral10 {
 		} catch (ExceptionFechaInvalida e) {
 		    e.printStackTrace();
 		}
-		UsuarioHandler UH = UsuarioHandler.getInstance();
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
 		try {
-			UH.agregar(nuevoPos5);
+			UHan.agregar(nuevoPos5);
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -552,7 +552,7 @@ public class TestGeneral10 {
 		ICO.listarOfertasLaboralesConfirmadasYNoVencidasString();
 		ICO.listarOfertasLaboralesConfirmadasYNoVencidas();
 		try {
-			UH.agregar(nuevoPos);
+			UHan.agregar(nuevoPos);
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -560,7 +560,7 @@ public class TestGeneral10 {
 		
 		// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		try {
-			UH.agregar(nuevoPos5);
+			UHan.agregar(nuevoPos5);
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
