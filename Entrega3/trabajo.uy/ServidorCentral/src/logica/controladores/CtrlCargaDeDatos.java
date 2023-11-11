@@ -24,8 +24,15 @@ import excepciones.*;
 import logica.Fabrica;
 import logica.persistencia.TrabajoUyHistoricoManager;
 import logica.Utils;
+import logica.clases.Empresa;
 import logica.clases.OfertaLaboral;
+import logica.clases.Postulacion;
+import logica.clases.Postulante;
 import logica.datatypes.DTHorario;
+import logica.dto.EmpresaDTO;
+import logica.dto.OfertaLaboralDTO;
+import logica.dto.PostulacionDTO;
+import logica.dto.PostulanteDTO;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlCargaDeDatos;
@@ -69,7 +76,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         cargarTiposPublicacionPaquetes();
         cargarPaquetesCompras();
         cargarOfertasFavoritasPostulantes();
-//        persistirOfertasFinalizadas();
+        persistirOfertasFinalizadas();
     }
 
     private void persistirOfertasFinalizadas() {
@@ -81,11 +88,42 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         for (Map.Entry<String, OfertaLaboral> entry : ofertas.entrySet()){
             OfertaLaboral ofertaLaboral = entry.getValue();
             if(ofertaLaboral.getEstado().equals(EstadoOL.Finalizada)){
-                try {
-                    trabajoUyHistoricoManager.persistirOfertaFinalizada(ofertaLaboral);
-                } catch (PersistirOfertaNoFinalizada e) {
-                    throw new RuntimeException(e);
-                }
+                // obtengo la instancia de la segunda base de datos
+				TrabajoUyHistoricoManager THM = TrabajoUyHistoricoManager.getInstance();
+				// primero persistir la empresa si no esta persistida ya
+				Empresa empresa = ofertaLaboral.getEmpresaPublicadora();
+				EmpresaDTO empresatransformado = (EmpresaDTO) empresa.getDTO();
+				// veo si dicha empresa ya esta persistida o no
+				if ( THM.obtenerUsuarioDT(empresatransformado.getNickname()) == null) {
+				//  System.out.println("se persiste el usuario");
+					THM.GuardarEmpresa(empresatransformado);
+				} else {
+					empresatransformado =  (EmpresaDTO) THM.obtenerUsuarioDT(empresatransformado.getNickname());
+				//  System.out.println(" la empresa tiene id " + empresatransformado.getId());
+				}
+				
+				// persistir en memoria la oferta laboral
+				OfertaLaboralDTO oferta_a_guardar = ofertaLaboral.getDTO();
+				THM.GuardarOfertaFinalizada(oferta_a_guardar,empresatransformado);     
+				
+				// Persistir las postulaciones
+				 List<Postulacion> postulacionesPersistir = ofertaLaboral.getPostulaciones();
+				for (Postulacion postulacion :postulacionesPersistir) {
+					// primero presistir los usuarios de la postulacion
+					// para eso veo si el postulante ya esta ingresado o no
+					Postulante postulante = postulacion.getPostulante();
+					PostulanteDTO postulantetransformado = (PostulanteDTO) postulante.getDTO();
+					if ( THM.obtenerUsuarioDT(postulantetransformado.getNickname()) == null) {
+				    	THM.GuardarPostulante(postulantetransformado);
+				    } else {
+				    	postulantetransformado =  (PostulanteDTO) THM.obtenerUsuarioDT(postulantetransformado.getNickname());
+				       //  System.out.println(" la empresa tiene id " + empresatransformado.getId());
+				       }
+				    // luego la postulacion en si
+					PostulacionDTO postulacionTransformada = postulacion.getDTO(oferta_a_guardar);
+					THM.GuardarPostulacion(postulacionTransformada,postulantetransformado);
+				}
+				THM.cerrarBaseDatos();
             }
         }
     }

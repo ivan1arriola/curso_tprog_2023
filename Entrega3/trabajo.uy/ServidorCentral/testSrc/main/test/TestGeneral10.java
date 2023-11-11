@@ -12,6 +12,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import excepciones.AsignarOrdenAOfertaFinalizada;
+import excepciones.AsignarOrdenAOfertaNoVencida;
 import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
@@ -27,8 +29,8 @@ import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import excepciones.ExceptionValidezNegativa;
-import excepciones.ExisteOrdenFinalDePostulantes;
 import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -381,18 +383,16 @@ public class TestGeneral10 {
 		OfertaLabolra.marcadaFav();
 		OfertaLabolra.desmarcadaFav();
 		OfertaLabolra.setCantFav(9);
-		OfertaLabolra.TienePosicion();
-		OfertaLabolra.establecerPosicion("Stallone",   1);
-		OfertaLabolra.DevolverPosiciones();
 		// --------------------------------------------
 		List<String> nickList = new ArrayList<>();
 		nickList.add("Stallone");
 		try {
-			empresaNueva.establecerPosicion("Panqueqes",   nickList);
-		} catch (OfertaLaboralNoEncontrada e) {
+			OfertaLabolra.establecerPosicion(nickList);
+		} catch (AsignarOrdenAOfertaFinalizada | AsignarOrdenAOfertaNoVencida e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		// ============================================
 		TipoOferta tipoofertaNuevo3= null;
 		try {
@@ -545,8 +545,6 @@ public class TestGeneral10 {
 		}
 		OfertaLabolra.obtenerDatosPostulacion(empresaNueva.getNickname());
 		// ============================================
-		empresaNueva.DevolverOrden(OfertaLabolra.getNombre());
-		empresaNueva.HayOrden(OfertaLabolra.getNombre());
 		empresaNueva.listarPaquetesNoVencidos();
 		// ============================================
 		ICO.listarOfertasLaboralesConfirmadasYNoVencidasString();
@@ -603,10 +601,11 @@ public class TestGeneral10 {
 		OLH.agregar(OfertaLabolra);
 		try {
 			ICO.finalizarOfertaLaboral(OfertaLabolra2.getNombre());
-		} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida e) {
+		} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		try {
 			ICO.marcarFavorita(nuevoPos.getNickname(),   OfertaLabolra2.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
@@ -690,12 +689,6 @@ public class TestGeneral10 {
 		// ============================================
 		try {
 			ICU.listarOfertasLaboralesNoVigentesConfirmadas(empresaNueva.getNickname());
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			ICU.finalizarOfertaLaboral(empresaNueva.getNickname(),  OfertaLabolra.getNombre());
 		} catch (ExceptionUsuarioNoEncontrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

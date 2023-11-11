@@ -17,6 +17,7 @@ import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativ
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
 import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
@@ -99,7 +100,12 @@ public class TestGeneral6 {
 			}
 		
 //			Set<String> nuevo = 
-      ICU.listarPostulantesDeOfertas(nickname,    nombre11);
+      try {
+		ICU.listarPostulantesDeOfertas(nombre11);
+	} catch (OfertaLaboralNoEncontrada e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 //			Set<String> holaaaa = 
       try {
 			ICU.listarKeywords("analista");
@@ -183,11 +189,12 @@ public class TestGeneral6 {
       // esto es para crear una postulacion de verdad
       String nick113 = "LeonardoVinchi";
       try {
-			ICO.altaPostulacion("analista",    nick113,    "CV",    "descripccion interesante",    "wwww.Linkedin.com/usuario",    LocalDate.now(),    "link video");
-		} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ICO.altaPostulacion("analista",    nick113,    "CV",    "descripccion interesante",    "wwww.Linkedin.com/usuario",    LocalDate.now(),    "link video");
+	} catch (OfertaLaboralNoEncontrada | ExceptionUsuarioNoEncontrado | ExceptionFechaInvalida e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 
 //			nuevamente =  
       ICO.listarPaquetes();

@@ -347,12 +347,13 @@ public class TestGeneral9 {
 //        assertEquals(dtoferta.getDescripcion(),    "Destaca tu anuncio");
         
      // ============================================
-        try {
-			ICC.cargarDatos();
-		} catch (ExcepcionKeywordVacia | ExceptionValidezNegativa | ExceptionFechaInvalida | ErrorAgregarUsuario e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        try {
+//			ICC.cargarDatos();
+//		} catch (ExceptionFechaInvalida | ErrorAgregarUsuario e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	
         // ============================================
 		// ============================================
         entityManager.close();

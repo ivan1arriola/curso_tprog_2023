@@ -16,7 +16,10 @@ import org.junit.Test;
 //import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionPaqueteNoVigente;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionValidezNegativa;
@@ -76,7 +79,7 @@ public class TestGeneral4 {
         ));
 
         // Listing keywords from the system
-        Set<String> probandoEnSistema = (HashSet<String>) ICO.listarKeywords();
+        Set<String> probandoEnSistema = ICO.listarKeywords();
 
         for (String s : pruebaKeyword) {
             if (!probandoEnSistema.contains(s)) {
@@ -348,22 +351,25 @@ public class TestGeneral4 {
         EstadoOL estado = EstadoOL.Confirmada;
 		try {
 			ICO.altaOfertaLaboral(Nick,   
-			        TIPOOFERTASELECCIONADA,   
-			        desc,   
-			        titulo,   
-			        horario,   
-			        sueldo,   
-			        ciudad,   
-			        departamento,   
-			        fecha,   
-			        listaKeywords,   
-			        estado,   
-			        img233.getBytes(),   
-			        paquete);
-		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete e) {
+				        TIPOOFERTASELECCIONADA,   
+				        desc,   
+				        titulo,   
+				        horario,   
+				        sueldo,   
+				        ciudad,   
+				        departamento,   
+				        fecha,   
+				        listaKeywords,   
+				        estado,   
+				        img233.getBytes(),   
+				        paquete);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete
+				| ExceptionCostoPaqueteNoNegativo | ExceptionPaqueteNoVigente
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa | ExceptionDescuentoInvalido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	
 
         DTOfertaLaboral temporal3 = new DTOfertaLaboral("Google",   

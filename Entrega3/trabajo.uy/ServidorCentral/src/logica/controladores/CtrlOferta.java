@@ -403,7 +403,12 @@ public class CtrlOferta implements ICtrlOferta {
 
 
     public Set<String> listarKeywords() {
-        return keywordHandler.obtener().keySet();
+    	Map<String, Keyword> yourMap = keywordHandler.obtener();
+    	Set<String> keySet = new HashSet<>();
+        for (Map.Entry<String, Keyword> entry : yourMap.entrySet()) {
+            keySet.add(entry.getKey());
+        }
+        return keySet;
     }
 
     // notar que esta operacion es le paso el nombrre de la oferta laboral y tretorna el tipo de oferta laboral

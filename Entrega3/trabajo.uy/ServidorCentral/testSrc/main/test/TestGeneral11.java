@@ -27,8 +27,8 @@ import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import excepciones.ExceptionValidezNegativa;
-import excepciones.ExisteOrdenFinalDePostulantes;
 import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -273,28 +273,11 @@ public class TestGeneral11 {
         UsuarioHandler.setBaseDatos(entityManager);
         
         // 88888888888888888888888888888888888888888888888888888888888888888888888
-		try {
-			ICO.DevolverOrdenFinal(OfertaLabolra.getNombre());
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			ICO.HayOrdenFinal(OfertaLabolra.getNombre());
-		} catch (ExceptionUsuarioNoEncontrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		List<String> nickList = new ArrayList<>();
 		nickList.add("Stallonjhjklhjke");
 		
-		try {
-			ICO.establecerPosiciones(OfertaLabolra.getNombre(),   nickList);
-		} catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada | ExisteOrdenFinalDePostulantes e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		try {
 			ICO.listarPaquetesNoVencidos(empresaNueva.getNickname());
 		} catch (ExceptionEmpresaInvalida | ExceptionUsuarioNoEncontrado e) {
@@ -308,12 +291,14 @@ public class TestGeneral11 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		try {
 			ICO.finalizarOfertaLaboral(OfertaLabolra.getNombre());
-		} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida e) {
+		} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		try {
 			ICO.aumentarVisita(OfertaLabolra.getNombre());
 		} catch (OfertaLaboralNoEncontrada e) {
@@ -366,7 +351,6 @@ public class TestGeneral11 {
 		nuevoPos.obtenerDatosUsuario();
 		nuevoPos.obtenerDatosUsuarioEspecial(nuevoPos.getNickname(),  nuevoPos.getNickname()); 
 		// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-		empresaNueva.finalizarOfertaLaboral(OfertaLabolra.getNombre());
 		empresaNueva.seguirUsuario(nuevoPos);
 		nuevoPos.seguirUsuario(empresaNueva);
 		empresaNueva.obtenerDatosUsuarioEspecial(empresaNueva.getNickname(),  empresaNueva.getNickname());

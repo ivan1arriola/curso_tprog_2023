@@ -14,6 +14,10 @@ import java.util.Set;
 import org.junit.Test;
 
 import excepciones.ErrorAgregarUsuario;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionPaqueteNoVigente;
 //import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 import excepciones.ExceptionUsuarioCorreoRepetido;
@@ -189,23 +193,25 @@ public class TestGeneral8 {
         boolean resultadoAlta = false;
 		try {
 			resultadoAlta = ctrlOferta.altaOfertaLaboral(empresaN,   
-			        tipoO,   
-			        nombreOferta,   
-			        desc,   
-			        horario,   
-			        remun,   
-			        ciu,   
-			        depto,   
-			        fechaAlta,   
-			        keys,   
-			        EstadoOL.Confirmada,   
-			        img233.getBytes(),   
-			        null);
-		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete e) {
+				        tipoO,   
+				        nombreOferta,   
+				        desc,   
+				        horario,   
+				        remun,   
+				        ciu,   
+				        depto,   
+				        fechaAlta,   
+				        keys,   
+				        EstadoOL.Confirmada,   
+				        img233.getBytes(),   
+				        null);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete
+				| ExceptionCostoPaqueteNoNegativo | ExceptionPaqueteNoVigente
+				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa | ExceptionDescuentoInvalido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 
         // Verificar que el alta haya sido exitosa
         assertTrue(resultadoAlta,    "El alta de la oferta debería ser exitosa");
