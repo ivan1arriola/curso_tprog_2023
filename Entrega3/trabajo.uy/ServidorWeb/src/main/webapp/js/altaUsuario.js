@@ -7,7 +7,7 @@ const nacionalidadInput = document.getElementById("nacionalidad-input");
 const descripcionEmpresaInput = document.getElementById("descripcion-empresa-input");
 const passwordInput = document.getElementById("password-input");
 const confirmPasswordInput = document.getElementById("confirm-password-input");
-const maxFileSizeKB = 250;
+const maxFileSizeKB = 500;
 const maxFileSizeBytes = maxFileSizeKB * 1024;
 const imageInput = document.getElementById('image-input');
 const nombreInput = document.getElementById("nombre-input");
@@ -346,7 +346,7 @@ const validarTamañoImagen = () => {
 
   if (imageFile) {
     if (imageFile.size > maxFileSizeBytes) {
-      imageInput.setCustomValidity('El archivo es demasiado grande. El tamaño máximo permitido es 250 KB.');
+      imageInput.setCustomValidity('El archivo es demasiado grande. El tamaño máximo permitido es 500 KB.');
     } else {
       imageInput.setCustomValidity('');
     }

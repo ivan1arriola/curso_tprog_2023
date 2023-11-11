@@ -224,42 +224,107 @@ public class Servidor {
         return ctrlOferta.obtenerDatosPaquete(nombrePaquete);
     }
 
-    @WebMethod
-    public void ingresarDatosEditadosPostulanteImg(String nickname,   String nombre,   String apellido,   String correo,   String password,   byte[] imagen,   LocalDate fechanac,   String nacionalidad) throws ExceptionUsuarioNoEncontrado {
-        ctrlUsuario.ingresarDatosEditadosPostulanteImg(nickname,   nombre,   apellido,   correo,   password,   imagen,   fechanac,   nacionalidad);
-    }
-
-    @WebMethod
-    public void ingresarDatosEditadosPostulante(String nickname,   String nombre,   String apellido,   String correo,   String password,   LocalDate fechanac,   String nacionalidad) throws ExceptionUsuarioNoEncontrado {
-        ctrlUsuario.ingresarDatosEditadosPostulante(nickname,   nombre,   apellido,   correo,   password,   fechanac,   nacionalidad);
-    }
-
-    @WebMethod
-    public void ingresarDatosEditadosEmpresaURL(String nickname,   String nombre,   String apellido,   String correo,   String password,   String URL,   String descripcion) throws ExceptionUsuarioNoEncontrado {
-        ctrlUsuario.ingresarDatosEditadosEmpresaURL(nickname,   nombre,   apellido,   correo,   password,   URL,   descripcion);
-    }
-
-    @WebMethod
-    public void ingresarDatosEditadosEmpresa(String nickname,   String nombre,   String apellido,   String correo,   String password,   String descripcion) throws ExceptionUsuarioNoEncontrado {
-        ctrlUsuario.ingresarDatosEditadosEmpresa(nickname,   nombre,   apellido,   correo,   password,   descripcion);
-    }
-
-    @WebMethod
-    public void altaEmpresaURL(String nickname,   String password,   String nombre,   String apellido,   String correo,   String description,   String url) throws ExceptionUsuarioCorreoRepetido,   ExceptionUsuarioNickYCorreoRepetidos,   ExceptionUsuarioNickRepetido,   ErrorAgregarUsuario {
-        ctrlUsuario.altaEmpresaURL(nickname,   password,   nombre,   apellido,   correo,   description,   url);
-    }
-
 
 
     @WebMethod
-    public void ingresarDatosEditadosEmpresaURLImg(String nickname,   String nombre,   String apellido,   String correo,   String password,   String URL,   byte[] imagen,   String descripcion) throws ExceptionUsuarioNoEncontrado {
-        ctrlUsuario.ingresarDatosEditadosEmpresaURLImg(nickname,   nombre,   apellido,   correo,   password,   URL,   imagen,   descripcion);
+    public void ingresarDatosEditadosEmpresa(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "descripcion") String descripcion) throws ExceptionUsuarioNoEncontrado {
+        ctrlUsuario.ingresarDatosEditadosEmpresa(nickname, nombre, apellido, correo, password, descripcion);
     }
 
     @WebMethod
-    public void ingresarDatosEditadosEmpresaImg(String nickname,   String nombre,   String apellido,   String correo,   String password,   byte[] imagen,   String descripcion) throws ExceptionUsuarioNoEncontrado {
-        ctrlUsuario.ingresarDatosEditadosEmpresaImg(nickname,   nombre,   apellido,   correo,   password,   imagen,   descripcion);
+    public void altaEmpresaURL(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "description") String description,
+            @WebParam(name = "url") String url) throws
+            ExceptionUsuarioCorreoRepetido,
+            ExceptionUsuarioNickYCorreoRepetidos,
+            ExceptionUsuarioNickRepetido,
+            ErrorAgregarUsuario {
+        ctrlUsuario.altaEmpresaURL(nickname, password, nombre, apellido, correo, description, url);
     }
+
+
+
+
+    @WebMethod
+    public void ingresarDatosEditadosEmpresaURLImg(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "URL") String URL,
+            @WebParam(name = "imagen") byte[] imagen,
+            @WebParam(name = "descripcion") String descripcion) throws ExceptionUsuarioNoEncontrado {
+
+        ctrlUsuario.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, URL, imagen, descripcion);
+    }
+
+    @WebMethod
+    public void ingresarDatosEditadosEmpresaImg(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "imagen") byte[] imagen,
+            @WebParam(name = "descripcion") String descripcion) throws ExceptionUsuarioNoEncontrado {
+
+        ctrlUsuario.ingresarDatosEditadosEmpresaImg(nickname, nombre, apellido, correo, password, imagen, descripcion);
+    }
+
+    @WebMethod
+    public void ingresarDatosEditadosPostulanteImg(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "imagen") byte[] imagen,
+            @WebParam(name = "fechaNacimientoString") String fechaNacimientoString,
+            @WebParam(name = "nacionalidad") String nacionalidad) throws ExceptionUsuarioNoEncontrado {
+        LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoString);
+        ctrlUsuario.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, imagen, fechaNacimiento, nacionalidad);
+    }
+
+    @WebMethod
+    public void ingresarDatosEditadosPostulante(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "fechaNacimientoString") String fechaNacimientoString,
+            @WebParam(name = "nacionalidad") String nacionalidad) throws ExceptionUsuarioNoEncontrado {
+
+        LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoString);
+        ctrlUsuario.ingresarDatosEditadosPostulante(nickname, nombre, apellido, correo, password, fechaNacimiento, nacionalidad);
+    }
+
+    @WebMethod
+    public void ingresarDatosEditadosEmpresaURL(
+            @WebParam(name = "nickname") String nickname,
+            @WebParam(name = "nombre") String nombre,
+            @WebParam(name = "apellido") String apellido,
+            @WebParam(name = "correo") String correo,
+            @WebParam(name = "password") String password,
+            @WebParam(name = "URL") String URL,
+            @WebParam(name = "descripcion") String descripcion) throws ExceptionUsuarioNoEncontrado {
+
+        ctrlUsuario.ingresarDatosEditadosEmpresaURL(nickname, nombre, apellido, correo, password, URL, descripcion);
+    }
+
+
 
     @WebMethod
     public boolean tieneURL(String nickname) throws ExceptionUsuarioNoEncontrado {

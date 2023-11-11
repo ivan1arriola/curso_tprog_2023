@@ -5,6 +5,7 @@
 
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
+boolean consultaSuPerfil = (boolean) request.getAttribute("consultaSuPerfil");
 %>
 
 
@@ -42,4 +43,6 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 
 
                     </form>
+                    <%if(consultaSuPerfil){ %> <jsp:include page="./editarDatosModal.jsp" /> <%}%>
+
                 </div>

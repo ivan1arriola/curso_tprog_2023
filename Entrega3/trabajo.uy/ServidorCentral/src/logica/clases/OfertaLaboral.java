@@ -841,4 +841,13 @@ public class OfertaLaboral {
     public void descartarOrden() {
         setHayOrdenDefinido(false);
     }
+
+
+    public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral() {
+        Set<DTPostulacion> dtPostulacionesSet = new HashSet<>();
+        for (Postulacion postulacion : postulaciones){
+            dtPostulacionesSet.add(postulacion.obtenerDT());
+        }
+        return dtPostulacionesSet;
+    }
 }

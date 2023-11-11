@@ -126,9 +126,9 @@ public interface ILogica {
 
 	void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ExceptionFechaInvalida_Exception, ErrorAgregarUsuario_Exception;
 
-	void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad);
+	void modificarPostulante(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad) throws ExceptionUsuarioNoEncontrado_Exception;
 
-	void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String link, byte[] imagen, String descripcion);
+	void modificarEmpresa(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, String descripcion, String enlace) throws ExceptionUsuarioNoEncontrado_Exception;
 
 	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception;
 

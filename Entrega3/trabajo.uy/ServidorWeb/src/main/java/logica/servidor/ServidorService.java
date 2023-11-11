@@ -17,14 +17,14 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "ServidorService",   targetNamespace = "http://servidor.logica/",   wsdlLocation = "http://localhost:9128/webservices?wsdl")
+@WebServiceClient(name = "ServidorService", targetNamespace = "http://servidor.logica/", wsdlLocation = "http://localhost:9128/webservices?wsdl")
 public class ServidorService
     extends Service
 {
 
     private final static URL SERVIDORSERVICE_WSDL_LOCATION;
     private final static WebServiceException SERVIDORSERVICE_EXCEPTION;
-    private final static QName SERVIDORSERVICE_QNAME = new QName("http://servidor.logica/",   "ServidorService");
+    private final static QName SERVIDORSERVICE_QNAME = new QName("http://servidor.logica/", "ServidorService");
 
     static {
         URL url = null;
@@ -39,27 +39,27 @@ public class ServidorService
     }
 
     public ServidorService() {
-        super(__getWsdlLocation(),   SERVIDORSERVICE_QNAME);
+        super(__getWsdlLocation(), SERVIDORSERVICE_QNAME);
     }
 
     public ServidorService(WebServiceFeature... features) {
-        super(__getWsdlLocation(),   SERVIDORSERVICE_QNAME,   features);
+        super(__getWsdlLocation(), SERVIDORSERVICE_QNAME, features);
     }
 
     public ServidorService(URL wsdlLocation) {
-        super(wsdlLocation,   SERVIDORSERVICE_QNAME);
+        super(wsdlLocation, SERVIDORSERVICE_QNAME);
     }
 
-    public ServidorService(URL wsdlLocation,   WebServiceFeature... features) {
-        super(wsdlLocation,   SERVIDORSERVICE_QNAME,   features);
+    public ServidorService(URL wsdlLocation, WebServiceFeature... features) {
+        super(wsdlLocation, SERVIDORSERVICE_QNAME, features);
     }
 
-    public ServidorService(URL wsdlLocation,   QName serviceName) {
-        super(wsdlLocation,   serviceName);
+    public ServidorService(URL wsdlLocation, QName serviceName) {
+        super(wsdlLocation, serviceName);
     }
 
-    public ServidorService(URL wsdlLocation,   QName serviceName,   WebServiceFeature... features) {
-        super(wsdlLocation,   serviceName,   features);
+    public ServidorService(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
+        super(wsdlLocation, serviceName, features);
     }
 
     /**
@@ -69,7 +69,7 @@ public class ServidorService
      */
     @WebEndpoint(name = "ServidorPort")
     public Servidor getServidorPort() {
-        return super.getPort(new QName("http://servidor.logica/",   "ServidorPort"),   Servidor.class);
+        return super.getPort(new QName("http://servidor.logica/", "ServidorPort"), Servidor.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class ServidorService
      */
     @WebEndpoint(name = "ServidorPort")
     public Servidor getServidorPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://servidor.logica/",   "ServidorPort"),   Servidor.class,   features);
+        return super.getPort(new QName("http://servidor.logica/", "ServidorPort"), Servidor.class, features);
     }
 
     private static URL __getWsdlLocation() {

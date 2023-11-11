@@ -39,12 +39,12 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                         String imagenUsuario = usuario.getImagen();
                         if (imagenUsuario != null) {
                         %>
-                            <img src="<%= imagenUsuario %>"
+                            <img id="imagenUsuario" src="<%= imagenUsuario %>"
                                 alt="Imagen de Usuario" class="img-fluid w-100 perfil rounded" />
                         <%
                         } else {
                         %>
-                            <img src="<%= request.getContextPath() + "/nopicture.png" %>"
+                            <img id="imagenUsuario" src="<%= request.getContextPath() + "/nopicture.png" %>"
                                 alt="Imagen de Usuario por Defecto"
                                 class="img-fluid mb-3 rounded-circle img-thumbnail perfil" />
                         <%
@@ -146,15 +146,15 @@ TipoUsuario tu = (TipoUsuario) request.getAttribute("tipoU");
                         <!-- Contenido de las pestañas -->
                         <% if (consultaSuPerfil) { %>
                             <% if (usuario.getTipo() == TipoUsuario.Empresa) { %>
-                                <jsp:include page="./tabPerfilEditable.jsp" />
+                                <jsp:include page="./tabPerfil.jsp" />
                                 <jsp:include page="./tabOfertasLaborales.jsp" />
                                 <jsp:include page="./tabPaquetes.jsp" />
                             <% } else if (usuario.getTipo() == TipoUsuario.Postulante) { %>
-                                <jsp:include page="./tabPerfilEditable.jsp" />
+                                <jsp:include page="./tabPerfil.jsp" />
                                 <jsp:include page="./tabPostulaciones.jsp" />
                                 <jsp:include page="./tabFavoritos.jsp" />
                             <% } else { %>
-                                <jsp:include page="./tabPerfilEditable.jsp" />
+                                <jsp:include page="./tabPerfil.jsp" />
                             <% } %>
                         <% } else { %>
                             <jsp:include page="./tabPerfil.jsp" />

@@ -3,18 +3,20 @@ package controller;
 import interfaces.ILogica;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
+import javabeans.UsuarioBean;
 import utils.FabricaWeb;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @WebServlet("/modificarusuario")
+@MultipartConfig
 public class ModificarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,6 +28,23 @@ public class ModificarUsuario extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+
+    private byte[] procesarImagen(Part imagenPart) throws IOException {
+        if (imagenPart == null) {
+            return null;
+        }
+
+        try (InputStream input = imagenPart.getInputStream()) {
+            byte[] imagenBytes = input.readAllBytes();
+            if (imagenBytes.length == 0) {
+                return null;
+            }
+            return imagenBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
  
     public static LocalDate convertirCadenaAFecha(String fechaEnCadena) {
         try {
@@ -39,16 +58,22 @@ public class ModificarUsuario extends HttpServlet {
     
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nickname = request.getParameter("nickname");
+		
+        // Campos obligatorios, no editables
+        String nickname = request.getParameter("nickname");
+        String correo = request.getParameter("email");
+
+        // Campos editables
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        String correo = request.getParameter("correo");
         String password = request.getParameter("password");
-        
-        String fechanacimiento = request.getParameter("fechanacimiento");
+        String fechanacimiento = request.getParameter("fecha-nacimiento");
         String nacionalidad = request.getParameter("nacionalidad");
         String descripcion = request.getParameter("descripcion");
-        String link = request.getParameter("link");
+        String link = request.getParameter("sitio-web");
+
+        Part imagenPart = request.getPart("imagen");
+        byte[] imagenBytes  = procesarImagen(imagenPart);
 
         ILogica logica = FabricaWeb.getLogica();
         
@@ -56,9 +81,9 @@ public class ModificarUsuario extends HttpServlet {
 	        if (fechanacimiento != null && descripcion == null) {
 	        	// es postulante
 	        	LocalDate fecha = convertirCadenaAFecha(fechanacimiento);
-	        	logica.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, null, fecha, nacionalidad);
+	        	logica.modificarPostulante(nickname, nombre, apellido, correo, password, imagenBytes, fecha, nacionalidad);
 	        } else if (fechanacimiento == null && descripcion != null) {
-                logica.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, link, null, descripcion);
+                logica.modificarEmpresa(nickname, nombre, apellido, correo, password, imagenBytes, descripcion, link);
 	        }
 	        response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nickname);
         } catch (Exception e) {
@@ -66,6 +91,15 @@ public class ModificarUsuario extends HttpServlet {
             request.setAttribute("mensajeError", mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
             dispatcher.forward(request, response);
+        }
+
+
+        HttpSession session = request.getSession();
+        UsuarioBean usuario = logica.obtenerDatosUsuario(nickname);
+
+        String imagen = usuario.getImagen();
+        if (imagen != null) {
+            session.setAttribute("imagen", imagen);
         }
 
         

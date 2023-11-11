@@ -76,14 +76,29 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad) {
+	public void modificarPostulante(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad) throws ExceptionUsuarioNoEncontrado_Exception {
+		if(imagen == null){
+			servidor.ingresarDatosEditadosPostulante(nickname, nombre, apellido, correo, password, fecha.toString(), nacionalidad);
+			return;
+		}
 
+		servidor.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, imagen, fecha.toString(), nacionalidad);
 	}
 
 	@Override
-	public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String password, String link, byte[] imagen, String descripcion) {
+	public void modificarEmpresa(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, String descripcion, String enlace) throws ExceptionUsuarioNoEncontrado_Exception {
+		if (imagen ==  null && enlace == null){
+			servidor.ingresarDatosEditadosEmpresa(nickname, nombre, apellido, correo, password, descripcion);
+		} else if (imagen == null && enlace!= null){
+			servidor.ingresarDatosEditadosEmpresaURL(nickname, nombre, apellido, correo, password, enlace, descripcion);
+		} else if(imagen != null && enlace == null){
+			servidor.ingresarDatosEditadosEmpresaImg(nickname, nombre, apellido, correo, password, imagen, descripcion);
+		} else {
+			servidor.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, enlace, imagen, descripcion);
+		}
 
 	}
+
 
 	@Override
 	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {

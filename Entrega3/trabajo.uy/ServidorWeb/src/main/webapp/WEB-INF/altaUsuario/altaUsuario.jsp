@@ -204,10 +204,10 @@
                       <h2 class="h4">Imagen de Perfil</h2>
 
                       <div class="form-group mb-3 " id="div-image-input">
-                          <label for="image-input">Subir una imagen de perfil (max 250 KB)</label>
+                          <label for="image-input">Subir una imagen de perfil (max 500 KB)</label>
                           <input type="file" class="form-control" id="image-input" name="imagen" accept=".jpg" />
                           <div class="invalid-feedback" id="image-invalid-feedback">
-                              La imagen no debe superar el tamaño máximo permitido de 250 KB.
+                              La imagen no debe superar el tamaño máximo permitido de 500 KB.
                           </div>
                       </div>
                   </section>
