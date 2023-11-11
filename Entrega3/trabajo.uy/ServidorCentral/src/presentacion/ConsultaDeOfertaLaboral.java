@@ -3,9 +3,12 @@ package presentacion;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.OfertaLaboralNoEncontrada;
 import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
+import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 
 import javax.swing.JButton;
@@ -114,11 +117,6 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             }
         });
         
-        
-        
-        
-
-
         JLabel lblIngresoCI_1 = new JLabel("Lista de empresas:");
         lblIngresoCI_1.setBounds(12, 11, 170, 15);
         getContentPane().add(lblIngresoCI_1);
@@ -129,6 +127,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             
                 listaOfertasLaborales.removeAllItems();
                 nombreE = (String) listaEmpresas.getSelectedItem();
+                
+                
             
                 try {
                 	       	
@@ -157,7 +157,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             }
         });
         
-        btnAceptar_1.setBounds(133, 40, 450, 25);
+        btnAceptar_1.setBounds(12, 38, 450, 25);
         getContentPane().add(btnAceptar_1);
         
 
@@ -333,7 +333,25 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
         JLabel lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2 = new JLabel("Paquete:");
         lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2.setBounds(12, 432, 170, 15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1_1_1_1_1_2);
-
+        
+        // =========================================================================
+        Fabrica fabrica = Fabrica.getInstance();
+        ICtrlOferta ico = fabrica.getICtrlOferta();
+        JButton btnFinaluizar = new JButton("finalizar");
+        btnFinaluizar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String nombreOL = (String)  listaOfertasLaborales.getSelectedItem();
+        		try {
+					ico.finalizarOfertaLaboral(nombreOL);
+				} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+        });
+        btnFinaluizar.setBounds(466, 38, 117, 25);
+        getContentPane().add(btnFinaluizar);
+        // =========================================================================
 
     }
 

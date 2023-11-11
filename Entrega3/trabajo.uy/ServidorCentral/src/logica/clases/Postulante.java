@@ -300,20 +300,20 @@ public class Postulante extends Usuario {
     @Override
     public UsuarioDTO getDTO() {
 
-        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
-        UsuarioDTO usuarioDTO = trabajoUyHistoricoManager.obtenerUsuarioDT(getNickname());
-        if(usuarioDTO!= null){
-            usuarioDTO.setNombre(getNombre());
-            usuarioDTO.setApellido(getApellido());
-            if (usuarioDTO instanceof PostulanteDTO postulanteDTO){
-                postulanteDTO.setFecha_nacimiento(getFechaNac());
-                postulanteDTO.setNacionalidad(getNacionalidad());
-                System.out.println("se encontro en la base de datos: " + postulanteDTO.getNickname());
-                return postulanteDTO;
-            } else return usuarioDTO;
-        } else {
+//        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
+        
+//        if(usuarioDTO!= null){
+//            usuarioDTO.setNombre(getNombre());
+//            usuarioDTO.setApellido(getApellido());
+//            if (usuarioDTO instanceof PostulanteDTO postulanteDTO){
+//                postulanteDTO.setFecha_nacimiento(getFechaNac());
+//                postulanteDTO.setNacionalidad(getNacionalidad());
+//                System.out.println("se encontro en la base de datos: " + postulanteDTO.getNickname());
+//                return postulanteDTO;
+//            } else return usuarioDTO;
+//        } else {
             return new PostulanteDTO(getNickname(), getcorreoElectronico(), getNombre(), getApellido(), getNacionalidad(), getFechaNac() );
-        }
+//        }
     }
 
     public Set<String> listarPostulaciones() {

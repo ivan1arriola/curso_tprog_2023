@@ -194,5 +194,6 @@ public abstract class Usuario {
     	seguidores.remove(usr1);
     }
 
+    // se implementa en las clases hijo
     public abstract UsuarioDTO getDTO();
 }

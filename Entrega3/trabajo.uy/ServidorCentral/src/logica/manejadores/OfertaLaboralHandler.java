@@ -17,7 +17,7 @@ public class OfertaLaboralHandler {
     private static OfertaLaboralHandler OLHandler = null;
    // private Map<String, OfertaLaboral> ofertasLaborales;
     private static EntityManager database;
-    ;
+
 
     private OfertaLaboralHandler() {
 

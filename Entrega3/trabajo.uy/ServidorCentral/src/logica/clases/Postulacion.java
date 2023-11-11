@@ -162,7 +162,9 @@ public class Postulacion {
     }
 
     public PostulacionDTO getDTO(OfertaLaboralDTO ofertaLaboralDTO) {
+//    	System.out.println("no persisti ni al postulante");
         PostulanteDTO postulanteDTO = (PostulanteDTO) postulante.getDTO();
+//        System.out.println("llegue a postulacion oferta laboral , pase al postulante");
         return new PostulacionDTO(getCV(), getMotivacion(), fecha, ofertaLaboralDTO, postulanteDTO);
     }
 }

@@ -7,10 +7,10 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Postulaciones")
 public class PostulacionDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "id", nullable = false)
+//    private Long id;
 
     @Column(name = "cv", nullable = false)
     private String curriculumVitae;
@@ -22,12 +22,13 @@ public class PostulacionDTO {
     @Column(nullable = false)
     private LocalDate fecha_postulacion;
 
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @Id
+    @ManyToOne
     @JoinColumn(name = "oferta_laboral_id")
     private OfertaLaboralDTO ofertaLaboral;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @Id
+    @ManyToOne
     @JoinColumn(name = "postulante_id")
     private PostulanteDTO postulante;
 
@@ -44,14 +45,6 @@ public class PostulacionDTO {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getCurriculumVitae() {
         return curriculumVitae;
     }
@@ -66,5 +59,9 @@ public class PostulacionDTO {
 
     public void setMotivacion(String motivacion) {
         this.motivacion = motivacion;
+    }
+    
+    public void setPostulante(PostulanteDTO postulante) {
+    	this.postulante = postulante;
     }
 }

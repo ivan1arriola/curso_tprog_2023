@@ -69,7 +69,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         cargarTiposPublicacionPaquetes();
         cargarPaquetesCompras();
         cargarOfertasFavoritasPostulantes();
-        persistirOfertasFinalizadas();
+//        persistirOfertasFinalizadas();
     }
 
     private void persistirOfertasFinalizadas() {

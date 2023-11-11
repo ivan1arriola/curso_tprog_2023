@@ -33,7 +33,6 @@
 		</properties>
 		
 	</persistence-unit>
-
 	<!-- Segunda unidad de persistencia -->
 	<persistence-unit name="TrabajoUyHistorico" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>

@@ -41,8 +41,13 @@ import logica.datatypes.DTPostulacion;
 //import logica.datatypes.DTPostulante;
 //import logica.datatypes.DTPostulanteExtendido;
 import logica.datatypes.DTTipoOferta;
+import logica.dto.EmpresaDTO;
 //import logica.datatypes.DTUsuario;
 //import logica.datatypes.DTUsuarioSinInfoSocial;
+import logica.dto.OfertaLaboralDTO;
+import logica.dto.PostulacionDTO;
+import logica.dto.PostulanteDTO;
+import logica.dto.UsuarioDTO;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
 import logica.interfaces.ICtrlOferta;
@@ -52,7 +57,7 @@ import logica.manejadores.OfertaLaboralHandler;
 import logica.manejadores.PaqueteHandler;
 import logica.manejadores.TipoOfertaHandler;
 import logica.manejadores.UsuarioHandler;
-
+import logica.persistencia.TrabajoUyHistoricoManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -541,11 +546,47 @@ public class CtrlOferta implements ICtrlOferta {
     @Override
     public void finalizarOfertaLaboral(String nombre_oferta) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida, FinalizarOfertaYaFinalizada {
     	OfertaLaboralHandler ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
-    	OfertaLaboral oferta = ofertaLaboralHandler.buscar(nombre_oferta);
-        if (!oferta.estaVencida()){
+    	OfertaLaboral ofertal = ofertaLaboralHandler.buscar(nombre_oferta);
+        if (!ofertal.estaVencida()){
             throw new FinalizarOfertaNoVencida("No se puede finalizar una oferta que no este vencida");
         }
-        oferta.finalizarOferta();
+        ofertal.finalizarOferta();
+        // obtengo la instancia de la segunda base de datos
+        TrabajoUyHistoricoManager THM = TrabajoUyHistoricoManager.getInstance();
+        // primero persistir la empresa si no esta persistida ya
+        Empresa empresa = ofertal.getEmpresaPublicadora();
+        EmpresaDTO empresatransformado = (EmpresaDTO) empresa.getDTO();
+        // veo si dicha empresa ya esta persistida o no
+        if ( THM.obtenerUsuarioDT(empresatransformado.getNickname()) == null) {
+        //  System.out.println("se persiste el usuario");
+        	THM.GuardarEmpresa(empresatransformado);
+        } else {
+        	empresatransformado =  (EmpresaDTO) THM.obtenerUsuarioDT(empresatransformado.getNickname());
+        //  System.out.println(" la empresa tiene id " + empresatransformado.getId());
+        }
+        
+        // persistir en memoria la oferta laboral
+        OfertaLaboralDTO oferta_a_guardar = ofertal.getDTO();
+        THM.GuardarOfertaFinalizada(oferta_a_guardar,empresatransformado);     
+        
+        // Persistir las postulaciones
+    	 List<Postulacion> postulacionesPersistir = ofertal.getPostulaciones();
+ 		for (Postulacion postulacion :postulacionesPersistir) {
+ 			// primero presistir los usuarios de la postulacion
+ 			// para eso veo si el postulante ya esta ingresado o no
+ 			Postulante postulante = postulacion.getPostulante();
+ 			PostulanteDTO postulantetransformado = (PostulanteDTO) postulante.getDTO();
+ 			if ( THM.obtenerUsuarioDT(postulantetransformado.getNickname()) == null) {
+ 	        	THM.GuardarPostulante(postulantetransformado);
+ 	        } else {
+ 	        	postulantetransformado =  (PostulanteDTO) THM.obtenerUsuarioDT(postulantetransformado.getNickname());
+ 	           //  System.out.println(" la empresa tiene id " + empresatransformado.getId());
+ 	           }
+            // luego la postulacion en si
+ 			PostulacionDTO postulacionTransformada = postulacion.getDTO(oferta_a_guardar);
+ 			THM.GuardarPostulacion(postulacionTransformada,postulantetransformado);
+ 		}
+		THM.cerrarBaseDatos();
     }
     
     @Override

@@ -149,11 +149,9 @@ public class Empresa extends Usuario {
         return lista;
     }
 
+    // metodo que se implementa aca
     @Override
     public UsuarioDTO getDTO() {
-        TrabajoUyHistoricoManager trabajoUyHistoricoManager = new TrabajoUyHistoricoManager();
-        UsuarioDTO usuarioDTO = trabajoUyHistoricoManager.obtenerUsuarioDT(getNickname());
-        if(usuarioDTO!= null) return usuarioDTO;
         return new EmpresaDTO(getNickname(), getcorreoElectronico(), getNombre(), getApellido(), getDescripcion(), geturl());
     }
 

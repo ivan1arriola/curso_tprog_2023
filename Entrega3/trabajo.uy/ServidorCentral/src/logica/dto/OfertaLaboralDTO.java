@@ -60,6 +60,7 @@ public class OfertaLaboralDTO {
         this.fecha_baja = fecha_baja;
         this.costo = costo;
         this.paquete = paquete;
+        // para empresa
         this.empresa = empresa;
     }
 
@@ -80,6 +81,7 @@ public class OfertaLaboralDTO {
         return empresa;
     }
 
+    // esta es la operacion
     public void setEmpresa(EmpresaDTO empresa) {
         this.empresa = empresa;
     }
