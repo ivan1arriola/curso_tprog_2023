@@ -157,7 +157,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             }
         });
         
-        btnAceptar_1.setBounds(12, 38, 450, 25);
+        btnAceptar_1.setBounds(88, 38, 450, 25);
         getContentPane().add(btnAceptar_1);
         
 
