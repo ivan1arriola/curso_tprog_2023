@@ -113,7 +113,7 @@ public class TrabajoUyHistoricoManager {
     }
 
 
-    public void GuardarOfertaFinalizada(OfertaLaboralDTO ofertaLaboraldto, EmpresaDTO Empresa){
+    public void guardarOfertaFinalizada(OfertaLaboralDTO ofertaLaboraldto, EmpresaDTO Empresa){
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
@@ -134,7 +134,7 @@ public class TrabajoUyHistoricoManager {
         } 
     }
 
-    public void GuardarPostulacion(PostulacionDTO postulacion, PostulanteDTO postulante){
+    public void guardarPostulacion(PostulacionDTO postulacion, PostulanteDTO postulante){
     	EntityTransaction transaction = entityManager.getTransaction();
     	try {
             transaction.begin();
@@ -154,7 +154,7 @@ public class TrabajoUyHistoricoManager {
         } 
     }	
     
-    public void GuardarPostulante(PostulanteDTO postulantetransformado) {
+    public void guardarPostulante(PostulanteDTO postulantetransformado) {
     	EntityTransaction transaction = entityManager.getTransaction();
     	try {
             transaction.begin();
@@ -174,7 +174,7 @@ public class TrabajoUyHistoricoManager {
     }
     
     
-    public void GuardarEmpresa(EmpresaDTO empresa) {
+    public void guardarEmpresa(EmpresaDTO empresa) {
     	EntityTransaction transaction = entityManager.getTransaction();
     	try {
             transaction.begin();

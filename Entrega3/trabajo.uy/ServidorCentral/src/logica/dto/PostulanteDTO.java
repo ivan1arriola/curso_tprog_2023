@@ -12,16 +12,16 @@ public class PostulanteDTO extends UsuarioDTO{
     @Column(nullable = false)
     private String nacionalidad;
     @Column(nullable = false)
-    private LocalDate fecha_nacimiento;
+    private LocalDate fechanacimiento;
 
     public PostulanteDTO(){
         super();
     }
 
-    public PostulanteDTO(String nickname,  String email,  String nombre,  String apellido,  String nacionalidad,  LocalDate fecha_nacimiento) {
+    public PostulanteDTO(String nickname,  String email,  String nombre,  String apellido,  String nacionalidad,  LocalDate fechanacimiento) {
         super(nickname,  email,  nombre,  apellido);
         this.nacionalidad = nacionalidad;
-        this.fecha_nacimiento = fecha_nacimiento;
+        this.fechanacimiento = fechanacimiento;
     }
 
     public String getNacionalidad() {
@@ -32,11 +32,11 @@ public class PostulanteDTO extends UsuarioDTO{
         this.nacionalidad = nacionalidad;
     }
 
-    public LocalDate getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public LocalDate getFechanacimiento() {
+        return fechanacimiento;
     }
 
-    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFechanacimiento(LocalDate fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 }
