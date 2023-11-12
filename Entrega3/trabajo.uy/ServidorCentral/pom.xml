@@ -28,6 +28,7 @@
             <version>3.8.1</version>
             <configuration>
                 <release>17</release>
+                <encoding>UTF-8</encoding>
             </configuration>
         </plugin>
 
@@ -45,6 +46,7 @@
                         <mainClass>presentacion.Principal</mainClass>
                     </manifest>
                 </archive>
+                <encoding>UTF-8</encoding>
             </configuration>
             <executions>
                 <execution>

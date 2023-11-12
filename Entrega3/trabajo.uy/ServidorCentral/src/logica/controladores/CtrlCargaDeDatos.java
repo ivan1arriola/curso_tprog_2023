@@ -48,6 +48,8 @@ import java.time.LocalDate;
 //import java.util.ArrayList;
 //import java.util.Collections;
 //import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 //import java.util.Set;
@@ -58,14 +60,17 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
     private ICtrlUsuario ctrlUsuario;
     private Utils utils;
 
+    private OfertaLaboralHandler ofertaLaboralHandler;
+
     public CtrlCargaDeDatos() {
         Fabrica fabrica = Fabrica.getInstance();
         ctrlUsuario = fabrica.getICtrlUsuario();
         ctrlOferta = fabrica.getICtrlOferta();
+        ofertaLaboralHandler = OfertaLaboralHandler.getInstance();
         utils = new Utils();
     }
 
-    public void cargarDatos() throws ExceptionFechaInvalida, ErrorAgregarUsuario {
+    public void cargarDatos() {
 
         cargarUsuarios();
         cargarTipoPublicacion();
@@ -76,6 +81,11 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         cargarTiposPublicacionPaquetes();
         cargarPaquetesCompras();
         cargarOfertasFavoritasPostulantes();
+        try {
+            cargarResultadoPostulaciones();
+        } catch (AsignarOrdenAOfertaNoVencida | AsignarOrdenAOfertaFinalizada | OfertaLaboralNoEncontrada e) {
+            throw new RuntimeException(e);
+        }
         persistirOfertasFinalizadas();
     }
 
@@ -448,4 +458,65 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         }
     }
 
+    public void cargarResultadoPostulaciones() throws AsignarOrdenAOfertaNoVencida, AsignarOrdenAOfertaFinalizada, OfertaLaboralNoEncontrada {
+        Map<String, String[]> resultadosCSV = utils.getResultadosPostulacionCSV();
+        Map<String, String[]> usuariosCSV = utils.getUsuarioCSV();
+        Map<String, String[]> ofertasCSV = utils.getOfertasLaboralesCSV();
+
+        Map<String, List<String>> ordenesEnOferta = new HashMap<>();
+
+        for (Map.Entry<String, String[]> entry : resultadosCSV.entrySet()) {
+            String identificadorOferta = entry.getValue()[1];
+            String identificadorPostulante = entry.getValue()[2];
+
+            String nombreOfertaFinalizada = ofertasCSV.get(identificadorOferta)[1];
+            String nicknamePostulante = usuariosCSV.get(identificadorPostulante)[2];
+            int lugarPostulante = Integer.parseInt(entry.getValue()[3]);
+
+            // Verificamos si ya existe una entrada para la oferta en el mapa
+            if (!ordenesEnOferta.containsKey(nombreOfertaFinalizada)) {
+                ordenesEnOferta.put(nombreOfertaFinalizada, new ArrayList<>());
+            }
+
+            // Añadimos el nickname al list en el orden indicado
+            List<String> nicknames = ordenesEnOferta.get(nombreOfertaFinalizada);
+            while (nicknames.size() <= lugarPostulante) {
+                nicknames.add(null);
+            }
+            nicknames.set(lugarPostulante, nicknamePostulante);
+        }
+
+
+
+
+        for (Map.Entry<String, List<String>> entry : ordenesEnOferta.entrySet()) {
+            String nombreOferta = entry.getKey();
+            List<String> nicknames = entry.getValue();
+            // Elimina el primer elemento de la lista si la lista tiene al menos un elemento
+            if (!nicknames.isEmpty()) {
+                nicknames.remove(0); // Termina de armar las listas que necesito
+            }
+
+            OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombreOferta);
+            EstadoOL estadoOferta = ofertaLaboral.getEstado();
+            ofertaLaboral.setEstado(EstadoOL.Confirmada);
+            ofertaLaboral.establecerPosicion(nicknames);
+            ofertaLaboral.setEstado(estadoOferta);
+
+
+
+
+        }
+
+
+
+
+
+    }
+
+
+
+
 }
+
+

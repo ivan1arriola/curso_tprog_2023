@@ -1,15 +1,6 @@
 package logica;
 
-//import java.net.MalformedURLException;
-//import excepciones.AsignarOrdenAOfertaFinalizada;
-//import excepciones.AsignarOrdenAOfertaNoVencida;
-//import excepciones.ErrorAgregarUsuario;
-//import excepciones.ExcepcionKeywordVacia;
-//import excepciones.ExcepcionTipoOfertaNoExistente;
-//import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-//import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
-//import excepciones.ExceptionCiudadInvalida;
-//import excepciones.ExceptionCompraPaqueteConValorNegativo;
+
 import excepciones.*;
 //import excepciones.ExceptionDuracionNegativa;
 //import excepciones.ExceptionExpoNegativa;
@@ -121,9 +112,6 @@ public class Utils {
         return seguidoresCSV;
     }
 
-    public void setSeguidoresCSV(Map<String, String[]> seguidoresCSV) {
-        this.seguidoresCSV = seguidoresCSV;
-    }
 
     public Map<String, String[]> getResultadosPostulacionCSV() {
         return resultadosPostulacionCSV;
@@ -137,9 +125,7 @@ public class Utils {
         return postulantesOfertaLaboralFavoritas;
     }
 
-    public void setPostulantesOfertaLaboralFavoritas(Map<String, String[]> postulantesOfertaLaboralFavoritas) {
-        this.postulantesOfertaLaboralFavoritas = postulantesOfertaLaboralFavoritas;
-    }
+
 
 
     public Map<String, String[]> getUsuarioCSV() {
@@ -163,12 +149,6 @@ public class Utils {
 
     public Map<String, String[]> getOfertasLaboralesCSV() {
         return ofertasLaboralesCSV;
-    }
-
-
-
-    public Map<String, String[]> getOfertasLaboralesKeyCSV() {
-        return ofertasLaboralesKeyCSV;
     }
 
 

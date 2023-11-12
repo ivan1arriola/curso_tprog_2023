@@ -58,9 +58,7 @@ public class CargarDatos extends JInternalFrame {
                 } catch (ExcepcionKeywordVacia | ExceptionValidezNegativa e) {
                     // TODO Auto-generated catch block
                     JOptionPane.showMessageDialog(CargarDatos.this, "Se han cargado todos los datos pero " + e.getMessage(), "Carga de Datos", JOptionPane.ERROR);
-                } catch (ExceptionFechaInvalida e) {
-                    throw new RuntimeException(e);
-                } catch (ErrorAgregarUsuario e) {
+                } catch (ExceptionFechaInvalida | ErrorAgregarUsuario e) {
                     throw new RuntimeException(e);
                 }
 

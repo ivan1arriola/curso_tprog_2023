@@ -1,6 +1,6 @@
-Oferta;Postulante;Posicion
-O1;U3;1
-O1;U1;2
-O2;U2;3
-O2;U5;2
-O2;U1;1
+ref;Oferta;Postulante;Posicion
+O1_U3_1;O1;U3;1
+O1_U1_2;O1;U1;2
+O2_U2_3;O2;U2;3
+O2_U5_2;O2;U5;2
+O2_U1_1;O2;U1;1
