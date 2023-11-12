@@ -3,8 +3,8 @@ package logica.servidor;
 import logica.datatypes.DTOfertaExtendido;
 import logica.servidor.bean.WrapperLista;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+//import java.net.InetAddress;
+//import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;

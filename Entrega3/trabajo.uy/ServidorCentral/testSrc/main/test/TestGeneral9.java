@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
-import java.util.Map;
+//import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
 import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
-import excepciones.ExcepcionTipoOfertaNoExistente;
+//import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 import excepciones.ExceptionCompraPaqueteConValorNegativo;
 import excepciones.ExceptionDescuentoInvalido;
@@ -26,15 +26,15 @@ import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionValidezNegativa;
 import excepciones.NoExistePaquete;
-import excepciones.OfertaLaboralNoEncontrada;
+//import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
-import logica.clases.Keyword;
+//import logica.clases.Keyword;
 import logica.controladores.CtrlCargaDeDatos;
-import logica.datatypes.DTOfertaExtendido;
-import logica.datatypes.DTTipoOferta;
+//import logica.datatypes.DTOfertaExtendido;
+//import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;

@@ -3,12 +3,12 @@ package presentacion;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
-import excepciones.FinalizarOfertaNoVencida;
-import excepciones.FinalizarOfertaYaFinalizada;
+//import excepciones.FinalizarOfertaNoVencida;
+//import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.OfertaLaboralNoEncontrada;
 import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
-import logica.interfaces.ICtrlOferta;
+//import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 
 import javax.swing.JButton;

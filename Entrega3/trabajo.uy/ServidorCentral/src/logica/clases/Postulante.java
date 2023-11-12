@@ -40,10 +40,10 @@ import logica.datatypes.DTPostulanteExtendido;
 //import logica.datatypes.DTTipoOferta;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTUsuarioSinInfoSocial;
-import logica.dto.PostulacionDTO;
+//import logica.dto.PostulacionDTO;
 import logica.dto.PostulanteDTO;
 import logica.dto.UsuarioDTO;
-import logica.persistencia.TrabajoUyHistoricoManager;
+//import logica.persistencia.TrabajoUyHistoricoManager;
 
 import java.time.LocalDate;
 import java.util.HashSet;

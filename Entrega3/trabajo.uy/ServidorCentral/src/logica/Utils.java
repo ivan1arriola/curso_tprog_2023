@@ -1,7 +1,27 @@
 package logica;
 
 
-import excepciones.*;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionFechaInvalida;
+import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+//import excepciones.ExceptionUsuarioCorreoRepetido;
+//import excepciones.ExceptionUsuarioNickRepetido;
+//import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+import excepciones.ExceptionUsuarioNoEncontrado;
+//import excepciones.ExceptionUsuarioSeSigueASiMismo;
+import excepciones.ExceptionValidezNegativa;
+//import excepciones.FaltaCvException;
+//import excepciones.FaltaMotivaException;
+//import excepciones.FinalizarOfertaNoVencida;
+import excepciones.NoExistePaquete;
+//import excepciones.NoHayOrdenDefinidoDePostulantes;
+import excepciones.OfertaLaboralNoEncontrada;
+//import excepciones.PostulaExistenteException;
+//import excepciones.TipoUsuarioNoValido;
+//import excepciones.UsuarioNoExisteException;
 //import excepciones.ExceptionDuracionNegativa;
 //import excepciones.ExceptionExpoNegativa;
 //import excepciones.ExceptionUsuarioCorreoRepetido;
