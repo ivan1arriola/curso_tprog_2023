@@ -10,9 +10,10 @@ String nombrePaqueteCodificado = URLEncoder.encode(paquete.getNombre(),  "UTF-8"
 <% if (!yaSeCompro) { %>
 	
     <div class="col-3">
-        <a href="<%= request.getContextPath() %>/comprarpaquete?p=<%= nombrePaqueteCodificado %>" class="btn btn-primary" data-toggle="modal" data-target="#verificarCompraModal">
+        <!--a href="<%= request.getContextPath() %>/comprarpaquete?p=<%= nombrePaqueteCodificado %>" class="btn btn-primary" data-toggle="modal" data-target="#verificarCompraModal">
             <i class="fas fa-shopping-cart"></i> Comprar
-        </a>
+        </a-->
+        <jsp:include page="/WEB-INF/consultarPaquete/comprarPaqueteModal.jsp" />
     </div>
 <% } else { %>
     <div class="col-3">

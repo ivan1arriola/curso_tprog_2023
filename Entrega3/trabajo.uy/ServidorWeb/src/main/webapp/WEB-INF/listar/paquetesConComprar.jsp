@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="logica.datatypes.DTPaquete" %>
+<%@ page import="logica.servidor.DtPaquete" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Base64" %>
@@ -27,7 +27,7 @@
 
             <div class="sin-bordes">
                 <%
-                	Set<DTPaquete> paquetes = (Set<DTPaquete>) request.getAttribute("paquetes");
+                	Set<DtPaquete> paquetes = (Set<DtPaquete>) request.getAttribute("paquetes");
                 if (paquetes == null || paquetes.isEmpty()) {
                     // Si ofertasLaborales es null o está vacío,  muestra un mensaje
                 %>
@@ -39,7 +39,7 @@
                 } else {
 
                     // Itera sobre la lista de paquetes y muestra cada paquete
-                    for (DTPaquete paquete : paquetes) {
+                    for (DtPaquete paquete : paquetes) {
                     	
                     	String imagenUrl = ""; /*
                         if (paquete.getImagen() != null) {

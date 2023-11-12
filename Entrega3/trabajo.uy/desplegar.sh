@@ -32,7 +32,7 @@ SERVIDOR_CENTRAL_JAR_NAME="ServidorCentral-1.0.0-jar-with-dependencies.jar"
 SERVIDOR_CENTRAL_JAR_NAME_FINAL="ServidorCentral.jar"
 
 # Nombre del archivo WAR
-SERVIDOR_WEB_WAR_NAME="ServidorMovil-1.0.0.war"
+SERVIDOR_WEB_WAR_NAME="ServidorWeb-1.0.0.war"
 SERVIDOR_WEB_WAR_NAME_FINAL="ServidorWeb.war"
 
 # Nombre del archivo WAR
@@ -119,6 +119,17 @@ function ejecutarProyecto(){
     exit
 }
 
+function cerrarApagar(){
+    echo "Apagando..."
+    # cerrar tomcat
+    cd $TOMCAT_DIR/bin
+    ./shutdown.sh
+    # cerrar servidor central
+    pkill java
+    echo "Apagado..."
+    exit
+}
+
 
 # Menu de opciones
 while true; do
@@ -130,6 +141,7 @@ while true; do
     echo "3. Compilar Servidor Movil WAR (requiere Servidor Central Corriendo)"
     echo "4. Ejecutar Tomcat"
     echo "5. Ejecutar WEB (requiere Servidor Central Corriendo)"
+    echo "6. Apagar"
     echo "0. Salir"
     read -p "Opción: " opcion
     case $opcion in
@@ -138,6 +150,7 @@ while true; do
         [3]* ) compilarServidorMovilWAR;;
         [4]* ) ejecutarTomcat;;
         [5]* ) ejecutarProyecto;;
+        [6]* ) cerrarApagar;;
         [0]* ) exit;;
         * ) echo "Seleccione una opción válida.";;
     esac

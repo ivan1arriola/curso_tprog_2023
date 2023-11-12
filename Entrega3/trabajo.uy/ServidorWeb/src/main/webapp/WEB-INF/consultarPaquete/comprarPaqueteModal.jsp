@@ -19,17 +19,13 @@
       </div>
       <div class="modal-body">
         <p>¿Está seguro de que desea comprar este paquete?</p>
-
-        <!-- Formulario para confirmar la compra -->
-        <form id="compraForm" action="/comprarpaquete" method="post">
-          <input name="paquete" value="<%=paquete.getNombre()%>">
+        <!-- Formulario para confirmar la compra, UTF-8 -->
+        <form id="compraForm" action="comprarpaquete" method="post">
+          <input type="hidden"  name="paquete" value="<%=paquete.getNombre()%>">
           <button type="submit" class="btn btn-primary">Comprar</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </form>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

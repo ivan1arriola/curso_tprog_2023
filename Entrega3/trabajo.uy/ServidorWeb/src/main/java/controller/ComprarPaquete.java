@@ -28,12 +28,12 @@ public class ComprarPaquete extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
         request.setCharacterEncoding("UTF-8");
 
         
-        String paquete = request.getParameter("p");
+        String paquete = request.getParameter("paquete");
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
 
@@ -52,19 +52,19 @@ public class ComprarPaquete extends HttpServlet {
         try {
 			logica.compraPaquetes(nickname,  paquete,  LocalDate.now(),  valor);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (ExceptionCompraPaqueteConValorNegativo_Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (ExceptionUsuarioNoEncontrado_Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (ExceptionValidezNegativa_Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (NoExistePaquete_Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
         
