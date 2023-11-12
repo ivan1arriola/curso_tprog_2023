@@ -91,17 +91,17 @@ function compilarServidorMovilWAR() {
 
 # Menu de opciones
 while true; do
-
-
-    # Switch
+    echo "Seleccione una opción:"
+    echo "1. Desplegar Servidor Central"
+    echo "2. Compilar Servidor Web WAR"
+    echo "3. Compilar Servidor Movil WAR"
+    echo "4. Salir"
+    read -p "Opción: " opcion
     case $opcion in
-        0)
-            exit
-            ;;
-        1) 
-            desplegarServidorCentral
-            ;;
-       
-        
+        [1]* ) desplegarServidorCentral;;
+        [2]* ) compilarServidorWebWAR;;
+        [3]* ) compilarServidorMovilWAR;;
+        [4]* ) exit;;
+        * ) echo "Seleccione una opción válida.";;
     esac
 done
