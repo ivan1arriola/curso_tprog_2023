@@ -65,7 +65,7 @@ public class InfoCompra {
     }
 
     public InfoCompra() {
-    	
+
     }
 
     // Getters

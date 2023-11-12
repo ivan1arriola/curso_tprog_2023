@@ -177,7 +177,6 @@ public class AltaOfertaLaboral extends HttpServlet {
                     dispatcher.forward(request, response);
             	}
 				
-				response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
 			} catch (ExceptionRemuneracionOfertaLaboralNegativa_Exception | ExceptionUsuarioNoEncontrado_Exception
 					| NoExistePaquete_Exception e) {
 				// TODO Auto-generated catch block

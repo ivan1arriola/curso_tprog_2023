@@ -103,7 +103,7 @@ public class OfertaLaboral {
             EstadoOL estadoNuevo,
             byte[] imagennueva,
             Paquete paq
-    ) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    ) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 
         this.nombre = atrnombre;
         this.descripcion = atrdescripcion;
@@ -130,24 +130,8 @@ public class OfertaLaboral {
         this.setImagen(imagennueva);
 
 
-
-
-        try {
-            if (paq != null) {
-                if (paq.getfechaAlta().plusDays(paq.getValidez()).isBefore(LocalDate.now())) {
-                    throw new ExceptionPaqueteNoVigente("El paquete no se encuentra vigente");
-                } else {
-                    this.paqueteAsoc = paq;
-                }
-
-            }
-        } catch (ExceptionPaqueteNoVigente exc) {
-            System.err.println("Error: " + exc.getMessage());
-            throw exc;
-        }
-
-
         this.empresaPublicadora = empresaPublicadora;
+        this.paqueteAsoc = paq;
 
         if (this.paqueteAsoc != null) {
             float costodadoPaq = 0;
@@ -214,8 +198,9 @@ public class OfertaLaboral {
     }
 
 
+
     public OfertaLaboral(
-            boolean forzado,
+            boolean forzado, //TODO: Chequear que este bien comparado con el principal
             Empresa empresaPublicadora,
             List<Keyword> atrkeywords,
             TipoOferta atrtOferta,

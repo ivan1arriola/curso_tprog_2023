@@ -218,7 +218,7 @@ public class CtrlOferta implements ICtrlOferta {
         return empresa.compraPaquetes(paquete, fecha, valor);
     }
 
-    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete, ExceptionCostoPaqueteNoNegativo, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido {
+    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, Set<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionUsuarioNoEncontrado, NoExistePaquete, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 
         Paquete paq = null;
         if (paquete != null) {
@@ -230,7 +230,7 @@ public class CtrlOferta implements ICtrlOferta {
         TipoOferta tipoOfer = tipoOfertaHandler.buscar(tipo);
         if (!ofer) {
             List<Keyword> keywords = new ArrayList<Keyword>();
-            Map<String, Keyword> keyss = keywordHandler.obtener();
+            Map<String, Keyword> keyss = KeywordHandler.obtener();
             for (Entry<String, Keyword> entry : keyss.entrySet()) {
                 if (keys.contains(entry.getKey())) {
                     keywords.add(entry.getValue());
@@ -238,12 +238,15 @@ public class CtrlOferta implements ICtrlOferta {
             }
 
             OfertaLaboral oferLab;
+            
             oferLab = empresa.altaOfertaLaboral(tipoOfer, nombre, descripcion, horario, remun, ciu, dep, fechaA, keywords, estado, img, paq);
             ofertaLaboralHandler.agregar(oferLab);
+           
 
         }
         return !ofer;
     }
+
 
     public DTOfertaExtendidoSinPConK infoOfertaLaboralPostulante(String nombre_postulante, String nombre_oferta) throws OfertaLaboralNoEncontrada {
         OfertaLaboral ofertaLaboral = ofertaLaboralHandler.buscar(nombre_oferta);

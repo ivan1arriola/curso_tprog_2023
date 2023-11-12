@@ -1,70 +1,13 @@
 package logica.clases;
 
-//import excepciones.AsignarOrdenAOfertaFinalizada;
-//import excepciones.AsignarOrdenAOfertaNoVencida;
-//import excepciones.ErrorAgregarUsuario;
-//import excepciones.ExcepcionKeywordVacia;
-//import excepciones.ExcepcionTipoOfertaNoExistente;
-//import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
-import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
-//import excepciones.ExceptionCiudadInvalida;
-import excepciones.ExceptionCompraPaqueteConValorNegativo;
-import excepciones.ExceptionCostoPaqueteNoNegativo;
-import excepciones.ExceptionDescuentoInvalido;
-//import excepciones.ExceptionDuracionNegativa;
-//import excepciones.ExceptionEmpresaInvalida;
-//import excepciones.ExceptionExpoNegativa;
-//import excepciones.ExceptionFechaInvalida;
-import excepciones.ExceptionPaqueteNoVigente;
-import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
-//import excepciones.ExceptionUsuarioCorreoRepetido;
-//import excepciones.ExceptionUsuarioNickRepetido;
-//import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-//import excepciones.ExceptionUsuarioNoEncontrado;
-//import excepciones.ExceptionUsuarioSeSigueASiMismo;
-import excepciones.ExceptionValidezNegativa;
-//import excepciones.FaltaCvException;
-//import excepciones.FaltaMotivaException;
-//import excepciones.FinalizarOfertaNoVencida;
-//import excepciones.NoExistePaquete;
-//import excepciones.NoHayOrdenDefinidoDePostulantes;
-import excepciones.OfertaLaboralNoEncontrada;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.DiscriminatorValue;
-//import excepciones.PostulaExistenteException;
-//import excepciones.TipoUsuarioNoValido;
-//import excepciones.UsuarioNoExisteException;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
 
-//import jakarta.persistence.*;
-
-
-import logica.datatypes.DTCantTO;
-import logica.datatypes.DTCompraPaquetes;
-import logica.datatypes.DTEmpresa;
-import logica.datatypes.DTEmpresaConCompras;
-//import logica.datatypes.DTHora;
-import logica.datatypes.DTHorario;
-import logica.datatypes.DTOfertaExtendido;
-//import logica.datatypes.DTOfertaExtendidoConKeywords;
-//import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
-import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
-//import logica.datatypes.DTOfertaExtendidoSinPConK;
-//import logica.datatypes.DTOfertaLaboral;
-//import logica.datatypes.DTPaquete;
-import logica.datatypes.DTPostulacion;
-//import logica.datatypes.DTPostulante;
-//import logica.datatypes.DTPostulanteExtendido;
-//import logica.datatypes.DTTipoOferta;
-import logica.datatypes.DTUsuario;
-import logica.datatypes.DTUsuarioSinInfoSocial;
+import excepciones.*;
+import jakarta.persistence.*;
+import logica.datatypes.*;
 import logica.dto.EmpresaDTO;
 import logica.dto.UsuarioDTO;
 import logica.enumerados.DepUY;
 import logica.enumerados.EstadoOL;
-import logica.persistencia.TrabajoUyHistoricoManager;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -160,8 +103,8 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
-        try {
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) throws ExceptionCostoPaqueteNoNegativo, ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido {
+
             if (remun >= 0) {
                 OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, img, paq);
                 ofertasLaborales.add(ofertaLab);
@@ -193,12 +136,10 @@ public class Empresa extends Usuario {
             } else {
             	throw new NumberFormatException("La remuneración debe ser un número");
             }
-        } catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa exc) {
-            throw exc;
 
-        }
 
     }
+
 
     public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
         if (remun >= 0) {
