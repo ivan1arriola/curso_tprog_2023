@@ -3,6 +3,8 @@ package logica.servidor;
 import logica.datatypes.DTOfertaExtendido;
 import logica.servidor.bean.WrapperLista;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Set;
@@ -20,8 +22,14 @@ public class WSUtils {
     }
 
     public static String obtenerIp(){
-        return "localhost";
+       // try {
+       //     return InetAddress.getLocalHost().getHostAddress();
+       // } catch (UnknownHostException e) {
+        //    e.printStackTrace();
+            return "localhost";
+        //}
     }
+
 
     public static WrapperLista envolverLista(Set<String> strings) {
         return envolverLista(new ArrayList<>(strings));

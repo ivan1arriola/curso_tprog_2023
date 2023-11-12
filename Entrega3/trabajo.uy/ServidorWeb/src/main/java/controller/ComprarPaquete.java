@@ -27,10 +27,10 @@ public class ComprarPaquete extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
         
-        String paquete = request.getParameter("p");
+        String paquete = request.getParameter("paquete");
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
 
