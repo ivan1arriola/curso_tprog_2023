@@ -60,8 +60,8 @@ public class Empresa extends Usuario {
         return descripcion;
     }
     
-    public void setofertasLaborales(Set<OfertaLaboral> OL) {
-    	ofertasLaborales =  OL; 
+    public void setofertasLaborales(Set<OfertaLaboral> OLab) {
+    	ofertasLaborales =  OLab; 
     }
 
     public void setDescripcion(String descripcion) {
