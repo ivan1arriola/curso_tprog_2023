@@ -11,12 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import javabeans.CantTipoPublicacionBean;
 import javabeans.PaqueteBean;
-import logica.servidor.ExceptionEmpresaInvalida_Exception;
-import logica.servidor.ExceptionRemuneracionOfertaLaboralNegativa_Exception;
-import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
-import logica.servidor.NoExistePaquete_Exception;
-import logica.servidor.Servidor;
-import logica.servidor.ServidorService;
+import logica.servidor.*;
 import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
@@ -189,7 +184,11 @@ public class AltaOfertaLaboral extends HttpServlet {
                 request.setAttribute("mensajeError", "ERROR");
                 dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
                 dispatcher.forward(request, response);
-			}
+			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception |
+                     ExceptionCostoPaqueteNoNegativo_Exception | ExceptionPaqueteNoVigente_Exception |
+                     ExceptionDescuentoInvalido_Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
             

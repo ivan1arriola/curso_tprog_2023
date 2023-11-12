@@ -143,7 +143,7 @@ public interface ILogica {
 
 	HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
 
-    void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception;
+    void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception, FinalizarOfertaYaFinalizada_Exception;
 
 	boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
 }

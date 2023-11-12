@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javabeans.OfertaLaboralBean;
 import logica.servidor.FinalizarOfertaNoVencida_Exception;
+import logica.servidor.FinalizarOfertaYaFinalizada_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import utils.FabricaWeb;
 import interfaces.ILogica;
@@ -53,6 +54,8 @@ public class FinalizarOferta extends HttpServlet {
             request.setAttribute("nombreError", "No se pudo finalizar Oferta Laboral");
             request.setAttribute("mensajeError", "No se puede finalizar una oferta laboral que aun no este vencida");
             request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+        } catch (FinalizarOfertaYaFinalizada_Exception e) {
+            throw new RuntimeException(e);
         }
 
 

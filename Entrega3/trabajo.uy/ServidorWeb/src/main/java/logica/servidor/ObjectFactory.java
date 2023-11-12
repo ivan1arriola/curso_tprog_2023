@@ -31,16 +31,11 @@ public class ObjectFactory {
     private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
     private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
     private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCompraPaqueteConValorNegativo");
-<<<<<<< HEAD
     private final static QName _ExceptionCostoPaqueteNoNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCostoPaqueteNoNegativo");
     private final static QName _ExceptionDescuentoInvalido_QNAME = new QName("http://servidor.logica/", "ExceptionDescuentoInvalido");
     private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionEmpresaInvalida");
     private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
     private final static QName _ExceptionPaqueteNoVigente_QNAME = new QName("http://servidor.logica/", "ExceptionPaqueteNoVigente");
-=======
-    private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionEmpresaInvalida");
-    private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
     private final static QName _ExceptionRemuneracionOfertaLaboralNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionRemuneracionOfertaLaboralNegativa");
     private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
     private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
@@ -49,10 +44,7 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
     private final static QName _FinalizarOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaNoVencida");
-<<<<<<< HEAD
     private final static QName _FinalizarOfertaYaFinalizada_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaYaFinalizada");
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
     private final static QName _NoExistePaquete_QNAME = new QName("http://servidor.logica/", "NoExistePaquete");
     private final static QName _NoHayOrdenDefinidoDePostulantes_QNAME = new QName("http://servidor.logica/", "NoHayOrdenDefinidoDePostulantes");
     private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
@@ -136,7 +128,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
      * Create an instance of {@link ExceptionCostoPaqueteNoNegativo }
      * 
      * @return
@@ -157,8 +148,6 @@ public class ObjectFactory {
     }
 
     /**
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * Create an instance of {@link ExceptionEmpresaInvalida }
      * 
      * @return
@@ -179,7 +168,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
      * Create an instance of {@link ExceptionPaqueteNoVigente }
      * 
      * @return
@@ -190,8 +178,6 @@ public class ObjectFactory {
     }
 
     /**
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * Create an instance of {@link ExceptionRemuneracionOfertaLaboralNegativa }
      * 
      * @return
@@ -272,7 +258,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
      * Create an instance of {@link FinalizarOfertaYaFinalizada }
      * 
      * @return
@@ -283,8 +268,6 @@ public class ObjectFactory {
     }
 
     /**
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * Create an instance of {@link NoExistePaquete }
      * 
      * @return
@@ -556,7 +539,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
      * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionCostoPaqueteNoNegativo }{@code >}
      * 
      * @param value
@@ -583,8 +565,6 @@ public class ObjectFactory {
     }
 
     /**
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionEmpresaInvalida }{@code >}
      * 
      * @param value
@@ -611,7 +591,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
      * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionPaqueteNoVigente }{@code >}
      * 
      * @param value
@@ -625,8 +604,6 @@ public class ObjectFactory {
     }
 
     /**
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionRemuneracionOfertaLaboralNegativa }{@code >}
      * 
      * @param value
@@ -731,7 +708,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
      * Create an instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaYaFinalizada }{@code >}
      * 
      * @param value
@@ -745,8 +721,6 @@ public class ObjectFactory {
     }
 
     /**
-=======
->>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * Create an instance of {@link JAXBElement }{@code <}{@link NoExistePaquete }{@code >}
      * 
      * @param value
