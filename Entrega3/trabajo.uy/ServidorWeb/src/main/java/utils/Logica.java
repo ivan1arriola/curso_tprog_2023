@@ -50,61 +50,61 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ErrorAgregarUsuario_Exception {
+	public void altaEmpresa(String nickname,  String password,  String nombre,  String apellido,  String email,  String descripcionEmpresa,  String sitioWebEmpresa,  byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception,  ExceptionUsuarioCorreoRepetido_Exception,  ExceptionUsuarioNickYCorreoRepetidos_Exception,  ErrorAgregarUsuario_Exception {
 
 		if (sitioWebEmpresa == null) {
 			sitioWebEmpresa = ""; // Reemplazar URL nula con una cadena vacía
 		}
 
 		if (imagenBytes == null) {
-			servidor.altaEmpresaURL(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa);
+			servidor.altaEmpresaURL(nickname,  password,  nombre,  apellido,  email,  descripcionEmpresa,  sitioWebEmpresa);
 		} else {
-			servidor.altaEmpresaURLyImagen(nickname, password, nombre, apellido, email, descripcionEmpresa, sitioWebEmpresa, imagenBytes);
+			servidor.altaEmpresaURLyImagen(nickname,  password,  nombre,  apellido,  email,  descripcionEmpresa,  sitioWebEmpresa,  imagenBytes);
 		}
 
 
 	}
 
 	@Override
-	public void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ExceptionFechaInvalida_Exception, ErrorAgregarUsuario_Exception {
+	public void altaPostulante(String nickname,  String password,  String nombre,  String apellido,  String email,  LocalDate parse,  String nacionalidad,  byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception,  ExceptionUsuarioCorreoRepetido_Exception,  ExceptionUsuarioNickYCorreoRepetidos_Exception,  ExceptionFechaInvalida_Exception,  ErrorAgregarUsuario_Exception {
 		if (imagenBytes == null) {
-			servidor.altaPostulante(nickname, password, nombre, apellido, parse.toString(), email, nacionalidad);
+			servidor.altaPostulante(nickname,  password,  nombre,  apellido,  parse.toString(),  email,  nacionalidad);
 		} else {
-			servidor.altaPostulanteImagen(nickname, password, nombre, apellido, parse.toString(), email, nacionalidad, imagenBytes);
+			servidor.altaPostulanteImagen(nickname,  password,  nombre,  apellido,  parse.toString(),  email,  nacionalidad,  imagenBytes);
 		}
 
 	}
 
 	@Override
-	public void modificarPostulante(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad) throws ExceptionUsuarioNoEncontrado_Exception {
-		if(imagen == null){
-			servidor.ingresarDatosEditadosPostulante(nickname, nombre, apellido, correo, password, fecha.toString(), nacionalidad);
+	public void modificarPostulante(String nickname,  String nombre,  String apellido,  String correo,  String password,  byte[] imagen,  LocalDate fecha,  String nacionalidad) throws ExceptionUsuarioNoEncontrado_Exception {
+		if (imagen == null){
+			servidor.ingresarDatosEditadosPostulante(nickname,  nombre,  apellido,  correo,  password,  fecha.toString(),  nacionalidad);
 			return;
 		}
 
-		servidor.ingresarDatosEditadosPostulanteImg(nickname, nombre, apellido, correo, password, imagen, fecha.toString(), nacionalidad);
+		servidor.ingresarDatosEditadosPostulanteImg(nickname,  nombre,  apellido,  correo,  password,  imagen,  fecha.toString(),  nacionalidad);
 	}
 
 	@Override
-	public void modificarEmpresa(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, String descripcion, String enlace) throws ExceptionUsuarioNoEncontrado_Exception {
+	public void modificarEmpresa(String nickname,  String nombre,  String apellido,  String correo,  String password,  byte[] imagen,  String descripcion,  String enlace) throws ExceptionUsuarioNoEncontrado_Exception {
 		if (imagen ==  null && enlace == null){
-			servidor.ingresarDatosEditadosEmpresa(nickname, nombre, apellido, correo, password, descripcion);
+			servidor.ingresarDatosEditadosEmpresa(nickname,  nombre,  apellido,  correo,  password,  descripcion);
 		} else if (imagen == null && enlace!= null){
-			servidor.ingresarDatosEditadosEmpresaURL(nickname, nombre, apellido, correo, password, enlace, descripcion);
-		} else if(imagen != null && enlace == null){
-			servidor.ingresarDatosEditadosEmpresaImg(nickname, nombre, apellido, correo, password, imagen, descripcion);
+			servidor.ingresarDatosEditadosEmpresaURL(nickname,  nombre,  apellido,  correo,  password,  enlace,  descripcion);
+		} else if (imagen != null && enlace == null){
+			servidor.ingresarDatosEditadosEmpresaImg(nickname,  nombre,  apellido,  correo,  password,  imagen,  descripcion);
 		} else {
-			servidor.ingresarDatosEditadosEmpresaURLImg(nickname, nombre, apellido, correo, password, enlace, imagen, descripcion);
+			servidor.ingresarDatosEditadosEmpresaURLImg(nickname,  nombre,  apellido,  correo,  password,  enlace,  imagen,  descripcion);
 		}
 
 	}
 
 
 	@Override
-	public PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {
+	public PostulacionBean obtenerDatosPostulacionW(String nickname,  String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception,  TipoUsuarioNoValido_Exception {
 		PostulacionBean postulacion = new PostulacionBean();
 
-		DtPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
+		DtPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nickname,  nombreOferta);
 	    
 		postulacion.setNicknamePostulante(dtPostulacion.getNombrePostulante());
 		postulacion.setFecha(LocalDate.parse(dtPostulacion.getFecha()));
@@ -120,8 +120,8 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception, ExceptionFechaInvalida_Exception {
-		servidor.altaPostulacion(nombreOferta, nickname,curriculumAbreviado, motivacion, url, fecha.toString(), video);
+	public void altaPostulacion(String nombreOferta,  String nickname,  String curriculumAbreviado,  String motivacion,  String url,  LocalDate fecha,  String video) throws ExceptionUsuarioNoEncontrado_Exception,  OfertaLaboralNoEncontrada_Exception,  ExceptionFechaInvalida_Exception {
+		servidor.altaPostulacion(nombreOferta,  nickname, curriculumAbreviado,  motivacion,  url,  fecha.toString(),  video);
 	}
 
 	@Override
@@ -149,15 +149,15 @@ public class Logica implements ILogica {
 	
 	private String imagenAString(byte[] bytes) {
         if (bytes != null) {
-            return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+            return "data:image/jpeg;base64, " + Base64.getEncoder().encodeToString(bytes);
         } else {
             return null;
         }
     }
 
 	@Override
-	public boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado_Exception {
-		return servidor.validarCredenciales(identificador, contraseña);
+	public boolean validarCredenciales(String identificador,  String contraseña) throws ExceptionUsuarioNoEncontrado_Exception {
+		return servidor.validarCredenciales(identificador,  contraseña);
 	}
 
 	@Override
@@ -214,7 +214,7 @@ public class Logica implements ILogica {
 				Set<OfertaLaboralBean> favoritos= new HashSet<>();
 				List<DtOfertaExtendido> favoritosEnServidor = postulante.getFavs();
 				
-				for(DtOfertaExtendido ofertaServ : favoritosEnServidor){
+				for (DtOfertaExtendido ofertaServ : favoritosEnServidor){
 					favoritos.add(obtenerDatosOfertaLaboral(ofertaServ.getNombre()));
 				}
 				
@@ -243,7 +243,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception, FinalizarOfertaYaFinalizada_Exception {
+	public void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception,  FinalizarOfertaNoVencida_Exception,  FinalizarOfertaYaFinalizada_Exception {
 		servidor.finalizarOferta(nombreOferta);
 	}
 
@@ -270,7 +270,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public void modificarDatosUsuario(String nickname, UsuarioBean usuario) {
+	public void modificarDatosUsuario(String nickname,  UsuarioBean usuario) {
 		// TODO Auto-generated method stub
 
 	}
@@ -279,7 +279,7 @@ public class Logica implements ILogica {
 	public Set<UsuarioBean> listarUsuarios() {
     	 Set<String> nicknames = listarNicknamesUsuario();
          Set<UsuarioBean> usuarios = new TreeSet<>();
-         for(String usuario : nicknames) {
+         for (String usuario : nicknames) {
          	usuarios.add(obtenerDatosUsuario(usuario));
          }
 		return usuarios;
@@ -324,8 +324,8 @@ public class Logica implements ILogica {
 
 
 	@Override
-	public void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCompraPaqueteConValorNegativo_Exception, ExceptionUsuarioNoEncontrado_Exception, ExceptionValidezNegativa_Exception, NoExistePaquete_Exception {
-		servidor.compraPaquetes(nickname, paquete, now.toString(), valor);		
+	public void compraPaquetes(String nickname,  String paquete,  LocalDate now,  int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception,  ExceptionCompraPaqueteConValorNegativo_Exception,  ExceptionUsuarioNoEncontrado_Exception,  ExceptionValidezNegativa_Exception,  NoExistePaquete_Exception {
+		servidor.compraPaquetes(nickname,  paquete,  now.toString(),  valor);		
 	}
 	
 	
@@ -349,7 +349,7 @@ public class Logica implements ILogica {
 		
 		List<DtCantTO> DtCantidades = dtPaquete.getTiposDePub();
 		
-		for( DtCantTO cant : DtCantidades) {
+		for ( DtCantTO cant : DtCantidades) {
 			CantTipoPublicacionBean cantidadBean = new CantTipoPublicacionBean();
 			
 			cantidadBean.setCantidad(cant.getCantidad());
@@ -412,9 +412,9 @@ public class Logica implements ILogica {
 
 
 	@Override
-	public PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {
+	public PostulacionBean obtenerDatosPostulacion(String nombreOferta,  String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception,  TipoUsuarioNoValido_Exception {
 		PostulacionBean postulacion = new PostulacionBean();
-		DtPostulacion DtPostulacion = servidor.obtenerDatosPostulacionW(nicknameParametro, nombreOferta);
+		DtPostulacion DtPostulacion = servidor.obtenerDatosPostulacionW(nicknameParametro,  nombreOferta);
 		
 		postulacion.setCVitae(DtPostulacion.getCVitae());
 		postulacion.setFecha(LocalDate.parse(DtPostulacion.getFecha()));
@@ -428,12 +428,12 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNickname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
-		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+	public List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta,  String empresaNickname) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception {
+		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname,  nombreOferta);
 		List<UsuarioBean> postulantes = new ArrayList<>();
 		if ( info instanceof DtOfertaExtendidoConKeywordsTit masData) {
 			List<String> nicknamesDePostulantes = masData.getPostulaciones();
-			for(String nickPostulante : nicknamesDePostulantes){
+			for (String nickPostulante : nicknamesDePostulantes){
 				postulantes.add(this.obtenerDatosUsuario(nickPostulante));
 
 			}
@@ -443,8 +443,8 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public List<String> obtenerPostulantesDeOfertaString(String nombreOferta, String empresaNickname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
-		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+	public List<String> obtenerPostulantesDeOfertaString(String nombreOferta,  String empresaNickname) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception {
+		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname,  nombreOferta);
 		List<String> postulantes = new ArrayList<>();
 		if ( info instanceof DtOfertaExtendidoConKeywordsTit masData) {
 			postulantes = masData.getPostulaciones();
@@ -461,7 +461,7 @@ public class Logica implements ILogica {
 	
 	
 	@Override
-	public PaqueteBean obtenerPaqueteDeOferta(String nombreOferta, String empresaNickname) throws Exception {
+	public PaqueteBean obtenerPaqueteDeOferta(String nombreOferta,  String empresaNickname) throws Exception {
 
 	    if (nombreOferta == null) {
 	        throw new Exception("Oferta no tiene nombre");
@@ -470,7 +470,7 @@ public class Logica implements ILogica {
 		PaqueteBean paquete = null;
 
 		// Obtener información de la oferta laboral de la empresa
-		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname, nombreOferta);
+		DtOfertaExtendidoSinPConK info = servidor.infoOfertaLaboralEmpresa(empresaNickname,  nombreOferta);
 
 	    if (info instanceof DtOfertaExtendidoConKeywordsTit masData) {
 	        // La oferta contiene un paquete
@@ -484,7 +484,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean, String postulanteNickname)
+	public OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean,  String postulanteNickname)
 	        throws Exception {
 	    // Verificar si el nombre de la oferta es nulo
 	    String nombreOferta = ofertaBean.getNombre();
@@ -493,7 +493,7 @@ public class Logica implements ILogica {
 	    }
 
 	    // Obtener nuevos datos de la oferta para el postulante
-	    DtOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralPostulante(postulanteNickname, nombreOferta);
+	    DtOfertaExtendidoSinPConK nuevoDatos = servidor.infoOfertaLaboralPostulante(postulanteNickname,  nombreOferta);
 	    Set<UsuarioBean> postulantes = new TreeSet<>();
 
 	    if (nuevoDatos instanceof DtOfertaExtendidoConKeywordsPostulante) {
@@ -549,7 +549,7 @@ public class Logica implements ILogica {
     	
     	Set<OfertaLaboralBean> DtOfertas = new TreeSet<>();
     	
-    	for( String nombreOferta : ofertas) {
+    	for ( String nombreOferta : ofertas) {
     		OfertaLaboralBean DtOferta = this.obtenerDatosOfertaLaboral(nombreOferta);
     		DtOfertas.add(DtOferta);
     	}
@@ -559,7 +559,7 @@ public class Logica implements ILogica {
 	}
 
 	@Override
-	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
+	public Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception {
 		Set<String> ofertas = new TreeSet<>(servidor.listarOfertasLaboralesConfirmadas(consulta).getListaString());
     	
     	if (ofertas.isEmpty()) {
@@ -568,7 +568,7 @@ public class Logica implements ILogica {
     	
     	Set<OfertaLaboralBean> DtOfertas = new TreeSet<OfertaLaboralBean>();
     	
-    	for( String nombreOferta : ofertas) {
+    	for ( String nombreOferta : ofertas) {
     		OfertaLaboralBean DtOferta = this.obtenerDatosOfertaLaboral(nombreOferta);
     		DtOfertas.add(DtOferta);
     	}
@@ -582,7 +582,7 @@ public class Logica implements ILogica {
         Set<String> lista = new TreeSet<>(servidor.listarPaquetes().getListaString());
         
         Set<PaqueteBean> paquetes = new TreeSet<PaqueteBean>();
-        for(String nombrePaquete : lista) {
+        for (String nombrePaquete : lista) {
         	paquetes.add(obtenerDatosPaquete(nombrePaquete));
         }
 		return paquetes;

@@ -89,7 +89,7 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 
 
 
-          <% if(usuario.getTipo().equals(TipoUsuario.Empresa)){ %>
+          <% if (usuario.getTipo().equals(TipoUsuario.Empresa)){ %>
           <!-- Campos adicionales para Empresa -->
           <div id="campos-empresa">
             <section>

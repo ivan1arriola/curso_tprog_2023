@@ -35,8 +35,8 @@ public class AltaOfertaLaboral extends HttpServlet {
         logica = FabricaWeb.getInstance().getLogica();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request,  response);
         HttpSession session = request.getSession(false);
         if (session == null) {
             response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
@@ -46,29 +46,29 @@ public class AltaOfertaLaboral extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
             } else {
                 String nickname = (String) session.getAttribute("nickname");
-                cargarTipoOferta(request, response);
+                cargarTipoOferta(request,  response);
                 try {
-                    cargarPaquetes(request, response, nickname);
+                    cargarPaquetes(request,  response,  nickname);
                 } catch (ExceptionUsuarioNoEncontrado_Exception | NoExistePaquete_Exception e) {
                     throw new RuntimeException(e);
                 }
-                request.getRequestDispatcher("/WEB-INF/altaOfertaLaboral/altaOfertaLaboral.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/altaOfertaLaboral/altaOfertaLaboral.jsp").forward(request,  response);
             }
         }
     }
 
-    private void cargarPaquetes(HttpServletRequest request, HttpServletResponse response, String nickname) throws ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception {
+    private void cargarPaquetes(HttpServletRequest request,  HttpServletResponse response,  String nickname) throws ExceptionUsuarioNoEncontrado_Exception,  NoExistePaquete_Exception {
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
         List<String> paquetesEmp;
         
 		try {
 			paquetesEmp = servidor.listarPaquetesNoVencidos(nickname).getListaString();
-			for(String paquete : paquetesEmp) {
+			for (String paquete : paquetesEmp) {
 				PaqueteBean paqB = logica.obtenerDatosPaquete(paquete);
 			}
 			Set<String> paquetes = new HashSet<>(paquetesEmp);
-			request.setAttribute("paquetes", paquetes);
+			request.setAttribute("paquetes",  paquetes);
 		} catch (ExceptionEmpresaInvalida_Exception | ExceptionUsuarioNoEncontrado_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,9 +76,9 @@ public class AltaOfertaLaboral extends HttpServlet {
         
     }
 
-    private void cargarTipoOferta(HttpServletRequest request, HttpServletResponse response) {
+    private void cargarTipoOferta(HttpServletRequest request,  HttpServletResponse response) {
         Set<String> tipoPublicaciones = logica.listarTipoDePublicaciones();
-        request.setAttribute("tipoPublicaciones", tipoPublicaciones);
+        request.setAttribute("tipoPublicaciones",  tipoPublicaciones);
     }
 
     private byte[] procesarImagen(Part imagenPart) throws IOException {
@@ -99,7 +99,7 @@ public class AltaOfertaLaboral extends HttpServlet {
     }
 
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
         RequestDispatcher dispatcher;
@@ -112,12 +112,12 @@ public class AltaOfertaLaboral extends HttpServlet {
         List<String> empresas = servidor.listarEmpresas().getListaString();
         String empresaPostul = "";
         
-        for(String emp : empresas) {
+        for (String emp : empresas) {
         	Set<String> ofertas_lab;
 			try {
 				ofertas_lab = logica.listarOfertasLaboralesDeEmpresa(emp);
-	    		for(String olb : ofertas_lab) {
-	        		if(olb.equals(nombre)) {
+	    		for (String olb : ofertas_lab) {
+	        		if (olb.equals(nombre)) {
 	        			empresaPostul = emp;
 	        			break;
 	        		}
@@ -129,7 +129,7 @@ public class AltaOfertaLaboral extends HttpServlet {
         }
         
         
-        if(empresaPostul.equals("")) {
+        if (empresaPostul.equals("")) {
         	
             String tipoOferta = request.getParameter("tipoOferta");
             String descripcion = request.getParameter("descripcion");
@@ -146,8 +146,8 @@ public class AltaOfertaLaboral extends HttpServlet {
             String[] keywords = request.getParameterValues("keywords[]");
             
             String keywordsString = "";
-            if(keywords != null) {
-            	keywordsString = String.join(":", keywords);
+            if (keywords != null) {
+            	keywordsString = String.join(":",  keywords);
             }
             
             
@@ -161,28 +161,28 @@ public class AltaOfertaLaboral extends HttpServlet {
             }
             
             try {
-            	if(imagenBytes != null) {
-            		servidor.altaOfertaLaboralConImagen( nickname, tipoOferta, nombre, descripcion, horarioInicio, horarioFinal,
-        				    remuneracion, ciudad, departamentoStr, keywordsString, imagenBytes, formaPago);
+            	if (imagenBytes != null) {
+            		servidor.altaOfertaLaboralConImagen( nickname,  tipoOferta,  nombre,  descripcion,  horarioInicio,  horarioFinal, 
+        				    remuneracion,  ciudad,  departamentoStr,  keywordsString,  imagenBytes,  formaPago);
                     // Lógica de negocio para determinar si se debe mostrar el modal
 
-                    request.setAttribute("mensajeExito", "La oferta laboral se ha dado de alta éxitosamente.");
+                    request.setAttribute("mensajeExito",  "La oferta laboral se ha dado de alta éxitosamente.");
                     dispatcher = request.getRequestDispatcher("/WEB-INF/exitoPage.jsp");
-                    dispatcher.forward(request, response);
+                    dispatcher.forward(request,  response);
             	} else {
-            		servidor.altaOfertaLaboral( nickname, tipoOferta, nombre, descripcion, horarioInicio, horarioFinal,
-        				    remuneracion, ciudad, departamentoStr, keywordsString, formaPago);
-                    request.setAttribute("mensajeExito", "La oferta laboral se ha dado de alta éxitosamente.");
+            		servidor.altaOfertaLaboral( nickname,  tipoOferta,  nombre,  descripcion,  horarioInicio,  horarioFinal, 
+        				    remuneracion,  ciudad,  departamentoStr,  keywordsString,  formaPago);
+                    request.setAttribute("mensajeExito",  "La oferta laboral se ha dado de alta éxitosamente.");
                     dispatcher = request.getRequestDispatcher("/WEB-INF/exitoPage.jsp");
-                    dispatcher.forward(request, response);
+                    dispatcher.forward(request,  response);
             	}
 				
 			} catch (ExceptionRemuneracionOfertaLaboralNegativa_Exception | ExceptionUsuarioNoEncontrado_Exception
 					| NoExistePaquete_Exception e) {
 				// TODO Auto-generated catch block
-                request.setAttribute("mensajeError", "ERROR");
+                request.setAttribute("mensajeError",  "ERROR");
                 dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
 			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception |
                      ExceptionCostoPaqueteNoNegativo_Exception | ExceptionPaqueteNoVigente_Exception |
                      ExceptionDescuentoInvalido_Exception e) {
