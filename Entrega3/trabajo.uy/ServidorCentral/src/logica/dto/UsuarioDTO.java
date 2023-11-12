@@ -1,13 +1,31 @@
 package logica.dto;
 
 
+import jakarta.persistence.Column;
 //import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorColumn;
+//import jakarta.persistence.CascadeType;
+//import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
+//import jakarta.persistence.JoinColumn;
+//import jakarta.persistence.JoinTable;
+//import jakarta.persistence.Lob;
+//import jakarta.persistence.ManyToMany;
+//import jakarta.persistence.ManyToOne;
+//import jakarta.persistence.OneToMany;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+//import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.GeneratedValue;
+//import jakarta.persistence.GenerationType;
+//import jakarta.persistence.Id;
+//import jakarta.persistence.Inheritance;
 //import jakarta.persistence.JoinColumn;
 //import jakarta.persistence.JoinTable;
 //import jakarta.persistence.Lob;
@@ -50,11 +68,11 @@ public class UsuarioDTO {
     }
 
     public Long getId() {
-        return id;
+        return iden;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long iden) {
+        this.iden = iden;
     }
 
 
