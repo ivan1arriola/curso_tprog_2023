@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToOne;
 public class InfoCompraOferta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Se agrega un campo id como clave primaria
+    private Long iden; // Se agrega un campo id como clave primaria
 
     private int cantRestante;
 
