@@ -30,7 +30,7 @@ public class ServidorService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9128/webservices?wsdl");
+            url = new URL("http://192.168.1.9:9128/webservices?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -10,7 +10,10 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Set;
 
+import excepciones.NoExisteArchivoDeConfiguacion;
+
 public class WSUtils {
+	
 
     public static WrapperLista envolverLista(List<String> strings) {
         WrapperLista listaBean = new WrapperLista();
@@ -19,16 +22,29 @@ public class WSUtils {
     }
 
     public static int obtenerPuerto() {
-        return 9128;
+    	Configuracion config;
+		try {
+			config = new Configuracion();
+			String valor = config.obtenerValor("servidor.puerto");
+			if (valor != null) return  Integer.parseInt(valor);
+			else return 9128;
+		} catch (NoExisteArchivoDeConfiguacion e) {
+			e.printStackTrace();
+			return 9128;
+		}
     }
 
     public static String obtenerIp(){
-       // try {
-       //     return InetAddress.getLocalHost().getHostAddress();
-       // } catch (UnknownHostException e) {
-        //    e.printStackTrace();
-            return "localhost";
-        //}
+    	Configuracion config;
+		try {
+			config = new Configuracion();
+			String valor = config.obtenerValor("servidor.ip");
+			if (valor != null) return  valor;
+			else return "localhost";
+		} catch (NoExisteArchivoDeConfiguacion e) {
+			e.printStackTrace();
+			return "localhost";
+		}
     }
 
 
