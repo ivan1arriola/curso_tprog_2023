@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionRemuneracionOfertaLaboralNegativa", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionRemuneracionOfertaLaboralNegativa",  targetNamespace = "http://servidor.logica/")
 public class ExceptionRemuneracionOfertaLaboralNegativa_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionRemuneracionOfertaLaboralNegativa_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionRemuneracionOfertaLaboralNegativa_Exception(String message, ExceptionRemuneracionOfertaLaboralNegativa faultInfo) {
+    public ExceptionRemuneracionOfertaLaboralNegativa_Exception(String message,  ExceptionRemuneracionOfertaLaboralNegativa faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionRemuneracionOfertaLaboralNegativa_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionRemuneracionOfertaLaboralNegativa_Exception(String message, ExceptionRemuneracionOfertaLaboralNegativa faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionRemuneracionOfertaLaboralNegativa_Exception(String message,  ExceptionRemuneracionOfertaLaboralNegativa faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

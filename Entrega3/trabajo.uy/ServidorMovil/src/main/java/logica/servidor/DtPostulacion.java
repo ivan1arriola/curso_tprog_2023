@@ -32,12 +32,12 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtPostulacion", propOrder = {
-    "nombrePostulante",
-    "fecha",
-    "urlDocExtras",
-    "cVitae",
-    "motivacion",
+@XmlType(name = "dtPostulacion",  propOrder = {
+    "nombrePostulante", 
+    "fecha", 
+    "urlDocExtras", 
+    "cVitae", 
+    "motivacion", 
     "urlVideo"
 })
 public class DtPostulacion {

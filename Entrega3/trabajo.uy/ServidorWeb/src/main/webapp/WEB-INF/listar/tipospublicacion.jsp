@@ -28,7 +28,7 @@
                     <%
                         Set<DtTipoOferta> tiposOferta = (Set<DtTipoOferta>) request.getAttribute("tiposOferta");
                     if (tiposOferta == null || tiposOferta.isEmpty()) {
-                        // Si ofertasLaborales es null o está vacío, muestra un mensaje
+                        // Si ofertasLaborales es null o está vacío,  muestra un mensaje
                     %>
                         <div class="alert alert-secondary" role="alert">
     					        No hay tipos de publicacion de oferta laboral disponibles en este momento.

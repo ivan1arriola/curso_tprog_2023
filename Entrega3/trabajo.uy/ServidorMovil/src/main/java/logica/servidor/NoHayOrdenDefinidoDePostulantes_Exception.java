@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "NoHayOrdenDefinidoDePostulantes", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "NoHayOrdenDefinidoDePostulantes",  targetNamespace = "http://servidor.logica/")
 public class NoHayOrdenDefinidoDePostulantes_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class NoHayOrdenDefinidoDePostulantes_Exception
      * @param faultInfo
      * @param message
      */
-    public NoHayOrdenDefinidoDePostulantes_Exception(String message, NoHayOrdenDefinidoDePostulantes faultInfo) {
+    public NoHayOrdenDefinidoDePostulantes_Exception(String message,  NoHayOrdenDefinidoDePostulantes faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class NoHayOrdenDefinidoDePostulantes_Exception
      * @param faultInfo
      * @param message
      */
-    public NoHayOrdenDefinidoDePostulantes_Exception(String message, NoHayOrdenDefinidoDePostulantes faultInfo, Throwable cause) {
-        super(message, cause);
+    public NoHayOrdenDefinidoDePostulantes_Exception(String message,  NoHayOrdenDefinidoDePostulantes faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

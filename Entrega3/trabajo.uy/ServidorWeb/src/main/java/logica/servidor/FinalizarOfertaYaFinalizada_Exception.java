@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "FinalizarOfertaYaFinalizada", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "FinalizarOfertaYaFinalizada",  targetNamespace = "http://servidor.logica/")
 public class FinalizarOfertaYaFinalizada_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class FinalizarOfertaYaFinalizada_Exception
      * @param faultInfo
      * @param message
      */
-    public FinalizarOfertaYaFinalizada_Exception(String message, FinalizarOfertaYaFinalizada faultInfo) {
+    public FinalizarOfertaYaFinalizada_Exception(String message,  FinalizarOfertaYaFinalizada faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class FinalizarOfertaYaFinalizada_Exception
      * @param faultInfo
      * @param message
      */
-    public FinalizarOfertaYaFinalizada_Exception(String message, FinalizarOfertaYaFinalizada faultInfo, Throwable cause) {
-        super(message, cause);
+    public FinalizarOfertaYaFinalizada_Exception(String message,  FinalizarOfertaYaFinalizada faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

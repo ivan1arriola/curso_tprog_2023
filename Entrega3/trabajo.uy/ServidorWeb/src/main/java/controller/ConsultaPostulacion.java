@@ -29,8 +29,8 @@ public class ConsultaPostulacion extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
@@ -38,19 +38,19 @@ public class ConsultaPostulacion extends HttpServlet {
         UsuarioBean usuario = logica.obtenerDatosUsuario(nickname);
 
         String nombrePostulante = usuario.getNombre() + " " + usuario.getApellido();
-        request.setAttribute("postulante", nombrePostulante);
+        request.setAttribute("postulante",  nombrePostulante);
 
         String nombreOferta = request.getParameter("id");
         PostulacionBean postulacion = null;
         try {
-            postulacion = logica.obtenerDatosPostulacionW(nickname, nombreOferta);
+            postulacion = logica.obtenerDatosPostulacionW(nickname,  nombreOferta);
         } catch (ExceptionUsuarioNoEncontrado_Exception e) {
             throw new RuntimeException(e);
         } catch (TipoUsuarioNoValido_Exception e) {
             throw new RuntimeException(e);
         }
 
-        request.setAttribute("postulacion",postulacion);
+        request.setAttribute("postulacion", postulacion);
 
         OfertaLaboralBean ofertaLaboral = null;
         try {
@@ -58,19 +58,19 @@ public class ConsultaPostulacion extends HttpServlet {
         } catch (OfertaLaboralNoEncontrada_Exception e) {
             throw new RuntimeException(e);
         }
-        request.setAttribute("oferta", ofertaLaboral);
+        request.setAttribute("oferta",  ofertaLaboral);
 
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultaPostulacion/consultaPostulacion.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request,  response);
     }
 
     /* Para el AJAX*/
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
-        response.setHeader("Access-Control-Allow-Origin", "*"); // Permite todas las solicitudes desde cualquier origen (no recomendado para producción).
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        response.setHeader("Access-Control-Allow-Origin",  "*"); // Permite todas las solicitudes desde cualquier origen (no recomendado para producción).
+        response.setHeader("Access-Control-Allow-Methods",  "GET,  POST,  PUT,  DELETE,  OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers",  "Content-Type,  Authorization");
 
 
         // Recuperar los datos enviados desde el cliente
@@ -79,15 +79,15 @@ public class ConsultaPostulacion extends HttpServlet {
 
         UsuarioBean usuario = logica.obtenerDatosUsuario(nickname);
         try {
-            PostulacionBean postulacion = logica.obtenerDatosPostulacionW(nickname, nombreOferta);
+            PostulacionBean postulacion = logica.obtenerDatosPostulacionW(nickname,  nombreOferta);
 
             // Preparar una respuesta en formato JSON
             JSONObject jsonResponse = new JSONObject();
-            jsonResponse.put("nombre", usuario.getNombre() + " " + usuario.getApellido());
-            jsonResponse.put("curriculum", postulacion.getCVitae());
-            jsonResponse.put("motivacion", postulacion.getMotivacion());
-            jsonResponse.put("fecha", postulacion.getFecha());
-            jsonResponse.put("video", postulacion.getVideo());
+            jsonResponse.put("nombre",  usuario.getNombre() + " " + usuario.getApellido());
+            jsonResponse.put("curriculum",  postulacion.getCVitae());
+            jsonResponse.put("motivacion",  postulacion.getMotivacion());
+            jsonResponse.put("fecha",  postulacion.getFecha());
+            jsonResponse.put("video",  postulacion.getVideo());
 
             // Configurar la respuesta HTTP
             response.setContentType("application/json");
@@ -107,7 +107,7 @@ public class ConsultaPostulacion extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
 
             JSONObject errorResponse = new JSONObject();
-            errorResponse.put("error", "Usuario no encontrado");
+            errorResponse.put("error",  "Usuario no encontrado");
 
             // Enviar la respuesta de error al cliente
             PrintWriter out = response.getWriter();
@@ -121,7 +121,7 @@ public class ConsultaPostulacion extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
 
             JSONObject errorResponse = new JSONObject();
-            errorResponse.put("error", "Ocurrió un error inesperado");
+            errorResponse.put("error",  "Ocurrió un error inesperado");
 
             // Enviar la respuesta de error al cliente
             PrintWriter out = response.getWriter();

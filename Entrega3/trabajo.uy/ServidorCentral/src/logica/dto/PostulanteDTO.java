@@ -18,8 +18,8 @@ public class PostulanteDTO extends UsuarioDTO{
         super();
     }
 
-    public PostulanteDTO(String nickname, String email, String nombre, String apellido, String nacionalidad, LocalDate fecha_nacimiento) {
-        super(nickname, email, nombre, apellido);
+    public PostulanteDTO(String nickname,  String email,  String nombre,  String apellido,  String nacionalidad,  LocalDate fecha_nacimiento) {
+        super(nickname,  email,  nombre,  apellido);
         this.nacionalidad = nacionalidad;
         this.fecha_nacimiento = fecha_nacimiento;
     }

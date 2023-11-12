@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#listaPostulantes").sortable({
-        items: "tr",
-        update: function (event, ui) {
+        items: "tr", 
+        update: function (event,  ui) {
             // Actualiza el orden en el input oculto
             const order = $("#listaPostulantes").sortable("toArray");
             $("#input-orden").val(order);

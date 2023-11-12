@@ -31,7 +31,7 @@ public class ConsultarPostulantes extends HttpServlet {
 
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException{
         // tiene que mostrar todos los postulantes de la pagina
         try {
             HttpSession session = request.getSession();
@@ -46,12 +46,12 @@ public class ConsultarPostulantes extends HttpServlet {
             OfertaLaboralBean ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
 
 
-            // si no es del tipo usuario = Empresa , redirigir a error
+            // si no es del tipo usuario = Empresa ,  redirigir a error
             if (TipoUsuario.Empresa != tipoUsuario || !ofertaLaboralBean.getNicknameEmpresa().equals(nicknameEmpresa)){
 
-                request.setAttribute("nombreError", "No tiene permisos suficientes para visualizar esta pagina");
-                request.setAttribute("mensajeError", "Solo la empresa publicadora puede visualizar las postulaciones");
-                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+                request.setAttribute("nombreError",  "No tiene permisos suficientes para visualizar esta pagina");
+                request.setAttribute("mensajeError",  "Solo la empresa publicadora puede visualizar las postulaciones");
+                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
                 return;
 
             } else {
@@ -69,12 +69,12 @@ public class ConsultarPostulantes extends HttpServlet {
                    nicknamePostulantes = servidor.listarPostulantesOfertaLaboral(nombreOferta).getListaString();
                 }
 
-                request.setAttribute("estaFinalizada",estaFinalizada);
-                request.setAttribute("hayOrdenDefinido", hayOrdenDefinido);
-                request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
-                request.setAttribute("nicknamesPostulantes", nicknamePostulantes);
+                request.setAttribute("estaFinalizada", estaFinalizada);
+                request.setAttribute("hayOrdenDefinido",  hayOrdenDefinido);
+                request.setAttribute("imagenOferta",  ofertaLaboralBean.getImagen());
+                request.setAttribute("nicknamesPostulantes",  nicknamePostulantes);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPostulaciones/consultarPostulaciones.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
                 return;
 
 
@@ -84,9 +84,9 @@ public class ConsultarPostulantes extends HttpServlet {
             }
         } catch (OfertaLaboralNoEncontrada_Exception e) {
             // Configura los atributos necesarios para la página de error
-            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
-            request.setAttribute("mensajeError", "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.setAttribute("nombreError",  "Oferta Laboral No Encontrada");
+            request.setAttribute("mensajeError",  "La oferta laboral no fue encontrada. Por favor,  verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
         } catch (NoHayOrdenDefinidoDePostulantes_Exception e) {
             throw new RuntimeException(e);
         }
@@ -94,8 +94,8 @@ public class ConsultarPostulantes extends HttpServlet {
 
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      doGet(request, response);
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+      doGet(request,  response);
 
     }
 

@@ -25,16 +25,16 @@ public class Home extends HttpServlet {
     }
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         HttpSession session = request.getSession(false);
-        request.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(request,  response);
 
     }
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
-        doGet(request, response);
+        doGet(request,  response);
     }
 
 

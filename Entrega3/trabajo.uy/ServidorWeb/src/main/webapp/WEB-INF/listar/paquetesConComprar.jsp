@@ -29,7 +29,7 @@
                 <%
                 	Set<DTPaquete> paquetes = (Set<DTPaquete>) request.getAttribute("paquetes");
                 if (paquetes == null || paquetes.isEmpty()) {
-                    // Si ofertasLaborales es null o está vacío, muestra un mensaje
+                    // Si ofertasLaborales es null o está vacío,  muestra un mensaje
                 %>
                     <div class="alert alert-secondary" role="alert">
 					        No hay paquetes disponibles en este momento.
@@ -43,10 +43,10 @@
                     	
                     	String imagenUrl = ""; /*
                         if (paquete.getImagen() != null) {
-                            String base64Image = new String(Base64.getEncoder().encode(paquete.getImagen()), "UTF-8");
-                            imagenUrl = "data:image/jpeg;base64," + base64Image; // Asume que la imagen es en formato JPEG, ajusta según sea necesario
+                            String base64Image = new String(Base64.getEncoder().encode(paquete.getImagen()),  "UTF-8");
+                            imagenUrl = "data:image/jpeg;base64, " + base64Image; // Asume que la imagen es en formato JPEG,  ajusta según sea necesario
                         } else { */
-                            // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
+                            // Si no hay imagen,  puedes establecer una imagen de reemplazo o un mensaje aquí
                             imagenUrl = request.getContextPath() +  "/imagenNoFound.png";
                        // }
                 		String nombre = paquete.getNombre();

@@ -36,7 +36,7 @@ public class AltaDeKeywords extends JInternalFrame {
     /**
      * Create the application.
      */
-    public AltaDeKeywords(ICtrlOferta ICO, ICtrlUsuario ICU) {
+    public AltaDeKeywords(ICtrlOferta ICO,  ICtrlUsuario ICU) {
         initialize(ICO);
     }
 
@@ -50,7 +50,7 @@ public class AltaDeKeywords extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta de Keywords");
-        setBounds(30, 30, 477, 153);
+        setBounds(30,  30,  477,  153);
         getContentPane().setLayout(null);  //Absolute Layout
 
         JButton btnAceptar = new JButton("Aceptar");
@@ -61,20 +61,20 @@ public class AltaDeKeywords extends JInternalFrame {
                 try {
                     notexist = ICO.altaKeyword(text);
                     if (notexist) {
-                        JOptionPane.showMessageDialog(AltaDeKeywords.this, "La Keyword fue dada de alta exitosamente.", "Alta de Keywords", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(AltaDeKeywords.this,  "La Keyword fue dada de alta exitosamente.",  "Alta de Keywords",  JOptionPane.INFORMATION_MESSAGE);
                         limpiarFormulario();
                         setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(AltaDeKeywords.this, "Ingrese una keyword no existente.", "ERROR - Alta de Keywords", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(AltaDeKeywords.this,  "Ingrese una keyword no existente.",  "ERROR - Alta de Keywords",  JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (ExcepcionKeywordVacia e) {
                     // TODO Auto-generated catch block
-                    JOptionPane.showMessageDialog(AltaDeKeywords.this, e.getMessage(), "ERROR - Alta de Keywords", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(AltaDeKeywords.this,  e.getMessage(),  "ERROR - Alta de Keywords",  JOptionPane.ERROR_MESSAGE);
                 }
 
             }
         });
-        btnAceptar.setBounds(63, 78, 117, 25);
+        btnAceptar.setBounds(63,  78,  117,  25);
         getContentPane().add(btnAceptar);
 
         JButton btnCerrar = new JButton("Cerrar");
@@ -84,17 +84,17 @@ public class AltaDeKeywords extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(297, 78, 117, 25);
+        btnCerrar.setBounds(297,  78,  117,  25);
         getContentPane().add(btnCerrar);
 
         keywordIngresada = new JTextField();
-        keywordIngresada.setBounds(109, 30, 346, 32);
+        keywordIngresada.setBounds(109,  30,  346,  32);
         getContentPane().add(keywordIngresada);
         keywordIngresada.setColumns(10);
 
         JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre.setBounds(23, 38, 133, 15);
+        lblNombre.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre.setBounds(23,  38,  133,  15);
         getContentPane().add(lblNombre);
     }
 

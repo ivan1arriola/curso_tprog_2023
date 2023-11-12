@@ -12,7 +12,7 @@ public class DTUsuarioSinInfoSocial {
     private String contrasenia;
     private byte[] imagen;
 
-    public DTUsuarioSinInfoSocial(String nickname, String correoElectronico, String apellido, String nombre, String contrasenia, byte[] img) {
+    public DTUsuarioSinInfoSocial(String nickname,  String correoElectronico,  String apellido,  String nombre,  String contrasenia,  byte[] img) {
         this.nickname = nickname;
         this.correoElectronico = correoElectronico;
         this.apellido = apellido;

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-@XmlSeeAlso({DTOfertaExtendidoConKeywordsPostulante.class, DTOfertaExtendidoConKeywordsTit.class})
+@XmlSeeAlso({DTOfertaExtendidoConKeywordsPostulante.class,  DTOfertaExtendidoConKeywordsTit.class})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaExtendidoSinPConK {
     private String nombre;
@@ -44,23 +44,23 @@ public class DTOfertaExtendidoSinPConK {
     }
 
     public DTOfertaExtendidoSinPConK(
-    	    String nicknameEmpresa,
-    	    String nomb,
-    	    String desc,
-    	    LocalDate fechaA,
-    	    float cost,
-    	    float remu,
-    	    DTHorario horario,
-    	    DepUY dep,
-    	    String ciu,
-    	    EstadoOL estado,
-    	    byte[] img,
-    	    Set<String> keys,
-    	    Integer cantF,
-    	    Integer cantV,
+    	    String nicknameEmpresa, 
+    	    String nomb, 
+    	    String desc, 
+    	    LocalDate fechaA, 
+    	    float cost, 
+    	    float remu, 
+    	    DTHorario horario, 
+    	    DepUY dep, 
+    	    String ciu, 
+    	    EstadoOL estado, 
+    	    byte[] img, 
+    	    Set<String> keys, 
+    	    Integer cantF, 
+    	    Integer cantV, 
     	    String tipoOfer
     	) {
-    	    // No es subclase de DTOfertaExtendido, es una versión sin postulaciones
+    	    // No es subclase de DTOfertaExtendido,  es una versión sin postulaciones
     	    nombre = nomb;
     	    descripcion = desc;
     	    fechaAlta = fechaA;

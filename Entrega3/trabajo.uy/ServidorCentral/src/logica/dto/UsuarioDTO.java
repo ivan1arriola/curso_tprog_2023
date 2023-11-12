@@ -39,11 +39,11 @@ import jakarta.persistence.DiscriminatorType;
 @Entity
 @Table(name = "Usuarios")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "tipo_usuario",  discriminatorType = DiscriminatorType.STRING)
 public class UsuarioDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id",  nullable = false)
     private Long iden;
     @Column(nullable = false)
     private String nickname;
@@ -60,7 +60,7 @@ public class UsuarioDTO {
 
     }
 
-    public UsuarioDTO(String nickname, String email, String nombre, String apellido) {
+    public UsuarioDTO(String nickname,  String email,  String nombre,  String apellido) {
         this.nickname = nickname;
         this.email = email;
         this.nombre = nombre;

@@ -8,7 +8,7 @@
 	DtOfertaExtendido oferta = (DtOfertaExtendido) request.getAttribute("oferta");
 	String nombreOferta = (String) oferta.getNombre();
 	byte[] imagenBytes = oferta.getImagen();
-	String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
+	String imagen = "data:image/jpg;base64,  " + Base64.getEncoder().encodeToString(imagenBytes);
 	
 	
 %>

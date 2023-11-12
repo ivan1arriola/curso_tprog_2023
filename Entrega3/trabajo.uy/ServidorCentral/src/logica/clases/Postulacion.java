@@ -50,7 +50,7 @@ public class Postulacion {
 
 
     // constructor
-    public Postulacion(Postulante postulante, String curriculumVitae, String motivacion, LocalDate fecha, String uRLDocExtras, OfertaLaboral oferLab, String urlVid) {
+    public Postulacion(Postulante postulante,  String curriculumVitae,  String motivacion,  LocalDate fecha,  String uRLDocExtras,  OfertaLaboral oferLab,  String urlVid) {
         this.postulante = postulante;
         this.fecha = fecha;
         this.curriculumVitae = curriculumVitae;
@@ -138,9 +138,9 @@ public class Postulacion {
     public DTPostulacion obtenerDT() {
         DTPostulacion dtpostu;
         //if (urlVideo!=null) {
-        dtpostu = new DTPostulacion(postulante.getNickname(), fecha, uRLDocExtras, curriculumVitae, motivacion, urlVideo, getClasificacion(), getFechaResu());
+        dtpostu = new DTPostulacion(postulante.getNickname(),  fecha,  uRLDocExtras,  curriculumVitae,  motivacion,  urlVideo,  getClasificacion(),  getFechaResu());
     	/*} else {
-    		dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, "Sin Video disponible");
+    		dtpostu = new DTPostulacion(postulante.getNickname(),    fecha,    uRLDocExtras,    curriculumVitae,    motivacion,  "Sin Video disponible");
     	}*/
         return dtpostu;
     }
@@ -149,7 +149,7 @@ public class Postulacion {
         return oferLab.getNombre();
     }
 
-    public void editarPostulacion(String cvAbreviado, String motivacion) {
+    public void editarPostulacion(String cvAbreviado,  String motivacion) {
         this.curriculumVitae = cvAbreviado;
         this.motivacion = motivacion;
     }
@@ -174,7 +174,7 @@ public class Postulacion {
     public PostulacionDTO getDTO(OfertaLaboralDTO ofertaLaboralDTO) {
 //    	System.out.println("no persisti ni al postulante");
         PostulanteDTO postulanteDTO = (PostulanteDTO) postulante.getDTO();
-//        System.out.println("llegue a postulacion oferta laboral , pase al postulante");
-        return new PostulacionDTO(getCV(), getMotivacion(), fecha, ofertaLaboralDTO, postulanteDTO);
+//        System.out.println("llegue a postulacion oferta laboral ,  pase al postulante");
+        return new PostulacionDTO(getCV(),  getMotivacion(),  fecha,  ofertaLaboralDTO,  postulanteDTO);
     }
 }

@@ -38,7 +38,7 @@ public class WSUtils {
 
     public static String imagenAString(byte[] bytes) {
         if (bytes != null) {
-            return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+            return "data:image/jpeg;base64, " + Base64.getEncoder().encodeToString(bytes);
         } else {
             return null;
         }

@@ -29,18 +29,18 @@ public class ListarUsuarios extends HttpServlet {
     
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request,  HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
     	
-		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+		FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request,  response);
 		ILogica logica = FabricaWeb.getInstance().getLogica();
 
         Set<UsuarioBean> ofertas = logica.listarUsuarios();
 
-        request.setAttribute("usuarios", ofertas);
+        request.setAttribute("usuarios",  ofertas);
 
-        request.getRequestDispatcher("/WEB-INF/listar/usuarios.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/listar/usuarios.jsp").forward(request,  response);
     
     }
 

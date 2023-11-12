@@ -21,7 +21,7 @@ public class InfoCompraOferta {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private TipoOferta tipoOferta; // Relación muchos a uno con TipoOferta
 
-    public InfoCompraOferta(TipoOferta tipoOfer, int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public InfoCompraOferta(TipoOferta tipoOfer,  int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
         if (canres >= 0) {
             cantRestante = canres;
             tipoOferta = tipoOfer;

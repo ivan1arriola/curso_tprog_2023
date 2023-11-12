@@ -12,8 +12,8 @@ public class DTEmpresaConCompras extends DTEmpresa {
     @XmlJavaTypeAdapter(SetDTCompraPaquetesAdapter.class)
     private Set<DTCompraPaquetes> compraPaquetes;
 
-    public DTEmpresaConCompras(String nick, String mail, String apellido, String nombre, String contraseña, byte[] img, String desc, String URL, Set<DTOfertaExtendido> ols, Set<DTCompraPaquetes> dtcp, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
-        super(nick, mail, apellido, nombre, contraseña, desc, URL, ols, img, seguidos, seguidores);
+    public DTEmpresaConCompras(String nick,  String mail,  String apellido,  String nombre,  String contraseña,  byte[] img,  String desc,  String URL,  Set<DTOfertaExtendido> ols,  Set<DTCompraPaquetes> dtcp,  Set<DTUsuarioSinInfoSocial> seguidos,  Set<DTUsuarioSinInfoSocial> seguidores) {
+        super(nick,  mail,  apellido,  nombre,  contraseña,  desc,  URL,  ols,  img,  seguidos,  seguidores);
         compraPaquetes = dtcp;
     }
 

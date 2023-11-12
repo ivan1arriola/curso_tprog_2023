@@ -27,11 +27,11 @@ import jakarta.xml.bind.annotation.XmlType;
 public enum EstadoOL {
 
     @XmlEnumValue("Ingresada")
-    INGRESADA("Ingresada"),
+    INGRESADA("Ingresada"), 
     @XmlEnumValue("Confirmada")
-    CONFIRMADA("Confirmada"),
+    CONFIRMADA("Confirmada"), 
     @XmlEnumValue("Rechazada")
-    RECHAZADA("Rechazada"),
+    RECHAZADA("Rechazada"), 
     @XmlEnumValue("Finalizada")
     FINALIZADA("Finalizada");
     private final String value;

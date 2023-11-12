@@ -1,3 +1,3 @@
 package logica.enumerados;
 
-public enum EstadoOL {Ingresada, Confirmada, Rechazada, Finalizada}
+public enum EstadoOL {Ingresada,  Confirmada,  Rechazada,  Finalizada}

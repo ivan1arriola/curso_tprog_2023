@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class SetDTCantTOAdapter extends XmlAdapter<ArrayList<DTCantTO>, Set<DTCantTO>> {
+public class SetDTCantTOAdapter extends XmlAdapter<ArrayList<DTCantTO>,  Set<DTCantTO>> {
 
     @Override
     public ArrayList<DTCantTO> marshal(Set<DTCantTO> set) throws Exception {

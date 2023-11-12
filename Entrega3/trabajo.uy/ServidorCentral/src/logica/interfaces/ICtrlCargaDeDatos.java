@@ -6,5 +6,5 @@ import excepciones.ExceptionFechaInvalida;
 import excepciones.ExceptionValidezNegativa;
 
 public interface ICtrlCargaDeDatos {
-    public abstract void cargarDatos() throws ExcepcionKeywordVacia, ExceptionValidezNegativa, ExceptionFechaInvalida, ErrorAgregarUsuario;
+    public abstract void cargarDatos() throws ExcepcionKeywordVacia,  ExceptionValidezNegativa,  ExceptionFechaInvalida,  ErrorAgregarUsuario;
 }

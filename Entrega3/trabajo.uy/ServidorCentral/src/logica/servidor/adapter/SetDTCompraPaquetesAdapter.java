@@ -9,7 +9,7 @@ import java.util.Set;
 
 
 
-public class SetDTCompraPaquetesAdapter extends XmlAdapter<ArrayList<DTCompraPaquetes>, Set<DTCompraPaquetes>> {
+public class SetDTCompraPaquetesAdapter extends XmlAdapter<ArrayList<DTCompraPaquetes>,  Set<DTCompraPaquetes>> {
 
     @Override
     public ArrayList<DTCompraPaquetes> marshal(Set<DTCompraPaquetes> set) throws Exception {

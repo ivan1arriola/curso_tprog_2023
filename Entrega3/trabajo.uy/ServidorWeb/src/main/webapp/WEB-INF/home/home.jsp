@@ -30,7 +30,7 @@
                 String nombreUsuario = (String) session.getAttribute("nickname");
             %>
             <div class="alert alert-info">
-                <p class="mb-0">¡Bienvenido, <%= nombreUsuario %>!</p>
+                <p class="mb-0">¡Bienvenido,  <%= nombreUsuario %>!</p>
             </div>
             <%
                 }

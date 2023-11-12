@@ -25,8 +25,8 @@ public class TipoOfertaHandler {
 
     public boolean existe(String nombre) {
         try {
-            TypedQuery<Long> query = database.createQuery("SELECT COUNT(t) FROM TipoOferta t WHERE t.nombre = :nombre", Long.class);
-            query.setParameter("nombre", nombre);
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(t) FROM TipoOferta t WHERE t.nombre = :nombre",  Long.class);
+            query.setParameter("nombre",  nombre);
             Long count = query.getSingleResult();
 
             return count > 0;
@@ -54,8 +54,8 @@ public class TipoOfertaHandler {
 
     public TipoOferta buscar(String nombre) {
         try {
-            TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t WHERE t.nombre = :nombre", TipoOferta.class);
-            query.setParameter("nombre", nombre);
+            TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t WHERE t.nombre = :nombre",  TipoOferta.class);
+            query.setParameter("nombre",  nombre);
             List<TipoOferta> resultados = query.getResultList();
 
             if (!resultados.isEmpty()) {
@@ -68,14 +68,14 @@ public class TipoOfertaHandler {
         return null;
     }
 
-    public Map<String, TipoOferta> obtener() {
-        Map<String, TipoOferta> tipoOfertas = new TreeMap<>();
+    public Map<String,  TipoOferta> obtener() {
+        Map<String,  TipoOferta> tipoOfertas = new TreeMap<>();
         try {
-            TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t", TipoOferta.class);
+            TypedQuery<TipoOferta> query = database.createQuery("SELECT t FROM TipoOferta t",  TipoOferta.class);
             List<TipoOferta> resultados = query.getResultList();
 
             for (TipoOferta tipoOferta : resultados) {
-                tipoOfertas.put(tipoOferta.getNombre(), tipoOferta);
+                tipoOfertas.put(tipoOferta.getNombre(),  tipoOferta);
             }
         } catch (PersistenceException e) {
             e.printStackTrace();

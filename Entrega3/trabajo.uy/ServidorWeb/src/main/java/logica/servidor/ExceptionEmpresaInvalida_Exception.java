@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionEmpresaInvalida", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionEmpresaInvalida",  targetNamespace = "http://servidor.logica/")
 public class ExceptionEmpresaInvalida_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionEmpresaInvalida_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionEmpresaInvalida_Exception(String message, ExceptionEmpresaInvalida faultInfo) {
+    public ExceptionEmpresaInvalida_Exception(String message,  ExceptionEmpresaInvalida faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionEmpresaInvalida_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionEmpresaInvalida_Exception(String message, ExceptionEmpresaInvalida faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionEmpresaInvalida_Exception(String message,  ExceptionEmpresaInvalida faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

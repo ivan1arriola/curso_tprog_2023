@@ -64,7 +64,7 @@ public class Utils {
     
 //    private static final String proxyHost ="proxy.fing.edu.uy";
 //    private static final int proxyPort = 3128; //TODO: no debe quedar hardcodeado en la version final
-//    private static final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+//    private static final Proxy proxy = new Proxy(Proxy.Type.HTTP,  new InetSocketAddress(proxyHost,  proxyPort));
 // 
     private static final Proxy proxy;
     
@@ -73,15 +73,15 @@ public class Utils {
         
     	if (proxyProperty != null && !proxyProperty.isEmpty()) {
 
-//    		String[] parts = proxyProperty.replaceFirst("^http://", "").split(":");
+//    		String[] parts = proxyProperty.replaceFirst("^http://",  "").split(":");
  //   		String proxyHost = parts[0];
-//    		int proxyPort = Integer.parseInt(parts[1].replaceAll("[^\\d]", ""));
+//    		int proxyPort = Integer.parseInt(parts[1].replaceAll("[^\\d]",  ""));
     		
     	    String proxyHost = "proxy.fing.edu.uy";
     	    int proxyPort = 3128;
 
     	           
-            proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+            proxy = new Proxy(Proxy.Type.HTTP,  new InetSocketAddress(proxyHost,  proxyPort));
             
         } else {
             proxy = null;  // No se establece el proxy si no se encuentran las propiedades
@@ -89,91 +89,91 @@ public class Utils {
    
     }
     
-    private Map<String, String[]> usuarioCSV = new HashMap<>();
-    private Map<String, String[]> empresaCSV = new HashMap<>();
-    private Map<String, String[]> postulanteCSV = new HashMap<>();
-    private Map<String, String[]> seguidoresCSV = new HashMap<>();
-    private Map<String, String[]> tipoPubPaquetesCSV = new HashMap<>();
-    private Map<String, String[]> tipoPublicacionCSV = new HashMap<>();
-    private Map<String, String[]> resultadosPostulacionCSV = new HashMap<>();
-    private Map<String, String[]> postulantesOfertaLaboralFavoritas = new HashMap<>();
-    private Map<String, String[]> keywordsCSV = new HashMap<>();
-    private Map<String, String[]> ofertasLaboralesCSV = new HashMap<>();
-    private Map<String, String[]> ofertasLaboralesKeyCSV = new HashMap<>();
-    private Map<String, String[]> paquetesCSV = new HashMap<>();
-    private Map<String, String[]> paquetesCompraCSV = new HashMap<>();
-    private Map<String, String[]> postulacionesCSV = new HashMap<>();
+    private Map<String,  String[]> usuarioCSV = new HashMap<>();
+    private Map<String,  String[]> empresaCSV = new HashMap<>();
+    private Map<String,  String[]> postulanteCSV = new HashMap<>();
+    private Map<String,  String[]> seguidoresCSV = new HashMap<>();
+    private Map<String,  String[]> tipoPubPaquetesCSV = new HashMap<>();
+    private Map<String,  String[]> tipoPublicacionCSV = new HashMap<>();
+    private Map<String,  String[]> resultadosPostulacionCSV = new HashMap<>();
+    private Map<String,  String[]> postulantesOfertaLaboralFavoritas = new HashMap<>();
+    private Map<String,  String[]> keywordsCSV = new HashMap<>();
+    private Map<String,  String[]> ofertasLaboralesCSV = new HashMap<>();
+    private Map<String,  String[]> ofertasLaboralesKeyCSV = new HashMap<>();
+    private Map<String,  String[]> paquetesCSV = new HashMap<>();
+    private Map<String,  String[]> paquetesCompraCSV = new HashMap<>();
+    private Map<String,  String[]> postulacionesCSV = new HashMap<>();
     
   
     
    
 
-    public Map<String, String[]> getSeguidoresCSV() {
+    public Map<String,  String[]> getSeguidoresCSV() {
         return seguidoresCSV;
     }
 
 
-    public Map<String, String[]> getResultadosPostulacionCSV() {
+    public Map<String,  String[]> getResultadosPostulacionCSV() {
         return resultadosPostulacionCSV;
     }
 
-    public void setResultadosPostulacionCSV(Map<String, String[]> resultadosPostulacionCSV) {
+    public void setResultadosPostulacionCSV(Map<String,  String[]> resultadosPostulacionCSV) {
         this.resultadosPostulacionCSV = resultadosPostulacionCSV;
     }
 
-    public Map<String, String[]> getPostulantesOfertaLaboralFavoritas() {
+    public Map<String,  String[]> getPostulantesOfertaLaboralFavoritas() {
         return postulantesOfertaLaboralFavoritas;
     }
 
 
 
 
-    public Map<String, String[]> getUsuarioCSV() {
+    public Map<String,  String[]> getUsuarioCSV() {
         return usuarioCSV;
     }
 
-    public Map<String, String[]> getEmpresaCSV() {
+    public Map<String,  String[]> getEmpresaCSV() {
         return empresaCSV;
     }
 
 
-    public Map<String, String[]> getPostulanteCSV() {
+    public Map<String,  String[]> getPostulanteCSV() {
         return postulanteCSV;
     }
 
 
-    public Map<String, String[]> getKeywordsCSV() {
+    public Map<String,  String[]> getKeywordsCSV() {
         return keywordsCSV;
     }
 
 
-    public Map<String, String[]> getOfertasLaboralesCSV() {
+    public Map<String,  String[]> getOfertasLaboralesCSV() {
         return ofertasLaboralesCSV;
     }
 
 
-    public Map<String, String[]> getPaquetesCSV() {
+    public Map<String,  String[]> getPaquetesCSV() {
         return paquetesCSV;
     }
 
 
-    public Map<String, String[]> getPaquetesCompraCSV() {
+    public Map<String,  String[]> getPaquetesCompraCSV() {
         return paquetesCompraCSV;
     }
 
 
 
-    public Map<String, String[]> getPostulacionesCSV() {
+    public Map<String,  String[]> getPostulacionesCSV() {
         return postulacionesCSV;
     }
 
 
-    public Map<String, String[]> getTipoPublicacionCSV() {
+    public Map<String,  String[]> getTipoPublicacionCSV() {
         return tipoPublicacionCSV;
     }
 
 
-    public Map<String, String[]> getTipoPubPaquetesCSV() {
+    public Map<String,  String[]> getTipoPubPaquetesCSV() {
         return tipoPubPaquetesCSV;
     }
 
@@ -206,11 +206,11 @@ public class Utils {
     }
 
 
-    private Map<String, String[]> cargarCSV(String fileName) {
-        Map<String, String[]> data = new HashMap<>();
-        this.readCSV(fileName, stringsCSV -> {
+    private Map<String,  String[]> cargarCSV(String fileName) {
+        Map<String,  String[]> data = new HashMap<>();
+        this.readCSV(fileName,  stringsCSV -> {
             if (stringsCSV.length > 0) {
-                data.put(stringsCSV[0], stringsCSV);
+                data.put(stringsCSV[0],  stringsCSV);
             }
         });
         return data;
@@ -277,14 +277,14 @@ public class Utils {
         int horaHastaInt = Integer.parseInt(horaHasta[0]);
         int minHastaInt = Integer.parseInt(horaHasta[1]);
 
-        DTHora desde = new DTHora(horaDesdeInt, minDesdeInt);
-        DTHora hasta = new DTHora(horaHastaInt, minHastaInt);
+        DTHora desde = new DTHora(horaDesdeInt,  minDesdeInt);
+        DTHora hasta = new DTHora(horaHastaInt,  minHastaInt);
 
-        return new DTHorario(desde, hasta);
+        return new DTHorario(desde,  hasta);
     }
 
     private String cambiarURLAlternativo(String imageUrl) {
-        String nuevaURL = imageUrl.replace(PREFIX_ORIGINAL, PREFIX_NUEVO);
+        String nuevaURL = imageUrl.replace(PREFIX_ORIGINAL,  PREFIX_NUEVO);
         return nuevaURL;
     }
 
@@ -303,14 +303,14 @@ public class Utils {
         	connection = url.openConnection(proxy);
         }
         
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+        connection.setRequestProperty("User-Agent",  "Mozilla/5.0");
 
         try (InputStream into = connection.getInputStream();
              ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             byte[] buffer = new byte[4096];
             int bytesRead;
             while ((bytesRead = into.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
+                out.write(buffer,  0,  bytesRead);
             }
             imagen = out.toByteArray();
         }
@@ -318,7 +318,7 @@ public class Utils {
         return imagen;
     }
 
-    public void readCSV(String filePath, Consumer<String[]> rowProcessor) {
+    public void readCSV(String filePath,  Consumer<String[]> rowProcessor) {
         try (
                 InputStream inputStream = CSVLoader.getInputStream(filePath);
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -350,9 +350,9 @@ public class Utils {
         }
     }
 
-    public LocalDate obtenerFechaDesdeString(String fechaStr, String formato) {
+    public LocalDate obtenerFechaDesdeString(String fechaStr,  String formato) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
-        return LocalDate.parse(fechaStr, formatter);
+        return LocalDate.parse(fechaStr,  formatter);
     }
 
     public DepUY obtenerDepUYDesdeNombre(String nombreDepartamento) {
@@ -430,7 +430,7 @@ public class Utils {
 
         if (ofertasLaboralesKeywordsCSV != null && ofertasLaboralesKeywordsCSV.length > 1) {
             String keywordsString = ofertasLaboralesKeywordsCSV[1];
-            String[] keywordCodes = keywordsString.split(", ");
+            String[] keywordCodes = keywordsString.split(",  ");
 
             for (String keywordCode : keywordCodes) {
                 String[] keywordData = keywordsCSV.get(keywordCode);
@@ -455,7 +455,7 @@ public class Utils {
     }
 
 
-    public void altaOfertaLaboralForzado(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida, ExceptionRemuneracionOfertaLaboralNegativa, NoExistePaquete {
+    public void altaOfertaLaboralForzado(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida,  ExceptionRemuneracionOfertaLaboralNegativa,  NoExistePaquete {
         List<Keyword> keywords = new ArrayList<>();
 
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -465,8 +465,8 @@ public class Utils {
 
 
 
-        Map<String, Keyword> keyw = KeywordH.obtener();
-        for (Map.Entry<String, Keyword> entry : keyw.entrySet()) {
+        Map<String,  Keyword> keyw = KeywordH.obtener();
+        for (Map.Entry<String,  Keyword> entry : keyw.entrySet()) {
             if (keys.contains(entry.getKey())) {
                 keywords.add(entry.getValue());
             }
@@ -489,7 +489,7 @@ public class Utils {
 
                     OfertaLaboral oferL;
                     try {
-                        oferL = empresa.altaOfertaLaboralForzado(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
+                        oferL = empresa.altaOfertaLaboralForzado(TOH.buscar(tipo),  nombre,  descripcion,  horario,  remun,  ciu,  dep,  FechaA,  keywords,  estado,  img,  paq);
                         OLH.agregar(oferL);
                     } catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionCostoPaqueteNoNegativo |
                              ExceptionDescuentoInvalido | ExceptionPaqueteNoVigente e) {
@@ -519,7 +519,7 @@ public class Utils {
 
 
 
-    public Postulacion crearPostulacionForzado(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab) throws ExceptionUsuarioNoEncontrado {
+    public Postulacion crearPostulacionForzado(String nick,  String curriculumVitae,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
@@ -527,7 +527,7 @@ public class Utils {
             throw new IllegalArgumentException("Usuario " + nick + " no existe");
         }
         try {
-            return postulante.crearPostulacionForzado(curriculumVitae, motivacion, fecha, URLDocExtras, OferLab, URLDocExtras);
+            return postulante.crearPostulacionForzado(curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OferLab,  URLDocExtras);
         } catch (ExceptionValidezNegativa e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -535,13 +535,13 @@ public class Utils {
         return null;
     }
 
-    public boolean altaPostulacionForzado(String nombre, String nick, String curriculumVitae, String motivacion, String URLDocE, LocalDate fecha) throws OfertaLaboralNoEncontrada, ExceptionUsuarioNoEncontrado {
+    public boolean altaPostulacionForzado(String nombre,  String nick,  String curriculumVitae,  String motivacion,  String URLDocE,  LocalDate fecha) throws OfertaLaboralNoEncontrada,  ExceptionUsuarioNoEncontrado {
         CtrlUsuario CtrllUser = new CtrlUsuario();
-        boolean existe = CtrllUser.existePostulacion(nick, nombre);
+        boolean existe = CtrllUser.existePostulacion(nick,  nombre);
         if (!existe) {
             OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
             OfertaLaboral oferLab = OLH.buscar(nombre);
-            Postulacion postulacion = crearPostulacionForzado(nick, curriculumVitae, motivacion, fecha, URLDocE, oferLab);
+            Postulacion postulacion = crearPostulacionForzado(nick,  curriculumVitae,  motivacion,  fecha,  URLDocE,  oferLab);
             try {
                 oferLab.registrarPostulacionForzado(postulacion);
             } catch (ExceptionFechaInvalida e) {

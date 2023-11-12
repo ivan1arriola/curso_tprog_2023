@@ -22,12 +22,12 @@ public class ValidarNickname extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response)
+            throws ServletException,  IOException {
 
-        response.setHeader("Access-Control-Allow-Origin", "*"); // Permite todas las solicitudes desde cualquier origen (no recomendado para producción).
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        response.setHeader("Access-Control-Allow-Origin",  "*"); // Permite todas las solicitudes desde cualquier origen (no recomendado para producción).
+        response.setHeader("Access-Control-Allow-Methods",  "GET,  POST,  PUT,  DELETE,  OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers",  "Content-Type,  Authorization");
 
 
         String nickname = request.getParameter("nickname");

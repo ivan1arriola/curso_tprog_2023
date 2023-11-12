@@ -65,7 +65,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
     /**
      * Create the application.
      */
-    public ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICtrlOferta ICO, ICtrlUsuario ICU) {
+    public ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICtrlOferta ICO,  ICtrlUsuario ICU) {
         ico = ICO;
         initialize(ICO);
     }
@@ -80,7 +80,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consulta de Paquete de Tipos de Publicación de Ofertas Laborales");
-        setBounds(30, 30, 688, 713);
+        setBounds(30,  30,  688,  713);
         getContentPane().setLayout(null);  //Absolute Layout
 
         JButton VerInformacion = new JButton("Ver Informacion");
@@ -102,21 +102,21 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
                     descripcion.setText(DTO.getDescripcion());
 
                 } catch (ExcepcionTipoOfertaNoExistente eto) {
-                    JOptionPane.showMessageDialog(null, eto.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,  eto.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-        VerInformacion.setBounds(509, 376, 156, 25);
+        VerInformacion.setBounds(509,  376,  156,  25);
         getContentPane().add(VerInformacion);
 
         listadoPaquetes = new JComboBox<String>();
         listadoPaquetes.addItem(""); // casilla vacia
-        listadoPaquetes.setBounds(158, 36, 365, 21);
+        listadoPaquetes.setBounds(158,  36,  365,  21);
         getContentPane().add(listadoPaquetes);
 
         costoPaquete = new JTextField();
         costoPaquete.setEditable(false);
-        costoPaquete.setBounds(160, 87, 505, 19);
+        costoPaquete.setBounds(160,  87,  505,  19);
         getContentPane().add(costoPaquete);
         costoPaquete.setColumns(10);
 
@@ -127,74 +127,74 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(548, 644, 117, 25);
+        btnCerrar.setBounds(548,  644,  117,  25);
         getContentPane().add(btnCerrar);
 
         JLabel lblNombre = new JLabel("Costo:");
-        lblNombre.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre.setBounds(33, 88, 133, 15);
+        lblNombre.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre.setBounds(33,  88,  133,  15);
         getContentPane().add(lblNombre);
 
         JLabel lblPaquete = new JLabel("Paquete:");
-        lblPaquete.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblPaquete.setBounds(33, 36, 133, 15);
+        lblPaquete.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblPaquete.setBounds(33,  36,  133,  15);
         getContentPane().add(lblPaquete);
 
         JLabel lblCosto = new JLabel("Descuento:");
-        lblCosto.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblCosto.setBounds(33, 126, 117, 15);
+        lblCosto.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblCosto.setBounds(33,  126,  117,  15);
         getContentPane().add(lblCosto);
 
 
         paqueteDescuento = new JTextField();
         paqueteDescuento.setEditable(false);
         paqueteDescuento.setColumns(10);
-        paqueteDescuento.setBounds(160, 125, 507, 19);
+        paqueteDescuento.setBounds(160,  125,  507,  19);
         getContentPane().add(paqueteDescuento);
 
         validezPaquete = new JTextField();
         validezPaquete.setEditable(false);
         validezPaquete.setColumns(10);
-        validezPaquete.setBounds(160, 165, 507, 19);
+        validezPaquete.setBounds(160,  165,  507,  19);
         getContentPane().add(validezPaquete);
 
         descript = new JTextField();
         descript.setEditable(false);
         descript.setColumns(10);
-        descript.setBounds(160, 207, 507, 19);
+        descript.setBounds(160,  207,  507,  19);
         getContentPane().add(descript);
 
         JLabel lblCosto_1 = new JLabel("Validez:");
-        lblCosto_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblCosto_1.setBounds(33, 167, 133, 15);
+        lblCosto_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblCosto_1.setBounds(33,  167,  133,  15);
         getContentPane().add(lblCosto_1);
 
         JLabel lblCosto_1_1 = new JLabel("Descripción:");
-        lblCosto_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblCosto_1_1.setBounds(33, 209, 133, 15);
+        lblCosto_1_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblCosto_1_1.setBounds(33,  209,  133,  15);
         getContentPane().add(lblCosto_1_1);
 
-        String[] columnNames = {"Tipo de Publicacion", "Cantidad"};
-        tableModel = new DefaultTableModel(columnNames, 0);
+        String[] columnNames = {"Tipo de Publicacion",  "Cantidad"};
+        tableModel = new DefaultTableModel(columnNames,  0);
 
         table = new JTable(tableModel);
-        table.setBounds(33, 275, 632, 75);
+        table.setBounds(33,  275,  632,  75);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
         JLabel lblCosto_1_1_1 = new JLabel("Información de los tipos de publicación y sus cantidades");
-        lblCosto_1_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblCosto_1_1_1.setBounds(103, 248, 562, 15);
+        lblCosto_1_1_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblCosto_1_1_1.setBounds(103,  248,  562,  15);
         getContentPane().add(lblCosto_1_1_1);
 
         JLabel lblCosto_1_1_2 = new JLabel("Tipo de publicación:");
-        lblCosto_1_1_2.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblCosto_1_1_2.setBounds(33, 380, 185, 15);
+        lblCosto_1_1_2.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblCosto_1_1_2.setBounds(33,  380,  185,  15);
         getContentPane().add(lblCosto_1_1_2);
 
         campoTipoDePublicacion = new JTextField();
-        campoTipoDePublicacion.setBounds(215, 378, 282, 22);
+        campoTipoDePublicacion.setBounds(215,  378,  282,  22);
         getContentPane().add(campoTipoDePublicacion);
         campoTipoDePublicacion.setColumns(10);
 
@@ -216,57 +216,57 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
                 actualizarTabla();
             }
         });
-        BotonAceptar.setBounds(536, 36, 130, 21);
+        BotonAceptar.setBounds(536,  36,  130,  21);
         getContentPane().add(BotonAceptar);
 
         JLabel lblNombre_1 = new JLabel("Fecha de alta:");
-        lblNombre_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre_1.setBounds(33, 426, 133, 15);
+        lblNombre_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre_1.setBounds(33,  426,  133,  15);
         getContentPane().add(lblNombre_1);
 
         JLabel lblNombre_1_1 = new JLabel("Costo:");
-        lblNombre_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre_1_1.setBounds(33, 468, 89, 15);
+        lblNombre_1_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre_1_1.setBounds(33,  468,  89,  15);
         getContentPane().add(lblNombre_1_1);
 
         fechaDeAlta = new JTextField();
         fechaDeAlta.setEditable(false);
-        fechaDeAlta.setBounds(215, 420, 450, 30);
+        fechaDeAlta.setBounds(215,  420,  450,  30);
         getContentPane().add(fechaDeAlta);
 
         costo = new JTextField();
         costo.setEditable(false);
-        costo.setBounds(215, 462, 450, 30);
+        costo.setBounds(215,  462,  450,  30);
         getContentPane().add(costo);
 
         duracion = new JTextField();
         duracion.setEditable(false);
-        duracion.setBounds(215, 504, 450, 30);
+        duracion.setBounds(215,  504,  450,  30);
         getContentPane().add(duracion);
 
         exposicion = new JTextField();
         exposicion.setEditable(false);
-        exposicion.setBounds(215, 546, 450, 30);
+        exposicion.setBounds(215,  546,  450,  30);
         getContentPane().add(exposicion);
 
         JLabel lblNombre_1_1_1 = new JLabel("Duración:");
-        lblNombre_1_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre_1_1_1.setBounds(33, 511, 89, 15);
+        lblNombre_1_1_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre_1_1_1.setBounds(33,  511,  89,  15);
         getContentPane().add(lblNombre_1_1_1);
 
         descripcion = new JTextField();
         descripcion.setEditable(false);
-        descripcion.setBounds(215, 588, 450, 30);
+        descripcion.setBounds(215,  588,  450,  30);
         getContentPane().add(descripcion);
 
         JLabel lblNombre_1_1_1_1 = new JLabel("Exposición:");
-        lblNombre_1_1_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre_1_1_1_1.setBounds(34, 553, 103, 15);
+        lblNombre_1_1_1_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre_1_1_1_1.setBounds(34,  553,  103,  15);
         getContentPane().add(lblNombre_1_1_1_1);
 
         JLabel lblNombre_1_1_1_1_1 = new JLabel("Descripción:");
-        lblNombre_1_1_1_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-        lblNombre_1_1_1_1_1.setBounds(33, 595, 117, 15);
+        lblNombre_1_1_1_1_1.setFont(new Font("Dialog",  Font.BOLD,  16));
+        lblNombre_1_1_1_1_1.setBounds(33,  595,  117,  15);
         getContentPane().add(lblNombre_1_1_1_1_1);
 
 
@@ -275,7 +275,7 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
     public void actualizar() {
         Set<String> paquetes = ico.listarPaquetes();
 
-        // remover todos los items, asi evito duplicados
+        // remover todos los items,  asi evito duplicados
         listadoPaquetes.removeAllItems();
         // agrego items
         for (String element1 : paquetes) {
@@ -291,9 +291,9 @@ public class ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales extends JI
         tableModel.setRowCount(0);
 
         // Agregar los datos del conjunto como filas en la tabla
-        tableModel.addRow(new Object[]{"Tipo de publicación", "Cantidad"});
+        tableModel.addRow(new Object[]{"Tipo de publicación",  "Cantidad"});
         for (DTCantTO item : tiposPub) {
-            tableModel.addRow(new Object[]{item.getNombre(), item.getCantidad()});
+            tableModel.addRow(new Object[]{item.getNombre(),  item.getCantidad()});
         }
     }
 

@@ -32,10 +32,10 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtPostulante", propOrder = {
-    "fechanac",
-    "nacionalidad",
-    "favs",
+@XmlType(name = "dtPostulante",  propOrder = {
+    "fechanac", 
+    "nacionalidad", 
+    "favs", 
     "fechaNac"
 })
 public class DtPostulante
@@ -100,13 +100,13 @@ public class DtPostulante
      * Gets the value of the favs property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
+     * This accessor method returns a reference to the live list, 
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
      * This is why there is not a {@code set} method for the favs property.
      * 
      * <p>
-     * For example, to add a new item, do as follows:
+     * For example,  to add a new item,  do as follows:
      * <pre>
      *    getFavs().add(newItem);
      * </pre>

@@ -20,9 +20,9 @@ public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
     private List<String> postulaciones;
     private DTPaquete paq;
 
-    public DTOfertaExtendidoConKeywordsTit(String nicknameEmpresa, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario,
-                                           DepUY dep, String ciu, EstadoOL estado, byte[] img, Set<String> keys, DTPaquete paq, Set<String> postulaciones, Integer cantF, Integer cantV, String tipoOfer) {
-        super(nicknameEmpresa, nomb, desc, fechaA, cost, remu, horario, dep, ciu, estado, img, keys, cantF, cantV, tipoOfer);
+    public DTOfertaExtendidoConKeywordsTit(String nicknameEmpresa,  String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario, 
+                                           DepUY dep,  String ciu,  EstadoOL estado,  byte[] img,  Set<String> keys,  DTPaquete paq,  Set<String> postulaciones,  Integer cantF,  Integer cantV,  String tipoOfer) {
+        super(nicknameEmpresa,  nomb,  desc,  fechaA,  cost,  remu,  horario,  dep,  ciu,  estado,  img,  keys,  cantF,  cantV,  tipoOfer);
         this.postulaciones = new ArrayList<>(postulaciones);
         this.paq = paq;
     }

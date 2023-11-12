@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionUsuarioSeSigueASiMismo", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionUsuarioSeSigueASiMismo",  targetNamespace = "http://servidor.logica/")
 public class ExceptionUsuarioSeSigueASiMismo_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionUsuarioSeSigueASiMismo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionUsuarioSeSigueASiMismo_Exception(String message, ExceptionUsuarioSeSigueASiMismo faultInfo) {
+    public ExceptionUsuarioSeSigueASiMismo_Exception(String message,  ExceptionUsuarioSeSigueASiMismo faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionUsuarioSeSigueASiMismo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionUsuarioSeSigueASiMismo_Exception(String message, ExceptionUsuarioSeSigueASiMismo faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionUsuarioSeSigueASiMismo_Exception(String message,  ExceptionUsuarioSeSigueASiMismo faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

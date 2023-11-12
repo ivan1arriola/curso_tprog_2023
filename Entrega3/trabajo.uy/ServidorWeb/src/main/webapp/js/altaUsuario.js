@@ -29,8 +29,8 @@ const validarFormatoNickname = (nickname) => {
 const verificarNicknameEnUso = (nickname) => {
   const xhr = new XMLHttpRequest();
   const url = host + "/validarNickname?nickname=" + nickname;
-  xhr.open('GET', url); // 409 si el nickname ya está en uso
-  return new Promise((resolve, reject) => {
+  xhr.open('GET',  url); // 409 si el nickname ya está en uso
+  return new Promise((resolve,  reject) => {
     xhr.onload = () => {
       if (xhr.status === 409) {
         reject("El nickname ya está en uso");
@@ -81,8 +81,8 @@ const validarNickname = () => {
 
   // Validar que el nickname cumple con el formato
   if (!validarFormatoNickname(nicknameInput.value)) {
-    nicknameInput.setCustomValidity("El nickname solo puede contener letras, números y caracteres especiales específicos");
-    nicknameInvalidFeedback.innerText = "El nickname solo puede contener letras, números y caracteres especiales específicos";
+    nicknameInput.setCustomValidity("El nickname solo puede contener letras,  números y caracteres especiales específicos");
+    nicknameInvalidFeedback.innerText = "El nickname solo puede contener letras,  números y caracteres especiales específicos";
     nicknameInvalidFeedback.style.display = "block";
     return;
   }
@@ -104,7 +104,7 @@ const validarNickname = () => {
           nicknameInvalidFeedback.innerText = error;
           nicknameInvalidFeedback.style.display = "block";
         });
-  }, 500); // Espera 500 ms después de la última entrada para realizar la verificación
+  },  500); // Espera 500 ms después de la última entrada para realizar la verificación
 };
 
 const validarNombre = () => {
@@ -315,16 +315,16 @@ const validarCorreoElectronico = () => {
     // valida con AJAX la disponibilidad del email
     const url = host + "/validarEmail?email=" + emailInput.value; // TODO: cambiar por la URL del servidor
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
+    xhr.open('GET',  url);
     xhr.onload = () => {
       if (xhr.status === 409) {
         emailInput.setCustomValidity("El email ya está en uso");
-        emailInvalidFeedback.innerText = "El email ya está en uso, elige otro";
+        emailInvalidFeedback.innerText = "El email ya está en uso,  elige otro";
         emailInvalidFeedback.style.display = "block";
       }
     };
     xhr.send();
-  }, 500); // Espera 500 ms después de la última entrada para realizar la verificación
+  },  500); // Espera 500 ms después de la última entrada para realizar la verificación
 };
 
 const validarTipoUsuario = () => {
@@ -354,7 +354,7 @@ const validarTamañoImagen = () => {
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",  () => {
   "use strict";
   mostrarCamposEspeciales();
 
@@ -362,19 +362,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll(".needs-validation");
 
-  confirmPasswordInput.addEventListener("input", validarContraseña);
-  passwordInput.addEventListener("input", validarContraseña);
-  imageInput.addEventListener("input", validarTamañoImagen);
-  nombreInput.addEventListener("input", validarNombre);
-  apellidoInput.addEventListener("input", validarApellido);
-  emailInput.addEventListener("input", validarCorreoElectronico);
-  nicknameInput.addEventListener("input", validarNickname);
+  confirmPasswordInput.addEventListener("input",  validarContraseña);
+  passwordInput.addEventListener("input",  validarContraseña);
+  imageInput.addEventListener("input",  validarTamañoImagen);
+  nombreInput.addEventListener("input",  validarNombre);
+  apellidoInput.addEventListener("input",  validarApellido);
+  emailInput.addEventListener("input",  validarCorreoElectronico);
+  nicknameInput.addEventListener("input",  validarNickname);
 
 
   // Loop over them and prevent submission
   Array.from(forms).forEach((form) => {
     form.addEventListener(
-        "submit",
+        "submit", 
         (event) => {
           if (!form.checkValidity()) {
             event.preventDefault();
@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Agrega la clase CSS de Bootstrap para mostrar los estilos de validación
           form.classList.add("was-validated");
-        },
+        }, 
         false
     );
   });

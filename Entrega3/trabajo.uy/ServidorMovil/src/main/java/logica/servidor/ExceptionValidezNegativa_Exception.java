@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionValidezNegativa", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionValidezNegativa",  targetNamespace = "http://servidor.logica/")
 public class ExceptionValidezNegativa_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionValidezNegativa_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionValidezNegativa_Exception(String message, ExceptionValidezNegativa faultInfo) {
+    public ExceptionValidezNegativa_Exception(String message,  ExceptionValidezNegativa faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionValidezNegativa_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionValidezNegativa_Exception(String message, ExceptionValidezNegativa faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionValidezNegativa_Exception(String message,  ExceptionValidezNegativa faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

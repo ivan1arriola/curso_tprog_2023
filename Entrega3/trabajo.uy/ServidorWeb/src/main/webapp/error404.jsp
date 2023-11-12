@@ -18,7 +18,7 @@
             <div class="container col-9">
                 <jsp:include page="/WEB-INF/templates/navbar.jsp" />
                 <h1>Error 404 - Página no encontrada</h1>
-                <p>Lo sentimos, la página que buscas no se encuentra.</p>
+                <p>Lo sentimos,  la página que buscas no se encuentra.</p>
             </div>
 
         </main>

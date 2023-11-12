@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @DiscriminatorValue("Empresa")
 public class EmpresaDTO extends UsuarioDTO {
 
-    @Column(nullable = false, columnDefinition = "CLOB")
+    @Column(nullable = false,  columnDefinition = "CLOB")
     private String descripcion;
 
     private String sitio_web;
@@ -21,8 +21,8 @@ public class EmpresaDTO extends UsuarioDTO {
         super();
     }
 
-    public EmpresaDTO(String nickname, String email, String nombre, String apellido, String descripcion, String sitio_web) {
-        super(nickname, email, nombre, apellido);
+    public EmpresaDTO(String nickname,  String email,  String nombre,  String apellido,  String descripcion,  String sitio_web) {
+        super(nickname,  email,  nombre,  apellido);
         this.descripcion = descripcion;
         this.sitio_web = sitio_web;
     }

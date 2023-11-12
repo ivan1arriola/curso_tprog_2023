@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionUsuarioNickYCorreoRepetidos", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionUsuarioNickYCorreoRepetidos",  targetNamespace = "http://servidor.logica/")
 public class ExceptionUsuarioNickYCorreoRepetidos_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionUsuarioNickYCorreoRepetidos_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionUsuarioNickYCorreoRepetidos_Exception(String message, ExceptionUsuarioNickYCorreoRepetidos faultInfo) {
+    public ExceptionUsuarioNickYCorreoRepetidos_Exception(String message,  ExceptionUsuarioNickYCorreoRepetidos faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionUsuarioNickYCorreoRepetidos_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionUsuarioNickYCorreoRepetidos_Exception(String message, ExceptionUsuarioNickYCorreoRepetidos faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionUsuarioNickYCorreoRepetidos_Exception(String message,  ExceptionUsuarioNickYCorreoRepetidos faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

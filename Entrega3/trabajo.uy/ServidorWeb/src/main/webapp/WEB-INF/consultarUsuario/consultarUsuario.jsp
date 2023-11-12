@@ -181,7 +181,7 @@ boolean ofertasTabAbierto = Boolean.parseBoolean(request.getParameter("ofertas")
             const urlParams = new URLSearchParams(window.location.search);
             const ofertasParam = urlParams.get('ofertas');
 
-            // Si el parámetro 'ofertas' es 'true', activa el tab correspondiente
+            // Si el parámetro 'ofertas' es 'true',  activa el tab correspondiente
             if (ofertasParam && ofertasParam.toLowerCase() === 'true') {
                 $('#myTabs a[href="#ofertas-panel"]').tab('show');
             } else {

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionCostoPaqueteNoNegativo", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionCostoPaqueteNoNegativo",  targetNamespace = "http://servidor.logica/")
 public class ExceptionCostoPaqueteNoNegativo_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionCostoPaqueteNoNegativo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionCostoPaqueteNoNegativo_Exception(String message, ExceptionCostoPaqueteNoNegativo faultInfo) {
+    public ExceptionCostoPaqueteNoNegativo_Exception(String message,  ExceptionCostoPaqueteNoNegativo faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionCostoPaqueteNoNegativo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionCostoPaqueteNoNegativo_Exception(String message, ExceptionCostoPaqueteNoNegativo faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionCostoPaqueteNoNegativo_Exception(String message,  ExceptionCostoPaqueteNoNegativo faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

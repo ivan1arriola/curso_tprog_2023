@@ -73,11 +73,11 @@ public class TestGeneral9 {
         String nombre = "Juan";
         String apellido = "Perez";
         String correo = "algunmail@mail.com";
-        LocalDate fechaNacimiento = LocalDate.of(1958,    4,    24);
+        LocalDate fechaNacimiento = LocalDate.of(1958,     4,     24);
         String nacionalidad = "Ruso";
 
         try {
-			ICU.altaPostulante(nickname,    password,    nombre,    apellido,    correo,    fechaNacimiento,    nacionalidad);
+			ICU.altaPostulante(nickname,     password,     nombre,     apellido,     correo,     fechaNacimiento,     nacionalidad);
 		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido
 				| ErrorAgregarUsuario | ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block
@@ -105,19 +105,19 @@ public class TestGeneral9 {
                 &&
                 usu1.getcontrasenia().equals(password);
 
-        assertEquals("El test usu1 fallo",    true,    result1);
+        assertEquals("El test usu1 fallo",     true,     result1);
 
         String offer = "EjemploOferta";
         String desc = "descripcion";
         int valido = 10;
-        LocalDate fecha = LocalDate.of(1990,    6,    24);
+        LocalDate fecha = LocalDate.of(1990,     6,     24);
         float descu = 10;
 
-        //boolean boolPaquete = ICO.altaPaqueteOL(offer,     desc,      valido,     fecha,    descu,    null);
+        //boolean boolPaquete = ICO.altaPaqueteOL(offer,      desc,       valido,      fecha,     descu,     null);
 
         boolean boolPaquete = false;
         try {
-            boolPaquete = ICO.altaPaqueteOL(offer,    desc,    valido,    fecha,    descu,    null);
+            boolPaquete = ICO.altaPaqueteOL(offer,     desc,     valido,     fecha,     descu,     null);
         } catch (ExceptionDescuentoInvalido exc) {
             exc.printStackTrace();
         } catch (ExceptionValidezNegativa exc) {
@@ -125,10 +125,10 @@ public class TestGeneral9 {
         }
 
 
-        assertTrue(boolPaquete,    "oferta ok");
+        assertTrue(boolPaquete,     "oferta ok");
 
-        assertThrows(IllegalArgumentException.class,    () -> {
-            ICO.altaPaqueteOL("",    desc,    -10,    fecha,    descu,    null);
+        assertThrows(IllegalArgumentException.class,     () -> {
+            ICO.altaPaqueteOL("",     desc,     -10,     fecha,     descu,     null);
         });
         
 
@@ -137,11 +137,11 @@ public class TestGeneral9 {
         String nombre99 = "Juancito";
         String apellido99 = "Perez";
         String correo99 = "algunotromail@mailing.com";
-        LocalDate fechaNacimiento99 = LocalDate.of(1958,    4,    24);
+        LocalDate fechaNacimiento99 = LocalDate.of(1958,     4,     24);
         String nacionalidad99 = "Ruso";
 
         try {
-			ICU.altaPostulante(nickname99,    password99,    nombre99,    apellido99,    correo99,    fechaNacimiento99,    nacionalidad99);
+			ICU.altaPostulante(nickname99,     password99,     nombre99,     apellido99,     correo99,     fechaNacimiento99,     nacionalidad99);
 		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido
 				| ErrorAgregarUsuario | ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block
@@ -153,53 +153,53 @@ public class TestGeneral9 {
         String offer99 = "EjemploOferta";
         String desc99 = "descripcion";
         int valido99 = -10;
-        LocalDate fecha99 = LocalDate.of(1990,    6,    24);
+        LocalDate fecha99 = LocalDate.of(1990,     6,     24);
         float descu99 = 10;
 
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,    () -> {
-            ICO.altaPaqueteOL(offer,    desc,    valido,    fecha,    descu,    null);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,     () -> {
+            ICO.altaPaqueteOL(offer,     desc,     valido,     fecha,     descu,     null);
         });
 
-//        assertEquals("El argumento 'validez' debe ser mayor a 0.",    exception.getMessage());
+//        assertEquals("El argumento 'validez' debe ser mayor a 0.",     exception.getMessage());
         
 
         String offer1 = "Ejemploito";
         String desc1 = "descripcioncita";
         int valido1 = 10;
-        LocalDate fecha1 = LocalDate.of(1995,    6,    24);
+        LocalDate fecha1 = LocalDate.of(1995,     6,     24);
         float descu1 = 120;
 
 
-        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,    () -> {
-            ICO.altaPaqueteOL(offer1,    desc1,    valido1,    fecha1,    descu1,    null);
+        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,     () -> {
+            ICO.altaPaqueteOL(offer1,     desc1,     valido1,     fecha1,     descu1,     null);
         });
 
-//        assertEquals("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.",    exception1.getMessage());
+//        assertEquals("El argumento 'descuento' debe ser un porcentaje mayor o igual a 0 y menor o igual a 100.",     exception1.getMessage());
         
         
         String offer11 = "Demasiadooooo";
         String desc11 = "";
         int valido11 = 10;
-        LocalDate fecha11 = LocalDate.of(1995,    6,    24);
+        LocalDate fecha11 = LocalDate.of(1995,     6,     24);
         float descu11 = 15;
 
 
-        IllegalArgumentException exception11 = assertThrows(IllegalArgumentException.class,    () -> {
-            ICO.altaPaqueteOL(offer11,    desc11,    valido11,    fecha11,    descu11,    null);
+        IllegalArgumentException exception11 = assertThrows(IllegalArgumentException.class,     () -> {
+            ICO.altaPaqueteOL(offer11,     desc11,     valido11,     fecha11,     descu11,     null);
         });
 
-//        assertEquals("El argumento 'descripcion' no puede ser vacío.",    exception11.getMessage());
+//        assertEquals("El argumento 'descripcion' no puede ser vacío.",     exception11.getMessage());
 
 
-        //ICO.altaPaqueteOL(offer,     "algo",    valido,     fecha,    descu,    null);
+        //ICO.altaPaqueteOL(offer,      "algo",     valido,      fecha,     descu,     null);
 
 //       
-//        IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,    () -> {
-//            ICO.altaPaqueteOL("Demasiado",    "una descripcion",    valido11,    fecha11,    descu11,    null);
+//        IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,     () -> {
+//            ICO.altaPaqueteOL("Demasiado",     "una descripcion",     valido11,     fecha11,     descu11,     null);
 //        });
 
-//        assertEquals("El argumento 'nombre' ya existe en el sistema.",    exception2.getMessage());
+//        assertEquals("El argumento 'nombre' ya existe en el sistema.",     exception2.getMessage());
 
         
         boolean keys1 = false;
@@ -209,7 +209,7 @@ public class TestGeneral9 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        assertTrue(keys1,    "Alta key ok");
+        assertTrue(keys1,     "Alta key ok");
 
         boolean keys2 = false;
 		try {
@@ -218,11 +218,11 @@ public class TestGeneral9 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        assertFalse(keys2,    "Alta key repetida");
+        assertFalse(keys2,     "Alta key repetida");
         
         try {
             try {
-				ICU.altaEmpresa("Empresario",    "tupass",    "Pepito",    "Gomez",    "yoquese@hotmail.com",    "geniales");
+				ICU.altaEmpresa("Empresario",     "tupass",     "Pepito",     "Gomez",     "yoquese@hotmail.com",     "geniales");
 			} catch (ErrorAgregarUsuario e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -234,14 +234,14 @@ public class TestGeneral9 {
         } catch (ExceptionUsuarioCorreoRepetido e) {
             e.printStackTrace();
         }
-        LocalDate atrfechaAlta6 = LocalDate.of(2020,    12,    12);
+        LocalDate atrfechaAlta6 = LocalDate.of(2020,     12,     12);
 
 
         boolean comprado = false;
 
         try {
             try {
-				comprado = ICO.compraPaquetes("Empresario",    "EjemploOferta",    atrfechaAlta6,    0);
+				comprado = ICO.compraPaquetes("Empresario",     "EjemploOferta",     atrfechaAlta6,     0);
 			} catch (ExceptionValidezNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -253,7 +253,7 @@ public class TestGeneral9 {
         }
 
 
-//        assertTrue(comprado,    "Compra ok");
+//        assertTrue(comprado,     "Compra ok");
         
         Set<String> empresas = ICO.listarEmpresas();
         boolean contiene = empresas.contains("ANTEL");
@@ -295,25 +295,25 @@ public class TestGeneral9 {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-////        assertEquals(dtof.getCiudad(),    "Montevidoe");
+////        assertEquals(dtof.getCiudad(),     "Montevidoe");
 //
 //
 //        try {
-//            ICO.altaPaqueteOL("Demasiado",    "una descripcion",    10,    LocalDate.of(1958,    10,    10),    90,    null);
+//            ICO.altaPaqueteOL("Demasiado",     "una descripcion",     10,     LocalDate.of(1958,     10,     10),     90,     null);
 //        } catch (ExceptionDescuentoInvalido exc) {
 //            exc.printStackTrace();
 //        } catch (ExceptionValidezNegativa exc) {
 //            exc.printStackTrace();
 //        }
 //
-//        LocalDate atrfechaAlta61 = LocalDate.of(2023,    9,    2);
+//        LocalDate atrfechaAlta61 = LocalDate.of(2023,     9,     2);
 //
 //
-//        //ICO.compraPaquetes("ANTEL",    "Demasiado",    atrfechaAlta6 ,    0);
+//        //ICO.compraPaquetes("ANTEL",     "Demasiado",     atrfechaAlta6 ,     0);
 //
 //        try {
 //            try {
-//				ICO.compraPaquetes("ANTEL",    "Demasiado",    atrfechaAlta61,    0);
+//				ICO.compraPaquetes("ANTEL",     "Demasiado",     atrfechaAlta61,     0);
 //			} catch (ExceptionValidezNegativa | ExceptionUsuarioNoEncontrado | NoExistePaquete e) {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
@@ -344,7 +344,7 @@ public class TestGeneral9 {
 //            e.printStackTrace();
 //        }
 
-//        assertEquals(dtoferta.getDescripcion(),    "Destaca tu anuncio");
+//        assertEquals(dtoferta.getDescripcion(),     "Destaca tu anuncio");
         
      // ============================================
 //        try {

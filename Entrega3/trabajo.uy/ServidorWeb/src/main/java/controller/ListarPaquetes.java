@@ -31,17 +31,17 @@ public class ListarPaquetes extends HttpServlet {
     
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 
         try {
             Set<PaqueteBean> paquetes = logica.obtenerPaquetes();
-            request.setAttribute("paquetes", paquetes);
-            request.getRequestDispatcher("/WEB-INF/listar/paquetes.jsp").forward(request, response);
+            request.setAttribute("paquetes",  paquetes);
+            request.getRequestDispatcher("/WEB-INF/listar/paquetes.jsp").forward(request,  response);
         } catch (Exception e) {
             String mensajeError = "Ocurrió un error: " + e.getMessage();
-            request.setAttribute("mensajeError", mensajeError);
-            request.getRequestDispatcher("/WEB-INF/errorPage.jsp").forward(request, response);
+            request.setAttribute("mensajeError",  mensajeError);
+            request.getRequestDispatcher("/WEB-INF/errorPage.jsp").forward(request,  response);
         }
     }
 }

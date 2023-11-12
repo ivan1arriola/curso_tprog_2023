@@ -40,7 +40,7 @@ public class AceptarOferta extends JInternalFrame {
     private JTextArea ofertaDetalle;
 
 
-    public AceptarOferta(ICtrlOferta ICO, ICtrlUsuario ICU) {
+    public AceptarOferta(ICtrlOferta ICO,  ICtrlUsuario ICU) {
         controlUsuario = ICU;
         controlOferta = ICO;
         setResizable(true);
@@ -49,11 +49,11 @@ public class AceptarOferta extends JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Aceptar o Rechazar Oferta");
-        setBounds(30, 30, 395, 259);
+        setBounds(30,  30,  395,  259);
         //GridBagConstraints gbc = new GridBagConstraints();
 
         comboBoxEmpresa = new JComboBox<>();
-        comboBoxEmpresa.setBounds(156, 16, 209, 24);
+        comboBoxEmpresa.setBounds(156,  16,  209,  24);
         comboBoxEmpresa.setEnabled(true);
         comboBoxEmpresa.setEditable(false);
 
@@ -72,11 +72,11 @@ public class AceptarOferta extends JInternalFrame {
 
                         if (ofertasIngresadas.isEmpty()) {
 
-                            JOptionPane.showMessageDialog(AceptarOferta.this, "No hay ofertas en estado \"Ingresada\" de esta empresa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(AceptarOferta.this,  "No hay ofertas en estado \"Ingresada\" de esta empresa",  "Mensaje",  JOptionPane.INFORMATION_MESSAGE);
                         } else {
 
                             List<String> ofertasSorted = new ArrayList<>(ofertasIngresadas);
-                            Collections.sort(ofertasSorted, String.CASE_INSENSITIVE_ORDER);
+                            Collections.sort(ofertasSorted,  String.CASE_INSENSITIVE_ORDER);
                             comboBoxOfertas.addItem(" ");
                             for (String offer : ofertasSorted) {
 
@@ -99,25 +99,25 @@ public class AceptarOferta extends JInternalFrame {
         getContentPane().setLayout(null);
 
         JLabel lblEmpre = new JLabel("Empresa:");
-        lblEmpre.setBounds(15, 23, 66, 15);
+        lblEmpre.setBounds(15,  23,  66,  15);
         lblEmpre.setHorizontalAlignment(SwingConstants.LEFT);
         getContentPane().add(lblEmpre);
         getContentPane().add(comboBoxEmpresa);
 
 
         JLabel lblNewLabel = new JLabel("Oferta:");
-        lblNewLabel.setBounds(15, 57, 51, 15);
+        lblNewLabel.setBounds(15,  57,  51,  15);
         getContentPane().add(lblNewLabel);
 
         //COMBOBOX OFERTA
         comboBoxOfertas = new JComboBox<>();
-        comboBoxOfertas.setBounds(156, 50, 209, 24);
+        comboBoxOfertas.setBounds(156,  50,  209,  24);
         comboBoxOfertas.setEditable(false);
         comboBoxOfertas.setEnabled(true);
         getContentPane().add(comboBoxOfertas);
 
         JLabel lblOfertaDetalle = new JLabel("Detalles de Oferta:");
-        lblOfertaDetalle.setBounds(15, 104, 136, 15);
+        lblOfertaDetalle.setBounds(15,  104,  136,  15);
         getContentPane().add(lblOfertaDetalle);
 
 
@@ -128,13 +128,13 @@ public class AceptarOferta extends JInternalFrame {
 
 
         JScrollPane infoScrollPane = new JScrollPane(ofertaDetalle);
-        infoScrollPane.setBounds(156, 89, 209, 72);
+        infoScrollPane.setBounds(156,  89,  209,  72);
         infoScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         getContentPane().add(infoScrollPane);
 
         JButton Confirmar = new JButton("Confirmar");
-        Confirmar.setBounds(48, 185, 103, 25);
+        Confirmar.setBounds(48,  185,  103,  25);
         getContentPane().add(Confirmar);
 
         Confirmar.addActionListener(new ActionListener() {
@@ -145,11 +145,11 @@ public class AceptarOferta extends JInternalFrame {
                     if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
                         String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
                         controlOferta.aceptoOL(selectedOferta);
-                        JOptionPane.showMessageDialog(null, "Oferta confirmada", "Aceotar o Rechazar Oferta", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,  "Oferta confirmada",  "Aceotar o Rechazar Oferta",  JOptionPane.INFORMATION_MESSAGE);
 
                     }
                 } catch (IllegalArgumentException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al confirmar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,  "Error al confirmar" + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
                 } catch (OfertaLaboralNoEncontrada e) {
                     throw new RuntimeException(e);
                 }
@@ -160,7 +160,7 @@ public class AceptarOferta extends JInternalFrame {
         });
 
         JButton Rechazar = new JButton("Rechazar");
-        Rechazar.setBounds(265, 185, 100, 25);
+        Rechazar.setBounds(265,  185,  100,  25);
         getContentPane().add(Rechazar);
 
 
@@ -172,11 +172,11 @@ public class AceptarOferta extends JInternalFrame {
                     if (comboBoxOfertas.getSelectedIndex() != -1 && comboBoxOfertas.getSelectedIndex() != 0) {
                         String selectedOferta = (String) comboBoxOfertas.getSelectedItem();
                         controlOferta.rechazoOL(selectedOferta);
-                        JOptionPane.showMessageDialog(null, "Oferta rechazada", "Aceotar o Rechazar Oferta", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,  "Oferta rechazada",  "Aceotar o Rechazar Oferta",  JOptionPane.INFORMATION_MESSAGE);
                     }
 
                 } catch (IllegalArgumentException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al rechazar" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,  "Error al rechazar" + ex.getMessage(),  "Error",  JOptionPane.ERROR_MESSAGE);
                 } catch (OfertaLaboralNoEncontrada e) {
                     throw new RuntimeException(e);
                 }
@@ -225,7 +225,7 @@ public class AceptarOferta extends JInternalFrame {
         //comboBoxOfertas.removeAllItems();  
         Set<String> empresas = controlUsuario.listarEmpresas();
         List<String> empresasSorted = new ArrayList<>(empresas);
-        Collections.sort(empresasSorted, String.CASE_INSENSITIVE_ORDER);
+        Collections.sort(empresasSorted,  String.CASE_INSENSITIVE_ORDER);
         comboBoxEmpresa.addItem(" ");
         for (String nickname : empresasSorted) {
 

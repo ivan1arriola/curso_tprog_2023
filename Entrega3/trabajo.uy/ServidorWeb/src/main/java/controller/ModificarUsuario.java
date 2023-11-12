@@ -49,7 +49,7 @@ public class ModificarUsuario extends HttpServlet {
     public static LocalDate convertirCadenaAFecha(String fechaEnCadena) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            return LocalDate.parse(fechaEnCadena, formatter);
+            return LocalDate.parse(fechaEnCadena,  formatter);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -57,9 +57,9 @@ public class ModificarUsuario extends HttpServlet {
     }
     
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		
-        // Campos obligatorios, no editables
+        // Campos obligatorios,  no editables
         String nickname = request.getParameter("nickname");
         String correo = request.getParameter("email");
 
@@ -81,16 +81,16 @@ public class ModificarUsuario extends HttpServlet {
 	        if (fechanacimiento != null && descripcion == null) {
 	        	// es postulante
 	        	LocalDate fecha = convertirCadenaAFecha(fechanacimiento);
-	        	logica.modificarPostulante(nickname, nombre, apellido, correo, password, imagenBytes, fecha, nacionalidad);
+	        	logica.modificarPostulante(nickname,  nombre,  apellido,  correo,  password,  imagenBytes,  fecha,  nacionalidad);
 	        } else if (fechanacimiento == null && descripcion != null) {
-                logica.modificarEmpresa(nickname, nombre, apellido, correo, password, imagenBytes, descripcion, link);
+                logica.modificarEmpresa(nickname,  nombre,  apellido,  correo,  password,  imagenBytes,  descripcion,  link);
 	        }
 	        response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nickname);
         } catch (Exception e) {
         	String mensajeError = "Ocurrió un error al actualizar los datos del usuario";
-            request.setAttribute("mensajeError", mensajeError);
+            request.setAttribute("mensajeError",  mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            dispatcher.forward(request, response);
+            dispatcher.forward(request,  response);
         }
 
 
@@ -99,7 +99,7 @@ public class ModificarUsuario extends HttpServlet {
 
         String imagen = usuario.getImagen();
         if (imagen != null) {
-            session.setAttribute("imagen", imagen);
+            session.setAttribute("imagen",  imagen);
         }
 
         

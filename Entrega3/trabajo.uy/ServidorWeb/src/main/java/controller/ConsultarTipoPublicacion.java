@@ -28,10 +28,10 @@ public class ConsultarTipoPublicacion extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doGet(HttpServletRequest request,  HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
         ILogica logica = FabricaWeb.getLogica();
 
         String nombre = request.getParameter("tp");
@@ -41,19 +41,19 @@ public class ConsultarTipoPublicacion extends HttpServlet {
                 DtTipoOferta tipoPublicacion = logica.obtenerDatosTO(nombre);
                 if (tipoPublicacion == null) throw new Exception("Tipo Oferta inexistente");
                 
-                request.setAttribute("nombrePagina", tipoPublicacion.getNombre());
-                request.setAttribute("tipoPublicacion", tipoPublicacion);
+                request.setAttribute("nombrePagina",  tipoPublicacion.getNombre());
+                request.setAttribute("tipoPublicacion",  tipoPublicacion);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarTipoPublicacion/tipopublicacion.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
             } else {
                 throw new Exception("No se ingresó nombre de tipo de publicación");
             }
         } catch (Exception e) {
             String mensajeError = e.getMessage();
-            request.setAttribute("mensajeError", mensajeError);
+            request.setAttribute("mensajeError",  mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            dispatcher.forward(request, response);
+            dispatcher.forward(request,  response);
         }
     }
 }

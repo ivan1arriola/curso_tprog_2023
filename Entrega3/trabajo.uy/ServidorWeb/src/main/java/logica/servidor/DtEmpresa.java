@@ -28,9 +28,9 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtEmpresa", propOrder = {
-    "descripcion",
-    "url",
+@XmlType(name = "dtEmpresa",  propOrder = {
+    "descripcion", 
+    "url", 
     "ofertasLaborales"
 })
 public class DtEmpresa

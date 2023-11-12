@@ -27,49 +27,49 @@ public class IniciarSesion extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("nickname") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
         } else {
-            request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request,  response);
         }
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         String identificador = request.getParameter("identificador-input");
         String contrasenia = request.getParameter("password-input");
 
         try {
-            boolean credencialesValidadas = servidor.validarCredenciales(identificador, contrasenia);
+            boolean credencialesValidadas = servidor.validarCredenciales(identificador,  contrasenia);
 
             if (credencialesValidadas) {
-                iniciarSesion(request, response, identificador);
+                iniciarSesion(request,  response,  identificador);
             } else {
-                request.setAttribute("mensajeError", "Inicio de sesión fallido. Verifique sus credenciales.");
-                request.setAttribute("identificador", identificador);
-                request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request, response);
+                request.setAttribute("mensajeError",  "Inicio de sesión fallido. Verifique sus credenciales.");
+                request.setAttribute("identificador",  identificador);
+                request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request,  response);
             }
         } catch (ExceptionUsuarioNoEncontrado_Exception exc) { 
         	
-        	request.setAttribute("mensajeError", "Usuario no encontrado. Verifique sus credenciales.");
-            request.setAttribute("identificador", identificador);
-            request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request, response);
+        	request.setAttribute("mensajeError",  "Usuario no encontrado. Verifique sus credenciales.");
+            request.setAttribute("identificador",  identificador);
+            request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request,  response);
         
         } catch (Exception e) {
-            request.setAttribute("mensajeError", "Ocurrió un error al iniciar sesión.");
-            request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request, response);
+            request.setAttribute("mensajeError",  "Ocurrió un error al iniciar sesión.");
+            request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request,  response);
         }
 
 	}
 
-    private void iniciarSesion(HttpServletRequest request, HttpServletResponse response, String identificador) throws Exception {
+    private void iniciarSesion(HttpServletRequest request,  HttpServletResponse response,  String identificador) throws Exception {
         DtUsuario usuario = servidor.obtenerDatosUsuario(identificador);
         HttpSession session = request.getSession();
-        session.setAttribute("nickname", usuario.getNickname());
-        session.setAttribute("usuario", usuario);
-        session.setAttribute("nombreUsuario", usuario.getNombre() + " " + usuario.getApellido());
+        session.setAttribute("nickname",  usuario.getNickname());
+        session.setAttribute("usuario",  usuario);
+        session.setAttribute("nombreUsuario",  usuario.getNombre() + " " + usuario.getApellido());
         TipoUsuario tipo;
 
         if (usuario instanceof DtPostulante) {
@@ -80,13 +80,13 @@ public class IniciarSesion extends HttpServlet {
             throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
         }
 
-        session.setAttribute("tipoUsuario", tipo);
+        session.setAttribute("tipoUsuario",  tipo);
 
         byte[] imagenBytes = usuario.getImagen();
 
         if (imagenBytes != null) {
             //String imagenBase64 = Base64.getEncoder().encodeToString(imagenBytes);
-            session.setAttribute("imagen", imagenBytes);
+            session.setAttribute("imagen",  imagenBytes);
         }
 
         response.sendRedirect(request.getContextPath() + "/home");

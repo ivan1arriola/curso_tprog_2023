@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AsignarOrdenAOfertaFinalizada", propOrder = {
+@XmlType(name = "AsignarOrdenAOfertaFinalizada",  propOrder = {
     "message"
 })
 public class AsignarOrdenAOfertaFinalizada {

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "NoExistePaquete", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "NoExistePaquete",  targetNamespace = "http://servidor.logica/")
 public class NoExistePaquete_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class NoExistePaquete_Exception
      * @param faultInfo
      * @param message
      */
-    public NoExistePaquete_Exception(String message, NoExistePaquete faultInfo) {
+    public NoExistePaquete_Exception(String message,  NoExistePaquete faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class NoExistePaquete_Exception
      * @param faultInfo
      * @param message
      */
-    public NoExistePaquete_Exception(String message, NoExistePaquete faultInfo, Throwable cause) {
-        super(message, cause);
+    public NoExistePaquete_Exception(String message,  NoExistePaquete faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

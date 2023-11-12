@@ -6,13 +6,13 @@ import logica.enumerados.DepUY;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Ofertas_finalizadas", uniqueConstraints = {
+@Table(name = "Ofertas_finalizadas",  uniqueConstraints = {
         @UniqueConstraint(columnNames = "nombre")
 })
 public class OfertaLaboralDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id",  nullable = false)
     private Long iden;
 
     @Column(nullable = false)
@@ -48,7 +48,7 @@ public class OfertaLaboralDTO {
     @JoinColumn(name = "id_empresa")
     private EmpresaDTO empresa;
 
-    public OfertaLaboralDTO(String nombre, String descripcion, String horario, Float remuneracion, DepUY departamento, String ciudad, String tipo_publicacion, LocalDate fecha_alta, LocalDate fecha_baja, float costo, String paquete, EmpresaDTO empresa) {
+    public OfertaLaboralDTO(String nombre,  String descripcion,  String horario,  Float remuneracion,  DepUY departamento,  String ciudad,  String tipo_publicacion,  LocalDate fecha_alta,  LocalDate fecha_baja,  float costo,  String paquete,  EmpresaDTO empresa) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.horario = horario;
@@ -64,12 +64,12 @@ public class OfertaLaboralDTO {
         this.empresa = empresa;
     }
 
-    public OfertaLaboralDTO(String nombre, String descripcion, String horario, Float remuneracion, DepUY departamento, String ciudad, String tipo_publicacion, LocalDate fecha_alta, LocalDate fecha_baja, float costo, EmpresaDTO empresa) {
-        this( nombre, descripcion, horario, remuneracion, departamento, ciudad, tipo_publicacion, fecha_alta, fecha_baja, costo, null, empresa);
+    public OfertaLaboralDTO(String nombre,  String descripcion,  String horario,  Float remuneracion,  DepUY departamento,  String ciudad,  String tipo_publicacion,  LocalDate fecha_alta,  LocalDate fecha_baja,  float costo,  EmpresaDTO empresa) {
+        this( nombre,  descripcion,  horario,  remuneracion,  departamento,  ciudad,  tipo_publicacion,  fecha_alta,  fecha_baja,  costo,  null,  empresa);
     }
 
-    public OfertaLaboralDTO(String nombre, String descripcion, String horario, Float remuneracion, DepUY departamento, String ciudad, String tipo_publicacion, LocalDate fecha_alta, LocalDate fecha_baja, float costo, String paquete) {
-        this( nombre, descripcion, horario, remuneracion, departamento, ciudad, tipo_publicacion, fecha_alta, fecha_baja, costo, paquete, null);
+    public OfertaLaboralDTO(String nombre,  String descripcion,  String horario,  Float remuneracion,  DepUY departamento,  String ciudad,  String tipo_publicacion,  LocalDate fecha_alta,  LocalDate fecha_baja,  float costo,  String paquete) {
+        this( nombre,  descripcion,  horario,  remuneracion,  departamento,  ciudad,  tipo_publicacion,  fecha_alta,  fecha_baja,  costo,  paquete,  null);
     }
 
     public OfertaLaboralDTO() {

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "FinalizarOfertaNoVencida", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "FinalizarOfertaNoVencida",  targetNamespace = "http://servidor.logica/")
 public class FinalizarOfertaNoVencida_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class FinalizarOfertaNoVencida_Exception
      * @param faultInfo
      * @param message
      */
-    public FinalizarOfertaNoVencida_Exception(String message, FinalizarOfertaNoVencida faultInfo) {
+    public FinalizarOfertaNoVencida_Exception(String message,  FinalizarOfertaNoVencida faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class FinalizarOfertaNoVencida_Exception
      * @param faultInfo
      * @param message
      */
-    public FinalizarOfertaNoVencida_Exception(String message, FinalizarOfertaNoVencida faultInfo, Throwable cause) {
-        super(message, cause);
+    public FinalizarOfertaNoVencida_Exception(String message,  FinalizarOfertaNoVencida faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

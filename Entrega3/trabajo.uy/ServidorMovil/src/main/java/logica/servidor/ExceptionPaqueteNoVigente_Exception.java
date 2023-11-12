@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionPaqueteNoVigente", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionPaqueteNoVigente",  targetNamespace = "http://servidor.logica/")
 public class ExceptionPaqueteNoVigente_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionPaqueteNoVigente_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionPaqueteNoVigente_Exception(String message, ExceptionPaqueteNoVigente faultInfo) {
+    public ExceptionPaqueteNoVigente_Exception(String message,  ExceptionPaqueteNoVigente faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionPaqueteNoVigente_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionPaqueteNoVigente_Exception(String message, ExceptionPaqueteNoVigente faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionPaqueteNoVigente_Exception(String message,  ExceptionPaqueteNoVigente faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

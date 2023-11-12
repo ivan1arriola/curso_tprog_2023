@@ -58,11 +58,11 @@ public class TestGeneral2 {
         String nombre = "Arnold";
         String apellido = "Schwarzenegger";
         String correo = "Arnold@Skynet.com";
-        LocalDate fechaNacimiento = LocalDate.of(1947,    7,    30);
+        LocalDate fechaNacimiento = LocalDate.of(1947,     7,     30);
         String nacionalidad = "Austriaco";
 
         try {
-			ICU.altaPostulante(nickname,    password,    nombre,    apellido,    correo,    fechaNacimiento,    nacionalidad);
+			ICU.altaPostulante(nickname,     password,     nombre,     apellido,     correo,     fechaNacimiento,     nacionalidad);
 		} catch (ExceptionUsuarioNickYCorreoRepetidos | ExceptionUsuarioNickRepetido | ExceptionUsuarioCorreoRepetido
 				| ErrorAgregarUsuario | ExceptionFechaInvalida e) {
 			// TODO Auto-generated catch block

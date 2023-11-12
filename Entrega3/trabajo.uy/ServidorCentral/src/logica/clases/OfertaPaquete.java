@@ -33,7 +33,7 @@ public class OfertaPaquete {
     @JoinColumn(name = "tipoOferta_id")
     private TipoOferta tOferta; // Relación muchos a uno con TipoOferta
 
-    public OfertaPaquete(TipoOferta ofer, int cant) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public OfertaPaquete(TipoOferta ofer,  int cant) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
 	    if (cant >= 0) {
 	        tOferta = ofer;
 	        cantidad = cant;
@@ -48,7 +48,7 @@ public class OfertaPaquete {
     }
 
     public DTCantTO getDTCantTO() {
-        DTCantTO respuesta = new DTCantTO(tOferta.getNombre(), this.cantidad);
+        DTCantTO respuesta = new DTCantTO(tOferta.getNombre(),  this.cantidad);
         return respuesta;
     }
 

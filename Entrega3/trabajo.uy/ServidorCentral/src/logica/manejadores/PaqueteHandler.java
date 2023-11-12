@@ -24,7 +24,7 @@ public class PaqueteHandler {
         return instancia;
     }
 
-    public Map<String, Paquete> obtener() {
+    public Map<String,  Paquete> obtener() {
         if (database == null) {
             throw new IllegalStateException("EntityManager no configurado.");
         }
@@ -32,12 +32,12 @@ public class PaqueteHandler {
         if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
-        List<Paquete> paqueteList = database.createQuery("SELECT p FROM Paquete p", Paquete.class).getResultList();
+        List<Paquete> paqueteList = database.createQuery("SELECT p FROM Paquete p",  Paquete.class).getResultList();
         database.getTransaction().commit();
 
-        Map<String, Paquete> paquetes = new TreeMap<>();
+        Map<String,  Paquete> paquetes = new TreeMap<>();
         for (Paquete paquete : paqueteList) {
-            paquetes.put(paquete.getNombre(), paquete);
+            paquetes.put(paquete.getNombre(),  paquete);
         }
 
         return paquetes;
@@ -56,8 +56,8 @@ public class PaqueteHandler {
         if (!database.getTransaction().isActive()) {
             database.getTransaction().begin();
         }
-        boolean existe = database.createQuery("SELECT COUNT(p) FROM Paquete p WHERE p.nombre = :nombre", Long.class)
-                .setParameter("nombre", nombre)
+        boolean existe = database.createQuery("SELECT COUNT(p) FROM Paquete p WHERE p.nombre = :nombre",  Long.class)
+                .setParameter("nombre",  nombre)
                 .getSingleResult() > 0;
         database.getTransaction().commit();
 
@@ -74,8 +74,8 @@ public class PaqueteHandler {
 
         Paquete paquete;
         try {
-            paquete = database.createQuery("SELECT p FROM Paquete p WHERE p.nombre = :nombre", Paquete.class)
-                    .setParameter("nombre", nombre)
+            paquete = database.createQuery("SELECT p FROM Paquete p WHERE p.nombre = :nombre",  Paquete.class)
+                    .setParameter("nombre",  nombre)
                     .getSingleResult();
             database.getTransaction().commit();
         } catch (NoResultException ex) {

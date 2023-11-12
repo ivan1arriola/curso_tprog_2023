@@ -31,7 +31,7 @@ public class ConsultarPostulacion extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
 		String nombreOferta = request.getParameter("oferta");
 		String nickname = (String) request.getSession().getAttribute("nickname");
@@ -39,28 +39,28 @@ public class ConsultarPostulacion extends HttpServlet {
                    
         try {
         	
-        	boolean existe = servidor.hayPostulacionW(nickname, nombreOferta); 
+        	boolean existe = servidor.hayPostulacionW(nickname,  nombreOferta); 
         	
         	DtUsuario usuario = servidor.obtenerDatosUsuario(nickname);
 	        String nombrePostulante = usuario.getNombre() + " " + usuario.getApellido();
 	        DtOfertaExtendido offer = servidor.obtenerOfertaLaboral(nombreOferta);
 	        byte[] imagenOferta = offer.getImagen();
     		
-	        request.setAttribute("oferta", offer);
-	        request.setAttribute("postulante", nombrePostulante);
-	        request.setAttribute("nickname", nickname);
-	        request.setAttribute("imagenOferta", imagenOferta);
+	        request.setAttribute("oferta",  offer);
+	        request.setAttribute("postulante",  nombrePostulante);
+	        request.setAttribute("nickname",  nickname);
+	        request.setAttribute("imagenOferta",  imagenOferta);
         	
         	if (existe) {
-        		dtpost = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
-	          	request.setAttribute("postulacion", dtpost);
-		  		request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacion.jsp").forward(request, response);
+        		dtpost = servidor.obtenerDatosPostulacionW(nickname,  nombreOferta);
+	          	request.setAttribute("postulacion",  dtpost);
+		  		request.getRequestDispatcher("/WEB-INF/consultarPostulacion/postulacion.jsp").forward(request,  response);
         	} else {
 			
-        		request.getRequestDispatcher("/WEB-INF/consultarPostulacion/nopostulacion.jsp").forward(request, response);
+        		request.getRequestDispatcher("/WEB-INF/consultarPostulacion/nopostulacion.jsp").forward(request,  response);
         	}
 		} catch (ExceptionUsuarioNoEncontrado_Exception exc) {
-			request.getRequestDispatcher("/WEB-INF/consultarPostulacion/nopostulacion.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/consultarPostulacion/nopostulacion.jsp").forward(request,  response);
 			throw new RuntimeException(exc);
 		} catch (OfertaLaboralNoEncontrada_Exception exc) {
 			throw new RuntimeException(exc);
@@ -73,9 +73,9 @@ public class ConsultarPostulacion extends HttpServlet {
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
-		doGet(request, response);
+		doGet(request,  response);
 	}
 
 }
