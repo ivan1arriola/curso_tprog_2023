@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class TipoOferta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     // -----------
     // Atributos
     private String nombre;

@@ -27,7 +27,7 @@ import java.time.LocalDate;
 public class Postulacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     // -----------
     // atributos
     private LocalDate fecha;

@@ -35,7 +35,7 @@ import java.util.Set;
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     // -----------
     private String nickname;
     private String nombre;
