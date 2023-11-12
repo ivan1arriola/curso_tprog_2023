@@ -122,6 +122,8 @@ function ejecutarProyecto(){
 
 # Menu de opciones
 while true; do
+    # crea la carpeta out si no existe
+    mkdir -p $OUT_DIR
     echo "Seleccione una opción:"
     echo "1. Desplegar Servidor Central"
     echo "2. Compilar Servidor Web WAR (requiere Servidor Central Corriendo)"
