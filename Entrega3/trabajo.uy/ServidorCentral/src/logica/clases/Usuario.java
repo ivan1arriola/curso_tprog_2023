@@ -20,7 +20,7 @@ import jakarta.persistence.DiscriminatorType;
 
 //import logica.Utils;
 import logica.datatypes.DTUsuario;
-import logica.dto.EmpresaDTO;
+//import logica.dto.EmpresaDTO;
 import logica.dto.UsuarioDTO;
 
 import java.util.Base64;

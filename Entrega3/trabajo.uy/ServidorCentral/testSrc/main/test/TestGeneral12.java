@@ -6,7 +6,7 @@ package main.test;
 
 import org.junit.Test;
 
-import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExcepcionKeywordVacia;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

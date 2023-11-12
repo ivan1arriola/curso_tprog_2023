@@ -2,7 +2,7 @@ package logica.persistencia;
 
 import excepciones.PersistirOfertaNoFinalizada;
 import logica.clases.OfertaLaboral;
-import logica.clases.Postulacion;
+//import logica.clases.Postulacion;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -14,8 +14,8 @@ import logica.dto.OfertaLaboralDTO;
 import logica.dto.PostulacionDTO;
 import logica.dto.PostulanteDTO;
 import logica.dto.UsuarioDTO;
-import logica.enumerados.EstadoOL;
-import logica.manejadores.OfertaLaboralHandler;
+//import logica.enumerados.EstadoOL;
+//import logica.manejadores.OfertaLaboralHandler;
 
 import java.util.List;
 
