@@ -167,23 +167,22 @@ public class Empresa extends Usuario {
                 ofertasLaborales.add(ofertaLab);
 
                 if (paq != null) { //actualiza cantidad del tipo Oferta
-                    Set<OfertaPaquete> restantes = paq.getOfertaPaquete();
-                    
-                    OfertaPaquete ofertaAux = null;
-                    for (OfertaPaquete offer : restantes) {
-
-                        if (offer.getDTCantTO().getNombre().equals(tipoOferta.getNombre())) {
-                        	ofertaAux = offer;
-                        }
-                    } //cierra for
-                    if (ofertaAux != null) {
-                    	int cantidadAsociada = ofertaAux.getDTCantTO().getCantidad();
-                        if (cantidadAsociada >= 1) {
-                            cantidadAsociada = cantidadAsociada - 1;
-                            OfertaPaquete oferPaq = new OfertaPaquete(tipoOferta, cantidadAsociada);
-                            restantes.remove(ofertaAux);
-                            restantes.add(oferPaq);
-                        }
+                    for(InfoCompra infoCompra : infoCompras) {
+                    	String nombrePaq = infoCompra.getPaquete().getNombre();
+                    	if(nombrePaq.equals(paq.getNombre())) {
+                    		Set<InfoCompraOferta> infoCompras = infoCompra.getICO();
+                    		for(InfoCompraOferta infoCompOfer : infoCompras) {
+                    			if(tipoOferta.getNombre().equals(infoCompOfer.gettipoOfertas().getNombre())) {
+                        			Integer cantres = infoCompOfer.getCantres() - 1;
+                        			if (cantres >= 1) {
+                        				infoCompOfer.setCantres(cantres);
+                        			}
+                        			else {
+                        				infoCompras.remove(infoCompOfer);
+                        			}
+                    			}
+                    		}
+                    	}
                     }
 
                 }
@@ -484,6 +483,25 @@ public class Empresa extends Usuario {
 		}
 		return null;
 	}
+
+    public String obtenerCantPaquetesEmpresa() {
+		String s = "";
+        for(InfoCompra infoCompra : infoCompras) {
+        	String nombrePaq = infoCompra.getPaquete().getNombre();
+        	s = s + nombrePaq;
+    		Set<InfoCompraOferta> infoCompras = infoCompra.getICO();
+    		
+    		for(InfoCompraOferta infoCompOfer : infoCompras) {
+    			s = s + "," + infoCompOfer.gettipoOfertas().getNombre();
+    			s = s + ":" + infoCompOfer.getCantres();
+    		}
+    		s = s + "-";
+    		System.out.println(s);
+        }
+		return s.substring(0, s.length() - 1);
+	}
+
+    
 
 
 }

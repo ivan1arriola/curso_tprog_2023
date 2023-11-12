@@ -15,14 +15,18 @@ public class DTPostulacion {
     private String cVitae;
     private String motivacion;
     private String urlVideo;
+    private Integer clasificacion;
+    private String fechaResu;
 
-    public DTPostulacion(String nomb_p, LocalDate fecha, String URLDE, String cVitae, String motivacion, String urlVid) {
+    public DTPostulacion(String nomb_p, LocalDate fecha, String URLDE, String cVitae, String motivacion, String urlVid, Integer clasif, String fechaR) {
         nombrePostulante = nomb_p;
         this.fecha = fecha;
         uRLDocExtras = URLDE;
         this.cVitae = cVitae;
         this.motivacion = motivacion;
         urlVideo = urlVid;
+        setClasificacion(clasif);
+        fechaResu = fechaR;
     }
 
     public String getPostulante() {
@@ -48,5 +52,21 @@ public class DTPostulacion {
     public String getMotivacion() {
         return motivacion;
     }
+
+	public Integer getClasificacion() {
+		return clasificacion;
+	}
+
+	public void setClasificacion(Integer clasificacion) {
+		this.clasificacion = clasificacion;
+	}
+
+	public String getFechaResu() {
+		return fechaResu;
+	}
+
+	public void setFechaResu(String fechaResu) {
+		this.fechaResu = fechaResu;
+	}
 
 }

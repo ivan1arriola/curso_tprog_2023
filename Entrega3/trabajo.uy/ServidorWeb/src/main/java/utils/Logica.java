@@ -105,7 +105,7 @@ public class Logica implements ILogica {
 		PostulacionBean postulacion = new PostulacionBean();
 
 		DtPostulacion dtPostulacion = servidor.obtenerDatosPostulacionW(nickname, nombreOferta);
-
+	    
 		postulacion.setNicknamePostulante(dtPostulacion.getNombrePostulante());
 		postulacion.setFecha(LocalDate.parse(dtPostulacion.getFecha()));
 		postulacion.setCVitae(dtPostulacion.getCVitae());
@@ -113,6 +113,8 @@ public class Logica implements ILogica {
 		postulacion.setNombreOfertaLaboral(nombreOferta);
 		postulacion.setURLDocExtras(dtPostulacion.getURLDocExtras());
 		postulacion.setVideo(dtPostulacion.getUrlVideo());
+		postulacion.setClasificacion(dtPostulacion.getClasificacion());
+		postulacion.setfechaResu(LocalDate.parse(dtPostulacion.getFechaResu()));
 
 		return postulacion;
 	}

@@ -27,6 +27,7 @@ public interface Servidor {
 
     /**
      * 
+<<<<<<< HEAD
      * @param arg0
      * @param arg1
      * @param arg2
@@ -80,6 +81,8 @@ public interface Servidor {
 
     /**
      * 
+=======
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @param apellido
      * @param correo
      * @param description
@@ -164,6 +167,62 @@ public interface Servidor {
     /**
      * 
      * @param arg0
+<<<<<<< HEAD
+=======
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception
+     * @throws ExceptionCompraPaqueteConValorNegativo_Exception
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     * @throws ExceptionValidezNegativa_Exception
+     * @throws NoExistePaquete_Exception
+     */
+    @WebMethod
+    @Action(input = "http://servidor.logica/Servidor/compraPaquetesRequest", output = "http://servidor.logica/Servidor/compraPaquetesResponse", fault = {
+        @FaultAction(className = ExceptionCompraPaqueteConValorNegativo_Exception.class, value = "http://servidor.logica/Servidor/compraPaquetes/Fault/ExceptionCompraPaqueteConValorNegativo"),
+        @FaultAction(className = ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception.class, value = "http://servidor.logica/Servidor/compraPaquetes/Fault/ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa"),
+        @FaultAction(className = ExceptionValidezNegativa_Exception.class, value = "http://servidor.logica/Servidor/compraPaquetes/Fault/ExceptionValidezNegativa"),
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/compraPaquetes/Fault/ExceptionUsuarioNoEncontrado"),
+        @FaultAction(className = NoExistePaquete_Exception.class, value = "http://servidor.logica/Servidor/compraPaquetes/Fault/NoExistePaquete")
+    })
+    public void compraPaquetes(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        int arg3)
+        throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCompraPaqueteConValorNegativo_Exception, ExceptionUsuarioNoEncontrado_Exception, ExceptionValidezNegativa_Exception, NoExistePaquete_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns logica.servidor.DtOfertaExtendidoSinPConK
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/infoOfertaLaboralPostulanteRequest", output = "http://servidor.logica/Servidor/infoOfertaLaboralPostulanteResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/infoOfertaLaboralPostulante/Fault/OfertaLaboralNoEncontrada")
+    })
+    public DtOfertaExtendidoSinPConK infoOfertaLaboralPostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @return
      *     returns logica.servidor.DtUsuario
      * @throws ExceptionUsuarioNoEncontrado_Exception
@@ -192,10 +251,13 @@ public interface Servidor {
      * @param arg7
      * @param arg8
      * @param arg9
+<<<<<<< HEAD
      * @throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception
      * @throws ExceptionCostoPaqueteNoNegativo_Exception
      * @throws ExceptionDescuentoInvalido_Exception
      * @throws ExceptionPaqueteNoVigente_Exception
+=======
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @throws ExceptionRemuneracionOfertaLaboralNegativa_Exception
      * @throws ExceptionUsuarioNoEncontrado_Exception
      * @throws NoExistePaquete_Exception
@@ -204,11 +266,15 @@ public interface Servidor {
     @Action(input = "http://servidor.logica/Servidor/altaOfertaLaboralRequest", output = "http://servidor.logica/Servidor/altaOfertaLaboralResponse", fault = {
         @FaultAction(className = ExceptionRemuneracionOfertaLaboralNegativa_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/ExceptionRemuneracionOfertaLaboralNegativa"),
         @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/ExceptionUsuarioNoEncontrado"),
+<<<<<<< HEAD
         @FaultAction(className = NoExistePaquete_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/NoExistePaquete"),
         @FaultAction(className = ExceptionCostoPaqueteNoNegativo_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/ExceptionCostoPaqueteNoNegativo"),
         @FaultAction(className = ExceptionPaqueteNoVigente_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/ExceptionPaqueteNoVigente"),
         @FaultAction(className = ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa"),
         @FaultAction(className = ExceptionDescuentoInvalido_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/ExceptionDescuentoInvalido")
+=======
+        @FaultAction(className = NoExistePaquete_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboral/Fault/NoExistePaquete")
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     })
     public void altaOfertaLaboral(
         @WebParam(name = "arg0", partName = "arg0")
@@ -233,7 +299,11 @@ public interface Servidor {
         String arg9,
         @WebParam(name = "arg10", partName = "arg10")
         String arg10)
+<<<<<<< HEAD
         throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCostoPaqueteNoNegativo_Exception, ExceptionDescuentoInvalido_Exception, ExceptionPaqueteNoVigente_Exception, ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
+=======
+        throws ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     ;
 
     /**
@@ -822,6 +892,22 @@ public interface Servidor {
     /**
      * 
      * @param arg0
+<<<<<<< HEAD
+=======
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerCantPaquetesEmpresaRequest", output = "http://servidor.logica/Servidor/obtenerCantPaquetesEmpresaResponse")
+    public String obtenerCantPaquetesEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @param arg1
      * @return
      *     returns logica.servidor.DtOfertaExtendidoSinPConK
@@ -1045,19 +1131,30 @@ public interface Servidor {
      * 
      * @param nombreOferta
      * @throws FinalizarOfertaNoVencida_Exception
+<<<<<<< HEAD
      * @throws FinalizarOfertaYaFinalizada_Exception
+=======
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @throws OfertaLaboralNoEncontrada_Exception
      */
     @WebMethod
     @Action(input = "http://servidor.logica/Servidor/finalizarOfertaRequest", output = "http://servidor.logica/Servidor/finalizarOfertaResponse", fault = {
         @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/finalizarOferta/Fault/OfertaLaboralNoEncontrada"),
+<<<<<<< HEAD
         @FaultAction(className = FinalizarOfertaNoVencida_Exception.class, value = "http://servidor.logica/Servidor/finalizarOferta/Fault/FinalizarOfertaNoVencida"),
         @FaultAction(className = FinalizarOfertaYaFinalizada_Exception.class, value = "http://servidor.logica/Servidor/finalizarOferta/Fault/FinalizarOfertaYaFinalizada")
+=======
+        @FaultAction(className = FinalizarOfertaNoVencida_Exception.class, value = "http://servidor.logica/Servidor/finalizarOferta/Fault/FinalizarOfertaNoVencida")
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     })
     public void finalizarOferta(
         @WebParam(name = "nombre_oferta", partName = "nombre_oferta")
         String nombreOferta)
+<<<<<<< HEAD
         throws FinalizarOfertaNoVencida_Exception, FinalizarOfertaYaFinalizada_Exception, OfertaLaboralNoEncontrada_Exception
+=======
+        throws FinalizarOfertaNoVencida_Exception, OfertaLaboralNoEncontrada_Exception
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     ;
 
     /**
@@ -1184,6 +1281,30 @@ public interface Servidor {
      * 
      * @param arg0
      * @param arg1
+<<<<<<< HEAD
+=======
+     * @return
+     *     returns java.lang.String
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerFechaCompraRequest", output = "http://servidor.logica/Servidor/obtenerFechaCompraResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerFechaCompra/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public String obtenerFechaCompra(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @param arg10
      * @param arg11
      * @param arg2
@@ -1194,10 +1315,13 @@ public interface Servidor {
      * @param arg7
      * @param arg8
      * @param arg9
+<<<<<<< HEAD
      * @throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception
      * @throws ExceptionCostoPaqueteNoNegativo_Exception
      * @throws ExceptionDescuentoInvalido_Exception
      * @throws ExceptionPaqueteNoVigente_Exception
+=======
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @throws ExceptionRemuneracionOfertaLaboralNegativa_Exception
      * @throws ExceptionUsuarioNoEncontrado_Exception
      * @throws NoExistePaquete_Exception
@@ -1206,11 +1330,15 @@ public interface Servidor {
     @Action(input = "http://servidor.logica/Servidor/altaOfertaLaboralConImagenRequest", output = "http://servidor.logica/Servidor/altaOfertaLaboralConImagenResponse", fault = {
         @FaultAction(className = ExceptionRemuneracionOfertaLaboralNegativa_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionRemuneracionOfertaLaboralNegativa"),
         @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionUsuarioNoEncontrado"),
+<<<<<<< HEAD
         @FaultAction(className = NoExistePaquete_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/NoExistePaquete"),
         @FaultAction(className = ExceptionCostoPaqueteNoNegativo_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionCostoPaqueteNoNegativo"),
         @FaultAction(className = ExceptionPaqueteNoVigente_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionPaqueteNoVigente"),
         @FaultAction(className = ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa"),
         @FaultAction(className = ExceptionDescuentoInvalido_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/ExceptionDescuentoInvalido")
+=======
+        @FaultAction(className = NoExistePaquete_Exception.class, value = "http://servidor.logica/Servidor/altaOfertaLaboralConImagen/Fault/NoExistePaquete")
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     })
     public void altaOfertaLaboralConImagen(
         @WebParam(name = "arg0", partName = "arg0")
@@ -1237,7 +1365,11 @@ public interface Servidor {
         byte[] arg10,
         @WebParam(name = "arg11", partName = "arg11")
         String arg11)
+<<<<<<< HEAD
         throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCostoPaqueteNoNegativo_Exception, ExceptionDescuentoInvalido_Exception, ExceptionPaqueteNoVigente_Exception, ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
+=======
+        throws ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     ;
 
     /**
@@ -1260,6 +1392,7 @@ public interface Servidor {
 
     /**
      * 
+<<<<<<< HEAD
      * @param arg0
      * @param arg1
      * @return
@@ -1291,6 +1424,8 @@ public interface Servidor {
 
     /**
      * 
+=======
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
      * @return
      *     returns logica.servidor.WrapperLista
      */
@@ -1316,6 +1451,19 @@ public interface Servidor {
      */
     @WebMethod
     @WebResult(partName = "return")
+<<<<<<< HEAD
+=======
+    @Action(input = "http://servidor.logica/Servidor/listarEmpresasRequest", output = "http://servidor.logica/Servidor/listarEmpresasResponse")
+    public WrapperLista listarEmpresas();
+
+    /**
+     * 
+     * @return
+     *     returns logica.servidor.WrapperLista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
     @Action(input = "http://servidor.logica/Servidor/listarKeywordsRequest", output = "http://servidor.logica/Servidor/listarKeywordsResponse")
     public WrapperLista listarKeywords();
 

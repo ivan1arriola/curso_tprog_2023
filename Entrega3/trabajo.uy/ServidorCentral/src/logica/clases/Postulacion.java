@@ -27,7 +27,7 @@ import java.time.LocalDate;
 public class Postulacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int iden;
+    private int id;
     // -----------
     // atributos
     private LocalDate fecha;
@@ -36,16 +36,17 @@ public class Postulacion {
     private String uRLDocExtras;
     // relaciones
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ofertaLaboral_id")
     private OfertaLaboral oferLab;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "postulante_id")
     private Postulante postulante;
     private String urlVideo;
     // evaluacion empresa
     private int clasificacion;
+    private String fechaResu;
 
 
     // constructor
@@ -59,6 +60,7 @@ public class Postulacion {
         this.urlVideo = urlVid;
         this.clasificacion = 0; // no ha sido clasificado
         System.out.println("Se ha creado una postulacion. - " + postulante.getNombre() + " - " + oferLab.getNombre());
+        fechaResu = "";
     }
 
     public Postulacion() {
@@ -136,7 +138,7 @@ public class Postulacion {
     public DTPostulacion obtenerDT() {
         DTPostulacion dtpostu;
         //if (urlVideo!=null) {
-        dtpostu = new DTPostulacion(postulante.getNickname(), fecha, uRLDocExtras, curriculumVitae, motivacion, urlVideo);
+        dtpostu = new DTPostulacion(postulante.getNickname(), fecha, uRLDocExtras, curriculumVitae, motivacion, urlVideo, getClasificacion(), getFechaResu());
     	/*} else {
     		dtpostu = new DTPostulacion(postulante.getNickname(),   fecha,   uRLDocExtras,   curriculumVitae,   motivacion, "Sin Video disponible");
     	}*/
@@ -160,6 +162,14 @@ public class Postulacion {
     public String obtenerNicknamePostulante() {
         return postulante.getNickname();
     }
+
+	public String getFechaResu() {
+		return fechaResu;
+	}
+
+	public void setFechaResu(String fechaResu) {
+		this.fechaResu = fechaResu;
+	}
 
     public PostulacionDTO getDTO(OfertaLaboralDTO ofertaLaboralDTO) {
 //    	System.out.println("no persisti ni al postulante");

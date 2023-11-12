@@ -23,6 +23,11 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="cVitae" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="motivacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="urlVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+<<<<<<< HEAD
+=======
+ *         <element name="clasificacion" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         <element name="fechaResu" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -38,7 +43,13 @@ import jakarta.xml.bind.annotation.XmlType;
     "urlDocExtras",
     "cVitae",
     "motivacion",
+<<<<<<< HEAD
     "urlVideo"
+=======
+    "urlVideo",
+    "clasificacion",
+    "fechaResu"
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
 })
 public class DtPostulacion {
 
@@ -49,6 +60,11 @@ public class DtPostulacion {
     protected String cVitae;
     protected String motivacion;
     protected String urlVideo;
+<<<<<<< HEAD
+=======
+    protected Integer clasificacion;
+    protected String fechaResu;
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
 
     /**
      * Obtiene el valor de la propiedad nombrePostulante.
@@ -194,4 +210,55 @@ public class DtPostulacion {
         this.urlVideo = value;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Obtiene el valor de la propiedad clasificacion.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getClasificacion() {
+        return clasificacion;
+    }
+
+    /**
+     * Define el valor de la propiedad clasificacion.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setClasificacion(Integer value) {
+        this.clasificacion = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaResu.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaResu() {
+        return fechaResu;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaResu.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaResu(String value) {
+        this.fechaResu = value;
+    }
+
+>>>>>>> af33b190437d87ce785374fb609683a16224dc91
 }

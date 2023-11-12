@@ -538,4 +538,9 @@ public class Servidor {
 
         return WSUtils.envolverLista((ArrayList<String>) ctrlUsuario.listarPostulantesDeOfertas(nombre_oferta));
     }
+
+    @WebMethod
+    public String obtenerCantPaquetesEmpresa(String nickname_e) throws ExceptionUsuarioNoEncontrado {
+    	return ctrlUsuario.obtenerCantPaquetesEmpresa(nickname_e);
+    }
 }

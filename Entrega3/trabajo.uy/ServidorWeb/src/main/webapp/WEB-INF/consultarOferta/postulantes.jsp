@@ -20,7 +20,7 @@
 
         } else {
         %>
-        <!-- Botón con número de postulantes -->
+        <!-- Botï¿½n con nï¿½mero de postulantes -->
         <a type="button" class="btn btn-primary" href="<%=request.getContextPath()%>/consultarpostulantes?oferta=<%=nombreOferta%>">
             Ver Postulantes <span class="badge bg-secondary"><%= postulantes.size() %></span>
         </a>

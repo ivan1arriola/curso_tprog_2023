@@ -712,19 +712,15 @@ public class OfertaLaboral {
         return null; // FALTA ENCONTRAR EL DCOM
     }
 
-    // ----------------------------------------------------
-
-//    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral() {
-//        List<Postulacion> lista = getPostulaciones();
-//        Set<DTPostulacion> stringSet = new HashSet<>();
-//        for (Postulacion item : lista) {
-//            DTPostulacion post = item.obtenerDT();
-//            stringSet.add(post);
-//        }
-//        return stringSet;
-//    }
-
-    // ----------------------------------------------------
+    public Set<DTPostulacion> ObtenerPostulacionesOfertaLaboral() {
+        List<Postulacion> lista = getPostulaciones();
+        Set<DTPostulacion> stringSet = new HashSet<>();
+        for (Postulacion item : lista) {
+            DTPostulacion post = item.obtenerDT();
+            stringSet.add(post);
+        }
+        return stringSet;
+    }
 
 
     public DTOfertaExtendidoConKeywordsPostulante infoOfertaLaboralPost(String nombre_postulante) {
@@ -831,6 +827,12 @@ public class OfertaLaboral {
             for (Postulacion postulacion : postulacionesOferta) {
                 posicion++;
                 postulacion.setClasificacion(posicion);
+                postulacion.setFechaResu(LocalDate.now().toString());
+            }
+        } else {
+        	List<Postulacion> postulacionesOferta = getPostulaciones();
+            for (Postulacion postulacion : postulacionesOferta) {
+                postulacion.setFechaResu(LocalDate.now().toString());
             }
         }
         setEstado(EstadoOL.Finalizada);

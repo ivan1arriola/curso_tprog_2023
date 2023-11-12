@@ -24,7 +24,7 @@ import java.util.Set;
 public class InfoCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long iden; // Se agrega un campo id como clave primaria
+    private Long id; // Se agrega un campo id como clave primaria
 
     private LocalDate fechaCompra;
     private LocalDate fechaVencimiento;
@@ -50,23 +50,22 @@ public class InfoCompra {
             // relaciones
             this.empresa = empres;
             this.paquete = pack;
-            Set<InfoCompraOferta> infoCompraOfertas = new HashSet<>();
+            infoCompraOfertas = new HashSet<>();
             TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
             for (DTCantTO elemento : conjuntoS) {
                 TipoOferta tipoOfer = TOH.buscar(elemento.getNombre());
                 InfoCompraOferta ico = new InfoCompraOferta(tipoOfer, elemento.getCantidad());
                 infoCompraOfertas.add(ico);
             }
-
+            
             System.out.println("Se ha creado un InfoCompra." + pack.getNombre() + " - " + empres.getNickname());
         } else {
             throw new ExceptionValidezNegativa("La validez debe ser un número no negativo.");
         }
-
     }
 
     public InfoCompra() {
-
+    	
     }
 
     // Getters

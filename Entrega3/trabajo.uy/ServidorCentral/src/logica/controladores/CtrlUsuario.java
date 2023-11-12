@@ -678,5 +678,13 @@ public class CtrlUsuario implements ICtrlUsuario {
     	Empresa emp = (Empresa) UHan.buscarNick(nickname_e);
     	return emp.obtenerFechaDeCompra(paq);
     }
+
+    @Override
+	public String obtenerCantPaquetesEmpresa(String nickname_e) throws ExceptionUsuarioNoEncontrado {
+		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
+		Empresa e = (Empresa) UsuarioH.buscarNick(nickname_e);
+		return e.obtenerCantPaquetesEmpresa();
+	}
 }
+
 

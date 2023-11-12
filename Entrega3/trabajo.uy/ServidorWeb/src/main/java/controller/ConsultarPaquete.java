@@ -27,12 +27,14 @@ public class ConsultarPaquete extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+        request.setCharacterEncoding("UTF-8");
+        
         
         String nombrePaquete = request.getParameter("p");
         request.setAttribute("mostrarComprar", false);
 
         HttpSession session = request.getSession(false);
-
+        
         if (session != null) {
             String nickname = (String) session.getAttribute("nickname");
             if (nickname != null) {

@@ -187,5 +187,5 @@ public interface ICtrlUsuario {
 	public abstract LocalDate obtenerFechaDeCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado;
     
 	public abstract Set<DTOfertaExtendidoConKeywordsTit> listarOfertasLaboralesNoVigentesConfirmadas(String nickname_empresa)  throws ExceptionUsuarioNoEncontrado;
-	
+	public abstract String obtenerCantPaquetesEmpresa(String nickname_e) throws ExceptionUsuarioNoEncontrado;
 }

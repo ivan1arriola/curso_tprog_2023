@@ -22,7 +22,7 @@
                 <li>
                     <a class="dropdown-item" href="<%= request.getContextPath() %>/cerrarsesion" class="btn btn-danger">
                         <span class="material-symbols-outlined align-middle mr-2">logout</span>
-                        <span class="align-middle">Cerrar Sesión</span>
+                        <span class="align-middle">Cerrar Sesiï¿½n</span>
                     </a>
                 </li>
             </ul>

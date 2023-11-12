@@ -60,7 +60,7 @@
         		              </div>
         		              <div class="col-3 text-center">
         		                  <p class="card-text"><%= postulacion.getEstado() %></p>
-								  <a href="">Descargar PDF</a>
+								  <a href="<%= request.getContextPath() %>/generar-pdf?o=<%= postulacion.getNombreOfertaLaboral() %>">Descargar PDF</a>
         		              </div>
         		              <div class="col-3 text-end">
         		                  <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= postulacion.getNombreOfertaLaboral() %>"

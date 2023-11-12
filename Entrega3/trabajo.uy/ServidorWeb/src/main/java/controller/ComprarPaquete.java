@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -27,13 +28,18 @@ public class ComprarPaquete extends HttpServlet {
         super();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+        request.setCharacterEncoding("UTF-8");
+
         
-        String paquete = request.getParameter("paquete");
+        String paquete = request.getParameter("p");
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
 
+     // En el servlet que envía la información
+        String parametroCodificado = URLEncoder.encode(paquete, "UTF-8");
+        
         ILogica logica = FabricaWeb.getLogica();
 
         int valor = 0;
@@ -78,6 +84,6 @@ public class ComprarPaquete extends HttpServlet {
 			e.printStackTrace();
 		} */
         
-        response.sendRedirect(request.getContextPath() + "/consultarpaquete?p=" + paquete);
+        response.sendRedirect(request.getContextPath() + "/consultarpaquete?p=" + parametroCodificado);
     }
 }

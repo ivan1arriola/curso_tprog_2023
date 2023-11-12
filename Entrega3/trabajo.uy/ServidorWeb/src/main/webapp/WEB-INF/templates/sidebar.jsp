@@ -25,9 +25,7 @@
                 <li class="list-group-item list-group-item-action border-0">
                     <a href="<%= request.getContextPath() %>/altaofertalaboral" class="list-group-item list-group-item-action border-0 py-1">Alta Oferta Laboral</a>
                 </li>
-                <li class="list-group-item list-group-item-action border-0">
-                    <a href="<%= request.getContextPath() %>/consultarusuario?u=<%=nickname %>&ofertas=true" class="list-group-item list-group-item-action border-0 py-1">Mis Ofertas Laborales</a>
-                </li>
+
                 <% } %>
                 <% if (tipo == TipoUsuario.Postulante) { %>
                 <li class="list-group-item list-group-item-action border-0">

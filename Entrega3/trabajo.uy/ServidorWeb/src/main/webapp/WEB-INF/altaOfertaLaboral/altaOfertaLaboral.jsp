@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Set" %>
-<%@ page import="java.util.Set" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="javabeans.CantTipoPublicacionBean"%>
 
 <%
 
@@ -9,9 +10,6 @@
 		Set<String> tipoPublicaciones = (Set<String>) request.getAttribute("tipoPublicaciones");
 		
 		Set<String> paquetes = (Set<String>) request.getAttribute("paquetes");
-
-
-
 %>
 
     <!DOCTYPE html>
@@ -44,34 +42,12 @@
 
           <div class="col-12 row mb-2">
             <div class="col-4">
-              <label for="listadoOfert" class="form-label">Listado de Tipo de Oferta</label>
-            </div>
-            <div class="col-8">
-              <select class="form-control custom-select-validation" id="listadoOfertas" name="tipoOferta" required>
-                <%
-                if (keys != null && !keys.isEmpty()){  
-                  	for(String tipo : tipoPublicaciones ){
-                %>
-                <option value="<%= tipo %>">
-                  <%= tipo %>
-                </option>
-                <%	}
-               } %>
-              </select>
-              <div class="invalid-feedback">
-                Selecciona un elemento de la lista
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 row mb-2">
-            <div class="col-4">
               <label for="nombre" class="form-label">Nombre</label>
             </div>
             <div class="col-8">
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required/>
-              <div class="invalid-feedback">
-              No puede ser vacio
+	             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required/>
+	             <div class="invalid-feedback">
+	             No puede ser vacio
             </div>
             </div>
           </div>
@@ -188,6 +164,37 @@
               </select>
             </div>
           </div>
+          
+          
+          
+          <div class="col-12 row mb-2">
+            <div class="col-4">
+              <label for="listadoOfert" class="form-label">Listado de Tipo de Oferta</label>
+            </div>
+            <div class="col-8" id="LOG" >
+              <select class="form-control custom-select-validation" id="listadoOfertasGeneral" name="tipoOferta" required>
+                <%
+                
+				for(String tipo : tipoPublicaciones ){
+                %>
+                <option value="<%= tipo %>">
+                  <%= tipo %>
+                </option>
+                <%	}
+					%>
+              </select>
+              <div class="invalid-feedback">
+                Selecciona un elemento de la lista
+              </div>
+            </div>
+            <div class="col-8" id="LOP">
+              <select class="form-control custom-select-validation" id="listadoOfertasParticular" name="tipoOfertaPart" required>
+              </select>
+              <div class="invalid-feedback">
+                Selecciona un elemento de la lista
+              </div>
+            </div>
+          </div>
 
           <div class="col-12 row mb-2">
 			    <div class="col-4">
@@ -220,9 +227,10 @@
               </div>
           </section>
 		  
-          <div class="col-12 row mb-2">
-            <button type="submit" class="btn btn-primary">Aceptar</button>
-          </div>
+		    <div class="col-12 row mb-2">
+		        <!-- Agrega un identificador único al botón para poder referenciarlo desde JavaScript -->
+		        <button id="btnAceptar" class="btn btn-primary">Aceptar</button>
+		    </div>
          
         </form>
       </div>
@@ -236,17 +244,58 @@
 
             </div>
         </main>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	
             
             <!-- Otros scripts aqui -->
             
-   	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   	
    	<script src="<%= request.getContextPath() %>/js/altaOfertaLaboral.js"></script>
 
-    
+    		  <script>
+			  $(document).ready(function() {
+				$("#LOP").hide();
+			    // Agregar un evento de cambio al campo select
+			    $("#listadoPagos").change(function() {
+			      // Obtener el valor seleccionado
+			      var selectedValue = $(this).val();
+			      
+			      // Mostrar u ocultar el elemento según la selección
+			      if (selectedValue === "1") {
+			    	  $("#LOP").hide();
+			        $("#LOG").show();
+			      } else {
+			    	$("#LOG").hide();
+			    	$.ajax({
+			            url: '<%= request.getContextPath() %>/ajaxaltaofertalaboral',  // Especifica la URL del servidor aquí
+			            type: 'GET',
+			            data: { selectedValue: selectedValue },
+			            success: function(conjunto) {
+			            	console.log(conjunto);
+			                // Llenar el segundo listado con las opciones del conjunto
+			                var listadoOfertasParticular = $("#listadoOfertasParticular");
+			                listadoOfertasParticular.empty(); // Limpiar las opciones actuales
+
+			                // Agregar las nuevas opciones al segundo listado
+			                for (var i = 0; i < conjunto.length; i++) {
+			                	listadoOfertasParticular.append($('<option>', {
+			                        value: conjunto[i],
+			                        text: conjunto[i]
+			                    }));
+			                }
+			            },
+			            error: function() {
+			                console.log('Error al obtener conjunto vinculado');
+			            }
+			        });
+			        $("#LOP").show();
+			      }
+			    });
+			  });
+			</script>
             
     </body>
 

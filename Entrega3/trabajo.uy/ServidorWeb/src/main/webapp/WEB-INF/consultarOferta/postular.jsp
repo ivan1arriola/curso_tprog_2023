@@ -17,6 +17,6 @@
 <% } else if (TipoUsuario.Postulante == tipoUsuario) { %>
     <div class="m-auto mb-2">
         <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= ofertaLaboral.getNombre() %>"
-            class="btn btn-primary btn-lg px-4 py-1 mb-3" role="button">Ver postulación</a>
+            class="btn btn-primary btn-lg px-4 py-1 mb-3" role="button">Ver postulaciï¿½n</a>
     </div>
 <% } %>

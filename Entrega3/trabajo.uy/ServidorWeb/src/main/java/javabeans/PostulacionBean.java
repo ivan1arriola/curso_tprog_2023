@@ -15,6 +15,9 @@ public class PostulacionBean {
 	private String estado;
 
     private String video;
+    
+    private Integer clasificacion;
+    private LocalDate fechaResu;
 
     public PostulacionBean() {
         this.setNicknamePostulante(null);
@@ -161,4 +164,25 @@ public class PostulacionBean {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public Integer getClasificacion() {
+		return clasificacion;
+	}
+
+	public void setClasificacion(Integer clasificacion) {
+		this.clasificacion = clasificacion;
+	}
+	
+    public String getFechaResuString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+        return fechaResu.format(formatter);
+    }
+    
+    public LocalDate getfechaResu() {
+    	return fechaResu;
+    }
+    
+    public void setfechaResu(LocalDate fechaR) {
+    	fechaResu = fechaR;
+    }
 }
