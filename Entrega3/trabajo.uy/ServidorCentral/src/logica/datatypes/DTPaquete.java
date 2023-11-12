@@ -10,6 +10,7 @@ import logica.servidor.adapter.LocalDateAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTPaquete {
@@ -18,7 +19,7 @@ public class DTPaquete {
     private float descuento;
     private int validez;
     private String descripcion;
-    private ArrayList<DTCantTO> tiposDePub;
+    private List<DTCantTO> tiposDePub;
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaA;
     private byte[] imagen;

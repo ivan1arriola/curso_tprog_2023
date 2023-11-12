@@ -10,13 +10,14 @@ import logica.enumerados.EstadoOL;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 //import java.util.TreeSet;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
     @XmlElement(nillable = true)
-    private ArrayList<String> postulaciones;
+    private List<String> postulaciones;
     private DTPaquete paq;
 
     public DTOfertaExtendidoConKeywordsTit(String nicknameEmpresa, String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario,
@@ -32,7 +33,7 @@ public class DTOfertaExtendidoConKeywordsTit extends DTOfertaExtendidoSinPConK {
 
 
 
-    public ArrayList<String> getpostulaciones() {
+    public List<String> getpostulaciones() {
 
         return postulaciones;
     }

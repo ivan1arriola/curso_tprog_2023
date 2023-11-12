@@ -13,6 +13,7 @@ import logica.servidor.adapter.LocalDateAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @XmlSeeAlso({DTOfertaExtendidoConKeywordsPostulante.class, DTOfertaExtendidoConKeywordsTit.class})
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -32,11 +33,11 @@ public class DTOfertaExtendidoSinPConK {
     private EstadoOL estado;
     private byte[] imagen;
 
-    private ArrayList<String> keywords;
+    private List<String> keywords;
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
     private Integer cantVisitas;
-    private String tipoOferta;
+    //private String tipoOferta;
 
     public DTOfertaExtendidoSinPConK(){
 

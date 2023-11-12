@@ -682,8 +682,8 @@ public class CtrlUsuario implements ICtrlUsuario {
     @Override
 	public String obtenerCantPaquetesEmpresa(String nickname_e) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Empresa e = (Empresa) UsuarioH.buscarNick(nickname_e);
-		return e.obtenerCantPaquetesEmpresa();
+		Empresa emp = (Empresa) UsuarioH.buscarNick(nickname_e);
+		return emp.obtenerCantPaquetesEmpresa();
 	}
 }
 

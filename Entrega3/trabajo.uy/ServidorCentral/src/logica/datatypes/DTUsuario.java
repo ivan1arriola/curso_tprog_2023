@@ -5,7 +5,9 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
 
 @XmlSeeAlso({DTPostulante.class, DTEmpresa.class})
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -17,9 +19,9 @@ public class DTUsuario {
     private String contrasenia;
     private byte[] imagen;
 
-    private ArrayList<DTUsuarioSinInfoSocial> seguidos;
+    private List<DTUsuarioSinInfoSocial> seguidos;
 
-    private ArrayList<DTUsuarioSinInfoSocial> seguidores;
+    private List<DTUsuarioSinInfoSocial> seguidores;
 
     public DTUsuario(String nickname, String correoElectronico, String apellido, String nombre, String contrasenia, byte[] img, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
         this.nickname = nickname;
@@ -62,11 +64,11 @@ public class DTUsuario {
     }
 
 
-    public ArrayList<DTUsuarioSinInfoSocial> getSeguidos() {
+    public List<DTUsuarioSinInfoSocial> getSeguidos() {
         return seguidos;
     }
 
-    public ArrayList<DTUsuarioSinInfoSocial> getSeguidores() {
+    public List<DTUsuarioSinInfoSocial> getSeguidores() {
         return seguidores;
     }
 
