@@ -1098,45 +1098,6 @@ public interface Servidor {
 
     /**
      * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns java.lang.String
-     * @throws ExceptionUsuarioNoEncontrado_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/obtenerFechaCompraRequest", output = "http://servidor.logica/Servidor/obtenerFechaCompraResponse", fault = {
-        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerFechaCompra/Fault/ExceptionUsuarioNoEncontrado")
-    })
-    public String obtenerFechaCompra(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws ExceptionUsuarioNoEncontrado_Exception
-    ;
-
-    /**
-     * 
-     * @param nombreOferta
-     * @return
-     *     returns logica.servidor.WrapperLista
-     * @throws OfertaLaboralNoEncontrada_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://servidor.logica/Servidor/listarPostulantesOfertaLaboralRequest", output = "http://servidor.logica/Servidor/listarPostulantesOfertaLaboralResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/listarPostulantesOfertaLaboral/Fault/OfertaLaboralNoEncontrada")
-    })
-    public WrapperLista listarPostulantesOfertaLaboral(
-        @WebParam(name = "nombre_oferta", partName = "nombre_oferta")
-        String nombreOferta)
-        throws OfertaLaboralNoEncontrada_Exception
-    ;
-
-    /**
-     * 
      * @return
      *     returns logica.servidor.WrapperLista
      */
@@ -1295,6 +1256,45 @@ public interface Servidor {
         @WebParam(name = "arg11", partName = "arg11")
         String arg11)
         throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCostoPaqueteNoNegativo_Exception, ExceptionDescuentoInvalido_Exception, ExceptionPaqueteNoVigente_Exception, ExceptionRemuneracionOfertaLaboralNegativa_Exception, ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception
+    ;
+
+    /**
+     * 
+     * @param nombreOferta
+     * @return
+     *     returns logica.servidor.WrapperLista
+     * @throws OfertaLaboralNoEncontrada_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/listarPostulantesOfertaLaboralRequest", output = "http://servidor.logica/Servidor/listarPostulantesOfertaLaboralResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoEncontrada_Exception.class, value = "http://servidor.logica/Servidor/listarPostulantesOfertaLaboral/Fault/OfertaLaboralNoEncontrada")
+    })
+    public WrapperLista listarPostulantesOfertaLaboral(
+        @WebParam(name = "nombre_oferta", partName = "nombre_oferta")
+        String nombreOferta)
+        throws OfertaLaboralNoEncontrada_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns java.lang.String
+     * @throws ExceptionUsuarioNoEncontrado_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://servidor.logica/Servidor/obtenerFechaCompraRequest", output = "http://servidor.logica/Servidor/obtenerFechaCompraResponse", fault = {
+        @FaultAction(className = ExceptionUsuarioNoEncontrado_Exception.class, value = "http://servidor.logica/Servidor/obtenerFechaCompra/Fault/ExceptionUsuarioNoEncontrado")
+    })
+    public String obtenerFechaCompra(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws ExceptionUsuarioNoEncontrado_Exception
     ;
 
     /**

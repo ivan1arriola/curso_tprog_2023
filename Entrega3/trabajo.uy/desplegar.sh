@@ -114,11 +114,10 @@ function ejecutarProyecto(){
     compilarServidorMovilWAR
     ejecutarTomcat
     echo "Proyecto ejecutado..."
+    # abrir firefox en la pagina del servidor web, en segundo plano
+    firefox http://localhost:8080/ServidorWeb/ &>/dev/null &
     exit
 }
-
-
-
 
 
 # Menu de opciones
