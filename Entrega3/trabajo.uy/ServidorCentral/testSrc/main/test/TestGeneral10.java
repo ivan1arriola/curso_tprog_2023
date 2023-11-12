@@ -522,9 +522,9 @@ public class TestGeneral10 {
 			e.printStackTrace();
 		}
 		// ============================================
-		Set<OfertaLaboral> OL = new HashSet<>();
-		OL.add(OfertaLabolra);
-		empresaNueva.setofertasLaborales(OL);
+		Set<OfertaLaboral> OLab = new HashSet<>();
+		OLab.add(OfertaLabolra);
+		empresaNueva.setofertasLaborales(OLab);
 		empresaNueva.obtenerPostulacionesOfertaLaboral("Panqueqes");
 		// ============================================
 		try {

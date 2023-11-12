@@ -13,7 +13,7 @@ public class OfertaLaboralDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Long iden;
 
     @Column(nullable = false)
     private String nombre;
@@ -88,11 +88,11 @@ public class OfertaLaboralDTO {
 
 
     public Long getId() {
-        return id;
+        return iden;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long iden) {
+        this.iden = iden;
     }
 
     public String getNombre() {

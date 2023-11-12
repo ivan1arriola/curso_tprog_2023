@@ -242,15 +242,15 @@ public class TestGeneral11 {
 		OfertaLabolra.setPostulaciones(PostulacionList);
 		
 		// IIIIIIIIIIIIIIIIIIIIIIIIIIIII HANDLERS IIIIIIIIIIIIIIIIIIIIIIIIIIIII
-		UsuarioHandler UH = UsuarioHandler.getInstance();
+		UsuarioHandler UHan = UsuarioHandler.getInstance();
 		try {
-			UH.agregar(nuevoPos);
+			UHan.agregar(nuevoPos);
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			UH.agregar(empresaNueva);
+			UHan.agregar(empresaNueva);
 		} catch (ErrorAgregarUsuario e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -356,7 +356,7 @@ public class TestGeneral11 {
 		empresaNueva.obtenerDatosUsuarioEspecial(empresaNueva.getNickname(),  empresaNueva.getNickname());
 		empresaNueva.obtenerDatosUsuario();
 		// //////////////////////////////////////////////
-		UH.obtenerCorreo();
+		UHan.obtenerCorreo();
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();

@@ -7,11 +7,12 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.Set;
 
 public class WSUtils {
 
-    public static WrapperLista envolverLista(ArrayList<String> strings) {
+    public static WrapperLista envolverLista(List<String> strings) {
         WrapperLista listaBean = new WrapperLista();
         listaBean.setListaString(strings);
         return listaBean;
