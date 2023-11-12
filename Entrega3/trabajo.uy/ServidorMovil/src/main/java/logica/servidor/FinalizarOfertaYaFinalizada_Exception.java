@@ -10,8 +10,8 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionCostoPaqueteNoNegativo", targetNamespace = "http://servidor.logica/")
-public class ExceptionCostoPaqueteNoNegativo_Exception
+@WebFault(name = "FinalizarOfertaYaFinalizada", targetNamespace = "http://servidor.logica/")
+public class FinalizarOfertaYaFinalizada_Exception
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class ExceptionCostoPaqueteNoNegativo_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private ExceptionCostoPaqueteNoNegativo faultInfo;
+    private FinalizarOfertaYaFinalizada faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public ExceptionCostoPaqueteNoNegativo_Exception(String message, ExceptionCostoPaqueteNoNegativo faultInfo) {
+    public FinalizarOfertaYaFinalizada_Exception(String message, FinalizarOfertaYaFinalizada faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class ExceptionCostoPaqueteNoNegativo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionCostoPaqueteNoNegativo_Exception(String message, ExceptionCostoPaqueteNoNegativo faultInfo, Throwable cause) {
+    public FinalizarOfertaYaFinalizada_Exception(String message, FinalizarOfertaYaFinalizada faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class ExceptionCostoPaqueteNoNegativo_Exception
     /**
      * 
      * @return
-     *     returns fault bean: logica.servidor.ExceptionCostoPaqueteNoNegativo
+     *     returns fault bean: logica.servidor.FinalizarOfertaYaFinalizada
      */
-    public ExceptionCostoPaqueteNoNegativo getFaultInfo() {
+    public FinalizarOfertaYaFinalizada getFaultInfo() {
         return faultInfo;
     }
 

@@ -44,6 +44,7 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
     private final static QName _FinalizarOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaNoVencida");
+    private final static QName _FinalizarOfertaYaFinalizada_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaYaFinalizada");
     private final static QName _NoExistePaquete_QNAME = new QName("http://servidor.logica/", "NoExistePaquete");
     private final static QName _NoHayOrdenDefinidoDePostulantes_QNAME = new QName("http://servidor.logica/", "NoHayOrdenDefinidoDePostulantes");
     private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
@@ -254,6 +255,16 @@ public class ObjectFactory {
      */
     public FinalizarOfertaNoVencida createFinalizarOfertaNoVencida() {
         return new FinalizarOfertaNoVencida();
+    }
+
+    /**
+     * Create an instance of {@link FinalizarOfertaYaFinalizada }
+     * 
+     * @return
+     *     the new instance of {@link FinalizarOfertaYaFinalizada }
+     */
+    public FinalizarOfertaYaFinalizada createFinalizarOfertaYaFinalizada() {
+        return new FinalizarOfertaYaFinalizada();
     }
 
     /**
@@ -694,6 +705,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "FinalizarOfertaNoVencida")
     public JAXBElement<FinalizarOfertaNoVencida> createFinalizarOfertaNoVencida(FinalizarOfertaNoVencida value) {
         return new JAXBElement<>(_FinalizarOfertaNoVencida_QNAME, FinalizarOfertaNoVencida.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaYaFinalizada }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaYaFinalizada }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "FinalizarOfertaYaFinalizada")
+    public JAXBElement<FinalizarOfertaYaFinalizada> createFinalizarOfertaYaFinalizada(FinalizarOfertaYaFinalizada value) {
+        return new JAXBElement<>(_FinalizarOfertaYaFinalizada_QNAME, FinalizarOfertaYaFinalizada.class, null, value);
     }
 
     /**

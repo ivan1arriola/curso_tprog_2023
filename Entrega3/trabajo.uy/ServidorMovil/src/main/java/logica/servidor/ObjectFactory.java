@@ -31,8 +31,11 @@ public class ObjectFactory {
     private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
     private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
     private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCompraPaqueteConValorNegativo");
+    private final static QName _ExceptionCostoPaqueteNoNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCostoPaqueteNoNegativo");
+    private final static QName _ExceptionDescuentoInvalido_QNAME = new QName("http://servidor.logica/", "ExceptionDescuentoInvalido");
     private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionEmpresaInvalida");
     private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
+    private final static QName _ExceptionPaqueteNoVigente_QNAME = new QName("http://servidor.logica/", "ExceptionPaqueteNoVigente");
     private final static QName _ExceptionRemuneracionOfertaLaboralNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionRemuneracionOfertaLaboralNegativa");
     private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
     private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
@@ -41,6 +44,7 @@ public class ObjectFactory {
     private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
     private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
     private final static QName _FinalizarOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaNoVencida");
+    private final static QName _FinalizarOfertaYaFinalizada_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaYaFinalizada");
     private final static QName _NoExistePaquete_QNAME = new QName("http://servidor.logica/", "NoExistePaquete");
     private final static QName _NoHayOrdenDefinidoDePostulantes_QNAME = new QName("http://servidor.logica/", "NoHayOrdenDefinidoDePostulantes");
     private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
@@ -124,6 +128,26 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExceptionCostoPaqueteNoNegativo }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionCostoPaqueteNoNegativo }
+     */
+    public ExceptionCostoPaqueteNoNegativo createExceptionCostoPaqueteNoNegativo() {
+        return new ExceptionCostoPaqueteNoNegativo();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionDescuentoInvalido }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionDescuentoInvalido }
+     */
+    public ExceptionDescuentoInvalido createExceptionDescuentoInvalido() {
+        return new ExceptionDescuentoInvalido();
+    }
+
+    /**
      * Create an instance of {@link ExceptionEmpresaInvalida }
      * 
      * @return
@@ -141,6 +165,16 @@ public class ObjectFactory {
      */
     public ExceptionFechaInvalida createExceptionFechaInvalida() {
         return new ExceptionFechaInvalida();
+    }
+
+    /**
+     * Create an instance of {@link ExceptionPaqueteNoVigente }
+     * 
+     * @return
+     *     the new instance of {@link ExceptionPaqueteNoVigente }
+     */
+    public ExceptionPaqueteNoVigente createExceptionPaqueteNoVigente() {
+        return new ExceptionPaqueteNoVigente();
     }
 
     /**
@@ -221,6 +255,16 @@ public class ObjectFactory {
      */
     public FinalizarOfertaNoVencida createFinalizarOfertaNoVencida() {
         return new FinalizarOfertaNoVencida();
+    }
+
+    /**
+     * Create an instance of {@link FinalizarOfertaYaFinalizada }
+     * 
+     * @return
+     *     the new instance of {@link FinalizarOfertaYaFinalizada }
+     */
+    public FinalizarOfertaYaFinalizada createFinalizarOfertaYaFinalizada() {
+        return new FinalizarOfertaYaFinalizada();
     }
 
     /**
@@ -404,16 +448,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaFinalizada }{@code >}
      * 
      * @param value
@@ -505,6 +539,32 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionCostoPaqueteNoNegativo }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionCostoPaqueteNoNegativo }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCostoPaqueteNoNegativo")
+    public JAXBElement<ExceptionCostoPaqueteNoNegativo> createExceptionCostoPaqueteNoNegativo(ExceptionCostoPaqueteNoNegativo value) {
+        return new JAXBElement<>(_ExceptionCostoPaqueteNoNegativo_QNAME, ExceptionCostoPaqueteNoNegativo.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionDescuentoInvalido }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionDescuentoInvalido }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionDescuentoInvalido")
+    public JAXBElement<ExceptionDescuentoInvalido> createExceptionDescuentoInvalido(ExceptionDescuentoInvalido value) {
+        return new JAXBElement<>(_ExceptionDescuentoInvalido_QNAME, ExceptionDescuentoInvalido.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionEmpresaInvalida }{@code >}
      * 
      * @param value
@@ -528,6 +588,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionFechaInvalida")
     public JAXBElement<ExceptionFechaInvalida> createExceptionFechaInvalida(ExceptionFechaInvalida value) {
         return new JAXBElement<>(_ExceptionFechaInvalida_QNAME, ExceptionFechaInvalida.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExceptionPaqueteNoVigente }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionPaqueteNoVigente }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionPaqueteNoVigente")
+    public JAXBElement<ExceptionPaqueteNoVigente> createExceptionPaqueteNoVigente(ExceptionPaqueteNoVigente value) {
+        return new JAXBElement<>(_ExceptionPaqueteNoVigente_QNAME, ExceptionPaqueteNoVigente.class, null, value);
     }
 
     /**
@@ -632,6 +705,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servidor.logica/", name = "FinalizarOfertaNoVencida")
     public JAXBElement<FinalizarOfertaNoVencida> createFinalizarOfertaNoVencida(FinalizarOfertaNoVencida value) {
         return new JAXBElement<>(_FinalizarOfertaNoVencida_QNAME, FinalizarOfertaNoVencida.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaYaFinalizada }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaYaFinalizada }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://servidor.logica/", name = "FinalizarOfertaYaFinalizada")
+    public JAXBElement<FinalizarOfertaYaFinalizada> createFinalizarOfertaYaFinalizada(FinalizarOfertaYaFinalizada value) {
+        return new JAXBElement<>(_FinalizarOfertaYaFinalizada_QNAME, FinalizarOfertaYaFinalizada.class, null, value);
     }
 
     /**
