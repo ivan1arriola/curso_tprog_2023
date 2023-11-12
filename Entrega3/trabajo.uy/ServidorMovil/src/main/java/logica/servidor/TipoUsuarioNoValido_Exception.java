@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "TipoUsuarioNoValido",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "TipoUsuarioNoValido", targetNamespace = "http://servidor.logica/")
 public class TipoUsuarioNoValido_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class TipoUsuarioNoValido_Exception
      * @param faultInfo
      * @param message
      */
-    public TipoUsuarioNoValido_Exception(String message,  TipoUsuarioNoValido faultInfo) {
+    public TipoUsuarioNoValido_Exception(String message, TipoUsuarioNoValido faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class TipoUsuarioNoValido_Exception
      * @param faultInfo
      * @param message
      */
-    public TipoUsuarioNoValido_Exception(String message,  TipoUsuarioNoValido faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public TipoUsuarioNoValido_Exception(String message, TipoUsuarioNoValido faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 

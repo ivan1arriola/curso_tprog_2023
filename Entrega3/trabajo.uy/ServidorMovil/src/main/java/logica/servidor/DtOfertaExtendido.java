@@ -44,24 +44,24 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtOfertaExtendido",  propOrder = {
-    "nombre", 
-    "descripcion", 
-    "fechaDeAlta", 
-    "costo", 
-    "remuneracion", 
-    "horario", 
-    "departamento", 
-    "ciudad", 
-    "estado", 
-    "postulaciones", 
-    "imagen", 
-    "paq", 
-    "nicknameEmpresaPublicadora", 
-    "cantFavs", 
-    "cantVisitas", 
-    "tipoOferta", 
-    "estaVencido", 
+@XmlType(name = "dtOfertaExtendido", propOrder = {
+    "nombre",
+    "descripcion",
+    "fechaDeAlta",
+    "costo",
+    "remuneracion",
+    "horario",
+    "departamento",
+    "ciudad",
+    "estado",
+    "postulaciones",
+    "imagen",
+    "paq",
+    "nicknameEmpresaPublicadora",
+    "cantFavs",
+    "cantVisitas",
+    "tipoOferta",
+    "estaVencido",
     "tieneOrdenPostulantes"
 })
 public class DtOfertaExtendido {

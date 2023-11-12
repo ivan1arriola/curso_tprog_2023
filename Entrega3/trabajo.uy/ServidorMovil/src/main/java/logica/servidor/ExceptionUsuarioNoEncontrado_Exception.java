@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionUsuarioNoEncontrado",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionUsuarioNoEncontrado", targetNamespace = "http://servidor.logica/")
 public class ExceptionUsuarioNoEncontrado_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionUsuarioNoEncontrado_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionUsuarioNoEncontrado_Exception(String message,  ExceptionUsuarioNoEncontrado faultInfo) {
+    public ExceptionUsuarioNoEncontrado_Exception(String message, ExceptionUsuarioNoEncontrado faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionUsuarioNoEncontrado_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionUsuarioNoEncontrado_Exception(String message,  ExceptionUsuarioNoEncontrado faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public ExceptionUsuarioNoEncontrado_Exception(String message, ExceptionUsuarioNoEncontrado faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 

@@ -45,25 +45,25 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtOfertaExtendidoSinPConK",  propOrder = {
-    "nombre", 
-    "descripcion", 
-    "fechaAlta", 
-    "costo", 
-    "remuneracion", 
-    "horario", 
-    "departamento", 
-    "ciudad", 
-    "estado", 
-    "imagen", 
-    "keywords", 
-    "nicknameEmpresaPublicadora", 
-    "cantFavs", 
-    "cantVisitas", 
+@XmlType(name = "dtOfertaExtendidoSinPConK", propOrder = {
+    "nombre",
+    "descripcion",
+    "fechaAlta",
+    "costo",
+    "remuneracion",
+    "horario",
+    "departamento",
+    "ciudad",
+    "estado",
+    "imagen",
+    "keywords",
+    "nicknameEmpresaPublicadora",
+    "cantFavs",
+    "cantVisitas",
     "tipoOferta"
 })
 @XmlSeeAlso({
-    DtOfertaExtendidoConKeywordsPostulante.class, 
+    DtOfertaExtendidoConKeywordsPostulante.class,
     DtOfertaExtendidoConKeywordsTit.class
 })
 public class DtOfertaExtendidoSinPConK {
@@ -313,13 +313,13 @@ public class DtOfertaExtendidoSinPConK {
      * Gets the value of the keywords property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list, 
+     * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
      * This is why there is not a {@code set} method for the keywords property.
      * 
      * <p>
-     * For example,  to add a new item,  do as follows:
+     * For example, to add a new item, do as follows:
      * <pre>
      *    getKeywords().add(newItem);
      * </pre>

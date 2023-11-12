@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExceptionValidezNegativa",  propOrder = {
+@XmlType(name = "ExceptionValidezNegativa", propOrder = {
     "message"
 })
 public class ExceptionValidezNegativa {

@@ -37,18 +37,18 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtUsuario",  propOrder = {
-    "nickname", 
-    "correoElectronico", 
-    "apellido", 
-    "nombre", 
-    "contrasenia", 
-    "imagen", 
-    "seguidos", 
+@XmlType(name = "dtUsuario", propOrder = {
+    "nickname",
+    "correoElectronico",
+    "apellido",
+    "nombre",
+    "contrasenia",
+    "imagen",
+    "seguidos",
     "seguidores"
 })
 @XmlSeeAlso({
-    DtPostulante.class, 
+    DtPostulante.class,
     DtEmpresa.class
 })
 public class DtUsuario {
@@ -210,13 +210,13 @@ public class DtUsuario {
      * Gets the value of the seguidos property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list, 
+     * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
      * This is why there is not a {@code set} method for the seguidos property.
      * 
      * <p>
-     * For example,  to add a new item,  do as follows:
+     * For example, to add a new item, do as follows:
      * <pre>
      *    getSeguidos().add(newItem);
      * </pre>
@@ -241,13 +241,13 @@ public class DtUsuario {
      * Gets the value of the seguidores property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list, 
+     * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
      * This is why there is not a {@code set} method for the seguidores property.
      * 
      * <p>
-     * For example,  to add a new item,  do as follows:
+     * For example, to add a new item, do as follows:
      * <pre>
      *    getSeguidores().add(newItem);
      * </pre>

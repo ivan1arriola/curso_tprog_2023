@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TipoUsuarioNoValido",  propOrder = {
+@XmlType(name = "TipoUsuarioNoValido", propOrder = {
     "message"
 })
 public class TipoUsuarioNoValido {

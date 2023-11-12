@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExceptionDescuentoInvalido",  propOrder = {
+@XmlType(name = "ExceptionDescuentoInvalido", propOrder = {
     "message"
 })
 public class ExceptionDescuentoInvalido {

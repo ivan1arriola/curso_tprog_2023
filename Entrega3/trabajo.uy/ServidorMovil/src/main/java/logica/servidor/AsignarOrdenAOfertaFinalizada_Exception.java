@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "AsignarOrdenAOfertaFinalizada",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "AsignarOrdenAOfertaFinalizada", targetNamespace = "http://servidor.logica/")
 public class AsignarOrdenAOfertaFinalizada_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class AsignarOrdenAOfertaFinalizada_Exception
      * @param faultInfo
      * @param message
      */
-    public AsignarOrdenAOfertaFinalizada_Exception(String message,  AsignarOrdenAOfertaFinalizada faultInfo) {
+    public AsignarOrdenAOfertaFinalizada_Exception(String message, AsignarOrdenAOfertaFinalizada faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class AsignarOrdenAOfertaFinalizada_Exception
      * @param faultInfo
      * @param message
      */
-    public AsignarOrdenAOfertaFinalizada_Exception(String message,  AsignarOrdenAOfertaFinalizada faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public AsignarOrdenAOfertaFinalizada_Exception(String message, AsignarOrdenAOfertaFinalizada faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 

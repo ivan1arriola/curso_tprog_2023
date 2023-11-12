@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExcepcionTipoOfertaNoExistente",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExcepcionTipoOfertaNoExistente", targetNamespace = "http://servidor.logica/")
 public class ExcepcionTipoOfertaNoExistente_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExcepcionTipoOfertaNoExistente_Exception
      * @param faultInfo
      * @param message
      */
-    public ExcepcionTipoOfertaNoExistente_Exception(String message,  ExcepcionTipoOfertaNoExistente faultInfo) {
+    public ExcepcionTipoOfertaNoExistente_Exception(String message, ExcepcionTipoOfertaNoExistente faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExcepcionTipoOfertaNoExistente_Exception
      * @param faultInfo
      * @param message
      */
-    public ExcepcionTipoOfertaNoExistente_Exception(String message,  ExcepcionTipoOfertaNoExistente faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public ExcepcionTipoOfertaNoExistente_Exception(String message, ExcepcionTipoOfertaNoExistente faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 

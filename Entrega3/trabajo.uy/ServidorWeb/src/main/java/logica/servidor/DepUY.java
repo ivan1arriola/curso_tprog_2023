@@ -42,41 +42,41 @@ import jakarta.xml.bind.annotation.XmlType;
 public enum DepUY {
 
     @XmlEnumValue("Artigas")
-    ARTIGAS("Artigas"), 
+    ARTIGAS("Artigas"),
     @XmlEnumValue("Salto")
-    SALTO("Salto"), 
+    SALTO("Salto"),
     @XmlEnumValue("Paysandu")
-    PAYSANDU("Paysandu"), 
+    PAYSANDU("Paysandu"),
     @XmlEnumValue("RioNegro")
-    RIO_NEGRO("RioNegro"), 
+    RIO_NEGRO("RioNegro"),
     @XmlEnumValue("Soriano")
-    SORIANO("Soriano"), 
+    SORIANO("Soriano"),
     @XmlEnumValue("Colonia")
-    COLONIA("Colonia"), 
+    COLONIA("Colonia"),
     @XmlEnumValue("Rivera")
-    RIVERA("Rivera"), 
+    RIVERA("Rivera"),
     @XmlEnumValue("Tacuarembo")
-    TACUAREMBO("Tacuarembo"), 
+    TACUAREMBO("Tacuarembo"),
     @XmlEnumValue("Durazno")
-    DURAZNO("Durazno"), 
+    DURAZNO("Durazno"),
     @XmlEnumValue("Flores")
-    FLORES("Flores"), 
+    FLORES("Flores"),
     @XmlEnumValue("Florida")
-    FLORIDA("Florida"), 
+    FLORIDA("Florida"),
     @XmlEnumValue("SanJose")
-    SAN_JOSE("SanJose"), 
+    SAN_JOSE("SanJose"),
     @XmlEnumValue("Canelones")
-    CANELONES("Canelones"), 
+    CANELONES("Canelones"),
     @XmlEnumValue("Montevideo")
-    MONTEVIDEO("Montevideo"), 
+    MONTEVIDEO("Montevideo"),
     @XmlEnumValue("CerroLargo")
-    CERRO_LARGO("CerroLargo"), 
+    CERRO_LARGO("CerroLargo"),
     @XmlEnumValue("TreintaYTres")
-    TREINTA_Y_TRES("TreintaYTres"), 
+    TREINTA_Y_TRES("TreintaYTres"),
     @XmlEnumValue("Lavalleja")
-    LAVALLEJA("Lavalleja"), 
+    LAVALLEJA("Lavalleja"),
     @XmlEnumValue("Rocha")
-    ROCHA("Rocha"), 
+    ROCHA("Rocha"),
     @XmlEnumValue("Maldonado")
     MALDONADO("Maldonado");
     private final String value;

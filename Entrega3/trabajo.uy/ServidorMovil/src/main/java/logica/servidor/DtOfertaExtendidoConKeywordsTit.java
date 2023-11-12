@@ -30,8 +30,8 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtOfertaExtendidoConKeywordsTit",  propOrder = {
-    "postulaciones", 
+@XmlType(name = "dtOfertaExtendidoConKeywordsTit", propOrder = {
+    "postulaciones",
     "paq"
 })
 public class DtOfertaExtendidoConKeywordsTit
@@ -46,13 +46,13 @@ public class DtOfertaExtendidoConKeywordsTit
      * Gets the value of the postulaciones property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list, 
+     * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
      * This is why there is not a {@code set} method for the postulaciones property.
      * 
      * <p>
-     * For example,  to add a new item,  do as follows:
+     * For example, to add a new item, do as follows:
      * <pre>
      *    getPostulaciones().add(newItem);
      * </pre>

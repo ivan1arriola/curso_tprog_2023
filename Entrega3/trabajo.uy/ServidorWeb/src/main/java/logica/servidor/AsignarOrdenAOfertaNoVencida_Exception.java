@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "AsignarOrdenAOfertaNoVencida",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "AsignarOrdenAOfertaNoVencida", targetNamespace = "http://servidor.logica/")
 public class AsignarOrdenAOfertaNoVencida_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class AsignarOrdenAOfertaNoVencida_Exception
      * @param faultInfo
      * @param message
      */
-    public AsignarOrdenAOfertaNoVencida_Exception(String message,  AsignarOrdenAOfertaNoVencida faultInfo) {
+    public AsignarOrdenAOfertaNoVencida_Exception(String message, AsignarOrdenAOfertaNoVencida faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class AsignarOrdenAOfertaNoVencida_Exception
      * @param faultInfo
      * @param message
      */
-    public AsignarOrdenAOfertaNoVencida_Exception(String message,  AsignarOrdenAOfertaNoVencida faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public AsignarOrdenAOfertaNoVencida_Exception(String message, AsignarOrdenAOfertaNoVencida faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 

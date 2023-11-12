@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExceptionUsuarioNoEncontrado",  propOrder = {
+@XmlType(name = "ExceptionUsuarioNoEncontrado", propOrder = {
     "message"
 })
 public class ExceptionUsuarioNoEncontrado {

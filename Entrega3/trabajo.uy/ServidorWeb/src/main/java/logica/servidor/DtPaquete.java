@@ -36,14 +36,14 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtPaquete",  propOrder = {
-    "nombre", 
-    "costo", 
-    "descuento", 
-    "validez", 
-    "descripcion", 
-    "tiposDePub", 
-    "fechaA", 
+@XmlType(name = "dtPaquete", propOrder = {
+    "nombre",
+    "costo",
+    "descuento",
+    "validez",
+    "descripcion",
+    "tiposDePub",
+    "fechaA",
     "imagen"
 })
 public class DtPaquete {
@@ -158,13 +158,13 @@ public class DtPaquete {
      * Gets the value of the tiposDePub property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list, 
+     * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
      * This is why there is not a {@code set} method for the tiposDePub property.
      * 
      * <p>
-     * For example,  to add a new item,  do as follows:
+     * For example, to add a new item, do as follows:
      * <pre>
      *    getTiposDePub().add(newItem);
      * </pre>

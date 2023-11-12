@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtOfertaExtendidoConKeywordsPostulante",  propOrder = {
+@XmlType(name = "dtOfertaExtendidoConKeywordsPostulante", propOrder = {
     "datospostulacion"
 })
 public class DtOfertaExtendidoConKeywordsPostulante

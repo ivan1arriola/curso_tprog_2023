@@ -26,7 +26,7 @@
 
         <div class="container-fluid" id="ofertas-laborales">
 
-          <div class="sin-bordes">
+          <div class="sin-bordes row">
           
           <%
           List<DtPostulacion> postulaciones = (List<DtPostulacion>) request.getAttribute("postulaciones");
@@ -44,8 +44,8 @@
       
           %>
           
-            <div class="col-12 col-sm-6 col-md-4 mb-4 mx-auto">
-            	<div class="card" style="width: 18rem;">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            	<div class="card">
 				  <img src="<%=imagen %>" class="img-fluid rounded-start h-100" alt="Imagen de <%= offer.getNombre()  %>" />
 				  <div class="card-body">
 				    <h5 class="card-title"><%= offer.getNombre()  %></h5>

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "OfertaLaboralNoEncontrada",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "OfertaLaboralNoEncontrada", targetNamespace = "http://servidor.logica/")
 public class OfertaLaboralNoEncontrada_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class OfertaLaboralNoEncontrada_Exception
      * @param faultInfo
      * @param message
      */
-    public OfertaLaboralNoEncontrada_Exception(String message,  OfertaLaboralNoEncontrada faultInfo) {
+    public OfertaLaboralNoEncontrada_Exception(String message, OfertaLaboralNoEncontrada faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class OfertaLaboralNoEncontrada_Exception
      * @param faultInfo
      * @param message
      */
-    public OfertaLaboralNoEncontrada_Exception(String message,  OfertaLaboralNoEncontrada faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public OfertaLaboralNoEncontrada_Exception(String message, OfertaLaboralNoEncontrada faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 

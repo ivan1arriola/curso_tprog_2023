@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExcepcionKeywordVacia",  targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExcepcionKeywordVacia", targetNamespace = "http://servidor.logica/")
 public class ExcepcionKeywordVacia_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExcepcionKeywordVacia_Exception
      * @param faultInfo
      * @param message
      */
-    public ExcepcionKeywordVacia_Exception(String message,  ExcepcionKeywordVacia faultInfo) {
+    public ExcepcionKeywordVacia_Exception(String message, ExcepcionKeywordVacia faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExcepcionKeywordVacia_Exception
      * @param faultInfo
      * @param message
      */
-    public ExcepcionKeywordVacia_Exception(String message,  ExcepcionKeywordVacia faultInfo,  Throwable cause) {
-        super(message,  cause);
+    public ExcepcionKeywordVacia_Exception(String message, ExcepcionKeywordVacia faultInfo, Throwable cause) {
+        super(message, cause);
         this.faultInfo = faultInfo;
     }
 
