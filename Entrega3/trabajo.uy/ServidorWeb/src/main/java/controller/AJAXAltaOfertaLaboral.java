@@ -24,7 +24,7 @@ public class AJAXAltaOfertaLaboral extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         HttpSession session = request.getSession(false);
         String nickname = (String) session.getAttribute("nickname");
         ServidorService SS = new ServidorService();
@@ -42,17 +42,17 @@ public class AJAXAltaOfertaLaboral extends HttpServlet {
 		String[] deseado = null;
         for (int i = 0; i < paqueteYCant.length; i++) {
         	System.out.println(paqueteYCant[i]);
-            String[] intento = paqueteYCant[i].split(",");
-            if(intento[0].equals(selectedValue)) {
+            String[] intento = paqueteYCant[i].split(", ");
+            if (intento[0].equals(selectedValue)) {
             	deseado = intento;
             }
         }
         
-        String[] buscado = Arrays.copyOfRange(deseado, 1, deseado.length);
+        String[] buscado = Arrays.copyOfRange(deseado,  1,  deseado.length);
 		
 		Set<String> res = new HashSet<>();
-		if(buscado != null) {
-			for(String elem : buscado) {
+		if (buscado != null) {
+			for (String elem : buscado) {
 				String[] cantTip = elem.split(":");
 				res.add(cantTip[0] + " (" + cantTip[1] + ")");
 			}

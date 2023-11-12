@@ -78,7 +78,7 @@
     <% } %>
 
 
-    <%if(!ocultarPostulante){ %>
+    <%if (!ocultarPostulante){ %>
     <li class="list-group-item" id="cantidad-favoritos">
       <h4>Cantidad de favoritos: <span class="badge bg-success"><%= cantFavs %></span></h4>
     </li>

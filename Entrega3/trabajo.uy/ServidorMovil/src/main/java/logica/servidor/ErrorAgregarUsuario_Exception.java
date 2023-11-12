@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ErrorAgregarUsuario", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ErrorAgregarUsuario",  targetNamespace = "http://servidor.logica/")
 public class ErrorAgregarUsuario_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ErrorAgregarUsuario_Exception
      * @param faultInfo
      * @param message
      */
-    public ErrorAgregarUsuario_Exception(String message, ErrorAgregarUsuario faultInfo) {
+    public ErrorAgregarUsuario_Exception(String message,  ErrorAgregarUsuario faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ErrorAgregarUsuario_Exception
      * @param faultInfo
      * @param message
      */
-    public ErrorAgregarUsuario_Exception(String message, ErrorAgregarUsuario faultInfo, Throwable cause) {
-        super(message, cause);
+    public ErrorAgregarUsuario_Exception(String message,  ErrorAgregarUsuario faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

@@ -24,14 +24,14 @@ public class ConsultarPaquete extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response)
+            throws ServletException,  IOException {
+        FabricaWeb.getInstance().getKeywordsLoader().cargarKeywords(request,  response);
         request.setCharacterEncoding("UTF-8");
         
         
         String nombrePaquete = request.getParameter("p");
-        request.setAttribute("mostrarComprar", false);
+        request.setAttribute("mostrarComprar",  false);
 
         HttpSession session = request.getSession(false);
         
@@ -49,11 +49,11 @@ public class ConsultarPaquete extends HttpServlet {
                         throw new RuntimeException(e);
                     }
                     if (!paquetes.contains(nombrePaquete)) {
-                        request.setAttribute("mostrarComprar", true);
-                        request.setAttribute("yaSeCompro", false);
+                        request.setAttribute("mostrarComprar",  true);
+                        request.setAttribute("yaSeCompro",  false);
                     } else {
-                        request.setAttribute("mostrarComprar", true);
-                        request.setAttribute("yaSeCompro", true);
+                        request.setAttribute("mostrarComprar",  true);
+                        request.setAttribute("yaSeCompro",  true);
                     }      
                 }   
             }
@@ -62,23 +62,23 @@ public class ConsultarPaquete extends HttpServlet {
         try {
             PaqueteBean paquete = FabricaWeb.getInstance().getLogica().obtenerDatosPaquete(nombrePaquete);
             
-            request.setAttribute("paquete", paquete);
+            request.setAttribute("paquete",  paquete);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarPaquete/paquete.jsp");
-            dispatcher.forward(request, response);
+            dispatcher.forward(request,  response);
             
         } catch (Exception e) {
             // Manejar la excepción
-            request.setAttribute("mensajeError", "Error al obtener el paquete: " + e.getMessage());
+            request.setAttribute("mensajeError",  "Error al obtener el paquete: " + e.getMessage());
 
             // Redirigir a una página de error o mostrar un mensaje de error en el JSP
             RequestDispatcher errorDispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            errorDispatcher.forward(request, response);
+            errorDispatcher.forward(request,  response);
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+        doGet(request,  response);
     }
 }
 

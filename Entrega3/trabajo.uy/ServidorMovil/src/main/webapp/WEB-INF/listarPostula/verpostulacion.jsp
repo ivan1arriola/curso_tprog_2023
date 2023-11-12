@@ -40,7 +40,7 @@
         	  DtPostulacion dtpos = postulaciones.get(indice);
         	  
         	  byte[] imagenBytes = offer.getImagen();
-        	  String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
+        	  String imagen = "data:image/jpg;base64,  " + Base64.getEncoder().encodeToString(imagenBytes);
       
           %>
           

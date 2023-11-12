@@ -17,8 +17,8 @@ public class DTPostulante extends DTUsuario {
     private String nacionalidad;
     private Set<DTOfertaExtendido> favs;
 
-    public DTPostulante(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, byte[] imagen, LocalDate fechaNac, String nacionalidad, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores, Set<DTOfertaExtendido> favs) {
-        super(nickname, correo_electronico, apellido, nombre, contraseña, imagen, seguidos, seguidores);
+    public DTPostulante(String nickname,  String correo_electronico,  String apellido,  String nombre,  String contraseña,  byte[] imagen,  LocalDate fechaNac,  String nacionalidad,  Set<DTUsuarioSinInfoSocial> seguidos,  Set<DTUsuarioSinInfoSocial> seguidores,  Set<DTOfertaExtendido> favs) {
+        super(nickname,  correo_electronico,  apellido,  nombre,  contraseña,  imagen,  seguidos,  seguidores);
         this.fechanac = fechaNac;
         this.nacionalidad = nacionalidad;
         this.favs = favs;

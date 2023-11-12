@@ -17,8 +17,8 @@ public class DTEmpresa extends DTUsuario {
     private Set<DTOfertaExtendido> ofertasLaborales;
 
 
-    public DTEmpresa(String nickname, String correo_electronico, String apellido, String nombre, String contraseña, String descripcion, String url, Set<DTOfertaExtendido> dtOfertas, byte[] imagen, Set<DTUsuarioSinInfoSocial> seguidos, Set<DTUsuarioSinInfoSocial> seguidores) {
-        super(nickname, correo_electronico, apellido, nombre, contraseña, imagen, seguidos, seguidores);
+    public DTEmpresa(String nickname,  String correo_electronico,  String apellido,  String nombre,  String contraseña,  String descripcion,  String url,  Set<DTOfertaExtendido> dtOfertas,  byte[] imagen,  Set<DTUsuarioSinInfoSocial> seguidos,  Set<DTUsuarioSinInfoSocial> seguidores) {
+        super(nickname,  correo_electronico,  apellido,  nombre,  contraseña,  imagen,  seguidos,  seguidores);
         this.descripcion = descripcion;
         this.url = url;
         this.ofertasLaborales = dtOfertas;

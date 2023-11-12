@@ -28,8 +28,8 @@ public class ComprarPaquete extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
         request.setCharacterEncoding("UTF-8");
 
         
@@ -38,7 +38,7 @@ public class ComprarPaquete extends HttpServlet {
         String nickname = (String) session.getAttribute("nickname");
 
      // En el servlet que envía la información
-        String parametroCodificado = URLEncoder.encode(paquete, "UTF-8");
+        String parametroCodificado = URLEncoder.encode(paquete,  "UTF-8");
         
         ILogica logica = FabricaWeb.getLogica();
 
@@ -50,7 +50,7 @@ public class ComprarPaquete extends HttpServlet {
         }
 
         try {
-			logica.compraPaquetes(nickname, paquete, LocalDate.now(), valor);
+			logica.compraPaquetes(nickname,  paquete,  LocalDate.now(),  valor);
 		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,13 +72,13 @@ public class ComprarPaquete extends HttpServlet {
         try {
 			Set<String> paqs = logica.listarPaquetesDeEmpresa(nickname);
 			String s = "";
-			for(String elem : paqs) {
+			for (String elem : paqs) {
 				s = s + " " + elem;
 			}
 			
-	        request.setAttribute("mensajeError", s);
+	        request.setAttribute("mensajeError",  s);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-	        dispatcher.forward(request, response);
+	        dispatcher.forward(request,  response);
 		} catch (ExceptionUsuarioNoEncontrado_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

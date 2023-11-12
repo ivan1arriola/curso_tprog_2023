@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 public class Keyword {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     private String nombre;
 
     // constructor

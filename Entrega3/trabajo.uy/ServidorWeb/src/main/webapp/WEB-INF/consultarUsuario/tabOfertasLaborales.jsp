@@ -38,7 +38,7 @@
     for (OfertaLaboralBean oferta : ofertasLaborales) {
     	String imagen = oferta.getImagen();
         if (imagen== null) {
-            // Si no hay imagen, puedes establecer una imagen de reemplazo o un mensaje aquí
+            // Si no hay imagen,  puedes establecer una imagen de reemplazo o un mensaje aquí
             imagen = request.getContextPath() +  "/imagenNoFound.png";
         }
  

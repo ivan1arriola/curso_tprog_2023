@@ -246,7 +246,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 
 
 	 public String getRemuneracionString() {
-	        DecimalFormat decimalFormat = new DecimalFormat("#,###.##"); // Define el formato deseado (por ejemplo, con comas como separador de miles)
+	        DecimalFormat decimalFormat = new DecimalFormat("#, ###.##"); // Define el formato deseado (por ejemplo,  con comas como separador de miles)
 	        return decimalFormat.format(remuneracion);
 	    }
 	 public String getFechaDeAltaString() {
@@ -287,7 +287,7 @@ public class OfertaLaboralBean implements  Comparable<OfertaLaboralBean>{
 	}
 	
 	 public String getCostoString() {
-	        DecimalFormat decimalFormat = new DecimalFormat("#,###.##"); // Define el formato deseado (por ejemplo, con comas como separador de miles)
+	        DecimalFormat decimalFormat = new DecimalFormat("#, ###.##"); // Define el formato deseado (por ejemplo,  con comas como separador de miles)
 	        return decimalFormat.format(costo);
 	    }
 

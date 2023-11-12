@@ -87,7 +87,7 @@ import java.time.LocalDate;
 
 public class CtrlUsuario implements ICtrlUsuario {
     // empresa con URL y sin imagen
-    public boolean altaEmpresaURL(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL) throws ExceptionUsuarioCorreoRepetido, ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ErrorAgregarUsuario {
+    public boolean altaEmpresaURL(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  String URL) throws ExceptionUsuarioCorreoRepetido,  ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido,  ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existeNick = UsuarioH.existeNick(nick);
         boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -103,7 +103,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
 
         if (!existeNick && !existeCorreo) {
-            Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, desc, URL);
+            Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  desc,  URL);
             UsuarioH.agregar(empresa);
         }
 
@@ -111,7 +111,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     // empresa sin URL ni imagen
-    public boolean altaEmpresa(String nick, String contraseña, String nombre, String apellido, String mail, String desc) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido, ErrorAgregarUsuario {
+    public boolean altaEmpresa(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc) throws ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido,  ExceptionUsuarioCorreoRepetido,  ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existeNick = UsuarioH.existeNick(nick);
         boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -127,14 +127,14 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
 
         if (!existeNick && !existeCorreo) {
-            Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, desc);
+            Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  desc);
             UsuarioH.agregar(empresa);
         }
 
         return !existeNick && !existeCorreo;
     }
 
-    public boolean altaPostulante(String nick, String contraseña, String nombre, String apellido, String mail, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos, ExceptionUsuarioNickRepetido, ExceptionUsuarioCorreoRepetido, ErrorAgregarUsuario, ExceptionFechaInvalida {
+    public boolean altaPostulante(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  LocalDate fechanac,  String nacionalidad) throws ExceptionUsuarioNickYCorreoRepetidos,  ExceptionUsuarioNickRepetido,  ExceptionUsuarioCorreoRepetido,  ErrorAgregarUsuario,  ExceptionFechaInvalida {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existeNick = UsuarioH.existeNick(nick);
         boolean existeCorreo = UsuarioH.existeCorreo(mail);
@@ -150,7 +150,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
 
         Postulante postulante;
-        postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fechanac, nacionalidad);
+        postulante = new Postulante(nick,  contraseña,  nombre,  apellido,  mail,  fechanac,  nacionalidad);
         UsuarioH.agregar(postulante);
         return true;
     }
@@ -158,8 +158,8 @@ public class CtrlUsuario implements ICtrlUsuario {
     public Set<String> listarEmpresas() {
         Set<String> res = new HashSet<>();
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
-        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+        Map<String,  Usuario> usuarios = UsuarioH.obtenerNick();
+        for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
             Usuario user = entry.getValue();
             boolean esEmp = user.esEmpresa();
             if (esEmp) {
@@ -183,15 +183,15 @@ public class CtrlUsuario implements ICtrlUsuario {
     public Set<String> listarNicknamesUsuarios() {
         Set<String> res = new HashSet<>();
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
-        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+        Map<String,  Usuario> usuarios = UsuarioH.obtenerNick();
+        for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
             // Usuario u = entry.getValue(); NO SE USA (CHECKSTYLE)
             res.add(entry.getKey());
         }
         return res;
     }
 
-    public boolean existePostulacion(String nickname, String nombre) throws ExceptionUsuarioNoEncontrado {
+    public boolean existePostulacion(String nickname,  String nombre) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
         if (postulante != null) {
@@ -202,7 +202,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
     }
 
-    public Postulacion crearPostulacion(String nick, String curriculumVitae, String motivacion, LocalDate fecha, String URLDocExtras, OfertaLaboral OferLab, String urlVideo) throws ExceptionUsuarioNoEncontrado {
+    public Postulacion crearPostulacion(String nick,  String curriculumVitae,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab,  String urlVideo) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
@@ -210,7 +210,7 @@ public class CtrlUsuario implements ICtrlUsuario {
             throw new IllegalArgumentException("Usuario " + nick + " no existe");
         }
         try {
-            return postulante.crearPostulacion(curriculumVitae, motivacion, fecha, URLDocExtras, OferLab, urlVideo);
+            return postulante.crearPostulacion(curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OferLab,  urlVideo);
         } catch (ExceptionValidezNegativa e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -221,8 +221,8 @@ public class CtrlUsuario implements ICtrlUsuario {
     public Set<String> obtenerNicknamesPostulantes() {
         Set<String> res = new HashSet<>();
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-        Map<String, Usuario> usuarios = UsuarioH.obtenerNick();
-        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+        Map<String,  Usuario> usuarios = UsuarioH.obtenerNick();
+        for (Map.Entry<String,  Usuario> entry : usuarios.entrySet()) {
             Usuario user = entry.getValue();
             boolean esEmp = user.esEmpresa();
             if (!esEmp) {
@@ -233,8 +233,8 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public boolean altaOfertaLaboral(String nickname_e, String tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate FechaA, List<String> keys, EstadoOL estado, byte[] img, String paquete) throws ExceptionUsuarioNoEncontrado, ExceptionEmpresaInvalida,
-            ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, NoExistePaquete {
+    public boolean altaOfertaLaboral(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida, 
+            ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa,  NoExistePaquete {
         List<Keyword> keywords = new ArrayList<>();
 
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -242,8 +242,8 @@ public class CtrlUsuario implements ICtrlUsuario {
         TipoOfertaHandler TOH = TipoOfertaHandler.getInstance();
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
 
-        Map<String, Keyword> keyw = KeywordH.obtener();
-        for (Map.Entry<String, Keyword> entry : keyw.entrySet()) {
+        Map<String,  Keyword> keyw = KeywordH.obtener();
+        for (Map.Entry<String,  Keyword> entry : keyw.entrySet()) {
             if (keys.contains(entry.getKey())) {
                 keywords.add(entry.getValue());
             }
@@ -266,7 +266,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
                     OfertaLaboral oferL;
                     try {
-                        oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo), nombre, descripcion, horario, remun, ciu, dep, FechaA, keywords, estado, img, paq);
+                        oferL = empresa.altaOfertaLaboral(TOH.buscar(tipo),  nombre,  descripcion,  horario,  remun,  ciu,  dep,  FechaA,  keywords,  estado,  img,  paq);
                         OLH.agregar(oferL);
                     } catch (ExceptionRemuneracionOfertaLaboralNegativa exc) {
 
@@ -322,14 +322,14 @@ public class CtrlUsuario implements ICtrlUsuario {
         return res;
     }
 
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname, String nick) throws ExceptionUsuarioNoEncontrado {
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioNickname,  String nick) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario usuario = UsuarioH.buscarNick(nick);
         if (nick.equals(UsuarioNickname)) {
             DTUsuario user = usuario.obtenerDatosUsuario();
             return user;
         } else {
-            DTUsuario userEsp = usuario.obtenerDatosUsuarioEspecial(UsuarioNickname, nick);
+            DTUsuario userEsp = usuario.obtenerDatosUsuarioEspecial(UsuarioNickname,  nick);
             return userEsp;
         }
     }
@@ -351,11 +351,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado, TipoUsuarioNoValido {
+    public DTPostulacion obtenerDatosPostulacionW(String postulante_nick,  String ofer) throws ExceptionUsuarioNoEncontrado,  TipoUsuarioNoValido {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         try {
             Postulante user = (Postulante) UsuarioH.buscarNick(postulante_nick);
-            return user.obtenerDatosPostulacion(postulante_nick, ofer);
+            return user.obtenerDatosPostulacion(postulante_nick,  ofer);
         } catch (ExceptionUsuarioNoEncontrado exc){
             throw new TipoUsuarioNoValido("Se esperaba un Postulante y llego una Empresa");
         }
@@ -374,7 +374,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
 
-    public boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado {
+    public boolean validarCredenciales(String identificador,  String contraseña) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Usuario user = null;
         // Verificar si 'id' es un correo electrónico. Poner la er que sigue el correo
@@ -397,7 +397,7 @@ public class CtrlUsuario implements ICtrlUsuario {
             } catch (ExceptionUsuarioNoEncontrado exc) {
             	throw exc;
             	
-            	//return false; // Usuario no encontrado, devuelve false
+            	//return false; // Usuario no encontrado,  devuelve false
             }
         	
                   //user = UsuarioH.buscarNick(identificador);
@@ -414,7 +414,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public void ingresarDatosEditadosPostulanteImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNoEncontrado {
+    public void ingresarDatosEditadosPostulanteImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  LocalDate fechanac,  String nacionalidad) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
         postulante.setNombre(nombre);
@@ -431,7 +431,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         postulante.setNacionalidad(nacionalidad);
     }
 
-    public void ingresarDatosEditadosPostulante(String nickname, String nombre, String apellido, String correo, String contraseña, LocalDate fechanac, String nacionalidad) throws ExceptionUsuarioNoEncontrado {
+    public void ingresarDatosEditadosPostulante(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  LocalDate fechanac,  String nacionalidad) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nickname);
         postulante.setNombre(nombre);
@@ -448,7 +448,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public void ingresarDatosEditadosEmpresaURL(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, String descripcion) throws ExceptionUsuarioNoEncontrado {
+    public void ingresarDatosEditadosEmpresaURL(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String URL,  String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -460,7 +460,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 
     }
 
-    public void ingresarDatosEditadosEmpresa(String nickname, String nombre, String apellido, String correo, String contraseña, String descripcion) throws ExceptionUsuarioNoEncontrado {
+    public void ingresarDatosEditadosEmpresa(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -470,7 +470,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         empresa.setDescripcion(descripcion);
     }
 
-    public void ingresarDatosEditadosEmpresaURLImg(String nickname, String nombre, String apellido, String correo, String contraseña, String URL, byte[] imagen, String descripcion) throws ExceptionUsuarioNoEncontrado {
+    public void ingresarDatosEditadosEmpresaURLImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  String URL,  byte[] imagen,  String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -482,7 +482,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         empresa.setDescripcion(descripcion);
     }
 
-    public void ingresarDatosEditadosEmpresaImg(String nickname, String nombre, String apellido, String correo, String contraseña, byte[] imagen, String descripcion) throws ExceptionUsuarioNoEncontrado {
+    public void ingresarDatosEditadosEmpresaImg(String nickname,  String nombre,  String apellido,  String correo,  String contraseña,  byte[] imagen,  String descripcion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UsuarioH.buscarNick(nickname);
         empresa.setNombre(nombre);
@@ -500,7 +500,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         return tiene;
     }
 
-    public boolean hayPostulacionW(String postulante_nick, String ofer) throws ExceptionUsuarioNoEncontrado {
+    public boolean hayPostulacionW(String postulante_nick,  String ofer) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(postulante_nick);
         boolean existe = postulante.existePostulacion(ofer);
@@ -508,11 +508,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public boolean altaEmpresaURLyImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, String URL, byte[] imagen) throws ErrorAgregarUsuario {
+    public boolean altaEmpresaURLyImagen(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  String URL,  byte[] imagen) throws ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
         if (!existe) {
-            Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, imagen, desc, URL); // falta agregarle el parametro img
+            Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  imagen,  desc,  URL); // falta agregarle el parametro img
             UsuarioH.agregar(empresa);
             return true;
         } else {
@@ -523,13 +523,13 @@ public class CtrlUsuario implements ICtrlUsuario {
 
 
     // alta postulante con imagen
-    public boolean altaPostulanteImagen(String nick, String contraseña, String nombre, String apellido, LocalDate fechanac, String mail, String nacionalidad, byte[] imagen) throws ExceptionFechaInvalida, ErrorAgregarUsuario {
+    public boolean altaPostulanteImagen(String nick,  String contraseña,  String nombre,  String apellido,  LocalDate fechanac,  String mail,  String nacionalidad,  byte[] imagen) throws ExceptionFechaInvalida,  ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
         if (!existe) {
             Postulante postulante;
 
-                postulante = new Postulante(nick, contraseña, nombre, apellido, mail, fechanac, nacionalidad, imagen);
+                postulante = new Postulante(nick,  contraseña,  nombre,  apellido,  mail,  fechanac,  nacionalidad,  imagen);
                 UsuarioH.agregar(postulante);
 
 
@@ -540,11 +540,11 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
     // necesito otro constructor?
-    public boolean altaEmpresaImagen(String nick, String contraseña, String nombre, String apellido, String mail, String desc, byte[] imagen) throws ErrorAgregarUsuario {
+    public boolean altaEmpresaImagen(String nick,  String contraseña,  String nombre,  String apellido,  String mail,  String desc,  byte[] imagen) throws ErrorAgregarUsuario {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         boolean existe = UsuarioH.existeNick(nick) || UsuarioH.existeCorreo(mail);
         if (!existe) {
-            Empresa empresa = new Empresa(nick, nombre, apellido, mail, contraseña, imagen, desc); //  agregarle el parametro img
+            Empresa empresa = new Empresa(nick,  nombre,  apellido,  mail,  contraseña,  imagen,  desc); //  agregarle el parametro img
             UsuarioH.agregar(empresa);
             return true;
         } else {
@@ -574,10 +574,10 @@ public class CtrlUsuario implements ICtrlUsuario {
         return OLConfirmadas;
     }
 
-    public boolean modificarPostulacion(String nombre, String nick, String cvAbreviado, String motivacion) throws ExceptionUsuarioNoEncontrado {
+    public boolean modificarPostulacion(String nombre,  String nick,  String cvAbreviado,  String motivacion) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
-        boolean edito = postulante.editarPostulacion(nombre, cvAbreviado, motivacion);
+        boolean edito = postulante.editarPostulacion(nombre,  cvAbreviado,  motivacion);
         return edito;
     }
 
@@ -599,7 +599,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         return UsuarioH.existeCorreo(correo);
     }
 
-    public void seguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {    	
+    public void seguirUsuario(String usuario,  String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo,  ExceptionUsuarioNoEncontrado {    	
         if (usuario != usuario_seguido) {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr1 = UHan.buscarNick(usuario);
@@ -618,7 +618,7 @@ public class CtrlUsuario implements ICtrlUsuario {
         }
     }
 
-    public void dejarDeseguirUsuario(String usuario, String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo, ExceptionUsuarioNoEncontrado {
+    public void dejarDeseguirUsuario(String usuario,  String usuario_seguido) throws ExceptionUsuarioSeSigueASiMismo,  ExceptionUsuarioNoEncontrado {
         if (usuario != usuario_seguido) {
             UsuarioHandler UHan = UsuarioHandler.getInstance();
             Usuario usr = UHan.buscarNick(usuario);
@@ -631,7 +631,7 @@ public class CtrlUsuario implements ICtrlUsuario {
     }
 
 
-    public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nickname_empresa, String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
+    public Set<DTPostulacion> obtenerPostulacionesOfertaLaboral(String nickname_empresa,  String nombre_oferta) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UHan = UsuarioHandler.getInstance();
         Empresa empresa = (Empresa) UHan.buscarNick(nickname_empresa);
         return empresa.obtenerPostulacionesOfertaLaboral(nombre_oferta);
@@ -673,7 +673,7 @@ public class CtrlUsuario implements ICtrlUsuario {
 	}
 	
 	@Override
-    public LocalDate obtenerFechaDeCompra(String nickname_e, String paq) throws ExceptionUsuarioNoEncontrado {
+    public LocalDate obtenerFechaDeCompra(String nickname_e,  String paq) throws ExceptionUsuarioNoEncontrado {
     	UsuarioHandler UHan = UsuarioHandler.getInstance();
     	Empresa emp = (Empresa) UHan.buscarNick(nickname_e);
     	return emp.obtenerFechaDeCompra(paq);
@@ -682,8 +682,8 @@ public class CtrlUsuario implements ICtrlUsuario {
     @Override
 	public String obtenerCantPaquetesEmpresa(String nickname_e) throws ExceptionUsuarioNoEncontrado {
 		UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
-		Empresa e = (Empresa) UsuarioH.buscarNick(nickname_e);
-		return e.obtenerCantPaquetesEmpresa();
+		Empresa emp = (Empresa) UsuarioH.buscarNick(nickname_e);
+		return emp.obtenerCantPaquetesEmpresa();
 	}
 }
 

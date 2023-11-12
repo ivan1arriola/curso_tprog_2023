@@ -13,7 +13,7 @@
         UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
         Set<PaqueteBean> paquetes = usuario.getPaquetes();
         Set<String> paquetesVencidos = (Set<String>) request.getAttribute("paquetesVencidos");
-        Map<String, LocalDate> fechasAsocPaq = (Map<String, LocalDate>) request.getAttribute("mapaStringFecha");
+        Map<String,  LocalDate> fechasAsocPaq = (Map<String,  LocalDate>) request.getAttribute("mapaStringFecha");
         
         if (paquetes == null || paquetes.isEmpty()) {
         %>

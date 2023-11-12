@@ -6,14 +6,14 @@ import logica.enumerados.DepUY;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Ofertas_finalizadas", uniqueConstraints = {
+@Table(name = "Ofertasfinalizadas",  uniqueConstraints = {
         @UniqueConstraint(columnNames = "nombre")
 })
 public class OfertaLaboralDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "id",  nullable = false)
+    private Long iden;
 
     @Column(nullable = false)
     private String nombre;
@@ -34,42 +34,42 @@ public class OfertaLaboralDTO {
     private String ciudad;
 
     @Column(nullable = false)
-    private String tipo_publicacion;
+    private String tipopublicacion;
 
     @Column(nullable = false)
-    private LocalDate fecha_alta;
+    private LocalDate fechaalta;
     @Column(nullable = false)
-    private LocalDate fecha_baja;
+    private LocalDate fechabaja;
     @Column(nullable = false)
     private float costo;
     private String paquete;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_empresa")
+    @JoinColumn(name = "idempresa")
     private EmpresaDTO empresa;
 
-    public OfertaLaboralDTO(String nombre, String descripcion, String horario, Float remuneracion, DepUY departamento, String ciudad, String tipo_publicacion, LocalDate fecha_alta, LocalDate fecha_baja, float costo, String paquete, EmpresaDTO empresa) {
+    public OfertaLaboralDTO(String nombre,  String descripcion,  String horario,  Float remuneracion,  DepUY departamento,  String ciudad,  String tipopublicacion,  LocalDate fechaalta,  LocalDate fechabaja,  float costo,  String paquete,  EmpresaDTO empresa) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.horario = horario;
         this.remuneracion = remuneracion;
         this.departamento = departamento;
         this.ciudad = ciudad;
-        this.tipo_publicacion = tipo_publicacion;
-        this.fecha_alta = fecha_alta;
-        this.fecha_baja = fecha_baja;
+        this.tipopublicacion = tipopublicacion;
+        this.fechaalta = fechaalta;
+        this.fechabaja = fechabaja;
         this.costo = costo;
         this.paquete = paquete;
         // para empresa
         this.empresa = empresa;
     }
 
-    public OfertaLaboralDTO(String nombre, String descripcion, String horario, Float remuneracion, DepUY departamento, String ciudad, String tipo_publicacion, LocalDate fecha_alta, LocalDate fecha_baja, float costo, EmpresaDTO empresa) {
-        this( nombre, descripcion, horario, remuneracion, departamento, ciudad, tipo_publicacion, fecha_alta, fecha_baja, costo, null, empresa);
+    public OfertaLaboralDTO(String nombre,  String descripcion,  String horario,  Float remuneracion,  DepUY departamento,  String ciudad,  String tipopublicacion,  LocalDate fechaalta,  LocalDate fechabaja,  float costo,  EmpresaDTO empresa) {
+        this( nombre,  descripcion,  horario,  remuneracion,  departamento,  ciudad,  tipopublicacion,  fechaalta,  fechabaja,  costo,  null,  empresa);
     }
 
-    public OfertaLaboralDTO(String nombre, String descripcion, String horario, Float remuneracion, DepUY departamento, String ciudad, String tipo_publicacion, LocalDate fecha_alta, LocalDate fecha_baja, float costo, String paquete) {
-        this( nombre, descripcion, horario, remuneracion, departamento, ciudad, tipo_publicacion, fecha_alta, fecha_baja, costo, paquete, null);
+    public OfertaLaboralDTO(String nombre,  String descripcion,  String horario,  Float remuneracion,  DepUY departamento,  String ciudad,  String tipopublicacion,  LocalDate fechaalta,  LocalDate fechabaja,  float costo,  String paquete) {
+        this( nombre,  descripcion,  horario,  remuneracion,  departamento,  ciudad,  tipopublicacion,  fechaalta,  fechabaja,  costo,  paquete,  null);
     }
 
     public OfertaLaboralDTO() {
@@ -88,11 +88,11 @@ public class OfertaLaboralDTO {
 
 
     public Long getId() {
-        return id;
+        return iden;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long iden) {
+        this.iden = iden;
     }
 
     public String getNombre() {

@@ -44,6 +44,6 @@ boolean ofertasTabAbierto = Boolean.parseBoolean(request.getParameter("ofertas")
 
 
                     </form>
-                    <%if(consultaSuPerfil){ %> <jsp:include page="./editarDatosModal.jsp" /> <%}%>
+                    <%if (consultaSuPerfil){ %> <jsp:include page="./editarDatosModal.jsp" /> <%}%>
 
                 </div>

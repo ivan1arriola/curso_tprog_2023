@@ -7,6 +7,7 @@ import logica.clases.Postulacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceException;
 import jakarta.persistence.EntityTransaction;
 import logica.dto.EmpresaDTO;
 import logica.dto.OfertaLaboralDTO;
@@ -75,7 +76,7 @@ public class TrabajoUyHistoricoManager {
     }
 
     /** Busca si ya esta registrado el usuario en la base de datos
-     * Si existe el registro, devuelve el DTO, si no existe, devulve null
+     * Si existe el registro,  devuelve el DTO,  si no existe,  devulve null
      * @param nickname
      * @return
      */
@@ -87,8 +88,8 @@ public class TrabajoUyHistoricoManager {
 
             // Consulta para obtener el UsuarioDTO por su nickname
             String queryString = "SELECT u FROM UsuarioDTO u WHERE u.nickname = :nickname";
-            List<UsuarioDTO> resultList = entityManager.createQuery(queryString, UsuarioDTO.class)
-                    .setParameter("nickname", nickname)
+            List<UsuarioDTO> resultList = entityManager.createQuery(queryString,  UsuarioDTO.class)
+                    .setParameter("nickname",  nickname)
                     .getResultList();
 
             // Confirmar la transacción
@@ -102,7 +103,7 @@ public class TrabajoUyHistoricoManager {
 //                System.out.println("Usuario no encontrado para el nickname: " + nickname);
                 return null; // Or handle this case according to your application's logic
             }
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -112,7 +113,7 @@ public class TrabajoUyHistoricoManager {
     }
 
 
-    public void GuardarOfertaFinalizada(OfertaLaboralDTO ofertaLaboraldto,EmpresaDTO Empresa){
+    public void guardarOfertaFinalizada(OfertaLaboralDTO ofertaLaboraldto, EmpresaDTO Empresa){
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
@@ -125,7 +126,7 @@ public class TrabajoUyHistoricoManager {
 
             transaction.commit();
             System.out.println(ofertaLaboraldto.getNombre() + " se persistio en TrabajoUyHistorico");
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
@@ -133,7 +134,7 @@ public class TrabajoUyHistoricoManager {
         } 
     }
 
-    public void GuardarPostulacion(PostulacionDTO postulacion,PostulanteDTO postulante){
+    public void guardarPostulacion(PostulacionDTO postulacion, PostulanteDTO postulante){
     	EntityTransaction transaction = entityManager.getTransaction();
     	try {
             transaction.begin();
@@ -145,7 +146,7 @@ public class TrabajoUyHistoricoManager {
             
             transaction.commit();
             System.out.println(" se persistio en TrabajoUyHistorico una postulacion");
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
@@ -153,7 +154,7 @@ public class TrabajoUyHistoricoManager {
         } 
     }	
     
-    public void GuardarPostulante(PostulanteDTO postulantetransformado) {
+    public void guardarPostulante(PostulanteDTO postulantetransformado) {
     	EntityTransaction transaction = entityManager.getTransaction();
     	try {
             transaction.begin();
@@ -164,7 +165,7 @@ public class TrabajoUyHistoricoManager {
             
             transaction.commit();
             System.out.println(" se persistio en TrabajoUyHistorico el postulante " + postulantetransformado.getNickname());
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
@@ -173,7 +174,7 @@ public class TrabajoUyHistoricoManager {
     }
     
     
-    public void GuardarEmpresa(EmpresaDTO empresa) {
+    public void guardarEmpresa(EmpresaDTO empresa) {
     	EntityTransaction transaction = entityManager.getTransaction();
     	try {
             transaction.begin();
@@ -184,7 +185,7 @@ public class TrabajoUyHistoricoManager {
             
             transaction.commit();
 //            System.out.println(" se persistio en TrabajoUyHistorico la empresa " + empresa.getNickname());
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa",  targetNamespace = "http://servidor.logica/")
 public class ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exce
      * @param faultInfo
      * @param message
      */
-    public ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception(String message, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa faultInfo) {
+    public ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception(String message,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exce
      * @param faultInfo
      * @param message
      */
-    public ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception(String message, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception(String message,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

@@ -28,7 +28,7 @@ public class DTOfertaLaboral {
     private String tipoOferta;
 
 
-    public DTOfertaLaboral(String nomb, String desc, LocalDate fechaA, float cost, float remu, DTHorario horario, DepUY dep, String ciu, EstadoOL estadoOL, byte[] imagenBytes, Integer cantF, String tipoOfer) {
+    public DTOfertaLaboral(String nomb,  String desc,  LocalDate fechaA,  float cost,  float remu,  DTHorario horario,  DepUY dep,  String ciu,  EstadoOL estadoOL,  byte[] imagenBytes,  Integer cantF,  String tipoOfer) {
         nombre = nomb;
         descripcion = desc;
         fechaDeAlta = fechaA;
@@ -89,7 +89,7 @@ public class DTOfertaLaboral {
     public String toString() {
 
         return nombre + " - " + descripcion + "\n" + fechaDeAlta + "\n" + costo + " - " + remuneracion
-                + " - " + horario + "\n" + departamento + ", " + ciudad;
+                + " - " + horario + "\n" + departamento + ",  " + ciudad;
 
     }
 

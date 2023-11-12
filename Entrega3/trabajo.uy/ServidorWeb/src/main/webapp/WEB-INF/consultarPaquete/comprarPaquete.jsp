@@ -5,7 +5,7 @@
 <% boolean yaSeCompro = (boolean) request.getAttribute("yaSeCompro"); 
 PaqueteBean paquete = (PaqueteBean) request.getAttribute("paquete");
 //Codificar el nombre del paquete para asegurar una URL válida
-String nombrePaqueteCodificado = URLEncoder.encode(paquete.getNombre(), "UTF-8");
+String nombrePaqueteCodificado = URLEncoder.encode(paquete.getNombre(),  "UTF-8");
 %>
 <% if (!yaSeCompro) { %>
 	

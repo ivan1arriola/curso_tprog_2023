@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionCompraPaqueteConValorNegativo", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionCompraPaqueteConValorNegativo",  targetNamespace = "http://servidor.logica/")
 public class ExceptionCompraPaqueteConValorNegativo_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionCompraPaqueteConValorNegativo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionCompraPaqueteConValorNegativo_Exception(String message, ExceptionCompraPaqueteConValorNegativo faultInfo) {
+    public ExceptionCompraPaqueteConValorNegativo_Exception(String message,  ExceptionCompraPaqueteConValorNegativo faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionCompraPaqueteConValorNegativo_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionCompraPaqueteConValorNegativo_Exception(String message, ExceptionCompraPaqueteConValorNegativo faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionCompraPaqueteConValorNegativo_Exception(String message,  ExceptionCompraPaqueteConValorNegativo faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

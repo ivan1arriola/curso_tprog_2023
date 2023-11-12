@@ -66,7 +66,7 @@ public class VerPostulaciones extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Ver postulaciones");
-        setBounds(30, 30, 678, 285);
+        setBounds(30,  30,  678,  285);
         getContentPane().setLayout(null);
 
         JButton btnCerrar = new JButton("Cerrar");
@@ -75,7 +75,7 @@ public class VerPostulaciones extends JInternalFrame {
                 setVisible(false);
             }
         });
-        btnCerrar.setBounds(338, 216, 117, 25);
+        btnCerrar.setBounds(338,  216,  117,  25);
         getContentPane().add(btnCerrar);
 
         listadoPostulaciones = new JComboBox<String>();
@@ -95,47 +95,47 @@ public class VerPostulaciones extends JInternalFrame {
 
             }
         });
-        listadoPostulaciones.setBounds(186, 12, 455, 28);
+        listadoPostulaciones.setBounds(186,  12,  455,  28);
         getContentPane().add(listadoPostulaciones);
 
         JLabel lblPostulaciones = new JLabel("Lista de postulaciones:");
-        lblPostulaciones.setBounds(12, 19, 170, 15);
+        lblPostulaciones.setBounds(12,  19,  170,  15);
         getContentPane().add(lblPostulaciones);
 
         JLabel lblIngresoCI_1_2_1 = new JLabel("Fecha:");
-        lblIngresoCI_1_2_1.setBounds(12, 59, 170, 15);
+        lblIngresoCI_1_2_1.setBounds(12,  59,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1);
 
         JLabel lblIngresoCI_1_2_1_1 = new JLabel("URLDocExtras:");
-        lblIngresoCI_1_2_1_1.setBounds(12, 102, 170, 15);
+        lblIngresoCI_1_2_1_1.setBounds(12,  102,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1);
 
         JLabel lblIngresoCI_1_2_1_1_1 = new JLabel("Motivación:");
-        lblIngresoCI_1_2_1_1_1.setBounds(12, 143, 170, 15);
+        lblIngresoCI_1_2_1_1_1.setBounds(12,  143,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1);
 
         JLabel lblIngresoCI_1_2_1_1_1_1 = new JLabel("CV:");
-        lblIngresoCI_1_2_1_1_1_1.setBounds(12, 186, 170, 15);
+        lblIngresoCI_1_2_1_1_1_1.setBounds(12,  186,  170,  15);
         getContentPane().add(lblIngresoCI_1_2_1_1_1_1);
 
         tfFecha = new JTextField();
         tfFecha.setEditable(false);
-        tfFecha.setBounds(186, 52, 455, 30);
+        tfFecha.setBounds(186,  52,  455,  30);
         getContentPane().add(tfFecha);
 
         tfURLDocExtras = new JTextField();
         tfURLDocExtras.setEditable(false);
-        tfURLDocExtras.setBounds(186, 95, 455, 30);
+        tfURLDocExtras.setBounds(186,  95,  455,  30);
         getContentPane().add(tfURLDocExtras);
 
         tfDescripcion = new JTextField();
         tfDescripcion.setEditable(false);
-        tfDescripcion.setBounds(186, 136, 455, 30);
+        tfDescripcion.setBounds(186,  136,  455,  30);
         getContentPane().add(tfDescripcion);
 
         tfCV = new JTextField();
         tfCV.setEditable(false);
-        tfCV.setBounds(186, 178, 455, 30);
+        tfCV.setBounds(186,  178,  455,  30);
         getContentPane().add(tfCV);
 
 

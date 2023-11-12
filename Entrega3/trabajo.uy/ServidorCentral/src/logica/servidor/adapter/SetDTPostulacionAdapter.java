@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class SetDTPostulacionAdapter extends XmlAdapter<ArrayList<DTPostulacion>, Set<DTPostulacion>> {
+public class SetDTPostulacionAdapter extends XmlAdapter<ArrayList<DTPostulacion>,  Set<DTPostulacion>> {
 
     @Override
     public ArrayList<DTPostulacion> marshal(Set<DTPostulacion> set) throws Exception {

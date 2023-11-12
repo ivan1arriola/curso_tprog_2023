@@ -18,7 +18,7 @@ public class DTPostulacion {
     private Integer clasificacion;
     private String fechaResu;
 
-    public DTPostulacion(String nomb_p, LocalDate fecha, String URLDE, String cVitae, String motivacion, String urlVid, Integer clasif, String fechaR) {
+    public DTPostulacion(String nomb_p,  LocalDate fecha,  String URLDE,  String cVitae,  String motivacion,  String urlVid,  Integer clasif,  String fechaR) {
         nombrePostulante = nomb_p;
         this.fecha = fecha;
         uRLDocExtras = URLDE;

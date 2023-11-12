@@ -55,7 +55,7 @@
             </thead>
             <tbody id="listaPostulantes">
             <% int rowIndex = 1; %>
-            <% for(String postulante : postulantes) { %>
+            <% for (String postulante : postulantes) { %>
             <tr id="<%=postulante%>"
                 class="postulante-row tr-draggable"
             >
@@ -69,7 +69,7 @@
                         class="btn btn-info"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
-                        onclick="cargarInfoPostulante('<%=postulante%>','<%=nombreOferta%>' )"
+                        onclick="cargarInfoPostulante('<%=postulante%>', '<%=nombreOferta%>' )"
                 >
                   Ver Postulacion
                 </button>

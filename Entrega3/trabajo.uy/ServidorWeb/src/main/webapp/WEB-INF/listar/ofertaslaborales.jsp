@@ -38,7 +38,7 @@
                 	Set<OfertaLaboralBean> ofertasLaborales = (Set<OfertaLaboralBean>) request.getAttribute("ofertasLaborales");
                
                 if (ofertasLaborales == null || ofertasLaborales.isEmpty()) {
-                    // Si ofertasLaborales es null o está vacío, muestra un mensaje
+                    // Si ofertasLaborales es null o está vacío,  muestra un mensaje
                 %>
                     <div class="alert alert-secondary" role="alert">
 					    <% if (ofertasLaborales == null) { %>

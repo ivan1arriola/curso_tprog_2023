@@ -50,7 +50,7 @@
         <div class="container mt-3">
           <div class="alert alert-warning" role="alert">
             <strong>Atención:</strong> No se ha definido aún un orden de postulantes. Si finalizas la
-            oferta, se descartarán todas las postulaciones.
+            oferta,  se descartarán todas las postulaciones.
           </div>
         </div>
         <% } %>
@@ -63,7 +63,7 @@
           <button type="submit" class="btn btn-danger">Finalizar Oferta Laboral</button>
         </form>
 
-        <%if(hayOrdenDefinido){%>
+        <%if (hayOrdenDefinido){%>
         <form action="<%=request.getContextPath()%>/descartarorden" method="POST">
           <input type="hidden" value="<%=nombreOferta%>" name="oferta">
           <button type="submit" class="btn btn-danger">Descartar Orden de Postulantes</button>

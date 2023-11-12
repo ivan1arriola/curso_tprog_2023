@@ -31,11 +31,11 @@ import java.util.Set;
 // declaro entidad
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "Tipo_Usuario", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "Tipo_Usuario",  discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     // -----------
     private String nickname;
     private String nombre;
@@ -47,8 +47,8 @@ public abstract class Usuario {
     // relaciones
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name = "usuario_seguidores",
-            joinColumns = @JoinColumn(name = "seguido_id"),
+            name = "usuario_seguidores", 
+            joinColumns = @JoinColumn(name = "seguido_id"), 
             inverseJoinColumns = @JoinColumn(name = "seguidores")
     )
     private Set<Usuario> seguidores = new HashSet<>();
@@ -59,11 +59,11 @@ public abstract class Usuario {
 
 
 
-    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia) {
-        this(nickname, nombre, apellido, correo_electronico, contrasenia, null);
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia) {
+        this(nickname,  nombre,  apellido,  correo_electronico,  contrasenia,  null);
     }
 
-    public Usuario(String nickname, String nombre, String apellido, String correo_electronico, String contrasenia, byte[] imagen) {
+    public Usuario(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasenia,  byte[] imagen) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -149,9 +149,9 @@ public abstract class Usuario {
     public abstract DTUsuario obtenerDatosUsuario();
 
 
-    // corregido,  se pasan mas parametros para la ejecucion
+    // corregido,   se pasan mas parametros para la ejecucion
     // para visitantes colocar en usuario registrado actual 'nada'
-    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
+    public abstract DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,  String UsuarioQueSeHaceConsulta); // operacion implementada en las subclases
 
 
     // NO ESTA EN EL DCD

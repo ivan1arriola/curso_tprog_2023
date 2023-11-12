@@ -44,16 +44,16 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
     /**
      * Create the application.
      */
-    public AgregarTipodePublicacióndeOfertaLaboral(ICtrlOferta ICO, ICtrlUsuario ICU) {
+    public AgregarTipodePublicacióndeOfertaLaboral(ICtrlOferta ICO,  ICtrlUsuario ICU) {
 
         ico = ICO;
         initialize();
 
         paquetesVisualizar = new JComboBox<String>();
-        paquetesVisualizar.setBounds(190, 27, 298, 24);
+        paquetesVisualizar.setBounds(190,  27,  298,  24);
         getContentPane().add(paquetesVisualizar);
         listadoTipoPub = new JComboBox<String>();
-        listadoTipoPub.setBounds(190, 63, 298, 24);
+        listadoTipoPub.setBounds(190,  63,  298,  24);
         getContentPane().add(listadoTipoPub);
 
         paquetesVisualizar.addActionListener(new ActionListener() {
@@ -74,7 +74,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                     Set<String> publiNoAgregados = new HashSet<>();
 
                     List<String> publiSorted = new ArrayList<>(publicaciones);
-                    Collections.sort(publiSorted, String.CASE_INSENSITIVE_ORDER);
+                    Collections.sort(publiSorted,  String.CASE_INSENSITIVE_ORDER);
 
 
                     for (String elem : publiSorted) {
@@ -113,20 +113,20 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                         listadoTipoPub.getSelectedIndex() != -1 && listadoTipoPub.getSelectedIndex() != 0) {
                     try {
                         if (text.isEmpty()) {
-                            JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "El campo cantidad no puede ser vacío.", "ERROR - Agregar Tipo de Publicación de Oferta Labora", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,  "El campo cantidad no puede ser vacío.",  "ERROR - Agregar Tipo de Publicación de Oferta Labora",  JOptionPane.ERROR_MESSAGE);
                         } else {
                             int valor = Integer.parseInt(text);
                             if (valor <= 0) {
-                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "El campo cantidad debe ser un número positivo.", "ERROR - Agregar Tipo de Publicación de Oferta Labora", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,  "El campo cantidad debe ser un número positivo.",  "ERROR - Agregar Tipo de Publicación de Oferta Labora",  JOptionPane.ERROR_MESSAGE);
                             } else {
-                                ICO.agregarTipoOfertaPaq(op1, op2, valor);
-                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Se ha vinculado el tipo de publicacion a la Oferta Laboral", "Agregar Tipo de Publicación de Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+                                ICO.agregarTipoOfertaPaq(op1,  op2,  valor);
+                                JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,  "Se ha vinculado el tipo de publicacion a la Oferta Laboral",  "Agregar Tipo de Publicación de Oferta Laboral",  JOptionPane.INFORMATION_MESSAGE);
                                 setVisible(false);
                             }
                         }
                     } catch (NumberFormatException | ExceptionCantidadPositivaDeTipoOfertaEnPaquete exc) {
 
-                        JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this, "Ingrese por favor un número", "ERROR - Agregar Tipo de Publicación de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(AgregarTipodePublicacióndeOfertaLaboral.this,  "Ingrese por favor un número",  "ERROR - Agregar Tipo de Publicación de Oferta Laboral",  JOptionPane.ERROR_MESSAGE);
                     } catch (NoExistePaquete e) {
                         throw new RuntimeException(e);
                     }
@@ -134,7 +134,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
 
             }
         });
-        btnNewButton_1.setBounds(190, 161, 117, 25);
+        btnNewButton_1.setBounds(190,  161,  117,  25);
         getContentPane().add(btnNewButton_1);
 
     }
@@ -149,24 +149,24 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Agregar Tipo de Publicación de Oferta Laboral");
-        setBounds(30, 30, 530, 250);
+        setBounds(30,  30,  530,  250);
         getContentPane().setLayout(null);
 
         JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Paquetes");
-        lblNewJgoodiesTitle.setBounds(10, 32, 130, 15);
+        lblNewJgoodiesTitle.setBounds(10,  32,  130,  15);
         getContentPane().add(lblNewJgoodiesTitle);
 
         JLabel lblIngresoCI_1 = new JLabel("Cantidad:");
-        lblIngresoCI_1.setBounds(10, 105, 170, 15);
+        lblIngresoCI_1.setBounds(10,  105,  170,  15);
         getContentPane().add(lblIngresoCI_1);
 
         cantidadMostrar = new JTextField();
         cantidadMostrar.setColumns(10);
-        cantidadMostrar.setBounds(190, 100, 298, 24);
+        cantidadMostrar.setBounds(190,  100,  298,  24);
         getContentPane().add(cantidadMostrar);
 
         JLabel lblIngresoCI_1_1 = new JLabel("Tipo publicacion:");
-        lblIngresoCI_1_1.setBounds(10, 68, 170, 15);
+        lblIngresoCI_1_1.setBounds(10,  68,  170,  15);
         getContentPane().add(lblIngresoCI_1_1);
 
         JButton btnNewButton_1 = new JButton("Cerrar");
@@ -176,7 +176,7 @@ public class AgregarTipodePublicacióndeOfertaLaboral extends JInternalFrame {
                 dispose(); // cierra ventana
             }
         });
-        btnNewButton_1.setBounds(371, 161, 117, 25);
+        btnNewButton_1.setBounds(371,  161,  117,  25);
         getContentPane().add(btnNewButton_1);
 
 

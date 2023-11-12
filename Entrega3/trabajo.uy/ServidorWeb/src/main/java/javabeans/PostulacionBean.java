@@ -59,7 +59,7 @@ public class PostulacionBean {
             }
 
         } else {
-            // Manejar el caso en el que la URL no sea válida (puedes lanzar una excepción, establecer un valor predeterminado, etc.)
+            // Manejar el caso en el que la URL no sea válida (puedes lanzar una excepción,  establecer un valor predeterminado,  etc.)
             this.video = null;
         }
     }
@@ -77,7 +77,7 @@ public class PostulacionBean {
         if (matcher1.find()) {
             videoId = matcher1.group(1);
         } else {
-            // Si no coincide con la primera, intenta la segunda expresión regular
+            // Si no coincide con la primera,  intenta la segunda expresión regular
             Pattern pattern2 = Pattern.compile(regex2);
             Matcher matcher2 = pattern2.matcher(originalURL);
             if (matcher2.find()) {
@@ -87,7 +87,7 @@ public class PostulacionBean {
         if (videoId != null) {
             return "https://www.youtube.com/embed/" + videoId;
         } else {
-            // Si no se encontró un identificador válido, retorna la URL original
+            // Si no se encontró un identificador válido,  retorna la URL original
             return originalURL;
         }
     }

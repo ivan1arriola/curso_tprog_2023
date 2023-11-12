@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExcepcionKeywordVacia", propOrder = {
+@XmlType(name = "ExcepcionKeywordVacia",  propOrder = {
     "message"
 })
 public class ExcepcionKeywordVacia {

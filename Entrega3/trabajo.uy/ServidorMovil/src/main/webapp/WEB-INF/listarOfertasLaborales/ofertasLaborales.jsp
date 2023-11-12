@@ -28,10 +28,10 @@
           List<DtOfertaExtendido> ofertas = (ArrayList<DtOfertaExtendido>) request.getAttribute("ofertas");
           String context = request.getContextPath();
           
-          for(DtOfertaExtendido oferta : ofertas){
+          for (DtOfertaExtendido oferta : ofertas){
         	  
         	  byte[] imagenBytes = oferta.getImagen();
-        	  String imagen = "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(imagenBytes);
+        	  String imagen = "data:image/jpg;base64,  " + Base64.getEncoder().encodeToString(imagenBytes);
         	  
         	  
          

@@ -35,14 +35,14 @@ public class ConsultarUsuario extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 
         String nicknameParametro = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
         TipoUsuario tipoUsuarioLogueado = (TipoUsuario) request.getSession().getAttribute("tipoUsuario");
-        request.setAttribute("tipoU", tipoUsuarioLogueado);
-        request.setAttribute("usuarioConsultado", nicknameParametro);
+        request.setAttribute("tipoU",  tipoUsuarioLogueado);
+        request.setAttribute("usuarioConsultado",  nicknameParametro);
 
 
         
@@ -54,42 +54,42 @@ public class ConsultarUsuario extends HttpServlet {
                 UsuarioBean usuario = logica.obtenerDatosUsuario(nicknameParametro);
 
                 // valida que en efecto los datos de la session coinciden con los de la logica en caso de consultar su propio perfil
-                boolean consultaSuPerfil = validarConsultaUsuario(nicknameParametro, nicknameUsuarioLogueado, tipoUsuarioLogueado, usuario);
+                boolean consultaSuPerfil = validarConsultaUsuario(nicknameParametro,  nicknameUsuarioLogueado,  tipoUsuarioLogueado,  usuario);
 
                 if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
-                    usuario = cargarPaquete(usuario, nicknameParametro);
+                    usuario = cargarPaquete(usuario,  nicknameParametro);
                     Set<PaqueteBean> paquetes = usuario.getPaquetes();
                     List<String> paqs = servidor.listarPaquetesNoVencidos(usuario.getNickname()).getListaString();
-                    Map<String, LocalDate> mapaStringFecha = new HashMap<>();
+                    Map<String,  LocalDate> mapaStringFecha = new HashMap<>();
                     
                     Set<String> paquetesVencidos = new HashSet<>();
-                    for(PaqueteBean paq : paquetes) {
+                    for (PaqueteBean paq : paquetes) {
                     	if (!paqs.contains(paq.getNombre())) {
                     		paquetesVencidos.add(paq.getNombre());
                     	}
-                    	mapaStringFecha.put(paq.getNombre(), LocalDate.parse(servidor.obtenerFechaCompra(usuario.getNickname(), paq.getNombre())));
+                    	mapaStringFecha.put(paq.getNombre(),  LocalDate.parse(servidor.obtenerFechaCompra(usuario.getNickname(),  paq.getNombre())));
                     }
                     
-                    request.setAttribute("mapaStringFecha", mapaStringFecha);
-                    request.setAttribute("paquetesVencidos", paquetesVencidos);
+                    request.setAttribute("mapaStringFecha",  mapaStringFecha);
+                    request.setAttribute("paquetesVencidos",  paquetesVencidos);
                     
                     /*String s = ""; test de cosas
-                    for(PaqueteBean elem : paquetes) {
+                    for (PaqueteBean elem : paquetes) {
                         s = s + elem.getNombre() + elem.get.toString();// + elem.getValidez();
                     }
                     
-                    request.setAttribute("mensajeError", s);
+                    request.setAttribute("mensajeError",  s);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-                    dispatcher.forward(request, response);*/
+                    dispatcher.forward(request,  response);*/
                     
-                    usuario = cargarOfertasLaborales(usuario, nicknameParametro, true );
+                    usuario = cargarOfertasLaborales(usuario,  nicknameParametro,  true );
                 }
                 if (consultaSuPerfil && usuario.getTipo() == TipoUsuario.Postulante) {
-                    usuario = cargarPostulaciones(usuario, nicknameParametro);
+                    usuario = cargarPostulaciones(usuario,  nicknameParametro);
                 }
                 
                 if (!consultaSuPerfil && usuario.getTipo() == TipoUsuario.Empresa) {
-                	usuario = cargarOfertasLaborales(usuario, nicknameParametro, false);
+                	usuario = cargarOfertasLaborales(usuario,  nicknameParametro,  false);
                 }
                 Set<String> seguidores = logica.obtenerSeguidores(nicknameParametro); // vemos los seguidores del usuario al que se le consulta el perfil
                 Set<String> seguidos = logica.obtenerSeguidos(nicknameParametro);
@@ -97,46 +97,46 @@ public class ConsultarUsuario extends HttpServlet {
                 boolean existe = seguidores.contains(nicknameUsuarioLogueado);
                 
                 if (existe) {
-                	request.setAttribute("seguir", false); // mostrar botón "dejar de seguir"
+                	request.setAttribute("seguir",  false); // mostrar botón "dejar de seguir"
                 } else {
-                	request.setAttribute("seguir", true); // mostrar botón "seguir"
+                	request.setAttribute("seguir",  true); // mostrar botón "seguir"
                 }
                 
                 Set<UsuarioBean> seguidoresUser = new HashSet<>();
-                for(String elemento : seguidores) {
+                for (String elemento : seguidores) {
                 	UsuarioBean se = logica.obtenerDatosUsuario(elemento);
                 	seguidoresUser.add(se);
                 }
                 
                 Set<UsuarioBean> seguidosUser = new HashSet<>();
-                for(String elemento : seguidos) {
+                for (String elemento : seguidos) {
                 	UsuarioBean seg = logica.obtenerDatosUsuario(elemento);
                 	seguidosUser.add(seg);
                 }
                 
-                request.setAttribute("consultaSuPerfil", consultaSuPerfil);
-                request.setAttribute("usuario", usuario);
-                request.setAttribute("seguidores", seguidoresUser);
-                request.setAttribute("seguidos", seguidosUser);
+                request.setAttribute("consultaSuPerfil",  consultaSuPerfil);
+                request.setAttribute("usuario",  usuario);
+                request.setAttribute("seguidores",  seguidoresUser);
+                request.setAttribute("seguidos",  seguidosUser);
                 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/consultarUsuario/consultarUsuario.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
 
             } catch (Exception e) {
                 String mensajeError = "Ocurrió un error al obtener los datos del usuario: " + e.getMessage();
-                request.setAttribute("mensajeError", mensajeError);
+                request.setAttribute("mensajeError",  mensajeError);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
             }
         } else {
             String mensajeError = "Ocurrió un error al obtener los datos del usuario: No se proporcionó el usuario";
-            request.setAttribute("mensajeError", mensajeError);
+            request.setAttribute("mensajeError",  mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            dispatcher.forward(request, response);
+            dispatcher.forward(request,  response);
         }
     }
 	
-    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario, String nicknameParametro, boolean mostrarTodas) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception {
+    private UsuarioBean cargarOfertasLaborales(UsuarioBean usuario,  String nicknameParametro,  boolean mostrarTodas) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception {
         Set<String> nombresOfertas;
         
         if (!mostrarTodas) {
@@ -158,13 +158,13 @@ public class ConsultarUsuario extends HttpServlet {
     }
 
 
-	private UsuarioBean cargarPostulaciones(UsuarioBean usuario, String nicknameParametro) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception {
+	private UsuarioBean cargarPostulaciones(UsuarioBean usuario,  String nicknameParametro) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception,  TipoUsuarioNoValido_Exception {
 		Set<String> nombreOfertasConPostulacion = logica.listarPostulacionesDePostulante(nicknameParametro);
 		Set<PostulacionBean> postulaciones = new HashSet<PostulacionBean>();
 		
 		if (nombreOfertasConPostulacion != null && !nombreOfertasConPostulacion.isEmpty()) {
             for (String nombreOferta : nombreOfertasConPostulacion) {
-            	PostulacionBean inc = logica.obtenerDatosPostulacion(nombreOferta, nicknameParametro);
+            	PostulacionBean inc = logica.obtenerDatosPostulacion(nombreOferta,  nicknameParametro);
             	EstadoOfertaLaboral EOL = logica.obtenerDatosOfertaLaboral(inc.getNombreOfertaLaboral()).getEstado();
             	if (EOL == EstadoOfertaLaboral.Confirmada ) {
             		inc.setEstado("Vigente");
@@ -185,7 +185,7 @@ public class ConsultarUsuario extends HttpServlet {
 
 
 
-	public UsuarioBean cargarPaquete(UsuarioBean usuario, String nickname) throws ExceptionUsuarioNoEncontrado_Exception, NoExistePaquete_Exception {
+	public UsuarioBean cargarPaquete(UsuarioBean usuario,  String nickname) throws ExceptionUsuarioNoEncontrado_Exception,  NoExistePaquete_Exception {
         Set<String> nombresPaquetes = logica.listarPaquetesDeEmpresa(nickname);  	
         Set<PaqueteBean> paquetes = new HashSet<PaqueteBean>();
         
@@ -204,7 +204,7 @@ public class ConsultarUsuario extends HttpServlet {
     
     
 
-    private boolean validarConsultaUsuario(String nicknameParametro, String nicknameUsuarioLogueado, TipoUsuario tipoUsuarioLogueado, UsuarioBean usuario) throws Exception {
+    private boolean validarConsultaUsuario(String nicknameParametro,  String nicknameUsuarioLogueado,  TipoUsuario tipoUsuarioLogueado,  UsuarioBean usuario) throws Exception {
         if (usuario.getError() != null) {
             throw new Exception(usuario.getError());
         }
@@ -222,7 +222,7 @@ public class ConsultarUsuario extends HttpServlet {
         return consultaSuPerfil;
     }
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
     	RequestDispatcher dispatcher;
     	String nicknameParametro = (String) request.getParameter("nick");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
@@ -232,25 +232,25 @@ public class ConsultarUsuario extends HttpServlet {
         
         if (request.getParameter("btnSeguir") != null) {
             try {
-				servidor.seguirUsuario(nicknameUsuarioLogueado,nicknameParametro);
+				servidor.seguirUsuario(nicknameUsuarioLogueado, nicknameParametro);
 				response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nicknameParametro);
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
-	            request.setAttribute("mensajeError", mensajeError);
+	            request.setAttribute("mensajeError",  mensajeError);
 	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-	            dispatcher.forward(request, response);
+	            dispatcher.forward(request,  response);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
                 throw new RuntimeException(e);
             }
         } else if (request.getParameter("btnDejarDeSeguir") != null) {
             try {
-				servidor.dejarDeseguirUsuario(nicknameUsuarioLogueado,nicknameParametro);
+				servidor.dejarDeseguirUsuario(nicknameUsuarioLogueado, nicknameParametro);
 				response.sendRedirect(request.getContextPath() + "/consultarusuario?u=" + nicknameParametro);
 			} catch (ExceptionUsuarioSeSigueASiMismo_Exception e) {
 	            String mensajeError = "Ocurrió un error al intentar seguir al usuario. Un usuario no puede seguirse a si mismo.";
-	            request.setAttribute("mensajeError", mensajeError);
+	            request.setAttribute("mensajeError",  mensajeError);
 	            dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-	            dispatcher.forward(request, response);
+	            dispatcher.forward(request,  response);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
                 throw new RuntimeException(e);
             }

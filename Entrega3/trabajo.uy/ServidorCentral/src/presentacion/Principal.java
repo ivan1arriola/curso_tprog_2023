@@ -120,100 +120,100 @@ public class Principal {
 
 
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
-        // De esta forma,  no es necesario crear y destruir objetos lo que enlentece la ejecución.
-        // Cada InternalFrame usa un layout diferente,  simplemente para mostrar distintas opciones.
+        // De esta forma,   no es necesario crear y destruir objetos lo que enlentece la ejecución.
+        // Cada InternalFrame usa un layout diferente,   simplemente para mostrar distintas opciones.
 
         // Alta de Usuario
-        altaDeUsuarioInternalFrame = new AltaDeUsuario(frmGestionDeUsuarios, ICU);
-        altaDeUsuarioInternalFrame.setSize(408, 189);
-        altaDeUsuarioInternalFrame.setLocation(89, 77);
+        altaDeUsuarioInternalFrame = new AltaDeUsuario(frmGestionDeUsuarios,  ICU);
+        altaDeUsuarioInternalFrame.setSize(408,  189);
+        altaDeUsuarioInternalFrame.setLocation(89,  77);
         altaDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(altaDeUsuarioInternalFrame);
 
         // Consulta de Usuario
-        consultaDeUsuarioInternalFrame = new ConsultaDeUsuario(frmGestionDeUsuarios, ICU, ICO);
-        consultaDeUsuarioInternalFrame.setSize(500, 510);
-        consultaDeUsuarioInternalFrame.setLocation(89, 77);
+        consultaDeUsuarioInternalFrame = new ConsultaDeUsuario(frmGestionDeUsuarios,  ICU,  ICO);
+        consultaDeUsuarioInternalFrame.setSize(500,  510);
+        consultaDeUsuarioInternalFrame.setLocation(89,  77);
         consultaDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(consultaDeUsuarioInternalFrame);
         //frmGestionDeUsuarios.getContentPane().add(consultaDeUsuarioInternalFrame);
 
 
         // CargarDatos
-        cargarDatosInternalFrame = new CargarDatos(ICU, ICO);
-        cargarDatosInternalFrame.setSize(480, 189);
-        cargarDatosInternalFrame.setLocation(89, 77);
+        cargarDatosInternalFrame = new CargarDatos(ICU,  ICO);
+        cargarDatosInternalFrame.setSize(480,  189);
+        cargarDatosInternalFrame.setLocation(89,  77);
         cargarDatosInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(cargarDatosInternalFrame);
 
         // ModificarDatosDeUsuario
-        modificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(frmGestionDeUsuarios, ICU);
-        modificarDatosDeUsuarioInternalFrame.setSize(450, 190);
-        modificarDatosDeUsuarioInternalFrame.setLocation(89, 77);
+        modificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuarioV2(frmGestionDeUsuarios,  ICU);
+        modificarDatosDeUsuarioInternalFrame.setSize(450,  190);
+        modificarDatosDeUsuarioInternalFrame.setLocation(89,  77);
         modificarDatosDeUsuarioInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(modificarDatosDeUsuarioInternalFrame);
 
         // ConsultaDeOfertaLaboral
-        consultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios, ICU);
-        consultaDeOfertaLaboralInternalFrame.setSize(620, 660);
-        consultaDeOfertaLaboralInternalFrame.setLocation(89, 77);
+        consultaDeOfertaLaboralInternalFrame = new ConsultaDeOfertaLaboral(frmGestionDeUsuarios,  ICU);
+        consultaDeOfertaLaboralInternalFrame.setSize(620,  660);
+        consultaDeOfertaLaboralInternalFrame.setLocation(89,  77);
         consultaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(consultaDeOfertaLaboralInternalFrame);
 
         // agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame;
-        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame = new AgregarTipodePublicacióndeOfertaLaboral(ICO, ICU);
-        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setSize(600, 250);
-        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setLocation(89, 77);
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame = new AgregarTipodePublicacióndeOfertaLaboral(ICO,  ICU);
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setSize(600,  250);
+        agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setLocation(89,  77);
         agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(agregarTipoDePublicacionDeOfertaLaboralAPaquetenternalFrame);
 
         // consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame
-        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame = new ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICO, ICU);
-        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setSize(700, 715);
-        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setLocation(89, 77);
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame = new ConsultadePaquetedeTiposdePublicacióndeOfertasLaborales(ICO,  ICU);
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setSize(700,  715);
+        consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setLocation(89,  77);
         consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(consultaDePaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame);
 
-        altaDeKeywordsInternalFrame = new AltaDeKeywords(ICO, ICU);
-        altaDeKeywordsInternalFrame.setSize(500, 180);
-        altaDeKeywordsInternalFrame.setLocation(89, 77);
+        altaDeKeywordsInternalFrame = new AltaDeKeywords(ICO,  ICU);
+        altaDeKeywordsInternalFrame.setSize(500,  180);
+        altaDeKeywordsInternalFrame.setLocation(89,  77);
         altaDeKeywordsInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(altaDeKeywordsInternalFrame);
 
-        postulacionAOfertaLaboralInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
-        postulacionAOfertaLaboralInternalFrame.setSize(510, 290);
-        postulacionAOfertaLaboralInternalFrame.setLocation(89, 77);
+        postulacionAOfertaLaboralInternalFrame = new PostulacionOfertaLaboral(ICO,  ICU);
+        postulacionAOfertaLaboralInternalFrame.setSize(510,  290);
+        postulacionAOfertaLaboralInternalFrame.setLocation(89,  77);
         postulacionAOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(postulacionAOfertaLaboralInternalFrame);
 
         altaDeTipoDePublicacionDeOfertaLaboralInternalFrame = new AltaTipoPublicaciónOfertaLaboral();
-        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setSize(500, 350);
-        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setLocation(89, 77);
+        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setSize(500,  350);
+        altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setLocation(89,  77);
         altaDeTipoDePublicacionDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(altaDeTipoDePublicacionDeOfertaLaboralInternalFrame);
 
         crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame = new CrearPaqueteDeTiposPublicacionOfertasLaborales();
-        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setSize(570, 270);
-        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setLocation(89, 77);
+        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setSize(570,  270);
+        crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setLocation(89,  77);
         crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(crearPaqueteDeTiposDePublicacionDeOfertasLaboralesInternalFrame);
 
 
         altaDeOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICU);
-        altaDeOfertaLaboralInternalFrame.setSize(550, 550);
-        altaDeOfertaLaboralInternalFrame.setLocation(50, 50);
+        altaDeOfertaLaboralInternalFrame.setSize(550,  550);
+        altaDeOfertaLaboralInternalFrame.setLocation(50,  50);
         altaDeOfertaLaboralInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(altaDeOfertaLaboralInternalFrame);
 
-        aceptarOfertaInternalFrame = new AceptarOferta(ICO, ICU);
-        aceptarOfertaInternalFrame.setSize(400, 260);
-        aceptarOfertaInternalFrame.setLocation(89, 77);
+        aceptarOfertaInternalFrame = new AceptarOferta(ICO,  ICU);
+        aceptarOfertaInternalFrame.setSize(400,  260);
+        aceptarOfertaInternalFrame.setLocation(89,  77);
         aceptarOfertaInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(aceptarOfertaInternalFrame);
         
-        consultaOfertasMasVisitadasInternalFrame = new ConsultaOfertasMasVisitadas(ICO, ICU);
-        consultaOfertasMasVisitadasInternalFrame.setSize(700, 270); // revisar tamaño
-        consultaOfertasMasVisitadasInternalFrame.setLocation(89, 77);
+        consultaOfertasMasVisitadasInternalFrame = new ConsultaOfertasMasVisitadas(ICO,  ICU);
+        consultaOfertasMasVisitadasInternalFrame.setSize(700,  270); // revisar tamaño
+        consultaOfertasMasVisitadasInternalFrame.setLocation(89,  77);
         consultaOfertasMasVisitadasInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().add(consultaOfertasMasVisitadasInternalFrame);
 
@@ -241,11 +241,11 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
         frmGestionDeUsuarios = new JFrame();
         frmGestionDeUsuarios.setTitle("Estacion de Trabajo");
-        frmGestionDeUsuarios.setBounds(80, 80, 811, 860);
+        frmGestionDeUsuarios.setBounds(80,  80,  811,  860);
         frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
-        // Cada menú contiene diferentes opciones (JMenuItem),  los cuales tienen un 
+        // Cada menú contiene diferentes opciones (JMenuItem),   los cuales tienen un 
         // evento asociado que permite realizar una acción una vez se seleccionan. 
         JMenuBar menuBar = new JMenuBar();
         frmGestionDeUsuarios.setJMenuBar(menuBar);

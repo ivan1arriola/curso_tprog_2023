@@ -64,13 +64,13 @@ public class ConsultarOfertas extends JDialog {
     private LocalDate fecha;
     private String fechaFormat;
 
-    public ConsultarOfertas(Set<String> offerDetailsUnsort, ICtrlOferta icoInstance, ICtrlUsuario icuInstance, String usuario) throws OfertaLaboralNoEncontrada {
+    public ConsultarOfertas(Set<String> offerDetailsUnsort,  ICtrlOferta icoInstance,  ICtrlUsuario icuInstance,  String usuario) throws OfertaLaboralNoEncontrada {
 
         ico = icoInstance;
         icu = icuInstance;
 
         List<String> offerDetails = new ArrayList<>(offerDetailsUnsort);
-        Collections.sort(offerDetails, String.CASE_INSENSITIVE_ORDER);
+        Collections.sort(offerDetails,  String.CASE_INSENSITIVE_ORDER);
 
 
         setResizable(true);
@@ -79,23 +79,23 @@ public class ConsultarOfertas extends JDialog {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         // setClosable(true); 
         setTitle("Ofertas Laborales");
-        setSize(400, 200);
-        setBounds(30, 30, 500, 500);
+        setSize(400,  200);
+        setBounds(30,  30,  500,  500);
 
         // Panel de título
-        JPanel titlePanel = new JPanel(new GridLayout(1, 2));
-        JLabel leftTitleLabel = new JLabel("Ofertas Laborales", SwingConstants.CENTER);
-        leftTitleLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-        JLabel rightTitleLabel = new JLabel("Elija oferta para ver detalles", SwingConstants.CENTER);
-        rightTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        JPanel titlePanel = new JPanel(new GridLayout(1,  2));
+        JLabel leftTitleLabel = new JLabel("Ofertas Laborales",  SwingConstants.CENTER);
+        leftTitleLabel.setFont(new Font("Tahoma",  Font.BOLD,  12));
+        JLabel rightTitleLabel = new JLabel("Elija oferta para ver detalles",  SwingConstants.CENTER);
+        rightTitleLabel.setFont(new Font("Tahoma",  Font.PLAIN,  12));
         titlePanel.add(leftTitleLabel);
         titlePanel.add(rightTitleLabel);
 
 
-        JPanel mainPanel = new JPanel(new GridLayout(1, 2));
+        JPanel mainPanel = new JPanel(new GridLayout(1,  2));
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setResizeWeight(0.5);
-        getContentPane().add(splitPane, BorderLayout.CENTER);
+        getContentPane().add(splitPane,  BorderLayout.CENTER);
 
 
         JPanel leftPanel = new JPanel(new BorderLayout());
@@ -106,7 +106,7 @@ public class ConsultarOfertas extends JDialog {
         JScrollPane detailsScrollPane = new JScrollPane(detailsTextArea);
         detailsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         detailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        leftPanel.add(detailsScrollPane, BorderLayout.CENTER);
+        leftPanel.add(detailsScrollPane,  BorderLayout.CENTER);
         //  splitPane.setLeftComponent(leftPanel);
 
 
@@ -118,13 +118,13 @@ public class ConsultarOfertas extends JDialog {
             comboBox.addItem(oferta);
         }
 
-        rightPanel.add(comboBox, BorderLayout.NORTH);
+        rightPanel.add(comboBox,  BorderLayout.NORTH);
         JTextArea rightTextArea = new JTextArea();
         rightTextArea.setEditable(false);
         JScrollPane rightScrollPane = new JScrollPane(rightTextArea);
         rightScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         rightScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        rightPanel.add(rightScrollPane, BorderLayout.CENTER);
+        rightPanel.add(rightScrollPane,  BorderLayout.CENTER);
         rightTextArea.setLineWrap(true);
         rightTextArea.setWrapStyleWord(true);
 
@@ -170,7 +170,7 @@ public class ConsultarOfertas extends JDialog {
                         + "\n" + "Fecha de alta: " + dtOfer.getFechaDeAlta() + "\n" + "Costo: " + (int) dtOfer.getCosto()
                         + "\n" + "Remuneración: " + (int) dtOfer.getRemuneracion() + "\n" + "Horario de Entrada: "
                         + dtOfer.getHorario().getDesde() + "\n" + "Horario de Salida: " + dtOfer.getHorario().getHasta()
-                        + "\n" + "Departamento,   Ciudad: " + dtOfer.getDepartamento() + ",  " + dtOfer.getCiudad() + "\n");
+                        + "\n" + "Departamento,    Ciudad: " + dtOfer.getDepartamento() + ",   " + dtOfer.getCiudad() + "\n");
 
                 if (usr instanceof DTPostulante) {
                     rightTextArea.append("CV Reducido: " + curriculumVitae + "\n" + "Motivación: " + motiva + "\n"
@@ -191,8 +191,8 @@ public class ConsultarOfertas extends JDialog {
         mainPanel.add(rightPanel);
 
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(titlePanel, BorderLayout.NORTH);
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
+        getContentPane().add(titlePanel,  BorderLayout.NORTH);
+        getContentPane().add(mainPanel,  BorderLayout.CENTER);
 
         for (String detail : offerDetails) {
 

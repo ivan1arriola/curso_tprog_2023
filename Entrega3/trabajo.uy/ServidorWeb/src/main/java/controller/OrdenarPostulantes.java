@@ -35,7 +35,7 @@ public class OrdenarPostulantes extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
             HttpSession session = request.getSession();
             String nombreOferta = request.getParameter("oferta");
@@ -48,12 +48,12 @@ public class OrdenarPostulantes extends HttpServlet {
             String nicknameEmpresaPublicadora = ofertaLaboralBean.getNicknameEmpresa();
 
 
-            // si no es del tipo usuario = Empresa o no es la empresa publicadora, redirije a error
+            // si no es del tipo usuario = Empresa o no es la empresa publicadora,  redirije a error
             if (TipoUsuario.Empresa != tipoUsuario || !nicknameEmpresaPublicadora.equals(nicknameEmpresa)) {
 
-                request.setAttribute("nombreError", "No tiene permisos suficientes para visualizar esta pagina");
-                request.setAttribute("mensajeError", "Solo la empresa publicadora puede visualizar las postulaciones");
-                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+                request.setAttribute("nombreError",  "No tiene permisos suficientes para visualizar esta pagina");
+                request.setAttribute("mensajeError",  "Solo la empresa publicadora puede visualizar las postulaciones");
+                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
                 return;
 
             } else {
@@ -64,18 +64,18 @@ public class OrdenarPostulantes extends HttpServlet {
                 }
 
                 boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
-                request.setAttribute("estaVigente", estaVigente);
+                request.setAttribute("estaVigente",  estaVigente);
 
 
                 List<String> postulantes = servidor.obtenerPosiciones(nombreOferta).getListaString();
-                request.setAttribute("postulantes", postulantes);
+                request.setAttribute("postulantes",  postulantes);
 
 
-                request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
+                request.setAttribute("imagenOferta",  ofertaLaboralBean.getImagen());
 
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ordenarPostulaciones/ordenarPostulaciones.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
 
 
 
@@ -83,29 +83,29 @@ public class OrdenarPostulantes extends HttpServlet {
 
             }
         } catch (OfertaLaboralNoEncontrada_Exception ex) {
-            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
-            request.setAttribute("mensajeError",
-                    "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.setAttribute("nombreError",  "Oferta Laboral No Encontrada");
+            request.setAttribute("mensajeError", 
+                    "La oferta laboral no fue encontrada. Por favor,  verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
             return;
         } catch (NoHayOrdenDefinidoDePostulantes_Exception e) {
 
-            seleccionarOrdenPrimeraVez(nombreOferta, tipoUsuario, nicknameEmpresa,request, response);
+            seleccionarOrdenPrimeraVez(nombreOferta,  tipoUsuario,  nicknameEmpresa, request,  response);
         }
 
 
     }
 
-    private void seleccionarOrdenPrimeraVez(String nombreOferta, TipoUsuario tipoUsuario, String nicknameEmpresa, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void seleccionarOrdenPrimeraVez(String nombreOferta,  TipoUsuario tipoUsuario,  String nicknameEmpresa,  HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         try{
             OfertaLaboralBean ofertaLaboralBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
             String nicknameEmpresaPublicadora = ofertaLaboralBean.getNicknameEmpresa();
-            // si no es del tipo usuario = Empresa o no es la empresa publicadora, redirije a error
+            // si no es del tipo usuario = Empresa o no es la empresa publicadora,  redirije a error
             if (TipoUsuario.Empresa != tipoUsuario || !nicknameEmpresaPublicadora.equals(nicknameEmpresa)) {
 
-                request.setAttribute("nombreError", "No tiene permisos suficientes para visualizar esta pagina");
-                request.setAttribute("mensajeError", "Solo la empresa publicadora puede visualizar las postulaciones");
-                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+                request.setAttribute("nombreError",  "No tiene permisos suficientes para visualizar esta pagina");
+                request.setAttribute("mensajeError",  "Solo la empresa publicadora puede visualizar las postulaciones");
+                request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
                 return;
 
             } else {
@@ -116,35 +116,35 @@ public class OrdenarPostulantes extends HttpServlet {
                 }
 
                 boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
-                request.setAttribute("estaVigente", estaVigente);
+                request.setAttribute("estaVigente",  estaVigente);
 
 
                 List<String> nicknamesPostulantes = servidor.listarPostulantesOfertaLaboral(nombreOferta).getListaString();
-                request.setAttribute("postulantes", nicknamesPostulantes);
-                request.setAttribute("imagenOferta", ofertaLaboralBean.getImagen());
+                request.setAttribute("postulantes",  nicknamesPostulantes);
+                request.setAttribute("imagenOferta",  ofertaLaboralBean.getImagen());
 
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ordenarPostulaciones/ordenarPostulaciones.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
 
 
             }
         } catch (OfertaLaboralNoEncontrada_Exception | ServletException | IOException e) {
-            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
-            request.setAttribute("mensajeError",
-                    "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.setAttribute("nombreError",  "Oferta Laboral No Encontrada");
+            request.setAttribute("mensajeError", 
+                    "La oferta laboral no fue encontrada. Por favor,  verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
             return;
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         String orden = request.getParameter("orden");
         if (orden.startsWith("[") && orden.endsWith("]")) {
-            orden = orden.substring(1, orden.length() - 1);
+            orden = orden.substring(1,  orden.length() - 1);
         }
-        String[] ordenArray = orden.split(",");
+        String[] ordenArray = orden.split(", ");
         List<String> ordenPostulantes = new ArrayList<>(Arrays.asList(ordenArray));
 
         // Imprimir el orden o realizar otras acciones necesarias
@@ -159,35 +159,35 @@ public class OrdenarPostulantes extends HttpServlet {
                 wrapperListaPostulantes.getListaString().add(nicknamePostulante);
             }
 
-            servidor.establecerPosiciones(nombreOferta, wrapperListaPostulantes);
+            servidor.establecerPosiciones(nombreOferta,  wrapperListaPostulantes);
 
-            //doGet(request,response);
+            //doGet(request, response);
             response.sendRedirect(request.getContextPath()+"/consultarofertalaboral?o=" + nombreOferta);
             return;
 
 
         } catch (OfertaLaboralNoEncontrada_Exception e) {
-            request.setAttribute("nombreError", "Oferta Laboral No Encontrada");
-            request.setAttribute("mensajeError",
-                    "La oferta laboral no fue encontrada. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.setAttribute("nombreError",  "Oferta Laboral No Encontrada");
+            request.setAttribute("mensajeError", 
+                    "La oferta laboral no fue encontrada. Por favor,  verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
             return;
         } catch (AsignarOrdenAOfertaFinalizada_Exception e) {
-            request.setAttribute("nombreError", "Asignar Orden a Oferta Laboral ya Finalizada");
-            request.setAttribute("mensajeError",
+            request.setAttribute("nombreError",  "Asignar Orden a Oferta Laboral ya Finalizada");
+            request.setAttribute("mensajeError", 
                     "No se puede asignar un ordena  una oferta laboral que ya finalizo");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
         } catch (ExceptionUsuarioNoEncontrado_Exception e) {
-            request.setAttribute("nombreError", "Usuario No Encontrado");
-            request.setAttribute("mensajeError",
-                    "El usuario no fue encontrado. Por favor, verifique la información e inténtelo de nuevo.");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.setAttribute("nombreError",  "Usuario No Encontrado");
+            request.setAttribute("mensajeError", 
+                    "El usuario no fue encontrado. Por favor,  verifique la información e inténtelo de nuevo.");
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
             return;
         } catch (AsignarOrdenAOfertaNoVencida_Exception e) {
-            request.setAttribute("nombreError", "Asignar orden a oferta no vencida");
-            request.setAttribute("mensajeError",
+            request.setAttribute("nombreError",  "Asignar orden a oferta no vencida");
+            request.setAttribute("mensajeError", 
                     "No se puede asignar un orden de postulantes a una oferta que no vencio");
-            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
             return;
         }
     }

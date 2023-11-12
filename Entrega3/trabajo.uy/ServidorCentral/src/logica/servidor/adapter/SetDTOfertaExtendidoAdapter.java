@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SetDTOfertaExtendidoAdapter extends XmlAdapter<ArrayList<DTOfertaExtendido>, Set<DTOfertaExtendido>> {
+public class SetDTOfertaExtendidoAdapter extends XmlAdapter<ArrayList<DTOfertaExtendido>,  Set<DTOfertaExtendido>> {
 
     @Override
     public ArrayList<DTOfertaExtendido> marshal(Set<DTOfertaExtendido> set) throws Exception {

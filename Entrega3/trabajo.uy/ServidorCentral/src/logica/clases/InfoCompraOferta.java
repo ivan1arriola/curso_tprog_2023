@@ -14,14 +14,14 @@ import jakarta.persistence.ManyToOne;
 public class InfoCompraOferta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Se agrega un campo id como clave primaria
+    private Long iden; // Se agrega un campo id como clave primaria
 
     private int cantRestante;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private TipoOferta tipoOferta; // Relación muchos a uno con TipoOferta
 
-    public InfoCompraOferta(TipoOferta tipoOfer, int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public InfoCompraOferta(TipoOferta tipoOfer,  int canres) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
         if (canres >= 0) {
             cantRestante = canres;
             tipoOferta = tipoOfer;

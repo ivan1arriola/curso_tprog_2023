@@ -34,10 +34,10 @@ public class PDFServlet extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
     
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         try {
             response.setContentType("application/pdf");
-            response.setHeader("Content-Disposition", "attachment; filename=comprobante_postulacion.pdf");
+            response.setHeader("Content-Disposition",  "attachment; filename=comprobante_postulacion.pdf");
 
             String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
 
@@ -52,18 +52,18 @@ public class PDFServlet extends HttpServlet {
             List<String> empresas = servidor.listarEmpresas().getListaString();
             String empresaPostul = "";
             
-            for(String emp : empresas) {
+            for (String emp : empresas) {
             	Set<String> ofertas_lab = logica.listarOfertasLaboralesDeEmpresa(emp);
             	
-	    		for(String olb : ofertas_lab) {
-	        		if(olb.equals(OfertaLaboral)) {
+	    		for (String olb : ofertas_lab) {
+	        		if (olb.equals(OfertaLaboral)) {
 	        			empresaPostul = emp;
 	        			break;
 	        		}
 	        	}
             }
             
-            PostulacionBean postulacion = logica.obtenerDatosPostulacionW(nicknameUsuarioLogueado, OfertaLaboral);
+            PostulacionBean postulacion = logica.obtenerDatosPostulacionW(nicknameUsuarioLogueado,  OfertaLaboral);
             
            
             
@@ -74,7 +74,7 @@ public class PDFServlet extends HttpServlet {
             
             
             // Pasar el ServletOutputStream al constructor de PdfWriter
-            PdfWriter writer = PdfWriter.getInstance(document, outputStream);
+            PdfWriter writer = PdfWriter.getInstance(document,  outputStream);
 
             
             
@@ -86,7 +86,7 @@ public class PDFServlet extends HttpServlet {
             String ofertaLaboral = OfertaLaboral;
             String ordenSeleccion = "No se ha realizado una clasificación";
             int ordenSeleccionInt = postulacion.getClasificacion();
-            if(ordenSeleccionInt > 0) {
+            if (ordenSeleccionInt > 0) {
             	ordenSeleccion = String.valueOf(ordenSeleccionInt);
             }
             String fechaPostulacion = postulacion.getFechaString(); // PENDIENTE

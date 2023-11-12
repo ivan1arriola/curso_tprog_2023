@@ -32,8 +32,8 @@ public class UsuarioHandler {
 
     public boolean existeNick(String nombre) {
         try {
-            TypedQuery<Long> query = database.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.nickname = :nombre", Long.class);
-            query.setParameter("nombre", nombre);
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.nickname = :nombre",  Long.class);
+            query.setParameter("nombre",  nombre);
             Long count = query.getSingleResult();
             return count > 0;
         } catch (PersistenceException e) {
@@ -44,8 +44,8 @@ public class UsuarioHandler {
 
     public boolean existeCorreo(String mail) {
         try {
-            TypedQuery<Long> query = database.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.correoElectronico = :mail", Long.class);
-            query.setParameter("mail", mail);
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.correoElectronico = :mail",  Long.class);
+            query.setParameter("mail",  mail);
             Long count = query.getSingleResult();
             return count > 0;
         } catch (PersistenceException e) {
@@ -71,8 +71,8 @@ public class UsuarioHandler {
 
     public Usuario buscarNick(String nombre) throws ExceptionUsuarioNoEncontrado {
         try {
-            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nombre", Usuario.class);
-            query.setParameter("nombre", nombre);
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nombre",  Usuario.class);
+            query.setParameter("nombre",  nombre);
             return query.getSingleResult();
         } catch (NoResultException e) {
             throw new ExceptionUsuarioNoEncontrado("Usuario no encontrado para el nombre: " + nombre);
@@ -82,8 +82,8 @@ public class UsuarioHandler {
 
     public Usuario buscarCorreo(String mail) throws ExceptionUsuarioNoEncontrado {
         try {
-            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.correoElectronico = :mail", Usuario.class);
-            query.setParameter("mail", mail);
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u WHERE u.correoElectronico = :mail",  Usuario.class);
+            query.setParameter("mail",  mail);
             return query.getSingleResult();
         } catch (PersistenceException e) {
             e.printStackTrace();
@@ -91,14 +91,14 @@ public class UsuarioHandler {
         }
     }
 
-    public Map<String, Usuario> obtenerNick() {
+    public Map<String,  Usuario> obtenerNick() {
         try {
-            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u", Usuario.class);
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u",  Usuario.class);
             List<Usuario> usuarios = query.getResultList();
 
-            Map<String, Usuario> nickUsuariosMap = new TreeMap<>();
+            Map<String,  Usuario> nickUsuariosMap = new TreeMap<>();
             for (Usuario usuario : usuarios) {
-                nickUsuariosMap.put(usuario.getNickname(), usuario);
+                nickUsuariosMap.put(usuario.getNickname(),  usuario);
             }
 
             return nickUsuariosMap;
@@ -108,14 +108,14 @@ public class UsuarioHandler {
         }
     }
 
-    public Map<String, Usuario> obtenerCorreo() {
+    public Map<String,  Usuario> obtenerCorreo() {
         try {
-            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u", Usuario.class);
+            TypedQuery<Usuario> query = database.createQuery("SELECT u FROM Usuario u",  Usuario.class);
             List<Usuario> usuarios = query.getResultList();
 
-            Map<String, Usuario> correoUsuariosMap = new TreeMap<>();
+            Map<String,  Usuario> correoUsuariosMap = new TreeMap<>();
             for (Usuario usuario : usuarios) {
-                correoUsuariosMap.put(usuario.getcorreoElectronico(), usuario);
+                correoUsuariosMap.put(usuario.getcorreoElectronico(),  usuario);
             }
 
             return correoUsuariosMap;

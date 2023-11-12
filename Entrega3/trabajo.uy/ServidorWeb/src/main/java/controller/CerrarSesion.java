@@ -16,8 +16,8 @@ public class CerrarSesion extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response)
+            throws ServletException,  IOException {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
@@ -25,8 +25,8 @@ public class CerrarSesion extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/home");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response)
+            throws ServletException,  IOException {
+        doGet(request,  response);
     }
 }

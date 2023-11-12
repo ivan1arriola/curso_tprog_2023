@@ -35,10 +35,10 @@ public class ListarOfertasLaborales extends HttpServlet {
 
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request,  HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 
 		
 		
@@ -66,10 +66,10 @@ public class ListarOfertasLaborales extends HttpServlet {
         }
 
         // Almacena las ofertas como un atributo en el objeto request
-        request.setAttribute("ofertasLaborales", ofertas);
+        request.setAttribute("ofertasLaborales",  ofertas);
 
         // Reenvía la solicitud al JSP
-        request.getRequestDispatcher("/WEB-INF/listar/ofertaslaborales.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/listar/ofertaslaborales.jsp").forward(request,  response);
     }
 
 

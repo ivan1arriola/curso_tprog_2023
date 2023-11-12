@@ -31,12 +31,12 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtUsuarioSinInfoSocial", propOrder = {
-    "nickname",
-    "correoElectronico",
-    "apellido",
-    "nombre",
-    "contrasenia",
+@XmlType(name = "dtUsuarioSinInfoSocial",  propOrder = {
+    "nickname", 
+    "correoElectronico", 
+    "apellido", 
+    "nombre", 
+    "contrasenia", 
     "imagen"
 })
 public class DtUsuarioSinInfoSocial {

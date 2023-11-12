@@ -5,5 +5,5 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public interface IKeywordsLoader {
 
-	void cargarKeywords(HttpServletRequest request, HttpServletResponse response);
+	void cargarKeywords(HttpServletRequest request,  HttpServletResponse response);
 }

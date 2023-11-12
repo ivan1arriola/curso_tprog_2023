@@ -10,10 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class KeywordsLoader implements IKeywordsLoader{
 
 	@Override
-	public void cargarKeywords(HttpServletRequest request, HttpServletResponse response) {
+	public void cargarKeywords(HttpServletRequest request,  HttpServletResponse response) {
 
 		Set<String> keys = FabricaWeb.getLogica().listarKeywords();
-		request.setAttribute("keys", keys);
+		request.setAttribute("keys",  keys);
 		
 	}
 

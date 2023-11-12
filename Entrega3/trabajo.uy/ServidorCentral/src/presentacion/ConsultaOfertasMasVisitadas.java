@@ -70,7 +70,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
     /**
      * Create the application.
      */
-    public ConsultaOfertasMasVisitadas(ICtrlOferta ICO, ICtrlUsuario ICU) {
+    public ConsultaOfertasMasVisitadas(ICtrlOferta ICO,  ICtrlUsuario ICU) {
         ico = ICO;
         initialize(ICO);
     }
@@ -85,7 +85,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Ofertas laborales más visitadas");
-        setBounds(30, 30, 715, 279);
+        setBounds(30,  30,  715,  279);
         getContentPane().setLayout(null);
 
         //////////////////// BOTON CERRAR //////////////
@@ -95,64 +95,64 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
                 dispose();  // cierra ventana
             }
         });
-        btnCerrar.setBounds(569, 208, 117, 25);
+        btnCerrar.setBounds(569,  208,  117,  25);
         getContentPane().add(btnCerrar);
         //////////////////////////////////////////////
 
         
         
         // Definir los nombres de las columnas
-        String[] columnNames = {"#", "Oferta Laboral", "Empresa", "Tipo de publicación", "Visitas"};
-        tableModel = new DefaultTableModel(columnNames, 0);
+        String[] columnNames = {"#",  "Oferta Laboral",  "Empresa",  "Tipo de publicación",  "Visitas"};
+        tableModel = new DefaultTableModel(columnNames,  0);
 
         table = new JTable(tableModel);
         
-        table.setBounds(10, 101, 676, 97);
+        table.setBounds(10,  101,  676,  97);
         getContentPane().add(table);
 
         // JScrollPane scrollPane = new JScrollPane(table); 
 
         JLabel labelTitulo = new JLabel("Ofertas laborales más visitadas en el sitio");
-        labelTitulo.setFont(new Font("Dialog", Font.BOLD, 18));
-        labelTitulo.setBounds(163, 22, 576, 15);
+        labelTitulo.setFont(new Font("Dialog",  Font.BOLD,  18));
+        labelTitulo.setBounds(163,  22,  576,  15);
         getContentPane().add(labelTitulo);
         
         JLabel lblNewLabel = new JLabel("Seleccione el tipo de oferta: ");
-        lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        lblNewLabel.setBounds(10, 69, 235, 14);
+        lblNewLabel.setFont(new Font("Arial",  Font.PLAIN,  14));
+        lblNewLabel.setBounds(10,  69,  235,  14);
         getContentPane().add(lblNewLabel);
         
         JRadioButton btnVigentes = new JRadioButton("Vigentes");
-        btnVigentes.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnVigentes.setFont(new Font("Arial",  Font.PLAIN,  14));
         btnVigentes.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent eve) {
         		String oper = "C";
                 actualizarTabla(oper);
         	}
         });
-        btnVigentes.setBounds(234, 65, 82, 23);
+        btnVigentes.setBounds(234,  65,  82,  23);
         getContentPane().add(btnVigentes);
         
         JRadioButton btnFinalizadas = new JRadioButton("Vencidas");
-        btnFinalizadas.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnFinalizadas.setFont(new Font("Arial",  Font.PLAIN,  14));
         btnFinalizadas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent eve) {
         		String oper = "F";
                 actualizarTabla(oper);
         	}
         }); 
-        btnFinalizadas.setBounds(328, 65, 94, 23);
+        btnFinalizadas.setBounds(328,  65,  94,  23);
         getContentPane().add(btnFinalizadas);
         
         JRadioButton btnTodas = new JRadioButton("Todas");
-        btnTodas.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnTodas.setFont(new Font("Arial",  Font.PLAIN,  14));
         btnTodas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent eve) {
         		String oper = "F";
                 actualizarTabla(oper);
         	}
         });
-        btnTodas.setBounds(424, 65, 82, 23);
+        btnTodas.setBounds(424,  65,  82,  23);
         getContentPane().add(btnTodas);
 
 
@@ -171,7 +171,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
     public void actualizarTabla(String oper) {
     	
     	// Define un tamaño de fuente para la tabla
-    	Font customFont = new Font("Arial", Font.PLAIN, 14);  // Puedes ajustar el tamaño y la fuente según tus preferencias
+    	Font customFont = new Font("Arial",  Font.PLAIN,  14);  // Puedes ajustar el tamaño y la fuente según tus preferencias
 
     	// Asigna la fuente personalizada a la tabla
     	table.setFont(customFont);
@@ -205,12 +205,12 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	     // Toma las primeras 5 ofertas de la lista ordenada (las 5 con mayor cantidad de visitas)
 	     List<DTOfertaExtendido> cincoOfertasMasVisitadas = listaOfertas.stream().limit(5).collect(Collectors.toList());
         
-	     tableModel.addRow(new Object[]{null, null, null, null, null});
+	     tableModel.addRow(new Object[]{null,  null,  null,  null,  null});
 	     Integer indice = 1;
 
 	     DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 	     headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-	     Font boldFont = new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize());
+	     Font boldFont = new Font(table.getFont().getFontName(),  Font.BOLD,  table.getFont().getSize());
 	        	
 	     // AJUSTAR EL ANCHO DE LAS COLUMNAS 
 	     table.getColumnModel().getColumn(0).setPreferredWidth(10); // Ancho de la columna del índice 
@@ -229,7 +229,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	       
 	     // NEGRITA PARA EL TITULO DE LAS COLUMNAS
 	     for (int i = 0; i < tableModel.getColumnCount(); i++) {
-	    	 table.setValueAt("<html><b>" + tableModel.getColumnName(i) + "</b></html>", 0, i);
+	    	 table.setValueAt("<html><b>" + tableModel.getColumnName(i) + "</b></html>",  0,  i);
 	         table.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
 	         table.getTableHeader().setFont(boldFont);
 	     }
@@ -239,7 +239,7 @@ public class ConsultaOfertasMasVisitadas extends JInternalFrame {
 	    	 String tipoPub;
 	    	 try {
 	    		 tipoPub = ico.obtenerTipoPubOfertaLaboral(oferta.getNombre());
-		         tableModel.addRow(new Object[]{indice, oferta.getNombre(), oferta.getNicknameEmpresaPublicadora(), tipoPub, oferta.getCantVisitas()});
+		         tableModel.addRow(new Object[]{indice,  oferta.getNombre(),  oferta.getNicknameEmpresaPublicadora(),  tipoPub,  oferta.getCantVisitas()});
 		         indice = indice +1;	
 	    	 } catch (OfertaLaboralNoEncontrada e) {
 	    		 // TODO Auto-generated catch block

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "ExceptionFechaInvalida", targetNamespace = "http://servidor.logica/")
+@WebFault(name = "ExceptionFechaInvalida",  targetNamespace = "http://servidor.logica/")
 public class ExceptionFechaInvalida_Exception
     extends Exception
 {
@@ -26,7 +26,7 @@ public class ExceptionFechaInvalida_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionFechaInvalida_Exception(String message, ExceptionFechaInvalida faultInfo) {
+    public ExceptionFechaInvalida_Exception(String message,  ExceptionFechaInvalida faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,8 +37,8 @@ public class ExceptionFechaInvalida_Exception
      * @param faultInfo
      * @param message
      */
-    public ExceptionFechaInvalida_Exception(String message, ExceptionFechaInvalida faultInfo, Throwable cause) {
-        super(message, cause);
+    public ExceptionFechaInvalida_Exception(String message,  ExceptionFechaInvalida faultInfo,  Throwable cause) {
+        super(message,  cause);
         this.faultInfo = faultInfo;
     }
 

@@ -1,19 +1,19 @@
 
-const cargarInfoPostulante = (nickname, oferta) => {
+const cargarInfoPostulante = (nickname,  oferta) => {
 
     $.ajax({
-        url: contextPath + "/consultapostulacion",
+        url: contextPath + "/consultapostulacion", 
         data: {
-            postulante: nickname,
-            oferta: oferta,
-        },
-        type: "POST",
-        dataType: "json",
+            postulante: nickname, 
+            oferta: oferta, 
+        }, 
+        type: "POST", 
+        dataType: "json", 
         success: function (data) {
             console.log(data);
             // Actualiza la tabla con los datos
             $("#nombrePostulanteLink a").text(data.nombre);
-            $("#nombrePostulanteLink a").attr("href", "/ServidorWeb/consultarusuario?u=" + nickname);
+            $("#nombrePostulanteLink a").attr("href",  "/ServidorWeb/consultarusuario?u=" + nickname);
             $("#curriculum").text(data.curriculum);
             $("#motivacion").text(data.motivacion);
             $("#fecha").text(data.fecha);
@@ -22,9 +22,9 @@ const cargarInfoPostulante = (nickname, oferta) => {
             } else {
                 $("#video").html('<div class="alert alert-warning" role="alert">No se ha subido un video.</div>');
             }
-        },
+        }, 
         error: function (error) {
-            console.log("Error: ", error);
+            console.log("Error: ",  error);
         }
     });
 }

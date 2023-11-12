@@ -1,9 +1,76 @@
 package logica.clases;
 
+//
+//import excepciones.AsignarOrdenAOfertaFinalizada;
+//import excepciones.AsignarOrdenAOfertaNoVencida;
+//import excepciones.ErrorAgregarUsuario;
+//import excepciones.ExcepcionKeywordVacia;
+//import excepciones.ExcepcionTipoOfertaNoExistente;
+//import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+//import excepciones.ExceptionCiudadInvalida;
+import excepciones.ExceptionCompraPaqueteConValorNegativo;
+import excepciones.ExceptionCostoPaqueteNoNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+//import excepciones.ExceptionDuracionNegativa;
+//import excepciones.ExceptionEmpresaInvalida;
+//import excepciones.ExceptionExpoNegativa;
+//import excepciones.ExceptionFechaInvalida;
+import excepciones.ExceptionPaqueteNoVigente;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+//import excepciones.ExceptionUsuarioCorreoRepetido;
+//import excepciones.ExceptionUsuarioNickRepetido;
+//import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
+//import excepciones.ExceptionUsuarioNoEncontrado;
+//import excepciones.ExceptionUsuarioSeSigueASiMismo;
+import excepciones.ExceptionValidezNegativa;
+//import excepciones.FaltaCvException;
+//import excepciones.FaltaMotivaException;
+//import excepciones.FinalizarOfertaNoVencida;
+//import excepciones.NoExistePaquete;
+//import excepciones.NoHayOrdenDefinidoDePostulantes;
+import excepciones.OfertaLaboralNoEncontrada;
+//import excepciones.PostulaExistenteException;
+//import excepciones.TipoUsuarioNoValido;
+//import excepciones.UsuarioNoExisteException;
 
-import excepciones.*;
-import jakarta.persistence.*;
-import logica.datatypes.*;
+import logica.datatypes.DTCantTO;
+import logica.datatypes.DTCompraPaquetes;
+import logica.datatypes.DTEmpresa;
+import logica.datatypes.DTEmpresaConCompras;
+//import logica.datatypes.DTHora;
+import logica.datatypes.DTHorario;
+import logica.datatypes.DTOfertaExtendido;
+//import logica.datatypes.DTOfertaExtendidoConKeywords;
+//import logica.datatypes.DTOfertaExtendidoConKeywordsPostulante;
+import logica.datatypes.DTOfertaExtendidoConKeywordsTit;
+//import logica.datatypes.DTOfertaExtendidoSinPConK;
+//import logica.datatypes.DTOfertaLaboral;
+//import logica.datatypes.DTPaquete;
+import logica.datatypes.DTPostulacion;
+//import logica.datatypes.DTPostulante;
+//import logica.datatypes.DTPostulanteExtendido;
+//import logica.datatypes.DTTipoOferta;
+import logica.datatypes.DTUsuario;
+import logica.datatypes.DTUsuarioSinInfoSocial;
+
+import jakarta.persistence.CascadeType;
+//import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+//import jakarta.persistence.GeneratedValue;
+//import jakarta.persistence.GenerationType;
+//import jakarta.persistence.Id;
+//import jakarta.persistence.Inheritance;
+//import jakarta.persistence.JoinColumn;
+//import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
+//import jakarta.persistence.ManyToMany;
+//import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+//import jakarta.persistence.InheritanceType;
+//import jakarta.persistence.DiscriminatorColumn;
+//import jakarta.persistence.DiscriminatorType;
+
 import logica.dto.EmpresaDTO;
 import logica.dto.UsuarioDTO;
 import logica.enumerados.DepUY;
@@ -22,30 +89,30 @@ public class Empresa extends Usuario {
     @Lob
     private String descripcion;
     private String url;
-    @OneToMany(mappedBy = "empresaPublicadora", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "empresaPublicadora",  cascade = CascadeType.PERSIST)
     private Set<OfertaLaboral> ofertasLaborales;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "empresa",  cascade = CascadeType.PERSIST)
     private Set<InfoCompra> infoCompras;
 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc, String urlE) {
-        super(nickname, nombre, apellido, correo_electronico, contrasena, img);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc,  String urlE) {
+        super(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img);
         this.descripcion = desc;
         this.url = urlE;
         this.ofertasLaborales = new HashSet<OfertaLaboral>();
         this.infoCompras = new HashSet<InfoCompra>();
     }
 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc) {
-        this(nickname, nombre, apellido, correo_electronico, contrasena, null, desc, null);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  String desc) {
+        this(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  null,  desc,  null);
     }
 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, byte[] img, String desc) {
-        this(nickname, nombre, apellido, correo_electronico, contrasena, img, desc, null);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  byte[] img,  String desc) {
+        this(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  img,  desc,  null);
     }
 
-    public Empresa(String nickname, String nombre, String apellido, String correo_electronico, String contrasena, String desc, String urlE) {
-        this(nickname, nombre, apellido, correo_electronico, contrasena, null, desc, urlE);
+    public Empresa(String nickname,  String nombre,  String apellido,  String correo_electronico,  String contrasena,  String desc,  String urlE) {
+        this(nickname,  nombre,  apellido,  correo_electronico,  contrasena,  null,  desc,  urlE);
     }
 
     public Empresa() {
@@ -60,8 +127,8 @@ public class Empresa extends Usuario {
         return descripcion;
     }
     
-    public void setofertasLaborales(Set<OfertaLaboral> OL) {
-    	ofertasLaborales =  OL; 
+    public void setofertasLaborales(Set<OfertaLaboral> OLab) {
+    	ofertasLaborales =  OLab; 
     }
 
     public void setDescripcion(String descripcion) {
@@ -95,7 +162,7 @@ public class Empresa extends Usuario {
     // metodo que se implementa aca
     @Override
     public UsuarioDTO getDTO() {
-        return new EmpresaDTO(getNickname(), getcorreoElectronico(), getNombre(), getApellido(), getDescripcion(), geturl());
+        return new EmpresaDTO(getNickname(),  getcorreoElectronico(),  getNombre(),  getApellido(),  getDescripcion(),  geturl());
     }
 
     @Override
@@ -103,19 +170,19 @@ public class Empresa extends Usuario {
         return true;
     }
 
-    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) throws ExceptionCostoPaqueteNoNegativo, ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboral(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq) throws ExceptionCostoPaqueteNoNegativo,  ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa,  ExceptionDescuentoInvalido {
 
             if (remun >= 0) {
-                OfertaLaboral ofertaLab = new OfertaLaboral(this, atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, img, paq);
+                OfertaLaboral ofertaLab = new OfertaLaboral(this,  atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paq);
                 ofertasLaborales.add(ofertaLab);
 
                 if (paq != null) { //actualiza cantidad del tipo Oferta
-                    for(InfoCompra infoCompra : infoCompras) {
+                    for (InfoCompra infoCompra : infoCompras) {
                     	String nombrePaq = infoCompra.getPaquete().getNombre();
-                    	if(nombrePaq.equals(paq.getNombre())) {
+                    	if (nombrePaq.equals(paq.getNombre())) {
                     		Set<InfoCompraOferta> infoCompras = infoCompra.getICO();
-                    		for(InfoCompraOferta infoCompOfer : infoCompras) {
-                    			if(tipoOferta.getNombre().equals(infoCompOfer.gettipoOfertas().getNombre())) {
+                    		for (InfoCompraOferta infoCompOfer : infoCompras) {
+                    			if (tipoOferta.getNombre().equals(infoCompOfer.gettipoOfertas().getNombre())) {
                         			Integer cantres = infoCompOfer.getCantres() - 1;
                         			if (cantres >= 1) {
                         				infoCompOfer.setCantres(cantres);
@@ -141,9 +208,9 @@ public class Empresa extends Usuario {
     }
 
 
-    public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> atrkeywords, EstadoOL estado, byte[] img, Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido {
         if (remun >= 0) {
-            OfertaLaboral ofertaLab = new OfertaLaboral(true, this, atrkeywords, tipoOferta, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, img, paq);
+            OfertaLaboral ofertaLab = new OfertaLaboral(true,  this,  atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paq);
             ofertasLaborales.add(ofertaLab);
             return ofertaLab;
         } else {
@@ -153,10 +220,10 @@ public class Empresa extends Usuario {
     }
 
 
-    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public OfertaLaboral altaOfertaLaboralImagen(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
         try {
             if (remun >= 0) {
-                OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw, tipo, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, img);
+                OfertaLaboral ofertaLab = new OfertaLaboral(this,  keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img);
                 ofertasLaborales.add(ofertaLab);
                 return ofertaLab;
             } else {
@@ -169,10 +236,10 @@ public class Empresa extends Usuario {
         }
     }
 
-    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo, String nombre, String descripcion, DTHorario horario, float remun, String ciu, DepUY dep, LocalDate fechaA, List<Keyword> keyw, EstadoOL estado, byte[] img, Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa, ExceptionPaqueteNoVigente, ExceptionCostoPaqueteNoNegativo, ExceptionDescuentoInvalido, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
+    public OfertaLaboral altaOfertaLaboralImagenPaquete(TipoOferta tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> keyw,  EstadoOL estado,  byte[] img,  Paquete paquete) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa {
         try {
             if (remun >= 0) {
-                OfertaLaboral ofertaLab = new OfertaLaboral(this, keyw, tipo, nombre, descripcion, ciu, dep, horario, remun, fechaA, estado, img, paquete);
+                OfertaLaboral ofertaLab = new OfertaLaboral(this,  keyw,  tipo,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paquete);
                 ofertasLaborales.add(ofertaLab);
                 return ofertaLab;
             } else {
@@ -190,12 +257,12 @@ public class Empresa extends Usuario {
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
 
         for (Usuario elemento : getSeguidores()) {
-        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(),  elemento.getcorreoElectronico(),  elemento.getApellido(),  elemento.getNombre(),  elemento.getcontrasenia(),  elemento.getImagen());
             sdores.add(dtp);
         }
 
         for (Usuario elemento : getSeguidos()) {
-            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(),  elemento.getcorreoElectronico(),  elemento.getApellido(),  elemento.getNombre(),  elemento.getcontrasenia(),  elemento.getImagen());
             sdos.add(dtp);
         }
 
@@ -215,7 +282,7 @@ public class Empresa extends Usuario {
             dtOfertas.add(dtOferta);
         }
 
-        return new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen, sdos, sdores);
+        return new DTEmpresa(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  descripcion,  url,  dtOfertas,  imagen,  sdos,  sdores);
 
     }
 
@@ -279,7 +346,7 @@ public class Empresa extends Usuario {
         return url != null;
     }
 
-    public boolean compraPaquetes(Paquete paq, LocalDate fecha, int valor) throws ExceptionCompraPaqueteConValorNegativo, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa, ExceptionValidezNegativa {
+    public boolean compraPaquetes(Paquete paq,  LocalDate fecha,  int valor) throws ExceptionCompraPaqueteConValorNegativo,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa,  ExceptionValidezNegativa {
         if (valor >= 0) {
             for (InfoCompra ic : infoCompras) {
                 if ((ic.getPaquete()).getNombre().equals(paq.getNombre())) {
@@ -289,7 +356,7 @@ public class Empresa extends Usuario {
             // int val = paq.getValidez();
             Set<DTCantTO> ConjuntoS = paq.obtenerDTSCantTO();
 
-            InfoCompra infoComp = new InfoCompra(fecha, valor, paq, this, ConjuntoS);
+            InfoCompra infoComp = new InfoCompra(fecha,  valor,  paq,  this,  ConjuntoS);
             infoCompras.add(infoComp);
             return true;
         } else {
@@ -299,19 +366,19 @@ public class Empresa extends Usuario {
     }
 
     @Override
-    // corregido,   se pasan mas parametros para la ejecucion
-    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual, String UsuarioQueSeHaceConsulta) {
+    // corregido,    se pasan mas parametros para la ejecucion
+    public DTUsuario obtenerDatosUsuarioEspecial(String UsuarioRegistradoActual,  String UsuarioQueSeHaceConsulta) {
 
         Set<DTUsuarioSinInfoSocial> sdores = new HashSet<DTUsuarioSinInfoSocial>();
         Set<DTUsuarioSinInfoSocial> sdos = new HashSet<DTUsuarioSinInfoSocial>();
 
         for (Usuario elemento : getSeguidores()) {
-        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+        	DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(),  elemento.getcorreoElectronico(),  elemento.getApellido(),  elemento.getNombre(),  elemento.getcontrasenia(),  elemento.getImagen());
             sdores.add(dtp);
         }
 
         for (Usuario elemento : getSeguidos()) {
-            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(), elemento.getcorreoElectronico(), elemento.getApellido(), elemento.getNombre(), elemento.getcontrasenia(), elemento.getImagen());
+            DTUsuarioSinInfoSocial dtp = new DTUsuarioSinInfoSocial(elemento.getNickname(),  elemento.getcorreoElectronico(),  elemento.getApellido(),  elemento.getNombre(),  elemento.getcontrasenia(),  elemento.getImagen());
             sdos.add(dtp);
         }
 
@@ -333,11 +400,11 @@ public class Empresa extends Usuario {
 
             Set<DTCompraPaquetes> paquetesComp = new HashSet<DTCompraPaquetes>();
             for (InfoCompra compra : infoCompras) {
-                DTCompraPaquetes dtcp = new DTCompraPaquetes(compra.getPaquete().getNombre(), compra.getfCompra(), compra.getFechaVencimiento());
+                DTCompraPaquetes dtcp = new DTCompraPaquetes(compra.getPaquete().getNombre(),  compra.getfCompra(),  compra.getFechaVencimiento());
                 paquetesComp.add(dtcp);
             }
 
-            empre = new DTEmpresaConCompras(nickname, correoElectronico, apellido, nombre, contraseña, imagen, descripcion, url, dtOfertas, paquetesComp, sdos, sdores);
+            empre = new DTEmpresaConCompras(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  imagen,  descripcion,  url,  dtOfertas,  paquetesComp,  sdos,  sdores);
         } else {
             String nickname = getNickname();
             String nombre = getNombre();
@@ -353,7 +420,7 @@ public class Empresa extends Usuario {
                     dtOfertas.add(dtOferta);
                 }// si oferta laboral confirmada se muestra
             }
-            empre = new DTEmpresa(nickname, correoElectronico, apellido, nombre, contraseña, descripcion, url, dtOfertas, imagen, sdos, sdores);
+            empre = new DTEmpresa(nickname,  correoElectronico,  apellido,  nombre,  contraseña,  descripcion,  url,  dtOfertas,  imagen,  sdos,  sdores);
         }
         return empre;
     }
@@ -426,20 +493,20 @@ public class Empresa extends Usuario {
 	}
 
     public String obtenerCantPaquetesEmpresa() {
-		String s = "";
-        for(InfoCompra infoCompra : infoCompras) {
+		String str = "";
+        for (InfoCompra infoCompra : infoCompras) {
         	String nombrePaq = infoCompra.getPaquete().getNombre();
-        	s = s + nombrePaq;
+        	str = str + nombrePaq;
     		Set<InfoCompraOferta> infoCompras = infoCompra.getICO();
     		
-    		for(InfoCompraOferta infoCompOfer : infoCompras) {
-    			s = s + "," + infoCompOfer.gettipoOfertas().getNombre();
-    			s = s + ":" + infoCompOfer.getCantres();
+    		for (InfoCompraOferta infoCompOfer : infoCompras) {
+    			str = str + ", " + infoCompOfer.gettipoOfertas().getNombre();
+    			str = str + ":" + infoCompOfer.getCantres();
     		}
-    		s = s + "-";
-    		System.out.println(s);
+    		str = str + "-";
+    		System.out.println(str);
         }
-		return s.substring(0, s.length() - 1);
+		return str.substring(0,  str.length() - 1);
 	}
 
     

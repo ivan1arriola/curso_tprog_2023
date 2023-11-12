@@ -46,14 +46,14 @@
         <div class="col">
           <div id="postulantes" class="container  text-center card m-2">
             <h2 class="card-title p-3">Lista de Postulantes</h2>
-            <% if(estaFinalizada){ %> <h3>Oferta Finalizada</h3> <%}%>
-            <% if(finalizoSinOrden){ %> <h3 class="text-danger">Finalizo sin orden de postulantes</h3> <%}%>
-            <% if(hayOrdenDefinido){ %> <h3>Orden de Postulantes</h3> <%}%>
+            <% if (estaFinalizada){ %> <h3>Oferta Finalizada</h3> <%}%>
+            <% if (finalizoSinOrden){ %> <h3 class="text-danger">Finalizo sin orden de postulantes</h3> <%}%>
+            <% if (hayOrdenDefinido){ %> <h3>Orden de Postulantes</h3> <%}%>
             <div class="row align-items-center card-body">
               <table class="table table-bordered">
                 <thead>
                 <tr>
-                  <% if(hayOrdenDefinido){ %> <th>Lugar</th> <%}%>
+                  <% if (hayOrdenDefinido){ %> <th>Lugar</th> <%}%>
                   <th>Nombre del Postulante</th>
                   <th>Acción</th>
                 </tr>
@@ -61,11 +61,11 @@
                 <tbody>
                 <%
                   int lugar = 0;
-                  for(String postulante : postulantes){
+                  for (String postulante : postulantes){
                     lugar++;
                 %>
                 <tr>
-                  <% if(hayOrdenDefinido){ %>
+                  <% if (hayOrdenDefinido){ %>
                   <td>
                     <%=lugar%>
                   </td>
@@ -77,7 +77,7 @@
                   </td>
                   <td>
 
-                      <button id="btn-<%=postulante%>" type="button" onclick="cargarInfoPostulante('<%=postulante%>', '<%=nombreOferta%>')" class="btn btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <button id="btn-<%=postulante%>" type="button" onclick="cargarInfoPostulante('<%=postulante%>',  '<%=nombreOferta%>')" class="btn btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Ver Postulacion
                       </button>
 

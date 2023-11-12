@@ -153,7 +153,7 @@
               
               <%
                 if (paquetes != null && !paquetes.isEmpty()){  
-                  	for(String paquete : paquetes ){
+                  	for (String paquete : paquetes ){
                 %>
                 <option value="<%= paquete %>">
                   <%= paquete %>
@@ -175,7 +175,7 @@
               <select class="form-control custom-select-validation" id="listadoOfertasGeneral" name="tipoOferta" required>
                 <%
                 
-				for(String tipo : tipoPublicaciones ){
+				for (String tipo : tipoPublicaciones ){
                 %>
                 <option value="<%= tipo %>">
                   <%= tipo %>
@@ -270,9 +270,9 @@
 			      } else {
 			    	$("#LOG").hide();
 			    	$.ajax({
-			            url: '<%= request.getContextPath() %>/ajaxaltaofertalaboral',  // Especifica la URL del servidor aquí
-			            type: 'GET',
-			            data: { selectedValue: selectedValue },
+			            url: '<%= request.getContextPath() %>/ajaxaltaofertalaboral',   // Especifica la URL del servidor aquí
+			            type: 'GET', 
+			            data: { selectedValue: selectedValue }, 
 			            success: function(conjunto) {
 			            	console.log(conjunto);
 			                // Llenar el segundo listado con las opciones del conjunto
@@ -281,12 +281,12 @@
 
 			                // Agregar las nuevas opciones al segundo listado
 			                for (var i = 0; i < conjunto.length; i++) {
-			                	listadoOfertasParticular.append($('<option>', {
-			                        value: conjunto[i],
+			                	listadoOfertasParticular.append($('<option>',  {
+			                        value: conjunto[i], 
 			                        text: conjunto[i]
 			                    }));
 			                }
-			            },
+			            }, 
 			            error: function() {
 			                console.log('Error al obtener conjunto vinculado');
 			            }

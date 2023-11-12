@@ -1,7 +1,7 @@
 package enumerado;
 
 public enum TipoUsuario {
-    POSTULANTE,
-    EMPRESA,
+    POSTULANTE, 
+    EMPRESA, 
     VISITANTE
 }

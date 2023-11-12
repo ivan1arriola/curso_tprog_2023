@@ -15,7 +15,7 @@ import java.util.TreeMap;
 
 public class OfertaLaboralHandler {
     private static OfertaLaboralHandler OLHandler = null;
-   // private Map<String, OfertaLaboral> ofertasLaborales;
+   // private Map<String,  OfertaLaboral> ofertasLaborales;
     private static EntityManager database;
 
 
@@ -47,14 +47,14 @@ public class OfertaLaboralHandler {
         }
     }
 
-    public Map<String, OfertaLaboral> obtener() {
-        Map<String, OfertaLaboral> ofertasLaborales = new TreeMap<>();
+    public Map<String,  OfertaLaboral> obtener() {
+        Map<String,  OfertaLaboral> ofertasLaborales = new TreeMap<>();
         try {
-            TypedQuery<OfertaLaboral> query = database.createQuery("SELECT o FROM OfertaLaboral o", OfertaLaboral.class);
+            TypedQuery<OfertaLaboral> query = database.createQuery("SELECT o FROM OfertaLaboral o",  OfertaLaboral.class);
             List<OfertaLaboral> resultados = query.getResultList();
 
             for (OfertaLaboral oferta : resultados) {
-                ofertasLaborales.put(oferta.getNombre(), oferta);
+                ofertasLaborales.put(oferta.getNombre(),  oferta);
             }
         } catch (PersistenceException e) {
             e.printStackTrace();
@@ -66,8 +66,8 @@ public class OfertaLaboralHandler {
 
     public boolean existe(String nombre) {
         try {
-            TypedQuery<Long> query = database.createQuery("SELECT COUNT(o) FROM OfertaLaboral o WHERE o.nombre = :nombre", Long.class);
-            query.setParameter("nombre", nombre);
+            TypedQuery<Long> query = database.createQuery("SELECT COUNT(o) FROM OfertaLaboral o WHERE o.nombre = :nombre",  Long.class);
+            query.setParameter("nombre",  nombre);
             Long count = query.getSingleResult();
 
             return count > 0;
@@ -80,8 +80,8 @@ public class OfertaLaboralHandler {
 
     public OfertaLaboral buscar(String nombre) throws OfertaLaboralNoEncontrada {
 
-            TypedQuery<OfertaLaboral> query = database.createQuery("SELECT o FROM OfertaLaboral o WHERE o.nombre = :nombre", OfertaLaboral.class);
-            query.setParameter("nombre", nombre);
+            TypedQuery<OfertaLaboral> query = database.createQuery("SELECT o FROM OfertaLaboral o WHERE o.nombre = :nombre",  OfertaLaboral.class);
+            query.setParameter("nombre",  nombre);
             List<OfertaLaboral> resultados = query.getResultList();
 
             if (!resultados.isEmpty()) {

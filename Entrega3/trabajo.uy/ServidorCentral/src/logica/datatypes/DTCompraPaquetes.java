@@ -18,7 +18,7 @@ public class DTCompraPaquetes {
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechavencimiento;
 
-    public DTCompraPaquetes(String nomb, LocalDate fechacomp, LocalDate fechavenc) {
+    public DTCompraPaquetes(String nomb,  LocalDate fechacomp,  LocalDate fechavenc) {
         nombre = nomb;
         fechacompra = fechacomp;
         fechavencimiento = fechavenc;

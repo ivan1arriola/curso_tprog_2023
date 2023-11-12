@@ -23,7 +23,7 @@ public class KeywordHandler {
     private KeywordHandler() {
     }
 
-    // singleton, para el keyword handler
+    // singleton,  para el keyword handler
     public static KeywordHandler getInstance() {
         if (instancia == null) {
             instancia = new KeywordHandler();
@@ -56,22 +56,22 @@ public class KeywordHandler {
             throw new IllegalStateException("EntityManager no configurado.");
         }
 
-        TypedQuery<Long> query = database.createQuery("SELECT COUNT(k) FROM Keyword k WHERE k.nombre = :nombre", Long.class)
-                .setParameter("nombre", nombre);
+        TypedQuery<Long> query = database.createQuery("SELECT COUNT(k) FROM Keyword k WHERE k.nombre = :nombre",  Long.class)
+                .setParameter("nombre",  nombre);
         return query.getSingleResult() > 0;
     }
 
-    public static Map<String, Keyword> obtener() {
+    public static Map<String,  Keyword> obtener() {
         if (database == null) {
             throw new IllegalStateException("EntityManager no configurado.");
         }
 
-        TypedQuery<Keyword> query = database.createQuery("SELECT k FROM Keyword k", Keyword.class);
+        TypedQuery<Keyword> query = database.createQuery("SELECT k FROM Keyword k",  Keyword.class);
         List<Keyword> keywordList = query.getResultList();
 
-        Map<String, Keyword> keywordMap = new TreeMap<>();
+        Map<String,  Keyword> keywordMap = new TreeMap<>();
         for (Keyword keyword : keywordList) {
-            keywordMap.put(keyword.getNombre(), keyword);
+            keywordMap.put(keyword.getNombre(),  keyword);
         }
 
         return keywordMap;

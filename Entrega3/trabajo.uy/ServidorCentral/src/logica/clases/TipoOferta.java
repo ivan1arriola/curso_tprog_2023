@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class TipoOferta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int iden;
     // -----------
     // Atributos
     private String nombre;
@@ -26,11 +26,11 @@ public class TipoOferta {
     private String descripcion;
 
     // Constructor
-    public TipoOferta(String nombre, LocalDate fechaAlta, float costo, int duracion, int exposicion, String descripcion) throws ExceptionCostoPaqueteNoNegativo, ExceptionDuracionNegativa, ExceptionExpoNegativa {
+    public TipoOferta(String nombre,  LocalDate fechaAlta,  float costo,  int duracion,  int exposicion,  String descripcion) throws ExceptionCostoPaqueteNoNegativo,  ExceptionDuracionNegativa,  ExceptionExpoNegativa {
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;
         try {
-            if (Float.compare(costo, 0.0f) < 0) {
+            if (Float.compare(costo,  0.0f) < 0) {
                 throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor o igual a 0");
             }
             this.costo = costo;
@@ -88,7 +88,7 @@ public class TipoOferta {
 
     public void setCosto(float costo) throws ExceptionCostoPaqueteNoNegativo {
         try {
-            if (Float.compare(costo, 0.0f) < 0) {
+            if (Float.compare(costo,  0.0f) < 0) {
                 throw new ExceptionCostoPaqueteNoNegativo("El costo debe ser mayor o igual a 0");
             }
             this.costo = costo;
@@ -141,7 +141,7 @@ public class TipoOferta {
     }
 
     public DTTipoOferta obtenerDT() { //getDTTipoOferta
-        DTTipoOferta dtTO = new DTTipoOferta(nombre, fechaAlta, costo, duracion, exposicion, descripcion);
+        DTTipoOferta dtTO = new DTTipoOferta(nombre,  fechaAlta,  costo,  duracion,  exposicion,  descripcion);
         return dtTO;
     }
 

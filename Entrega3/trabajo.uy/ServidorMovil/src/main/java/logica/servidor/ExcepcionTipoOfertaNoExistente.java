@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExcepcionTipoOfertaNoExistente", propOrder = {
+@XmlType(name = "ExcepcionTipoOfertaNoExistente",  propOrder = {
     "message"
 })
 public class ExcepcionTipoOfertaNoExistente {

@@ -4,7 +4,7 @@ public class DTHorario {
     private DTHora desde;
     private DTHora hasta;
 
-    public DTHorario(DTHora desde, DTHora hasta) {
+    public DTHorario(DTHora desde,  DTHora hasta) {
         this.desde = desde;
         this.hasta = hasta;
     }
@@ -26,8 +26,8 @@ public class DTHorario {
         // Suponemos que el formato del horario en horarioString es "Desde: [desde] - Hasta: [hasta]"
         String[] partes = horarioString.split(" - ");
         if (partes.length == 2) {
-            String desdeString = partes[0].replace("Desde: ", "");
-            String hastaString = partes[1].replace("Hasta: ", "");
+            String desdeString = partes[0].replace("Desde: ",  "");
+            String hastaString = partes[1].replace("Hasta: ",  "");
 
             // Crear objetos DTHora a partir de las cadenas de hora
             DTHora desde = crearDTHora(desdeString);
@@ -48,7 +48,7 @@ public class DTHorario {
             try {
                 int hora = Integer.parseInt(partes[0]);
                 int minutos = Integer.parseInt(partes[1]);
-                return new DTHora(hora, minutos);
+                return new DTHora(hora,  minutos);
             } catch (NumberFormatException e) {
                 // Manejar error de formato si no se pueden convertir los números
                 throw new IllegalArgumentException("Formato de hora incorrecto: " + horaString);

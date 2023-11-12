@@ -28,8 +28,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         logica = FabricaWeb.getLogica();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+    protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+        FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 
         String nombreOferta = request.getParameter("o");
         
@@ -51,7 +51,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
             		break;
             }
             
-            request.setAttribute("estaFav", estaFav);
+            request.setAttribute("estaFav",  estaFav);
             
             try {
                 servidor.aumentarVisita(nombreOferta);
@@ -63,86 +63,76 @@ public class ConsultarOfertaLaboral extends HttpServlet {
                 OfertaLaboralBean ofertaBean = logica.obtenerDatosOfertaLaboral(nombreOferta);
 
                 boolean estaVigente = logica.estaVigenteOferta(nombreOferta);
-                request.setAttribute("vigente", estaVigente);
+                request.setAttribute("vigente",  estaVigente);
 
                 boolean estaFinalizada = logica.estaFinalizada(nombreOferta);
-                request.setAttribute("estaFinalizada", estaFinalizada);
+                request.setAttribute("estaFinalizada",  estaFinalizada);
               
-                request.setAttribute("cantFavs", ofertaBean.getCantFavs());
+                request.setAttribute("cantFavs",  ofertaBean.getCantFavs());
                 boolean esCreadorOferta = ofertaBean.getNicknameEmpresa().equals(nickname);
-                request.setAttribute("duenio", esCreadorOferta);
+                request.setAttribute("duenio",  esCreadorOferta);
 
                 boolean hayOrdenDefinido = servidor.hayOrdenDefinido(nombreOferta); // indica si se definio orden de postulantes
-                request.setAttribute("hayOrdenDefinido", hayOrdenDefinido);
+                request.setAttribute("hayOrdenDefinido",  hayOrdenDefinido);
 
                 if (hayOrdenDefinido){
                     WrapperLista listaDelServidor = servidor.obtenerPosiciones(nombreOferta);
-                    request.setAttribute("postulantesOrden", listaDelServidor.getListaString());
+                    request.setAttribute("postulantesOrden",  listaDelServidor.getListaString());
                 }
 
 
                 if (tipoUsuario == TipoUsuario.Empresa && esCreadorOferta) {
-                    PaqueteBean paquete = logica.obtenerPaqueteDeOferta(nombreOferta, nickname);
-                    List<UsuarioBean> postulantes = logica.obtenerPostulantesDeOferta(nombreOferta, nickname);
+                    PaqueteBean paquete = logica.obtenerPaqueteDeOferta(nombreOferta,  nickname);
+                    List<UsuarioBean> postulantes = logica.obtenerPostulantesDeOferta(nombreOferta,  nickname);
 
-                    request.setAttribute("paquete", paquete);
-                    request.setAttribute("postulantes", postulantes);
+                    request.setAttribute("paquete",  paquete);
+                    request.setAttribute("postulantes",  postulantes);
                 }
 
                 boolean permisoDenegado = ofertaBean.getEstado() != EstadoOfertaLaboral.Confirmada || !estaVigente;
 
                 if (!esCreadorOferta && permisoDenegado){
-                    request.setAttribute("nombreError", "Esta oferta laboral no esta confirmada");
+                    request.setAttribute("nombreError",  "Esta oferta laboral no esta confirmada");
                     request.setAttribute(
-                            "mensajeError",
+                            "mensajeError", 
                             "No te puedes consultar a una oferta laboral que no este en estado confirmada si no eres la empresa publicadora"
                     );
-                    request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
                     return;
                 }
 
                 if (tipoUsuario == TipoUsuario.Postulante) {
-                    ofertaBean = cargarDatosPostulante(ofertaBean, nombreOferta, nickname);
+                    ofertaBean = cargarDatosPostulante(ofertaBean,  nombreOferta,  nickname);
                 }
 
-                request.setAttribute("ofertaLaboral", ofertaBean);
-                request.setAttribute("nombreOferta", ofertaBean.getNombre());
-                request.getRequestDispatcher("/WEB-INF/consultarOferta/consultarOferta.jsp").forward(request, response);
+                request.setAttribute("ofertaLaboral",  ofertaBean);
+                request.setAttribute("nombreOferta",  ofertaBean.getNombre());
+                request.getRequestDispatcher("/WEB-INF/consultarOferta/consultarOferta.jsp").forward(request,  response);
             } catch (IOException e) {
                 String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: " + e.getMessage();
-                request.setAttribute("mensajeError", mensajeError);
+                request.setAttribute("mensajeError",  mensajeError);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,  response);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         } else {
             String mensajeError = "Ocurrió un error al obtener los datos de la oferta laboral: No se proporcionó el nombre";
-            request.setAttribute("mensajeError", mensajeError);
+            request.setAttribute("mensajeError",  mensajeError);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errorPage.jsp");
-            dispatcher.forward(request, response);
+            dispatcher.forward(request,  response);
         }
     }
 
-    private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname) {
+    private OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean,  String nombreOferta,  String empresaNickname) {
         try {
-            //ofertaBean = logica.cargarPaquete(ofertaBean, empresaNickname);
-            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
+            //ofertaBean = logica.cargarPaquete(ofertaBean,  empresaNickname);
+            //ofertaBean = logica.cargarPostulantes(ofertaBean,  empresaNickname);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            //ofertaBean = logica.cargarPostulantes(ofertaBean, empresaNickname);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return ofertaBean;
-    }
-
-    private OfertaLaboralBean cargarDatosPostulante(OfertaLaboralBean ofertaBean, String nombreOferta, String nickname) {
-        try {
-            ofertaBean = logica.cargarDatosDePostulante(ofertaBean, nickname);
+            //ofertaBean = logica.cargarPostulantes(ofertaBean,  empresaNickname);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,7 +140,17 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         return ofertaBean;
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private OfertaLaboralBean cargarDatosPostulante(OfertaLaboralBean ofertaBean,  String nombreOferta,  String nickname) {
+        try {
+            ofertaBean = logica.cargarDatosDePostulante(ofertaBean,  nickname);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ofertaBean;
+    }
+
+    protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         
     	ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
@@ -160,7 +160,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     	
     	if (request.getParameter("corazonDesm") != null) {
     		try {
-    			servidor.marcarFavorito(nicknameUsuarioLogueado, nombreOferta);
+    			servidor.marcarFavorito(nicknameUsuarioLogueado,  nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
 				e.printStackTrace();
@@ -171,7 +171,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     	} else if (request.getParameter("corazonMarc") != null) {
     		try {
     			
-				servidor.desmarcarFavorito(nicknameUsuarioLogueado, nombreOferta);
+				servidor.desmarcarFavorito(nicknameUsuarioLogueado,  nombreOferta);
 				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
 				e.printStackTrace();

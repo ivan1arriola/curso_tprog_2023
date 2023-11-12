@@ -51,23 +51,23 @@ public class DTOfertaExtendido {
     }
 
     public DTOfertaExtendido(
-    	    String empresaPublicadora,
-    	    String nomb,
-    	    String desc,
-    	    LocalDate fechaA,
-    	    float cost,
-    	    float remu,
-    	    DTHorario horario,
-    	    DepUY dep,
-    	    String ciu,
-    	    EstadoOL est,
-    	    Set<DTPostulacion> post,
-    	    byte[] img,
-    	    String paquete,
-    	    Integer cantF,
-    	    Integer cantV,
-    	    String tipoOfer,
-            boolean estaVencido,
+    	    String empresaPublicadora, 
+    	    String nomb, 
+    	    String desc, 
+    	    LocalDate fechaA, 
+    	    float cost, 
+    	    float remu, 
+    	    DTHorario horario, 
+    	    DepUY dep, 
+    	    String ciu, 
+    	    EstadoOL est, 
+    	    Set<DTPostulacion> post, 
+    	    byte[] img, 
+    	    String paquete, 
+    	    Integer cantF, 
+    	    Integer cantV, 
+    	    String tipoOfer, 
+            boolean estaVencido, 
             boolean tieneOrdenPostulantes
     	) {
     	    nombre = nomb;
@@ -145,7 +145,7 @@ public class DTOfertaExtendido {
                 + (int) costo + "\n" + "Remuneración: " + (int) remuneracion + "\n"
                 + "Horario de Entrada: " + horario.getDesde() + "\n"
                 + "Horario de Salida: " + horario.getHasta() + "\n" + ciudad
-                + ",  " + departamento + "\n" + "Estado: " + estado;
+                + ",   " + departamento + "\n" + "Estado: " + estado;
 
         return texto;
     }

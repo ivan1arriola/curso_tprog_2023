@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ErrorAgregarUsuario", propOrder = {
+@XmlType(name = "ErrorAgregarUsuario",  propOrder = {
     "message"
 })
 public class ErrorAgregarUsuario {

@@ -24,20 +24,20 @@ public class Postulacionexitosa extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		//String nombreOferta = (String) request.getParameter("oferta");
 		String nombreOferta = (String) request.getAttribute("oferta");
 		
-		request.setAttribute("nombreOferta", nombreOferta);
+		request.setAttribute("nombreOferta",  nombreOferta);
 
-        request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp").forward(request,  response);
 	}
 
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doGet(request,  response);
 	}
 	
 

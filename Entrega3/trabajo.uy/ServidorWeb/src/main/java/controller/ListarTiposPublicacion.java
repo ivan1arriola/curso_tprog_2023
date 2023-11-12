@@ -30,11 +30,11 @@ public class ListarTiposPublicacion extends HttpServlet {
 
     
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+	protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 		ILogica logica = FabricaWeb.getLogica();
-		request.setAttribute("tiposOferta", logica.obtenerTipoOfertas());
-		request.getRequestDispatcher("/WEB-INF/listar/tipospublicacion.jsp").forward(request, response);
+		request.setAttribute("tiposOferta",  logica.obtenerTipoOfertas());
+		request.getRequestDispatcher("/WEB-INF/listar/tipospublicacion.jsp").forward(request,  response);
 	}
 
 }

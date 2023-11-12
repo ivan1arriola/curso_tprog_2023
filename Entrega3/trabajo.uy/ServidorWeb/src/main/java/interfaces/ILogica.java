@@ -19,7 +19,7 @@ public interface ILogica {
 	/**
 	 * Valida que las credenciales coincidan con un usuario en el sistema
 	 **/
-	boolean validarCredenciales(String identificador, String contraseña) throws ExceptionUsuarioNoEncontrado_Exception;
+	boolean validarCredenciales(String identificador,  String contraseña) throws ExceptionUsuarioNoEncontrado_Exception;
 
 	/**
 	 * Devuelve los datos basicos del usuario. En caso de error devuelve un bean vacio con un mensaje de error
@@ -31,13 +31,13 @@ public interface ILogica {
 
 	boolean estaFinalizadaConOrdenPostulantes(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
 
-	void modificarDatosUsuario(String nickname, UsuarioBean usuario);
+	void modificarDatosUsuario(String nickname,  UsuarioBean usuario);
 
 	Set<UsuarioBean> listarUsuarios();
 
 	Set<String> listarNicknamesUsuario();
 
-	void compraPaquetes(String nickname, String paquete, LocalDate now, int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception, ExceptionCompraPaqueteConValorNegativo_Exception, ExceptionUsuarioNoEncontrado_Exception, ExceptionValidezNegativa_Exception, NoExistePaquete_Exception;
+	void compraPaquetes(String nickname,  String paquete,  LocalDate now,  int valor) throws ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_Exception,  ExceptionCompraPaqueteConValorNegativo_Exception,  ExceptionUsuarioNoEncontrado_Exception,  ExceptionValidezNegativa_Exception,  NoExistePaquete_Exception;
 
 
 	Set<String> listarKeywords();
@@ -78,22 +78,22 @@ public interface ILogica {
 	/**
 	 * Obtiene los datos de la postulacion de nicknameParametro a la oferta nombreOferta
 	 **/
-	PostulacionBean obtenerDatosPostulacion(String nombreOferta, String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception;
+	PostulacionBean obtenerDatosPostulacion(String nombreOferta,  String nicknameParametro) throws ExceptionUsuarioNoEncontrado_Exception,  TipoUsuarioNoValido_Exception;
 
 	/**
 	 * A un OfertaLaboralBean ya existente le carga los datos de los Postulantes a la oferta y
 	 * de el paquete utilizado para pagar la Oferta Laboral en caso de existir
 	 **/
-	//OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean, String nombreOferta, String empresaNickname);
+	//OfertaLaboralBean cargarDatosEmpresa(OfertaLaboralBean ofertaBean,  String nombreOferta,  String empresaNickname);
 
 
-	List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta, String empresaNIckname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
+	List<UsuarioBean> obtenerPostulantesDeOferta(String nombreOferta,  String empresaNIckname) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception;
 
 
-	List<String> obtenerPostulantesDeOfertaString(String nombreOferta, String empresaNickname) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
-	PaqueteBean obtenerPaqueteDeOferta(String nombreOferta, String empresaNickname) throws Exception;
+	List<String> obtenerPostulantesDeOfertaString(String nombreOferta,  String empresaNickname) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception;
+	PaqueteBean obtenerPaqueteDeOferta(String nombreOferta,  String empresaNickname) throws Exception;
 
-	OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean, String postulanteNickname) throws Exception;
+	OfertaLaboralBean cargarDatosDePostulante(OfertaLaboralBean ofertaBean,  String postulanteNickname) throws Exception;
 
 	/**
 	 * Lista las ofertas laborales confirmadas del sistema
@@ -108,7 +108,7 @@ public interface ILogica {
 	/**
 	 * Lista las ofertas laborales confirmadas del sistema que tengan en el nombre el String consulta
 	 **/
-	Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception, ExceptionUsuarioNoEncontrado_Exception;
+	Set<OfertaLaboralBean> buscarOfertasPorInput(String consulta) throws OfertaLaboralNoEncontrada_Exception,  ExceptionUsuarioNoEncontrado_Exception;
 
 	/**
 	 * Lista los datos de los paquetes
@@ -122,17 +122,17 @@ public interface ILogica {
 
 	DtTipoOferta obtenerDatosTO(String nombre) throws ExcepcionTipoOfertaNoExistente_Exception;
 
-	void altaEmpresa(String nickname, String password, String nombre, String apellido, String email, String descripcionEmpresa, String sitioWebEmpresa, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ErrorAgregarUsuario_Exception;
+	void altaEmpresa(String nickname,  String password,  String nombre,  String apellido,  String email,  String descripcionEmpresa,  String sitioWebEmpresa,  byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception,  ExceptionUsuarioCorreoRepetido_Exception,  ExceptionUsuarioNickYCorreoRepetidos_Exception,  ErrorAgregarUsuario_Exception;
 
-	void altaPostulante(String nickname, String password, String nombre, String apellido, String email, LocalDate parse, String nacionalidad, byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception, ExceptionUsuarioCorreoRepetido_Exception, ExceptionUsuarioNickYCorreoRepetidos_Exception, ExceptionFechaInvalida_Exception, ErrorAgregarUsuario_Exception;
+	void altaPostulante(String nickname,  String password,  String nombre,  String apellido,  String email,  LocalDate parse,  String nacionalidad,  byte[] imagenBytes) throws ExceptionUsuarioNickRepetido_Exception,  ExceptionUsuarioCorreoRepetido_Exception,  ExceptionUsuarioNickYCorreoRepetidos_Exception,  ExceptionFechaInvalida_Exception,  ErrorAgregarUsuario_Exception;
 
-	void modificarPostulante(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, LocalDate fecha, String nacionalidad) throws ExceptionUsuarioNoEncontrado_Exception;
+	void modificarPostulante(String nickname,  String nombre,  String apellido,  String correo,  String password,  byte[] imagen,  LocalDate fecha,  String nacionalidad) throws ExceptionUsuarioNoEncontrado_Exception;
 
-	void modificarEmpresa(String nickname, String nombre, String apellido, String correo, String password, byte[] imagen, String descripcion, String enlace) throws ExceptionUsuarioNoEncontrado_Exception;
+	void modificarEmpresa(String nickname,  String nombre,  String apellido,  String correo,  String password,  byte[] imagen,  String descripcion,  String enlace) throws ExceptionUsuarioNoEncontrado_Exception;
 
-	PostulacionBean obtenerDatosPostulacionW(String nickname, String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception, TipoUsuarioNoValido_Exception;
+	PostulacionBean obtenerDatosPostulacionW(String nickname,  String nombreOferta) throws ExceptionUsuarioNoEncontrado_Exception,  TipoUsuarioNoValido_Exception;
 
-	void altaPostulacion(String nombreOferta, String nickname, String curriculumAbreviado, String motivacion, String url, LocalDate fecha, String video) throws ExceptionUsuarioNoEncontrado_Exception, OfertaLaboralNoEncontrada_Exception, ExceptionFechaInvalida_Exception;
+	void altaPostulacion(String nombreOferta,  String nickname,  String curriculumAbreviado,  String motivacion,  String url,  LocalDate fecha,  String video) throws ExceptionUsuarioNoEncontrado_Exception,  OfertaLaboralNoEncontrada_Exception,  ExceptionFechaInvalida_Exception;
 
 
     boolean nicknameDisponible(String nickname);
@@ -143,7 +143,7 @@ public interface ILogica {
 
 	HashSet<String> obtenerSeguidos(String nickname) throws ExceptionUsuarioNoEncontrado_Exception;
 
-    void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception, FinalizarOfertaNoVencida_Exception, FinalizarOfertaYaFinalizada_Exception;
+    void finalizarOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception,  FinalizarOfertaNoVencida_Exception,  FinalizarOfertaYaFinalizada_Exception;
 
 	boolean estaVigenteOferta(String nombreOferta) throws OfertaLaboralNoEncontrada_Exception;
 }

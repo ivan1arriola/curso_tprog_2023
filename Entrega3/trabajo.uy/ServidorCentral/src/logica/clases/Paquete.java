@@ -52,12 +52,12 @@ public class Paquete {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<OfertaPaquete> oferPaq;
-    @OneToMany(mappedBy = "paquete", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "paquete",  cascade = CascadeType.PERSIST)
     private Set<InfoCompra> infCompraAsociada;
 
     // Constructor
-    public Paquete(String nombre, String descripcion, int validez, LocalDate fecha, float descuento, byte[] imagen) throws ExceptionValidezNegativa, ExceptionDescuentoInvalido {
-        if (Float.compare(descuento, 0.0f) >= 0  && Float.compare(descuento, 100.0f) <= 0) {
+    public Paquete(String nombre,  String descripcion,  int validez,  LocalDate fecha,  float descuento,  byte[] imagen) throws ExceptionValidezNegativa,  ExceptionDescuentoInvalido {
+        if (Float.compare(descuento,  0.0f) >= 0  && Float.compare(descuento,  100.0f) <= 0) {
             if (validez >= 0) {
                 this.nombre = nombre;
                 this.descripcion = descripcion;
@@ -67,7 +67,7 @@ public class Paquete {
                 this.setImagen(imagen);
                 this.oferPaq = new HashSet<OfertaPaquete>();
                 costo = 0;
-                this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null,   despues se cambia 
+                this.infCompraAsociada = new HashSet<InfoCompra>(); //empieza null,    despues se cambia 
 
                 System.out.println("Se ha creado un paquete. - " + nombre);
             } else {
@@ -111,7 +111,7 @@ public class Paquete {
     }
 
     public void setCosto(float costo) throws ExceptionCostoPaqueteNoNegativo {
-        if (Float.compare(costo, 0.0f) >= 0) {
+        if (Float.compare(costo,  0.0f) >= 0) {
             this.costo = costo;
         } else {
             throw new ExceptionCostoPaqueteNoNegativo("El costo de un paquete no puede ser negativo.");
@@ -123,7 +123,7 @@ public class Paquete {
     }
 
     public void setDescuento(float descuento) throws ExceptionDescuentoInvalido {
-        if (Float.compare(descuento, 0.0f) >= 0  && Float.compare(descuento, 100.0f) <= 0) {
+        if (Float.compare(descuento,  0.0f) >= 0  && Float.compare(descuento,  100.0f) <= 0) {
             this.descuento = descuento;
         } else {
             throw new ExceptionDescuentoInvalido("El descuento tiene que ser un número entre 0 y 100.");
@@ -169,7 +169,7 @@ public class Paquete {
     public void setOfertaPaquete(Set<OfertaPaquete> oferPaq) {
         float Costo = 0;
         this.oferPaq = oferPaq;
-        // cambie oferta paquete,   cambie el precio del mismo
+        // cambie oferta paquete,    cambie el precio del mismo
         for (OfertaPaquete OfertaAnalizar : oferPaq) {
             DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO(); // obtengo cantidad y nombre de cada paquete
             String nombreOferta = DTcantaux.getNombre(); // nombre lo uso para buscar
@@ -197,11 +197,11 @@ public class Paquete {
     }
 
     // OPERACIONES
-    public void crearOfertaPaquete(TipoOferta tipoO, int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete {
+    public void crearOfertaPaquete(TipoOferta tipoO,  int cantidad) throws ExceptionCantidadPositivaDeTipoOfertaEnPaquete {
         if (cantidad > 0) {
             OfertaPaquete ofpaq = null;
 			try {
-				ofpaq = new OfertaPaquete(tipoO, cantidad);
+				ofpaq = new OfertaPaquete(tipoO,  cantidad);
 			} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -209,7 +209,7 @@ public class Paquete {
             Set<OfertaPaquete> OFERTASPAQUETES = this.getOfertaPaquete();
             OFERTASPAQUETES.add(ofpaq);
             float Costo = 0;
-            // cambie oferta paquete,   cambie el precio del mismo
+            // cambie oferta paquete,    cambie el precio del mismo
             for (OfertaPaquete OfertaAnalizar : OFERTASPAQUETES) {
                 DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO(); // obtengo cantidad y nombre de cada paquete
                 String nombreOferta = DTcantaux.getNombre(); // nombre lo uso para buscar
@@ -223,7 +223,7 @@ public class Paquete {
             Costo = (float) (Costo - (Costo * descuento * 0.01));
             this.costo = Costo;
         } else {
-            throw new ExceptionCantidadPositivaDeTipoOfertaEnPaquete("Un tipo de oferta en un paquete, incluye al menos 1 de ese tipo.");
+            throw new ExceptionCantidadPositivaDeTipoOfertaEnPaquete("Un tipo de oferta en un paquete,  incluye al menos 1 de ese tipo.");
         }
     }
 
@@ -236,14 +236,14 @@ public class Paquete {
             individual.add(actual.getDTCantTO());
         }
 
-        return new DTPaquete(nombre, costo, descuento, validez, descripcion, individual, fechaAlta, getImagen());
+        return new DTPaquete(nombre,  costo,  descuento,  validez,  descripcion,  individual,  fechaAlta,  getImagen());
     }
 
     public Set<DTCantTO> obtenerDTSCantTO() {
         // devolver cantidad y nombre de cada paquete
         Set<DTCantTO> SetNuevo = new HashSet<DTCantTO>();
         for (OfertaPaquete OfertaAnalizar : oferPaq) {
-            // Por cada oferta paquete,   obtengo su DTCantTO y lo agrego al SetNuevo
+            // Por cada oferta paquete,    obtengo su DTCantTO y lo agrego al SetNuevo
             DTCantTO DTcantaux = OfertaAnalizar.getDTCantTO();
             SetNuevo.add(DTcantaux);
 

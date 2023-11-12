@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExceptionUsuarioSeSigueASiMismo", propOrder = {
+@XmlType(name = "ExceptionUsuarioSeSigueASiMismo",  propOrder = {
     "message"
 })
 public class ExceptionUsuarioSeSigueASiMismo {

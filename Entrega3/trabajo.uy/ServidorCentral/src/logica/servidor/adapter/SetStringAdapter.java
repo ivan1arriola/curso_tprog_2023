@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SetStringAdapter extends XmlAdapter<ArrayList<String>, Set<String>> {
+public class SetStringAdapter extends XmlAdapter<ArrayList<String>,  Set<String>> {
 
     @Override
     public ArrayList<String> marshal(Set<String> set) throws Exception {

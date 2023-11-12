@@ -28,16 +28,16 @@ public class ListarOfertasLaborales extends HttpServlet {
         servidor = servidorService.getServidorPort();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		List<DtOfertaExtendido> DtOfertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
-		Collections.sort(DtOfertas, Comparator.comparing(DtOfertaExtendido::getNombre));
-		request.setAttribute("ofertas", DtOfertas);
-		request.getRequestDispatcher("/WEB-INF/listarOfertasLaborales/ofertasLaborales.jsp").forward(request, response);
+		Collections.sort(DtOfertas,  Comparator.comparing(DtOfertaExtendido::getNombre));
+		request.setAttribute("ofertas",  DtOfertas);
+		request.getRequestDispatcher("/WEB-INF/listarOfertasLaborales/ofertasLaborales.jsp").forward(request,  response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doGet(request,  response);
 	}
 
 }

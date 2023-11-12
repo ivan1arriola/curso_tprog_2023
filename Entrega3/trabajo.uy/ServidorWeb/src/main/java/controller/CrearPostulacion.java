@@ -32,8 +32,8 @@ public class CrearPostulacion extends HttpServlet {
     }
 
 
-	protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FabricaWeb.getKeywordsLoader().cargarKeywords(request, response);
+	protected void doGet(jakarta.servlet.http.HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
+		FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
 
 		HttpSession session = request.getSession(false);
 		String nickname = (String) session.getAttribute("nickname");
@@ -44,13 +44,13 @@ public class CrearPostulacion extends HttpServlet {
 		try {
 			oferta = logica.obtenerDatosOfertaLaboral(nombreOferta);
 			if (oferta.getImagen() != null) {
-				request.setAttribute("imagenOferta", oferta.getImagen());
+				request.setAttribute("imagenOferta",  oferta.getImagen());
 			}
 
-			if(oferta.getEstado() != EstadoOfertaLaboral.Confirmada){
-				request.setAttribute("nombreError", "Esta oferta laboral no esta confirmada");
-				request.setAttribute("mensajeError", "No te puedes postular a una oferta laboral que no este en estado confirmada");
-				request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request, response);
+			if (oferta.getEstado() != EstadoOfertaLaboral.Confirmada){
+				request.setAttribute("nombreError",  "Esta oferta laboral no esta confirmada");
+				request.setAttribute("mensajeError",  "No te puedes postular a una oferta laboral que no este en estado confirmada");
+				request.getRequestDispatcher("/WEB-INF/errores/errorException.jsp").forward(request,  response);
 				return;
 			}
 
@@ -62,17 +62,17 @@ public class CrearPostulacion extends HttpServlet {
 
 		String postulante = usuario.getNombre() + " " + usuario.getApellido();
 
-		request.setAttribute("postulante", postulante);
-		request.setAttribute("oferta", nombreOferta);
+		request.setAttribute("postulante",  postulante);
+		request.setAttribute("oferta",  nombreOferta);
 
 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/crearPostulacion.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request,  response);
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		// TODO Auto-generated method stub
 		try {
 			String cvAbrev = request.getParameter("cvAbreviado");
@@ -82,7 +82,7 @@ public class CrearPostulacion extends HttpServlet {
 		String nombreOferta = request.getParameter("nombreOferta");
 		String videoYouTube = request.getParameter("videoYouTube");
 
-			logica.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", LocalDate.now(), videoYouTube);
+			logica.altaPostulacion(nombreOferta,  nickname,   cvAbrev,   motiv,  "",  LocalDate.now(),  videoYouTube);
 			response.sendRedirect(request.getContextPath() + "/ofertaslaborales");
 		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception |
 				 ExceptionFechaInvalida_Exception e) {

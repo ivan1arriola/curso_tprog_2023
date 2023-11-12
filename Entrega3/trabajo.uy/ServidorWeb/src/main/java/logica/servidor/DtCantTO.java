@@ -27,8 +27,8 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtCantTO", propOrder = {
-    "nombre",
+@XmlType(name = "dtCantTO",  propOrder = {
+    "nombre", 
     "cantidad"
 })
 public class DtCantTO {

@@ -157,7 +157,7 @@
    <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop"/>
    <rule ref="category/plsql/codestyle.xml/ForLoopNaming">
       <properties>
-         <property description="Ignore simple loops, that are not nested"
+         <property description="Ignore simple loops,  that are not nested"
                    name="allowSimpleLoops"
                    type="Boolean">
             <value>false</value>
@@ -165,12 +165,12 @@
          <property description="The pattern used for the cursor loop variable"
                    name="cursorPattern"
                    type="Regex">
-            <value>[a-zA-Z_0-9]{5,}</value>
+            <value>[a-zA-Z_0-9]{5, }</value>
          </property>
          <property description="The pattern used for the index loop variable"
                    name="indexPattern"
                    type="Regex">
-            <value>[a-zA-Z_0-9]{5,}</value>
+            <value>[a-zA-Z_0-9]{5, }</value>
          </property>
       </properties>
    </rule>
@@ -330,10 +330,10 @@
    <rule ref="category/java/bestpractices.xml/ReplaceHashtableWithMap"/>
    <rule ref="category/java/errorprone.xml/MissingStaticMethodInNonInstantiatableClass">
       <properties>
-         <property description="If a constructor is annotated with one of these annotations, then the class is ignored."
+         <property description="If a constructor is annotated with one of these annotations,  then the class is ignored."
                    name="annotations"
                    type="List[String]">
-            <value>org.springframework.beans.factory.annotation.Autowired,javax.inject.Inject,com.google.inject.Inject</value>
+            <value>org.springframework.beans.factory.annotation.Autowired, javax.inject.Inject, com.google.inject.Inject</value>
          </property>
       </properties>
    </rule>
@@ -366,12 +366,12 @@
    </rule>
    <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
       <properties>
-         <property description="Comma-separated list of magic numbers, that should be ignored"
+         <property description="Comma-separated list of magic numbers,  that should be ignored"
                    name="ignoreMagicNumbers"
                    type="String">
-            <value>-1,0</value>
+            <value>-1, 0</value>
          </property>
-         <property description="If true, only literals in simple if conditions are considered. Otherwise literals in expressions are checked, too."
+         <property description="If true,  only literals in simple if conditions are considered. Otherwise literals in expressions are checked,  too."
                    name="ignoreExpressions"
                    type="Boolean">
             <value>true</value>
@@ -426,7 +426,7 @@
                    type="Boolean">
             <value>false</value>
          </property>
-         <property description="Allow loops with an empty statement, e.g. 'while(true);'"
+         <property description="Allow loops with an empty statement,  e.g. 'while(true);'"
                    name="allowEmptyLoop"
                    type="Boolean">
             <value>false</value>
@@ -489,7 +489,7 @@
    <rule ref="category/java/errorprone.xml/ProperCloneImplementation"/>
    <rule ref="category/apex/bestpractices.xml/DebugsShouldUseLoggingLevel">
       <properties>
-         <property description="If true, mark statements that use the DEBUG enum of LoggingLevel."
+         <property description="If true,  mark statements that use the DEBUG enum of LoggingLevel."
                    name="strictMode"
                    type="Boolean">
             <value>false</value>
@@ -582,7 +582,7 @@
                    type="Boolean">
             <value>false</value>
          </property>
-         <property description="Allow increment or decrement operators within the conditional expression of an if, for, or while statement"
+         <property description="Allow increment or decrement operators within the conditional expression of an if,  for,  or while statement"
                    name="allowIncrementDecrement"
                    type="Boolean">
             <value>false</value>
@@ -601,14 +601,14 @@
          <property description="Set of valid types."
                    name="validTypes"
                    type="List[String]">
-            <value>pom,jar,maven-plugin,ejb,war,ear,rar,par</value>
+            <value>pom, jar, maven-plugin, ejb, war, ear, rar, par</value>
          </property>
       </properties>
    </rule>
    <rule ref="category/jsp/bestpractices.xml/NoClassAttribute"/>
    <rule ref="category/java/codestyle.xml/UnnecessaryAnnotationValueElement">
       <properties>
-         <property description="If disabled, the rule shows also violations that are applicable for java8+"
+         <property description="If disabled,  the rule shows also violations that are applicable for java8+"
                    name="java7Compatibility"
                    type="Boolean">
             <value>false</value>
@@ -628,7 +628,7 @@
    <rule ref="category/apex/security.xml/ApexSOQLInjection"/>
    <rule ref="category/xsl/performance.xml/AvoidAxisNavigation">
       <properties>
-         <property description="descendant::self abreviation, '//', will also trigger this rule."
+         <property description="descendant::self abreviation,  '//',  will also trigger this rule."
                    name="checkSelfDescendantAbreviation"
                    type="Boolean">
             <value>false</value>
@@ -697,7 +697,7 @@
          <property description="List of canonical type names for which reference comparison is allowed."
                    name="typesThatCompareByReference"
                    type="List[String]">
-            <value>java.lang.Enum,java.lang.Class</value>
+            <value>java.lang.Enum, java.lang.Class</value>
          </property>
       </properties>
    </rule>
@@ -706,12 +706,12 @@
    <rule ref="category/plsql/design.xml/NcssObjectCount"/>
    <rule ref="category/apex/errorprone.xml/EmptyStatementBlock">
       <properties>
-         <property description="If false, empty private no-arg constructors are not flagged. This supports a common idiom used by singleton pattern implementations, utility classes, etc."
+         <property description="If false,  empty private no-arg constructors are not flagged. This supports a common idiom used by singleton pattern implementations,  utility classes,  etc."
                    name="reportEmptyPrivateNoArgConstructor"
                    type="Boolean">
             <value>true</value>
          </property>
-         <property description="If false, empty virtual methods are not flagged. This supports abstract base classes with default no-op implementations."
+         <property description="If false,  empty virtual methods are not flagged. This supports abstract base classes with default no-op implementations."
                    name="reportEmptyVirtualMethod"
                    type="Boolean">
             <value>true</value>
@@ -728,12 +728,12 @@
    <rule ref="category/java/design.xml/DataClass"/>
    <rule ref="category/apex/codestyle.xml/OneDeclarationPerLine">
       <properties>
-         <property description="If true, mark combined declaration even if the declarations are on separate lines."
+         <property description="If true,  mark combined declaration even if the declarations are on separate lines."
                    name="strictMode"
                    type="Boolean">
             <value>false</value>
          </property>
-         <property description="If false, multiple declarations in a for loop initializer are not flagged."
+         <property description="If false,  multiple declarations in a for loop initializer are not flagged."
                    name="reportInForLoopInitializer"
                    type="Boolean">
             <value>true</value>

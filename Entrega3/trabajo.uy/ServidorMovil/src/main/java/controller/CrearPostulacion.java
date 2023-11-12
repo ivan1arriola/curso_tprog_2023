@@ -32,7 +32,7 @@ public class CrearPostulacion extends HttpServlet {
     }
 
 
-	protected void doGet(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(jakarta.servlet.http.HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
 		String nickname = (String) request.getSession().getAttribute("nickname");
 	    String nombreOferta = request.getParameter("oferta");
@@ -44,10 +44,10 @@ public class CrearPostulacion extends HttpServlet {
 			oferta = servidor.obtenerOfertaLaboral(nombreOferta); 
 			usuario = servidor.obtenerDatosUsuario(nickname);
 			if (oferta.getImagen()!= null) {
-				request.setAttribute("imagenOferta", oferta.getImagen());
+				request.setAttribute("imagenOferta",  oferta.getImagen());
 			}
 			
-			existePost = servidor.hayPostulacionW(nickname, nombreOferta);
+			existePost = servidor.hayPostulacionW(nickname,  nombreOferta);
 		} catch (OfertaLaboralNoEncontrada_Exception e) {
 
 			throw new RuntimeException(e);
@@ -58,12 +58,12 @@ public class CrearPostulacion extends HttpServlet {
 
 
 		String postulante = usuario.getNombre() + " " + usuario.getApellido();
-		request.setAttribute("nickname", nickname);
-		request.setAttribute("postulante", postulante);
-		request.setAttribute("nombreOferta", nombreOferta);
+		request.setAttribute("nickname",  nickname);
+		request.setAttribute("postulante",  postulante);
+		request.setAttribute("nombreOferta",  nombreOferta);
 
 		
-		request.setAttribute("oferta", oferta);
+		request.setAttribute("oferta",  oferta);
 		RequestDispatcher dispatcher;
 		
 		if (!existePost) {
@@ -71,11 +71,11 @@ public class CrearPostulacion extends HttpServlet {
 		} else {
             dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionexistente.jsp");
 		}
-		dispatcher.forward(request, response);
+		dispatcher.forward(request,  response);
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		request.setCharacterEncoding("UTF-8");
 		try {
 			String cvAbrev = request.getParameter("cvAbreviado");
@@ -88,13 +88,13 @@ public class CrearPostulacion extends HttpServlet {
 			String videoYouTube = request.getParameter("videoYouTube");
 			String currentDateStr = LocalDate.now().toString();
 
-			request.setAttribute("oferta", nombreOferta);
-			request.setAttribute("imagenOferta", servidor.obtenerOfertaLaboral(nombreOferta).getImagen());
+			request.setAttribute("oferta",  nombreOferta);
+			request.setAttribute("imagenOferta",  servidor.obtenerOfertaLaboral(nombreOferta).getImagen());
 			
-			servidor.altaPostulacion(nombreOferta, nickname,  cvAbrev,  motiv, "", currentDateStr, videoYouTube);
+			servidor.altaPostulacion(nombreOferta,  nickname,   cvAbrev,   motiv,  "",  currentDateStr,  videoYouTube);
 						
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crearPostulacion/postulacionExitosa.jsp");
-			dispatcher.forward(request, response);
+			dispatcher.forward(request,  response);
 		} catch (ExceptionUsuarioNoEncontrado_Exception | OfertaLaboralNoEncontrada_Exception exc) {
 			throw new RuntimeException(exc);
 		} catch (ExceptionFechaInvalida_Exception exc) {

@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExceptionFechaInvalida", propOrder = {
+@XmlType(name = "ExceptionFechaInvalida",  propOrder = {
     "message"
 })
 public class ExceptionFechaInvalida {

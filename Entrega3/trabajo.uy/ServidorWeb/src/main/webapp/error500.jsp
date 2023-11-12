@@ -18,7 +18,7 @@
     <div class="container col-9">
         <jsp:include page="/WEB-INF/templates/navbar.jsp" />
         <h1>Error 500 - Error interno del servidor</h1>
-        <p>Lo sentimos, ha ocurrido un error interno en el servidor al procesar tu solicitud.</p>
+        <p>Lo sentimos,  ha ocurrido un error interno en el servidor al procesar tu solicitud.</p>
 
         <%
             Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");

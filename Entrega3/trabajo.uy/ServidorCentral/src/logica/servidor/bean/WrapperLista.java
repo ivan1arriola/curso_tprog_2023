@@ -5,14 +5,15 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica.datatypes.DTOfertaExtendido;
 import logica.datatypes.DTPostulacion;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WrapperLista {
 
-    private ArrayList<String> listaString;
-    private ArrayList<DTOfertaExtendido> ofertasExtendido;
-    private ArrayList<DTPostulacion> postulaciones;
+    private List<String> listaString;
+    private List<DTOfertaExtendido> ofertasExtendido;
+    private List<DTPostulacion> postulaciones;
 
     
     public WrapperLista() {
@@ -21,27 +22,27 @@ public class WrapperLista {
         postulaciones = new ArrayList<>();
     }
 
-    public ArrayList<String> getListaString() {
+    public List<String> getListaString() {
         return listaString;
     }
 
-    public void setListaString(ArrayList<String> listaString) {
+    public void setListaString(List<String> listaString) {
         this.listaString = listaString;
     }
 
-    public ArrayList<DTOfertaExtendido> getOfertasExtendido() {
+    public List<DTOfertaExtendido> getOfertasExtendido() {
         return ofertasExtendido;
     }
 
-    public void setOfertasExtendido(ArrayList<DTOfertaExtendido> ofertasExtendido) {
+    public void setOfertasExtendido(List<DTOfertaExtendido> ofertasExtendido) {
         this.ofertasExtendido = ofertasExtendido;
     }
     
-    public ArrayList<DTPostulacion> getPostulaciones() {
+    public List<DTPostulacion> getPostulaciones() {
         return postulaciones;
     }
     
-    public void setPostulaciones(ArrayList<DTPostulacion> postu) {
+    public void setPostulaciones(List<DTPostulacion> postu) {
         this.postulaciones = postu;
     }
 

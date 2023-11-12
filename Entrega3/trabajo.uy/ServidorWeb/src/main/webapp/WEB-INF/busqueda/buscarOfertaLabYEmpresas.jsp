@@ -31,9 +31,9 @@
             <jsp:include page="/WEB-INF/templates/navbar.jsp" />
 
             <%
-            	LinkedHashMap<OfertaLaboralBean, Integer> ofertasLab = (LinkedHashMap<OfertaLaboralBean, Integer>) request.getAttribute("ofertasLabOrdenadas");
+            	LinkedHashMap<OfertaLaboralBean,  Integer> ofertasLab = (LinkedHashMap<OfertaLaboralBean,  Integer>) request.getAttribute("ofertasLabOrdenadas");
                 Integer cantOfer = (Integer) request.getAttribute("cantOfertasLaborales");
-                LinkedHashMap<UsuarioBean, LocalDate> empresas = (LinkedHashMap<UsuarioBean, LocalDate>) request.getAttribute("empresasOrdenadas");
+                LinkedHashMap<UsuarioBean,  LocalDate> empresas = (LinkedHashMap<UsuarioBean,  LocalDate>) request.getAttribute("empresasOrdenadas");
                 Integer cantEmp = (Integer) request.getAttribute("cantEmpresas");
             %>
 			<input type="hidden" name="input" style="display: none;" placeholder="nick" value="<%= (String) request.getAttribute("input") %>">
@@ -60,7 +60,7 @@
 								</form>
 							 
 								<script>
-								    document.getElementById('orden-ofertas').addEventListener('change', function () {
+								    document.getElementById('orden-ofertas').addEventListener('change',  function () {
 								        if (isSelectionChanged1()) {
 								            submitForm1();
 								        }
@@ -70,7 +70,7 @@
 								        var ordenGuardado1 = localStorage.getItem('ordenSeleccionado1');
 								        if (!ordenGuardado1) {
 								            ordenGuardado1 = "defectoOfertaLab";
-								            localStorage.setItem('ordenSeleccionado1', ordenGuardado1);
+								            localStorage.setItem('ordenSeleccionado1',  ordenGuardado1);
 								        }
 								        document.getElementById('orden-ofertas').value = ordenGuardado1;
 								    }
@@ -83,12 +83,12 @@
 								
 								    function submitForm1() {
 								        var ordenSeleccionado1 = document.getElementById('orden-ofertas').value;
-								        localStorage.setItem('ordenSeleccionado1', ordenSeleccionado1);
+								        localStorage.setItem('ordenSeleccionado1',  ordenSeleccionado1);
 								        document.getElementById('orden-ofertas-form').submit();
 								    }
 								
 								    // Llama a loadSelection después de que la página se ha cargado completamente
-								    window.addEventListener('load', function () {
+								    window.addEventListener('load',  function () {
 								        loadSelection1();
 								    });
 								</script>
@@ -105,7 +105,7 @@
                                     <% } %>
                                 </div>
                             <% } else {
-                                for (Map.Entry<OfertaLaboralBean, Integer> entry : ofertasLab.entrySet()) {
+                                for (Map.Entry<OfertaLaboralBean,  Integer> entry : ofertasLab.entrySet()) {
                                     String imagenUrl = entry.getKey().getImagen();
 
                                     if (imagenUrl == null){
@@ -159,7 +159,7 @@
 								</form>
 								
 								<script>
-								    document.getElementById('orden-empresas').addEventListener('change', function () {
+								    document.getElementById('orden-empresas').addEventListener('change',  function () {
 								        if (isSelectionChanged()) {
 								            submitForm();
 								        }
@@ -169,7 +169,7 @@
 								        var ordenGuardado = localStorage.getItem('ordenSeleccionado');
 								        if (!ordenGuardado) {
 								            ordenGuardado = "defectoEmp";
-								            localStorage.setItem('ordenSeleccionado', ordenGuardado);
+								            localStorage.setItem('ordenSeleccionado',  ordenGuardado);
 								        }
 								        document.getElementById('orden-empresas').value = ordenGuardado;
 								    }
@@ -182,12 +182,12 @@
 								
 								    function submitForm() {
 								        var ordenSeleccionado = document.getElementById('orden-empresas').value;
-								        localStorage.setItem('ordenSeleccionado', ordenSeleccionado);
+								        localStorage.setItem('ordenSeleccionado',  ordenSeleccionado);
 								        document.getElementById('orden-empresas-form').submit();
 								    }
 								
 								    // Llama a loadSelection después de que la página se ha cargado completamente
-								    window.addEventListener('load', function () {
+								    window.addEventListener('load',  function () {
 								        loadSelection();
 								    });
 								</script>
@@ -202,7 +202,7 @@
                                     No hay usuarios dados de alta en este momento.
                                 </div>
                             <% } else {
-                                for (Map.Entry<UsuarioBean, LocalDate> entry : empresas.entrySet()) {
+                                for (Map.Entry<UsuarioBean,  LocalDate> entry : empresas.entrySet()) {
                                     String imagen = entry.getKey().getImagen();
 
                                     if (imagen == null) {

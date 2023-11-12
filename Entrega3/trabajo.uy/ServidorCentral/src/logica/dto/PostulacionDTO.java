@@ -9,10 +9,10 @@ import java.time.LocalDate;
 public class PostulacionDTO {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "id", nullable = false)
+//    @Column(name = "id",  nullable = false)
 //    private Long id;
 
-    @Column(name = "cv", nullable = false)
+    @Column(name = "cv",  nullable = false)
     private String curriculumVitae;
 
     @Column(nullable = false)
@@ -20,23 +20,23 @@ public class PostulacionDTO {
 
 
     @Column(nullable = false)
-    private LocalDate fecha_postulacion;
+    private LocalDate fechapostulacion;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "oferta_laboral_id")
+    @JoinColumn(name = "ofertalaboralid")
     private OfertaLaboralDTO ofertaLaboral;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "postulante_id")
+    @JoinColumn(name = "postulanteid")
     private PostulanteDTO postulante;
 
 
-    public PostulacionDTO(String curriculumVitae, String motivacion, LocalDate fecha_postulacion, OfertaLaboralDTO ofertaLaboral, PostulanteDTO postulante) {
+    public PostulacionDTO(String curriculumVitae,  String motivacion,  LocalDate fechapostulacion,  OfertaLaboralDTO ofertaLaboral,  PostulanteDTO postulante) {
         this.curriculumVitae = curriculumVitae;
         this.motivacion = motivacion;
-        this.fecha_postulacion = fecha_postulacion;
+        this.fechapostulacion = fechapostulacion;
         this.ofertaLaboral = ofertaLaboral;
         this.postulante = postulante;
     }

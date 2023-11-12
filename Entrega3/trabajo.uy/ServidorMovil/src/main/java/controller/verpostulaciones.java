@@ -31,7 +31,7 @@ public class verpostulaciones extends HttpServlet {
         servidor = servidorService.getServidorPort();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 		
 		String nickname = (String) request.getSession().getAttribute("nickname");
 		List<DtPostulacion> postulaciones = new ArrayList<>();
@@ -40,8 +40,8 @@ public class verpostulaciones extends HttpServlet {
 
 		try {
 			DtUsuario usuario = (DtUsuario) servidor.obtenerDatosUsuario(nickname);
-			request.setAttribute("usuario", usuario);
-			request.setAttribute("nickname", nickname);
+			request.setAttribute("usuario",  usuario);
+			request.setAttribute("nickname",  nickname);
 			List<DtOfertaExtendido> ofertas = servidor.obtenerDTOfertasLaboralesConfirmadas().getOfertasExtendido();
 			
 			//String nom = servidor.listarPostulacionesPostulante(nickname).getListaString().get(1);
@@ -49,14 +49,14 @@ public class verpostulaciones extends HttpServlet {
 
 			List<DtOfertaExtendido> ofertasPostulado = new ArrayList<>();
 			
-			for(DtOfertaExtendido offer : ofertas) {
+			for (DtOfertaExtendido offer : ofertas) {
 				
-				boolean existe = servidor.hayPostulacionW(nickname, offer.getNombre()); 
+				boolean existe = servidor.hayPostulacionW(nickname,  offer.getNombre()); 
 				
 				if (existe) {
 					
 					
-				 DtPostulacion dtpos = servidor.obtenerDatosPostulacionW(nickname, offer.getNombre());
+				 DtPostulacion dtpos = servidor.obtenerDatosPostulacionW(nickname,  offer.getNombre());
  			     ofertasPostulado.add(offer);
 				 postulaciones.add(dtpos);
 				 
@@ -64,8 +64,8 @@ public class verpostulaciones extends HttpServlet {
 				}
 			}
 	
-			request.setAttribute("ofertas", ofertasPostulado);
-			request.setAttribute("postulaciones", postulaciones);
+			request.setAttribute("ofertas",  ofertasPostulado);
+			request.setAttribute("postulaciones",  postulaciones);
 		} catch (ExceptionUsuarioNoEncontrado_Exception exc) {
 			exc.printStackTrace();
 		} catch (TipoUsuarioNoValido_Exception exc) {
@@ -73,19 +73,19 @@ public class verpostulaciones extends HttpServlet {
 			exc.printStackTrace();
 		}
 		
-		request.setAttribute("postulaciones", postulaciones);
+		request.setAttribute("postulaciones",  postulaciones);
 		
 		if (!postulaciones.isEmpty()) {
-			request.getRequestDispatcher("/WEB-INF/listarPostula/verpostulacion.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/listarPostula/verpostulacion.jsp").forward(request,  response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/listarPostula/sinpostulaciones.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/listarPostula/sinpostulaciones.jsp").forward(request,  response);
 		}
 		
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
 
-		doGet(request, response);
+		doGet(request,  response);
 	}
 
 }

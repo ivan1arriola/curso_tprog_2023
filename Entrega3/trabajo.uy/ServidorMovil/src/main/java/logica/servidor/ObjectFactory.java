@@ -16,7 +16,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
  * for XML content. The Java representation of XML 
  * content can consist of schema derived interfaces 
  * and classes representing the binding of schema 
- * type definitions, element declarations and model 
+ * type definitions,  element declarations and model 
  * groups.  Factory methods for each of these are 
  * provided in this class.
  * 
@@ -24,31 +24,31 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _AsignarOrdenAOfertaFinalizada_QNAME = new QName("http://servidor.logica/", "AsignarOrdenAOfertaFinalizada");
-    private final static QName _AsignarOrdenAOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "AsignarOrdenAOfertaNoVencida");
-    private final static QName _ErrorAgregarUsuario_QNAME = new QName("http://servidor.logica/", "ErrorAgregarUsuario");
-    private final static QName _ExcepcionKeywordVacia_QNAME = new QName("http://servidor.logica/", "ExcepcionKeywordVacia");
-    private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/", "ExcepcionTipoOfertaNoExistente");
-    private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
-    private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCompraPaqueteConValorNegativo");
-    private final static QName _ExceptionCostoPaqueteNoNegativo_QNAME = new QName("http://servidor.logica/", "ExceptionCostoPaqueteNoNegativo");
-    private final static QName _ExceptionDescuentoInvalido_QNAME = new QName("http://servidor.logica/", "ExceptionDescuentoInvalido");
-    private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionEmpresaInvalida");
-    private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/", "ExceptionFechaInvalida");
-    private final static QName _ExceptionPaqueteNoVigente_QNAME = new QName("http://servidor.logica/", "ExceptionPaqueteNoVigente");
-    private final static QName _ExceptionRemuneracionOfertaLaboralNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionRemuneracionOfertaLaboralNegativa");
-    private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioCorreoRepetido");
-    private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickRepetido");
-    private final static QName _ExceptionUsuarioNickYCorreoRepetidos_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNickYCorreoRepetidos");
-    private final static QName _ExceptionUsuarioNoEncontrado_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioNoEncontrado");
-    private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/", "ExceptionUsuarioSeSigueASiMismo");
-    private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/", "ExceptionValidezNegativa");
-    private final static QName _FinalizarOfertaNoVencida_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaNoVencida");
-    private final static QName _FinalizarOfertaYaFinalizada_QNAME = new QName("http://servidor.logica/", "FinalizarOfertaYaFinalizada");
-    private final static QName _NoExistePaquete_QNAME = new QName("http://servidor.logica/", "NoExistePaquete");
-    private final static QName _NoHayOrdenDefinidoDePostulantes_QNAME = new QName("http://servidor.logica/", "NoHayOrdenDefinidoDePostulantes");
-    private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/", "OfertaLaboralNoEncontrada");
-    private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/", "TipoUsuarioNoValido");
+    private final static QName _AsignarOrdenAOfertaFinalizada_QNAME = new QName("http://servidor.logica/",  "AsignarOrdenAOfertaFinalizada");
+    private final static QName _AsignarOrdenAOfertaNoVencida_QNAME = new QName("http://servidor.logica/",  "AsignarOrdenAOfertaNoVencida");
+    private final static QName _ErrorAgregarUsuario_QNAME = new QName("http://servidor.logica/",  "ErrorAgregarUsuario");
+    private final static QName _ExcepcionKeywordVacia_QNAME = new QName("http://servidor.logica/",  "ExcepcionKeywordVacia");
+    private final static QName _ExcepcionTipoOfertaNoExistente_QNAME = new QName("http://servidor.logica/",  "ExcepcionTipoOfertaNoExistente");
+    private final static QName _ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME = new QName("http://servidor.logica/",  "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa");
+    private final static QName _ExceptionCompraPaqueteConValorNegativo_QNAME = new QName("http://servidor.logica/",  "ExceptionCompraPaqueteConValorNegativo");
+    private final static QName _ExceptionCostoPaqueteNoNegativo_QNAME = new QName("http://servidor.logica/",  "ExceptionCostoPaqueteNoNegativo");
+    private final static QName _ExceptionDescuentoInvalido_QNAME = new QName("http://servidor.logica/",  "ExceptionDescuentoInvalido");
+    private final static QName _ExceptionEmpresaInvalida_QNAME = new QName("http://servidor.logica/",  "ExceptionEmpresaInvalida");
+    private final static QName _ExceptionFechaInvalida_QNAME = new QName("http://servidor.logica/",  "ExceptionFechaInvalida");
+    private final static QName _ExceptionPaqueteNoVigente_QNAME = new QName("http://servidor.logica/",  "ExceptionPaqueteNoVigente");
+    private final static QName _ExceptionRemuneracionOfertaLaboralNegativa_QNAME = new QName("http://servidor.logica/",  "ExceptionRemuneracionOfertaLaboralNegativa");
+    private final static QName _ExceptionUsuarioCorreoRepetido_QNAME = new QName("http://servidor.logica/",  "ExceptionUsuarioCorreoRepetido");
+    private final static QName _ExceptionUsuarioNickRepetido_QNAME = new QName("http://servidor.logica/",  "ExceptionUsuarioNickRepetido");
+    private final static QName _ExceptionUsuarioNickYCorreoRepetidos_QNAME = new QName("http://servidor.logica/",  "ExceptionUsuarioNickYCorreoRepetidos");
+    private final static QName _ExceptionUsuarioNoEncontrado_QNAME = new QName("http://servidor.logica/",  "ExceptionUsuarioNoEncontrado");
+    private final static QName _ExceptionUsuarioSeSigueASiMismo_QNAME = new QName("http://servidor.logica/",  "ExceptionUsuarioSeSigueASiMismo");
+    private final static QName _ExceptionValidezNegativa_QNAME = new QName("http://servidor.logica/",  "ExceptionValidezNegativa");
+    private final static QName _FinalizarOfertaNoVencida_QNAME = new QName("http://servidor.logica/",  "FinalizarOfertaNoVencida");
+    private final static QName _FinalizarOfertaYaFinalizada_QNAME = new QName("http://servidor.logica/",  "FinalizarOfertaYaFinalizada");
+    private final static QName _NoExistePaquete_QNAME = new QName("http://servidor.logica/",  "NoExistePaquete");
+    private final static QName _NoHayOrdenDefinidoDePostulantes_QNAME = new QName("http://servidor.logica/",  "NoHayOrdenDefinidoDePostulantes");
+    private final static QName _OfertaLaboralNoEncontrada_QNAME = new QName("http://servidor.logica/",  "OfertaLaboralNoEncontrada");
+    private final static QName _TipoUsuarioNoValido_QNAME = new QName("http://servidor.logica/",  "TipoUsuarioNoValido");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: logica.servidor
@@ -455,9 +455,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaFinalizada }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "AsignarOrdenAOfertaFinalizada")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "AsignarOrdenAOfertaFinalizada")
     public JAXBElement<AsignarOrdenAOfertaFinalizada> createAsignarOrdenAOfertaFinalizada(AsignarOrdenAOfertaFinalizada value) {
-        return new JAXBElement<>(_AsignarOrdenAOfertaFinalizada_QNAME, AsignarOrdenAOfertaFinalizada.class, null, value);
+        return new JAXBElement<>(_AsignarOrdenAOfertaFinalizada_QNAME,  AsignarOrdenAOfertaFinalizada.class,  null,  value);
     }
 
     /**
@@ -468,9 +468,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link AsignarOrdenAOfertaNoVencida }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "AsignarOrdenAOfertaNoVencida")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "AsignarOrdenAOfertaNoVencida")
     public JAXBElement<AsignarOrdenAOfertaNoVencida> createAsignarOrdenAOfertaNoVencida(AsignarOrdenAOfertaNoVencida value) {
-        return new JAXBElement<>(_AsignarOrdenAOfertaNoVencida_QNAME, AsignarOrdenAOfertaNoVencida.class, null, value);
+        return new JAXBElement<>(_AsignarOrdenAOfertaNoVencida_QNAME,  AsignarOrdenAOfertaNoVencida.class,  null,  value);
     }
 
     /**
@@ -481,9 +481,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ErrorAgregarUsuario }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ErrorAgregarUsuario")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ErrorAgregarUsuario")
     public JAXBElement<ErrorAgregarUsuario> createErrorAgregarUsuario(ErrorAgregarUsuario value) {
-        return new JAXBElement<>(_ErrorAgregarUsuario_QNAME, ErrorAgregarUsuario.class, null, value);
+        return new JAXBElement<>(_ErrorAgregarUsuario_QNAME,  ErrorAgregarUsuario.class,  null,  value);
     }
 
     /**
@@ -494,9 +494,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExcepcionKeywordVacia }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExcepcionKeywordVacia")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExcepcionKeywordVacia")
     public JAXBElement<ExcepcionKeywordVacia> createExcepcionKeywordVacia(ExcepcionKeywordVacia value) {
-        return new JAXBElement<>(_ExcepcionKeywordVacia_QNAME, ExcepcionKeywordVacia.class, null, value);
+        return new JAXBElement<>(_ExcepcionKeywordVacia_QNAME,  ExcepcionKeywordVacia.class,  null,  value);
     }
 
     /**
@@ -507,9 +507,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExcepcionTipoOfertaNoExistente }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExcepcionTipoOfertaNoExistente")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExcepcionTipoOfertaNoExistente")
     public JAXBElement<ExcepcionTipoOfertaNoExistente> createExcepcionTipoOfertaNoExistente(ExcepcionTipoOfertaNoExistente value) {
-        return new JAXBElement<>(_ExcepcionTipoOfertaNoExistente_QNAME, ExcepcionTipoOfertaNoExistente.class, null, value);
+        return new JAXBElement<>(_ExcepcionTipoOfertaNoExistente_QNAME,  ExcepcionTipoOfertaNoExistente.class,  null,  value);
     }
 
     /**
@@ -520,9 +520,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa")
     public JAXBElement<ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa> createExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa(ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa value) {
-        return new JAXBElement<>(_ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME, ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa.class, null, value);
+        return new JAXBElement<>(_ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa_QNAME,  ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa.class,  null,  value);
     }
 
     /**
@@ -533,9 +533,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionCompraPaqueteConValorNegativo }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCompraPaqueteConValorNegativo")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionCompraPaqueteConValorNegativo")
     public JAXBElement<ExceptionCompraPaqueteConValorNegativo> createExceptionCompraPaqueteConValorNegativo(ExceptionCompraPaqueteConValorNegativo value) {
-        return new JAXBElement<>(_ExceptionCompraPaqueteConValorNegativo_QNAME, ExceptionCompraPaqueteConValorNegativo.class, null, value);
+        return new JAXBElement<>(_ExceptionCompraPaqueteConValorNegativo_QNAME,  ExceptionCompraPaqueteConValorNegativo.class,  null,  value);
     }
 
     /**
@@ -546,9 +546,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionCostoPaqueteNoNegativo }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionCostoPaqueteNoNegativo")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionCostoPaqueteNoNegativo")
     public JAXBElement<ExceptionCostoPaqueteNoNegativo> createExceptionCostoPaqueteNoNegativo(ExceptionCostoPaqueteNoNegativo value) {
-        return new JAXBElement<>(_ExceptionCostoPaqueteNoNegativo_QNAME, ExceptionCostoPaqueteNoNegativo.class, null, value);
+        return new JAXBElement<>(_ExceptionCostoPaqueteNoNegativo_QNAME,  ExceptionCostoPaqueteNoNegativo.class,  null,  value);
     }
 
     /**
@@ -559,9 +559,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionDescuentoInvalido }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionDescuentoInvalido")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionDescuentoInvalido")
     public JAXBElement<ExceptionDescuentoInvalido> createExceptionDescuentoInvalido(ExceptionDescuentoInvalido value) {
-        return new JAXBElement<>(_ExceptionDescuentoInvalido_QNAME, ExceptionDescuentoInvalido.class, null, value);
+        return new JAXBElement<>(_ExceptionDescuentoInvalido_QNAME,  ExceptionDescuentoInvalido.class,  null,  value);
     }
 
     /**
@@ -572,9 +572,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionEmpresaInvalida }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionEmpresaInvalida")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionEmpresaInvalida")
     public JAXBElement<ExceptionEmpresaInvalida> createExceptionEmpresaInvalida(ExceptionEmpresaInvalida value) {
-        return new JAXBElement<>(_ExceptionEmpresaInvalida_QNAME, ExceptionEmpresaInvalida.class, null, value);
+        return new JAXBElement<>(_ExceptionEmpresaInvalida_QNAME,  ExceptionEmpresaInvalida.class,  null,  value);
     }
 
     /**
@@ -585,9 +585,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionFechaInvalida }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionFechaInvalida")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionFechaInvalida")
     public JAXBElement<ExceptionFechaInvalida> createExceptionFechaInvalida(ExceptionFechaInvalida value) {
-        return new JAXBElement<>(_ExceptionFechaInvalida_QNAME, ExceptionFechaInvalida.class, null, value);
+        return new JAXBElement<>(_ExceptionFechaInvalida_QNAME,  ExceptionFechaInvalida.class,  null,  value);
     }
 
     /**
@@ -598,9 +598,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionPaqueteNoVigente }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionPaqueteNoVigente")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionPaqueteNoVigente")
     public JAXBElement<ExceptionPaqueteNoVigente> createExceptionPaqueteNoVigente(ExceptionPaqueteNoVigente value) {
-        return new JAXBElement<>(_ExceptionPaqueteNoVigente_QNAME, ExceptionPaqueteNoVigente.class, null, value);
+        return new JAXBElement<>(_ExceptionPaqueteNoVigente_QNAME,  ExceptionPaqueteNoVigente.class,  null,  value);
     }
 
     /**
@@ -611,9 +611,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionRemuneracionOfertaLaboralNegativa }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionRemuneracionOfertaLaboralNegativa")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionRemuneracionOfertaLaboralNegativa")
     public JAXBElement<ExceptionRemuneracionOfertaLaboralNegativa> createExceptionRemuneracionOfertaLaboralNegativa(ExceptionRemuneracionOfertaLaboralNegativa value) {
-        return new JAXBElement<>(_ExceptionRemuneracionOfertaLaboralNegativa_QNAME, ExceptionRemuneracionOfertaLaboralNegativa.class, null, value);
+        return new JAXBElement<>(_ExceptionRemuneracionOfertaLaboralNegativa_QNAME,  ExceptionRemuneracionOfertaLaboralNegativa.class,  null,  value);
     }
 
     /**
@@ -624,9 +624,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioCorreoRepetido }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioCorreoRepetido")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionUsuarioCorreoRepetido")
     public JAXBElement<ExceptionUsuarioCorreoRepetido> createExceptionUsuarioCorreoRepetido(ExceptionUsuarioCorreoRepetido value) {
-        return new JAXBElement<>(_ExceptionUsuarioCorreoRepetido_QNAME, ExceptionUsuarioCorreoRepetido.class, null, value);
+        return new JAXBElement<>(_ExceptionUsuarioCorreoRepetido_QNAME,  ExceptionUsuarioCorreoRepetido.class,  null,  value);
     }
 
     /**
@@ -637,9 +637,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNickRepetido }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNickRepetido")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionUsuarioNickRepetido")
     public JAXBElement<ExceptionUsuarioNickRepetido> createExceptionUsuarioNickRepetido(ExceptionUsuarioNickRepetido value) {
-        return new JAXBElement<>(_ExceptionUsuarioNickRepetido_QNAME, ExceptionUsuarioNickRepetido.class, null, value);
+        return new JAXBElement<>(_ExceptionUsuarioNickRepetido_QNAME,  ExceptionUsuarioNickRepetido.class,  null,  value);
     }
 
     /**
@@ -650,9 +650,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNickYCorreoRepetidos }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNickYCorreoRepetidos")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionUsuarioNickYCorreoRepetidos")
     public JAXBElement<ExceptionUsuarioNickYCorreoRepetidos> createExceptionUsuarioNickYCorreoRepetidos(ExceptionUsuarioNickYCorreoRepetidos value) {
-        return new JAXBElement<>(_ExceptionUsuarioNickYCorreoRepetidos_QNAME, ExceptionUsuarioNickYCorreoRepetidos.class, null, value);
+        return new JAXBElement<>(_ExceptionUsuarioNickYCorreoRepetidos_QNAME,  ExceptionUsuarioNickYCorreoRepetidos.class,  null,  value);
     }
 
     /**
@@ -663,9 +663,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioNoEncontrado }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioNoEncontrado")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionUsuarioNoEncontrado")
     public JAXBElement<ExceptionUsuarioNoEncontrado> createExceptionUsuarioNoEncontrado(ExceptionUsuarioNoEncontrado value) {
-        return new JAXBElement<>(_ExceptionUsuarioNoEncontrado_QNAME, ExceptionUsuarioNoEncontrado.class, null, value);
+        return new JAXBElement<>(_ExceptionUsuarioNoEncontrado_QNAME,  ExceptionUsuarioNoEncontrado.class,  null,  value);
     }
 
     /**
@@ -676,9 +676,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionUsuarioSeSigueASiMismo }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionUsuarioSeSigueASiMismo")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionUsuarioSeSigueASiMismo")
     public JAXBElement<ExceptionUsuarioSeSigueASiMismo> createExceptionUsuarioSeSigueASiMismo(ExceptionUsuarioSeSigueASiMismo value) {
-        return new JAXBElement<>(_ExceptionUsuarioSeSigueASiMismo_QNAME, ExceptionUsuarioSeSigueASiMismo.class, null, value);
+        return new JAXBElement<>(_ExceptionUsuarioSeSigueASiMismo_QNAME,  ExceptionUsuarioSeSigueASiMismo.class,  null,  value);
     }
 
     /**
@@ -689,9 +689,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link ExceptionValidezNegativa }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "ExceptionValidezNegativa")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "ExceptionValidezNegativa")
     public JAXBElement<ExceptionValidezNegativa> createExceptionValidezNegativa(ExceptionValidezNegativa value) {
-        return new JAXBElement<>(_ExceptionValidezNegativa_QNAME, ExceptionValidezNegativa.class, null, value);
+        return new JAXBElement<>(_ExceptionValidezNegativa_QNAME,  ExceptionValidezNegativa.class,  null,  value);
     }
 
     /**
@@ -702,9 +702,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaNoVencida }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "FinalizarOfertaNoVencida")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "FinalizarOfertaNoVencida")
     public JAXBElement<FinalizarOfertaNoVencida> createFinalizarOfertaNoVencida(FinalizarOfertaNoVencida value) {
-        return new JAXBElement<>(_FinalizarOfertaNoVencida_QNAME, FinalizarOfertaNoVencida.class, null, value);
+        return new JAXBElement<>(_FinalizarOfertaNoVencida_QNAME,  FinalizarOfertaNoVencida.class,  null,  value);
     }
 
     /**
@@ -715,9 +715,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link FinalizarOfertaYaFinalizada }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "FinalizarOfertaYaFinalizada")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "FinalizarOfertaYaFinalizada")
     public JAXBElement<FinalizarOfertaYaFinalizada> createFinalizarOfertaYaFinalizada(FinalizarOfertaYaFinalizada value) {
-        return new JAXBElement<>(_FinalizarOfertaYaFinalizada_QNAME, FinalizarOfertaYaFinalizada.class, null, value);
+        return new JAXBElement<>(_FinalizarOfertaYaFinalizada_QNAME,  FinalizarOfertaYaFinalizada.class,  null,  value);
     }
 
     /**
@@ -728,9 +728,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link NoExistePaquete }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "NoExistePaquete")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "NoExistePaquete")
     public JAXBElement<NoExistePaquete> createNoExistePaquete(NoExistePaquete value) {
-        return new JAXBElement<>(_NoExistePaquete_QNAME, NoExistePaquete.class, null, value);
+        return new JAXBElement<>(_NoExistePaquete_QNAME,  NoExistePaquete.class,  null,  value);
     }
 
     /**
@@ -741,9 +741,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link NoHayOrdenDefinidoDePostulantes }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "NoHayOrdenDefinidoDePostulantes")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "NoHayOrdenDefinidoDePostulantes")
     public JAXBElement<NoHayOrdenDefinidoDePostulantes> createNoHayOrdenDefinidoDePostulantes(NoHayOrdenDefinidoDePostulantes value) {
-        return new JAXBElement<>(_NoHayOrdenDefinidoDePostulantes_QNAME, NoHayOrdenDefinidoDePostulantes.class, null, value);
+        return new JAXBElement<>(_NoHayOrdenDefinidoDePostulantes_QNAME,  NoHayOrdenDefinidoDePostulantes.class,  null,  value);
     }
 
     /**
@@ -754,9 +754,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoEncontrada }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "OfertaLaboralNoEncontrada")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "OfertaLaboralNoEncontrada")
     public JAXBElement<OfertaLaboralNoEncontrada> createOfertaLaboralNoEncontrada(OfertaLaboralNoEncontrada value) {
-        return new JAXBElement<>(_OfertaLaboralNoEncontrada_QNAME, OfertaLaboralNoEncontrada.class, null, value);
+        return new JAXBElement<>(_OfertaLaboralNoEncontrada_QNAME,  OfertaLaboralNoEncontrada.class,  null,  value);
     }
 
     /**
@@ -767,9 +767,9 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link TipoUsuarioNoValido }{@code >}
      */
-    @XmlElementDecl(namespace = "http://servidor.logica/", name = "TipoUsuarioNoValido")
+    @XmlElementDecl(namespace = "http://servidor.logica/",  name = "TipoUsuarioNoValido")
     public JAXBElement<TipoUsuarioNoValido> createTipoUsuarioNoValido(TipoUsuarioNoValido value) {
-        return new JAXBElement<>(_TipoUsuarioNoValido_QNAME, TipoUsuarioNoValido.class, null, value);
+        return new JAXBElement<>(_TipoUsuarioNoValido_QNAME,  TipoUsuarioNoValido.class,  null,  value);
     }
 
 }
