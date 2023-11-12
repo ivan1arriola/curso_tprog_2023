@@ -426,20 +426,20 @@ public class Empresa extends Usuario {
 	}
 
     public String obtenerCantPaquetesEmpresa() {
-		String s = "";
-        for(InfoCompra infoCompra : infoCompras) {
+		String str = "";
+        for (InfoCompra infoCompra : infoCompras) {
         	String nombrePaq = infoCompra.getPaquete().getNombre();
-        	s = s + nombrePaq;
+        	str = str + nombrePaq;
     		Set<InfoCompraOferta> infoCompras = infoCompra.getICO();
     		
-    		for(InfoCompraOferta infoCompOfer : infoCompras) {
-    			s = s + "," + infoCompOfer.gettipoOfertas().getNombre();
-    			s = s + ":" + infoCompOfer.getCantres();
+    		for (InfoCompraOferta infoCompOfer : infoCompras) {
+    			str = str + "," + infoCompOfer.gettipoOfertas().getNombre();
+    			str = str + ":" + infoCompOfer.getCantres();
     		}
-    		s = s + "-";
-    		System.out.println(s);
+    		str = str + "-";
+    		System.out.println(str);
         }
-		return s.substring(0, s.length() - 1);
+		return str.substring(0, str.length() - 1);
 	}
 
     
