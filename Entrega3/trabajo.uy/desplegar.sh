@@ -3,11 +3,15 @@
 
 
 
-# Ruta del archivo properties
-PROPERTIES_FILE="/home/ivan1arriola/.trabajoUy/.properties"
+# Obtén el directorio de inicio del usuario
+HOME_DIR="$HOME"
 
-# Script wsimport.sh
-WSIMPORT_SCRIPT="/home/ivan1arriola/Descargas/jaxws-ri-4.0.0/jaxws-ri/bin/wsimport.sh"
+# Construye la ruta completa al archivo de propiedades
+PROPERTIES_FILE="$HOME_DIR/.trabajoUy/.properties"
+
+
+# Script wsimport.sh, se obtiene del properties
+WSIMPORT_SCRIPT=$(grep "^wsimport.script" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
 
 # Leer el IP y el puerto del archivo properties
 SERVIDOR_IP=$(grep "^servidor.ip" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
@@ -40,34 +44,48 @@ SERVIDOR_MOVIL_WAR_NAME="ServidorMovil-1.0.0.war"
 SERVIDOR_MOVIL_WAR_NAME_FINAL="ServidorMovil.war"
 
 # Ruta a tomcat, se lee de properties
-TOMCAT_DIR="/home/ivan1arriola/Descargas/apache-tomcat-10.1.15"
+TOMCAT_DIR=$(grep "^tomcat.dir" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
 
 
 
-
-# Función para desplegarServidorCentral
-function desplegarServidorCentral() {
+# Funcion para ejecutar Servidor Central
+function ejecutarServidorCentral() {
     # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 1
     echo "Desplegando..."
-    cd $PROYECTO_SERVIDOR_CENTRAL_DIR
-    mvn clean package
-    mv $PROYECTO_SERVIDOR_CENTRAL_DIR/target/$SERVIDOR_CENTRAL_JAR_NAME $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL
     cd $OUT_DIR
-    # Ejecutar usando gnomo-terminal
     java -jar $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL &
     echo "Saliendo del servidor central..."
 }
+
+
+# Función para compilarServidorCentral
+function compilarServidorCentral() {
+    # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 1
+    echo "Compilando Servidor Central..."
+    cd $PROYECTO_SERVIDOR_CENTRAL_DIR
+    mvn clean package
+    mv $PROYECTO_SERVIDOR_CENTRAL_DIR/target/$SERVIDOR_CENTRAL_JAR_NAME $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL
+    echo "Servidor Central listo en carpeta out"
+}
+
+# Función para actualizarWSDL
+function actualizarWSDL() {
+    # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 2
+    echo "Actualizando WSDL..."
+    cd $PROYECTO_SERVIDOR_WEB_DIR/src/main/java
+    rm -rf logica
+    $WSIMPORT_SCRIPT -keep $WSDL_URL
+    cd $PROYECTO_SERVIDOR_MOVIL_DIR/src/main/java
+    rm -rf logica
+    $WSIMPORT_SCRIPT -keep $WSDL_URL
+    echo "WSDL actualizado..."
+}
+
 
 # Función para compilarServidorWebWAR
 function compilarServidorWebWAR() {
     # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 2
     echo "Desplegando..."
-
-    echo "Actualizando web services..."
-    cd $PROYECTO_SERVIDOR_WEB_DIR/src/main/java
-    rm -rf logica
-    $WSIMPORT_SCRIPT -keep $WSDL_URL
-    echo "Web services actualizados..."
 
     echo "Compilando servidor web..."
     cd $PROYECTO_SERVIDOR_WEB_DIR
@@ -82,13 +100,7 @@ function compilarServidorWebWAR() {
 function compilarServidorMovilWAR() {
     # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 2
     echo "Desplegando..."
-
-    echo "Actualizando web services..."
-    cd $PROYECTO_SERVIDOR_MOVIL_DIR/src/main/java
-    rm -rf logica
-    $WSIMPORT_SCRIPT -keep $WSDL_URL
-    echo "Web services actualizados..."
-
+    
     echo "Compilando servidor web..."
     cd $PROYECTO_SERVIDOR_MOVIL_DIR
     mvn clean package
@@ -108,16 +120,7 @@ function ejecutarTomcat() {
     
 }
 
-function ejecutarProyecto(){
-    echo "Ejecutando proyecto..."
-    compilarServidorWebWAR
-    compilarServidorMovilWAR
-    ejecutarTomcat
-    echo "Proyecto ejecutado..."
-    # abrir firefox en la pagina del servidor web, en segundo plano
-    firefox http://localhost:8080/ServidorWeb/ &>/dev/null &
-    exit
-}
+
 
 function cerrarApagar(){
     echo "Apagando..."
@@ -140,6 +143,7 @@ function reinciarTomcat(){
     rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_WEB_WAR_NAME_FINAL
     rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_MOVIL_WAR_NAME_FINAL
 
+    actualizarWSDL
     compilarServidorWebWAR
     compilarServidorMovilWAR
 
@@ -155,24 +159,26 @@ while true; do
     # crea la carpeta out si no existe
     mkdir -p $OUT_DIR
     echo "Seleccione una opción:"
-    echo "1. Desplegar Servidor Central"
-    echo "2. Compilar Servidor Web WAR (requiere Servidor Central Corriendo)"
-    echo "3. Compilar Servidor Movil WAR (requiere Servidor Central Corriendo)"
-    echo "4. Ejecutar Tomcat"
-    echo "5. Ejecutar WEB (requiere Servidor Central Corriendo)"
-    echo "6. Apagar"
+    echo "1. Compilar Servidor Web JAR"
+    echo "2. Ejectuar Servidor Central"
+    echo "3. Actualizar WSDL (Requiere Servidor Central desplegado)"
+    echo "4. Compilar Servidor Web WAR"
+    echo "5. Compilar Servidor Movil WAR"
+    echo "6. Ejecutar Tomcat"
     echo "7. Reiniciar Tomcat"
+    echo "8. Apagar"
     echo "0. Salir"
     read -p "Opción: " opcion
     case $opcion in
-        [1]* ) desplegarServidorCentral;;
-        [2]* ) compilarServidorWebWAR;;
-        [3]* ) compilarServidorMovilWAR;;
-        [4]* ) ejecutarTomcat;;
-        [5]* ) ejecutarProyecto;;
-        [6]* ) cerrarApagar;;
-        [7]* ) reinciarTomcat;;
-        [0]* ) exit;;
+        1 ) compilarServidorCentral;;
+        2 ) ejecutarServidorCentral;;
+        3 ) actualizarWSDL;;
+        4 ) compilarServidorWebWAR;;
+        5 ) compilarServidorMovilWAR;;
+        6 ) ejecutarTomcat;;
+        7 ) reinciarTomcat;;
+        8 ) cerrarApagar;;
+        0 ) exit;;
         * ) echo "Seleccione una opción válida.";;
     esac
 done
