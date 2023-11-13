@@ -475,7 +475,7 @@ public class Utils {
     }
 
 
-    public void altaOfertaLaboralForzado(String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida,  ExceptionRemuneracionOfertaLaboralNegativa,  NoExistePaquete {
+    public void altaOfertaLaboralForzado(Integer cant_visitas,String nickname_e,  String tipo,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate FechaA,  List<String> keys,  EstadoOL estado,  byte[] img,  String paquete) throws ExceptionUsuarioNoEncontrado,  ExceptionEmpresaInvalida,  ExceptionRemuneracionOfertaLaboralNegativa,  NoExistePaquete {
         List<Keyword> keywords = new ArrayList<>();
 
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
@@ -509,7 +509,7 @@ public class Utils {
 
                     OfertaLaboral oferL;
                     try {
-                        oferL = empresa.altaOfertaLaboralForzado(TOH.buscar(tipo),  nombre,  descripcion,  horario,  remun,  ciu,  dep,  FechaA,  keywords,  estado,  img,  paq);
+                        oferL = empresa.altaOfertaLaboralForzado(cant_visitas,TOH.buscar(tipo),  nombre,  descripcion,  horario,  remun,  ciu,  dep,  FechaA,  keywords,  estado,  img,  paq);
                         OLH.agregar(oferL);
                     } catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionCostoPaqueteNoNegativo |
                              ExceptionDescuentoInvalido | ExceptionPaqueteNoVigente e) {

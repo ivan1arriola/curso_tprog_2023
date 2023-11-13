@@ -192,9 +192,9 @@ public class Empresa extends Usuario {
     }
 
 
-    public OfertaLaboral altaOfertaLaboralForzado(TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido {
+    public OfertaLaboral altaOfertaLaboralForzado(Integer cant_visitas,TipoOferta tipoOferta,  String nombre,  String descripcion,  DTHorario horario,  float remun,  String ciu,  DepUY dep,  LocalDate fechaA,  List<Keyword> atrkeywords,  EstadoOL estado,  byte[] img,  Paquete paq) throws ExceptionRemuneracionOfertaLaboralNegativa,  ExceptionPaqueteNoVigente,  ExceptionCostoPaqueteNoNegativo,  ExceptionDescuentoInvalido {
         if (remun >= 0) {
-            OfertaLaboral ofertaLab = new OfertaLaboral(true,  this,  atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paq);
+            OfertaLaboral ofertaLab = new OfertaLaboral(cant_visitas,true,  this,  atrkeywords,  tipoOferta,  nombre,  descripcion,  ciu,  dep,  horario,  remun,  fechaA,  estado,  img,  paq);
             ofertasLaborales.add(ofertaLab);
             return ofertaLab;
         } else {
