@@ -66,7 +66,7 @@ public class IniciarSesion extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request,  response);
         } 
 
-	}
+	} 
 
     private void iniciarSesion(HttpServletRequest request,  HttpServletResponse response,  String identificador) throws Exception,TipoUsuarioNoValido_Exception {
         DtUsuario usuario = servidor.obtenerDatosUsuario(identificador);
