@@ -232,6 +232,7 @@ public class OfertaLaboral {
 
 
     public OfertaLaboral(
+    		Integer cant_visitas,
             boolean forzado,  //TODO: Chequear que este bien comparado con el principal
             Empresa empresaPublicadora, 
             List<Keyword> atrkeywords, 
@@ -253,8 +254,13 @@ public class OfertaLaboral {
         this.ciudad = atrciudad;
         this.departamento = atrdepartamento;
         this.setHorario(atrhorario);
-
-        cantVisitas = 0;
+        
+        if (forzado) {
+        	this.cantVisitas = cant_visitas;
+        } else {
+        	this.cantVisitas =  0;
+        }
+        
         try {
             if (atrremuneracion <= 0) {
                 throw new ExceptionRemuneracionOfertaLaboralNegativa("La remuneración debe ser mayor que 0");
