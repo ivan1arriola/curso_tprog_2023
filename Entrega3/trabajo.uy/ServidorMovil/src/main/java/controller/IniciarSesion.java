@@ -57,14 +57,18 @@ public class IniciarSesion extends HttpServlet {
             request.setAttribute("identificador",  identificador);
             request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request,  response);
         
+        } catch (TipoUsuarioNoValido_Exception exc) {
+        	request.setAttribute("mensajeError",  "Debe ser postulante para realizar el login");
+            request.setAttribute("identificador",  identificador);
+            request.getRequestDispatcher("/WEB-INF/iniciarSesion/iniciarSesion.jsp").forward(request,  response);
         } catch (Exception e) {
             request.setAttribute("mensajeError",  "Ocurrió un error al iniciar sesión.");
             request.getRequestDispatcher("/WEB-INF/iniciarsesion/iniciarsesion.jsp").forward(request,  response);
-        }
+        } 
 
-	}
+	} 
 
-    private void iniciarSesion(HttpServletRequest request,  HttpServletResponse response,  String identificador) throws Exception {
+    private void iniciarSesion(HttpServletRequest request,  HttpServletResponse response,  String identificador) throws Exception,TipoUsuarioNoValido_Exception {
         DtUsuario usuario = servidor.obtenerDatosUsuario(identificador);
         HttpSession session = request.getSession();
         session.setAttribute("nickname",  usuario.getNickname());
@@ -76,11 +80,17 @@ public class IniciarSesion extends HttpServlet {
             tipo = TipoUsuario.POSTULANTE;
         } else if (usuario instanceof DtEmpresa) {
             tipo = TipoUsuario.EMPRESA;
-        } else {
-            throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
+        } 
+        else {
+            //throw new TipoUsuarioNoValido_Exception("Debe ser postulante",new TipoUsuarioNoValido());
+        	throw new Exception("El tipo de usuario no es reconocido: " + usuario.getClass().getName());
         }
-
+        
         session.setAttribute("tipoUsuario",  tipo);
+        if (usuario instanceof DtEmpresa) {
+        	throw new TipoUsuarioNoValido_Exception("Debe ser postulante",new TipoUsuarioNoValido());
+        } 
+        
 
         byte[] imagenBytes = usuario.getImagen();
 
