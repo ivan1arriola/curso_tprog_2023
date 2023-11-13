@@ -37,6 +37,9 @@ public class ConsultarUsuario extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
+        
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String nicknameParametro = request.getParameter("u");
         String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");

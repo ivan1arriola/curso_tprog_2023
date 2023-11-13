@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <div class="usuario col-2 d-flex align-items-center">
     <div class="d-inline-block">
         <%
@@ -22,7 +25,7 @@
                 <li>
                     <a class="dropdown-item" href="<%= request.getContextPath() %>/cerrarsesion" class="btn btn-danger">
                         <span class="material-symbols-outlined align-middle mr-2">logout</span>
-                        <span class="align-middle">Cerrar Sesi�n</span>
+                        <span class="align-middle">Cerrar Sesiï¿½n</span>
                     </a>
                 </li>
             </ul>

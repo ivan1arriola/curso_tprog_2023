@@ -1,7 +1,7 @@
 <%@ page import="javabeans.UsuarioBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 
 <%
 UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
@@ -23,9 +23,9 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
       <div class="modal-body">
 
         <form class="form-signup needs-validation" novalidate  action="ModificarUsuario" method="post" enctype="multipart/form-data">
-          <!-- Secci�n de Informaci�n Personal -->
+          <!-- Secciï¿½n de Informaciï¿½n Personal -->
           <section>
-            <h2 class="h4">Informaci�n Personal</h2>
+            <h2 class="h4">Informaciï¿½n Personal</h2>
 
             <input type="hidden" name="nickname" value="<%=usuario.getNickname()%>">
             <input type="hidden" name="email" value="<%=usuario.getCorreoElectronico()%>">
@@ -55,30 +55,30 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
             </div>
           </section>
 
-          <!-- Secci�n de Contrase�a -->
+          <!-- Secciï¿½n de Contraseï¿½a -->
           <section>
-            <h2 class="h4">Contrase�a</h2>
+            <h2 class="h4">Contraseï¿½a</h2>
 
             <div class="row">
 
               <div class="col">
-                <!-- Input de Contrase�a -->
+                <!-- Input de Contraseï¿½a -->
                 <div class="form-floating mb-3 " id="div-password-input">
                   <input type="password" class="form-control" id="password-input" name="password" placeholder=" " required value="<%=usuario.getContrasenia()%>">
-                  <label for="password-input">Contrase�a *</label>
+                  <label for="password-input">Contraseï¿½a *</label>
                   <div class="invalid-feedback" id="password-invalid-feedback">
-                    Contrase�a es un atributo requerido
+                    Contraseï¿½a es un atributo requerido
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <!-- Input de Confirmar Contrase�a -->
+                <!-- Input de Confirmar Contraseï¿½a -->
                 <div class="form-floating mb-3 " id="div-confirm-password-input">
                   <input type="password" class="form-control" id="confirm-password-input" name="confirm-password"  placeholder=" " value="<%=usuario.getContrasenia()%>">
-                  <label for="confirm-password-input">Confirmar Contrase�a *</label>
+                  <label for="confirm-password-input">Confirmar Contraseï¿½a *</label>
                   <div class="invalid-feedback" id="confirm-password-invalid-feedback">
-                    Las contrase�as no coinciden
+                    Las contraseï¿½as no coinciden
                   </div>
                 </div>
               </div>
@@ -93,16 +93,16 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
           <!-- Campos adicionales para Empresa -->
           <div id="campos-empresa">
             <section>
-              <h2 class="h4">Informaci�n de la Empresa</h2>
+              <h2 class="h4">Informaciï¿½n de la Empresa</h2>
 
               <div class="form-floating mb-3 " id="div-descripcion-empresa-input">
                 <textarea class="form-control" id="descripcion-empresa-input" name="descripcion" placeholder=" " style="height: 150px" value="">
                   <%=usuario.getDescripcion()%>
                 </textarea>
 
-                <label for="descripcion-empresa-input">Descripci�n de la Empresa *</label>
+                <label for="descripcion-empresa-input">Descripciï¿½n de la Empresa *</label>
                 <div class="invalid-feedback" id="descripcion-empresa-invalid-feedback">
-                  Descripci�n de la Empresa es un atributo requerido
+                  Descripciï¿½n de la Empresa es un atributo requerido
                 </div>
               </div>
 
@@ -118,7 +118,7 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
           <!-- Campos adicionales para Postulante -->
           <div id="campos-postulante">
             <section>
-              <h2 class="h4">Informaci�n del Postulante</h2>
+              <h2 class="h4">Informaciï¿½n del Postulante</h2>
 
               <div class="form-floating mb-3 " id="div-fecha-nacimiento-input">
                 <input type="date" class="form-control" id="fecha-nacimiento-input" name="fecha-nacimiento"  required value="<%=usuario.getFechaNac()%>">
@@ -140,7 +140,7 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
 
           <%}%>
 
-          <!-- Secci�n de Imagen de Perfil -->
+          <!-- Secciï¿½n de Imagen de Perfil -->
           <section>
             <h2 class="h4">Imagen de Perfil</h2>
 
@@ -148,12 +148,12 @@ UsuarioBean usuario = (UsuarioBean) request.getAttribute("usuario");
               <label for="image-input">Subir una imagen de perfil (max 500 KB)</label>
               <input type="file" class="form-control" id="image-input" name="imagen" accept=".jpg" />
               <div class="invalid-feedback" id="image-invalid-feedback">
-                La imagen no debe superar el tama�o m�ximo permitido de 500 KB.
+                La imagen no debe superar el tamaï¿½o mï¿½ximo permitido de 500 KB.
               </div>
             </div>
           </section>
 
-          <!-- Bot�n de Registro -->
+          <!-- Botï¿½n de Registro -->
           <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">
             Actualizar Datos
           </button>

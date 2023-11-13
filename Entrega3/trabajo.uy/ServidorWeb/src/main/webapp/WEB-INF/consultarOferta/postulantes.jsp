@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="javabeans.UsuarioBean" %>
 
@@ -20,7 +20,7 @@
 
         } else {
         %>
-        <!-- Bot�n con n�mero de postulantes -->
+        <!-- Botï¿½n con nï¿½mero de postulantes -->
         <a type="button" class="btn btn-primary" href="<%=request.getContextPath()%>/consultarpostulantes?oferta=<%=nombreOferta%>">
             Ver Postulantes <span class="badge bg-secondary"><%= postulantes.size() %></span>
         </a>

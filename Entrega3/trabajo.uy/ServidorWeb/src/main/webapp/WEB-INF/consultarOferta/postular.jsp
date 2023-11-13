@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import="javabeans.OfertaLaboralBean" %>
 <%@ page import="enumeration.TipoUsuario" %>
@@ -17,6 +17,6 @@
 <% } else if (TipoUsuario.Postulante == tipoUsuario) { %>
     <div class="m-auto mb-2">
         <a href="<%= request.getContextPath() %>/consultapostulacion?id=<%= ofertaLaboral.getNombre() %>"
-            class="btn btn-primary btn-lg px-4 py-1 mb-3" role="button">Ver postulaci�n</a>
+            class="btn btn-primary btn-lg px-4 py-1 mb-3" role="button">Ver postulaciï¿½n</a>
     </div>
 <% } %>

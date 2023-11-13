@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="javabeans.PaqueteBean" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Base64" %>
@@ -40,7 +40,7 @@
 					            <div class="card-body">
 					                <h5 class="card-title"><%= nombre %></h5>
 					                <p class="card-text"><%= descripcion %></p>
-					                <a href="<%= enlace %>" class="card-link">Leer m�s</a>
+					                <a href="<%= enlace %>" class="card-link">Leer mï¿½s</a>
 					                <p class="card-text">Fecha de Compra: <%= fechasAsocPaq.get(paquete.getNombre()).toString() %></p>
 					            </div>
 					        </div>
