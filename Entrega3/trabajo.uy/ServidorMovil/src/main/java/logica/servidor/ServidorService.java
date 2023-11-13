@@ -6,9 +6,10 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import jakarta.xml.ws.Service;
 import jakarta.xml.ws.WebEndpoint;
-import jakarta.xml.ws.WebServiceClient;
 import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.WebServiceFeature;
+import logica.Configuracion;
+import logica.NoExisteArchivoDeConfiguacion;
 
 
 /**
@@ -17,10 +18,8 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "ServidorService", targetNamespace = "http://servidor.logica/", wsdlLocation = "http://localhost:9128/webservices?wsdl")
-public class ServidorService
-    extends Service
-{
+
+public class ServidorService extends Service {
 
     private final static URL SERVIDORSERVICE_WSDL_LOCATION;
     private final static WebServiceException SERVIDORSERVICE_EXCEPTION;
@@ -30,8 +29,12 @@ public class ServidorService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9128/webservices?wsdl");
-        } catch (MalformedURLException ex) {
+            Configuracion config = new Configuracion();
+            String host = config.obtenerValor("servidor.ip");
+            String port = config.obtenerValor("servidor.puerto");
+            String wsdlLocation = String.format("http://%s:%s/webservices?wsdl", host, port);
+            url = new URL(wsdlLocation);
+        } catch (MalformedURLException | NoExisteArchivoDeConfiguacion ex) {
             e = new WebServiceException(ex);
         }
         SERVIDORSERVICE_WSDL_LOCATION = url;
@@ -75,7 +78,8 @@ public class ServidorService
     /**
      * 
      * @param features
-     *     A list of {@link jakarta.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     *     A list of {@link jakarta.xml.ws.WebServiceFeature} to configure on the proxy.  
+     *     Supported features not in the <code>features</code> parameter will have their default values.
      * @return
      *     returns Servidor
      */
@@ -85,10 +89,9 @@ public class ServidorService
     }
 
     private static URL __getWsdlLocation() {
-        if (SERVIDORSERVICE_EXCEPTION!= null) {
+        if (SERVIDORSERVICE_EXCEPTION != null) {
             throw SERVIDORSERVICE_EXCEPTION;
         }
         return SERVIDORSERVICE_WSDL_LOCATION;
     }
-
 }

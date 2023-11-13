@@ -10,9 +10,6 @@ HOME_DIR="$HOME"
 PROPERTIES_FILE="$HOME_DIR/.trabajoUy/.properties"
 
 
-# Script wsimport.sh, se obtiene del properties
-WSIMPORT_SCRIPT=$(grep "^wsimport.script" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
-
 # Leer el IP y el puerto del archivo properties
 SERVIDOR_IP=$(grep "^servidor.ip" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
 SERVIDOR_PUERTO=$(grep "^servidor.puerto" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
@@ -66,19 +63,6 @@ function compilarServidorCentral() {
     mvn clean package
     mv $PROYECTO_SERVIDOR_CENTRAL_DIR/target/$SERVIDOR_CENTRAL_JAR_NAME $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL
     echo "Servidor Central listo en carpeta out"
-}
-
-# Función para actualizarWSDL
-function actualizarWSDL() {
-    # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 2
-    echo "Actualizando WSDL..."
-    cd $PROYECTO_SERVIDOR_WEB_DIR/src/main/java
-    rm -rf logica
-    $WSIMPORT_SCRIPT -keep $WSDL_URL
-    cd $PROYECTO_SERVIDOR_MOVIL_DIR/src/main/java
-    rm -rf logica
-    $WSIMPORT_SCRIPT -keep $WSDL_URL
-    echo "WSDL actualizado..."
 }
 
 
@@ -143,7 +127,6 @@ function reinciarTomcat(){
     rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_WEB_WAR_NAME_FINAL
     rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_MOVIL_WAR_NAME_FINAL
 
-    actualizarWSDL
     compilarServidorWebWAR
     compilarServidorMovilWAR
 
@@ -161,7 +144,6 @@ while true; do
     echo "Seleccione una opción:"
     echo "1. Compilar Servidor Web JAR"
     echo "2. Ejectuar Servidor Central"
-    echo "3. Actualizar WSDL (Requiere Servidor Central desplegado)"
     echo "4. Compilar Servidor Web WAR"
     echo "5. Compilar Servidor Movil WAR"
     echo "6. Ejecutar Tomcat"
@@ -172,7 +154,6 @@ while true; do
     case $opcion in
         1 ) compilarServidorCentral;;
         2 ) ejecutarServidorCentral;;
-        3 ) actualizarWSDL;;
         4 ) compilarServidorWebWAR;;
         5 ) compilarServidorMovilWAR;;
         6 ) ejecutarTomcat;;
