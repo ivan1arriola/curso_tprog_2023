@@ -20,7 +20,7 @@
 
     <style>
         .banner-container {
-            background-image: url(<%= imagen %>);
+            background-image: url("<%= imagen %>");
         }
     </style>
 

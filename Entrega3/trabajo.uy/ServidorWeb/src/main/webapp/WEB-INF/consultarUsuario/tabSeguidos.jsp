@@ -60,7 +60,7 @@
 					            <div class="card-body">
 					                <h5 class="card-title"><%=nombre_completo%></h5>
 					                <p class="card-text"><%=correo%></p>
-					                <a href="<%=enlace%>" class="card-link">Leer más</a>      
+					                <a href="<%=enlace%>" class="card-link">Visitar perfil</a>      
 					            </div>
 					        </div>
 					    </div>

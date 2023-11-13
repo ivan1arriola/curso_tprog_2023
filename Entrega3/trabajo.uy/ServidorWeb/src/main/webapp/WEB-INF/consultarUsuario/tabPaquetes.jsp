@@ -40,7 +40,7 @@
 					            <div class="card-body">
 					                <h5 class="card-title"><%= nombre %></h5>
 					                <p class="card-text"><%= descripcion %></p>
-					                <a href="<%= enlace %>" class="card-link">Leer mï¿½s</a>
+					                <a href="<%= enlace %>" class="card-link">Leer más</a>
 					                <p class="card-text">Fecha de Compra: <%= fechasAsocPaq.get(paquete.getNombre()).toString() %></p>
 					            </div>
 					        </div>
