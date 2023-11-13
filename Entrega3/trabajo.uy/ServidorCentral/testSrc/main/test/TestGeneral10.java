@@ -266,6 +266,7 @@ public class TestGeneral10 {
         OfertaLaboral OfertaLabolra = null;
 		try {
 			OfertaLabolra = new OfertaLaboral(
+					12,
 					true,    
 			        empresaNueva,    
 			        myList,    
@@ -503,6 +504,7 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra4 = null;
 		try {
 			OfertaLabolra4 = empresaNueva.altaOfertaLaboralForzado(
+					12,
 					tipoofertaNuevo,    
 				    "anana con piza",    
 				    "algo sobrenatural",    
@@ -667,6 +669,7 @@ public class TestGeneral10 {
 		OfertaLaboral OfertaLabolra12344 = null;
 		try {
 			OfertaLabolra12344 = new OfertaLaboral(
+					111,
 					true,    
 			        empresaNueva,    
 			        myList,    

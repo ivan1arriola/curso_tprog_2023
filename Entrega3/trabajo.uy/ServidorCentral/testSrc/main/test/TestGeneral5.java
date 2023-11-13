@@ -75,7 +75,7 @@ public class TestGeneral5 {
         String CVitae = "CV";
         String motivacion = "motivacion";
         String urlVid = "www.algo";
-        DTPostulacion post = new DTPostulacion(nombrePostulante,     fechaPostulacion,     URLDocExtras,     CVitae,     motivacion,    urlVid);
+        DTPostulacion post = new DTPostulacion(nombrePostulante,     fechaPostulacion,     URLDocExtras,     CVitae,     motivacion,    urlVid, 12, urlVid);
 
         // Getters
         post.getPostulante();

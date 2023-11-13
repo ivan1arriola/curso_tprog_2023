@@ -12,9 +12,12 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import excepciones.AsignarOrdenAOfertaFinalizada;
+import excepciones.AsignarOrdenAOfertaNoVencida;
 import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCiudadInvalida;
 //import excepciones.ExceptionCiudadInvalida;
 import excepciones.ExceptionCostoPaqueteNoNegativo;
 import excepciones.ExceptionDescuentoInvalido;
@@ -29,12 +32,14 @@ import excepciones.ExceptionUsuarioNoEncontrado;
 import excepciones.ExceptionValidezNegativa;
 import excepciones.FinalizarOfertaNoVencida;
 import excepciones.FinalizarOfertaYaFinalizada;
+import excepciones.NoHayOrdenDefinidoDePostulantes;
 import excepciones.OfertaLaboralNoEncontrada;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import logica.Fabrica;
 import logica.clases.Empresa;
+import logica.clases.InfoCompra;
 //import logica.clases.InfoCompra;
 //import logica.clases.InfoCompraOferta;
 import logica.clases.Keyword;
@@ -45,6 +50,7 @@ import logica.clases.Postulacion;
 import logica.clases.Postulante;
 import logica.clases.TipoOferta;
 import logica.controladores.CtrlCargaDeDatos;
+import logica.datatypes.DTCantTO;
 //import logica.datatypes.DTCantTO;
 import logica.datatypes.DTHora;
 import logica.datatypes.DTHorario;
@@ -189,27 +195,27 @@ public class TestGeneral11 {
         
         try {
 			OfertaLabolra = new OfertaLaboral(
-					empresaNueva,    
-			        myList,    
-			        tipoofertaNuevo,    
-			        "Panawfewefawfwafes",    
-			        "muy esponjosos",    
-			        "panquequeLandia",    
-			        dep111,    
-			        horario2,    
-			        randomFloat1,    
-			        threeDaysAgo,    
-			        nunevoestado,    
-			        imagen1.getBytes(),    
-			        NuevoPaq
-			);
-		} 
-        catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionPaqueteNoVigente
-				| ExceptionCostoPaqueteNoNegativo | ExceptionDescuentoInvalido
-				| ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
+						empresaNueva,    
+				        myList,    
+				        tipoofertaNuevo,    
+				        "Panawfewefawfwafes",    
+				        "muy esponjosos",    
+				        "panquequeLandia",    
+				        dep111,    
+				        horario2,    
+				        randomFloat1,    
+				        threeDaysAgo,    
+				        nunevoestado,    
+				        imagen1.getBytes(),    
+				        NuevoPaq
+				);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa | ExceptionCostoPaqueteNoNegativo
+				| ExceptionDescuentoInvalido | ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+      
 	
 		
 		// creo postulante
@@ -277,6 +283,8 @@ public class TestGeneral11 {
 		
 		List<String> nickList = new ArrayList<>();
 		nickList.add("Stallonjhjklhjke");
+		
+		
 		
 		try {
 			ICO.listarPaquetesNoVencidos(empresaNueva.getNickname());
@@ -357,6 +365,168 @@ public class TestGeneral11 {
 		empresaNueva.obtenerDatosUsuario();
 		// //////////////////////////////////////////////
 		UHan.obtenerCorreo();
+		// ============================================
+		OfertaLabolra.getDTO();
+		try {
+			OfertaLabolra.setCosto(-3.14f);
+		} catch (ExceptionCostoPaqueteNoNegativo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			OfertaLabolra.setRemuneracion(-3.14f);
+		} catch (ExceptionRemuneracionOfertaLaboralNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			OfertaLabolra.setCiudad("@@@@");
+		} catch (ExceptionCiudadInvalida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.setFechaAlta(LocalDate.of(1547, 9, 29));
+		} catch (ExceptionPaqueteNoVigente e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.establecerPosicion(nickList);
+		} catch (AsignarOrdenAOfertaFinalizada | AsignarOrdenAOfertaNoVencida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			OfertaLabolra.getOrdenPostulantes();
+		} catch (NoHayOrdenDefinidoDePostulantes e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		OfertaLabolra.descartarOrden();
+		
+		try {
+			OfertaLabolra.finalizarOferta();
+		} catch (FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			empresaNueva.altaOfertaLaboral(tipoofertaNuevo,"asdoalnlmo","a",horario2,3.14f,"a",dep111,currentDate,myList,nunevoestado,"sert".getBytes(), NuevoPaq);
+		} catch (ExceptionCostoPaqueteNoNegativo | ExceptionRemuneracionOfertaLaboralNegativa
+				| ExceptionPaqueteNoVigente | ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa
+				| ExceptionDescuentoInvalido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		DTCantTO nuevopaquete = new DTCantTO(tipoofertaNuevo.getNombre(),   23);
+		Set<DTCantTO> conjuntoS = new HashSet<>();
+		conjuntoS.add(nuevopaquete);
+		InfoCompra aux = null;
+		try {
+			aux = new InfoCompra(currentDate,  3.14f, NuevoPaq, empresaNueva, conjuntoS);
+		} catch (ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa | ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Set<InfoCompra> conjuntoq = new HashSet<>();
+		conjuntoq.add(aux);
+		empresaNueva.setInofCompra(conjuntoq);
+		
+		empresaNueva.obtenerCantPaquetesEmpresa();
+		
+		try {
+			empresaNueva.encontrarOfertaPorNombre("asdoalnlmo");
+		} catch (OfertaLaboralNoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		nuevaPost.getClasificacion();
+		nuevaPost.esPostulacion(nombre);
+		nuevaPost.getCV();
+		nuevaPost.getFecha();
+		nuevaPost.getFechaResu();
+		nuevaPost.getMotivacion();
+		nuevaPost.getOfertaLaboral();
+		nuevaPost.getPostulante();
+		nuevaPost.getuRLDocExtras();
+		nuevaPost.getuRLVideo();
+		nuevaPost.obtenerDT();
+		nuevaPost.setFecha(fechaNacimiento);
+		nuevaPost.setCV(imagen11);
+		nuevaPost.setFechaResu(imagen11);
+		nuevaPost.setMotivacion(imagen11);
+		nuevaPost.setuRLDocExtras(imagen11);
+		nuevaPost.seturlVideo(nacionalidad);
+		
+		
+		try {
+			NuevoPaq.setCosto(randomFloat1);
+		} catch (ExceptionCostoPaqueteNoNegativo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		NuevoPaq.setDescripcion(imagen11);
+		try {
+			NuevoPaq.setDescuento(randomFloat1);
+		} catch (ExceptionDescuentoInvalido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		NuevoPaq.setImagen(imagen11.getBytes());
+		NuevoPaq.setNombre(nombre);
+		try {
+			NuevoPaq.setValidez(90);
+		} catch (ExceptionValidezNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		NuevoPaq.getCosto();
+		NuevoPaq.getDescripcion();
+		NuevoPaq.getDescuento();
+		NuevoPaq.getDTPaquete();
+		NuevoPaq.getfechaAlta();
+		NuevoPaq.getImagen();
+		NuevoPaq.getInfoCompra();
+		NuevoPaq.getNombre();
+		
+		
+		// --------------------------------------------
+		
+		OfertaLabolra.setEstado(nunevoestado);
+		
+		TipoOferta a = OfertaLabolra.getTipoOferta();
+		try {
+			a.setDuracion(1);
+		} catch (ExceptionDuracionNegativa e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			OfertaLabolra.setFechaAlta(LocalDate.of(1, 9, 29));
+		} catch (ExceptionPaqueteNoVigente e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("aaaaaaaa"+OfertaLabolra.estaVencida());
+		OLH.actualizar(OfertaLabolra);
+		try {
+			ICO.finalizarOfertaLaboral(OfertaLabolra.getNombre());
+		} catch (OfertaLaboralNoEncontrada | FinalizarOfertaNoVencida | FinalizarOfertaYaFinalizada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 		// ============================================
         entityManager.close();
         entityManagerFactory.close();
