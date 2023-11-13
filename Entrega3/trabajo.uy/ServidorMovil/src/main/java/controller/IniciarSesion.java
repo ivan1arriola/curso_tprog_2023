@@ -45,6 +45,10 @@ public class IniciarSesion extends HttpServlet {
             boolean credencialesValidadas = servidor.validarCredenciales(identificador,  contrasenia);
 
             if (credencialesValidadas) {
+                DtUsuario usuario = servidor.obtenerDatosUsuario(identificador);
+                if (usuario instanceof DtEmpresa) {
+                	throw new TipoUsuarioNoValido_Exception("Debe ser postulante",new TipoUsuarioNoValido());
+                }
                 iniciarSesion(request,  response,  identificador);
             } else {
                 request.setAttribute("mensajeError",  "Inicio de sesión fallido. Verifique sus credenciales.");
