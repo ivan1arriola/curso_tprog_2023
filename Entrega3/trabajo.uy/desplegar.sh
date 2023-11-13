@@ -39,7 +39,7 @@ SERVIDOR_WEB_WAR_NAME_FINAL="ServidorWeb.war"
 SERVIDOR_MOVIL_WAR_NAME="ServidorMovil-1.0.0.war"
 SERVIDOR_MOVIL_WAR_NAME_FINAL="ServidorMovil.war"
 
-# Ruta a tomcat
+# Ruta a tomcat, se lee de properties
 TOMCAT_DIR="/home/ivan1arriola/Descargas/apache-tomcat-10.1.15"
 
 
