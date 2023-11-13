@@ -67,7 +67,7 @@ public class IniciarSesion extends HttpServlet {
         } 
 
 	} 
-
+ 
     private void iniciarSesion(HttpServletRequest request,  HttpServletResponse response,  String identificador) throws Exception,TipoUsuarioNoValido_Exception {
         DtUsuario usuario = servidor.obtenerDatosUsuario(identificador);
         HttpSession session = request.getSession();
