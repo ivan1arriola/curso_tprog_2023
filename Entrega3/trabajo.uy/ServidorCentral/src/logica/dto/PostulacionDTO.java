@@ -1,5 +1,6 @@
 package logica.dto;
 
+import jakarta.persistence.Column;
 //import jakarta.persistence.CascadeType;
 //import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ import jakarta.persistence.ManyToOne;
 //import jakarta.persistence.InheritanceType;
 //import jakarta.persistence.DiscriminatorColumn;
 //import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 

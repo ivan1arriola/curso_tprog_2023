@@ -2,9 +2,21 @@ package logica.controladores;
 
 import excepciones.AsignarOrdenAOfertaFinalizada;
 import excepciones.AsignarOrdenAOfertaNoVencida;
+import excepciones.ErrorAgregarUsuario;
 import excepciones.ExcepcionKeywordVacia;
+import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
 //import excepciones.ExcepcionTipoOfertaNoExistente;
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
+import excepciones.ExceptionCompraPaqueteConValorNegativo;
+import excepciones.ExceptionDescuentoInvalido;
+import excepciones.ExceptionEmpresaInvalida;
+import excepciones.ExceptionFechaInvalida;
+import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
+import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.ExceptionUsuarioSeSigueASiMismo;
+import excepciones.ExceptionValidezNegativa;
+import excepciones.NoExistePaquete;
+import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.ExceptionCiudadInvalida;
 //import excepciones.ExceptionCostoPaqueteNoNegativo;
 //import excepciones.ExceptionDuracionNegativa;
@@ -97,40 +109,29 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         for (Map.Entry<String,  OfertaLaboral> entry : ofertas.entrySet()){
             OfertaLaboral ofertaLaboral = entry.getValue();
             if (ofertaLaboral.getEstado().equals(EstadoOL.Finalizada)){
-                // obtengo la instancia de la segunda base de datos
 				TrabajoUyHistoricoManager THM = TrabajoUyHistoricoManager.getInstance();
-				// primero persistir la empresa si no esta persistida ya
 				Empresa empresa = ofertaLaboral.getEmpresaPublicadora();
 				EmpresaDTO empresatransformado = (EmpresaDTO) empresa.getDTO();
-				// veo si dicha empresa ya esta persistida o no
 				if ( THM.obtenerUsuarioDT(empresatransformado.getNickname()) == null) {
-				//  System.out.println("se persiste el usuario");
-					THM.GuardarEmpresa(empresatransformado);
+					THM.guardarEmpresa(empresatransformado);
 				} else {
 					empresatransformado =  (EmpresaDTO) THM.obtenerUsuarioDT(empresatransformado.getNickname());
-				//  System.out.println(" la empresa tiene id " + empresatransformado.getId());
 				}
 				
-				// persistir en memoria la oferta laboral
 				OfertaLaboralDTO oferta_a_guardar = ofertaLaboral.getDTO();
-				THM.GuardarOfertaFinalizada(oferta_a_guardar, empresatransformado);     
+				THM.guardarOfertaFinalizada(oferta_a_guardar, empresatransformado);     
 				
-				// Persistir las postulaciones
 				 List<Postulacion> postulacionesPersistir = ofertaLaboral.getPostulaciones();
 				for (Postulacion postulacion :postulacionesPersistir) {
-					// primero presistir los usuarios de la postulacion
-					// para eso veo si el postulante ya esta ingresado o no
 					Postulante postulante = postulacion.getPostulante();
 					PostulanteDTO postulantetransformado = (PostulanteDTO) postulante.getDTO();
 					if ( THM.obtenerUsuarioDT(postulantetransformado.getNickname()) == null) {
-				    	THM.GuardarPostulante(postulantetransformado);
+				    	THM.guardarPostulante(postulantetransformado);
 				    } else {
 				    	postulantetransformado =  (PostulanteDTO) THM.obtenerUsuarioDT(postulantetransformado.getNickname());
-				       //  System.out.println(" la empresa tiene id " + empresatransformado.getId());
 				       }
-				    // luego la postulacion en si
 					PostulacionDTO postulacionTransformada = postulacion.getDTO(oferta_a_guardar);
-					THM.GuardarPostulacion(postulacionTransformada, postulantetransformado);
+					THM.guardarPostulacion(postulacionTransformada, postulantetransformado);
 				}
 				THM.cerrarBaseDatos();
             }
@@ -217,7 +218,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             try {
                 imagen = utils.descargarImagen(usuariosCSV[7]);
             } catch (IOException e) {
-                // Manejar la excepción adecuadamente
                 e.printStackTrace();
             }
             ctrlUsuario.altaPostulanteImagen(usuariosCSV[2],  usuariosCSV[6],  usuariosCSV[3],  usuariosCSV[4],  localDate,  usuariosCSV[5],  postulanteData[2],  imagen);
@@ -350,7 +350,6 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
                 if (!ctrlOferta.existeOfertaLaboral(ofertaLaboralId)) {
                     utils.altaOfertaLaboralForzado(nickname_empresa,  tipodePublicacion,  ofertaNombre,  ofertaLaboralData[2],  horario,  Float.parseFloat(ofertaLaboralData[6]),  ofertaLaboralData[4],  dep,  fecha,  keys,  estado,  imagen,  paq);
-
                 }
             } catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | NumberFormatException | ExceptionRemuneracionOfertaLaboralNegativa eune) {
                 eune.printStackTrace();

@@ -37,7 +37,7 @@ public class DTOfertaExtendidoSinPConK {
     private String nicknameEmpresaPublicadora;
     private Integer cantFavs;
     private Integer cantVisitas;
-    //private String tipoOferta;
+    private String tipoOferta;
 
     public DTOfertaExtendidoSinPConK(){
 

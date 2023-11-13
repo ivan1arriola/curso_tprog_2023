@@ -26,6 +26,7 @@ import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
 import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.NoExistePaquete;
 import excepciones.NoHayOrdenDefinidoDePostulantes;
 import excepciones.OfertaLaboralNoEncontrada;
