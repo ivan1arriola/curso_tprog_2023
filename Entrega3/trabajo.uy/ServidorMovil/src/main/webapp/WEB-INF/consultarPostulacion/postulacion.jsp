@@ -3,6 +3,8 @@
 <%@ page import="logica.servidor.DtUsuario" %>
 <%@ page import="logica.servidor.DtPostulacion" %>
 <%@ page import="java.util.Base64" %>
+<%@ page import="java.util.regex.Matcher" %>
+<%@ page import="java.util.regex.Pattern" %>
 
 <%
 	DtPostulacion postulacion = (DtPostulacion) request.getAttribute("postulacion");
@@ -14,6 +16,47 @@
     if (imagenBytes!=null) {
     	imagen = "data:image/jpg;base64,  " + Base64.getEncoder().encodeToString(imagenBytes);
     }
+    
+    String url = postulacion.getUrlVideo();
+    boolean esValido = url != null && (url.contains("youtube.com") || url.contains("youtu.be"));
+    String video = "";
+    
+    
+    if (esValido) {
+        if (!url.contains("embed")) {
+            
+            String regex1 = "https://youtu.be/(\\w+)";
+            String regex2 = "https://www.youtube.com/watch\\?v=(\\w+)";
+
+            String videoId = null;
+
+            // Intenta hacer coincidir con la primera expresión regular
+            Pattern pattern1 = Pattern.compile(regex1);
+            Matcher matcher1 = pattern1.matcher(url);
+            if (matcher1.find()) {
+                videoId = matcher1.group(1);
+            } else {
+                // Si no coincide con la primera,  intenta la segunda expresión regular
+                Pattern pattern2 = Pattern.compile(regex2);
+                Matcher matcher2 = pattern2.matcher(url);
+                if (matcher2.find()) {
+                    videoId = matcher2.group(1);
+                }
+            }
+            if (videoId != null) {
+                video = "https://www.youtube.com/embed/" + videoId;
+            } else {
+                // Si no se encontró un identificador válido,  retorna la URL original
+                video = url;
+            }
+        }
+
+    } else {
+        // Manejar el caso en el que la URL no sea válida (puedes lanzar una excepción,  establecer un valor predeterminado,  etc.)
+        video = null;
+    }
+
+    
 %>
 
 <!DOCTYPE html>
@@ -79,12 +122,12 @@
                         <tr>
                             <td><b>Video Postulacion:</b></td>
                             <td>
-                        <% if (postulacion.getUrlVideo() != null && postulacion.getUrlVideo() != ""){ %>
-
+                        <% if (video != null && video != ""){ %>
+                                
                                 <iframe
                                         width="100%"
                                         height="395"
-                                        src="<%=postulacion.getUrlVideo()%>"
+                                        src="<%=video%>"
                                         title="Video Postulacion"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         allowfullscreen>
