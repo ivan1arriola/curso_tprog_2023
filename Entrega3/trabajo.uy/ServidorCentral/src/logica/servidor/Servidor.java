@@ -27,6 +27,7 @@ import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
 import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.NoExistePaquete;
 import excepciones.NoHayOrdenDefinidoDePostulantes;
 import excepciones.OfertaLaboralNoEncontrada;
@@ -496,7 +497,7 @@ public class Servidor {
     @WebMethod
     public void finalizarOferta(
             @WebParam(name = "nombre_oferta") String nombre_oferta
-    ) throws OfertaLaboralNoEncontrada,  FinalizarOfertaNoVencida,  FinalizarOfertaYaFinalizada {
+    ) throws OfertaLaboralNoEncontrada, FinalizarOfertaNoVencida, FinalizarOfertaYaFinalizada {
         ctrlOferta.finalizarOfertaLaboral(nombre_oferta);
     }
     
@@ -574,4 +575,12 @@ public class Servidor {
     public String obtenerCantPaquetesEmpresa(String nickname_e) throws ExceptionUsuarioNoEncontrado {
     	return ctrlUsuario.obtenerCantPaquetesEmpresa(nickname_e);
     }
+    
+    @WebMethod
+    public boolean existeOfertaLaboral(
+    		@WebParam(name="nombre_oferta") String nombreOferta
+    		) {
+    	return ctrlOferta.existeOfertaLaboral(nombreOferta);
+    }
+    
 }

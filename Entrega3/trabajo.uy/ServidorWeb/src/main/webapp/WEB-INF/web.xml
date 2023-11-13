@@ -179,7 +179,17 @@
     <location>/error404.jsp</location>
   </error-page>
   <error-page>
-    <error-code>505</error-code> <!-- Tiene que ser el 500 -->
+    <error-code>505</error-code>
     <location>/error500.jsp</location>
   </error-page>
+  <servlet>
+    <description></description>
+    <display-name>ValidarNombreOferta</display-name>
+    <servlet-name>ValidarNombreOferta</servlet-name>
+    <servlet-class>controller.ValidarNombreOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidarNombreOferta</servlet-name>
+    <url-pattern>/ValidarNombreOferta</url-pattern>
+  </servlet-mapping>
 </web-app>

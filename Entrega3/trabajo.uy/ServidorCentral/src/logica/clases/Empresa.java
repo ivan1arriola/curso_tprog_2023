@@ -1,12 +1,6 @@
 package logica.clases;
 
-//
-//import excepciones.AsignarOrdenAOfertaFinalizada;
-//import excepciones.AsignarOrdenAOfertaNoVencida;
-//import excepciones.ErrorAgregarUsuario;
-//import excepciones.ExcepcionKeywordVacia;
-//import excepciones.ExcepcionTipoOfertaNoExistente;
-//import excepciones.ExceptionCantidadPositivaDeTipoOfertaEnPaquete;
+
 import excepciones.ExceptionCantidadRestanteDeUnTipoDeOfertaEnUnPaqueteEsNegativa;
 //import excepciones.ExceptionCiudadInvalida;
 import excepciones.ExceptionCompraPaqueteConValorNegativo;
@@ -55,21 +49,11 @@ import logica.datatypes.DTUsuario;
 import logica.datatypes.DTUsuarioSinInfoSocial;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorValue;
 //import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Inheritance;
-//import jakarta.persistence.JoinColumn;
-//import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
-//import jakarta.persistence.ManyToMany;
-//import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-//import jakarta.persistence.InheritanceType;
-//import jakarta.persistence.DiscriminatorColumn;
-//import jakarta.persistence.DiscriminatorType;
 
 import logica.dto.EmpresaDTO;
 import logica.dto.UsuarioDTO;

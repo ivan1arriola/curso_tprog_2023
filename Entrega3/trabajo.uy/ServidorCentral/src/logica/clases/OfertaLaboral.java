@@ -26,13 +26,14 @@ import excepciones.ExceptionRemuneracionOfertaLaboralNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
 import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 //import excepciones.NoExistePaquete;
 import excepciones.NoHayOrdenDefinidoDePostulantes;
 //import excepciones.OfertaLaboralNoEncontrada;
 //import excepciones.PostulaExistenteException;
 //import excepciones.TipoUsuarioNoValido;
 //import excepciones.UsuarioNoExisteException;
-
+import excepciones.PersistirOfertaNoFinalizada;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

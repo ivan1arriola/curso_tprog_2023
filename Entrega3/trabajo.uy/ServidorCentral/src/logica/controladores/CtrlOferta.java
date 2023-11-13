@@ -26,6 +26,7 @@ import excepciones.ExceptionValidezNegativa;
 //import excepciones.FaltaCvException;
 //import excepciones.FaltaMotivaException;
 import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.NoExistePaquete;
 import excepciones.NoHayOrdenDefinidoDePostulantes;
 import excepciones.OfertaLaboralNoEncontrada;
@@ -598,7 +599,7 @@ public class CtrlOferta implements ICtrlOferta {
         // veo si dicha empresa ya esta persistida o no
         if ( THM.obtenerUsuarioDT(empresatransformado.getNickname()) == null) {
         //  System.out.println("se persiste el usuario");
-        	THM.GuardarEmpresa(empresatransformado);
+        	THM.guardarEmpresa(empresatransformado);
         } else {
         	empresatransformado =  (EmpresaDTO) THM.obtenerUsuarioDT(empresatransformado.getNickname());
         //  System.out.println(" la empresa tiene id " + empresatransformado.getId());
@@ -606,7 +607,7 @@ public class CtrlOferta implements ICtrlOferta {
         
         // persistir en memoria la oferta laboral
         OfertaLaboralDTO oferta_a_guardar = ofertal.getDTO();
-        THM.GuardarOfertaFinalizada(oferta_a_guardar, empresatransformado);     
+        THM.guardarOfertaFinalizada(oferta_a_guardar, empresatransformado);     
         
         // Persistir las postulaciones
     	 List<Postulacion> postulacionesPersistir = ofertal.getPostulaciones();
@@ -616,14 +617,14 @@ public class CtrlOferta implements ICtrlOferta {
  			Postulante postulante = postulacion.getPostulante();
  			PostulanteDTO postulantetransformado = (PostulanteDTO) postulante.getDTO();
  			if ( THM.obtenerUsuarioDT(postulantetransformado.getNickname()) == null) {
- 	        	THM.GuardarPostulante(postulantetransformado);
+ 	        	THM.guardarPostulante(postulantetransformado);
  	        } else {
  	        	postulantetransformado =  (PostulanteDTO) THM.obtenerUsuarioDT(postulantetransformado.getNickname());
  	           //  System.out.println(" la empresa tiene id " + empresatransformado.getId());
  	           }
             // luego la postulacion en si
  			PostulacionDTO postulacionTransformada = postulacion.getDTO(oferta_a_guardar);
- 			THM.GuardarPostulacion(postulacionTransformada, postulantetransformado);
+ 			THM.guardarPostulacion(postulacionTransformada, postulantetransformado);
  		}
 		THM.cerrarBaseDatos();
     }
