@@ -130,6 +130,25 @@ function cerrarApagar(){
     exit
 }
 
+function reinciarTomcat(){
+    echo "Reiniciando tomcat..."
+    cd $TOMCAT_DIR/bin
+    # ejecutar tomcat en otra terminal
+    ./shutdown.sh
+
+    # redeploy war
+    rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_WEB_WAR_NAME_FINAL
+    rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_MOVIL_WAR_NAME_FINAL
+
+    compilarServidorWebWAR
+    compilarServidorMovilWAR
+
+    cd $TOMCAT_DIR/bin
+    ./startup.sh
+    echo "Tomcat reiniciado..."
+    
+}
+
 
 # Menu de opciones
 while true; do
@@ -142,6 +161,7 @@ while true; do
     echo "4. Ejecutar Tomcat"
     echo "5. Ejecutar WEB (requiere Servidor Central Corriendo)"
     echo "6. Apagar"
+    echo "7. Reiniciar Tomcat"
     echo "0. Salir"
     read -p "Opción: " opcion
     case $opcion in
@@ -151,6 +171,7 @@ while true; do
         [4]* ) ejecutarTomcat;;
         [5]* ) ejecutarProyecto;;
         [6]* ) cerrarApagar;;
+        [7]* ) reinciarTomcat;;
         [0]* ) exit;;
         * ) echo "Seleccione una opción válida.";;
     esac

@@ -40,8 +40,6 @@ public class ValidarNombreOferta extends HttpServlet {
         
 		
 		
-		
-		
 	}
 
 }
