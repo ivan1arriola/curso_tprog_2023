@@ -4,10 +4,10 @@
 
 
 # Ruta del archivo properties
-PROPERTIES_FILE="/home/ivan1arriola/.trabajoUy/.properties"
+PROPERTIES_FILE="/ens/home01/i/ivan.arriola/.trabajoUy/.properties"
 
 # Script wsimport.sh
-WSIMPORT_SCRIPT="/home/ivan1arriola/Descargas/jaxws-ri-4.0.0/jaxws-ri/bin/wsimport.sh"
+WSIMPORT_SCRIPT="/ens/home01/i/ivan.arriola/Descargas/jaxws-ri-4.0.0/jaxws-ri/bin/wsimport.sh"
 
 # Leer el IP y el puerto del archivo properties
 SERVIDOR_IP=$(grep "^servidor.ip" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
@@ -54,7 +54,7 @@ function desplegarServidorCentral() {
     mv $PROYECTO_SERVIDOR_CENTRAL_DIR/target/$SERVIDOR_CENTRAL_JAR_NAME $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL
     cd $OUT_DIR
     # Ejecutar usando gnomo-terminal
-    gnome-terminal -e "java -jar $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL"
+    java -jar $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL &
     echo "Saliendo del servidor central..."
 }
 

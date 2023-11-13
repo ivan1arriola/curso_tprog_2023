@@ -17,21 +17,6 @@ import excepciones.ExceptionUsuarioSeSigueASiMismo;
 import excepciones.ExceptionValidezNegativa;
 import excepciones.NoExistePaquete;
 import excepciones.OfertaLaboralNoEncontrada;
-//import excepciones.ExceptionCiudadInvalida;
-//import excepciones.ExceptionCostoPaqueteNoNegativo;
-//import excepciones.ExceptionDuracionNegativa;
-//import excepciones.ExceptionExpoNegativa;
-//import excepciones.ExceptionPaqueteNoVigente;
-//import excepciones.ExceptionUsuarioCorreoRepetido;
-//import excepciones.ExceptionUsuarioNickRepetido;
-//import excepciones.ExceptionUsuarioNickYCorreoRepetidos;
-//import excepciones.FaltaCvException;
-//import excepciones.FaltaMotivaException;
-//import excepciones.FinalizarOfertaNoVencida;
-//import excepciones.NoHayOrdenDefinidoDePostulantes;
-//import excepciones.PostulaExistenteException;
-//import excepciones.TipoUsuarioNoValido;
-//import excepciones.UsuarioNoExisteException;
 import logica.Fabrica;
 import logica.persistencia.TrabajoUyHistoricoManager;
 import logica.Utils;
@@ -144,8 +129,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
         Map<String,  String[]> ofertas = utils.getOfertasLaboralesCSV();
 
         for (Map.Entry<String,  String[]> entry : ofertaFavoritasCSV.entrySet()) {
-            String clavePostulante = entry.getValue()[0];
-            String claveOferta = entry.getValue()[1];
+            String clavePostulante = entry.getValue()[1];
+            String claveOferta = entry.getValue()[2];
 
             String nicknamePostulante = postulantes.get(clavePostulante)[2];
             String nombreOferta = ofertas.get(claveOferta)[1];
@@ -155,9 +140,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
             } catch (ExceptionUsuarioNoEncontrado | OfertaLaboralNoEncontrada e) {
                 System.err.println(e.getMessage());
             }
-
         }
-
     }
 
 
@@ -349,7 +332,8 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
                 }
 
                 if (!ctrlOferta.existeOfertaLaboral(ofertaLaboralId)) {
-                    utils.altaOfertaLaboralForzado(nickname_empresa,  tipodePublicacion,  ofertaNombre,  ofertaLaboralData[2],  horario,  Float.parseFloat(ofertaLaboralData[6]),  ofertaLaboralData[4],  dep,  fecha,  keys,  estado,  imagen,  paq);
+                    utils.altaOfertaLaboralForzado(Integer.parseInt(ofertaLaboralData[13]),nickname_empresa,  tipodePublicacion,  ofertaNombre,  ofertaLaboralData[2],  horario,  Float.parseFloat(ofertaLaboralData[6]),  ofertaLaboralData[4],  dep,  fecha,  keys,  estado,  imagen,  paq);
+                    
                 }
             } catch (ExceptionUsuarioNoEncontrado | ExceptionEmpresaInvalida | NumberFormatException | ExceptionRemuneracionOfertaLaboralNegativa eune) {
                 eune.printStackTrace();

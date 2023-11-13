@@ -3,9 +3,11 @@ package logica.manejadores;
 import excepciones.ErrorAgregarUsuario;
 import excepciones.ExceptionUsuarioNoEncontrado;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.PersistenceException;
+import logica.clases.OfertaLaboral;
 import logica.clases.Usuario;
 
 //import java.util.HashMap;
@@ -125,6 +127,26 @@ public class UsuarioHandler {
         }
     }
 
+    public void actualizar(Usuario usuario) {
+        EntityTransaction transaction = database.getTransaction();
+
+        try {
+            if (!database.getTransaction().isActive()) {
+                database.getTransaction().begin();
+            }
+
+            database.merge(usuario);
+            transaction.commit();
+
+        } catch (PersistenceException e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+ 
+    
     public static void setBaseDatos(EntityManager emm) {
 
         database = emm;

@@ -537,25 +537,29 @@ public class CtrlOferta implements ICtrlOferta {
 
     @Override
     public void marcarFavorita(String nick_postulante,  String nomb_oferta) throws ExceptionUsuarioNoEncontrado,  OfertaLaboralNoEncontrada {
-
-        usuarioHandler = UsuarioHandler.getInstance();
+        UsuarioHandler usuarioHandler = UsuarioHandler.getInstance();
     	Postulante postulante = (Postulante) usuarioHandler.buscarNick(nick_postulante);
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
         OfertaLaboral ofertaLaboral = OLH.buscar(nomb_oferta);
         postulante.marcarFavorita(ofertaLaboral);
         ofertaLaboral.marcadaFav();
-        System.out.println(nick_postulante + "marco como oferta laboral favorita a " + nomb_oferta);
-
-
+        OLH.actualizar(ofertaLaboral);
+        usuarioHandler.actualizar(postulante);
+        System.out.println(nick_postulante + " marco como oferta laboral favorita a " + nomb_oferta);
     }
 
     @Override
     public void desmarcarFavorita(String nick_postulante,  String nomb_oferta) throws ExceptionUsuarioNoEncontrado,  OfertaLaboralNoEncontrada {
-    	    	Postulante postulante = (Postulante) usuarioHandler.buscarNick(nick_postulante);
+    	UsuarioHandler usuarioHandler = UsuarioHandler.getInstance();
+    	Postulante postulante = (Postulante) usuarioHandler.buscarNick(nick_postulante);
         OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
         OfertaLaboral ofertaLaboral = OLH.buscar(nomb_oferta);
         postulante.desmarcarFavorita(ofertaLaboral);
         ofertaLaboral.desmarcadaFav();
+        // =============================
+        OLH.actualizar(ofertaLaboral);
+        usuarioHandler.actualizar(postulante);
+        System.out.println(nick_postulante + " desmarco como oferta laboral favorita a " + nomb_oferta);
     }
 
     public void establecerPosiciones(String nombre_oferta,  List<String> nicksPostulante) throws AsignarOrdenAOfertaFinalizada,  OfertaLaboralNoEncontrada,  AsignarOrdenAOfertaNoVencida {
