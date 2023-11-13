@@ -16,6 +16,7 @@ import utils.FabricaWeb;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 @WebServlet("/consultarpostulantes")
@@ -66,7 +67,17 @@ public class ConsultarPostulantes extends HttpServlet {
                     // Obtengo la lista devuelta del servidor
                     nicknamePostulantes  = servidor.obtenerPosiciones(nombreOferta).getListaString();
                 } else {
+                // Supongamos que tienes un ArrayList llamado nicknamePostulantes
                    nicknamePostulantes = servidor.listarPostulantesOfertaLaboral(nombreOferta).getListaString();
+
+                   // Crear un HashSet a partir del ArrayList para eliminar duplicados
+                   HashSet<String> uniqueNicknames = new HashSet<>(nicknamePostulantes);
+
+                   // Limpiar el ArrayList original
+                   nicknamePostulantes.clear();
+
+                   // Agregar los elementos únicos de HashSet de vuelta al ArrayList
+                   nicknamePostulantes.addAll(uniqueNicknames);
                 }
 
                 request.setAttribute("estaFinalizada", estaFinalizada);

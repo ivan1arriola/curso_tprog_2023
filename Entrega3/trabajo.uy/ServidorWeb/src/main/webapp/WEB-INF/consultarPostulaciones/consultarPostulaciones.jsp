@@ -19,7 +19,7 @@
   <title>Postulaciones a Oferta Laboral</title>
   <style >
     .banner-container {
-      background-image: url(<%= imagen %>);
+      background-image: url("<%= imagen %>");
       height: 25vh;
     }
   </style>
