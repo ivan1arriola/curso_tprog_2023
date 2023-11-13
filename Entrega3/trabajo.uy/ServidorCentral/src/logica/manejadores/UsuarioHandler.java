@@ -62,6 +62,18 @@ public class UsuarioHandler {
             database.getTransaction().begin();
             database.persist(usuario);
             database.getTransaction().commit();
+            String nombre = usuario.getNombre();
+            
+            int sum = 0;
+            for (int i = 0; i < nombre.length(); i++) {
+                char letter = nombre.charAt(i);
+                sum += (int) letter;
+            }
+            int sum2 = 0;
+            for (int i = 0; i < nombre.length(); i++) {
+                char letter = nombre.charAt(i);
+                sum2 += (int) letter;
+            }
         } catch (PersistenceException e) {
             if (database.getTransaction() != null && database.getTransaction().isActive()) {
                 database.getTransaction().rollback();

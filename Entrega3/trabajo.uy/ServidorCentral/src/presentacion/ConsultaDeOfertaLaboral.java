@@ -3,11 +3,14 @@ package presentacion;
 
 import excepciones.ExceptionEmpresaInvalida;
 import excepciones.ExceptionUsuarioNoEncontrado;
+import excepciones.FinalizarOfertaNoVencida;
+import excepciones.FinalizarOfertaYaFinalizada;
 //import excepciones.FinalizarOfertaNoVencida;
 //import excepciones.FinalizarOfertaYaFinalizada;
 import excepciones.OfertaLaboralNoEncontrada;
 import logica.Fabrica;
 import logica.datatypes.DTOfertaExtendido;
+import logica.interfaces.ICtrlOferta;
 //import logica.interfaces.ICtrlOferta;
 import logica.interfaces.ICtrlUsuario;
 
@@ -157,7 +160,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             }
         });
         
-        btnAceptar_1.setBounds(88,  38,  450,  25);
+        btnAceptar_1.setBounds(133,  38,  450,  25);
         getContentPane().add(btnAceptar_1);
         
 

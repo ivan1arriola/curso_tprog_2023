@@ -106,6 +106,10 @@ public class Empresa extends Usuario {
     public Set<InfoCompra> getInfoCompmras() {
         return this.infoCompras;
     }
+    
+    public void setInofCompra(Set<InfoCompra> IC) {
+    	this.infoCompras = IC;
+    }
 
     public String getDescripcion() {
         return descripcion;
@@ -436,7 +440,7 @@ public class Empresa extends Usuario {
     }
 
 
-    private OfertaLaboral encontrarOfertaPorNombre(String nombreOferta) throws OfertaLaboralNoEncontrada {
+    public OfertaLaboral encontrarOfertaPorNombre(String nombreOferta) throws OfertaLaboralNoEncontrada {
         for (OfertaLaboral oferta : getofertasLaborales()) {
             if (nombreOferta.equals(oferta.getNombre())) {
                 return oferta;
