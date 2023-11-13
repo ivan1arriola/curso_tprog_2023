@@ -57,7 +57,7 @@ const validarnombre = () => {
         .then(() => {
           // El nombre está disponible
           console.log("El nombre está disponible");
-          nombreInput.setCustomValidity();
+          nombreInput.setCustomValidity("");
         })
         .catch((error) => {
           // El nombre está en uso
@@ -76,6 +76,9 @@ const validarnombre = () => {
   const forms = document.querySelectorAll('.needs-validation')
 
   const selectElements = document.querySelectorAll('.custom-select-validation');
+  const nombreInput = document.getElementById("nombre");
+
+  nombreInput.addEventListener("input",  validarnombre);
 
   selectElements.forEach(selectElement => {
     selectElement.addEventListener("input",  () => validarSelect(selectElement));
