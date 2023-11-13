@@ -777,11 +777,18 @@ public class OfertaLaboral {
 
         List<Postulacion> postulacionesOferta = getPostulaciones();
 
-        // Ordena la lista de postulaciones según el orden de los nicknames
-        postulacionesOferta.sort(Comparator.comparingInt(p -> nickPostulantes.indexOf(p.obtenerNicknamePostulante())));
+        List<Postulacion> listaNueva = new ArrayList<>();
+        
+        for(String nick : nickPostulantes) {
+        	for (Postulacion postulacion : postulacionesOferta) {
+        		if(postulacion.getPostulante().getNickname().equals(nick)){
+        			listaNueva.add(postulacion);
+        		}
+        	}
+        }
 
         // Setea la lista ordenada
-        setPostulaciones(postulacionesOferta);
+        setPostulaciones(listaNueva);
         setHayOrdenDefinido(true);
 
     }

@@ -16,6 +16,7 @@ import utils.FabricaWeb;
 import enumeration.TipoUsuario;
 import interfaces.ILogica;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @WebServlet("/consultarofertalaboral")
@@ -30,6 +31,9 @@ public class ConsultarOfertaLaboral extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,  HttpServletResponse response) throws ServletException,  IOException {
         FabricaWeb.getKeywordsLoader().cargarKeywords(request,  response);
+        
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String nombreOferta = request.getParameter("o");
         
@@ -154,6 +158,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
         
     	ServidorService SS = new ServidorService();
         Servidor servidor = SS.getServidorPort();
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
     	
     	String nicknameUsuarioLogueado = (String) request.getSession().getAttribute("nickname");
     	String nombreOferta = (String) request.getParameter("nombreOferta");    	
@@ -161,7 +167,8 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     	if (request.getParameter("corazonDesm") != null) {
     		try {
     			servidor.marcarFavorito(nicknameUsuarioLogueado,  nombreOferta);
-				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
+				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + URLEncoder.encode(nombreOferta,  "UTF-8"));
+				return;
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
 				e.printStackTrace();
 			} catch (OfertaLaboralNoEncontrada_Exception e) {
@@ -172,7 +179,7 @@ public class ConsultarOfertaLaboral extends HttpServlet {
     		try {
     			
 				servidor.desmarcarFavorito(nicknameUsuarioLogueado,  nombreOferta);
-				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + nombreOferta);
+				response.sendRedirect(request.getContextPath() + "/consultarofertalaboral?o=" + URLEncoder.encode(nombreOferta,  "UTF-8"));
 			} catch (ExceptionUsuarioNoEncontrado_Exception e) {
 				e.printStackTrace();
 			} catch (OfertaLaboralNoEncontrada_Exception e) {

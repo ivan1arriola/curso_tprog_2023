@@ -114,7 +114,11 @@ public class Logica implements ILogica {
 		postulacion.setURLDocExtras(dtPostulacion.getURLDocExtras());
 		postulacion.setVideo(dtPostulacion.getUrlVideo());
 		postulacion.setClasificacion(dtPostulacion.getClasificacion());
-		postulacion.setfechaResu(LocalDate.parse(dtPostulacion.getFechaResu()));
+		if(dtPostulacion.getFechaResu().equals("")){
+			postulacion.setfechaResu(LocalDate.MIN);
+		} else {
+			postulacion.setfechaResu(LocalDate.parse(dtPostulacion.getFechaResu()));
+		}
 
 		return postulacion;
 	}

@@ -175,7 +175,7 @@
                                   </div>
                                   <div class="col-8" id="LOG">
                                     <select class="form-control custom-select-validation" id="listadoOfertasGeneral"
-                                      name="tipoOferta" required>
+                                      name="tipoOferta" >
                                       <% for (String tipo : tipoPublicaciones ){ %>
                                         <option value="<%= tipo %>">
                                           <%= tipo %>
@@ -188,7 +188,7 @@
                                   </div>
                                   <div class="col-8" id="LOP">
                                     <select class="form-control custom-select-validation" id="listadoOfertasParticular"
-                                      name="tipoOfertaPart" required>
+                                      name="tipoOfertaPart" >
                                     </select>
                                     <div class="invalid-feedback">
                                       Selecciona un elemento de la lista
@@ -273,9 +273,13 @@
                             // Mostrar u ocultar el elemento según la selección
                             if (selectedValue === "1") {
                               $("#LOP").hide();
+                              $("#LOP").removeAttr("required");
                               $("#LOG").show();
+                              $("#LOG").attr("required", "required");
+
                             } else {
                               $("#LOG").hide();
+                              $("#LOG").removeAttr("required");
                               $.ajax({
                                 url: '<%= request.getContextPath() %>/ajaxaltaofertalaboral',   // Especifica la URL del servidor aquí
                                 type: 'GET',
@@ -299,6 +303,7 @@
                                 }
                               });
                               $("#LOP").show();
+                              $("#LOP").attr("required", "required");
                             }
                           });
                         });

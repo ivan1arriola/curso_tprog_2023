@@ -86,11 +86,13 @@ public class PDFServlet extends HttpServlet {
             String ofertaLaboral = OfertaLaboral;
             String ordenSeleccion = "No se ha realizado una clasificación";
             int ordenSeleccionInt = postulacion.getClasificacion();
+            String fechaResultado = postulacion.getFechaResuString(); // PENDIENTE
             if (ordenSeleccionInt > 0) {
             	ordenSeleccion = String.valueOf(ordenSeleccionInt);
+            } else {
+            	fechaResultado = "NA";
             }
             String fechaPostulacion = postulacion.getFechaString(); // PENDIENTE
-            String fechaResultado = postulacion.getFechaResuString(); // PENDIENTE
 
             // Crear el contenido del comprobante
             Paragraph title = new Paragraph("Comprobante de Postulación");

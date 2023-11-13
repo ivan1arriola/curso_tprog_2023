@@ -3,6 +3,9 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import interfaces.ILogica;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +21,6 @@ import logica.servidor.ExceptionUsuarioNoEncontrado_Exception;
 import logica.servidor.OfertaLaboralNoEncontrada_Exception;
 import logica.servidor.TipoUsuarioNoValido_Exception;
 import utils.FabricaWeb;
-import org.json.JSONObject;
 
 @WebServlet("/consultapostulacion")
 public class ConsultaPostulacion extends HttpServlet {
@@ -80,15 +82,22 @@ public class ConsultaPostulacion extends HttpServlet {
         UsuarioBean usuario = logica.obtenerDatosUsuario(nickname);
         try {
             PostulacionBean postulacion = logica.obtenerDatosPostulacionW(nickname,  nombreOferta);
+            
+            Gson gson = new Gson();
 
-            // Preparar una respuesta en formato JSON
-            JSONObject jsonResponse = new JSONObject();
-            jsonResponse.put("nombre",  usuario.getNombre() + " " + usuario.getApellido());
-            jsonResponse.put("curriculum",  postulacion.getCVitae());
-            jsonResponse.put("motivacion",  postulacion.getMotivacion());
-            jsonResponse.put("fecha",  postulacion.getFecha());
-            jsonResponse.put("video",  postulacion.getVideo());
+         // Crear un objeto JsonObject
+         JsonObject jsonResponse = new JsonObject();
+         jsonResponse.addProperty("nombre", usuario.getNombre() + " " + usuario.getApellido());
+         jsonResponse.addProperty("curriculum", postulacion.getCVitae());
+         jsonResponse.addProperty("motivacion", postulacion.getMotivacion());
+         jsonResponse.addProperty("fecha", postulacion.getFecha().toString());
+         jsonResponse.addProperty("video", postulacion.getVideo());
 
+         // Convertir JsonObject a cadena JSON
+         String jsonResult = gson.toJson(jsonResponse);
+
+         // Imprimir o hacer algo con la cadena JSON resultante
+         System.out.println(jsonResult);
             // Configurar la respuesta HTTP
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
@@ -102,31 +111,27 @@ public class ConsultaPostulacion extends HttpServlet {
 
         } catch (ExceptionUsuarioNoEncontrado_Exception e) {
             // Manejar la excepción cuando el usuario no se encuentra
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND); // Código de respuesta HTTP 404
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
 
-            JSONObject errorResponse = new JSONObject();
-            errorResponse.put("error",  "Usuario no encontrado");
+            JsonObject errorResponse = new JsonObject();
+            errorResponse.addProperty("error", "Usuario no encontrado");
 
-            // Enviar la respuesta de error al cliente
-            PrintWriter out = response.getWriter();
-            out.print(errorResponse);
-            out.flush();
+            response.getWriter().print(errorResponse.toString());
+            response.getWriter().flush();
 
         } catch (Exception e) {
             // Manejar otras excepciones personalizadas si es necesario
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // Código de respuesta HTTP 500
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
 
-            JSONObject errorResponse = new JSONObject();
-            errorResponse.put("error",  "Ocurrió un error inesperado");
+            JsonObject errorResponse = new JsonObject();
+            errorResponse.addProperty("error", "Ocurrió un error inesperado");
 
-            // Enviar la respuesta de error al cliente
-            PrintWriter out = response.getWriter();
-            out.print(errorResponse);
-            out.flush();
+            response.getWriter().print(errorResponse.toString());
+            response.getWriter().flush();
         }
 
 

@@ -144,7 +144,7 @@ public class OrdenarPostulantes extends HttpServlet {
         if (orden.startsWith("[") && orden.endsWith("]")) {
             orden = orden.substring(1,  orden.length() - 1);
         }
-        String[] ordenArray = orden.split(", ");
+        String[] ordenArray = orden.split(",");
         List<String> ordenPostulantes = new ArrayList<>(Arrays.asList(ordenArray));
 
         // Imprimir el orden o realizar otras acciones necesarias
