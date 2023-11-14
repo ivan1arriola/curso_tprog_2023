@@ -3,8 +3,11 @@ Este repositorio contiene el código completo del proyecto desarrollado en el ma
 El proyecto se centra en el análisis, diseño e implementación de una plataforma web denominada "trabajo.uy" 
 destinada a facilitar la difusión de ofertas laborales y la interacción entre empresas y postulantes.
 
-## Letra inicial del proyecto
-
+## Letra Inicial del Proyecto
+- [Descripcion inicial del Proyecto](https://github.com/ivan1arriola/tprog34-2013/blob/78cd0795841d5b7326494783bc46b59c81ad429f/docs/descproyTPROG2023-v1.0.pdf)
+- [Tarea 2](https://github.com/ivan1arriola/tprog34-2013/blob/main/docs/Tarea2_2023_v1.0.pdf)
+- [Tarea 3](https://github.com/ivan1arriola/tprog34-2013/blob/main/docs/Tarea3_2023_v1.1.pdf)
+- [Tarea 1](https://github.com/ivan1arriola/tprog34-2013/blob/main/docs/Tarea1_2023-v1.1.pdf)
 
 ## Características Principales
 - Publicación de ofertas laborales por empresas.
@@ -14,7 +17,13 @@ destinada a facilitar la difusión de ofertas laborales y la interacción entre 
 
 ## Tecnologías Utilizadas
 - Lenguaje de programación orientado a objetos (especificado en el curso).
-- [Agregar aquí otras tecnologías utilizadas]
+- Java
+- JSP (JavaServer Pages)
+- Servlets
+- CSS
+- JavaScript
+- Bootstrap
+- Swing
 
 ## Grupo 34 de Taller Programación
 Integrantes:
