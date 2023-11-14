@@ -35,6 +35,30 @@ Integrantes:
 
 ## Documentación
 
+## Requisitos para la Versión Final
+
+Para asegurar el correcto funcionamiento de la versión final de la aplicación "trabajo.uy", se deben cumplir los siguientes requisitos:
+
+1. **Archivo .properties en la carpeta HOME/.trabajoUy:**
+   - Crear un archivo llamado `.properties` en la carpeta HOME/.trabajoUy.
+   - Definir las siguientes variables en el archivo:
+     - `servidor.puerto`: Puerto del servidor.
+     - `servidor.ip`: Dirección IP del servidor.
+     - `tomcat.dir`: Ruta absoluta hacia la carpeta de instalación de Tomcat.
+
+Ejemplo de estructura del archivo `.properties`:
+
+```properties
+# Archivo .properties para la aplicación trabajo.uy
+
+# Configuración del servidor
+servidor.puerto=8080
+servidor.ip=127.0.0.1
+
+# Ruta absoluta hacia la carpeta de instalación de Tomcat
+tomcat.dir=/ruta/absoluta/hacia/tu/carpeta/tomcat
+
+
 ### Tarea 3
 - [Reparto de tareas](https://docs.google.com/spreadsheets/d/1qZyLDa2huPWdnkLSsEG9VSBYwYoir6YvsJw0UnizM2s/edit?usp=sharing)
 - [Registro de horas](https://docs.google.com/spreadsheets/d/1wJhPTh31mYmj0IF9E9dGdcg4sxZP49jFfUM-NN3Eq1w/edit?usp=sharing)
