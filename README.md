@@ -1,5 +1,5 @@
-# Proyecto del curso de Taller de Programación - Año 2023
-Este repositorio contiene el código completo del proyecto desarrollado en el marco del curso "Taller de Programación - Curso 2023".
+# Proyecto del curso de Taller de Programación - Año 2023 - Facultad de Ingeniería UDELAR
+Este repositorio contiene el código completo del proyecto desarrollado en el marco del curso "Taller de Programación".
 El proyecto se centra en el análisis, diseño e implementación de una plataforma web denominada "trabajo.uy" 
 destinada a facilitar la difusión de ofertas laborales y la interacción entre empresas y postulantes.
 
