@@ -9,7 +9,6 @@ HOME_DIR="$HOME"
 # Construye la ruta completa al archivo de propiedades
 PROPERTIES_FILE="$HOME_DIR/.trabajoUy/.properties"
 
-
 # Leer el IP y el puerto del archivo properties
 SERVIDOR_IP=$(grep "^servidor.ip" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
 SERVIDOR_PUERTO=$(grep "^servidor.puerto" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
@@ -43,14 +42,12 @@ SERVIDOR_MOVIL_WAR_NAME_FINAL="ServidorMovil.war"
 # Ruta a tomcat, se lee de properties
 TOMCAT_DIR=$(grep "^tomcat.dir" $PROPERTIES_FILE | cut -d'=' -f2 | tr -d '[:space:]')
 
-
-
 # Funcion para ejecutar Servidor Central
 function ejecutarServidorCentral() {
     # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 1
     echo "Desplegando..."
     cd $OUT_DIR
-    java -jar $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL &
+    java -jar $OUT_DIR/ServidorCentral/$SERVIDOR_CENTRAL_JAR_NAME_FINAL &
     echo "Saliendo del servidor central..."
 }
 
@@ -61,7 +58,7 @@ function compilarServidorCentral() {
     echo "Compilando Servidor Central..."
     cd $PROYECTO_SERVIDOR_CENTRAL_DIR
     mvn clean package
-    mv $PROYECTO_SERVIDOR_CENTRAL_DIR/target/$SERVIDOR_CENTRAL_JAR_NAME $OUT_DIR/$SERVIDOR_CENTRAL_JAR_NAME_FINAL
+    mv $PROYECTO_SERVIDOR_CENTRAL_DIR/target/$SERVIDOR_CENTRAL_JAR_NAME $OUT_DIR/ServidorCentral/$SERVIDOR_CENTRAL_JAR_NAME_FINAL
     echo "Servidor Central listo en carpeta out"
 }
 
@@ -74,7 +71,7 @@ function compilarServidorWebWAR() {
     echo "Compilando servidor web..."
     cd $PROYECTO_SERVIDOR_WEB_DIR
     mvn clean package
-    mv $PROYECTO_SERVIDOR_WEB_DIR/target/$SERVIDOR_WEB_WAR_NAME $TOMCAT_DIR/webapps/$SERVIDOR_WEB_WAR_NAME_FINAL
+    mv $PROYECTO_SERVIDOR_WEB_DIR/target/$SERVIDOR_WEB_WAR_NAME $OUT_DIR/ServidorWeb/$SERVIDOR_WEB_WAR_NAME_FINAL
 
     echo "Servidor web compilado..."
     
@@ -88,14 +85,18 @@ function compilarServidorMovilWAR() {
     echo "Compilando servidor web..."
     cd $PROYECTO_SERVIDOR_MOVIL_DIR
     mvn clean package
-    mv $PROYECTO_SERVIDOR_MOVIL_DIR/target/$SERVIDOR_MOVIL_WAR_NAME $TOMCAT_DIR/webapps/$SERVIDOR_MOVIL_WAR_NAME_FINAL
+    mv $PROYECTO_SERVIDOR_MOVIL_DIR/target/$SERVIDOR_MOVIL_WAR_NAME $OUT_DIR/ServidorMovil/$SERVIDOR_MOVIL_WAR_NAME_FINAL
 
     echo "Servidor web compilado..."
     
 }
 
 function ejecutarTomcat() {
-    # Puedes agregar aquí los comandos que deseas ejecutar al seleccionar la opción 2
+    # Copia los achivos WAR a la carpeta webapps de tomcat
+    echo "Copiando archivos WAR a tomcat..."
+    cp $OUT_DIR/ServidorWeb/$SERVIDOR_WEB_WAR_NAME_FINAL $TOMCAT_DIR/webapps
+    cp $OUT_DIR/ServidorMovil/$SERVIDOR_MOVIL_WAR_NAME_FINAL $TOMCAT_DIR/webapps
+    
     echo "Ejecutando tomcat..."
     cd $TOMCAT_DIR/bin
     # ejecutar tomcat en otra terminal
@@ -127,13 +128,8 @@ function reinciarTomcat(){
     rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_WEB_WAR_NAME_FINAL
     rm -rf $TOMCAT_DIR/webapps/$SERVIDOR_MOVIL_WAR_NAME_FINAL
 
-    compilarServidorWebWAR
-    compilarServidorMovilWAR
-
-    cd $TOMCAT_DIR/bin
-    ./startup.sh
-    echo "Tomcat reiniciado..."
-    
+    # llama a la funcion de ejecutar tomcat
+    ejecutarTomcat    
 }
 
 
@@ -141,25 +137,47 @@ function reinciarTomcat(){
 while true; do
     # crea la carpeta out si no existe
     mkdir -p $OUT_DIR
+    mkdir -p $OUT_DIR/ServidorCentral
+    mkdir -p $OUT_DIR/ServidorWeb
+    mkdir -p $OUT_DIR/ServidorMovil
     echo "Seleccione una opción:"
     echo "1. Compilar Servidor Web JAR"
-    echo "2. Ejectuar Servidor Central"
-    echo "4. Compilar Servidor Web WAR"
-    echo "5. Compilar Servidor Movil WAR"
-    echo "6. Ejecutar Tomcat"
-    echo "7. Reiniciar Tomcat"
-    echo "8. Apagar"
+    echo "2. Compilar Servidor Web WAR"
+    echo "3. Compilar Servidor Movil WAR"
+    echo "4. Ejecutar Servidor Central"
+    echo "5. Ejecutar Tomcat"
+    echo "6. Reiniciar Tomcat"
+    echo "7. Apagar"
     echo "0. Salir"
     read -p "Opción: " opcion
+
     case $opcion in
-        1 ) compilarServidorCentral;;
-        2 ) ejecutarServidorCentral;;
-        4 ) compilarServidorWebWAR;;
-        5 ) compilarServidorMovilWAR;;
-        6 ) ejecutarTomcat;;
-        7 ) reinciarTomcat;;
-        8 ) cerrarApagar;;
-        0 ) exit;;
-        * ) echo "Seleccione una opción válida.";;
+        1)
+            compilarServidorCentral
+            ;;
+        2)
+            compilarServidorWebWAR
+            ;;
+        3)
+            compilarServidorMovilWAR
+            ;;
+        4)
+            ejecutarServidorCentral
+            ;;
+        5)
+            ejecutarTomcat
+            ;;
+        6)
+            reinciarTomcat
+            ;;
+        7)
+            cerrarApagar
+            ;;
+        0)
+            exit
+            ;;
+        *)
+            echo "Opción inválida"
+            ;;
     esac
 done
