@@ -55,8 +55,11 @@ Ejemplo de estructura del archivo `.properties`:
 servidor.puerto=8080
 servidor.ip=127.0.0.1
 
+
 # Ruta absoluta hacia la carpeta de instalación de Tomcat
 tomcat.dir=/ruta/absoluta/hacia/tu/carpeta/tomcat
+
+---
 
 
 ### Tarea 3
@@ -85,5 +88,5 @@ tomcat.dir=/ruta/absoluta/hacia/tu/carpeta/tomcat
 - [Informe Desarollo Sofware](https://es.overleaf.com/2682928186hdkjphkrmrvb)
 - [Diagramas de Comunicación](https://drive.google.com/file/d/1xEXGNj2Vtmx2TWz37Y0g0B64pAf9m2hY/view?usp=sharing)
 
----
+
 
