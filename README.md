@@ -59,7 +59,7 @@ servidor.ip=127.0.0.1
 # Ruta absoluta hacia la carpeta de instalación de Tomcat
 tomcat.dir=/ruta/absoluta/hacia/tu/carpeta/tomcat
 
----
+```
 
 
 ### Tarea 3
