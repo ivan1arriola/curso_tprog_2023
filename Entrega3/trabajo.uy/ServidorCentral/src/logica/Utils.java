@@ -539,7 +539,7 @@ public class Utils {
 
 
 
-    public Postulacion crearPostulacionForzado(String nick,  String curriculumVitae,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab) throws ExceptionUsuarioNoEncontrado {
+    public Postulacion crearPostulacionForzado(String nick,  String curriculumVitae,  String motivacion,  LocalDate fecha,  String URLDocExtras,  OfertaLaboral OferLab, String video) throws ExceptionUsuarioNoEncontrado {
         UsuarioHandler UsuarioH = UsuarioHandler.getInstance();
 
         Postulante postulante = (Postulante) UsuarioH.buscarNick(nick);
@@ -547,7 +547,7 @@ public class Utils {
             throw new IllegalArgumentException("Usuario " + nick + " no existe");
         }
         try {
-            return postulante.crearPostulacionForzado(curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OferLab,  URLDocExtras);
+            return postulante.crearPostulacionForzado(curriculumVitae,  motivacion,  fecha,  URLDocExtras,  OferLab,  video);
         } catch (ExceptionValidezNegativa e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -555,13 +555,13 @@ public class Utils {
         return null;
     }
 
-    public boolean altaPostulacionForzado(String nombre,  String nick,  String curriculumVitae,  String motivacion,  String URLDocE,  LocalDate fecha) throws OfertaLaboralNoEncontrada,  ExceptionUsuarioNoEncontrado {
+    public boolean altaPostulacionForzado(String nombre,  String nick,  String curriculumVitae,  String motivacion,  String URLDocE,  LocalDate fecha, String video) throws OfertaLaboralNoEncontrada,  ExceptionUsuarioNoEncontrado {
         CtrlUsuario CtrllUser = new CtrlUsuario();
         boolean existe = CtrllUser.existePostulacion(nick,  nombre);
         if (!existe) {
             OfertaLaboralHandler OLH = OfertaLaboralHandler.getInstance();
             OfertaLaboral oferLab = OLH.buscar(nombre);
-            Postulacion postulacion = crearPostulacionForzado(nick,  curriculumVitae,  motivacion,  fecha,  URLDocE,  oferLab);
+            Postulacion postulacion = crearPostulacionForzado(nick,  curriculumVitae,  motivacion,  fecha,  URLDocE,  oferLab, video);
             try {
                 oferLab.registrarPostulacionForzado(postulacion);
             } catch (ExceptionFechaInvalida e) {

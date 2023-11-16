@@ -431,7 +431,7 @@ public class CtrlCargaDeDatos implements ICtrlCargaDeDatos {
 
             // No hay URLDocExtras,  por eso el ""
             try {
-                utils.altaPostulacionForzado(ofertaLaboral,  usuario,  postulacionData[2],  postulacionData[3],  "",  fecha); // Manejar la excepción aquí si es necesario
+                utils.altaPostulacionForzado(ofertaLaboral,  usuario,  postulacionData[2],  postulacionData[3],  "",  fecha, postulacionData[6]); // Manejar la excepción aquí si es necesario
             } catch (OfertaLaboralNoEncontrada e) {
                 throw new RuntimeException(e);
             } catch (ExceptionUsuarioNoEncontrado e) {
